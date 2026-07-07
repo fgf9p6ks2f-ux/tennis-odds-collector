@@ -13,9 +13,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pinnacle  # noqa: E402
 
 DB = Path(os.environ.get("MLB_DB", Path(__file__).resolve().parent / "mlb_kprops.sqlite"))
+# order matters: "Hits Allowed" before "Hits" so the substring match resolves correctly
 PROP_STATS = {"Total Strikeouts": "strikeouts", "Pitching Outs": "outs",
+              "Hits Allowed": "hits_allowed", "Earned Runs": "earned_runs",
               "Total Bases": "total_bases", "Home Runs": "home_runs",
-              "Hits Allowed": "hits_allowed", "Earned Runs": "earned_runs"}
+              "Stolen Bases": "stolen_bases", "RBIs": "rbis", "Hits": "hits"}
 
 
 def collect():
@@ -26,24 +28,25 @@ def collect():
         stat = next((s for label, s in PROP_STATS.items() if label in desc), None)
         if not stat:
             continue
-        pitcher = desc.split("(")[0].strip()
-        for mk in pinnacle._get(f"/matchups/{mu['id']}/markets/related/straight"):
-            if mk.get("type") != "team_total" or mk.get("period") != 0:
-                continue
-            pr = {p.get("designation"): p for p in mk.get("prices", [])}
-            over, under = pr.get("over"), pr.get("under")
-            if not (over and under):
-                continue
-            line = over.get("points")
-            o = pinnacle.american_to_decimal(over.get("price"))
-            u = pinnacle.american_to_decimal(under.get("price"))
-            if line and o and u:
-                out.append((pitcher, stat, line, o, u, mu.get("startTime")))
+        player = desc.split("(")[0].strip()
+        # the prop's real line is on the special's OWN markets, not related/straight
+        # (related/straight returns the parent game's spreads/totals — a mislabel trap)
+        markets = pinnacle._get(f"/matchups/{mu['id']}/markets/straight")
+        tot = next((mk for mk in markets if mk.get("type") == "total"
+                    and mk.get("period") == 0 and len(mk.get("prices", [])) >= 2), None)
+        if not tot:
+            continue
+        over, under = tot["prices"][0], tot["prices"][1]   # [over, under] by order
+        line = over.get("points")
+        o = pinnacle.american_to_decimal(over.get("price"))
+        u = pinnacle.american_to_decimal(under.get("price"))
+        if line is not None and o and u:
+            out.append((player, stat, line, o, u, mu.get("startTime")))
     return out
 
 
 def main():
-    ts = dt.datetime.now().replace(microsecond=0).isoformat()
+    ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
     recs = collect()
     con = sqlite3.connect(DB)
     con.execute("""CREATE TABLE IF NOT EXISTS pitcher_props (
