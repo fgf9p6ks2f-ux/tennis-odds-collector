@@ -25,15 +25,19 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - name: collect snapshot
+      - name: collect tennis
         env:
           DB_PATH: ${{ github.workspace }}/odds.sqlite
         run: python collect.py
-      - name: commit db
+      - name: collect mlb strikeout props
+        env:
+          MLB_DB: ${{ github.workspace }}/mlb_kprops.sqlite
+        run: python mlb_collect.py || echo "mlb collect skipped"
+      - name: commit dbs
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f odds.sqlite
+          git add -f odds.sqlite mlb_kprops.sqlite
           git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
