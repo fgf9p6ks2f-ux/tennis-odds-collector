@@ -13,7 +13,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pinnacle  # noqa: E402
 
 DB = Path(os.environ.get("MLB_DB", Path(__file__).resolve().parent / "mlb_kprops.sqlite"))
-PROP_STATS = {"Total Strikeouts": "strikeouts", "Pitching Outs": "outs"}
+PROP_STATS = {"Total Strikeouts": "strikeouts", "Pitching Outs": "outs",
+              "Total Bases": "total_bases", "Home Runs": "home_runs",
+              "Hits Allowed": "hits_allowed", "Earned Runs": "earned_runs"}
 
 
 def collect():
