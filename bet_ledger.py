@@ -30,11 +30,13 @@ REPORT = HERE / "bet_ledger_report.md"
 FD_DB = HERE / "fanduel_props.sqlite"
 UNIT_USD = 100.0
 MIN_EV = 0.02
+MAX_EV = 0.30               # a real edge vs a sharp de-vig is small; >this = artifact, skip
+MODEL_BAND = (0.20, 0.90)   # only model-price alt lines in this fair-prob band (not deep tails)
 FINAL_BUFFER_H = 4.0        # a game is assumed final this many hours after first pitch/tip
 
 SPORTS = {
     "mlb":  {"db": HERE / "mlb_kprops.sqlite", "table": "pitcher_props", "pcol": "pitcher",
-             "model": False},
+             "model": True},
     "wnba": {"db": HERE / "wnba_props.sqlite", "table": "wnba_props", "pcol": "player",
              "model": True},
 }
@@ -78,53 +80,98 @@ def _benched():
         return set()
 
 
+def _mkbet(sport, r, p_side, pinn_line, start, src):
+    return {"sport": sport, "event": r["event"], "player": r["player"], "stat": r["stat"],
+            "line": float(r["line"]), "side": r["side"], "odds": float(r["odds"]),
+            "fair": p_side, "ev": p_side * float(r["odds"]) - 1, "pinn_line": pinn_line,
+            "start": start, "src": src}
+
+
 def flag(sport):
     """Return [dict] of +EV bets on the latest pre-game snapshot for `sport`."""
     cfg = SPORTS[sport]
     benched = _benched()
-    pinn_all = _rows(cfg["db"], cfg["table"])
-    psnap, plive = _latest(pinn_all)
+    psnap, plive = _latest(_rows(cfg["db"], cfg["table"]))
     if not plive:
         return []
     plive = [r for r in plive if r.get("start_time") and _pre(r["start_time"], psnap)]
-    fd_all = _rows(FD_DB, "fd_lines", f" WHERE sport='{sport}'")
-    _, fd = _latest(fd_all)
+    _, fd = _latest(_rows(FD_DB, "fd_lines", f" WHERE sport='{sport}'"))
     if not (plive and fd):
         return []
     pc = cfg["pcol"]
-    ref, anchors = {}, {s: {} for s in W.SD_CURVES}
+    ref, mains = {}, {}          # exact-line fair, and each player/stat's single main line
     for r in plive:
         p = W.fair_prob(r["over_odds"], r["under_odds"])
         if p is None:
             continue
-        key = (W.canon(r[pc]), r["stat"], round(float(r["line"]), 1))
-        ref[key] = (p, float(r["line"]), r["start_time"])
-        if cfg["model"] and r["stat"] in anchors:
-            anchors[r["stat"]][W.canon(r[pc])] = (round(float(r["line"]), 1), p, r["start_time"])
-    out = []
+        L = round(float(r["line"]), 1)
+        ref[(W.canon(r[pc]), r["stat"], L)] = (p, float(r["line"]), r["start_time"])
+        mains[(W.canon(r[pc]), r["stat"])] = (L, p, r["start_time"])
+    bets = []
+    # 1) direct — FanDuel line == a Pinnacle line (model-free, sharpest)
     for r in fd:
         L = round(float(r["line"]), 1) if r["line"] is not None else None
         hit = ref.get((W.canon(r["player"]), r["stat"], L))
         if hit:
             p, line0, start = hit
-            p_side = p if r["side"] == "over" else 1 - p
-            src, pinn_line = "direct", line0
-        elif (cfg["model"] and r["side"] == "over" and r["stat"] in anchors
-              and W.canon(r["player"]) in anchors[r["stat"]]):
-            line0, p0, start = anchors[r["stat"]][W.canon(r["player"])]
-            if L == line0:
+            bets.append(_mkbet(sport, r, p if r["side"] == "over" else 1 - p, line0, start, "direct"))
+    # 2) model-priced alt overs Pinnacle doesn't post (sport-specific)
+    if cfg.get("model"):
+        bets += _model_alts(sport, mains, fd, ref)
+    return [b for b in bets if MIN_EV <= b["ev"] <= MAX_EV
+            and (sport, b["stat"]) not in benched]
+
+
+def _model_alts(sport, mains, fd, ref):
+    """Price FanDuel alt OVER lines Pinnacle doesn't post, by anchoring the sport's model
+    to Pinnacle's main line for that player/stat."""
+    bets = []
+    if sport == "wnba":
+        for r in fd:
+            L = round(float(r["line"]), 1) if r["line"] is not None else None
+            if (r["side"] != "over" or r["stat"] not in W.SD_CURVES
+                    or (W.canon(r["player"]), r["stat"], L) in ref):
                 continue
+            m = mains.get((W.canon(r["player"]), r["stat"]))
+            if not m:
+                continue
+            line0, p0, start = m
             mean, sd = W.anchor(line0, p0, r["stat"])
-            p_side, src, pinn_line = W.prob_over(mean, L, sd), "model", line0
-        else:
-            continue
-        ev = p_side * float(r["odds"]) - 1
-        if ev >= MIN_EV and (sport, r["stat"]) not in benched:
-            out.append({"sport": sport, "event": r["event"], "player": r["player"],
-                        "stat": r["stat"], "line": float(r["line"]), "side": r["side"],
-                        "odds": float(r["odds"]), "fair": p_side, "ev": ev,
-                        "pinn_line": pinn_line, "start": start, "src": src})
-    return out
+            p = W.prob_over(mean, L, sd)
+            if MODEL_BAND[0] <= p <= MODEL_BAND[1]:
+                bets.append(_mkbet(sport, r, p, line0, start, "model"))
+    elif sport == "mlb":
+        cand = [r for r in fd if r["side"] == "over" and r["stat"] == "total_bases"
+                and (W.canon(r["player"]), "total_bases", round(float(r["line"]), 1)) not in ref
+                and (W.canon(r["player"]), "total_bases") in mains]
+        if not cand:
+            return bets
+        from mlb import batter, data
+        try:
+            season = int(str(next(iter(mains.values()))[2])[:4])
+            lines = {W.canon(v["name"]): v for v in
+                     data.all_batter_lines(season, min_pa=30).values() if v.get("name")}
+        except Exception:
+            return bets
+        proj_cache = {}
+        for r in cand:
+            pk = W.canon(r["player"])
+            bl = lines.get(pk)
+            if not bl:
+                continue
+            line0, p0, start = mains[(pk, "total_bases")]
+            if pk not in proj_cache:
+                try:
+                    proj_cache[pk] = batter.anchor(bl, line0, p0, exp_pa=batter.exp_pa_from(bl))
+                except Exception:
+                    proj_cache[pk] = None
+            if proj_cache[pk] is None:
+                continue
+            L = round(float(r["line"]), 1)
+            p = batter.prob_over(proj_cache[pk], L)
+            if MODEL_BAND[0] <= p <= MODEL_BAND[1]:
+                bets.append(_mkbet(sport, r, p, line0, start, "model"))
+    return bets
 
 
 def bet_id(b):

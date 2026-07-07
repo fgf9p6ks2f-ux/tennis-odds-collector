@@ -168,6 +168,7 @@ def pitcher_gamelog(pid: int, season: int) -> list[dict]:
         out.append({"date": g.get("date"), "opp_id": g.get("opponent", {}).get("id"),
                     "k": s.get("strikeOuts") or 0, "bf": s.get("battersFaced") or 0,
                     "outs": s.get("outs") or 0,
+                    "pitches": s.get("numberOfPitches") or 0,
                     "game_pk": (g.get("game") or {}).get("gamePk"),
                     "is_home": g.get("isHome")})
     return out
@@ -181,6 +182,92 @@ def find_pitcher(name: str) -> int | None:
         return people[0]["id"] if people else None
     except Exception:
         return None
+
+
+find_player = find_pitcher   # people/search resolves batters just the same
+
+
+# ---- batter (total-bases) model inputs -------------------------------------
+
+def _hit_line(st: dict) -> dict:
+    """Normalize a hitting stat blob to the fields the TB model needs."""
+    return {"pa": st.get("plateAppearances") or 0, "ab": st.get("atBats") or 0,
+            "h": st.get("hits") or 0, "2b": st.get("doubles") or 0,
+            "3b": st.get("triples") or 0, "hr": st.get("homeRuns") or 0,
+            "tb": st.get("totalBases") or 0, "gp": st.get("gamesPlayed") or 0}
+
+
+def batter_season(pid: int, season: int) -> dict | None:
+    """Season-to-date hitting line for one batter (live projection)."""
+    d = _get(f"/people/{pid}/stats", stats="season", group="hitting", season=season)
+    sp = (d.get("stats") or [{}])[0].get("splits") or []
+    return _hit_line(sp[0]["stat"]) if sp else None
+
+
+def batter_gamelog(pid: int, season: int) -> list[dict]:
+    """Chronological game-by-game hitting lines (for the walk-forward backtest)."""
+    d = _get(f"/people/{pid}/stats", stats="gameLog", group="hitting", season=season)
+    st = d.get("stats") or []
+    if not st:
+        return []
+    out = []
+    for g in st[0]["splits"]:
+        line = _hit_line(g["stat"])
+        line.update(date=g.get("date"), opp_id=(g.get("opponent") or {}).get("id"),
+                    game_pk=(g.get("game") or {}).get("gamePk"))
+        out.append(line)
+    return out
+
+
+def all_batter_lines(season: int, min_pa: int = 50) -> dict[int, dict]:
+    """{batter_id: season hitting line} in bulk (backtest priors + live lineups)."""
+    d = _get("/stats", stats="season", group="hitting", sportId=1, season=season,
+             limit=3000, playerPool="all", gameType="R")
+    out = {}
+    for s in d["stats"][0]["splits"]:
+        pid = (s.get("player") or {}).get("id")
+        line = _hit_line(s["stat"])
+        line["name"] = (s.get("player") or {}).get("fullName")
+        if pid and line["pa"] >= min_pa:
+            out[pid] = line
+    return out
+
+
+def batter_hand_factor(season: int) -> tuple[dict[int, dict], dict]:
+    """({batter_id: {'L': TB/PA vs LHP, 'R': TB/PA vs RHP}}, {'L':lg,'R':lg}). The platoon
+    signal — a batter faces the starter's hand."""
+    from collections import defaultdict
+    out: dict = defaultdict(dict)
+    lg = {"L": [0, 0], "R": [0, 0]}
+    for hand, sit in (("L", "vl"), ("R", "vr")):
+        d = _get("/stats", stats="statSplits", group="hitting", season=season,
+                 sportId=1, sitCodes=sit, limit=3000, playerPool="all")
+        for b in d["stats"][0]["splits"]:
+            st, pid = b["stat"], (b.get("player") or {}).get("id")
+            pa, tb = st.get("plateAppearances") or 0, st.get("totalBases") or 0
+            if pid and pa >= 20:
+                out[pid][hand] = tb / pa
+                lg[hand][0] += tb
+                lg[hand][1] += pa
+    lg_hand = {h: (lg[h][0] / lg[h][1] if lg[h][1] else 0.42) for h in "LR"}
+    return dict(out), lg_hand
+
+
+def team_pitching_tb_factor(season: int) -> tuple[dict[int, float], float]:
+    """({team_id: TB-allowed-per-BF}, league avg). Opponent-staff suppression for the
+    batter matchup. TB = H + 2B + 2*3B + 3*HR."""
+    d = _get("/teams/stats", stats="season", group="pitching", season=season, sportId=1)
+    out, tot_tb, tot_bf = {}, 0, 0
+    for t in d["stats"][0]["splits"]:
+        st = t["stat"]
+        bf = st.get("battersFaced") or 0
+        tb = ((st.get("hits") or 0) + (st.get("doubles") or 0)
+              + 2 * (st.get("triples") or 0) + 3 * (st.get("homeRuns") or 0))
+        if bf:
+            out[t["team"]["id"]] = tb / bf
+            tot_tb += tb
+            tot_bf += bf
+    return out, (tot_tb / tot_bf if tot_bf else 0.44)
 
 
 def probables(date: str) -> list[dict]:
