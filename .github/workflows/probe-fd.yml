@@ -1,0 +1,37 @@
+name: probe-fd
+on:
+  workflow_dispatch: {}
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: find FD tennis + batter markets
+        run: |
+          python3 - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
+          import json, urllib.request
+          AK="FhMFpcPWXMeyZxOx"
+          H={"User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36","Accept":"application/json"}
+          def get(u):
+              try: return json.load(urllib.request.urlopen(urllib.request.Request(u,headers=H),timeout=25))
+              except Exception as e: return {"_err":str(e)[:80]}
+          base="https://sbapi.ny.sportsbook.fanduel.com/api"
+          print("## FD tennis page id search")
+          for cid in ["tennis","atp","wta","wimbledon","tennis-atp","tennis-wta"]:
+              r=get(f"{base}/content-managed-page?page=CUSTOM&customPageId={cid}&timezone=America%2FNew_York&_ak={AK}")
+              evs=r.get("attachments",{}).get("events",{})
+              games=[e.get("name") for e in evs.values() if " v " in (e.get("name") or "").lower() or "@" in (e.get("name") or "")]
+              print(f"  '{cid}': events={len(evs)} match-like={len(games)} err={r.get('_err','')} sample={games[:2]}")
+          # drill a tennis match if found
+          for cid in ["tennis","atp","wta"]:
+              r=get(f"{base}/content-managed-page?page=CUSTOM&customPageId={cid}&timezone=America%2FNew_York&_ak={AK}")
+              evs=r.get("attachments",{}).get("events",{})
+              mid=next((eid for eid,e in evs.items() if " v " in (e.get("name") or "").lower()),None)
+              if mid:
+                  ev=get(f"{base}/event-page?eventId={mid}&_ak={AK}&timezone=America%2FNew_York")
+                  tabs=[ (t.get("title") if isinstance(t,dict) else t) for t in ev.get("layout",{}).get("tabs",{}).values()]
+                  mk=ev.get("attachments",{}).get("markets",{})
+                  print(f"-- tennis match {mid} on '{cid}': tabs={tabs}")
+                  from collections import Counter
+                  print("   default markets:", list(Counter(m.get('marketName') for m in mk.values()))[:12])
+                  break
+          PY
