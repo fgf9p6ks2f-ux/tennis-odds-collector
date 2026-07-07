@@ -306,8 +306,11 @@ def notify_ev(bets):
     naturally infrequent (only when a genuinely new edge appears). NTFY_TOPIC from env."""
     import os
     topic = os.environ.get("NTFY_TOPIC")
-    strong = sorted((b for b in bets if b["ev"] >= 0.05), key=lambda b: -b["ev"])
-    if not topic or not strong:            # only push meaningful edges (>=5%) to avoid flooding
+    # notify only DIRECT (model-free, sharp) edges >=5% — model-priced alts are the least
+    # reliable and would flood; they stay logged in the ledger for CLV validation instead.
+    strong = sorted((b for b in bets if b["ev"] >= 0.05 and b.get("src") == "direct"),
+                    key=lambda b: -b["ev"])
+    if not topic or not strong:
         return
     lines = [f"{b['sport'].upper()}: {b['player']} {b['stat']} {b['side']} {b['line']} "
              f"@ {b['odds']:.2f}  (+{b['ev']*100:.0f}% EV vs sharp)" for b in strong[:12]]
