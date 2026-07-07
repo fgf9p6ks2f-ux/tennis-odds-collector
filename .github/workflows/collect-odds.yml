@@ -44,6 +44,8 @@ jobs:
       - name: scan wnba edges (fanduel vs pinnacle)
         run: python wnba_edge_scan.py || echo "wnba edge scan skipped"
       - name: update bet ledger (flag / CLV / grade / P&L)
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python bet_ledger.py || echo "bet ledger skipped"
       - name: commit dbs
         run: |

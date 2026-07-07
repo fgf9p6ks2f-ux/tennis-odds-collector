@@ -301,12 +301,29 @@ def now():
     return dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
 
 
+def notify_ev(bets):
+    """Push new +EV bets (mlb/wnba) to ntfy. Deduped by bet_id upstream, so each fires once;
+    naturally infrequent (only when a genuinely new edge appears). NTFY_TOPIC from env."""
+    import os
+    topic = os.environ.get("NTFY_TOPIC")
+    if not topic or not bets:
+        return
+    lines = [f"{b['sport'].upper()}: {b['player']} {b['stat']} {b['side']} {b['line']} "
+             f"@ {b['odds']:.2f}  (+{b['ev']*100:.0f}% EV vs sharp)" for b in bets[:15]]
+    try:
+        requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines).encode("utf-8"),
+                      headers={"Title": "Sports +EV bets", "Tags": "moneybag"}, timeout=15)
+    except requests.RequestException:
+        pass
+
+
 def cycle():
     con = sqlite3.connect(LEDGER)
     con.execute(DDL)
     ts = now()
     # 1) flag + log new bets
     added = 0
+    new_bets = []
     for sport in SPORTS:
         for b in flag(sport):
             bid = bet_id(b)
@@ -317,7 +334,9 @@ def cycle():
                          b["side"], b["odds"], 1.0, b["fair"], b["ev"] * 100, b["pinn_line"],
                          b["src"], b["start"], "open", None, None, None, None, None, None))
             added += 1
+            new_bets.append(b)
     con.commit()
+    notify_ev(new_bets)                            # push new +EV bets to phone (once each)
     # 2) close + CLV (game started, not yet closed)
     closed = 0
     for row in con.execute("SELECT bet_id,sport,player,stat,line,side,odds_taken,start_time "
