@@ -1,0 +1,39 @@
+name: collect-odds
+# Serverless free collector: GitHub runs this on a schedule (no server, no billing).
+# Commits the growing odds.sqlite back to the repo each run.
+#
+# Caveats: scheduled runs are best-effort (GitHub may delay them a few minutes);
+# schedules auto-disable after 60 days of no repo activity (data commits keep it alive).
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+
+concurrency:
+  group: collect-odds
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: collect snapshot
+        env:
+          DB_PATH: ${{ github.workspace }}/odds.sqlite
+        run: python collect.py
+      - name: commit db
+        run: |
+          git config user.name "odds-bot"
+          git config user.email "odds-bot@users.noreply.github.com"
+          git add -f odds.sqlite
+          git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
+          git pull --rebase --autostash || true
+          git push
