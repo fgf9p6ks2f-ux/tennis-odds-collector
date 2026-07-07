@@ -1,0 +1,38 @@
+name: edge-report
+# Runs the MLB K-prop edge backtest daily on GitHub (no local machine needed).
+# Grades our collected props vs realized strikeouts, writes edge_report.md, and shows
+# it in the run summary. Answers: do we beat Pinnacle's line / are K props over-shaded?
+on:
+  schedule:
+    - cron: "0 13 * * *"        # ~08:00 ET daily, after the prior slate settles
+  workflow_dispatch: {}
+
+concurrency:
+  group: edge-report
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests pandas numpy scipy
+      - name: run edge backtest
+        run: python edge_backtest.py
+      - name: show in run summary
+        if: always()
+        run: cat edge_report.md >> "$GITHUB_STEP_SUMMARY" || true
+      - name: commit report
+        run: |
+          git config user.name "odds-bot"
+          git config user.email "odds-bot@users.noreply.github.com"
+          git add -f edge_report.md
+          git commit -m "edge report [skip ci]" || { echo "no change"; exit 0; }
+          git pull --rebase --autostash || true
+          git push
