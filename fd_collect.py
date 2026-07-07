@@ -33,6 +33,10 @@ TENNIS_PAGES = os.environ.get("FD_TENNIS_PAGES", "wimbledon").split(",")
 PITCHER_STATS = {"strikeout": "strikeouts", "pitching outs": "outs", "outs recorded": "outs"}
 BATTER_STATS = {"total bases": "total_bases", "hits": "hits", "home run": "home_runs",
                 "rbi": "rbis", "stolen base": "stolen_bases"}
+# order matters: combos before singles so "pts + reb" isn't caught by "points"/"rebounds"
+WNBA_STATS = {"pts + reb + ast": "pra", "pts + ast": "pts_ast", "pts + reb": "pts_reb",
+              "reb + ast": "reb_ast", "made threes": "threes", "points": "points",
+              "rebounds": "rebounds", "assists": "assists"}
 
 
 def get(url):
@@ -56,6 +60,28 @@ def extract(m, sport):
     nm = m.get("marketName") or ""
     low = nm.lower()
     rows = []
+    # 0) WNBA player prop — two-sided "{Player} - Points" (Over/Under + handicap) or
+    #    alt "To Score X+ Points" / "1+ Made Threes" (runners are players, over-only).
+    if sport == "wnba":
+        wstat = next((v for k, v in WNBA_STATS.items() if k in low), None)
+        if not wstat:
+            return rows
+        if " - " in nm:
+            player = re.split(r"\s+-\s+", nm)[0].strip()
+            for r in m.get("runners") or []:
+                o, rn, h = _odds(r), (r.get("runnerName") or "").lower(), r.get("handicap")
+                if o is None or h is None:
+                    continue
+                toks = rn.split()
+                if toks and toks[-1] in ("over", "under"):
+                    rows.append((player, wstat, float(h), toks[-1], o))
+        elif (mm := re.search(r"(\d+)\+", nm)):
+            line = int(mm.group(1)) - 0.5
+            for r in m.get("runners") or []:
+                o = _odds(r)
+                if o is not None:
+                    rows.append((r.get("runnerName") or "", wstat, line, "over", o))
+        return rows
     # 1) pitcher prop: "{Pitcher} - ... Strikeouts/Outs"
     pstat = next((v for k, v in PITCHER_STATS.items() if k in low), None)
     if pstat and " - " in nm:
@@ -129,12 +155,16 @@ def collect_page(customPageId, sport, is_match):
 
 
 def main():
-    ts = dt.datetime.now().replace(microsecond=0).isoformat()
+    ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
     rows = []
     try:
         rows += collect_page("mlb", "mlb", lambda n: "@" in n)
     except Exception as e:
         print("mlb page err:", str(e)[:80])
+    try:
+        rows += collect_page("wnba", "wnba", lambda n: "@" in n)
+    except Exception as e:
+        print("wnba page err:", str(e)[:80])
     for pg in TENNIS_PAGES:
         try:
             rows += collect_page(pg.strip(), "tennis", lambda n: " v " in n.lower())
