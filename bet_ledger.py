@@ -306,10 +306,11 @@ def notify_ev(bets):
     naturally infrequent (only when a genuinely new edge appears). NTFY_TOPIC from env."""
     import os
     topic = os.environ.get("NTFY_TOPIC")
-    if not topic or not bets:
+    strong = sorted((b for b in bets if b["ev"] >= 0.05), key=lambda b: -b["ev"])
+    if not topic or not strong:            # only push meaningful edges (>=5%) to avoid flooding
         return
     lines = [f"{b['sport'].upper()}: {b['player']} {b['stat']} {b['side']} {b['line']} "
-             f"@ {b['odds']:.2f}  (+{b['ev']*100:.0f}% EV vs sharp)" for b in bets[:15]]
+             f"@ {b['odds']:.2f}  (+{b['ev']*100:.0f}% EV vs sharp)" for b in strong[:12]]
     try:
         requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines).encode("utf-8"),
                       headers={"Title": "Sports +EV bets", "Tags": "moneybag"}, timeout=15)
