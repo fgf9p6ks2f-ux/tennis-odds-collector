@@ -1,5 +1,5 @@
 # MLB K-prop edge report
 
-_2026-07-07 02:45 UTC_
+_2026-07-07 02:47 UTC_
 
-No props collected yet.
+13 prop lines collected; none settled yet — check back after games finish.
