@@ -33,11 +33,15 @@ jobs:
         env:
           MLB_DB: ${{ github.workspace }}/mlb_kprops.sqlite
         run: python mlb_collect.py || echo "mlb collect skipped"
+      - name: collect fanduel props
+        env:
+          FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
+        run: python fd_collect.py || echo "fanduel collect skipped (endpoint may have changed)"
       - name: commit dbs
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f odds.sqlite mlb_kprops.sqlite
+          git add -f odds.sqlite mlb_kprops.sqlite fanduel_props.sqlite
           git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
