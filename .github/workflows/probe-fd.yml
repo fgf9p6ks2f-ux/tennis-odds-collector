@@ -5,7 +5,7 @@ jobs:
   probe:
     runs-on: ubuntu-latest
     steps:
-      - name: FD prop tab + structure
+      - name: FD tab titles + props
         run: |
           python3 - <<'PY' | tee -a "$GITHUB_STEP_SUMMARY"
           import json, urllib.request
@@ -19,17 +19,19 @@ jobs:
           gid=next((eid for eid,e in page.get("attachments",{}).get("events",{}).items() if "@" in (e.get("name") or "")),None)
           ev=get(f"{base}/event-page?eventId={gid}&_ak={AK}&timezone=America%2FNew_York")
           tabs=ev.get("layout",{}).get("tabs",{})
-          print("## FD tabs for event", gid)
-          names=list(tabs.keys()) if isinstance(tabs,dict) else [t.get("title") or t.get("tabId") for t in tabs]
-          print("tab ids:", names)
-          # fetch each tab, find strikeout/outs markets
-          for tab in names:
-              r=get(f"{base}/event-page?eventId={gid}&tab={tab}&_ak={AK}&timezone=America%2FNew_York")
+          print("## FD tab titles, event", gid)
+          titles={}
+          for tid,t in tabs.items():
+              title=t.get("title") if isinstance(t,dict) else str(t)
+              titles[tid]=title
+          print("tabs:", list(titles.values()))
+          for tid,title in titles.items():
+              slug=(title or "").lower().replace(" ","-").replace("'","")
+              r=get(f"{base}/event-page?eventId={gid}&tab={slug}&_ak={AK}&timezone=America%2FNew_York")
               mk=r.get("attachments",{}).get("markets",{})
-              hits=[m for m in mk.values() if any(w in (m.get("marketName") or "").lower() for w in ["strikeout","pitching outs","to record"," outs"])]
-              if hits:
-                  print(f"-- tab '{tab}': {len(mk)} markets, {len(hits)} prop-ish")
-                  for m in hits[:6]:
-                      rs=m.get("runners") or []
-                      print(f"   {m.get('marketName')} | line={m.get('marketType',{}) if 0 else ''}", [(x.get('runnerName'),(x.get('winRunnerOdds') or {}).get('americanDisplayOdds',{}).get('americanOdds'),x.get('handicap')) for x in rs[:3]])
+              hits=[m for m in mk.values() if any(w in (m.get("marketName") or "").lower() for w in ["strikeout","pitching outs"," outs "," outs","to record"])]
+              print(f"-- '{title}' (slug={slug}): {len(mk)} mk, {len(hits)} props")
+              for m in hits[:4]:
+                  rs=m.get("runners") or []
+                  print("    ", m.get("marketName"), "::", [(x.get("runnerName"), x.get("handicap"), (x.get("winRunnerOdds") or {}).get("americanDisplayOdds",{}).get("americanOdds")) for x in rs[:3]])
           PY
