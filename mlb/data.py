@@ -116,6 +116,19 @@ def pitcher_hand(pid: int) -> str:
     return (d["people"][0].get("pitchHand") or {}).get("code", "R")
 
 
+def team_obp(season: int) -> tuple[dict[int, float], float]:
+    """({team_id: on-base%}, league OBP) — the opponent-labor signal for outs props."""
+    d = _get("/teams/stats", stats="season", group="hitting", season=season, sportId=1)
+    out, tot = {}, []
+    for t in d["stats"][0]["splits"]:
+        obp = t["stat"].get("obp")
+        if obp:
+            v = float(obp)
+            out[t["team"]["id"]] = v
+            tot.append(v)
+    return out, (sum(tot) / len(tot) if tot else 0.315)
+
+
 def starter_ids(season: int, limit: int = 100) -> list[int]:
     """Pitcher ids with the most games started that season."""
     d = _get("/stats", stats="season", group="pitching", sportId=1, season=season,
@@ -154,6 +167,7 @@ def pitcher_gamelog(pid: int, season: int) -> list[dict]:
             continue
         out.append({"date": g.get("date"), "opp_id": g.get("opponent", {}).get("id"),
                     "k": s.get("strikeOuts") or 0, "bf": s.get("battersFaced") or 0,
+                    "outs": s.get("outs") or 0,
                     "game_pk": (g.get("game") or {}).get("gamePk"),
                     "is_home": g.get("isHome")})
     return out
