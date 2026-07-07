@@ -44,8 +44,14 @@ def load_closing():
         return df
     df["collected_at"] = pd.to_datetime(df["collected_at"])
     df["start"] = pd.to_datetime(df["start_time"], errors="coerce", utc=True).dt.tz_localize(None)
-    pre = df[df["collected_at"] <= df["start"]] if df["start"].notna().any() else df
-    return pre.sort_values("collected_at").drop_duplicates(["pitcher", "line", "start"], keep="last")
+
+    def pick(g):  # closing = last snapshot at/before start, else last available
+        pre = g[g["collected_at"] <= g["start"]]
+        return (pre if len(pre) else g).iloc[-1]
+
+    return (df.sort_values("collected_at")
+              .groupby(["pitcher", "line", "start"], dropna=False, group_keys=False)
+              .apply(pick).reset_index(drop=True))
 
 
 def write(text):
