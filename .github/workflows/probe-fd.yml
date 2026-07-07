@@ -1,0 +1,27 @@
+name: probe-fd
+# Test whether FanDuel serves real MLB odds to a GitHub (US datacenter) IP with a
+# well-formed request. If yes -> FD-only collection could run pure-GitHub, no device.
+on:
+  workflow_dispatch: {}
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: probe FanDuel MLB from the runner
+        run: |
+          S="$GITHUB_STEP_SUMMARY"
+          AK="FhMFpcPWXMeyZxOx"
+          UA="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+          echo "## FanDuel reachability from GitHub US IP" | tee -a "$S"
+          echo "geo: $(curl -s --max-time 15 https://ipinfo.io/json | python3 -c 'import sys,json;d=json.load(sys.stdin);print(d.get("country"),d.get("region"))')" | tee -a "$S"
+          for url in \
+            "https://sbapi.ny.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=mlb&timezone=America%2FNew_York&_ak=${AK}" \
+            "https://sbapi.pa.sportsbook.fanduel.com/api/content-managed-page?page=SPORT&customPageId=baseball&timezone=America%2FNew_York&_ak=${AK}" \
+            "https://sbapi.ny.sportsbook.fanduel.com/api/content-managed-page?page=CUSTOM&customPageId=baseball&timezone=America%2FNew_York&_ak=${AK}&eventTypeId=7511" ; do
+            code=$(curl -s -o /tmp/b -w "%{http_code}" -A "$UA" -H "Accept: application/json" --max-time 25 "$url" || echo ERR)
+            n=$(wc -c </tmp/b 2>/dev/null || echo 0)
+            has=$(python3 -c "import json;d=json.load(open('/tmp/b'));a=d.get('attachments',{});print('events',len(a.get('events',{})),'markets',len(a.get('markets',{})))" 2>/dev/null || echo "no-json")
+            echo "- \`$code\` ${n}b [$has]" | tee -a "$S"
+            echo "  \`$(head -c 160 /tmp/b | tr -d '\n')\`" | tee -a "$S"
+          done
