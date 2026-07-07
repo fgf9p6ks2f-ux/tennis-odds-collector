@@ -25,14 +25,18 @@ jobs:
       - run: pip install requests pandas numpy scipy
       - name: run edge backtest
         run: python edge_backtest.py
+      - name: learn soft spots (bench negative-CLV markets)
+        run: python learn.py || echo "learn skipped"
       - name: show in run summary
         if: always()
-        run: cat edge_report.md >> "$GITHUB_STEP_SUMMARY" || true
+        run: |
+          cat edge_report.md >> "$GITHUB_STEP_SUMMARY" || true
+          cat learning_report.md >> "$GITHUB_STEP_SUMMARY" || true
       - name: commit report
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f edge_report.md
+          git add -f edge_report.md learning_report.md bet_filters.json
           git commit -m "edge report [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push

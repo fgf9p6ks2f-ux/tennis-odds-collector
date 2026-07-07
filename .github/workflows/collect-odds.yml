@@ -43,11 +43,14 @@ jobs:
         run: python fd_collect.py || echo "fanduel collect skipped (endpoint may have changed)"
       - name: scan wnba edges (fanduel vs pinnacle)
         run: python wnba_edge_scan.py || echo "wnba edge scan skipped"
+      - name: update bet ledger (flag / CLV / grade / P&L)
+        run: python bet_ledger.py || echo "bet ledger skipped"
       - name: commit dbs
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f odds.sqlite mlb_kprops.sqlite wnba_props.sqlite fanduel_props.sqlite wnba_edge_report.md
+          git add -f odds.sqlite mlb_kprops.sqlite wnba_props.sqlite fanduel_props.sqlite \
+                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json
           git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
