@@ -112,9 +112,10 @@ def extract(m, sport, event_name=""):
     if bstat and (mm := re.search(r"(\d+)\+", nm)):
         line = int(mm.group(1)) - 0.5
         for r in m.get("runners") or []:
-            o = _odds(r)
-            if o is not None:
-                rows.append((r.get("runnerName") or "", bstat, line, "over", o))
+            o, rn = _odds(r), (r.get("runnerName") or "")
+            if o is None or " & " in rn:     # 'A & B' = two-player combo market, not a prop
+                continue
+            rows.append((rn, bstat, line, "over", o))
         return rows
     # 3) tennis: player/team total games ("{Player} Total Games 19.5" — the line lives in
     #    the MARKET NAME, not the runner handicap), plus set betting / correct score.
