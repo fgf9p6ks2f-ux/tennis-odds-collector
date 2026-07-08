@@ -27,16 +27,26 @@ DB = Path(os.environ.get("FD_DB", HERE / "fanduel_props.sqlite"))
 B = "https://sportsbook-nash.draftkings.com/api/sportscontent/dkusco/v1"
 H = {"Referer": "https://sportsbook.draftkings.com/", "Accept": "application/json"}
 
-# DK subcategory name -> our stat key (must match Pinnacle collectors' keys)
+# DK subcategory name (lowercased, trailing ' o/u' stripped) -> our stat key. Must
+# match the Pinnacle collectors' keys so the ledger joins them. Player identity comes
+# from each selection's participants[0] (type='Player') — NOT the market name — so
+# game/team totals ('Total Total Bases', team-inning markets) are excluded structurally.
 STAT_MAP = {
     "strikeouts thrown": "strikeouts", "total bases": "total_bases", "hits": "hits",
     "home runs": "home_runs", "rbis": "rbis", "stolen bases": "stolen_bases",
     "points": "points", "rebounds": "rebounds", "assists": "assists",
-    "threes made": "threes", "3-pointers made": "threes",
+    "threes": "threes", "threes made": "threes", "3-pointers made": "threes",
+    "made threes": "threes",
     "pts + reb + ast": "pra", "points + rebounds + assists": "pra",
-    "pts + reb": "pts_reb", "pts + ast": "pts_ast", "reb + ast": "reb_ast",
+    "pts + reb": "pts_reb", "points + rebounds": "pts_reb",
+    "pts + ast": "pts_ast", "points + assists": "pts_ast",
+    "reb + ast": "reb_ast", "rebounds + assists": "reb_ast",
 }
 LEAGUES = {"mlb": "84240", "wnba": "94682"}
+
+
+def _stat_key(subcat_name):
+    return STAT_MAP.get(re.sub(r"\s*o/u\s*$", "", subcat_name.strip().lower()))
 
 
 def _get(url):
@@ -52,37 +62,41 @@ def _dec(sel):
         return None
 
 
+def _player(sel):
+    """Player name from a selection's participants, or None if it isn't a player prop."""
+    for p in sel.get("participants") or []:
+        if p.get("type") == "Player" and p.get("name"):
+            return p["name"]
+    return None
+
+
 def collect_league(sport, lg):
     root = _get(f"{B}/leagues/{lg}")
     subs = {s["id"]: (s["name"], s.get("categoryId")) for s in root.get("subcategories", [])}
     events = {e["id"]: e.get("name", "") for e in root.get("events", [])}
-    rows = []
+    rows, seen = [], set()          # seen = (marketId, side) — dedupe repeated subcats
     for sid, (sname, cat) in subs.items():
-        key = STAT_MAP.get(sname.strip().lower())
+        key = _stat_key(sname)
         if not key or cat is None:
             continue
         try:
             j = _get(f"{B}/leagues/{lg}/categories/{cat}/subcategories/{sid}")
         except Exception:
             continue
-        mkts = {m["id"]: m for m in j.get("markets", [])}
+        emkt = {m["id"]: m.get("eventId") for m in j.get("markets", [])}
         for sel in j.get("selections", []):
-            m = mkts.get(sel.get("marketId"))
-            if not m:
-                continue
             label = (sel.get("label") or "").strip().lower()
-            side = "over" if label.startswith("over") else "under" if label.startswith("under") else None
-            pts, dec = sel.get("points"), _dec(sel)
-            if side is None or pts is None or dec is None:
+            side = "over" if label.startswith("over") else \
+                   "under" if label.startswith("under") else None
+            pts, dec, player = sel.get("points"), _dec(sel), _player(sel)
+            if side is None or pts is None or dec is None or not player:
                 continue
-            # player name = market name minus the stat suffix ("Aaron Judge Total Bases")
-            player = re.sub(r"\s+(o/u|over/under|total bases|strikeouts.*|hits|home runs|"
-                            r"rbis|stolen bases|points|rebounds|assists|threes.*|"
-                            r"pts.*|reb.*)\s*$", "", m.get("name", ""), flags=re.I).strip()
-            if not player:
+            k = (sel.get("marketId"), side)
+            if k in seen:              # same player market surfaced in 'X' and 'X O/U'
                 continue
-            rows.append((sport, events.get(m.get("eventId"), ""), player, key,
-                         float(pts), side, dec))
+            seen.add(k)
+            rows.append((sport, events.get(emkt.get(sel.get("marketId")), ""), player,
+                         key, float(pts), side, dec))
     return rows
 
 

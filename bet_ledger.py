@@ -133,13 +133,21 @@ def _best_book_lines(sport):
         latest_per_book[r["book"]] = max(latest_per_book.get(r["book"], ""),
                                          str(r["collected_at"]))
     live = [r for r in rows if str(r["collected_at"]) == latest_per_book[r["book"]]]
-    best = {}
+    by_market = {}
     for r in live:
         k = (W.canon(r["player"]), r["stat"], round(float(r["line"]), 1), r["side"])
-        if k not in best or float(r["odds"]) > float(best[k]["odds"]):
-            best[k] = r
+        by_market.setdefault(k, []).append(r)
+    best = []
+    for k, quotes in by_market.items():
+        # A huge cross-book disagreement on the SAME line/side is a data mismatch
+        # (mislabeled/stale market), never a real edge — one book here had 2+ hits at
+        # -210. Drop it rather than let best-price take the bogus high odds.
+        odds = [float(q["odds"]) for q in quotes]
+        if len(odds) > 1 and (max(1 / o for o in odds) - min(1 / o for o in odds)) > 0.12:
+            continue
+        best.append(max(quotes, key=lambda q: float(q["odds"])))   # line shopping
     fsnap = max(latest_per_book.values()) if latest_per_book else None
-    return fsnap, list(best.values())
+    return fsnap, best
 
 
 def flag(sport):
