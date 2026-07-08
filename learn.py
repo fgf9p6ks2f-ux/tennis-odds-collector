@@ -64,10 +64,12 @@ def main():
         avg_clv = sum(m["clv"]) / n_clv if n_clv else None
         roi = (m["pnl"] / m["settled"] * 100) if m["settled"] else None
         bench_clv = n_clv >= MIN_N and avg_clv is not None and avg_clv <= BENCH_CLV
-        # CLV-blind escape hatch: closing prob often uncapturable for model alts, so a
-        # losing bucket could dodge the CLV bench forever — realized ROI catches it.
-        clv_blind = m["settled"] and n_clv < m["settled"] * 0.5
-        bench_roi = clv_blind and m["settled"] >= MIN_N_ROI and roi is not None \
+        # For MODEL-priced buckets CLV is self-referencing (closing fair comes from the
+        # same model that priced the bet, so model bias cancels and CLV can look great
+        # while the bucket bleeds — seen live: total_bases model +8% CLV, 24-89 W-L).
+        # Realized ROI is the only honest teacher there; for DIRECT buckets CLV is
+        # measured against Pinnacle's own posted line and stays primary.
+        bench_roi = src == "model" and m["settled"] >= MIN_N_ROI and roi is not None \
             and roi <= BENCH_ROI
         bench = bench_clv or bench_roi
         if bench:
