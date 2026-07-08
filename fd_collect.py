@@ -205,7 +205,11 @@ def main():
     con.execute("""CREATE TABLE IF NOT EXISTS fd_lines (
         collected_at TEXT, sport TEXT, event TEXT, player TEXT, stat TEXT, line REAL,
         side TEXT, odds REAL, PRIMARY KEY (collected_at, sport, player, stat, line, side))""")
-    con.executemany("INSERT OR REPLACE INTO fd_lines VALUES (?,?,?,?,?,?,?,?)",
+    # explicit column list: dk_collect added a 'book' column (DEFAULT 'fd'), so a
+    # positional 8-value insert crashes against the 9-column table
+    con.executemany("INSERT OR REPLACE INTO fd_lines "
+                    "(collected_at,sport,event,player,stat,line,side,odds) "
+                    "VALUES (?,?,?,?,?,?,?,?)",
                     [(ts, *r) for r in rows])
     con.commit()
     con.close()
