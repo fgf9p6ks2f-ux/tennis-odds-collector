@@ -278,8 +278,55 @@ def _tennis_prob_over(r, player, line):
     return 1 - _TN.cdf((line - mu) / sd)
 
 
+def flag_tennis_matchtotal():
+    """DIRECT +EV: FanDuel MATCH total games (match_games) vs Pinnacle's own games
+    line at the EXACT same number — model-free, the safest tennis edge. FD event name
+    'A v B' is matched to a Pinnacle row by both surnames."""
+    psnap, plive = _latest(_rows(SPORTS["tennis"]["db"], "odds"))
+    fsnap, fd = _latest(_rows(FD_DB, "fd_lines", " WHERE sport='tennis'"))
+    if not (plive and fd) or _drifted(psnap, fsnap):
+        return []
+    # index Pinnacle games line by surname pair
+    pinn = {}
+    for r in plive:
+        gl, go, gu = r.get("games_line"), r.get("games_over"), r.get("games_under")
+        p = W.fair_prob(go, gu)
+        if gl is None or p is None or not r.get("start_time") or not _pre(r["start_time"], psnap):
+            continue
+        key = frozenset((W.canon(str(r["p1"]).split()[-1]),
+                         W.canon(str(r["p2"]).split()[-1])))
+        pinn[key] = (round(float(gl), 1), p, r["start_time"], f"{r['p1']} v {r['p2']}")
+    bets = []
+    for f in fd:
+        if f["stat"] != "match_games" or f["line"] is None:
+            continue
+        ev = str(f["player"])                          # 'A v B'
+        if " v " not in ev:
+            continue
+        a, b = ev.split(" v ", 1)
+        key = frozenset((W.canon(a.split()[-1]), W.canon(b.split()[-1])))
+        hit = pinn.get(key)
+        if not hit or hit[0] != round(float(f["line"]), 1):
+            continue                                   # need the EXACT same line
+        _, p_over, start, label = hit
+        p_side = p_over if f["side"] == "over" else 1 - p_over
+        ev_pct = p_side * float(f["odds"]) - 1
+        if MIN_EV <= ev_pct <= MAX_EV:
+            bets.append({"sport": "tennis", "event": label, "player": ev,
+                         "stat": "match_games", "line": float(f["line"]),
+                         "side": f["side"], "odds": float(f["odds"]), "fair": p_side,
+                         "ev": ev_pct, "pinn_line": hit[0], "start": start,
+                         "src": "direct", "book": "fd"})
+    return bets
+
+
 def flag_tennis():
-    """+EV FanDuel player-games bets vs the Pinnacle-anchored model (singles only)."""
+    """+EV FanDuel player-games bets vs the Pinnacle-anchored model (singles only).
+    Plus the model-free MATCH-total-games direct edge."""
+    return _flag_tennis_playergames() + flag_tennis_matchtotal()
+
+
+def _flag_tennis_playergames():
     benched = _benched()
     psnap, plive = _latest(_rows(SPORTS["tennis"]["db"], "odds"))
     if not plive:
@@ -399,12 +446,40 @@ def _sur_match(a, b):
     return a and b and (a in b or b in a)
 
 
+def _settle_match_games(event, start):
+    """Total games in the match = home_games + away_games from 24live's finished list,
+    matched by BOTH surnames in the 'A v B' event string + start proximity."""
+    if " v " not in str(event):
+        return None
+    a, b = str(event).split(" v ", 1)
+    sa, sb = W.canon(a.split()[-1]), W.canon(b.split()[-1])
+    day = str(start)[:10]
+    best = None
+    for d in (day, (dt.date.fromisoformat(day) + dt.timedelta(days=1)).isoformat()):
+        for m in _live24_finished_tennis(d):
+            hs, aw = _surname24(m["home"]), _surname24(m["away"])
+            if not ((_sur_match(sa, hs) and _sur_match(sb, aw)) or
+                    (_sur_match(sa, aw) and _sur_match(sb, hs))):
+                continue
+            try:
+                gap = abs((dt.datetime.fromisoformat(str(m["start"]).replace("Z", "+00:00"))
+                           - dt.datetime.fromisoformat(str(start).replace("Z", "+00:00").replace(" ", "T"))
+                           ).total_seconds())
+            except ValueError:
+                gap = 9e9
+            if gap <= 8 * 3600 and (best is None or gap < best[0]):
+                best = (gap, float(m["hg"]) + float(m["ag"]))
+    return best[1] if best else None
+
+
 def settle_tennis(player, stat, start, event=None):
-    """Player's games won, from 24live's finished list. Identity binds on BOTH players'
-    surnames (from the 'P1 v P2' event) — one surname alone can hit the wrong match when
-    two Zhangs play the same day. Surname containment absorbs 'Gauff Cori' vs 'Coco
-    Gauff' given-name drift and multi-word surnames. Start proximity (8h — slam 'not
-    before' scheduling drifts hours) is a tiebreak, not the identity."""
+    """Player's games won (player_games), or BOTH players' games summed (match_games),
+    from 24live's finished tennis list. Identity binds on BOTH players' surnames — one
+    surname alone can hit the wrong match when two Zhangs play the same day. Surname
+    containment absorbs 'Gauff Cori' vs 'Coco Gauff' drift. Start proximity (8h) is a
+    tiebreak, not the identity."""
+    if stat == "match_games":
+        return _settle_match_games(player, start)
     surname = W.canon(str(player).split()[-1])
     opp = None
     if event and " v " in str(event):
@@ -493,10 +568,32 @@ def settle_gg(player, stat, start, event=None):
     return float(best[1]) if best else None
 
 
+def _closing_match_games(event, line, start):
+    """Pinnacle's devigged fair P(over) on the match games line, at the last snapshot
+    before start — direct close for a match_games bet (measures real CLV)."""
+    if " v " not in str(event):
+        return None
+    a, b = str(event).split(" v ", 1)
+    sa, sb = W.canon(a.split()[-1]), W.canon(b.split()[-1])
+    rows = [r for r in _rows(SPORTS["tennis"]["db"], "odds")
+            if r.get("games_line") is not None
+            and str(r["collected_at"])[:19] <= str(start)[:19]
+            and frozenset((W.canon(str(r["p1"]).split()[-1]),
+                           W.canon(str(r["p2"]).split()[-1]))) == frozenset((sa, sb))]
+    if not rows:
+        return None
+    r = max(rows, key=lambda x: x["collected_at"])
+    if round(float(r["games_line"]), 1) != round(float(line), 1):
+        return None
+    return W.fair_prob(r.get("games_over"), r.get("games_under"))
+
+
 def closing_fair(sport, player, stat, line, start):
     """Pinnacle's de-vigged fair prob for this exact line at the last pre-start snapshot;
     for model stats, anchor the closing MAIN line to the alt line. None if unavailable."""
     if sport == "tennis":
+        if stat == "match_games":
+            return _closing_match_games(player, line, start)
         return closing_fair_tennis(player, line, start)
     if SPORTS.get(sport, {}).get("external"):
         return closing_fair_gg(sport, player, line, start)

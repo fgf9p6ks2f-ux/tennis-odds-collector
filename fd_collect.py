@@ -59,8 +59,9 @@ def _odds(r):
     return dec(((r.get("winRunnerOdds") or {}).get("americanDisplayOdds") or {}).get("americanOdds"))
 
 
-def extract(m, sport):
-    """Yield (player, stat, line, side, odds) from one FanDuel market."""
+def extract(m, sport, event_name=""):
+    """Yield (player, stat, line, side, odds) from one FanDuel market. event_name is
+    the FD match name, used as the key for match-level markets (tennis match_games)."""
     nm = m.get("marketName") or ""
     low = nm.lower()
     rows = []
@@ -115,6 +116,19 @@ def extract(m, sport):
     #    the MARKET NAME, not the runner handicap), plus set betting / correct score.
     #    Per-set variants ("Set 2 Total Games ...") are exotics we skip.
     if sport == "tennis":
+        # MATCH total games (2-way O/U) — the direct market vs Pinnacle's games line.
+        # FD posts it as 'Alternative Total Games N X.5' (line at end) and a main
+        # 'Total Games X.5' / 'Total Games Over/Under X.5'. Store as match_games with
+        # the event name as the key (both players).
+        mm = re.match(r"(?:alternative )?total games(?: \d+)?(?: over/under)? "
+                      r"(\d+(?:\.\d+)?)$", low)
+        if mm:
+            ln = float(mm.group(1))
+            for r in m.get("runners") or []:
+                o, rn = _odds(r), (r.get("runnerName") or "").lower()
+                if o is not None and rn.startswith(("over", "under")):
+                    rows.append((event_name, "match_games", ln, rn.split()[0], o))
+            return rows
         if (pm := re.match(r"(?P<pl>.+?)\s+Total Games\s+(?P<ln>\d+(?:\.\d+)?)$", nm)) \
                 and not low.startswith("set"):
             pl, ln = pm.group("pl").strip(), float(pm.group("ln"))
@@ -162,7 +176,7 @@ def collect_page(customPageId, sport, is_match):
                 if mid in seen:
                     continue
                 seen.add(mid)
-                for (pl, st, ln, sd, od) in extract(m, sport):
+                for (pl, st, ln, sd, od) in extract(m, sport, nm):
                     out.append((sport, nm, pl, st, ln, sd, od))
     return out
 
