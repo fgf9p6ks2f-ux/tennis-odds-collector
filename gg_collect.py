@@ -237,13 +237,29 @@ def flag_and_log():
                 str(b["start"]).replace("Z", "+00:00")).timestamp())
         except ValueError:
             start_ts = 0
+        units = kelly_units(rate, odds)
         alerts.append({"msg": (f"[{cfg['tag']}] {b['nicks'][0]} v {b['nicks'][1]} · "
                                f"{side[0].upper()}{b['line']:g} {am:+d} · "
-                               f"{w}-{n-w} ({rate*100:.0f}%)"),
+                               f"{w}-{n-w} ({rate*100:.0f}%) · {units:g}u"),
                        "start_ts": start_ts})
     led.commit()
     led.close()
     return board, alerts, logged
+
+
+def kelly_units(p, dec_odds, frac=0.25, cred=0.40, cap=3.0, floor=0.5):
+    """Recommended stake (1u = $100): quarter-Kelly at the ACTUAL FD price, with a
+    40% credibility shrink of p toward that price's break-even (GG validation is young) (our rates are
+    threshold-selected estimates — raw Kelly overbets noisy edges), capped at 3u
+    (void/limit risk) and floored at 0.5u. Bankroll = env BANKROLL_UNITS (50u)."""
+    bankroll_u = float(os.environ.get("BANKROLL_UNITS", 50))
+    b = dec_odds - 1.0
+    be = 1.0 / dec_odds
+    p_adj = be + cred * (p - be)
+    f = (p_adj * b - (1 - p_adj)) / b
+    if f <= 0:
+        return floor
+    return max(floor, min(cap, round(frac * f * bankroll_u * 2) / 2))
 
 
 def notify(alerts):
