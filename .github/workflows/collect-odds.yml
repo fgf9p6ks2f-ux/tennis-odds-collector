@@ -43,6 +43,10 @@ jobs:
         run: python fd_collect.py || echo "fanduel collect skipped (endpoint may have changed)"
       - name: scan wnba edges (fanduel vs pinnacle)
         run: python wnba_edge_scan.py || echo "wnba edge scan skipped"
+      - name: H2H GG esports — results + FanDuel-line flags (esoccer/ebasketball/efootball)
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python gg_collect.py || echo "gg collect skipped"
       - name: update bet ledger (flag / CLV / grade / P&L)
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
@@ -52,7 +56,8 @@ jobs:
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
           git add -f odds.sqlite mlb_kprops.sqlite wnba_props.sqlite fanduel_props.sqlite \
-                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json
+                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json \
+                 gg.sqlite
           git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push

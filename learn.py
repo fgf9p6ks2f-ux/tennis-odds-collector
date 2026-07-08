@@ -67,10 +67,10 @@ def main():
         # For MODEL-priced buckets CLV is self-referencing (closing fair comes from the
         # same model that priced the bet, so model bias cancels and CLV can look great
         # while the bucket bleeds — seen live: total_bases model +8% CLV, 24-89 W-L).
-        # Realized ROI is the only honest teacher there; for DIRECT buckets CLV is
-        # measured against Pinnacle's own posted line and stays primary.
-        bench_roi = src == "model" and m["settled"] >= MIN_N_ROI and roi is not None \
-            and roi <= BENCH_ROI
+        # Realized ROI is the only honest teacher there; same for h2h (history-pattern)
+        # buckets, whose CLV is vs our own FD quotes. Direct buckets keep CLV primary.
+        bench_roi = src in ("model", "h2h") and m["settled"] >= MIN_N_ROI \
+            and roi is not None and roi <= BENCH_ROI
         bench = bench_clv or bench_roi
         if bench:
             benched.append([sp, st, src])

@@ -43,7 +43,13 @@ SPORTS = {
     "wnba": {"db": HERE / "wnba_props.sqlite", "table": "wnba_props", "pcol": "player",
              "model": True},
     "tennis": {"db": HERE / "odds.sqlite", "table": "odds", "custom": True},
+    # H2H GG League esports (FanDuel): bets are inserted by gg_collect.py, not by
+    # flag(); settlement/CLV come from gg.sqlite (hudstats results + our FD quotes).
+    "esoccer":     {"external": True},
+    "ebasketball": {"external": True},
+    "efootball":   {"external": True},
 }
+GG_DB = HERE / "gg.sqlite"
 MAX_SNAP_DRIFT_H = 2.0      # skip flagging when FD vs sharp snapshots are this far apart
                             # (a stale side manufactures phantom EV)
 
@@ -116,6 +122,8 @@ def _drifted(snap_a, snap_b):
 def flag(sport):
     """Return [dict] of +EV bets on the latest pre-game snapshot for `sport`."""
     cfg = SPORTS[sport]
+    if cfg.get("external"):
+        return []                        # logged directly by gg_collect.py
     if cfg.get("custom"):
         return flag_tennis()
     benched = _benched()
@@ -409,11 +417,66 @@ def bet_id(b):
 
 
 # ----------------------------------------------------------------------------- closing / CLV
+def closing_fair_gg(sport, player, line, start):
+    """FanDuel's own de-vigged closing prob for the exact line, from our gg_quotes
+    snapshots (last one at/before start). None until enough snapshots exist."""
+    if not GG_DB.exists():
+        return None
+    nicks = [n.strip() for n in str(player).split(" v ")]
+    if len(nicks) != 2:
+        return None
+    con = sqlite3.connect(GG_DB)
+    try:
+        rows = con.execute(
+            "SELECT collected_at, over_odds, under_odds FROM gg_quotes WHERE line=? "
+            "AND ((p1=? AND p2=?) OR (p1=? AND p2=?)) AND start=? "
+            "AND collected_at<=? ORDER BY collected_at DESC LIMIT 1",
+            (line, nicks[0], nicks[1], nicks[1], nicks[0], str(start),
+             str(start)[:19])).fetchall()
+    except sqlite3.OperationalError:
+        rows = []
+    con.close()
+    return W.fair_prob(rows[0][1], rows[0][2]) if rows else None
+
+
+def settle_gg(player, stat, start, event=None):
+    """Realized total from hudstats results: match by nickname pair + start ±30 min."""
+    if not GG_DB.exists():
+        return None
+    nicks = [n.strip() for n in str(player).split(" v ")]
+    if len(nicks) != 2:
+        return None
+    con = sqlite3.connect(GG_DB)
+    try:
+        rows = con.execute(
+            "SELECT start, total FROM gg_matches WHERE (p1=? AND p2=?) OR (p1=? AND p2=?)",
+            (nicks[0], nicks[1], nicks[1], nicks[0])).fetchall()
+    except sqlite3.OperationalError:
+        rows = []
+    con.close()
+    try:
+        t0 = dt.datetime.fromisoformat(str(start).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    best = None
+    for s, tot in rows:
+        try:
+            gap = abs((dt.datetime.fromisoformat(str(s).replace("Z", "+00:00")) - t0
+                       ).total_seconds())
+        except ValueError:
+            continue
+        if gap <= 1800 and (best is None or gap < best[0]):
+            best = (gap, tot)
+    return float(best[1]) if best else None
+
+
 def closing_fair(sport, player, stat, line, start):
     """Pinnacle's de-vigged fair prob for this exact line at the last pre-start snapshot;
     for model stats, anchor the closing MAIN line to the alt line. None if unavailable."""
     if sport == "tennis":
         return closing_fair_tennis(player, line, start)
+    if SPORTS.get(sport, {}).get("external"):
+        return closing_fair_gg(sport, player, line, start)
     cfg = SPORTS[sport]
     pc = cfg["pcol"]
     rows = [r for r in _rows(cfg["db"], cfg["table"])
@@ -546,7 +609,8 @@ def settle_wnba(player, stat, start, event=None):
     return None
 
 
-SETTLE = {"mlb": settle_mlb, "wnba": settle_wnba, "tennis": settle_tennis}
+SETTLE = {"mlb": settle_mlb, "wnba": settle_wnba, "tennis": settle_tennis,
+          "esoccer": settle_gg, "ebasketball": settle_gg, "efootball": settle_gg}
 
 
 # ----------------------------------------------------------------------------- ledger ops

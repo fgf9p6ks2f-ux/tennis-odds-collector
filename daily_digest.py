@@ -62,7 +62,7 @@ def build(now_utc):
         p = sum(1 for r in g if r[1] == "push")
         pnl = sum(r[2] or 0 for r in g)
         lines.append(f"Today: {w}-{l}" + (f"-{p}" if p else "") + f"  {fmt_u(pnl)}")
-        for sp in ("tennis", "mlb", "wnba"):
+        for sp in ("tennis", "mlb", "wnba", "esoccer", "ebasketball", "efootball"):
             gs = [r for r in g if r[0] == sp]
             if gs:
                 ws = sum(1 for r in gs if r[1] == "W")
@@ -78,7 +78,7 @@ def build(now_utc):
     if c:
         avg = sum(r[1] for r in c) / len(c)
         lines.append(f"CLV today: {avg:+.2f}% avg over {len(c)} closed bets")
-        for sp in ("tennis", "mlb", "wnba"):
+        for sp in ("tennis", "mlb", "wnba", "esoccer", "ebasketball", "efootball"):
             cs = [r[1] for r in c if r[0] == sp]
             if cs:
                 lines.append(f"  {sp.upper()}: {sum(cs)/len(cs):+.2f}% ({len(cs)})")
