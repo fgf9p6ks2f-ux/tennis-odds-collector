@@ -220,7 +220,9 @@ def flag_and_log():
         if ev <= 0:                                     # price too bad even at our rate
             continue
         player = " v ".join(b["nicks"])
-        bid = f"{cfg['sport']}|{BL.W.canon(player)}|total|{b['line']}|{side}|{str(b['start'])[:10]}"
+        # start to the MINUTE, not the day: GG pairs play several games a day and
+        # a day-keyed id would silently swallow every game after the first
+        bid = f"{cfg['sport']}|{BL.W.canon(player)}|total|{b['line']}|{side}|{str(b['start'])[:16]}"
         if led.execute("SELECT 1 FROM bets WHERE bet_id=?", (bid,)).fetchone():
             continue
         led.execute("INSERT INTO bets VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
