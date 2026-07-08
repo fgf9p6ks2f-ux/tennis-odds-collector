@@ -107,7 +107,7 @@ def _mkbet(sport, r, p_side, pinn_line, start, src):
     return {"sport": sport, "event": r["event"], "player": r["player"], "stat": r["stat"],
             "line": float(r["line"]), "side": r["side"], "odds": float(r["odds"]),
             "fair": p_side, "ev": p_side * float(r["odds"]) - 1, "pinn_line": pinn_line,
-            "start": start, "src": src}
+            "start": start, "src": src, "book": r.get("book", "fd")}
 
 
 def _drifted(snap_a, snap_b):
@@ -117,6 +117,29 @@ def _drifted(snap_a, snap_b):
         return abs((a - b).total_seconds()) > MAX_SNAP_DRIFT_H * 3600
     except (ValueError, TypeError):
         return True
+
+
+def _best_book_lines(sport):
+    """Latest snapshot PER BOOK, then for each (player, stat, line, side) keep the
+    single BEST (highest) price across books — line shopping. Each returned row keeps
+    the winning book in 'book'. (fsnap = newest snapshot across books, for drift.)"""
+    rows = _rows(FD_DB, "fd_lines", f" WHERE sport='{sport}'")
+    if not rows:
+        return None, []
+    for r in rows:
+        r.setdefault("book", "fd")
+    latest_per_book = {}
+    for r in rows:                                    # newest collected_at within each book
+        latest_per_book[r["book"]] = max(latest_per_book.get(r["book"], ""),
+                                         str(r["collected_at"]))
+    live = [r for r in rows if str(r["collected_at"]) == latest_per_book[r["book"]]]
+    best = {}
+    for r in live:
+        k = (W.canon(r["player"]), r["stat"], round(float(r["line"]), 1), r["side"])
+        if k not in best or float(r["odds"]) > float(best[k]["odds"]):
+            best[k] = r
+    fsnap = max(latest_per_book.values()) if latest_per_book else None
+    return fsnap, list(best.values())
 
 
 def flag(sport):
@@ -131,7 +154,7 @@ def flag(sport):
     if not plive:
         return []
     plive = [r for r in plive if r.get("start_time") and _pre(r["start_time"], psnap)]
-    fsnap, fd = _latest(_rows(FD_DB, "fd_lines", f" WHERE sport='{sport}'"))
+    fsnap, fd = _best_book_lines(sport)
     if not (plive and fd) or _drifted(psnap, fsnap):
         return []
     pc = cfg["pcol"]
@@ -636,8 +659,9 @@ def notify_ev(bets):
                     key=lambda b: -b["ev"])
     if not topic or not strong:
         return
-    lines = [f"{b['sport'].upper()}: {b['player']} {b['stat']} {b['side']} {b['line']} "
-             f"@ {b['odds']:.2f}  (+{b['ev']*100:.0f}% EV vs sharp)" for b in strong[:12]]
+    lines = [f"{b['sport'].upper()} [{b.get('book', 'fd').upper()}]: {b['player']} "
+             f"{b['stat']} {b['side']} {b['line']} @ {b['odds']:.2f}  "
+             f"(+{b['ev']*100:.0f}% EV vs sharp)" for b in strong[:12]]
     try:
         requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines).encode("utf-8"),
                       headers={"Title": "Sports +EV bets", "Tags": "moneybag"}, timeout=15)

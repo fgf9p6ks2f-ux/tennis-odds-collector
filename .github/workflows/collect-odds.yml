@@ -24,7 +24,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install requests
+      - run: pip install requests curl_cffi
       - name: collect tennis
         env:
           DB_PATH: ${{ github.workspace }}/odds.sqlite
@@ -41,6 +41,10 @@ jobs:
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
         run: python fd_collect.py || echo "fanduel collect skipped (endpoint may have changed)"
+      - name: collect draftkings props (2nd soft book, best-price line shopping)
+        env:
+          FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
+        run: python dk_collect.py || echo "draftkings collect skipped"
       - name: scan wnba edges (fanduel vs pinnacle)
         run: python wnba_edge_scan.py || echo "wnba edge scan skipped"
       - name: H2H GG esports — results + FanDuel-line flags (esoccer/ebasketball/efootball)
