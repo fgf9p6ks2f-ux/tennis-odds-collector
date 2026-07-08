@@ -27,6 +27,8 @@ jobs:
         run: python edge_backtest.py
       - name: learn soft spots (bench negative-CLV markets)
         run: python learn.py || echo "learn skipped"
+      - name: gg esports line-timing analytics
+        run: python gg_timing.py || echo "gg timing skipped"
       - name: show in run summary
         if: always()
         run: |
@@ -36,7 +38,7 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f edge_report.md learning_report.md bet_filters.json
+          git add -f edge_report.md learning_report.md bet_filters.json gg_timing.md
           git commit -m "edge report [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
