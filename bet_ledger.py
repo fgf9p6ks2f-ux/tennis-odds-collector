@@ -32,6 +32,8 @@ UNIT_USD = 100.0
 MIN_EV = 0.02
 MIN_EV_MODEL = 0.04         # model-priced EV inside model error isn't edge — higher bar
 MAX_EV = 0.30               # a real edge vs a sharp de-vig is small; >this = artifact, skip
+MAX_EV_MODEL = 0.12         # a MODEL claiming >12% vs sharp anchors is betting its own
+                            # error (live proof: EV 10-30% band realized -40% ROI)
 MODEL_BAND = (0.20, 0.90)   # only model-price alt lines in this fair-prob band (not deep tails)
 FINAL_BUFFER_H = 4.0        # a game is assumed final this many hours after first pitch/tip
 
@@ -90,8 +92,9 @@ def _is_benched(benched, sport, stat, src):
 
 
 def _ev_ok(b):
-    floor = MIN_EV_MODEL if b.get("src") == "model" else MIN_EV
-    return floor <= b["ev"] <= MAX_EV
+    if b.get("src") == "model":
+        return MIN_EV_MODEL <= b["ev"] <= MAX_EV_MODEL
+    return MIN_EV <= b["ev"] <= MAX_EV
 
 
 def _mkbet(sport, r, p_side, pinn_line, start, src):
@@ -270,7 +273,7 @@ def flag_tennis():
             continue
         p_side = p if f["side"] == "over" else 1 - p
         ev = p_side * float(f["odds"]) - 1
-        if MIN_EV_MODEL <= ev <= MAX_EV \
+        if MIN_EV_MODEL <= ev <= MAX_EV_MODEL \
                 and not _is_benched(benched, "tennis", "player_games", "model"):
             bets.append({"sport": "tennis", "event": f"{r['p1']} v {r['p2']}",
                          "player": f["player"], "stat": "player_games",
