@@ -28,7 +28,11 @@ BASE = f"https://sbapi.{STATE}.sportsbook.fanduel.com/api"
 UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 DB = Path(os.environ.get("FD_DB", Path(__file__).resolve().parent / "fanduel_props.sqlite"))
-TENNIS_PAGES = os.environ.get("FD_TENNIS_PAGES", "wimbledon").split(",")
+# try several page slugs — tournament pages rotate (wimbledon ends, us-open starts);
+# unknown slugs error per-page and are skipped, so extras cost nothing and the generic
+# ones keep tennis collection alive between slams without a manual env update
+TENNIS_PAGES = os.environ.get(
+    "FD_TENNIS_PAGES", "tennis,wimbledon,us-open,atp,wta").split(",")
 
 PITCHER_STATS = {"strikeout": "strikeouts", "pitching outs": "outs", "outs recorded": "outs"}
 BATTER_STATS = {"total bases": "total_bases", "hits": "hits", "home run": "home_runs",

@@ -286,11 +286,27 @@ def flag_tennis():
 
 def closing_fair_tennis(player, line, start):
     """Model prob at Pinnacle's last pre-start snapshot (same model both ends, so CLV
-    measures pure line movement). Returns P(player games > line) or None."""
-    rows = [r for r in _rows(SPORTS["tennis"]["db"], "odds")
-            if str(r["collected_at"])[:19] <= str(start)[:19]
-            and (W.canon(r["p1"]) == W.canon(player) or W.canon(r["p2"]) == W.canon(player))
-            and str(r.get("start_time"))[:19] == str(start)[:19]]
+    measures pure line movement). Matches the MATCH by player + start within 6h —
+    Pinnacle shifts start_time between snapshots on delays, so exact-equality would
+    silently drop the close and leave the bucket CLV-blind."""
+    def _ts(s):
+        try:
+            return dt.datetime.fromisoformat(str(s).replace("Z", "+00:00"))
+        except ValueError:
+            return None
+    t0 = _ts(start)
+    if t0 is None:
+        return None
+    rows = []
+    for r in _rows(SPORTS["tennis"]["db"], "odds"):
+        if str(r["collected_at"])[:19] > str(start)[:19]:
+            continue
+        if W.canon(r["p1"]) != W.canon(player) and W.canon(r["p2"]) != W.canon(player):
+            continue
+        t = _ts(r.get("start_time"))
+        if t is None or abs((t - t0).total_seconds()) > 6 * 3600:
+            continue
+        rows.append(r)
     if not rows:
         return None
     close_ts = max(r["collected_at"] for r in rows)
@@ -348,28 +364,43 @@ def _surname24(name):
     return W.canon(" ".join(toks[:-1]) if len(toks) > 1 else name)
 
 
-def settle_tennis(player, stat, start):
-    """Player's games won, from 24live's finished list (surname containment + closest
-    start time; 'Gauff Cori' vs 'Coco Gauff' style given-name drift is why surnames)."""
+def _sur_match(a, b):
+    return a and b and (a in b or b in a)
+
+
+def settle_tennis(player, stat, start, event=None):
+    """Player's games won, from 24live's finished list. Identity binds on BOTH players'
+    surnames (from the 'P1 v P2' event) — one surname alone can hit the wrong match when
+    two Zhangs play the same day. Surname containment absorbs 'Gauff Cori' vs 'Coco
+    Gauff' given-name drift and multi-word surnames. Start proximity (8h — slam 'not
+    before' scheduling drifts hours) is a tiebreak, not the identity."""
     surname = W.canon(str(player).split()[-1])
+    opp = None
+    if event and " v " in str(event):
+        a, b = str(event).split(" v ", 1)
+        other = b if W.canon(a) == W.canon(player) else a
+        opp = W.canon(other.split()[-1])
     day = str(start)[:10]
     cands = []
     for d in (day, (dt.date.fromisoformat(day) + dt.timedelta(days=1)).isoformat()):
         for m in _live24_finished_tennis(d):
             for side, gkey in (("home", "hg"), ("away", "ag")):
-                s24 = _surname24(m[side])
-                if surname and (surname in s24 or s24 in surname):
-                    try:
-                        gap = abs((dt.datetime.fromisoformat(str(m["start"]).replace("Z", "+00:00"))
-                                   - dt.datetime.fromisoformat(str(start).replace("Z", "+00:00").replace(" ", "T"))
-                                   ).total_seconds())
-                    except ValueError:
-                        gap = 9e9
-                    cands.append((gap, float(m[gkey])))
+                oside = "away" if side == "home" else "home"
+                if not _sur_match(surname, _surname24(m[side])):
+                    continue
+                if opp and not _sur_match(opp, _surname24(m[oside])):
+                    continue
+                try:
+                    gap = abs((dt.datetime.fromisoformat(str(m["start"]).replace("Z", "+00:00"))
+                               - dt.datetime.fromisoformat(str(start).replace("Z", "+00:00").replace(" ", "T"))
+                               ).total_seconds())
+                except ValueError:
+                    gap = 9e9
+                cands.append((gap, float(m[gkey])))
     if not cands:
         return None
     gap, games = min(cands, key=lambda c: c[0])
-    return games if gap <= 3 * 3600 else None
+    return games if gap <= 8 * 3600 else None
 
 
 def bet_id(b):
@@ -450,7 +481,7 @@ MLB_H = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
          "Accept": "application/json"}
 
 
-def settle_mlb(player, stat, start):
+def settle_mlb(player, stat, start, event=None):
     spec = MLB_FIELD.get(stat)
     if not spec:
         return None
@@ -479,7 +510,7 @@ def _wnba_combo(st, stat):
             "pra": p + r + a, "pts_reb": p + r, "pts_ast": p + a, "reb_ast": r + a}.get(stat)
 
 
-def settle_wnba(player, stat, start):
+def settle_wnba(player, stat, start, event=None):
     date = _game_date(start)
     season = date[:4]
     try:
@@ -588,10 +619,10 @@ def cycle():
     con.commit()
     # 3) grade (game final)
     graded = 0
-    for row in con.execute("SELECT bet_id,sport,player,stat,line,side,odds_taken,start_time "
-                           "FROM bets WHERE status IN ('open','closed') AND result IS NULL"
+    for row in con.execute("SELECT bet_id,sport,player,stat,line,side,odds_taken,start_time,"
+                           "event FROM bets WHERE status IN ('open','closed') AND result IS NULL"
                            ).fetchall():
-        bid, sport, player, stat, line, side, odds, start = row
+        bid, sport, player, stat, line, side, odds, start, event = row
         try:
             fin = dt.datetime.fromisoformat(str(start).replace("Z", "+00:00")) \
                 + dt.timedelta(hours=FINAL_BUFFER_H)
@@ -599,7 +630,7 @@ def cycle():
                 continue
         except ValueError:
             continue
-        realized = SETTLE[sport](player, stat, start)
+        realized = SETTLE[sport](player, stat, start, event)
         if realized is None:
             continue
         if realized == line:

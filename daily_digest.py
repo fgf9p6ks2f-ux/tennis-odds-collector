@@ -109,14 +109,26 @@ def main():
     ap.add_argument("--force", action="store_true", help="skip the 11:40pm-MT clock guard")
     args = ap.parse_args()
     now = dt.datetime.now(dt.timezone.utc)
-    now_mt = now.astimezone(MT)
-    if not args.force and not (now_mt.hour == 23 and now_mt.minute >= 25):
-        print(f"not digest time in MT ({now_mt:%H:%M}) — exiting (other cron will fire)")
+    # GitHub crons routinely fire 5-30+ min late. Judge "is it digest time" and "which
+    # MT day is this digest for" from a reference clock 50 min behind the wall clock:
+    # a firing at 23:40 OR one delayed past midnight (up to ~00:50) both resolve to the
+    # intended pre-midnight day. The digests.md day-header dedupe below stops the OTHER
+    # cron (00:40 MT in the off-DST half) from sending the same digest twice.
+    ref = now - dt.timedelta(minutes=50)
+    ref_mt = ref.astimezone(MT)
+    if not args.force and ref_mt.hour not in (22, 23):
+        print(f"not digest time in MT (now {now.astimezone(MT):%H:%M}) — exiting")
         return
-    body, mt_date = build(now)
+    body, mt_date = build(ref)
+    if not args.force and LOG.exists() and f"## {mt_date}" in LOG.read_text():
+        print(f"digest for {mt_date} already sent — exiting (dual-cron dedupe)")
+        return
     print(body)
+    # forced/manual runs get a distinct header so they never trip the dedupe that
+    # protects the real nightly send
+    hdr = f"## {mt_date} (forced)" if args.force else f"## {mt_date}"
     with open(LOG, "a") as f:
-        f.write(f"\n## {mt_date}\n\n```\n{body}\n```\n")
+        f.write(f"\n{hdr}\n\n```\n{body}\n```\n")
     topic = os.environ.get("NTFY_TOPIC")
     if topic:
         try:
