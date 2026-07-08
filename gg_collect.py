@@ -230,24 +230,42 @@ def flag_and_log():
         logged += 1
         w = overs if side == "over" else n - overs
         am = round((odds - 1) * 100) if odds >= 2 else round(-100 / (odds - 1))
-        alerts.append(f"[{cfg['tag']}] {b['nicks'][0]} v {b['nicks'][1]} · "
-                      f"{mt_time(b['start'])} · {side[0].upper()}{b['line']:g} "
-                      f"{am:+d} · {w}-{n-w} ({rate*100:.0f}%)")
+        try:
+            start_ts = int(dt.datetime.fromisoformat(
+                str(b["start"]).replace("Z", "+00:00")).timestamp())
+        except ValueError:
+            start_ts = 0
+        alerts.append({"msg": (f"[{cfg['tag']}] {b['nicks'][0]} v {b['nicks'][1]} · "
+                               f"{side[0].upper()}{b['line']:g} {am:+d} · "
+                               f"{w}-{n-w} ({rate*100:.0f}%)"),
+                       "start_ts": start_ts})
     led.commit()
     led.close()
     return board, alerts, logged
 
 
 def notify(alerts):
+    """One message PER GAME, delivered 5 minutes before ITS start (ntfy scheduled
+    delivery via the At: header) — no bulk batches. A game already inside the 5-min
+    window sends immediately. The line shown was FanDuel's posted number at flag
+    time (~30-60 min out); confirm it hasn't moved when you bet."""
     topic = os.environ.get("NTFY_TOPIC")
     if not topic or not alerts:
         return
-    try:
-        requests.post(f"https://ntfy.sh/{topic}", data="\n".join(alerts[:35]).encode(),
-                      headers={"Title": "FanDuel esports totals — bet as shown",
-                               "Priority": "high", "Tags": "joystick"}, timeout=15)
-    except requests.RequestException:
-        pass
+    now = int(dt.datetime.now(dt.timezone.utc).timestamp())
+    for a in alerts:
+        at = a["start_ts"] - 300
+        hdrs = {"Priority": "high", "Tags": "joystick"}
+        if at > now + 30:
+            hdrs["Title"] = "Esports bet — starts in 5 min"
+            hdrs["At"] = str(at)
+        else:
+            hdrs["Title"] = "Esports bet — starting now"
+        try:
+            requests.post(f"https://ntfy.sh/{topic}", data=a["msg"].encode(),
+                          headers=hdrs, timeout=15)
+        except requests.RequestException:
+            pass
 
 
 def main():
@@ -269,7 +287,7 @@ def main():
         board, alerts, logged = flag_and_log()
         print(f"FD board: {len(board)} priced events · {logged} new bets logged")
         for a in alerts[:12]:
-            print("  " + a)
+            print("  " + a["msg"])
         notify(alerts)
     except Exception as e:
         print(f"FD flag pass skipped: {e}")
