@@ -67,6 +67,8 @@ jobs:
           NFL_TOTALS_DB: ${{ github.workspace }}/nfl_totals.sqlite
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python nfl_totals.py || echo "nfl totals skipped"
+      - name: pitcher-K alt-ladder line-shop sheet
+        run: python k_ladder.py || echo "k_ladder skipped"
       - name: update bet ledger (flag / CLV / grade / P&L)
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
@@ -76,8 +78,7 @@ jobs:
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
           git add -f odds.sqlite mlb_kprops.sqlite wnba_props.sqlite fanduel_props.sqlite \
-                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json \
-                 gg.sqlite mlb_totals.sqlite nfl_totals.sqlite
+                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json gg.sqlite k_ladder.md mlb_totals.sqlite nfl_totals.sqlite
           git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
