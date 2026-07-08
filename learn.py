@@ -26,21 +26,26 @@ REPORT = HERE / "learning_report.md"
 
 MIN_N = 40           # need this many CLV-measured bets before benching a market
 BENCH_CLV = -1.0     # bench if average CLV <= this (%) over that sample
+MIN_N_ROI = 60       # ROI-fallback sample: when CLV coverage is thin (closing line was
+BENCH_ROI = -5.0     # rarely capturable) bench on realized ROI <= this (%) instead
 
 
 def buckets():
+    """Aggregate per (sport, stat, src) — src matters: the same stat can be soft when
+    compared DIRECTLY line-for-line vs Pinnacle yet a loser when model-priced."""
     if not LEDGER.exists():
         return {}
     con = sqlite3.connect(LEDGER)
     try:
         rows = con.execute(
-            "SELECT sport, stat, clv_pct, result, pnl_units FROM bets").fetchall()
+            "SELECT sport, stat, src, clv_pct, result, pnl_units FROM bets").fetchall()
     except sqlite3.OperationalError:
         rows = []
     con.close()
     agg = {}
-    for sp, st, clv, res, pnl in rows:
-        m = agg.setdefault((sp, st), {"clv": [], "w": 0, "l": 0, "pnl": 0.0, "settled": 0})
+    for sp, st, src, clv, res, pnl in rows:
+        m = agg.setdefault((sp, st, src or "direct"),
+                           {"clv": [], "w": 0, "l": 0, "pnl": 0.0, "settled": 0})
         if clv is not None:
             m["clv"].append(clv)
         if res in ("W", "L"):
@@ -54,31 +59,39 @@ def main():
     ts = dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     agg = buckets()
     benched, table = [], []
-    for (sp, st), m in sorted(agg.items()):
+    for (sp, st, src), m in sorted(agg.items()):
         n_clv = len(m["clv"])
         avg_clv = sum(m["clv"]) / n_clv if n_clv else None
         roi = (m["pnl"] / m["settled"] * 100) if m["settled"] else None
-        bench = n_clv >= MIN_N and avg_clv is not None and avg_clv <= BENCH_CLV
+        bench_clv = n_clv >= MIN_N and avg_clv is not None and avg_clv <= BENCH_CLV
+        # CLV-blind escape hatch: closing prob often uncapturable for model alts, so a
+        # losing bucket could dodge the CLV bench forever — realized ROI catches it.
+        clv_blind = m["settled"] and n_clv < m["settled"] * 0.5
+        bench_roi = clv_blind and m["settled"] >= MIN_N_ROI and roi is not None \
+            and roi <= BENCH_ROI
+        bench = bench_clv or bench_roi
         if bench:
-            benched.append([sp, st])
-        table.append((sp, st, n_clv, avg_clv, m["w"], m["l"], roi, bench))
+            benched.append([sp, st, src])
+        table.append((sp, st, src, n_clv, avg_clv, m["w"], m["l"], roi, bench))
 
     FILTERS.write_text(json.dumps(
         {"generated": ts, "min_n": MIN_N, "bench_clv": BENCH_CLV, "benched": benched}, indent=2))
 
     lines = ["# Soft-spot learning report", "", f"_{ts}_", "",
-             f"Benches a (sport, stat) market once it has ≥{MIN_N} CLV-measured bets whose "
-             f"average CLV ≤ {BENCH_CLV:.0f}%. The ledger then stops betting it. CLV is the "
-             "teacher — negative CLV over a real sample means the market isn't soft for us.", ""]
+             f"Benches a (sport, stat, src) market once it has ≥{MIN_N} CLV-measured bets "
+             f"whose average CLV ≤ {BENCH_CLV:.0f}% — or, when CLV coverage is thin, "
+             f"≥{MIN_N_ROI} settled bets at ROI ≤ {BENCH_ROI:.0f}%. The ledger then stops "
+             "betting it. CLV is the teacher; realized ROI is the backstop.", ""]
     if not table:
         lines += ["No settled bets yet — everything green-lit until results accrue "
                   "(needs weeks of live slates before any market has a trustworthy sample).", ""]
     else:
-        lines += ["| sport | stat | CLV bets | avg CLV | W-L | ROI | status |",
-                  "|---|---|---|---|---|---|---|"]
-        for sp, st, n, clv, w, l, roi, bench in table:
+        lines += ["| sport | stat | src | CLV bets | avg CLV | W-L | ROI | status |",
+                  "|---|---|---|---|---|---|---|---|"]
+        for sp, st, src, n, clv, w, l, roi, bench in table:
             lines.append(
-                f"| {sp} | {st} | {n} | {('%+.2f%%' % clv) if clv is not None else '—'} | "
+                f"| {sp} | {st} | {src} | {n} | "
+                f"{('%+.2f%%' % clv) if clv is not None else '—'} | "
                 f"{w}-{l} | {('%+.1f%%' % roi) if roi is not None else '—'} | "
                 f"{'🛑 benched' if bench else ('✅ green' if n >= MIN_N else '⏳ learning')} |")
         lines += ["", f"**Benched markets:** {benched or 'none'}", ""]

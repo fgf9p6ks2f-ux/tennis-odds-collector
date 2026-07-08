@@ -30,6 +30,7 @@ REPORT = HERE / "bet_ledger_report.md"
 FD_DB = HERE / "fanduel_props.sqlite"
 UNIT_USD = 100.0
 MIN_EV = 0.02
+MIN_EV_MODEL = 0.04         # model-priced EV inside model error isn't edge — higher bar
 MAX_EV = 0.30               # a real edge vs a sharp de-vig is small; >this = artifact, skip
 MODEL_BAND = (0.20, 0.90)   # only model-price alt lines in this fair-prob band (not deep tails)
 FINAL_BUFFER_H = 4.0        # a game is assumed final this many hours after first pitch/tip
@@ -39,7 +40,10 @@ SPORTS = {
              "model": True},
     "wnba": {"db": HERE / "wnba_props.sqlite", "table": "wnba_props", "pcol": "player",
              "model": True},
+    "tennis": {"db": HERE / "odds.sqlite", "table": "odds", "custom": True},
 }
+MAX_SNAP_DRIFT_H = 2.0      # skip flagging when FD vs sharp snapshots are this far apart
+                            # (a stale side manufactures phantom EV)
 
 
 # ----------------------------------------------------------------------------- snapshots
@@ -69,7 +73,8 @@ def _pre(ts, snap):
 
 # ----------------------------------------------------------------------------- flagging
 def _benched():
-    """(sport, stat) buckets the learner has benched for negative realized CLV."""
+    """Buckets the learner has benched — (sport, stat, src) triples, with legacy
+    (sport, stat) pairs applying to every src."""
     import json
     f = HERE / "bet_filters.json"
     if not f.exists():
@@ -80,6 +85,15 @@ def _benched():
         return set()
 
 
+def _is_benched(benched, sport, stat, src):
+    return (sport, stat) in benched or (sport, stat, src) in benched
+
+
+def _ev_ok(b):
+    floor = MIN_EV_MODEL if b.get("src") == "model" else MIN_EV
+    return floor <= b["ev"] <= MAX_EV
+
+
 def _mkbet(sport, r, p_side, pinn_line, start, src):
     return {"sport": sport, "event": r["event"], "player": r["player"], "stat": r["stat"],
             "line": float(r["line"]), "side": r["side"], "odds": float(r["odds"]),
@@ -87,16 +101,27 @@ def _mkbet(sport, r, p_side, pinn_line, start, src):
             "start": start, "src": src}
 
 
+def _drifted(snap_a, snap_b):
+    try:
+        a = dt.datetime.fromisoformat(str(snap_a)[:19])
+        b = dt.datetime.fromisoformat(str(snap_b)[:19])
+        return abs((a - b).total_seconds()) > MAX_SNAP_DRIFT_H * 3600
+    except (ValueError, TypeError):
+        return True
+
+
 def flag(sport):
     """Return [dict] of +EV bets on the latest pre-game snapshot for `sport`."""
     cfg = SPORTS[sport]
+    if cfg.get("custom"):
+        return flag_tennis()
     benched = _benched()
     psnap, plive = _latest(_rows(cfg["db"], cfg["table"]))
     if not plive:
         return []
     plive = [r for r in plive if r.get("start_time") and _pre(r["start_time"], psnap)]
-    _, fd = _latest(_rows(FD_DB, "fd_lines", f" WHERE sport='{sport}'"))
-    if not (plive and fd):
+    fsnap, fd = _latest(_rows(FD_DB, "fd_lines", f" WHERE sport='{sport}'"))
+    if not (plive and fd) or _drifted(psnap, fsnap):
         return []
     pc = cfg["pcol"]
     ref, mains = {}, {}          # exact-line fair, and each player/stat's single main line
@@ -118,8 +143,8 @@ def flag(sport):
     # 2) model-priced alt overs Pinnacle doesn't post (sport-specific)
     if cfg.get("model"):
         bets += _model_alts(sport, mains, fd, ref)
-    return [b for b in bets if MIN_EV <= b["ev"] <= MAX_EV
-            and (sport, b["stat"]) not in benched]
+    return [b for b in bets if _ev_ok(b)
+            and not _is_benched(benched, sport, b["stat"], b.get("src"))]
 
 
 def _model_alts(sport, mains, fd, ref):
@@ -174,6 +199,176 @@ def _model_alts(sport, mains, fd, ref):
     return bets
 
 
+# ----------------------------------------------------------------------------- tennis
+# FanDuel posts PLAYER total-games lines ("Jannik Sinner Total Games 19.5"). Pinnacle
+# doesn't post that market, but its Games matchup carries two sharp anchors — the match
+# games TOTAL and the games SPREAD. Player games = (total + own margin) / 2, so a Normal
+# with means inverted from both Shin-devigged anchors prices the player line. Everything
+# here is src="model": logged to the ledger for CLV validation (the daily learner benches
+# it if realized CLV goes negative), and NOT phone-pushed.
+from statistics import NormalDist
+_TN = NormalDist()
+TEN_SD = {3: (5.8, 5.5), 5: (8.0, 7.5)}     # (sd_total, sd_margin) by best-of
+
+
+def _clampp(p):
+    return min(max(p, 1e-6), 1 - 1e-6)
+
+
+def _tennis_means(r):
+    """(mu_home_games, mu_away_games, sd_player) from one odds-snapshot row, or None."""
+    po = W.fair_prob(r.get("games_over"), r.get("games_under"))
+    ph = W.fair_prob(r.get("gspr_home"), r.get("gspr_away"))
+    T, h = r.get("games_line"), r.get("games_spread")
+    if None in (po, ph, T, h):
+        return None
+    sd_t, sd_m = TEN_SD[5] if (r.get("best_of") or 3) >= 5 else TEN_SD[3]
+    mu_t = T + sd_t * _TN.inv_cdf(_clampp(po))          # P(total > T) = po
+    mu_m = -h + sd_m * _TN.inv_cdf(_clampp(ph))         # P(home margin > -h) = ph
+    sd_p = ((sd_t ** 2 + sd_m ** 2) ** 0.5) / 2
+    return (mu_t + mu_m) / 2, (mu_t - mu_m) / 2, sd_p
+
+
+def _tennis_prob_over(r, player, line):
+    """Model P(player's games > line) for whichever side of the match `player` is."""
+    mm = _tennis_means(r)
+    if mm is None:
+        return None
+    mu_h, mu_a, sd = mm
+    if W.canon(player) == W.canon(r["p1"]):
+        mu = mu_h
+    elif W.canon(player) == W.canon(r["p2"]):
+        mu = mu_a
+    else:
+        return None
+    return 1 - _TN.cdf((line - mu) / sd)
+
+
+def flag_tennis():
+    """+EV FanDuel player-games bets vs the Pinnacle-anchored model (singles only)."""
+    benched = _benched()
+    psnap, plive = _latest(_rows(SPORTS["tennis"]["db"], "odds"))
+    if not plive:
+        return []
+    plive = [r for r in plive if r.get("start_time") and _pre(r["start_time"], psnap)]
+    fsnap, fd = _latest(_rows(FD_DB, "fd_lines", " WHERE sport='tennis'"))
+    if not (plive and fd) or _drifted(psnap, fsnap):
+        return []
+    byplayer = {}
+    for r in plive:
+        byplayer[W.canon(r["p1"])] = r
+        byplayer[W.canon(r["p2"])] = r
+    bets = []
+    for f in fd:
+        if f["stat"] != "player_games" or f["line"] is None or "/" in (f["player"] or ""):
+            continue
+        r = byplayer.get(W.canon(f["player"]))
+        if r is None:
+            continue
+        p = _tennis_prob_over(r, f["player"], float(f["line"]))
+        if p is None or not (MODEL_BAND[0] <= p <= MODEL_BAND[1]):
+            continue
+        p_side = p if f["side"] == "over" else 1 - p
+        ev = p_side * float(f["odds"]) - 1
+        if MIN_EV_MODEL <= ev <= MAX_EV \
+                and not _is_benched(benched, "tennis", "player_games", "model"):
+            bets.append({"sport": "tennis", "event": f"{r['p1']} v {r['p2']}",
+                         "player": f["player"], "stat": "player_games",
+                         "line": float(f["line"]), "side": f["side"],
+                         "odds": float(f["odds"]), "fair": p_side, "ev": ev,
+                         "pinn_line": r.get("games_line"), "start": r["start_time"],
+                         "src": "model"})
+    return bets
+
+
+def closing_fair_tennis(player, line, start):
+    """Model prob at Pinnacle's last pre-start snapshot (same model both ends, so CLV
+    measures pure line movement). Returns P(player games > line) or None."""
+    rows = [r for r in _rows(SPORTS["tennis"]["db"], "odds")
+            if str(r["collected_at"])[:19] <= str(start)[:19]
+            and (W.canon(r["p1"]) == W.canon(player) or W.canon(r["p2"]) == W.canon(player))
+            and str(r.get("start_time"))[:19] == str(start)[:19]]
+    if not rows:
+        return None
+    close_ts = max(r["collected_at"] for r in rows)
+    r = next(r for r in rows if r["collected_at"] == close_ts)
+    return _tennis_prob_over(r, player, float(line))
+
+
+# 24live day list (free, datacenter-OK with browser-ish headers) settles tennis bets.
+LIVE24_H = {"User-Agent": ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+                           "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 "
+                           "Safari/537.36"),
+            "Accept": "application/json, text/plain, */*",
+            "Referer": "https://24live.com/", "X-Requested-With": "XMLHttpRequest"}
+_ten_day_cache = {}
+
+
+def _live24_finished_tennis(day):
+    """All finished tennis matches for a UTC day: [{home, away, hg, ag, start}]."""
+    if day in _ten_day_cache:
+        return _ten_day_cache[day]
+    import urllib.parse as up
+    fr, to = f"{day} 00:00:00", f"{day} 23:59:59"
+    out = []
+    try:
+        P = {"lang": "en", "type": "finished", "sort": "tournament",
+             "from": fr, "to": to, "category": ""}
+        q = "&".join(f"{k}={up.quote(v)}" for k, v in P.items())
+        cats = requests.get(f"https://24live.com/api/match-list-category/10?{q}",
+                            headers=LIVE24_H, timeout=40).json()
+        subs = ",".join(str(c["sub_tournament_id"]) for c in cats)
+        P2 = {"lang": "en", "type": "finished", "subtournamentIds": subs,
+              "sort": "tournament", "short": "0", "from": fr, "to": to,
+              "defaultSubtournamentLimit": "500"}
+        q2 = "&".join(f"{k}={up.quote(v)}" for k, v in P2.items())
+        for m in requests.get(f"https://24live.com/api/match-list-data/10?{q2}",
+                              headers=LIVE24_H, timeout=60).json():
+            parts = [p.get("name") or "" for p in m.get("participants") or []]
+            sc = m.get("score") or {}
+            if len(parts) != 2 or any("/" in p for p in parts):
+                continue
+            hg, ag = sc.get("home_team_normal_time"), sc.get("away_team_normal_time")
+            if hg is None or ag is None:
+                continue
+            out.append({"home": parts[0], "away": parts[1], "hg": hg, "ag": ag,
+                        "start": m.get("start_date")})
+    except (requests.RequestException, ValueError, KeyError):
+        pass
+    _ten_day_cache[day] = out
+    return out
+
+
+def _surname24(name):
+    """24live is 'Surname(s) Given' -> canon of all-but-last token."""
+    toks = name.split()
+    return W.canon(" ".join(toks[:-1]) if len(toks) > 1 else name)
+
+
+def settle_tennis(player, stat, start):
+    """Player's games won, from 24live's finished list (surname containment + closest
+    start time; 'Gauff Cori' vs 'Coco Gauff' style given-name drift is why surnames)."""
+    surname = W.canon(str(player).split()[-1])
+    day = str(start)[:10]
+    cands = []
+    for d in (day, (dt.date.fromisoformat(day) + dt.timedelta(days=1)).isoformat()):
+        for m in _live24_finished_tennis(d):
+            for side, gkey in (("home", "hg"), ("away", "ag")):
+                s24 = _surname24(m[side])
+                if surname and (surname in s24 or s24 in surname):
+                    try:
+                        gap = abs((dt.datetime.fromisoformat(str(m["start"]).replace("Z", "+00:00"))
+                                   - dt.datetime.fromisoformat(str(start).replace("Z", "+00:00").replace(" ", "T"))
+                                   ).total_seconds())
+                    except ValueError:
+                        gap = 9e9
+                    cands.append((gap, float(m[gkey])))
+    if not cands:
+        return None
+    gap, games = min(cands, key=lambda c: c[0])
+    return games if gap <= 3 * 3600 else None
+
+
 def bet_id(b):
     day = str(b["start"])[:10]
     return f"{b['sport']}|{W.canon(b['player'])}|{b['stat']}|{b['line']}|{b['side']}|{day}"
@@ -183,6 +378,8 @@ def bet_id(b):
 def closing_fair(sport, player, stat, line, start):
     """Pinnacle's de-vigged fair prob for this exact line at the last pre-start snapshot;
     for model stats, anchor the closing MAIN line to the alt line. None if unavailable."""
+    if sport == "tennis":
+        return closing_fair_tennis(player, line, start)
     cfg = SPORTS[sport]
     pc = cfg["pcol"]
     rows = [r for r in _rows(cfg["db"], cfg["table"])
@@ -202,7 +399,31 @@ def closing_fair(sport, player, stat, line, start):
             return None
         mean, sd = W.anchor(round(float(r["line"]), 1), p0, stat)
         return W.prob_over(mean, round(float(line), 1), sd)
-    return None
+    if sport == "mlb" and stat == "total_bases":       # batter model at the close — without
+        return _closing_mlb_tb(player, line, snap)     # this the bucket is CLV-blind and the
+    return None                                        # learner can never bench it
+
+
+def _closing_mlb_tb(player, line, snap):
+    """Closing fair for an alt total-bases line: anchor the batter model to Pinnacle's
+    closing MAIN line (mirror of the _model_alts pricing, evaluated at the close)."""
+    try:
+        from mlb import batter, data
+        r = snap[0]
+        p0 = W.fair_prob(r["over_odds"], r["under_odds"])
+        if p0 is None:
+            return None
+        season = int(str(r.get("start_time"))[:4])
+        lines = {W.canon(v["name"]): v for v in
+                 data.all_batter_lines(season, min_pa=30).values() if v.get("name")}
+        bl = lines.get(W.canon(player))
+        if not bl:
+            return None
+        proj = batter.anchor(bl, round(float(r["line"]), 1), p0,
+                             exp_pa=batter.exp_pa_from(bl))
+        return batter.prob_over(proj, round(float(line), 1))
+    except Exception:
+        return None
 
 
 # ----------------------------------------------------------------------------- settlement
@@ -222,6 +443,10 @@ def _game_date(start):
     t = dt.datetime.fromisoformat(str(start).replace("Z", "+00:00"))
     return (t - dt.timedelta(hours=4)).date().isoformat()      # EDT/CDT summer
 
+MLB_H = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+         "Accept": "application/json"}
+
+
 def settle_mlb(player, stat, start):
     spec = MLB_FIELD.get(stat)
     if not spec:
@@ -230,12 +455,13 @@ def settle_mlb(player, stat, start):
     date = _game_date(start)
     try:
         s = requests.get("https://statsapi.mlb.com/api/v1/people/search",
-                         params={"names": player}, timeout=20).json().get("people") or []
+                         params={"names": player}, headers=MLB_H,
+                         timeout=20).json().get("people") or []
         if not s:
             return None
         g = requests.get(f"https://statsapi.mlb.com/api/v1/people/{s[0]['id']}/stats",
                          params={"stats": "gameLog", "group": grp, "season": date[:4]},
-                         timeout=20).json()
+                         headers=MLB_H, timeout=20).json()
         for sp in (g.get("stats") or [{}])[0].get("splits", []):
             if sp.get("date") == date:
                 return float(sp["stat"].get(fld, 0) or 0)
@@ -286,7 +512,7 @@ def settle_wnba(player, stat, start):
     return None
 
 
-SETTLE = {"mlb": settle_mlb, "wnba": settle_wnba}
+SETTLE = {"mlb": settle_mlb, "wnba": settle_wnba, "tennis": settle_tennis}
 
 
 # ----------------------------------------------------------------------------- ledger ops

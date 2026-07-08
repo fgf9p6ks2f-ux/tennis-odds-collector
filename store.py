@@ -11,7 +11,8 @@ from pathlib import Path
 
 COLS = ["collected_at", "match_id", "start_time", "league", "best_of", "p1", "p2",
         "ml1", "ml2", "set_total_line", "set_over", "set_under", "set_spread",
-        "spr_home", "spr_away", "games_line", "games_over", "games_under"]
+        "spr_home", "spr_away", "games_line", "games_over", "games_under",
+        "games_spread", "gspr_home", "gspr_away"]
 
 
 def _connect(db_path: Path):
@@ -22,6 +23,10 @@ def _connect(db_path: Path):
                         ' TEXT' if c in ('collected_at', 'start_time', 'league', 'p1', 'p2')
                         else ' REAL') for c in COLS)},
         PRIMARY KEY (collected_at, match_id))""")
+    have = {r[1] for r in con.execute("PRAGMA table_info(odds)")}
+    for c in COLS:                                     # migrate pre-existing DBs in place
+        if c not in have:
+            con.execute(f"ALTER TABLE odds ADD COLUMN {c} REAL")
     return con
 
 

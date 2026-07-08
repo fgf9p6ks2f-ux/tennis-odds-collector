@@ -107,9 +107,18 @@ def extract(m, sport):
             if o is not None:
                 rows.append((r.get("runnerName") or "", bstat, line, "over", o))
         return rows
-    # 3) tennis: total games (O/U) and set betting / correct score
+    # 3) tennis: player/team total games ("{Player} Total Games 19.5" — the line lives in
+    #    the MARKET NAME, not the runner handicap), plus set betting / correct score.
+    #    Per-set variants ("Set 2 Total Games ...") are exotics we skip.
     if sport == "tennis":
-        if "total games" in low or ("games" in low and "over" in low):
+        if (pm := re.match(r"(?P<pl>.+?)\s+Total Games\s+(?P<ln>\d+(?:\.\d+)?)$", nm)) \
+                and not low.startswith("set"):
+            pl, ln = pm.group("pl").strip(), float(pm.group("ln"))
+            for r in m.get("runners") or []:
+                o, rn = _odds(r), (r.get("runnerName") or "").lower()
+                if o is not None and rn.startswith(("over", "under")):
+                    rows.append((pl, "player_games", ln, rn.split()[0], o))
+        elif "total games" in low or ("games" in low and "over" in low):
             for r in m.get("runners") or []:
                 o, rn, h = _odds(r), (r.get("runnerName") or ""), r.get("handicap")
                 if o is not None and h is not None and rn.lower().startswith(("over", "under")):

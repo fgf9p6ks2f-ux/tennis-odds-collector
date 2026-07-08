@@ -134,13 +134,22 @@ def normalize(matchups, markets) -> list[dict]:
                        spr_away=american_to_decimal(p.get(("away", 1.5)) or p.get(("away", -1.5))))
         gchild = games_child.get(mu["id"])              # linked games matchup
         if gchild:
-            gm = _pick_total(by_mid.get(gchild["id"], []))
+            gmks = by_mid.get(gchild["id"], [])
+            gm = _pick_total(gmks)
             if gm:
                 p = _prices(gm)
                 pts = next((pp for (_d, pp) in p), None)
                 rec.update(games_line=pts,
                            games_over=american_to_decimal(p.get(("over", pts))),
                            games_under=american_to_decimal(p.get(("under", pts))))
+            gs = _pick_spread(gmks)                     # games handicap (home-persp points)
+            if gs:
+                p = _prices(gs)
+                hpts = next((pp for (d, pp) in p if d == "home"), None)
+                if hpts is not None:
+                    rec.update(games_spread=hpts,
+                               gspr_home=american_to_decimal(p.get(("home", hpts))),
+                               gspr_away=american_to_decimal(p.get(("away", -hpts))))
         out.append(rec)
     return out
 
