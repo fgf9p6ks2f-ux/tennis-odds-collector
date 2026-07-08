@@ -275,10 +275,10 @@ def notify(alerts):
         at = a["start_ts"] - 300
         hdrs = {"Priority": "high", "Tags": "joystick"}
         if at > now + 30:
-            hdrs["Title"] = "Esports bet — starts in 5 min"
+            hdrs["Title"] = "Esports bet - starts in 5 min"
             hdrs["At"] = str(at)
         else:
-            hdrs["Title"] = "Esports bet — starting now"
+            hdrs["Title"] = "Esports bet - starting now"
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=a["msg"].encode(),
                           headers=hdrs, timeout=15)
