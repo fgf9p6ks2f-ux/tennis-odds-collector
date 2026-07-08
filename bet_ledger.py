@@ -567,7 +567,57 @@ MLB_H = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
          "Accept": "application/json"}
 
 
+def _mlb_game(event, start):
+    """The statsapi game feed (linescore innings) for an MLB event on its date, matched
+    by the away/home team names in the FD event string 'Away (P) @ Home (P)'."""
+    date = _game_date(start)
+    try:
+        sched = requests.get("https://statsapi.mlb.com/api/v1/schedule",
+                             params={"sportId": 1, "date": date, "hydrate": "linescore"},
+                             headers=MLB_H, timeout=25).json()
+    except (requests.RequestException, ValueError):
+        return None
+    teams = [t.split("(")[0].strip().lower()
+             for t in str(event).replace(" @ ", "@").split("@")]
+    for d in sched.get("dates", []):
+        for g in d.get("games", []):
+            gt = g.get("teams", {})
+            names = [gt.get("away", {}).get("team", {}).get("name", "").lower(),
+                     gt.get("home", {}).get("team", {}).get("name", "").lower()]
+            if all(any(t in nm or nm.endswith(t.split()[-1]) for nm in names) for t in teams) \
+                    and g.get("status", {}).get("abstractGameState") == "Final":
+                return g.get("linescore", {})
+    return None
+
+
+def settle_mlb_total(player, stat, start, event):
+    ls = _mlb_game(event, start)
+    if not ls:
+        return None
+    innings = ls.get("innings", [])
+    if stat == "game_total":
+        t = ls.get("teams", {})
+        a, h = t.get("away", {}).get("runs"), t.get("home", {}).get("runs")
+        return float(a + h) if a is not None and h is not None else None
+    if stat == "f5_total":
+        tot = 0
+        for i in innings[:5]:
+            a = (i.get("away") or {}).get("runs")
+            h = (i.get("home") or {}).get("runs")
+            if a is None or h is None:
+                return None                       # game not 5 innings deep yet
+            tot += a + h
+        return float(tot) if len(innings) >= 5 else None
+    if stat.startswith("team_total_"):
+        side = stat.split("_")[-1]
+        r = ls.get("teams", {}).get(side, {}).get("runs")
+        return float(r) if r is not None else None
+    return None
+
+
 def settle_mlb(player, stat, start, event=None):
+    if stat in ("game_total", "f5_total") or stat.startswith("team_total_"):
+        return settle_mlb_total(player, stat, start, event)
     spec = MLB_FIELD.get(stat)
     if not spec:
         return None

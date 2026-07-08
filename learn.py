@@ -64,12 +64,13 @@ def main():
         avg_clv = sum(m["clv"]) / n_clv if n_clv else None
         roi = (m["pnl"] / m["settled"] * 100) if m["settled"] else None
         bench_clv = n_clv >= MIN_N and avg_clv is not None and avg_clv <= BENCH_CLV
-        # For MODEL-priced buckets CLV is self-referencing (closing fair comes from the
-        # same model that priced the bet, so model bias cancels and CLV can look great
-        # while the bucket bleeds — seen live: total_bases model +8% CLV, 24-89 W-L).
-        # Realized ROI is the only honest teacher there; same for h2h (history-pattern)
-        # buckets, whose CLV is vs our own FD quotes. Direct buckets keep CLV primary.
-        bench_roi = src in ("model", "h2h") and m["settled"] >= MIN_N_ROI \
+        # CLV is only a trustworthy teacher for DIRECT prop buckets (measured vs
+        # Pinnacle's own posted line). It LIES for model buckets (self-referencing) and
+        # is ABSENT for h2h/totals buckets (no closing snapshot in this DB). For any
+        # bucket where CLV can't be trusted — model/h2h, or CLV covers < half the
+        # settled bets — fall back to realized ROI.
+        clv_thin = n_clv < m["settled"] * 0.5
+        bench_roi = (src in ("model", "h2h") or clv_thin) and m["settled"] >= MIN_N_ROI \
             and roi is not None and roi <= BENCH_ROI
         bench = bench_clv or bench_roi
         if bench:
