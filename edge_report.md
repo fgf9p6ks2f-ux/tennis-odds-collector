@@ -1,6 +1,6 @@
 # MLB prop edge report
 
-_2026-07-08 06:04 UTC_ — 906 prop lines collected
+_2026-07-08 06:06 UTC_ — 906 prop lines collected
 
 ### strikeouts — 25 settled lines
 
