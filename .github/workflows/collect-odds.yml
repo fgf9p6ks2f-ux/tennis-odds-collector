@@ -41,6 +41,10 @@ jobs:
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
         run: python fd_collect.py || echo "fanduel collect skipped (endpoint may have changed)"
+      - name: collect betmgm props (line-shopping book #3, ready for AB 7/13)
+        env:
+          FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
+        run: python betmgm_collect.py || echo "betmgm collect skipped"
       - name: collect draftkings props (2nd soft book, best-price line shopping)
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
