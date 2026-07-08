@@ -32,8 +32,10 @@ UNIT_USD = 100.0
 MIN_EV = 0.02
 MIN_EV_MODEL = 0.04         # model-priced EV inside model error isn't edge — higher bar
 MAX_EV = 0.30               # a real edge vs a sharp de-vig is small; >this = artifact, skip
-MAX_EV_MODEL = 0.12         # a MODEL claiming >12% vs sharp anchors is betting its own
-                            # error (live proof: EV 10-30% band realized -40% ROI)
+MAX_EV_MODEL = 0.10         # calibration audit (2026-07-08, 141 graded): model fair-prob
+                            # is honest in the 4-10% EV band (actual win within 1-5 pts of
+                            # claimed) but wildly optimistic above — 12%+ band claimed 31%
+                            # wins, realized 11% (-21 pt gap). Cap where calibration breaks.
 MODEL_BAND = (0.20, 0.90)   # only model-price alt lines in this fair-prob band (not deep tails)
 FINAL_BUFFER_H = 4.0        # a game is assumed final this many hours after first pitch/tip
 
