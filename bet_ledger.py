@@ -682,8 +682,41 @@ def settle_wnba(player, stat, start, event=None):
     return None
 
 
+def settle_nfl(player, stat, start, event=None):
+    """NFL game/team totals from ESPN's scoreboard final scores."""
+    date = _game_date(start).replace("-", "")
+    try:
+        j = requests.get("https://site.api.espn.com/apis/site/v2/sports/football/nfl/"
+                         "scoreboard", params={"dates": date}, headers=MLB_H, timeout=25).json()
+    except (requests.RequestException, ValueError):
+        return None
+    teams = [t.split("(")[0].strip().lower() for t in str(event).split(" @ ")]
+    for gm in j.get("events", []):
+        comp = (gm.get("competitions") or [{}])[0]
+        if comp.get("status", {}).get("type", {}).get("state") != "post":
+            continue
+        cs = comp.get("competitors", [])
+        nm = {c.get("homeAway"): (c.get("team", {}).get("displayName", "").lower(),
+                                  c.get("score")) for c in cs}
+        allnames = [v[0] for v in nm.values()]
+        if not all(any(t in n or n.endswith(t.split()[-1]) for n in allnames) for t in teams):
+            continue
+        try:
+            home = float(nm["home"][1]); away = float(nm["away"][1])
+        except (KeyError, TypeError, ValueError):
+            return None
+        if stat == "game_total":
+            return home + away
+        if stat == "team_total_home":
+            return home
+        if stat == "team_total_away":
+            return away
+    return None
+
+
 SETTLE = {"mlb": settle_mlb, "wnba": settle_wnba, "tennis": settle_tennis,
-          "esoccer": settle_gg, "ebasketball": settle_gg, "efootball": settle_gg}
+          "esoccer": settle_gg, "ebasketball": settle_gg, "efootball": settle_gg,
+          "nfl": settle_nfl}
 
 
 # ----------------------------------------------------------------------------- ledger ops
