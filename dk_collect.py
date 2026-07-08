@@ -33,6 +33,7 @@ H = {"Referer": "https://sportsbook.draftkings.com/", "Accept": "application/jso
 # game/team totals ('Total Total Bases', team-inning markets) are excluded structurally.
 STAT_MAP = {
     "strikeouts thrown": "strikeouts", "total bases": "total_bases", "hits": "hits",
+    "hits + runs + rbis": "hrr",
     "home runs": "home_runs", "rbis": "rbis", "stolen bases": "stolen_bases",
     "points": "points", "rebounds": "rebounds", "assists": "assists",
     "threes": "threes", "threes made": "threes", "3-pointers made": "threes",

@@ -35,7 +35,11 @@ TENNIS_PAGES = os.environ.get(
     "FD_TENNIS_PAGES", "tennis,wimbledon,us-open,atp,wta").split(",")
 
 PITCHER_STATS = {"strikeout": "strikeouts", "pitching outs": "outs", "outs recorded": "outs"}
-BATTER_STATS = {"total bases": "total_bases", "hits": "hits", "home run": "home_runs",
+# order matters: the combined market MUST precede "hits" — 'To Record 2+ Hits +
+# Runs + RBIs' was substring-matching "hits" and polluting hits 1.5 with ~-210
+# prices (H+R+RBI is likelier than hits alone, so its odds are always shorter).
+BATTER_STATS = {"hits + runs + rbis": "hrr",
+                "total bases": "total_bases", "hits": "hits", "home run": "home_runs",
                 "rbi": "rbis", "stolen base": "stolen_bases"}
 # order matters: combos before singles so "pts + reb" isn't caught by "points"/"rebounds"
 WNBA_STATS = {"pts + reb + ast": "pra", "pts + ast": "pts_ast", "pts + reb": "pts_reb",
