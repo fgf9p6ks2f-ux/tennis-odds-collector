@@ -40,11 +40,13 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           FORCE_DIGEST: ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
         run: python daily_digest.py $FORCE_DIGEST
+      - name: refresh phone dashboard
+        run: python dashboard.py || echo "dashboard skipped"
       - name: commit digest log
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f digests.md bet_ledger.sqlite bet_ledger_report.md wnba_ledger.sqlite
+          git add -f digests.md bet_ledger.sqlite bet_ledger_report.md wnba_ledger.sqlite docs/index.html
           git commit -m "nightly digest [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push

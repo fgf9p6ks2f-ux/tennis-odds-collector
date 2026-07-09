@@ -35,12 +35,14 @@ jobs:
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python wnba_alert.py || echo "wnba alert skipped"
+      - name: refresh phone dashboard (docs/index.html -> GitHub Pages)
+        run: python dashboard.py || echo "dashboard skipped"
       - name: commit
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
           # add each independently — one missing path makes `git add a b c` stage nothing
-          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json; do
+          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json docs/index.html; do
             git add -f "$f" 2>/dev/null || true
           done
           git commit -m "wnba props update [skip ci]" || { echo "no change"; exit 0; }
