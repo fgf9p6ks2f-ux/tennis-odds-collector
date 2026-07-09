@@ -35,6 +35,8 @@ jobs:
         run: python bet_ledger.py || echo "ledger pass skipped"
       - name: grade the WNBA autobetter ledger off box scores
         run: python wnba_ledger.py --grade || echo "wnba grade skipped"
+      - name: learn the winner/loser profile from graded bets
+        run: python wnba_ledger.py --learn || echo "wnba learn skipped"
       - name: build + push digest
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
@@ -46,7 +48,7 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f digests.md bet_ledger.sqlite bet_ledger_report.md wnba_ledger.sqlite docs/index.html
+          git add -f digests.md bet_ledger.sqlite bet_ledger_report.md wnba_ledger.sqlite wnba_learn.json docs/index.html
           git commit -m "nightly digest [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push

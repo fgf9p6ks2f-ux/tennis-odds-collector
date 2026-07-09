@@ -194,17 +194,67 @@ def calibrate(elev_avg):
     return c["a"] + c["b"] * elev_avg
 
 
+# The winner/loser-similarity learner: what do WINNING bets have in common vs losing ones.
+LEARN = HERE / "wnba_learn.json"
+MIN_LEARN = 40                       # graded bets before a profile means anything
+LEARN_FEATURES = ["proj_hit", "ev", "n_elev", "d_min", "d_fga", "d_stat", "driver", "vac",
+                  "elev_avg", "season_avg", "proj_min", "total", "pace", "opp_def"]
+
+
+def learn():
+    """Find what separates WINNERS from LOSERS across every graded bet — the judgment
+    learning the user asked for, made interpretable. For each feature, the winner-mean vs
+    loser-mean and a standardized separation (Cohen's d); the strongest separators are the
+    traits your winning spots share. Writes wnba_learn.json (per-feature separations) so the
+    flagger can eventually re-weight EV toward the winning profile. Gated on sample size —
+    below a real N this is noise, and it says so."""
+    con = _con()
+    rows = con.execute(
+        f"SELECT result, {','.join(LEARN_FEATURES)} FROM predictions "
+        f"WHERE graded=1 AND result IN ('over','under')").fetchall()
+    con.close()
+    wins = [r for r in rows if r[0] == "over"]
+    loss = [r for r in rows if r[0] == "under"]
+    n = len(rows)
+    if n < MIN_LEARN or len(wins) < 8 or len(loss) < 8:
+        print(f"learn: {n}/{MIN_LEARN} graded bets ({len(wins)}W-{len(loss)}L) — accumulating. "
+              f"A winner/loser profile on a thinner sample is just noise; the loop is "
+              f"building the dataset (fast once NBA starts in Oct).")
+        return
+    seps = []
+    for i, f in enumerate(LEARN_FEATURES, start=1):
+        wv = [r[i] for r in wins if r[i] is not None]
+        lv = [r[i] for r in loss if r[i] is not None]
+        if len(wv) < 5 or len(lv) < 5:
+            continue
+        mw, ml = st.mean(wv), st.mean(lv)
+        sd = st.pstdev(wv + lv) or 1.0
+        seps.append((round((mw - ml) / sd, 3), f, round(mw, 2), round(ml, 2)))
+    seps.sort(key=lambda x: -abs(x[0]))
+    print(f"learn: winner vs loser profile over {n} graded bets ({len(wins)}W-{len(loss)}L)\n")
+    for d, f, mw, ml in seps:
+        tag = "WINNERS higher" if d > 0 else "losers higher"
+        print(f"  {f:11} win {mw:>6} vs loss {ml:>6}  sep {d:+.2f}  {tag}")
+    LEARN.write_text(json.dumps({"n": n, "w": len(wins), "l": len(loss),
+                                 "separations": {f: d for d, f, _, _ in seps}}, indent=1))
+    print("\n  -> wrote wnba_learn.json. The top separators ARE the shared traits of your "
+          "winners; as the sample grows they firm up and can re-weight the flagger's EV.")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--grade", action="store_true")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--train", action="store_true")
+    ap.add_argument("--learn", action="store_true")
     args = ap.parse_args()
     if args.grade:
         print(f"graded {grade()} spots")
     if args.train:
         train()
-    if args.report or not (args.grade or args.train):
+    if args.learn:
+        learn()
+    if args.report or not (args.grade or args.train or args.learn):
         report()
 
 
