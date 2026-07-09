@@ -80,6 +80,10 @@ def collect():
                 # (same spot triggered by each), re-fires on the next day's slate
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
+                # 2-day backtest tell: EV >40% flags went 0-4 — implausibly-fat EV on a
+                # mainstream line = a thin-sample over-projection, not real. Warn on it.
+                if e["ev"] > 0.35 or e["n"] < 6:
+                    tag += " [thin-sample, be skeptical]"
                 # per-stat driver: points shows FGA (+FTA/3PA), rebounds reb, assists ast
                 dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
                 bits = [f"{dl} {e['driver']:+g}" if e["driver"] is not None else "",
