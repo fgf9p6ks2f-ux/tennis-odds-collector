@@ -5,8 +5,8 @@ name: wnba-props
 # isn't rate-limited the way a local dev machine gets after heavy use.
 on:
   schedule:
-    - cron: "0 18,21,23 * * *"   # ~noon/3pm/5pm MT — spread across pre-tip windows
-    - cron: "30 0 * * *"         # ~6:30pm MT, last confirmed-lineup sweep
+    - cron: "0 16,18,20,22 * * *"   # ~10am/12/2/4pm MT — refresh the board through the day
+    - cron: "30 0,2 * * *"          # ~6:30/8:30pm MT — confirmed-lineup sweeps
   workflow_dispatch: {}
 
 concurrency:

@@ -62,18 +62,28 @@ def posted_props(player):
 ROLE_FLOOR = 22.0
 
 
-def prop_edges(player, log, proj_min):
+def prop_edges(player, log, proj_min, w=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
     production and a line the book anchored to the SEASON AVERAGE. For each posted line:
     hit rate in the player's elevated games (min >= max(proj-4, 22)), credibility-shrunk
     to the book's implied prob (thin samples + the book set the line), flagged when +EV.
-    Each dict also carries season_avg vs elev_avg — the mispricing is fattest when the
-    line sits near season_avg but elev_avg clears it. Returns list of dicts."""
+
+    `w` is the beneficiary's WOWY split vs the OUT player — the user's judgment signals:
+    the with->without INCREASE in the bet stat, in FGA (usage), and in minutes. We attach
+    all three (d_stat/d_fga/d_min) and refuse to bet an over on a stat that DROPS without
+    the player (the thesis is that role expands, not shrinks). Returns list of dicts."""
     floor = max(proj_min - 4, ROLE_FLOOR)
     elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) < 4:
         return []
     fga = st.mean([g["fga"] for g in elevated])
+
+    def wdelta(k):                                  # without-minus-with, or None if no split
+        if not w or w.get("n_with", 0) < 1 or w.get("n_without", 0) < 1:
+            return None
+        return round(w["without"][k]["mean"] - w["with"][k]["mean"], 1)
+    d_min, d_fga = wdelta("min"), wdelta("fga")
+
     out = []
     for stat, best in posted_props(player).items():
         key = PROP_STATS[stat]
@@ -81,6 +91,11 @@ def prop_edges(player, log, proj_min):
         vals = [g[key] for g in elevated]
         elev_avg = st.mean(vals)
         n = len(vals)
+        d_stat = wdelta(key)
+        # the user bets the INCREASE — don't post an over on a stat that falls without the
+        # out player (tolerate small negatives: WOWY samples are thin/noisy early season).
+        if d_stat is not None and d_stat < -1.0:
+            continue
         for line, dec in sorted(best.items()):
             # Only the CREDIBLE market. Deep alt rungs (a 20-pt scorer's o4.5) and
             # implausible prices (near-lock at plus money, or a lottery longshot) are
@@ -99,7 +114,8 @@ def prop_edges(player, log, proj_min):
             if ev >= 0.05:
                 out.append({"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
                             "n": n, "fga": fga, "season_avg": round(season_avg, 1),
-                            "elev_avg": round(elev_avg, 1), "stale": stale})
+                            "elev_avg": round(elev_avg, 1), "stale": stale,
+                            "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min})
     return sorted(out, key=lambda d: -d["ev"])
 
 
@@ -197,24 +213,24 @@ def main():
                        and n not in out_names}
             rows = []
             for n, v in team_pl.items():
-                w = W.wowy(W.game_log(v["id"]), tlog)
+                blog = W.game_log(v["id"])
+                w = W.wowy(blog, tlog)
                 if w["n_without"] >= 2:
                     dmin = w["without"]["min"]["mean"] - w["with"]["min"]["mean"]
                     dpts = w["without"]["pts"]["mean"] - w["with"]["pts"]["mean"]
-                    rows.append((dmin, dpts, n, v, w))
-            for dmin, dpts, n, v, w in sorted(rows, reverse=True)[:4]:
+                    dfga = w["without"]["fga"]["mean"] - w["with"]["fga"]["mean"]
+                    rows.append((dmin, dpts, dfga, n, w, blog))
+            for dmin, dpts, dfga, n, w, blog in sorted(rows, key=lambda r: (-r[0], -r[1]))[:4]:
                 proj_min = w["without"]["min"]["mean"]
-                blog = W.game_log(v["id"])
-                edges = prop_edges(n, blog, proj_min)
-                fga = edges[0]["fga"] if edges else 0
-                print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts w/o"
-                      + (f", {fga:.0f} FGA" if fga else ""))
-                for e in edges:
+                # the user's judgment, on one line: more minutes, more shots, more production
+                print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts, "
+                      f"{dfga:+.1f}FGA w/o {name.split()[-1]}")
+                for e in prop_edges(n, blog, proj_min, w):
                     star = " ⟵ stale line" if e["stale"] else ""
+                    d = f"{e['stat'][:3]} {e['d_stat']:+g} w/o, " if e["d_stat"] is not None else ""
                     print(f"       ✅ {e['stat']} over {e['line']:g} @ {_am(e['dec'])} — "
-                          f"elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
-                          f"hit {e['hit']*100:.0f}% in {e['n']} games "
-                          f"(+{e['ev']*100:.0f}% EV){star}")
+                          f"{d}elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
+                          f"hit {e['hit']*100:.0f}%/{e['n']}g (+{e['ev']*100:.0f}% EV){star}")
                 dd = double_double_rate(blog, proj_min)
                 if dd and dd[0] >= 0.35:                 # check the lagging DD market
                     print(f"       ★ double-double {dd[0]*100:.0f}% in {dd[1]} elevated games "

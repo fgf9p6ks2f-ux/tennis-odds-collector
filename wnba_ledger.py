@@ -37,16 +37,24 @@ CREATE TABLE IF NOT EXISTS predictions(
   stat TEXT, line REAL, odds REAL, book TEXT,
   proj_hit REAL, season_avg REAL, elev_avg REAL, proj_min REAL, n_elev INTEGER,
   ev REAL, stale INTEGER,
+  d_stat REAL, d_fga REAL, d_min REAL,
   result TEXT, actual REAL, graded INTEGER DEFAULT 0,
   UNIQUE(pred_date, player, stat, line)
 );
 """
+# WOWY judgment features added 2026-07-09; migrate older DBs in place.
+_MIGRATE = ("d_stat", "d_fga", "d_min")
 
 
 def _con():
     import sqlite3
     con = sqlite3.connect(DB)
     con.executescript(SCHEMA)
+    have = {r[1] for r in con.execute("PRAGMA table_info(predictions)")}
+    for col in _MIGRATE:
+        if col not in have:
+            con.execute(f"ALTER TABLE predictions ADD COLUMN {col} REAL")
+    con.commit()
     return con
 
 
@@ -57,7 +65,8 @@ def log_predictions(rows):
         return 0
     con = _con()
     cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds",
-            "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale")
+            "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
+            "d_stat", "d_fga", "d_min")
     n = 0
     for r in rows:
         cur = con.execute(
