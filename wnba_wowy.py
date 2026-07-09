@@ -77,11 +77,13 @@ def game_log(pid):
     out = []
     for r in rows:
         p, rb, a = r[idx["PTS"]], r[idx["REB"]], r[idx["AST"]]
+        fga, fta, tov = r[idx["FGA"]], r[idx["FTA"]], r[idx["TOV"]]
         dd = sum(1 for v in (p, rb, a) if v >= 10) >= 2
         out.append({"game_id": r[idx["Game_ID"]], "date": r[idx["GAME_DATE"]],
                     "min": r[idx["MIN"]], "pts": p, "reb": rb, "ast": a,
-                    "fga": r[idx["FGA"]], "fg3a": r[idx["FG3A"]], "dd": dd,
-                    "matchup": r[idx["MATCHUP"]]})
+                    "fga": fga, "fg3a": r[idx["FG3A"]], "fta": fta, "tov": tov,
+                    "poss": fga + 0.44 * fta + tov,     # usage proxy: possessions used
+                    "dd": dd, "matchup": r[idx["MATCHUP"]]})
     return out
 
 

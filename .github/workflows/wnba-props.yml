@@ -27,6 +27,8 @@ jobs:
       - run: pip install requests
       - name: refresh DvP cache (position defense)
         run: python wnba_dvp.py --refresh || echo "dvp refresh skipped"
+      - name: fit usage-redistribution model (all teams; CI IP isn't rate-limited)
+        run: python wnba_redist.py --fit --teams ATL,CHI,CON,DAL,GSV,IND,LAS,LVA,MIN,NYL,PHX,SEA,WAS || echo "redist fit skipped"
       - name: injury-driven prop alerts
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
@@ -35,7 +37,7 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f wnba_notified.txt wnba_dvp.json 2>/dev/null || true
+          git add -f wnba_notified.txt wnba_dvp.json wnba_redist.json 2>/dev/null || true
           git commit -m "wnba props update [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
