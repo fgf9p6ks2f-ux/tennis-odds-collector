@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS predictions(
   ev REAL, stale INTEGER,
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
   total REAL, pace REAL, opp_def REAL, d_fta REAL, d_3pa REAL,
-  basis TEXT, samples TEXT,
+  basis TEXT, samples TEXT, confidence TEXT,
   result TEXT, actual REAL, graded INTEGER DEFAULT 0,
   UNIQUE(pred_date, player, stat, line)
 );
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS predictions(
 # (pool size); total/pace/opp_def = matchup environment; d_fta/d_3pa = points channels.
 _MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac",
             "total", "pace", "opp_def", "d_fta", "d_3pa")
-_MIGRATE_TEXT = ("basis", "samples")     # basis = elevated|projected; samples = per-game JSON
+_MIGRATE_TEXT = ("basis", "samples", "confidence")   # confidence = starter status label
 
 
 def _con():
@@ -76,7 +76,7 @@ def log_predictions(rows):
     cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds",
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
             "d_stat", "d_fga", "d_min", "driver", "vac",
-            "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples")
+            "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples", "confidence")
     n = 0
     for r in rows:
         cur = con.execute(

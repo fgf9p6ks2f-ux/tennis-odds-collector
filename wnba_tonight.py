@@ -243,6 +243,46 @@ def tonight_teams():
     return set(tonight_matchups())
 
 
+def game_ids():
+    """{team abbrev: ESPN game id} for today's (ET) slate — to look up the lineup."""
+    et_date = dt.datetime.now(dt.timezone.utc).astimezone(ET).strftime("%Y%m%d")
+    out = {}
+    for e in _espn(f"scoreboard?dates={et_date}").get("events", []):
+        gid = e.get("id")
+        for c in e.get("competitions", [{}])[0].get("competitors", []):
+            ab = c.get("team", {}).get("abbreviation")
+            if ab and gid:
+                out[ab] = gid
+    return out
+
+
+def game_starters(game_id):
+    """{player_name: is_starter(bool)} once the lineup is SET (~30 min pre-tip / at tip),
+    else None (lineup not posted yet). ESPN flags each box-score player as a starter."""
+    if not game_id:
+        return None
+    out = {}
+    for tm in _espn(f"summary?event={game_id}").get("boxscore", {}).get("players", []):
+        for stt in tm.get("statistics", []):
+            for a in stt.get("athletes", []):
+                nm = a.get("athlete", {}).get("displayName")
+                if nm and a.get("starter") is not None:
+                    out[nm] = bool(a.get("starter"))
+    return out or None                        # empty -> lineup not out yet
+
+
+def starter_label(name, starters, proj_min):
+    """Confidence in the elevated-MINUTES assumption (the user's key check — does the coach
+    actually start the beneficiary):
+       confirmed  — lineup is out and they ARE starting (minutes locked in)
+       bench      — lineup is out and they are NOT starting (projection likely too high)
+       likely     — lineup TBD, but projected to a starter-sized role (~26+ min)
+       projected  — lineup TBD, a rotation bump (minutes less certain)"""
+    if starters is not None:                  # lineup is set
+        return "confirmed" if starters.get(name) else "bench"
+    return "likely" if proj_min >= 26 else "projected"
+
+
 def injuries():
     """{player_name: status} for Out / Doubtful / Questionable."""
     out = {}

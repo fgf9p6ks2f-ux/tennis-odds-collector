@@ -43,6 +43,7 @@ def collect():
     inj = T.injuries()
     today = datetime.date.today().isoformat()
     lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
+    gids = T.game_ids()                                  # team -> game id (for lineup lookup)
     # truly out = listed out AND no fresh posted props (a book posting a slate = playing)
     out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful") and not T.playing_now(n)}
     # group tonight's genuine key outs BY TEAM — a beneficiary gets ONE projection off the
@@ -74,6 +75,7 @@ def collect():
         if ctx["pace_vs_lg"] is not None and abs(ctx["pace_vs_lg"]) > 2:
             env.append("fast" if ctx["pace_vs_lg"] > 0 else "slow")
         env_tag = " · " + " ".join(env) if env else ""
+        starters = T.game_starters(gids.get(team))       # None until the lineup posts
         team_pl = {n: v for n, v in pl.items()
                    if v["team"] == team and n not in out_names and v["gp"] >= 5}
         for n, v in team_pl.items():
@@ -92,6 +94,7 @@ def collect():
             proj = w["without"]["min"]["mean"]
             if proj - w["with"]["min"]["mean"] <= 0:     # genuine beneficiary: plays MORE
                 continue
+            conf = T.starter_label(n, starters, proj)    # confirmed/bench/likely/projected
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx):
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"
@@ -109,10 +112,12 @@ def collect():
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
                 overs = round(e["hit"] * e["n"])          # elevated-games record
                 rec = f"{overs}-{e['n']-overs}"
+                ctag = {"confirmed": " ✓STARTING", "bench": " ⚠NOT STARTING",
+                        "likely": " (likely starts)", "projected": " (lineup TBD)"}[conf]
                 alerts.append((e["ev"], key,
                     f"{out_label} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
                     f"{T._am(e['dec'])}{wo} | {rec} {e['hit']*100:.0f}% "
-                    f"| elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{tag}{env_tag}"))
+                    f"| elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{ctag}{tag}{env_tag}"))
                 preds.append({"pred_date": today, "out_player": out_full, "player": n,
                               "team": team, "opp": matchups.get(team, ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
@@ -124,7 +129,8 @@ def collect():
                               "driver": e["driver"], "vac": e["vac"],
                               "total": e["total"], "pace": e["pace"], "opp_def": e["opp_def"],
                               "d_fta": e["d_fta"], "d_3pa": e["d_3pa"],
-                              "basis": e["basis"], "samples": json.dumps(e["samples"])})
+                              "basis": e["basis"], "samples": json.dumps(e["samples"]),
+                              "confidence": conf})
             dd = T.double_double_rate(blog, proj, w)
             if dd and dd["rate"] >= 0.40:                # strong lagging-market DD candidate
                 bits = [f"reb {dd['d_reb']:+g}" if dd["d_reb"] is not None else "",

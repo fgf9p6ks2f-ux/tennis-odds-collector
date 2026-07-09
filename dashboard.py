@@ -157,6 +157,10 @@ def _player_card(player, rows, tip=None):
     when = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
     game = " · ".join(x for x in (f"{team} vs {r0['opp']}" if r0.get("opp") else team,
                                   f"{when} MT" if when else "") if x)
+    cb = {"confirmed": ("✓ starting", "cok"), "bench": ("not starting", "cbad"),
+          "likely": ("likely starts", "cmid"), "projected": ("lineup TBD", "cmid")}.get(
+              r0.get("confidence") or "projected", ("", ""))
+    conf_html = f'<span class="cconf {cb[1]}">{cb[0]}</span>' if cb[0] else ""
     ctx = []
     if r0.get("proj_min"):
         dm = f" ({r0['d_min']:+g})" if r0.get("d_min") is not None else ""
@@ -172,7 +176,7 @@ def _player_card(player, rows, tip=None):
         <div class="cname">{logo}{html.escape(_short(player))}</div>
         <div class="ctag">{html.escape(outs)} out</div>
       </div>
-      <div class="cgame">{html.escape(game)}</div>
+      <div class="cgame">{html.escape(game)}{conf_html}</div>
       <div class="cctx">{' · '.join(html.escape(c) for c in ctx)}</div>
       {mkts}
     </div>"""
@@ -256,6 +260,10 @@ def build():
   .logo {{ width:26px; height:26px; object-fit:contain; }}
   .ctag {{ font-size:11.5px; color:#e0a458; background:#2a1e0f; border-radius:20px; padding:3px 10px; white-space:nowrap; }}
   .cgame {{ color:#c3cbd8; font-size:12.5px; font-weight:600; margin-top:7px; }}
+  .cconf {{ font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:20px; margin-left:7px; white-space:nowrap; }}
+  .cconf.cok {{ background:#0e2c1a; color:#4ade80; }}
+  .cconf.cbad {{ background:#2a1214; color:#f87171; }}
+  .cconf.cmid {{ background:#182234; color:#7aa2e3; }}
   .cctx {{ color:#93a0b4; font-size:13px; margin-top:3px; padding-bottom:11px; border-bottom:1px solid #1c2431; }}
   .mkt {{ display:flex; align-items:center; gap:10px; padding:12px 0 10px; border-bottom:1px solid #161d28; cursor:pointer; }}
   .mline {{ font-size:15.5px; font-weight:600; min-width:96px; }}
