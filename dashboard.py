@@ -70,9 +70,7 @@ def _mkt_row(r):
     proj, n, ph = r["elev_avg"], r["n_elev"], r["proj_hit"]
     if ph is not None and n:
         overs = round(ph * n)
-        be = 1.0 / float(r["odds"])                       # break-even hit rate for the price
-        mid = (f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%) '
-               f'· <span class="be">need {be*100:.0f}%</span>{thin}')
+        mid = f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%){thin}'
     else:
         mid = f'proj {proj:g}{thin}'
     return f"""
@@ -82,6 +80,16 @@ def _mkt_row(r):
         <div class="mmid">{mid}</div>
         <div class="mbadge {cls}">{html.escape(badge)}</div>
       </div>"""
+
+
+def _conf(r):
+    """Confidence = how reliably the projection clears the line: the hit rate shrunk toward
+    50% by sample size (odds-INDEPENDENT — price is value, not confidence). Sorts safe
+    high-hit plays above speculative small-sample ladders."""
+    ph, n = r["proj_hit"], r["n_elev"]
+    if ph is None or not n:
+        return 0.0
+    return (ph * n + 0.5 * 6) / (n + 6)
 
 
 def _player_card(player, rows):
@@ -95,10 +103,8 @@ def _player_card(player, rows):
         ctx.append(f"O/U {r0['total']:g}")
     if r0.get("opp_def"):
         ctx.append(f"opp allows {r0['opp_def']:g}")
-    # solid (grounded) markets first, thin ones last + muted
-    solid = [r for r in rows if float(r["ev"]) <= THIN_EV]
-    thin = [r for r in rows if float(r["ev"]) > THIN_EV]
-    mkts = "".join(_mkt_row(r) for r in solid + thin)
+    # markets sorted most-confident -> least (safe plays top, speculative ladders bottom)
+    mkts = "".join(_mkt_row(r) for r in sorted(rows, key=lambda r: -_conf(r)))
     return f"""
     <div class="card">
       <div class="chead">
@@ -116,10 +122,8 @@ def build():
     groups = defaultdict(list)
     for r in rows:
         groups[r["player"]].append(r)
-    # best (lowest-thin) EV per player, grounded first
-    order = sorted(groups.items(),
-                   key=lambda kv: -max((x["ev"] for x in kv[1] if x["ev"] <= THIN_EV),
-                                       default=max(x["ev"] for x in kv[1]) - 1))
+    # players ordered by their most-confident play (most confident -> least, top to bottom)
+    order = sorted(groups.items(), key=lambda kv: -max(_conf(r) for r in kv[1]))
     cards = "\n".join(_player_card(p, rs) for p, rs in order) if order else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     rec = f"{w}‑{l}" if (w + l) else "0‑0"
@@ -162,7 +166,6 @@ def build():
   .mo {{ color:#5b9dff; font-weight:700; }}
   .mmid {{ flex:1; color:#8b94a3; font-size:13px; }}
   .mmid b {{ color:#cdd5e0; font-weight:700; }}
-  .be {{ color:#748099; }}
   .thin {{ color:#c99a52; font-size:11px; background:#241c0e; padding:1px 6px; border-radius:6px; margin-left:2px; }}
   .mbadge {{ font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:20px; white-space:nowrap; }}
   .mbadge.pend {{ background:transparent; color:#39435500; font-size:0; }}

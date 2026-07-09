@@ -158,7 +158,16 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
                         "d_fta": d_fta if stat == "points" else None,
                         "d_3pa": d_3pa if stat == "points" else None}
                 out.append(spot)
-    return sorted(out, key=lambda d: -d["ev"])
+    # collapse adjacent alt-line rungs (same stat, within 1.5 pts) to the best-value one —
+    # e.g. keep points o10.5 over the redundant, more-juiced o9.5, but keep a real ladder
+    # rung like o14.5 that's a distinct bet.
+    out.sort(key=lambda d: -d["ev"])
+    kept = []
+    for e in out:
+        if any(k["stat"] == e["stat"] and abs(k["line"] - e["line"]) <= 1.5 for k in kept):
+            continue
+        kept.append(e)
+    return kept
 
 
 def double_double_rate(log, proj_min, w=None):

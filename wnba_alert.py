@@ -94,12 +94,11 @@ def collect():
                 if e["stat"] == "points" and e["d_fta"] is not None:
                     bits += [f"FTA {e['d_fta']:+g}", f"3PA {e['d_3pa']:+g}"]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
-                overs = round(e["hit"] * e["n"])          # record + break-even for the price
+                overs = round(e["hit"] * e["n"])          # elevated-games record
                 rec = f"{overs}-{e['n']-overs}"
-                be = 1.0 / e["dec"]
                 alerts.append((e["ev"], key,
                     f"{_short(name)} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
-                    f"{T._am(e['dec'])}{wo} | {rec} {e['hit']*100:.0f}% (need {be*100:.0f}%) "
+                    f"{T._am(e['dec'])}{wo} | {rec} {e['hit']*100:.0f}% "
                     f"| elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{tag}{env_tag}"))
                 preds.append({"pred_date": today, "out_player": name, "player": n,
                               "team": p["team"], "opp": matchups.get(p["team"], ""),
