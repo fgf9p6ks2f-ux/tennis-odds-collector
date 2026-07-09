@@ -1,0 +1,42 @@
+name: wnba-watch
+# Fast injury watcher — the SPEED layer. Polls every ~5 min through the game window and
+# fires an URGENT push the instant a key player is newly ruled out (the latency the edge
+# lives in). Cheap by design: a no-change poll is ~1s (roster cached to disk); the full
+# 47s scan runs only on a detected change. Public repo, so frequency is free. NOTE:
+# GitHub throttles/delays high-frequency schedules under load, so real cadence is closer
+# to every 5-20 min — a local poller (launchd) is the true low-latency path; this is the
+# always-on backstop. Shares the wnba-props concurrency group so writes never race it.
+on:
+  schedule:
+    - cron: "*/5 15-23 * * *"   # ~11am-7pm ET: pre-tip windows through evening tips
+    - cron: "*/5 0-4 * * *"     # ~8pm-1am ET: late / West-coast games
+  workflow_dispatch: {}
+
+concurrency:
+  group: wnba-props
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: poll injuries; scan + urgent push only on a new out
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python wnba_watch.py || echo "watch skipped"
+      - name: commit state
+        run: |
+          git config user.name "odds-bot"
+          git config user.email "odds-bot@users.noreply.github.com"
+          git add -f wnba_injury_state.json wnba_players_cache.json wnba_notified.txt wnba_ledger.sqlite 2>/dev/null || true
+          git commit -m "wnba watch [skip ci]" || { echo "no change"; exit 0; }
+          git pull --rebase --autostash || true
+          git push
