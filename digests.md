@@ -9,3 +9,15 @@ CLV today: no bets closed
 Pending: 96 bet(s) not yet graded (late games settle tomorrow)
 All-time: 28-102  -24.88u ($-2,488), CLV +7.65% (149)
 ```
+
+## 2026-07-09 (forced)
+
+```
+Daily digest - 2026-07-09 (MT)
+TODAY: 16-16  -1.94u ($-194)
+ALL-TIME (since 7/8 reset): 16-16  -1.94u ($-194)
+
+EBASKETBALL: today 2-0 +1.77u · all-time 2-0 +1.77u ($+177)
+BASEBALL: today 14-16 -3.71u · all-time 14-16 -3.71u ($-371)
+Pending: 3 (settle tomorrow)
+```
