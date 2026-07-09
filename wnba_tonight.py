@@ -11,6 +11,7 @@ lineups. This is step 1 of 3 (trigger -> prop-line integration -> DvP).
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import os
 import sqlite3
 import statistics as st
@@ -18,6 +19,12 @@ from collections import defaultdict
 from pathlib import Path
 
 import requests
+
+try:
+    from zoneinfo import ZoneInfo
+    ET = ZoneInfo("America/New_York")
+except Exception:
+    ET = dt.timezone(dt.timedelta(hours=-4))
 
 import wnba_dvp as DVP
 import wnba_wowy as W
@@ -117,9 +124,13 @@ def _espn(path):
 
 
 def tonight_matchups():
-    """{stats.nba abbrev: opponent stats.nba abbrev} for tonight's non-final games."""
+    """{team abbrev: opponent abbrev} for TODAY's (US Eastern) non-final games. Query the
+    explicit ET date, NOT ESPN's default /scoreboard — the default stays stuck on
+    yesterday's finished slate until late morning ET, so the early crons would see zero
+    games. All four crons (18/21/23 + 00:30 UTC) map to the same ET slate date."""
+    et_date = dt.datetime.now(dt.timezone.utc).astimezone(ET).strftime("%Y%m%d")
     out = {}
-    for e in _espn("scoreboard").get("events", []):
+    for e in _espn(f"scoreboard?dates={et_date}").get("events", []):
         if e.get("status", {}).get("type", {}).get("state") == "post":
             continue
         comp = e.get("competitions", [{}])[0].get("competitors", [])
