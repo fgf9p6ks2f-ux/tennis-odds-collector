@@ -234,8 +234,40 @@ def _tracker_panel(wnba_rec, tt_json):
     return out
 
 
+def _tt_ladder(lad, model_line, zone):
+    """Tap-to-expand hit-rate ladder: for a matchup, the raw H2H over/under rate at every
+    line a book might post (70.5–80.5), so the user can read the rate at THEIR exact line,
+    not just the model's 74.5. Split bar = over(green)/under(red) balance; record shows the
+    sample. Over% is monotone down the ladder."""
+    if not lad:
+        return '<div class="ttlad"><div class="ladnote">no H2H line ladder</div></div>'
+    over_side = zone.startswith("O")
+    rows = ""
+    for r in lad:
+        op = r["op"]
+        up = 100 - op
+        mk = " mark" if abs(r["line"] - model_line) < 0.01 else ""
+        lbl = f'{r["line"]:g}' + (' <span class="ladm">◄</span>' if mk else "")
+        # emphasize the model's flagged side's number
+        ocls = "lo hi" if over_side else "lo"
+        ucls = "lu hi" if not over_side else "lu"
+        rows += (f'<div class="ladrow{mk}">'
+                 f'<span class="ladl">{lbl}</span>'
+                 f'<span class="ladbar"><i class="lo" style="width:{op}%"></i>'
+                 f'<i class="lu" style="width:{up}%"></i></span>'
+                 f'<span class="ladv"><b class="{ocls}">{op}</b>'
+                 f'<span class="lsl">/</span><b class="{ucls}">{up}</b></span>'
+                 f'<span class="ladr">{r["o"]}-{r["u"]}</span></div>')
+    return (f'<div class="ttlad">'
+            f'<div class="ladhead"><span>Line</span><span>over / under</span>'
+            f'<span class="ladv">O% / U%</span><span class="ladr">rec</span></div>'
+            f'{rows}'
+            f'<div class="ladnote">raw H2H hit rate per line · ◄ model line · pick your book\'s line</div></div>')
+
+
 def _tt_panel(data):
-    """Table Tennis tab — today's flagged bets, grouped by league, ordered by game time."""
+    """Table Tennis tab — today's flagged bets, grouped by league, ordered by game time.
+    Each matchup taps open to a per-line hit-rate ladder."""
     if not data:
         return ('<div class="empty">Table tennis feed connecting…<br>'
                 '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
@@ -243,6 +275,7 @@ def _tt_panel(data):
     if not bets:
         return ('<div class="empty">No TT bets flagged right now.<br>'
                 '<span>Fixtures post a few hours before play — check back closer to the slate.</span></div>')
+    model_line = data.get("model_line", 74.5)
     by = defaultdict(list)
     for b in bets:
         by[b["league"]].append(b)
@@ -254,11 +287,12 @@ def _tt_panel(data):
             when = (dt.datetime.fromtimestamp(b["ts"], MT).strftime("%-I:%M %p")
                     if b.get("ts") else "TBD")
             side = html.escape(b.get("side", ""))
+            lad = _tt_ladder(b.get("ladder", []), model_line, b.get("side", ""))
             cards += f"""
-      <div class="ttrow">
-        <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}</div>
+      <div class="ttrow" onclick="this.nextElementSibling.classList.toggle('open')">
+        <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}<span class="ttchev">›</span></div>
         <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u</div>
-      </div>"""
+      </div>{lad}"""
         out.append(f'<div class="card"><h3 class="ttlg">{html.escape(league)}</h3>{cards}</div>')
     return "\n".join(out)
 
@@ -350,11 +384,34 @@ def build():
   .panel {{ display:block; }}
   .panel.hidden {{ display:none; }}
   .ttlg {{ font-size:13px; font-weight:700; color:#cdd5e0; margin:0 0 10px; }}
-  .ttrow {{ padding:10px 0 9px; border-bottom:1px solid #161d28; }}
-  .ttrow:last-child {{ border-bottom:0; padding-bottom:2px; }}
-  .ttmain {{ font-size:15px; }}
+  .ttrow {{ padding:10px 0 9px; border-bottom:1px solid #161d28; cursor:pointer; }}
+  .ttmain {{ font-size:15px; display:flex; align-items:center; }}
+  .ttchev {{ margin-left:auto; color:#404b5e; font-size:19px; transition:transform .15s; }}
+  .ttrow:has(+ .ttlad.open) .ttchev {{ transform:rotate(90deg); }}
   .ttsub {{ color:#93a0b4; font-size:12.5px; margin-top:3px; }}
   .ttside {{ color:#5b9dff; font-weight:700; }}
+  .ttlad {{ display:none; padding:6px 0 12px; }}
+  .ttlad.open {{ display:block; }}
+  .ttlad:last-child {{ border-bottom:0; }}
+  .ladhead, .ladrow {{ display:grid; grid-template-columns:52px 1fr 62px 38px; gap:9px;
+    align-items:center; }}
+  .ladhead {{ color:#6b7484; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em;
+    padding:4px 6px 6px; }}
+  .ladrow {{ padding:5px 6px; border-radius:7px; font-size:12.5px; }}
+  .ladrow.mark {{ background:#131c2b; }}
+  .ladl {{ color:#aeb8c7; font-weight:700; font-variant-numeric:tabular-nums; }}
+  .ladm {{ color:#5b9dff; font-size:10px; }}
+  .ladbar {{ display:flex; height:7px; border-radius:4px; overflow:hidden; background:#0f141d; }}
+  .ladbar i.lo {{ background:#2f9e63; }}
+  .ladbar i.lu {{ background:#8a3b46; }}
+  .ladv {{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }}
+  .ladv b {{ font-weight:600; font-size:11.5px; }}
+  .ladv b.lo {{ color:#5bbd85; }}
+  .ladv b.lu {{ color:#d98a94; }}
+  .ladv b.hi {{ font-weight:800; }}
+  .ladv .lsl {{ color:#3c4658; margin:0 1px; }}
+  .ladr {{ text-align:right; color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }}
+  .ladnote {{ color:#5a6474; font-size:10.5px; margin-top:9px; padding:0 6px; }}
   .mu {{ color:#c99a52; font-weight:700; font-size:13px; margin-left:4px; }}
   .tcard {{ background:#121620; border:1px solid #1f2836; border-radius:16px; padding:18px 16px; margin-bottom:14px; }}
   .thead {{ font-size:16px; font-weight:700; margin-bottom:14px; }}
