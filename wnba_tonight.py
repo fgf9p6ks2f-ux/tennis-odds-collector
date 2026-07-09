@@ -11,10 +11,65 @@ lineups. This is step 1 of 3 (trigger -> prop-line integration -> DvP).
 from __future__ import annotations
 
 import argparse
+import os
+import sqlite3
+from collections import defaultdict
+from pathlib import Path
 
 import requests
 
 import wnba_wowy as W
+
+PROPS_DB = Path(os.environ.get("FD_DB",
+                Path(__file__).resolve().parent / "fanduel_props.sqlite"))
+# fd_lines stat keys we can project from a game log
+PROP_STATS = {"points": "pts", "rebounds": "reb", "assists": "ast"}
+
+
+def _am(dec):
+    return f"+{round((dec-1)*100)}" if dec >= 2 else f"{round(-100/(dec-1))}"
+
+
+def posted_props(player):
+    """Latest WNBA props for a player: {stat_key: {line: best_over_dec}} across books."""
+    if not PROPS_DB.exists():
+        return {}
+    con = sqlite3.connect(PROPS_DB)
+    rows = con.execute(
+        "SELECT stat, line, side, odds, COALESCE(book,'fd') FROM fd_lines "
+        "WHERE sport='wnba' AND player=? AND collected_at > datetime('now','-1 day')",
+        (player,)).fetchall()
+    con.close()
+    best = defaultdict(dict)
+    for stat, line, side, odds, _bk in rows:
+        if stat in PROP_STATS and side == "over" and line is not None:
+            k = round(float(line), 1)
+            best[stat][k] = max(best[stat].get(k, 0), float(odds))
+    return best
+
+
+def prop_edges(player, log, proj_min):
+    """For each posted OVER prop, the player's hit rate in ELEVATED-ROLE games
+    (min >= proj_min - 4) vs the posted price → flag +EV ladders. The raw hit rate on
+    ~5-10 games is noise, and the book set the line KNOWING the role, so we shrink our
+    estimate toward the book's implied prob by sample size (k=6) before scoring EV —
+    a thin-sample spot must be extreme to survive. Returns raw hit + n for judgment."""
+    elevated = [g for g in log if g["min"] >= proj_min - 4]
+    if len(elevated) < 4:
+        return []
+    out = []
+    for stat, best in posted_props(player).items():
+        key = PROP_STATS[stat]
+        vals = [g[key] for g in elevated]
+        n = len(vals)
+        for line, dec in sorted(best.items()):
+            hit = sum(1 for v in vals if v > line) / n
+            implied = 1 / dec
+            p_adj = (hit * n + implied * 6) / (n + 6)      # credibility shrink to the line
+            ev = p_adj * dec - 1
+            if ev >= 0.05:
+                out.append((ev, stat, line, dec, hit, n))
+    return sorted(out, reverse=True)
 
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
 EH = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
@@ -95,12 +150,11 @@ def main():
                     rows.append((dmin, dpts, n, v, w))
             for dmin, dpts, n, v, w in sorted(rows, reverse=True)[:4]:
                 proj_min = w["without"]["min"]["mean"]
-                # production in the minutes band the beneficiary now projects into
-                bands = W.minutes_bands(W.game_log(v["id"]))
-                key = f"{int(proj_min//4)*4}-{int(proj_min//4)*4+4}"
-                band = bands.get(key, {}).get("pts", {})
-                seen = f"pts in {key}min games: {band.get('vals')}" if band else "thin band"
-                print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts w/o | {seen}")
+                blog = W.game_log(v["id"])
+                print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts w/o")
+                for ev, stat, line, dec, hit, ns in prop_edges(n, blog, proj_min):
+                    print(f"       ✅ {stat} over {line:g} @ {_am(dec)} — hit {hit*100:.0f}% "
+                          f"in {ns} elevated-role games (+{ev*100:.0f}% est EV)")
         except RuntimeError:
             print("  (stats fetch failed, retry)")
         print()
