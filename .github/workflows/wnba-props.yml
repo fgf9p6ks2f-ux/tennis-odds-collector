@@ -1,0 +1,41 @@
+name: wnba-props
+# Injury-driven WNBA prop alerts. Runs a few times through the US afternoon/evening;
+# the late runs catch confirmed lineups (~30 min pre-tip) — the speed window the edge
+# lives in. Also refreshes the DvP cache (position defense) from GitHub's IP, which
+# isn't rate-limited the way a local dev machine gets after heavy use.
+on:
+  schedule:
+    - cron: "0 18,21,23 * * *"   # ~noon/3pm/5pm MT — spread across pre-tip windows
+    - cron: "30 0 * * *"         # ~6:30pm MT, last confirmed-lineup sweep
+  workflow_dispatch: {}
+
+concurrency:
+  group: wnba-props
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  props:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: refresh DvP cache (position defense)
+        run: python wnba_dvp.py --refresh || echo "dvp refresh skipped"
+      - name: injury-driven prop alerts
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python wnba_alert.py || echo "wnba alert skipped"
+      - name: commit
+        run: |
+          git config user.name "odds-bot"
+          git config user.email "odds-bot@users.noreply.github.com"
+          git add -f wnba_notified.txt wnba_dvp.json 2>/dev/null || true
+          git commit -m "wnba props update [skip ci]" || { echo "no change"; exit 0; }
+          git pull --rebase --autostash || true
+          git push

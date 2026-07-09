@@ -18,6 +18,7 @@ from pathlib import Path
 
 import requests
 
+import wnba_dvp as DVP
 import wnba_wowy as W
 
 PROPS_DB = Path(os.environ.get("FD_DB",
@@ -83,17 +84,23 @@ def _espn(path):
     return r.json() if r.status_code == 200 else {}
 
 
-def tonight_teams():
-    """{stats.nba abbrev} of teams with a game today (not final)."""
-    out = set()
+def tonight_matchups():
+    """{stats.nba abbrev: opponent stats.nba abbrev} for tonight's non-final games."""
+    out = {}
     for e in _espn("scoreboard").get("events", []):
-        st = e.get("status", {}).get("type", {}).get("state")
-        if st == "post":
-            continue                       # already final
-        for c in e.get("competitions", [{}])[0].get("competitors", []):
-            ab = c.get("team", {}).get("abbreviation", "")
-            out.add(TEAM_FIX.get(ab, ab))
+        if e.get("status", {}).get("type", {}).get("state") == "post":
+            continue
+        comp = e.get("competitions", [{}])[0].get("competitors", [])
+        abs_ = [TEAM_FIX.get(c.get("team", {}).get("abbreviation", ""),
+                             c.get("team", {}).get("abbreviation", "")) for c in comp]
+        if len(abs_) == 2:
+            out[abs_[0]] = abs_[1]
+            out[abs_[1]] = abs_[0]
     return out
+
+
+def tonight_teams():
+    return set(tonight_matchups())
 
 
 def injuries():
@@ -115,7 +122,8 @@ def main():
     args = ap.parse_args()
 
     pl = W.players()
-    playing = tonight_teams()
+    matchups = tonight_matchups()
+    playing = set(matchups)
     inj = injuries()
     print(f"Tonight: {len(playing)} teams in action · {len(inj)} injury-listed players\n")
 
@@ -135,8 +143,9 @@ def main():
         return
 
     for name, status, p in flagged:
+        note = DVP.matchup_note(matchups.get(p["team"], ""))
         print(f"=== {name} ({p['team']}) {status} — {p['min']:.0f} mpg, {p['pts']:.0f} ppg "
-              f"vacated ===")
+              f"vacated ===" + (f"  [{note}]" if note else ""))
         try:
             tlog = W.game_log(p["id"])
             team_pl = {n: v for n, v in pl.items()
