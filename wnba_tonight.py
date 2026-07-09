@@ -49,34 +49,41 @@ def posted_props(player):
     return best
 
 
-# the user's role threshold: a bench player entering the starting lineup gets 20+ NBA
-# minutes as a FLOOR, so judge production in games at that elevated workload (25+ proxy).
-ROLE_FLOOR = 25.0
+# Role floor scaled for WNBA's shorter 40-min game (NBA is 48): a bench player promoted
+# to the starting lineup projects to ~22+ min, so judge production in their 22+ min games.
+ROLE_FLOOR = 22.0
 
 
 def prop_edges(player, log, proj_min):
-    """For each posted OVER prop, the player's hit rate in ELEVATED-ROLE games vs the
-    posted price → flag +EV ladders. Elevated = games at max(proj-4, 25min) — the user's
-    'floor is 20+ and I look at their 25+ min games' rule. Thin-sample hit rates are
-    noise and the book set the line knowing the role, so shrink toward the book's implied
-    prob (k=6) before scoring. Returns raw hit + n + shot volume (usage tell)."""
-    floor = max(proj_min - 4, ROLE_FLOOR - 5)
+    """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
+    production and a line the book anchored to the SEASON AVERAGE. For each posted line:
+    hit rate in the player's elevated games (min >= max(proj-4, 22)), credibility-shrunk
+    to the book's implied prob (thin samples + the book set the line), flagged when +EV.
+    Each dict also carries season_avg vs elev_avg — the mispricing is fattest when the
+    line sits near season_avg but elev_avg clears it. Returns list of dicts."""
+    floor = max(proj_min - 4, ROLE_FLOOR)
     elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) < 4:
         return []
-    fga = st.mean([g["fga"] for g in elevated])         # usage in the elevated role
+    fga = st.mean([g["fga"] for g in elevated])
     out = []
     for stat, best in posted_props(player).items():
         key = PROP_STATS[stat]
+        season_avg = st.mean([g[key] for g in log]) if log else 0
         vals = [g[key] for g in elevated]
+        elev_avg = st.mean(vals)
         n = len(vals)
         for line, dec in sorted(best.items()):
             hit = sum(1 for v in vals if v > line) / n
-            p_adj = (hit * n + (1 / dec) * 6) / (n + 6)  # credibility shrink to the line
+            p_adj = (hit * n + (1 / dec) * 6) / (n + 6)
             ev = p_adj * dec - 1
+            # 'stale' = line anchored nearer the season avg than the elevated projection
+            stale = elev_avg > line and abs(line - season_avg) < abs(line - elev_avg)
             if ev >= 0.05:
-                out.append((ev, stat, line, dec, hit, n, fga))
-    return sorted(out, reverse=True)
+                out.append({"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
+                            "n": n, "fga": fga, "season_avg": round(season_avg, 1),
+                            "elev_avg": round(elev_avg, 1), "stale": stale})
+    return sorted(out, key=lambda d: -d["ev"])
 
 
 def double_double_rate(log, proj_min):
@@ -176,12 +183,15 @@ def main():
                 proj_min = w["without"]["min"]["mean"]
                 blog = W.game_log(v["id"])
                 edges = prop_edges(n, blog, proj_min)
-                fga = edges[0][6] if edges else 0
+                fga = edges[0]["fga"] if edges else 0
                 print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts w/o"
                       + (f", {fga:.0f} FGA" if fga else ""))
-                for ev, stat, line, dec, hit, ns, _f in edges:
-                    print(f"       ✅ {stat} over {line:g} @ {_am(dec)} — hit {hit*100:.0f}% "
-                          f"in {ns} elevated games (+{ev*100:.0f}% est EV)")
+                for e in edges:
+                    star = " ⟵ stale line" if e["stale"] else ""
+                    print(f"       ✅ {e['stat']} over {e['line']:g} @ {_am(e['dec'])} — "
+                          f"elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
+                          f"hit {e['hit']*100:.0f}% in {e['n']} games "
+                          f"(+{e['ev']*100:.0f}% EV){star}")
                 dd = double_double_rate(blog, proj_min)
                 if dd and dd[0] >= 0.35:                 # check the lagging DD market
                     print(f"       ★ double-double {dd[0]*100:.0f}% in {dd[1]} elevated games "

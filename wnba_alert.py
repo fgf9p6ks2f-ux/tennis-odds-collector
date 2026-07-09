@@ -14,8 +14,11 @@ from __future__ import annotations
 import os
 from pathlib import Path
 
+import datetime
+
 import requests
 
+import wnba_ledger as L
 import wnba_tonight as T
 import wnba_wowy as W
 
@@ -29,10 +32,15 @@ def _short(name):
 
 
 def collect():
+    """Returns (alerts, preds): alerts are ntfy message tuples, preds are the full
+    prediction rows logged to the ledger so every flagged spot gets graded and fed back
+    into the model."""
     pl = W.players()
     playing = T.tonight_teams()
+    matchups = T.tonight_matchups()
     inj = T.injuries()
-    alerts = []
+    today = datetime.date.today().isoformat()
+    alerts, preds = [], []
     for name, status in inj.items():
         p = pl.get(name)
         if not p or p["team"] not in playing or p["min"] < 20 or status not in ("Out", "Doubtful"):
@@ -52,24 +60,35 @@ def collect():
                 continue
             proj = w["without"]["min"]["mean"]
             blog = W.game_log(v["id"])
-            for ev, stat, line, dec, hit, ns, _fga in T.prop_edges(n, blog, proj):
-                key = f"{name}|{n}|{stat}|{line}"
-                alerts.append((ev, key,
-                    f"{_short(name)} OUT -> {_short(n)} {stat[:3]} o{line:g} "
-                    f"{T._am(dec)} ({hit*100:.0f}% in {ns} role gms, +{ev*100:.0f}% est)"))
+            for e in T.prop_edges(n, blog, proj):
+                key = f"{name}|{n}|{e['stat']}|{e['line']}"
+                tag = " [stale line]" if e["stale"] else ""
+                alerts.append((e["ev"], key,
+                    f"{_short(name)} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
+                    f"{T._am(e['dec'])} ({e['hit']*100:.0f}% in {e['n']} role gms, "
+                    f"elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
+                    f"+{e['ev']*100:.0f}% est){tag}"))
+                preds.append({"pred_date": today, "out_player": name, "player": n,
+                              "team": p["team"], "opp": matchups.get(p["team"], ""),
+                              "stat": e["stat"], "line": e["line"], "odds": e["dec"],
+                              "book": "fd", "proj_hit": round(e["hit"], 3),
+                              "season_avg": e["season_avg"], "elev_avg": e["elev_avg"],
+                              "proj_min": round(proj, 1), "n_elev": e["n"],
+                              "ev": round(e["ev"], 3), "stale": int(e["stale"])})
             dd = T.double_double_rate(blog, proj)
             if dd and dd[0] >= 0.40:                     # strong lagging-market DD candidate
                 alerts.append((dd[0] - 0.5, f"{name}|{n}|dd",
                     f"{_short(name)} OUT -> {_short(n)} DOUBLE-DOUBLE {dd[0]*100:.0f}% in "
                     f"{dd[1]} role gms — check DD price (backup bigs lag)"))
-    return sorted(alerts, reverse=True)
+    return sorted(alerts, reverse=True), preds
 
 
 def main():
-    alerts = collect()
+    alerts, preds = collect()
+    logged = L.log_predictions(preds)                    # feed the learning loop
     seen = set(SEEN.read_text().splitlines()) if SEEN.exists() else set()
     fresh = [(ev, k, msg) for ev, k, msg in alerts if k not in seen]
-    print(f"wnba: {len(alerts)} +EV spots, {len(fresh)} new")
+    print(f"wnba: {len(alerts)} +EV spots, {len(fresh)} new, {logged} logged to ledger")
     for _ev, _k, msg in fresh:
         print("  " + msg)
     topic = os.environ.get("NTFY_TOPIC")
