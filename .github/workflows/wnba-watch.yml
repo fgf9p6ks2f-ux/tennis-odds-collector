@@ -36,7 +36,11 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f wnba_injury_state.json wnba_players_cache.json wnba_notified.txt wnba_ledger.sqlite 2>/dev/null || true
+          # add each file independently — a single `git add a b c` aborts (stages NOTHING)
+          # if any path is missing, which on cold start silently persisted no state
+          for f in wnba_injury_state.json wnba_players_cache.json wnba_notified.txt wnba_ledger.sqlite; do
+            git add -f "$f" 2>/dev/null || true
+          done
           git commit -m "wnba watch [skip ci]" || { echo "no change"; exit 0; }
           git pull --rebase --autostash || true
           git push
