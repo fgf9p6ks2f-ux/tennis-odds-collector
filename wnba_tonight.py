@@ -39,6 +39,24 @@ def _am(dec):
     return f"+{round((dec-1)*100)}" if dec >= 2 else f"{round(-100/(dec-1))}"
 
 
+def playing_now(player):
+    """True if a supposedly-out player actually has FRESH props posted — books pull a
+    player's props the moment they're ruled out, so a full slate in the latest collection
+    cycle means they're PLAYING. Guards against a stale injury feed (e.g. a returning
+    player still tagged 'Out', like A'ja Wilson 7/9)."""
+    if not PROPS_DB.exists():
+        return False
+    con = sqlite3.connect(PROPS_DB)
+    latest = con.execute("SELECT MAX(collected_at) FROM fd_lines WHERE sport='wnba'").fetchone()[0]
+    if not latest:
+        con.close()
+        return False
+    n = con.execute("SELECT COUNT(*) FROM fd_lines WHERE sport='wnba' AND player=? "
+                    "AND collected_at >= datetime(?, '-45 minutes')", (player, latest)).fetchone()[0]
+    con.close()
+    return n > 0
+
+
 def posted_props(player):
     """Latest WNBA props for a player: {stat_key: {line: best_over_dec}} across books."""
     if not PROPS_DB.exists():
@@ -218,7 +236,9 @@ def main():
     matchups = tonight_matchups()
     playing = set(matchups)
     inj = injuries()
-    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")}
+    # truly out = listed Out/Doubtful AND no fresh posted props (books pull props for the
+    # genuinely out; a returning player still tagged 'Out' still has a full slate)
+    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful") and not playing_now(n)}
     lines, rates = CTX.game_lines(), CTX.team_rates()     # Vegas total + pace, once
     print(f"Tonight: {len(playing)} teams in action · {len(inj)} injury-listed players\n")
 
@@ -228,7 +248,7 @@ def main():
         p = pl.get(name)
         if not p or p["team"] not in playing or p["min"] < args.min_out:
             continue
-        if status not in ("Out", "Doubtful"):     # questionable = watch, not yet actionable
+        if status not in ("Out", "Doubtful") or playing_now(name):   # skip stale 'Out'
             continue
         flagged.append((name, status, p))
     flagged.sort(key=lambda x: -x[2]["min"])

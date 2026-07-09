@@ -67,13 +67,19 @@ def _mkt_row(r):
     else:
         badge, cls = "•", "pend"
     thin = ' <span class="thin">thin</span>' if float(r["ev"]) > THIN_EV else ""
-    hit = f'{r["proj_hit"]*100:.0f}%' if r["proj_hit"] is not None else "—"
-    proj = r["elev_avg"]
+    proj, n, ph = r["elev_avg"], r["n_elev"], r["proj_hit"]
+    if ph is not None and n:
+        overs = round(ph * n)
+        be = 1.0 / float(r["odds"])                       # break-even hit rate for the price
+        mid = (f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%) '
+               f'· <span class="be">need {be*100:.0f}%</span>{thin}')
+    else:
+        mid = f'proj {proj:g}{thin}'
     return f"""
       <div class="mkt {cls}">
         <div class="mline"><span class="ms">{stat}</span> o{r['line']:g}
           <span class="mo">{_am(r['odds'])}</span></div>
-        <div class="mmid">proj {proj:g} · {hit} hit{thin}</div>
+        <div class="mmid">{mid}</div>
         <div class="mbadge {cls}">{html.escape(badge)}</div>
       </div>"""
 
@@ -155,7 +161,9 @@ def build():
   .ms {{ color:#aeb8c7; font-weight:700; font-size:13px; margin-right:2px; }}
   .mo {{ color:#5b9dff; font-weight:700; }}
   .mmid {{ flex:1; color:#8b94a3; font-size:13px; }}
-  .thin {{ color:#c99a52; font-size:11px; background:#241c0e; padding:1px 6px; border-radius:6px; }}
+  .mmid b {{ color:#cdd5e0; font-weight:700; }}
+  .be {{ color:#748099; }}
+  .thin {{ color:#c99a52; font-size:11px; background:#241c0e; padding:1px 6px; border-radius:6px; margin-left:2px; }}
   .mbadge {{ font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:20px; white-space:nowrap; }}
   .mbadge.pend {{ background:transparent; color:#39435500; font-size:0; }}
   .mbadge.pend::before {{ content:"·"; color:#3c4658; font-size:22px; }}

@@ -53,10 +53,12 @@ def players_cached(max_age_h=6):
 
 
 def key_outs(playing, inj, pl):
-    """{name: status} for key (>=20 mpg) players on today's slate ruled Out/Doubtful."""
+    """{name: status} for key (>=20 mpg) players on today's slate ruled Out/Doubtful AND
+    with no fresh posted props (a book posting a slate means they're actually playing)."""
     return {n: s for n, s in inj.items()
             if s in ("Out", "Doubtful") and n in pl
-            and pl[n]["team"] in playing and pl[n]["min"] >= KEY_MIN}
+            and pl[n]["team"] in playing and pl[n]["min"] >= KEY_MIN
+            and not T.playing_now(n)}
 
 
 def main():

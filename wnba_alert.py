@@ -42,12 +42,15 @@ def collect():
     inj = T.injuries()
     today = datetime.date.today().isoformat()
     lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
-    # players who are themselves out can't be beneficiaries of a teammate sitting
-    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")}
+    # truly out = listed out AND no fresh posted props (a book posting a slate = playing);
+    # such players also can't be beneficiaries of a teammate sitting
+    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful") and not T.playing_now(n)}
     alerts, preds = [], []
     for name, status in inj.items():
         p = pl.get(name)
         if not p or p["team"] not in playing or p["min"] < 20 or status not in ("Out", "Doubtful"):
+            continue
+        if T.playing_now(name):                          # stale 'Out' — book has fresh props
             continue
         try:
             tlog = W.game_log(p["id"])
@@ -91,10 +94,13 @@ def collect():
                 if e["stat"] == "points" and e["d_fta"] is not None:
                     bits += [f"FTA {e['d_fta']:+g}", f"3PA {e['d_3pa']:+g}"]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
+                overs = round(e["hit"] * e["n"])          # record + break-even for the price
+                rec = f"{overs}-{e['n']-overs}"
+                be = 1.0 / e["dec"]
                 alerts.append((e["ev"], key,
                     f"{_short(name)} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
-                    f"{T._am(e['dec'])}{wo} | {e['hit']*100:.0f}%/{e['n']}g "
-                    f"elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{tag}{env_tag}"))
+                    f"{T._am(e['dec'])}{wo} | {rec} {e['hit']*100:.0f}% (need {be*100:.0f}%) "
+                    f"| elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{tag}{env_tag}"))
                 preds.append({"pred_date": today, "out_player": name, "player": n,
                               "team": p["team"], "opp": matchups.get(p["team"], ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
