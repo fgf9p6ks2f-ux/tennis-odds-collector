@@ -62,16 +62,25 @@ def posted_props(player):
 ROLE_FLOOR = 22.0
 
 
-def prop_edges(player, log, proj_min, w=None):
+# The user's per-stat decision model: which WOWY signals DECIDE each market.
+#   points   -> FGA (shot volume/usage) + minutes   (scoring is opportunity-driven)
+#   rebounds -> rebounds + minutes                   (own rate + playing time)
+#   assists  -> assists + minutes                    (own rate + playing time)
+# FGA is a POINTS driver only; it's noise for reb/ast.
+STAT_DRIVER = {"points": "fga", "rebounds": "reb", "assists": "ast"}
+
+
+def prop_edges(player, log, proj_min, w=None, vacated=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
     production and a line the book anchored to the SEASON AVERAGE. For each posted line:
     hit rate in the player's elevated games (min >= max(proj-4, 22)), credibility-shrunk
     to the book's implied prob (thin samples + the book set the line), flagged when +EV.
 
-    `w` is the beneficiary's WOWY split vs the OUT player — the user's judgment signals:
-    the with->without INCREASE in the bet stat, in FGA (usage), and in minutes. We attach
-    all three (d_stat/d_fga/d_min) and refuse to bet an over on a stat that DROPS without
-    the player (the thesis is that role expands, not shrinks). Returns list of dicts."""
+    Per-stat judgment signals (`w` = beneficiary's WOWY split vs the OUT player):
+      points   decided on d_fga + d_min;  rebounds on d_reb + d_min;  assists on d_ast + d_min.
+    Plus `vacated` = the out player's own avg in that stat = the SIZE of the pool being
+    redistributed. `driver` is the deciding delta for the stat, `d_min` the minutes rise.
+    Won't post an over on a stat that DROPS without the player. Returns list of dicts."""
     floor = max(proj_min - 4, ROLE_FLOOR)
     elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) < 4:
@@ -92,6 +101,8 @@ def prop_edges(player, log, proj_min, w=None):
         elev_avg = st.mean(vals)
         n = len(vals)
         d_stat = wdelta(key)
+        driver = wdelta(STAT_DRIVER[stat])          # the deciding signal for THIS market
+        vac = round(vacated[stat], 1) if vacated and stat in vacated else None
         # the user bets the INCREASE — don't post an over on a stat that falls without the
         # out player (tolerate small negatives: WOWY samples are thin/noisy early season).
         if d_stat is not None and d_stat < -1.0:
@@ -115,7 +126,8 @@ def prop_edges(player, log, proj_min, w=None):
                 out.append({"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
                             "n": n, "fga": fga, "season_avg": round(season_avg, 1),
                             "elev_avg": round(elev_avg, 1), "stale": stale,
-                            "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min})
+                            "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,
+                            "driver": driver, "vac": vac})
     return sorted(out, key=lambda d: -d["ev"])
 
 
@@ -232,14 +244,16 @@ def main():
                     dpts = w["without"]["pts"]["mean"] - w["with"]["pts"]["mean"]
                     dfga = w["without"]["fga"]["mean"] - w["with"]["fga"]["mean"]
                     rows.append((dmin, dpts, dfga, n, w, blog))
+            vacated = {"points": p["pts"], "rebounds": p["reb"], "assists": p["ast"]}
             for dmin, dpts, dfga, n, w, blog in sorted(rows, key=lambda r: (-r[0], -r[1]))[:4]:
                 proj_min = w["without"]["min"]["mean"]
                 # the user's judgment, on one line: more minutes, more shots, more production
                 print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts, "
                       f"{dfga:+.1f}FGA w/o {name.split()[-1]}")
-                for e in prop_edges(n, blog, proj_min, w):
+                for e in prop_edges(n, blog, proj_min, w, vacated):
                     star = " ⟵ stale line" if e["stale"] else ""
-                    d = f"{e['stat'][:3]} {e['d_stat']:+g} w/o, " if e["d_stat"] is not None else ""
+                    dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
+                    d = f"{dl} {e['driver']:+g}, min {e['d_min']:+g} w/o, " if e["driver"] is not None else ""
                     print(f"       ✅ {e['stat']} over {e['line']:g} @ {_am(e['dec'])} — "
                           f"{d}elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
                           f"hit {e['hit']*100:.0f}%/{e['n']}g (+{e['ev']*100:.0f}% EV){star}")

@@ -65,13 +65,15 @@ def collect():
             proj = w["without"]["min"]["mean"]
             if proj - w["with"]["min"]["mean"] <= 0:     # only genuine beneficiaries: must
                 continue                                 # play MORE without the out player
-            for e in T.prop_edges(n, blog, proj, w):
+            vacated = {"points": p["pts"], "rebounds": p["reb"], "assists": p["ast"]}
+            for e in T.prop_edges(n, blog, proj, w, vacated):
                 # beneficiary-centric + dated: dedups when several stars are out together
                 # (same spot triggered by each), re-fires on the next day's slate
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
-                bits = [f"{e['stat'][:3]} {e['d_stat']:+g}" if e["d_stat"] is not None else "",
-                        f"FGA {e['d_fga']:+g}" if e["d_fga"] is not None else "",
+                # per-stat driver: points shows FGA, rebounds shows reb, assists shows ast
+                dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
+                bits = [f"{dl} {e['driver']:+g}" if e["driver"] is not None else "",
                         f"min {e['d_min']:+g}" if e["d_min"] is not None else ""]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
                 alerts.append((e["ev"], key,
@@ -85,7 +87,8 @@ def collect():
                               "season_avg": e["season_avg"], "elev_avg": e["elev_avg"],
                               "proj_min": round(proj, 1), "n_elev": e["n"],
                               "ev": round(e["ev"], 3), "stale": int(e["stale"]),
-                              "d_stat": e["d_stat"], "d_fga": e["d_fga"], "d_min": e["d_min"]})
+                              "d_stat": e["d_stat"], "d_fga": e["d_fga"], "d_min": e["d_min"],
+                              "driver": e["driver"], "vac": e["vac"]})
             dd = T.double_double_rate(blog, proj, w)
             if dd and dd["rate"] >= 0.40:                # strong lagging-market DD candidate
                 bits = [f"reb {dd['d_reb']:+g}" if dd["d_reb"] is not None else "",
