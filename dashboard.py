@@ -178,6 +178,41 @@ def _player_card(player, rows, tip=None):
     </div>"""
 
 
+def _tt_panel():
+    """Table Tennis tab — today's flagged bets from tt_board.json (pushed from the private
+    tt-elite repo), grouped by league, ordered by game time (MT)."""
+    f = HERE / "tt_board.json"
+    if not f.exists():
+        return ('<div class="empty">Table tennis feed connecting…<br>'
+                '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
+    try:
+        data = json.loads(f.read_text())
+    except (ValueError, OSError):
+        return '<div class="empty">TT feed unavailable</div>'
+    bets = data.get("bets", [])
+    if not bets:
+        return ('<div class="empty">No TT bets flagged right now.<br>'
+                '<span>Fixtures post a few hours before play — check back closer to the slate.</span></div>')
+    by = defaultdict(list)
+    for b in bets:
+        by[b["league"]].append(b)
+    out = []
+    for league in sorted(by):
+        games = sorted(by[league], key=lambda b: b.get("ts") or 0)
+        cards = ""
+        for b in games:
+            when = (dt.datetime.fromtimestamp(b["ts"], MT).strftime("%-I:%M %p")
+                    if b.get("ts") else "TBD")
+            side = html.escape(b.get("side", ""))
+            cards += f"""
+      <div class="ttrow">
+        <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}</div>
+        <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u</div>
+      </div>"""
+        out.append(f'<div class="card"><h3 class="ttlg">{html.escape(league)}</h3>{cards}</div>')
+    return "\n".join(out)
+
+
 def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)
     rows, (w, l, u, pend) = _load(now.date().isoformat())
@@ -195,6 +230,7 @@ def build():
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     rec = f"{w}‑{l}" if (w + l) else "0‑0"
     units = f"{u:+.1f}u" if (w + l) else "—"
+    tt_html = _tt_panel()
     doc = f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="90"><title>Today's Plays</title>
@@ -252,20 +288,51 @@ def build():
   .empty {{ color:#93a0b4; background:#121620; border:1px solid #1f2836; border-radius:16px; padding:26px 20px; text-align:center; font-size:15px; }}
   .empty span {{ color:#6b7484; font-size:13px; }}
   .foot {{ color:#525b6a; font-size:11px; text-align:center; margin-top:26px; line-height:1.6; }}
+  .tabs {{ display:flex; gap:6px; margin:16px 0 20px; background:#101520; border:1px solid #1f2836;
+    border-radius:12px; padding:4px; }}
+  .tab {{ flex:1; text-align:center; padding:9px 0; font-size:14px; font-weight:600; color:#8b94a3;
+    border-radius:9px; cursor:pointer; }}
+  .tab.active {{ background:#1c2534; color:#e8ecf2; }}
+  .panel {{ display:block; }}
+  .panel.hidden {{ display:none; }}
+  .ttlg {{ font-size:13px; font-weight:700; color:#cdd5e0; margin:0 0 10px; }}
+  .ttrow {{ padding:10px 0 9px; border-bottom:1px solid #161d28; }}
+  .ttrow:last-child {{ border-bottom:0; padding-bottom:2px; }}
+  .ttmain {{ font-size:15px; }}
+  .ttsub {{ color:#93a0b4; font-size:12.5px; margin-top:3px; }}
+  .ttside {{ color:#5b9dff; font-weight:700; }}
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated {now:%-I:%M %p} MT · tap a bet for the game log</div>
+    <div class="live"><span class="dot"></span>Updated {now:%-I:%M %p} MT · self-refreshing</div>
   </header>
-  <div class="stats">
-    <div class="stat"><div class="k">Board</div><div class="v">{len(order)}<span class="sv"> player{'s' if len(order)!=1 else ''}</span></div></div>
-    <div class="stat"><div class="k">Record · 7/9</div><div class="v">{rec}<div class="sv">{units}</div></div></div>
-    <div class="stat"><div class="k">Pending</div><div class="v">{pend}</div></div>
+  <div class="tabs">
+    <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
+    <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 Table Tennis</div>
   </div>
-  <h2>Beneficiaries</h2>
-  {cards}
-  <div class="foot">Auto-generated on GitHub · self-refreshing · tap a bet to see the bars<br>proj = production in the elevated role · thin = small sample</div>
-</div></body></html>"""
+  <div class="panel" id="wnba">
+    <div class="stats">
+      <div class="stat"><div class="k">Board</div><div class="v">{len(order)}<span class="sv"> player{'s' if len(order)!=1 else ''}</span></div></div>
+      <div class="stat"><div class="k">Record · 7/9</div><div class="v">{rec}<div class="sv">{units}</div></div></div>
+      <div class="stat"><div class="k">Pending</div><div class="v">{pend}</div></div>
+    </div>
+    <h2>Beneficiaries · tap a bet for the game log</h2>
+    {cards}
+  </div>
+  <div class="panel hidden" id="tt">
+    <h2>Table tennis · by league &amp; game time</h2>
+    {tt_html}
+  </div>
+  <div class="foot">Auto-generated on GitHub · self-refreshing</div>
+</div>
+<script>
+  function showTab(t) {{
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('hidden', p.id !== t));
+    document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
+    try {{ localStorage.setItem('tab', t); }} catch (e) {{}}
+  }}
+  try {{ const s = localStorage.getItem('tab'); if (s) showTab(s); }} catch (e) {{}}
+</script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
     print(f"dashboard: {len(order)} beneficiaries / {len(rows)} spots, record {rec}, {pend} pending -> {OUT}")

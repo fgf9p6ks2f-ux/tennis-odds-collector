@@ -55,18 +55,36 @@
   .empty { color:#93a0b4; background:#121620; border:1px solid #1f2836; border-radius:16px; padding:26px 20px; text-align:center; font-size:15px; }
   .empty span { color:#6b7484; font-size:13px; }
   .foot { color:#525b6a; font-size:11px; text-align:center; margin-top:26px; line-height:1.6; }
+  .tabs { display:flex; gap:6px; margin:16px 0 20px; background:#101520; border:1px solid #1f2836;
+    border-radius:12px; padding:4px; }
+  .tab { flex:1; text-align:center; padding:9px 0; font-size:14px; font-weight:600; color:#8b94a3;
+    border-radius:9px; cursor:pointer; }
+  .tab.active { background:#1c2534; color:#e8ecf2; }
+  .panel { display:block; }
+  .panel.hidden { display:none; }
+  .ttlg { font-size:13px; font-weight:700; color:#cdd5e0; margin:0 0 10px; }
+  .ttrow { padding:10px 0 9px; border-bottom:1px solid #161d28; }
+  .ttrow:last-child { border-bottom:0; padding-bottom:2px; }
+  .ttmain { font-size:15px; }
+  .ttsub { color:#93a0b4; font-size:12.5px; margin-top:3px; }
+  .ttside { color:#5b9dff; font-weight:700; }
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated 3:07 PM MT · tap a bet for the game log</div>
+    <div class="live"><span class="dot"></span>Updated 3:26 PM MT · self-refreshing</div>
   </header>
-  <div class="stats">
-    <div class="stat"><div class="k">Board</div><div class="v">7<span class="sv"> players</span></div></div>
-    <div class="stat"><div class="k">Record · 7/9</div><div class="v">0‑0<div class="sv">—</div></div></div>
-    <div class="stat"><div class="k">Pending</div><div class="v">14</div></div>
+  <div class="tabs">
+    <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
+    <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 Table Tennis</div>
   </div>
-  <h2>Beneficiaries</h2>
-  
+  <div class="panel" id="wnba">
+    <div class="stats">
+      <div class="stat"><div class="k">Board</div><div class="v">7<span class="sv"> players</span></div></div>
+      <div class="stat"><div class="k">Record · 7/9</div><div class="v">0‑0<div class="sv">—</div></div></div>
+      <div class="stat"><div class="k">Pending</div><div class="v">14</div></div>
+    </div>
+    <h2>Beneficiaries · tap a bet for the game log</h2>
+    
     <div class="card">
       <div class="chead">
         <div class="cname"><img class="logo" src="https://a.espncdn.com/i/teamlogos/wnba/500/ind.png" alt="" onerror="this.style.display='none'">M. Billings</div>
@@ -234,5 +252,64 @@
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:43.9%"><span>8.5</span></div><div class="col"><div class="b u" style="height:25.8%"><span class="bv">5</span></div></div><div class="col"><div class="b u" style="height:15.5%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">17</span></div></div><div class="col"><div class="b o" style="height:46.4%"><span class="bv">9</span></div></div><div class="col"><div class="b o" style="height:56.8%"><span class="bv">11</span></div></div><div class="col"><div class="b u" style="height:20.6%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:46.4%"><span class="bv">9</span></div></div><div class="col"><div class="b o" style="height:82.6%"><span class="bv">16</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">17</span></div></div><div class="col"><div class="b u" style="height:0.0%"><span class="bv">0</span></div></div></div><div class="opps"><span>MIN</span><span>MIN</span><span>DAL</span><span>LA</span><span>SEA</span><span>IND</span><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">6/10 over 8.5 · elevated-role games</div></div>
     </div>
-  <div class="foot">Auto-generated on GitHub · self-refreshing · tap a bet to see the bars<br>proj = production in the elevated role · thin = small sample</div>
-</div></body></html>
+  </div>
+  <div class="panel hidden" id="tt">
+    <h2>Table tennis · by league &amp; game time</h2>
+    <div class="card"><h3 class="ttlg">Czech Liga Pro</h3>
+      <div class="ttrow">
+        <div class="ttmain"><b>Radim Urbaniec</b> v Martin Huk</div>
+        <div class="ttsub">7:00 PM MT · <span class="ttside">O≤75.5</span> · 15-4 (79%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Milan Smesny</b> v Lubos Forman</div>
+        <div class="ttsub">1:30 AM MT · <span class="ttside">U≥71.5</span> · 13-3 (81%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Martin Huk</b> v Radim Urbaniec</div>
+        <div class="ttsub">4:30 AM MT · <span class="ttside">O≤75.5</span> · 15-4 (79%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Lubor Sulava</b> v Jan Pleskot</div>
+        <div class="ttsub">10:00 AM MT · <span class="ttside">O≤74.5</span> · 98-35 (74%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Radim Urbaniec</b> v Martin Huk</div>
+        <div class="ttsub">1:00 PM MT · <span class="ttside">O≤75.5</span> · 15-4 (79%) · 2.5u</div>
+      </div></div>
+<div class="card"><h3 class="ttlg">Setka Cup</h3>
+      <div class="ttrow">
+        <div class="ttmain"><b>Serhii Kushnirenko</b> v Serhii Ponomarenko</div>
+        <div class="ttsub">1:00 AM MT · <span class="ttside">U≥71.5</span> · 33-8 (80%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Oleh Plyska</b> v Ladislav Tuma</div>
+        <div class="ttsub">2:00 AM MT · <span class="ttside">O≤77.5</span> · 11-1 (92%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Jan Seeman</b> v Jakub Dufek Jnr</div>
+        <div class="ttsub">8:00 AM MT · <span class="ttside">O≤77.5</span> · 8-0 (100%) · 2.5u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Lukas Provaznik</b> v Libor Smazik</div>
+        <div class="ttsub">8:45 AM MT · <span class="ttside">O≤77.5</span> · 14-1 (93%) · 3u</div>
+      </div></div>
+<div class="card"><h3 class="ttlg">TT Elite Series</h3>
+      <div class="ttrow">
+        <div class="ttmain"><b>Jaroslaw Rolak</b> v Adrian Fabis</div>
+        <div class="ttsub">3:20 PM MT · <span class="ttside">O≤75.5</span> · 37-13 (74%) · 2u</div>
+      </div>
+      <div class="ttrow">
+        <div class="ttmain"><b>Marian Lebek</b> v Kacper Adamus</div>
+        <div class="ttsub">4:00 PM MT · <span class="ttside">U≥71.5</span> · 18-4 (82%) · 2u</div>
+      </div></div>
+  </div>
+  <div class="foot">Auto-generated on GitHub · self-refreshing</div>
+</div>
+<script>
+  function showTab(t) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.toggle('hidden', p.id !== t));
+    document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
+    try { localStorage.setItem('tab', t); } catch (e) {}
+  }
+  try { const s = localStorage.getItem('tab'); if (s) showTab(s); } catch (e) {}
+</script></body></html>
