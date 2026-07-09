@@ -838,20 +838,40 @@ def now():
     return dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
 
 
+STAT_LABEL = {
+    "strikeouts": "Ks", "total_bases": "Total Bases", "hits": "Hits",
+    "home_runs": "HR", "rbis": "RBIs", "stolen_bases": "SB", "outs": "Outs",
+    "hrr": "H+R+RBI", "points": "Pts", "rebounds": "Reb", "assists": "Ast",
+    "threes": "3PM", "pra": "PRA", "pts_reb": "Pts+Reb", "pts_ast": "Pts+Ast",
+    "reb_ast": "Reb+Ast", "player_games": "Games", "game_total": "Game Total",
+    "f5_total": "1st-5 Total", "team_total_over": "Team Total",
+    "team_total_under": "Team Total",
+}
+
+
+def _stat_label(stat):
+    return STAT_LABEL.get(stat, stat.replace("_", " ").title())
+
+
+def _am(dec):
+    return f"+{round((dec-1)*100)}" if dec >= 2 else f"{round(-100/(dec-1))}"
+
+
 def notify_ev(bets):
-    """Push new +EV bets (mlb/wnba) to ntfy. Deduped by bet_id upstream, so each fires once;
-    naturally infrequent (only when a genuinely new edge appears). NTFY_TOPIC from env."""
+    """Push new +EV bets to ntfy — clean, concise, one line each. Deduped by bet_id
+    upstream (fires once per edge). Only DIRECT sharp edges >=5% (model alts stay logged
+    for CLV validation, never pushed). NTFY_TOPIC from env.
+
+    Line:  MLB Aaron Judge - Total Bases Over 1.5 - DK +158 - +7% EV"""
     import os
     topic = os.environ.get("NTFY_TOPIC")
-    # notify only DIRECT (model-free, sharp) edges >=5% — model-priced alts are the least
-    # reliable and would flood; they stay logged in the ledger for CLV validation instead.
     strong = sorted((b for b in bets if b["ev"] >= 0.05 and b.get("src") == "direct"),
                     key=lambda b: -b["ev"])
     if not topic or not strong:
         return
-    lines = [f"{b['sport'].upper()} [{b.get('book', 'fd').upper()}]: {b['player']} "
-             f"{b['stat']} {b['side']} {b['line']} @ {b['odds']:.2f}  "
-             f"(+{b['ev']*100:.0f}% EV vs sharp)" for b in strong[:12]]
+    lines = [f"{b['sport'].upper()} {b['player']} - {_stat_label(b['stat'])} "
+             f"{b['side'].title()} {b['line']:g} - {b.get('book', 'fd').upper()} "
+             f"{_am(b['odds'])} - +{b['ev']*100:.0f}% EV" for b in strong[:12]]
     try:
         requests.post(f"https://ntfy.sh/{topic}", data="\n".join(lines).encode("utf-8"),
                       headers={"Title": "Sports +EV bets", "Tags": "moneybag"}, timeout=15)
