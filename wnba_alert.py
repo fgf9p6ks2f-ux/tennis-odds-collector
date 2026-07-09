@@ -40,6 +40,8 @@ def collect():
     matchups = T.tonight_matchups()
     inj = T.injuries()
     today = datetime.date.today().isoformat()
+    # players who are themselves out can't be beneficiaries of a teammate sitting
+    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")}
     alerts, preds = [], []
     for name, status in inj.items():
         p = pl.get(name)
@@ -50,7 +52,8 @@ def collect():
         except RuntimeError:
             continue
         team_pl = {n: v for n, v in pl.items()
-                   if v["team"] == p["team"] and n != name and v["gp"] >= 5}
+                   if v["team"] == p["team"] and n != name and v["gp"] >= 5
+                   and n not in out_names}
         for n, v in team_pl.items():
             try:
                 w = W.wowy(W.game_log(v["id"]), tlog)
@@ -61,7 +64,9 @@ def collect():
             proj = w["without"]["min"]["mean"]
             blog = W.game_log(v["id"])
             for e in T.prop_edges(n, blog, proj):
-                key = f"{name}|{n}|{e['stat']}|{e['line']}"
+                # beneficiary-centric + dated: dedups when several stars are out together
+                # (same spot triggered by each), re-fires on the next day's slate
+                key = f"{today}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
                 alerts.append((e["ev"], key,
                     f"{_short(name)} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
@@ -87,7 +92,12 @@ def main():
     alerts, preds = collect()
     logged = L.log_predictions(preds)                    # feed the learning loop
     seen = set(SEEN.read_text().splitlines()) if SEEN.exists() else set()
-    fresh = [(ev, k, msg) for ev, k, msg in alerts if k not in seen]
+    fresh, seen_this_run = [], set()
+    for ev, k, msg in alerts:                             # alerts sorted by EV desc
+        if k in seen or k in seen_this_run:               # collapse same-spot duplicates
+            continue
+        seen_this_run.add(k)
+        fresh.append((ev, k, msg))
     print(f"wnba: {len(alerts)} +EV spots, {len(fresh)} new, {logged} logged to ledger")
     for _ev, _k, msg in fresh:
         print("  " + msg)

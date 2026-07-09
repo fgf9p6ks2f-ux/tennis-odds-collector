@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import os
 import sqlite3
+import statistics as st
 from collections import defaultdict
 from pathlib import Path
 
@@ -74,11 +75,20 @@ def prop_edges(player, log, proj_min):
         elev_avg = st.mean(vals)
         n = len(vals)
         for line, dec in sorted(best.items()):
+            # Only the CREDIBLE market. Deep alt rungs (a 20-pt scorer's o4.5) and
+            # implausible prices (near-lock at plus money, or a lottery longshot) are
+            # alt-ladder/scrape artifacts that manufacture fake EV — drop them. Real prop
+            # edges live within a rung or two of the projection at a fair price.
+            if line < 0.6 * elev_avg:            # deep rung far below the projection
+                continue
+            if not (1.25 <= dec <= 3.5):          # ~ -400..+250; kills juiced locks & longshots
+                continue
             hit = sum(1 for v in vals if v > line) / n
             p_adj = (hit * n + (1 / dec) * 6) / (n + 6)
             ev = p_adj * dec - 1
-            # 'stale' = line anchored nearer the season avg than the elevated projection
-            stale = elev_avg > line and abs(line - season_avg) < abs(line - elev_avg)
+            # the user's edge: line anchored near the SEASON avg while the elevated role
+            # projects meaningfully higher — the book hasn't repriced the new role.
+            stale = elev_avg - season_avg >= 1.0 and line <= (season_avg + elev_avg) / 2
             if ev >= 0.05:
                 out.append({"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
                             "n": n, "fga": fga, "season_avg": round(season_avg, 1),
@@ -147,6 +157,7 @@ def main():
     matchups = tonight_matchups()
     playing = set(matchups)
     inj = injuries()
+    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")}
     print(f"Tonight: {len(playing)} teams in action · {len(inj)} injury-listed players\n")
 
     # key OUT players whose team plays tonight
@@ -171,7 +182,8 @@ def main():
         try:
             tlog = W.game_log(p["id"])
             team_pl = {n: v for n, v in pl.items()
-                       if v["team"] == p["team"] and n != name and v["gp"] >= 5}
+                       if v["team"] == p["team"] and n != name and v["gp"] >= 5
+                       and n not in out_names}
             rows = []
             for n, v in team_pl.items():
                 w = W.wowy(W.game_log(v["id"]), tlog)
