@@ -41,21 +41,20 @@ NAMES = {"tennis": "TENNIS", "mlb": "BASEBALL", "wnba": "BASKETBALL (WNBA)",
          "esoccer": "ESOCCER", "ebasketball": "EBASKETBALL", "efootball": "EFOOTBALL"}
 
 
-def mt_day_utc_window(now_utc):
-    """(start_utc_iso, end_utc_iso, mt_date) for the current MT calendar day."""
-    now_mt = now_utc.astimezone(MT)
-    day0 = now_mt.replace(hour=0, minute=0, second=0, microsecond=0)
+def mt_day_utc_window(target_date):
+    """(start_utc_iso, end_utc_iso, mt_date) for a specific MT calendar date."""
+    day0 = dt.datetime.combine(target_date, dt.time(0, 0), tzinfo=MT)
     day1 = day0 + dt.timedelta(days=1)
     f = lambda t: t.astimezone(dt.timezone.utc).replace(tzinfo=None).isoformat()
-    return f(day0), f(day1), now_mt.date().isoformat()
+    return f(day0), f(day1), target_date.isoformat()
 
 
 def fmt_u(u):
     return f"{u:+.2f}u (${u * UNIT:+,.0f})"
 
 
-def build(now_utc):
-    lo, hi, mt_date = mt_day_utc_window(now_utc)
+def build(target_date):
+    lo, hi, mt_date = mt_day_utc_window(target_date)
     con = sqlite3.connect(LEDGER)
     q = con.execute
 
@@ -102,20 +101,24 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--force", action="store_true", help="skip the 11:40pm-MT clock guard")
     args = ap.parse_args()
-    now = dt.datetime.now(dt.timezone.utc)
-    # GitHub crons routinely fire 5-30+ min late. Judge "is it digest time" and "which
-    # MT day is this digest for" from a reference clock 50 min behind the wall clock:
-    # a firing at 23:40 OR one delayed past midnight (up to ~00:50) both resolve to the
-    # intended pre-midnight day. The digests.md day-header dedupe below stops the OTHER
-    # cron (00:40 MT in the off-DST half) from sending the same digest twice.
-    ref = now - dt.timedelta(minutes=50)
-    ref_mt = ref.astimezone(MT)
-    if not args.force and ref_mt.hour not in (22, 23):
-        print(f"not digest time in MT (now {now.astimezone(MT):%H:%M}) — exiting")
+    now_mt = dt.datetime.now(dt.timezone.utc).astimezone(MT)
+    # Pick the MT day to summarize by wall-clock, tolerant of GitHub's flaky cron (it can
+    # fire hours late). Normal fire ~23:40 MT -> summarize today. A run delayed past
+    # midnight (now rolled to the next day) -> summarize the day that just ENDED, not the
+    # empty new one. This gives a ~14h acceptance window (evening through next midday);
+    # the day-header dedupe makes overlapping/extra fires idempotent (exactly one send).
+    if args.force:
+        target = now_mt.date()
+    elif now_mt.hour >= 20:                        # 20:00-23:59 MT: today is ending
+        target = now_mt.date()
+    elif now_mt.hour < 14:                         # 00:00-13:59 MT: delayed -> yesterday
+        target = (now_mt - dt.timedelta(days=1)).date()
+    else:                                          # mid-afternoon: not a digest window
+        print(f"not digest time in MT (now {now_mt:%H:%M}) — exiting")
         return
-    body, mt_date = build(ref)
+    body, mt_date = build(target)
     if not args.force and LOG.exists() and f"## {mt_date}" in LOG.read_text():
-        print(f"digest for {mt_date} already sent — exiting (dual-cron dedupe)")
+        print(f"digest for {mt_date} already sent — exiting (dedupe)")
         return
     print(body)
     # forced/manual runs get a distinct header so they never trip the dedupe that

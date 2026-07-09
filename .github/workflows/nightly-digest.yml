@@ -5,8 +5,14 @@ name: nightly-digest
 # excluded by design (separate repo, no odds feed).
 on:
   schedule:
-    - cron: "40 5 * * *"     # 23:40 MDT (summer)
-    - cron: "40 6 * * *"     # 23:40 MST (winter)
+    # GitHub cron is best-effort and often fires late/drops. Several catch-nets across
+    # the evening-through-next-morning window; the script targets the completed MT day
+    # and the day-header dedupe guarantees exactly one send regardless of how many fire.
+    - cron: "40 5 * * *"     # 23:40 MDT (summer, primary)
+    - cron: "40 6 * * *"     # 23:40 MST (winter, primary)
+    - cron: "20 7 * * *"     # ~01:20 MT catch-net
+    - cron: "20 9 * * *"     # ~03:20 MT catch-net
+    - cron: "20 13 * * *"    # ~07:20 MT catch-net (absorbs multi-hour delays)
   workflow_dispatch: {}
 
 concurrency:
