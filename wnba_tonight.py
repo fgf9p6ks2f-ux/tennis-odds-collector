@@ -129,15 +129,17 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
         if d_stat is not None and d_stat < -1.0:
             continue
         for line, dec in sorted(best.items()):
-            # Only the CREDIBLE market. Deep alt rungs (a 20-pt scorer's o4.5) and
-            # implausible prices (near-lock at plus money, or a lottery longshot) are
-            # alt-ladder/scrape artifacts that manufacture fake EV — drop them. Real prop
-            # edges live within a rung or two of the projection at a fair price.
-            if line < 0.6 * elev_avg:            # deep rung far below the projection
+            # Keep the credible market, but don't throw out legit LADDER bets (the user
+            # plays o9.5 up to 15+ on a big projection). Fake-EV artifacts are specifically
+            # a NEAR-LOCK PRICED AS AN UNDERDOG (a 20-pt scorer's o4.5 @ +830) — filter THAT,
+            # not fairly-priced alt lines.
+            if line < 0.4 * elev_avg:            # only an absurd deep rung (o4.5 for a 16-projector)
                 continue
-            if not (1.25 <= dec <= 3.5):          # ~ -400..+250; kills juiced locks & longshots
+            if not (1.25 <= dec <= 5.0):          # allow +400 ladders; cap only lottery longshots
                 continue
             hit = sum(1 for v in vals if v > line) / n
+            if hit >= 0.92 and dec >= 2.0:        # ~certain over at plus money = mis-scrape, skip
+                continue
             p_adj = (hit * n + (1 / dec) * 6) / (n + 6)
             ev = p_adj * dec - 1
             # the user's edge: line anchored near the SEASON avg while the elevated role
