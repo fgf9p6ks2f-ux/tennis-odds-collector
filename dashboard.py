@@ -233,9 +233,9 @@ def build():
   .mbadge.miss {{ background:#2a1214; color:#f87171; }}
   .chev {{ color:#404b5e; font-size:20px; transition:transform .15s; }}
   .mkt:has(+ .bars.open) .chev {{ transform:rotate(90deg); }}
-  .bars {{ display:none; padding:14px 2px 4px; }}
+  .bars {{ display:none; padding:20px 2px 4px; }}
   .bars.open {{ display:block; }}
-  .chart {{ position:relative; display:flex; align-items:flex-end; gap:5px; height:88px; padding-top:16px; }}
+  .chart {{ position:relative; display:flex; align-items:flex-end; gap:5px; height:88px; overflow:visible; }}
   .col {{ flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end; }}
   .b {{ width:100%; max-width:26px; border-radius:4px 4px 0 0; position:relative; min-height:3px; }}
   .b.o {{ background:#2f9e63; }}
