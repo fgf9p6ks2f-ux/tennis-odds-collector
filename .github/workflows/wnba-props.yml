@@ -46,5 +46,6 @@ jobs:
             git add -f "$f" 2>/dev/null || true
           done
           git commit -m "wnba props update [skip ci]" || { echo "no change"; exit 0; }
-          git pull --rebase --autostash || true
-          git push
+          # -X theirs so the binary ledger never hard-fails the run (self-heals via dedup)
+          git pull --rebase --autostash -X theirs -q || git rebase --abort 2>/dev/null || true
+          git push -q || true

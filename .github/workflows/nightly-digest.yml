@@ -50,5 +50,5 @@ jobs:
           git config user.email "odds-bot@users.noreply.github.com"
           git add -f digests.md bet_ledger.sqlite bet_ledger_report.md wnba_ledger.sqlite wnba_learn.json docs/index.html
           git commit -m "nightly digest [skip ci]" || { echo "no change"; exit 0; }
-          git pull --rebase --autostash || true
-          git push
+          git pull --rebase --autostash -X theirs -q || git rebase --abort 2>/dev/null || true
+          git push -q || true

@@ -1,22 +1,23 @@
 name: wnba-watch
-# True ~60s injury polling on GitHub ALONE — no second platform, no account, no card.
-# GitHub throttles per CRON TICK, not per job, so instead of a (throttled) every-minute
-# cron we let cron merely START one job every 30 min, and the job LOOPS internally every
-# 60s. Restarts every 30 min; cancel-in-progress hands the baton to the fresh run so
-# coverage stays continuous even when GitHub delays a start (the old job keeps polling
-# up to 60 min until superseded). Public repo => free minutes.
+# ~60s injury polling on GitHub alone. RELIABILITY MODEL: GitHub heavily throttles/drops
+# high-frequency scheduled ticks, so we DON'T rely on frequent starts. Cron only needs to
+# START the job; the job then LOOPS internally every 60s for up to ~5.5 HOURS. So a single
+# successful start covers a whole window even if GitHub drops most ticks. Hourly start
+# attempts + cancel-in-progress = the freshest start wins, and the running loop self-heals
+# any gap up to 5.5h. Public repo => free minutes.
 #
-# The edge is latency: the instant a key player on tonight's slate is newly ruled out,
-# wnba_watch.py fires an URGENT push naming who dropped + the beneficiary spots.
+# Notifications are robust to git hiccups: wnba_watch.py fires the ntfy push BEFORE any
+# commit, so a rebase/conflict never costs an alert. Commits use -X theirs so the binary
+# ledger never hard-fails the run (the ledger self-heals — dedup makes re-logging idempotent).
 on:
   schedule:
-    - cron: "*/30 15-23 * * *"   # ~11am-7pm ET: pre-tip windows through evening tips
-    - cron: "*/30 0-4 * * *"     # ~8pm-1am ET: late / West-coast games
+    - cron: "0 15-23 * * *"   # hourly, ~11am-7pm ET (matinee prep through evening tips)
+    - cron: "0 0-4 * * *"     # hourly, ~8pm-1am ET (late / West-coast games)
   workflow_dispatch: {}
 
 concurrency:
-  group: wnba-watch            # its own group; cancel-in-progress = seamless restart
-  cancel-in-progress: true
+  group: wnba-watch
+  cancel-in-progress: true    # the newest start supersedes; dropped starts covered by the long loop
 
 permissions:
   contents: write
@@ -24,7 +25,7 @@ permissions:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 60        # keep polling until the next 30-min run supersedes us
+    timeout-minutes: 340       # one start covers ~5.5h -> robust to GitHub dropping ticks
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,17 +38,15 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          for i in $(seq 1 56); do
-            python wnba_watch.py || echo "poll $i skipped"
-            # persist only on a real change (state file is written deterministically, so a
-            # no-change poll produces no diff -> no commit). add each file independently.
+          for i in $(seq 1 330); do
+            python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
             if [ -n "$(git status --porcelain)" ]; then
-              python dashboard.py || echo "dashboard skipped"   # only when data changed
+              python dashboard.py || echo "dashboard skipped"
               for f in wnba_injury_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite docs/index.html; do
                 git add -f "$f" 2>/dev/null || true
               done
               if git commit -m "wnba watch [skip ci]" >/dev/null 2>&1; then
-                git pull --rebase --autostash -q || true
+                git pull --rebase --autostash -X theirs -q || git rebase --abort 2>/dev/null || true
                 git push -q || true
               fi
             fi
