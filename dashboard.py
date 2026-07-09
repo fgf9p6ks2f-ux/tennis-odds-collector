@@ -17,6 +17,8 @@ import sqlite3
 from collections import defaultdict
 from pathlib import Path
 
+import requests
+
 try:
     from zoneinfo import ZoneInfo
     MT = ZoneInfo("America/Denver")
@@ -49,6 +51,29 @@ def _conf(r):
     if ph is None or not n:
         return 0.0
     return (ph * n + 0.5 * 6) / (n + 6)
+
+
+def _tip_times():
+    """{team_abbr: tip_datetime_utc} for today's slate from ESPN, so cards can be ordered
+    by game time and show it."""
+    et = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-4))).strftime("%Y%m%d")
+    try:
+        j = requests.get(
+            f"https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard?dates={et}",
+            headers={"User-Agent": "Mozilla/5.0"}, timeout=15).json()
+    except requests.RequestException:
+        return {}
+    out = {}
+    for e in j.get("events", []):
+        try:
+            tip = dt.datetime.fromisoformat((e.get("date") or "").replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        for c in e.get("competitions", [{}])[0].get("competitors", []):
+            ab = c.get("team", {}).get("abbreviation")
+            if ab:
+                out[ab] = tip
+    return out
 
 
 def _load(mt_date):
@@ -105,13 +130,12 @@ def _mkt_row(r):
         badge, cls = f"push {actual:g}", "pend"
     else:
         badge, cls = "•", "pend"
-    thin = ' <span class="thin">thin</span>' if float(r["ev"]) > THIN_EV else ""
     proj, n, ph = r["elev_avg"], r["n_elev"], r["proj_hit"]
     if ph is not None and n:
         overs = round(ph * n)
-        mid = f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%){thin}'
+        mid = f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%)'
     else:
-        mid = f'proj {proj:g}{thin}'
+        mid = f'proj {proj:g}'
     return f"""
       <div class="mkt {cls}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">{stat}</span> o{r['line']:g}
@@ -122,12 +146,15 @@ def _mkt_row(r):
       </div>{_bars(r)}"""
 
 
-def _player_card(player, rows):
+def _player_card(player, rows, tip=None):
     outs = ", ".join(sorted({_short(r["out_player"]) for r in rows}))
     r0 = rows[0]
-    team = (r0.get("team") or "").lower()
-    logo = (f'<img class="logo" src="{LOGO.format(team)}" alt="" '
+    team = (r0.get("team") or "").upper()
+    logo = (f'<img class="logo" src="{LOGO.format(team.lower())}" alt="" '
             f'onerror="this.style.display=\'none\'">' if team else "")
+    when = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
+    game = " · ".join(x for x in (f"{team} vs {r0['opp']}" if r0.get("opp") else team,
+                                  f"{when} MT" if when else "") if x)
     ctx = []
     if r0.get("proj_min"):
         dm = f" ({r0['d_min']:+g})" if r0.get("d_min") is not None else ""
@@ -143,6 +170,7 @@ def _player_card(player, rows):
         <div class="cname">{logo}{html.escape(_short(player))}</div>
         <div class="ctag">{html.escape(outs)} out</div>
       </div>
+      <div class="cgame">{html.escape(game)}</div>
       <div class="cctx">{' · '.join(html.escape(c) for c in ctx)}</div>
       {mkts}
     </div>"""
@@ -151,11 +179,17 @@ def _player_card(player, rows):
 def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)
     rows, (w, l, u, pend) = _load(now.date().isoformat())
+    tips = _tip_times()
     groups = defaultdict(list)
     for r in rows:
         groups[r["player"]].append(r)
-    order = sorted(groups.items(), key=lambda kv: -max(_conf(r) for r in kv[1]))
-    cards = "\n".join(_player_card(p, rs) for p, rs in order) if order else \
+    # primary: game tip time (earliest first); secondary: most-confident play first
+    def _key(kv):
+        t = tips.get((kv[1][0].get("team") or "").upper())
+        return (t.timestamp() if t else 9e18, -max(_conf(r) for r in kv[1]))
+    order = sorted(groups.items(), key=_key)
+    cards = "\n".join(_player_card(p, rs, tips.get((rs[0].get("team") or "").upper()))
+                      for p, rs in order) if order else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     rec = f"{w}‑{l}" if (w + l) else "0‑0"
     units = f"{u:+.1f}u" if (w + l) else "—"
@@ -183,7 +217,8 @@ def build():
   .cname {{ font-size:17px; font-weight:700; display:flex; align-items:center; gap:9px; }}
   .logo {{ width:26px; height:26px; object-fit:contain; }}
   .ctag {{ font-size:11.5px; color:#e0a458; background:#2a1e0f; border-radius:20px; padding:3px 10px; white-space:nowrap; }}
-  .cctx {{ color:#93a0b4; font-size:13px; margin-top:6px; padding-bottom:11px; border-bottom:1px solid #1c2431; }}
+  .cgame {{ color:#c3cbd8; font-size:12.5px; font-weight:600; margin-top:7px; }}
+  .cctx {{ color:#93a0b4; font-size:13px; margin-top:3px; padding-bottom:11px; border-bottom:1px solid #1c2431; }}
   .mkt {{ display:flex; align-items:center; gap:10px; padding:12px 0 10px; border-bottom:1px solid #161d28; cursor:pointer; }}
   .mline {{ font-size:15.5px; font-weight:600; min-width:96px; }}
   .ms {{ color:#aeb8c7; font-weight:700; font-size:13px; margin-right:2px; }}
