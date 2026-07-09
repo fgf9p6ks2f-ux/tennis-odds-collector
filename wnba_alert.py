@@ -11,10 +11,10 @@ Line:  WNBA A.Wilson OUT -> J.Loyd pts o12.5 -104 (67% in 9 role games, +18% est
 """
 from __future__ import annotations
 
+import datetime
+import json
 import os
 from pathlib import Path
-
-import datetime
 
 import requests
 
@@ -110,7 +110,8 @@ def collect():
                               "d_stat": e["d_stat"], "d_fga": e["d_fga"], "d_min": e["d_min"],
                               "driver": e["driver"], "vac": e["vac"],
                               "total": e["total"], "pace": e["pace"], "opp_def": e["opp_def"],
-                              "d_fta": e["d_fta"], "d_3pa": e["d_3pa"]})
+                              "d_fta": e["d_fta"], "d_3pa": e["d_3pa"],
+                              "basis": e["basis"], "samples": json.dumps(e["samples"])})
             dd = T.double_double_rate(blog, proj, w)
             if dd and dd["rate"] >= 0.40:                # strong lagging-market DD candidate
                 bits = [f"reb {dd['d_reb']:+g}" if dd["d_reb"] is not None else "",

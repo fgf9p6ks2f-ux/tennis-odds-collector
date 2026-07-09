@@ -103,9 +103,22 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
     post an over on a stat that DROPS without the player. Returns list of dicts."""
     floor = max(proj_min - 4, ROLE_FLOOR)
     elevated = [g for g in log if g["min"] >= floor]
-    if len(elevated) < 4:
-        return []
-    fga = st.mean([g["fga"] for g in elevated])
+    if len(elevated) >= 4:
+        sample, basis, shrink_k = elevated, "elevated", 6
+        def val(g, key):
+            return g[key]                             # actual elevated-role production
+    else:
+        # BREAKOUT fallback: thin elevated history but a real projected role. Project each
+        # game to the projected minutes via per-minute rate (the user's method for a bench
+        # player who just got the role — "she scores 16 and gets a big minutes boost").
+        # Noisier, so tag it + shrink harder.
+        base = [g for g in log if g["min"] >= 12]
+        if len(base) < 3 or proj_min < ROLE_FLOOR:
+            return []
+        sample, basis, shrink_k = base, "projected", 9
+        def val(g, key):
+            return g[key] * min(proj_min / g["min"], 2.2)
+    fga = st.mean([val(g, "fga") for g in sample])
     ctx = ctx or {}
 
     def wdelta(k):                                  # without-minus-with, or None if no split
@@ -118,9 +131,12 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
     for stat, best in posted_props(player).items():
         key = PROP_STATS[stat]
         season_avg = st.mean([g[key] for g in log]) if log else 0
-        vals = [g[key] for g in elevated]
+        vals = [val(g, key) for g in sample]
         elev_avg = st.mean(vals)
         n = len(vals)
+        # per-game samples for the bar chart: [value, opponent, minutes], most recent first
+        recent = sorted(sample, key=lambda g: g["date"], reverse=True)[:10]
+        samples = [[round(val(g, key), 1), g["matchup"], round(g["min"])] for g in recent]
         d_stat = wdelta(key)
         driver = wdelta(STAT_DRIVER[stat])          # the deciding signal for THIS market
         vac = round(vacated[stat], 1) if vacated and stat in vacated else None
@@ -140,7 +156,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
             hit = sum(1 for v in vals if v > line) / n
             if hit >= 0.92 and dec >= 2.0:        # ~certain over at plus money = mis-scrape, skip
                 continue
-            p_adj = (hit * n + (1 / dec) * 6) / (n + 6)
+            p_adj = (hit * n + (1 / dec) * shrink_k) / (n + shrink_k)
             ev = p_adj * dec - 1
             # the user's edge: line anchored near the SEASON avg while the elevated role
             # projects meaningfully higher — the book hasn't repriced the new role.
@@ -156,7 +172,9 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
                         "opp_def": ctx.get("opp_pts_allowed"),
                         # points-only scoring channels
                         "d_fta": d_fta if stat == "points" else None,
-                        "d_3pa": d_3pa if stat == "points" else None}
+                        "d_3pa": d_3pa if stat == "points" else None,
+                        # basis (elevated vs projected) + per-game bars
+                        "basis": basis, "samples": samples}
                 out.append(spot)
     # collapse adjacent alt-line rungs (same stat, within 1.5 pts) to the best-value one —
     # e.g. keep points o10.5 over the redundant, more-juiced o9.5, but keep a real ladder
