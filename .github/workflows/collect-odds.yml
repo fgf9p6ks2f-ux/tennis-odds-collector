@@ -51,21 +51,20 @@ jobs:
         run: python dk_collect.py || echo "draftkings collect skipped"
       - name: scan wnba edges (fanduel vs pinnacle)
         run: python wnba_edge_scan.py || echo "wnba edge scan skipped"
-      - name: H2H GG esports — results + FanDuel-line flags (esoccer/ebasketball/efootball)
-        env:
-          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python gg_collect.py || echo "gg collect skipped"
-      - name: collect mlb totals (game/F5/team — direct vs pinnacle)
+      # BENCHED 2026-07-09 (focus = TT + WNBA): esports/MLB/NFL still COLLECT (data + grading
+      # of existing bets preserved) but no NTFY_TOPIC -> no phone pushes. Un-bench = restore
+      # NTFY_TOPIC here and drop --no-flags / ACTIVE_SPORTS.
+      - name: H2H GG esports — results only (benched: --no-flags)
+        run: python gg_collect.py --no-flags || echo "gg collect skipped"
+      - name: collect mlb totals (benched: no push)
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
           MLB_TOTALS_DB: ${{ github.workspace }}/mlb_totals.sqlite
-          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python mlb_totals.py || echo "mlb totals skipped"
-      - name: collect nfl totals (game/team — direct; logs only within 3d of kickoff)
+      - name: collect nfl totals (dormant until Sept; benched: no push)
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
           NFL_TOTALS_DB: ${{ github.workspace }}/nfl_totals.sqlite
-          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: python nfl_totals.py || echo "nfl totals skipped"
       - name: pitcher-K alt-ladder line-shop sheet
         run: python k_ladder.py || echo "k_ladder skipped"

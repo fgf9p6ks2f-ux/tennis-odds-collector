@@ -30,12 +30,13 @@ except Exception:
 
 HERE = Path(__file__).resolve().parent
 LEDGER = HERE / "bet_ledger.sqlite"
+WNBA_LEDGER = HERE / "wnba_ledger.sqlite"          # the injury-driven autobetter (the focus)
 LOG = HERE / "digests.md"
 UNIT = 100.0
-# Tracker reset (2026-07-08): earlier results were polluted by since-fixed bugs
-# (mislabeled FD markets, dead grading, the benched TB model). The digest counts only
-# bets PLACED after this epoch; the learner still trains on full history.
-EPOCH = "2026-07-08T20:00:00"
+# Fresh-start reset (2026-07-09): models are debugged and the operation is now focused on
+# table tennis + WNBA (MLB / tennis / esports benched). The record counts from this epoch;
+# all underlying data is preserved. TT has its own digest in the tt-elite repo.
+EPOCH = "2026-07-09T06:00:00"                       # 00:00 MT, 2026-07-09
 NAMES = {"tennis": "TENNIS", "mlb": "BASEBALL", "wnba": "BASKETBALL (WNBA)",
          "nba": "BASKETBALL (NBA)", "nfl": "NFL",
          "esoccer": "ESOCCER", "ebasketball": "EBASKETBALL", "efootball": "EFOOTBALL"}
@@ -53,47 +54,43 @@ def fmt_u(u):
     return f"{u:+.2f}u (${u * UNIT:+,.0f})"
 
 
-def build(target_date):
-    lo, hi, mt_date = mt_day_utc_window(target_date)
-    con = sqlite3.connect(LEDGER)
-    q = con.execute
-
-    def agg(rows):
-        w = sum(1 for r in rows if r[0] == "W"); l = sum(1 for r in rows if r[0] == "L")
-        pnl = sum(r[1] or 0 for r in rows)
-        return w, l, pnl
-
-    day = q("SELECT sport, result, pnl_units FROM bets WHERE graded_at>=? AND graded_at<? "
-            "AND placed_at>=?", (lo, hi, EPOCH)).fetchall()
-    alltime = q("SELECT sport, result, pnl_units FROM bets WHERE result IS NOT NULL "
-                "AND placed_at>=?", (EPOCH,)).fetchall()
-    sports = sorted({r[0] for r in alltime} | {r[0] for r in day})
-
-    lines = [f"Daily digest - {mt_date} (MT)"]
-    w, l, pnl = agg([(r[1], r[2]) for r in day])
-    lines.append(f"TODAY: {w}-{l}  {fmt_u(pnl)}" if day else "TODAY: no bets settled")
-    aw, al, apnl = agg([(r[1], r[2]) for r in alltime])
-    lines.append(f"ALL-TIME (since 7/8 reset): {aw}-{al}  {fmt_u(apnl)}")
-    lines.append("")
-    for sp in sports:
-        dsp = [(r[1], r[2]) for r in day if r[0] == sp]
-        asp = [(r[1], r[2]) for r in alltime if r[0] == sp]
-        dw, dl, dp = agg(dsp); tw, tl, tp = agg(asp)
-        nm = NAMES.get(sp, sp.upper())
-        daypart = f"today {dw}-{dl} {dp:+.2f}u · " if dsp else "today - · "
-        lines.append(f"{nm}: {daypart}all-time {tw}-{tl} {fmt_u(tp)}")
-
-    # CLV of bets that started today (leading indicator)
-    c = q("SELECT sport, clv_pct FROM bets WHERE clv_pct IS NOT NULL "
-          "AND start_time>=? AND start_time<? AND placed_at>=?", (lo, hi, EPOCH)).fetchall()
-    if c:
-        lines.append("")
-        lines.append(f"CLV today: {sum(r[1] for r in c)/len(c):+.2f}% avg ({len(c)} closed)")
-    pend = q("SELECT COUNT(*) FROM bets WHERE result IS NULL AND start_time<? "
-             "AND placed_at>=?", (hi, EPOCH)).fetchone()[0]
-    if pend:
-        lines.append(f"Pending: {pend} (settle tomorrow)")
+def _wnba_autobetter(target_date):
+    """Record from the injury-driven WNBA prop ledger (wnba_ledger.sqlite) — the focus.
+    Flat 1u at the taken price; W = the over hit. Returns (lines, has_data)."""
+    if not WNBA_LEDGER.exists():
+        return (["WNBA AUTOBETTER: ledger initializing"], False)
+    con = sqlite3.connect(WNBA_LEDGER)
+    rows = con.execute("SELECT pred_date, result, odds FROM predictions "
+                       "WHERE graded=1 AND pred_date>=?", (EPOCH[:10],)).fetchall()
+    pend = con.execute("SELECT COUNT(*) FROM predictions WHERE graded=0 AND pred_date>=?",
+                       (EPOCH[:10],)).fetchone()[0]
     con.close()
+
+    def rec(rs):
+        dec = [r for r in rs if r[1] in ("over", "under")]
+        w = sum(1 for r in dec if r[1] == "over")
+        u = sum((r[2] - 1) if r[1] == "over" else -1 for r in dec)
+        return w, len(dec) - w, u
+
+    today = [r for r in rows if r[0] == target_date]
+    tw, tl, tu = rec(today)
+    aw, al, au = rec(rows)
+    lines = ["WNBA AUTOBETTER (injury props):"]
+    lines.append(f"TODAY: {tw}-{tl}  {fmt_u(tu)}" if today else "TODAY: no bets graded yet")
+    lines.append(f"ALL-TIME (since 7/9): {aw}-{al}  {fmt_u(au)}")
+    if pend:
+        lines.append(f"Pending: {pend} (grade after games settle)")
+    return (lines, bool(rows or pend))
+
+
+def build(target_date):
+    _, _, mt_date = mt_day_utc_window(target_date)
+    lines = [f"Daily digest - {mt_date} (MT)", ""]
+    wnba_lines, _ = _wnba_autobetter(mt_date)
+    lines += wnba_lines
+    lines.append("")
+    lines.append("Focus: TT + WNBA. MLB / tennis / esports benched (data kept). "
+                 "Table tennis has its own nightly digest.")
     return "\n".join(lines), mt_date
 
 

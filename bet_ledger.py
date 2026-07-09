@@ -51,6 +51,11 @@ SPORTS = {
     "ebasketball": {"external": True},
     "efootball":   {"external": True},
 }
+
+# Focus mode (2026-07-09): the user is concentrating on table tennis + WNBA, so MLB /
+# tennis / esports are BENCHED — still collected + gradeable (history preserved), but no
+# new flags and no phone pushes. To un-bench, add the sport back here.
+ACTIVE_SPORTS = {"wnba"}
 GG_DB = HERE / "gg.sqlite"
 MAX_SNAP_DRIFT_H = 2.0      # skip flagging when FD vs sharp snapshots are this far apart
                             # (a stale side manufactures phantom EV)
@@ -865,7 +870,8 @@ def notify_ev(bets):
     Line:  MLB Aaron Judge - Total Bases Over 1.5 - DK +158 - +7% EV"""
     import os
     topic = os.environ.get("NTFY_TOPIC")
-    strong = sorted((b for b in bets if b["ev"] >= 0.05 and b.get("src") == "direct"),
+    strong = sorted((b for b in bets if b["ev"] >= 0.05 and b.get("src") == "direct"
+                     and b["sport"] in ACTIVE_SPORTS),
                     key=lambda b: -b["ev"])
     if not topic or not strong:
         return
@@ -887,6 +893,8 @@ def cycle():
     added = 0
     new_bets = []
     for sport in SPORTS:
+        if sport not in ACTIVE_SPORTS:            # benched: no new flags (data still kept)
+            continue
         for b in flag(sport):
             bid = bet_id(b)
             if con.execute("SELECT 1 FROM bets WHERE bet_id=?", (bid,)).fetchone():
