@@ -133,19 +133,25 @@ def _summ(games, stat):
             "vals": sorted(vals, reverse=True)}
 
 
-def wowy(player_log, teammate_log):
-    """Split player's games by whether the teammate PLAYED that game. Returns
-    {'with':..., 'without':...} each with per-stat mean over MIN/PTS/REB/AST."""
-    tm_games = {g["game_id"] for g in teammate_log}
-    with_g = [g for g in player_log if g["game_id"] in tm_games]
-    without_g = [g for g in player_log if g["game_id"] not in tm_games]
+def wowy_multi(player_log, teammate_logs):
+    """Split player's games by whether ALL the given teammates were ABSENT that game.
+    'without' = games none of them played (the multi-out scenario the user cares about —
+    a beneficiary often gets a BIGGER boost when 2+ impact players sit together); 'with' =
+    at least one of them played. Returns per-stat means over MIN/PTS/REB/AST/FGA/FTA/3PA."""
+    present = set()
+    for tl in teammate_logs:
+        present |= {g["game_id"] for g in tl}
+    with_g = [g for g in player_log if g["game_id"] in present]
+    without_g = [g for g in player_log if g["game_id"] not in present]
     def block(gs):
-        # fga/fta/fg3a included: the scoring-opportunity channels that drive POINTS —
-        # a beneficiary who shoots, gets to the line, and launches more threes without the
-        # out player is where the scoring redistributes.
         return {s: _summ(gs, s) for s in ("min", "pts", "reb", "ast", "fga", "fta", "fg3a")}
     return {"with": block(with_g), "without": block(without_g),
             "n_with": len(with_g), "n_without": len(without_g)}
+
+
+def wowy(player_log, teammate_log):
+    """Single-teammate with/without split (thin wrapper over wowy_multi)."""
+    return wowy_multi(player_log, [teammate_log])
 
 
 def minutes_bands(pl_log, width=4):
