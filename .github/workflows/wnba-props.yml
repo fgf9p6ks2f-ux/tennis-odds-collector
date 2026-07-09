@@ -25,10 +25,8 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install requests
-      - name: refresh DvP cache (position defense)
-        run: python wnba_dvp.py --refresh || echo "dvp refresh skipped"
-      - name: fit usage-redistribution model (all teams; CI IP isn't rate-limited)
-        run: python wnba_redist.py --fit --teams ATL,CHI,CON,DAL,GSV,IND,LAS,LVA,MIN,NYL,PHX,SEA,WAS || echo "redist fit skipped"
+      - name: fit usage-redistribution model (ESPN data, datacenter-OK)
+        run: python wnba_redist.py --fit --teams ATL,CHI,CON,DAL,GS,IND,LA,LV,MIN,NY,PHX,POR,SEA,TOR,WSH || echo "redist fit skipped"
       - name: injury-driven prop alerts
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}

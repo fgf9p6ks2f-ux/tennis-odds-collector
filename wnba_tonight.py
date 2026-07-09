@@ -90,9 +90,8 @@ def double_double_rate(log, proj_min):
 
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
 EH = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
-# ESPN abbrev -> stats.nba abbrev (only where they differ)
-TEAM_FIX = {"GS": "GSV", "LA": "LAS", "CONN": "CON", "WSH": "WAS", "NY": "NYL",
-            "LV": "LVA", "PHO": "PHX"}
+# players() and the scoreboard are both ESPN now — abbrevs already match, no remap.
+TEAM_FIX = {}
 
 
 def _espn(path):

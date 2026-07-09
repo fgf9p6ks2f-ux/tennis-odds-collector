@@ -23,67 +23,107 @@ import time
 
 import requests
 
-API = "https://stats.nba.com/stats"
-H = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
-     "Referer": "https://www.wnba.com/", "Origin": "https://www.wnba.com",
-     "x-nba-stats-origin": "stats", "x-nba-stats-token": "true",
-     "Accept": "application/json"}
-SEASON = "2026"
+# ESPN's public API — datacenter-reachable (stats.nba.com blocks cloud IPs, so we can't
+# run that in CI). Rosters + per-game logs with the fields the usage model needs.
+SITE = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
+WEB = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/wnba"
+H = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
+_PLAYERS_CACHE = {}
 
 
-def _get(endpoint, **params):
-    params.setdefault("LeagueID", "10")
+def _get(url):
     for attempt in range(3):
         try:
-            r = requests.get(f"{API}/{endpoint}", params=params, headers=H, timeout=30)
+            r = requests.get(url, headers=H, timeout=30)
             if r.status_code == 200:
                 return r.json()
         except requests.RequestException:
             pass
         time.sleep(1.5 * (attempt + 1))
-    raise RuntimeError(f"WNBA API failed: {endpoint}")
+    raise RuntimeError(f"ESPN API failed: {url[:60]}")
 
 
-def _table(j, i=0):
-    rs = j["resultSets"][i]
-    idx = {h: k for k, h in enumerate(rs["headers"])}
-    return idx, rs["rowSet"]
-
-
-def players():
-    """{name: {'id','team','min','pts','reb','ast','usage_proxy','gp'}} season averages."""
-    j = _get("leaguedashplayerstats", Season=SEASON, SeasonType="Regular Season",
-             PerMode="PerGame", MeasureType="Base", PORound="0", Month="0", Period="0",
-             LastNGames="0", TeamID="0", OpponentTeamID="0", Outcome="", Location="",
-             SeasonSegment="", DateFrom="", DateTo="", VsConference="", VsDivision="",
-             GameSegment="", Conference="", Division="", GameScope="", PlayerExperience="",
-             PlayerPosition="", StarterBench="", TwoWay="0")
-    idx, rows = _table(j)
-    out = {}
-    for r in rows:
-        out[r[idx["PLAYER_NAME"]]] = {
-            "id": r[idx["PLAYER_ID"]], "team": r[idx["TEAM_ABBREVIATION"]],
-            "min": r[idx["MIN"]], "pts": r[idx["PTS"]], "reb": r[idx["REB"]],
-            "ast": r[idx["AST"]], "gp": r[idx["GP"]]}
-    return out
+def _made_att(s):
+    """'8-14' -> (8, 14); robust to '--' / empty."""
+    try:
+        m, a = str(s).split("-")
+        return int(m), int(a)
+    except (ValueError, AttributeError):
+        return 0, 0
 
 
 def game_log(pid):
-    """[{game_id, date, min, pts, reb, ast, fga, fg3a, dd, matchup}] for a player.
-    fga/fg3a = shot volume (the usage tell the user reads); dd = double-double (10+ in
-    two of pts/reb/ast — the lagging derivative market on backup bigs)."""
-    j = _get("playergamelog", PlayerID=pid, Season=SEASON, SeasonType="Regular Season")
-    idx, rows = _table(j)
+    """[{game_id, date, min, pts, reb, ast, fga, fg3a, fta, tov, poss, dd, matchup}]
+    for a player, from ESPN. fga/fta/tov feed the usage proxy; dd = double-double."""
+    j = _get(f"{WEB}/athletes/{pid}/gamelog")
+    labels = j.get("names") or []
+    li = {name: k for k, name in enumerate(labels)}
+    meta = j.get("events", {}) or {}
     out = []
-    for r in rows:
-        p, rb, a = r[idx["PTS"]], r[idx["REB"]], r[idx["AST"]]
-        fga, fta, tov = r[idx["FGA"]], r[idx["FTA"]], r[idx["TOV"]]
-        dd = sum(1 for v in (p, rb, a) if v >= 10) >= 2
-        out.append({"game_id": r[idx["Game_ID"]], "date": r[idx["GAME_DATE"]],
-                    "min": r[idx["MIN"]], "pts": p, "reb": rb, "ast": a,
-                    "fga": fga, "fg3a": r[idx["FG3A"]], "fta": fta, "tov": tov,
-                    "poss": fga + 0.44 * fta + tov,     # usage proxy: possessions used
-                    "dd": dd, "matchup": r[idx["MATCHUP"]]})
+    for stype in j.get("seasonTypes") or []:
+        for cat in stype.get("categories") or []:
+            for ev in cat.get("events") or []:
+                s = ev.get("stats") or []
+                eid = str(ev.get("eventId"))
+                if len(s) < len(labels):
+                    continue
+                def num(key, d=0.0):
+                    i = li.get(key)
+                    try:
+                        return float(s[i]) if i is not None else d
+                    except (ValueError, TypeError):
+                        return d
+                p, rb, a = num("points"), num("totalRebounds"), num("assists")
+                _fgm, fga = _made_att(s[li["fieldGoalsMade-fieldGoalsAttempted"]]) \
+                    if "fieldGoalsMade-fieldGoalsAttempted" in li else (0, 0)
+                _3m, fg3a = _made_att(s[li["threePointFieldGoalsMade-threePointFieldGoalsAttempted"]]) \
+                    if "threePointFieldGoalsMade-threePointFieldGoalsAttempted" in li else (0, 0)
+                _ftm, fta = _made_att(s[li["freeThrowsMade-freeThrowsAttempted"]]) \
+                    if "freeThrowsMade-freeThrowsAttempted" in li else (0, 0)
+                tov = num("turnovers")
+                m = meta.get(eid, {})
+                opp = (m.get("opponent") or {}).get("abbreviation", "")
+                out.append({"game_id": eid, "date": m.get("gameDate", ""),
+                            "min": num("minutes"), "pts": p, "reb": rb, "ast": a,
+                            "fga": fga, "fg3a": fg3a, "fta": fta, "tov": tov,
+                            "poss": fga + 0.44 * fta + tov,
+                            "dd": sum(1 for v in (p, rb, a) if v >= 10) >= 2,
+                            "matchup": opp})
+    return out
+
+
+def players():
+    """{name: {'id','team','min','pts','reb','ast','gp','position'}} — rosters (ESPN) with
+    season averages computed from each player's game log. Cached per process."""
+    if _PLAYERS_CACHE:
+        return _PLAYERS_CACHE
+    teams = _get(f"{SITE}/teams").get("sports", [{}])[0].get("leagues", [{}])[0].get("teams", [])
+    out = {}
+    for t in teams:
+        tm = t["team"]
+        abbr = tm["abbreviation"]
+        roster = _get(f"{SITE}/teams/{tm['id']}/roster").get("athletes", [])
+        for a in roster:
+            pid, name = a.get("id"), a.get("displayName")
+            pos = (a.get("position") or {}).get("abbreviation", "")
+            if not pid or not name:
+                continue
+            try:
+                log = game_log(pid)
+            except RuntimeError:
+                continue
+            gp = len(log)
+            if gp == 0:
+                out[name] = {"id": pid, "team": abbr, "min": 0, "pts": 0, "reb": 0,
+                             "ast": 0, "gp": 0, "position": pos}
+                continue
+            out[name] = {"id": pid, "team": abbr, "position": pos, "gp": gp,
+                         "min": st.mean([g["min"] for g in log]),
+                         "pts": st.mean([g["pts"] for g in log]),
+                         "reb": st.mean([g["reb"] for g in log]),
+                         "ast": st.mean([g["ast"] for g in log])}
+            time.sleep(0.05)
+    _PLAYERS_CACHE.update(out)
     return out
 
 
