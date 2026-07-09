@@ -146,11 +146,76 @@ def _slot_effect():
               "backtestable at scale (this is season-1; run multi-season for power).")
 
 
+def _slot_effect_multi(seasons, min_pa=200, min_g=8):
+    """MULTI-SEASON backtest with significance + decomposition. For every (hitter, season)
+    where the hitter has both a TOP (1-3) and LOWER (6-9) slot sample, the within-hitter
+    deltas in TB/game, PA/game (the MECHANICAL edge — more trips up top), and TB/PA (the
+    RATE — if ~0, the effect is pure PA volume = cleanly projectable; if >0, some is manager
+    selection batting hot hitters up)."""
+    global SEASON, _HITTERS
+    obs = []
+    for yr in seasons:
+        SEASON, _HITTERS = yr, {}
+        try:
+            hs = hitters(min_pa=min_pa)
+        except RuntimeError:
+            print(f"  {yr}: leaderboard fetch failed, skipping")
+            continue
+        n_yr = 0
+        for name, v in hs.items():
+            try:
+                ss = slot_splits(v["id"])
+            except RuntimeError:
+                continue
+            top = [ss[s] for s in (1, 2, 3) if s in ss and ss[s]["games"] >= min_g]
+            low = [ss[s] for s in (6, 7, 8, 9) if s in ss and ss[s]["games"] >= min_g]
+            if not top or not low:
+                continue
+            tg, lg = sum(x["games"] for x in top), sum(x["games"] for x in low)
+            ttb, ltb = sum(x["tb"] for x in top), sum(x["tb"] for x in low)
+            tpa, lpa = sum(x["pa"] for x in top), sum(x["pa"] for x in low)
+            obs.append((ttb / tg - ltb / lg, tpa / tg - lpa / lg,
+                        (ttb / tpa if tpa else 0) - (ltb / lpa if lpa else 0)))
+            n_yr += 1
+            time.sleep(0.04)
+        print(f"  {yr}: {n_yr} hitters with both top & bottom slot samples")
+
+    if not obs:
+        print("no observations")
+        return
+    def stats(xs):
+        n = len(xs); m = st.mean(xs); sd = st.pstdev(xs) if n > 1 else 0
+        se = sd / n ** 0.5 if n else 0
+        return m, se, (m / se if se else 0)
+    tbg, se_tbg, t_tbg = stats([o[0] for o in obs])
+    pag, _, _ = stats([o[1] for o in obs])
+    tbpa, _, _ = stats([o[2] for o in obs])
+    pos = sum(1 for o in obs if o[0] > 0)
+    n = len(obs)
+    LEAGUE_TB_PER_PA = 0.40                              # ~ MLB avg, to value the PA effect
+    print(f"\n=== MULTI-SEASON slot-effect backtest ({seasons[0]}-{seasons[-1]}) ===")
+    print(f"n = {n} hitter-seasons with both samples")
+    print(f"TB/game batting top-3 vs 6-9: +{tbg:.3f}  (SE {se_tbg:.3f}, t = {t_tbg:.1f})  "
+          f"{pos}/{n} positive ({pos/n*100:.0f}%)")
+    print(f"  decomposition:")
+    print(f"    PA/game (mechanical, more trips up top): +{pag:.3f}  "
+          f"~ +{pag*LEAGUE_TB_PER_PA:.3f} TB/g of the effect")
+    print(f"    TB/PA  (rate — selection risk if >0):    {tbpa:+.4f}")
+    mech = pag * LEAGUE_TB_PER_PA
+    print(f"  -> {mech/tbg*100:.0f}% of the TB/game edge is MECHANICAL (PA volume) = cleanly "
+          f"projectable; the rest is rate/selection." if tbg else "")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--player")
     ap.add_argument("--slot-effect", action="store_true")
+    ap.add_argument("--multi-season", action="store_true")
+    ap.add_argument("--seasons", default="2021,2022,2023,2024,2025")
     args = ap.parse_args()
+    if args.multi_season:
+        _slot_effect_multi([int(s) for s in args.seasons.split(",")])
+        return
     if args.slot_effect:
         _slot_effect()
         return
