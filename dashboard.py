@@ -236,11 +236,11 @@ def _tracker_panel(wnba_rec, tt_json):
     return out
 
 
-def _tt_ladder(lad, model_line, zone):
+def _tt_ladder(lad, play_to, zone):
     """Tap-to-expand hit-rate ladder: the raw H2H hit rate of the FLAGGED SIDE at every line
-    a book might post (70.5–80.5), so the user reads the rate at THEIR exact line, not just
-    the model's 74.5. Over bet -> over% per line; under bet -> under% per line. Record shows
-    the sample."""
+    a book might post (70.5–80.5), so the user reads the rate at THEIR exact line. Over bet
+    -> over% per line; under bet -> under% per line. The ◄ marks the furthest line still
+    worth playing (the model's validated cutoff); rows PAST that edge are dimmed = skip."""
     if not lad:
         return '<div class="ttlad"><div class="ladnote">no H2H line ladder</div></div>'
     over_side = zone.startswith("O")
@@ -250,9 +250,11 @@ def _tt_ladder(lad, model_line, zone):
         pct = r["op"] if over_side else 100 - r["op"]
         hit = r["o"] if over_side else r["u"]
         miss = r["u"] if over_side else r["o"]
-        mk = " mark" if abs(r["line"] - model_line) < 0.01 else ""
-        lbl = f'{r["line"]:g}' + (' <span class="ladm">◄</span>' if mk else "")
-        rows += (f'<div class="ladrow{mk}">'
+        edge = abs(r["line"] - play_to) < 0.01
+        noplay = (r["line"] > play_to) if over_side else (r["line"] < play_to)
+        cls = " mark" if edge else (" dim" if noplay else "")
+        lbl = f'{r["line"]:g}' + (' <span class="ladm">◄</span>' if edge else "")
+        rows += (f'<div class="ladrow{cls}">'
                  f'<span class="ladl">{lbl}</span>'
                  f'<span class="ladbar"><i style="width:{pct}%"></i></span>'
                  f'<span class="ladv">{pct}%</span>'
@@ -261,7 +263,7 @@ def _tt_ladder(lad, model_line, zone):
             f'<div class="ladhead"><span>Line</span><span>{sidelbl} hit rate</span>'
             f'<span class="ladv">%</span><span class="ladr">rec</span></div>'
             f'{rows}'
-            f'<div class="ladnote">{sidelbl} hit rate per line · ◄ model line (74.5) · pick your book\'s line</div></div>')
+            f'<div class="ladnote">◄ play the {sidelbl} up to here · dimmed rows = edge too thin, skip</div></div>')
 
 
 def _tt_panel(data):
@@ -274,7 +276,7 @@ def _tt_panel(data):
     if not bets:
         return ('<div class="empty">No TT bets flagged right now.<br>'
                 '<span>Fixtures post a few hours before play — check back closer to the slate.</span></div>')
-    model_line = data.get("model_line", 74.5)
+    default_line = data.get("model_line", 74.5)
     by = defaultdict(list)
     for b in bets:
         by[b["league"]].append(b)
@@ -286,7 +288,7 @@ def _tt_panel(data):
             when = (dt.datetime.fromtimestamp(b["ts"], MT).strftime("%-I:%M %p")
                     if b.get("ts") else "TBD")
             side = html.escape(b.get("side", ""))
-            lad = _tt_ladder(b.get("ladder", []), model_line, b.get("side", ""))
+            lad = _tt_ladder(b.get("ladder", []), b.get("play_to", default_line), b.get("side", ""))
             cards += f"""
       <div class="ttrow" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}<span class="ttchev">›</span></div>
@@ -392,12 +394,14 @@ def build():
   .ttlad {{ display:none; padding:6px 0 12px; }}
   .ttlad.open {{ display:block; }}
   .ttlad:last-child {{ border-bottom:0; }}
-  .ladhead, .ladrow {{ display:grid; grid-template-columns:52px 1fr 44px 40px; gap:10px;
+  .ladhead, .ladrow {{ display:grid; grid-template-columns:58px 1fr 44px 40px; gap:10px;
     align-items:center; }}
   .ladhead {{ color:#6b7484; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em;
     padding:4px 6px 6px; }}
   .ladrow {{ padding:5px 6px; border-radius:7px; font-size:12.5px; }}
-  .ladrow.mark {{ background:#131c2b; }}
+  .ladrow.mark {{ background:#15263b; box-shadow:inset 2px 0 0 #5b9dff; }}
+  .ladrow.mark .ladl {{ color:#7aa2e3; }}
+  .ladrow.dim {{ opacity:.34; }}
   .ladl {{ color:#aeb8c7; font-weight:700; font-variant-numeric:tabular-nums; }}
   .ladm {{ color:#5b9dff; font-size:10px; }}
   .ladbar {{ display:flex; height:7px; border-radius:4px; overflow:hidden; background:#0f141d; }}
