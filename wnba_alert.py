@@ -51,11 +51,17 @@ def collect():
             if w["n_without"] < 2:
                 continue
             proj = w["without"]["min"]["mean"]
-            for ev, stat, line, dec, hit, ns in T.prop_edges(n, W.game_log(v["id"]), proj):
+            blog = W.game_log(v["id"])
+            for ev, stat, line, dec, hit, ns, _fga in T.prop_edges(n, blog, proj):
                 key = f"{name}|{n}|{stat}|{line}"
                 alerts.append((ev, key,
                     f"{_short(name)} OUT -> {_short(n)} {stat[:3]} o{line:g} "
                     f"{T._am(dec)} ({hit*100:.0f}% in {ns} role gms, +{ev*100:.0f}% est)"))
+            dd = T.double_double_rate(blog, proj)
+            if dd and dd[0] >= 0.40:                     # strong lagging-market DD candidate
+                alerts.append((dd[0] - 0.5, f"{name}|{n}|dd",
+                    f"{_short(name)} OUT -> {_short(n)} DOUBLE-DOUBLE {dd[0]*100:.0f}% in "
+                    f"{dd[1]} role gms — check DD price (backup bigs lag)"))
     return sorted(alerts, reverse=True)
 
 

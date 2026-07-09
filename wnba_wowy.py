@@ -69,12 +69,20 @@ def players():
 
 
 def game_log(pid):
-    """[{game_id, date, min, pts, reb, ast, matchup}] for a player."""
+    """[{game_id, date, min, pts, reb, ast, fga, fg3a, dd, matchup}] for a player.
+    fga/fg3a = shot volume (the usage tell the user reads); dd = double-double (10+ in
+    two of pts/reb/ast — the lagging derivative market on backup bigs)."""
     j = _get("playergamelog", PlayerID=pid, Season=SEASON, SeasonType="Regular Season")
     idx, rows = _table(j)
-    return [{"game_id": r[idx["Game_ID"]], "date": r[idx["GAME_DATE"]],
-             "min": r[idx["MIN"]], "pts": r[idx["PTS"]], "reb": r[idx["REB"]],
-             "ast": r[idx["AST"]], "matchup": r[idx["MATCHUP"]]} for r in rows]
+    out = []
+    for r in rows:
+        p, rb, a = r[idx["PTS"]], r[idx["REB"]], r[idx["AST"]]
+        dd = sum(1 for v in (p, rb, a) if v >= 10) >= 2
+        out.append({"game_id": r[idx["Game_ID"]], "date": r[idx["GAME_DATE"]],
+                    "min": r[idx["MIN"]], "pts": p, "reb": rb, "ast": a,
+                    "fga": r[idx["FGA"]], "fg3a": r[idx["FG3A"]], "dd": dd,
+                    "matchup": r[idx["MATCHUP"]]})
+    return out
 
 
 def _summ(games, stat):

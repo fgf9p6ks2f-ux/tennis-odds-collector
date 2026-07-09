@@ -49,15 +49,22 @@ def posted_props(player):
     return best
 
 
+# the user's role threshold: a bench player entering the starting lineup gets 20+ NBA
+# minutes as a FLOOR, so judge production in games at that elevated workload (25+ proxy).
+ROLE_FLOOR = 25.0
+
+
 def prop_edges(player, log, proj_min):
-    """For each posted OVER prop, the player's hit rate in ELEVATED-ROLE games
-    (min >= proj_min - 4) vs the posted price → flag +EV ladders. The raw hit rate on
-    ~5-10 games is noise, and the book set the line KNOWING the role, so we shrink our
-    estimate toward the book's implied prob by sample size (k=6) before scoring EV —
-    a thin-sample spot must be extreme to survive. Returns raw hit + n for judgment."""
-    elevated = [g for g in log if g["min"] >= proj_min - 4]
+    """For each posted OVER prop, the player's hit rate in ELEVATED-ROLE games vs the
+    posted price → flag +EV ladders. Elevated = games at max(proj-4, 25min) — the user's
+    'floor is 20+ and I look at their 25+ min games' rule. Thin-sample hit rates are
+    noise and the book set the line knowing the role, so shrink toward the book's implied
+    prob (k=6) before scoring. Returns raw hit + n + shot volume (usage tell)."""
+    floor = max(proj_min - 4, ROLE_FLOOR - 5)
+    elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) < 4:
         return []
+    fga = st.mean([g["fga"] for g in elevated])         # usage in the elevated role
     out = []
     for stat, best in posted_props(player).items():
         key = PROP_STATS[stat]
@@ -65,12 +72,21 @@ def prop_edges(player, log, proj_min):
         n = len(vals)
         for line, dec in sorted(best.items()):
             hit = sum(1 for v in vals if v > line) / n
-            implied = 1 / dec
-            p_adj = (hit * n + implied * 6) / (n + 6)      # credibility shrink to the line
+            p_adj = (hit * n + (1 / dec) * 6) / (n + 6)  # credibility shrink to the line
             ev = p_adj * dec - 1
             if ev >= 0.05:
-                out.append((ev, stat, line, dec, hit, n))
+                out.append((ev, stat, line, dec, hit, n, fga))
     return sorted(out, reverse=True)
+
+
+def double_double_rate(log, proj_min):
+    """DD hit rate in the player's elevated-role games — the lagging high-odds market on
+    backup bigs (Embiid out → Drummond DD at 2.5-4x). (rate, n) or None if thin."""
+    floor = max(proj_min - 4, ROLE_FLOOR - 5)
+    elevated = [g for g in log if g["min"] >= floor]
+    if len(elevated) < 4:
+        return None
+    return sum(1 for g in elevated if g["dd"]) / len(elevated), len(elevated)
 
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
 EH = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
@@ -160,10 +176,17 @@ def main():
             for dmin, dpts, n, v, w in sorted(rows, reverse=True)[:4]:
                 proj_min = w["without"]["min"]["mean"]
                 blog = W.game_log(v["id"])
-                print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts w/o")
-                for ev, stat, line, dec, hit, ns in prop_edges(n, blog, proj_min):
+                edges = prop_edges(n, blog, proj_min)
+                fga = edges[0][6] if edges else 0
+                print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts w/o"
+                      + (f", {fga:.0f} FGA" if fga else ""))
+                for ev, stat, line, dec, hit, ns, _f in edges:
                     print(f"       ✅ {stat} over {line:g} @ {_am(dec)} — hit {hit*100:.0f}% "
-                          f"in {ns} elevated-role games (+{ev*100:.0f}% est EV)")
+                          f"in {ns} elevated games (+{ev*100:.0f}% est EV)")
+                dd = double_double_rate(blog, proj_min)
+                if dd and dd[0] >= 0.35:                 # check the lagging DD market
+                    print(f"       ★ double-double {dd[0]*100:.0f}% in {dd[1]} elevated games "
+                          f"— check the DD price (often stale/generous for backup bigs)")
         except RuntimeError:
             print("  (stats fetch failed, retry)")
         print()
