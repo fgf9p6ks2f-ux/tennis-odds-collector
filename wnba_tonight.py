@@ -39,6 +39,21 @@ def _am(dec):
     return f"+{round((dec-1)*100)}" if dec >= 2 else f"{round(-100/(dec-1))}"
 
 
+def kelly_units(ph, n, dec, frac=0.25, unit_pct=0.04):
+    """Recommended stake in UNITS via fractional (quarter) Kelly — sizes by edge AND odds,
+    the math behind 'more on solid near-even bets, less on longshots'. p = the credibility-
+    shrunk win prob (thin samples pulled toward the book); Kelly fraction f = (p·dec−1)/
+    (dec−1); stake = frac·f of bankroll; 1u = unit_pct of bankroll. Quarter-Kelly + 1u=4%
+    bankroll calibrates a solid ~-140/+100 edge to ~1u. Rounded to 0.5u, capped [0.5, 3]."""
+    if ph is None or not n or dec <= 1:
+        return 1.0
+    p = (ph * n + (1.0 / dec) * 6) / (n + 6)          # shrink toward the book's implied prob
+    f = (p * dec - 1) / (dec - 1)                     # full-Kelly fraction of bankroll
+    if f <= 0:
+        return 0.5
+    return max(0.5, min(3.0, round((frac * f / unit_pct) * 2) / 2))
+
+
 def playing_now(player):
     """True if a supposedly-out player actually has FRESH props posted — books pull a
     player's props the moment they're ruled out, so a full slate in the latest collection

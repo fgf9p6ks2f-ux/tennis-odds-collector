@@ -40,6 +40,9 @@ jobs:
           git config user.email "odds-bot@users.noreply.github.com"
           for i in $(seq 1 330); do
             python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
+            if [ $((i % 10)) -eq 1 ]; then                       # ~every 10 min: settle finished games LIVE
+              python wnba_ledger.py --grade >/dev/null 2>&1 || echo "grade skipped"
+            fi
             if [ -n "$(git status --porcelain)" ]; then
               python dashboard.py || echo "dashboard skipped"
               for f in wnba_injury_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite docs/index.html; do

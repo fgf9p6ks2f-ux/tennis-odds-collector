@@ -53,6 +53,17 @@ def _conf(r):
     return (ph * n + 0.5 * 6) / (n + 6)
 
 
+def _units(ph, n, dec):
+    """Quarter-Kelly recommended stake in units (see wnba_tonight.kelly_units)."""
+    if ph is None or not n or dec <= 1:
+        return 1.0
+    p = (ph * n + (1.0 / dec) * 6) / (n + 6)
+    f = (p * dec - 1) / (dec - 1)
+    if f <= 0:
+        return 0.5
+    return max(0.5, min(3.0, round((0.25 * f / 0.04) * 2) / 2))
+
+
 def _tip_times():
     """{team_abbr: tip_datetime_utc} for today's slate from ESPN, so cards can be ordered
     by game time and show it."""
@@ -138,10 +149,11 @@ def _mkt_row(r):
         mid = f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%)'
     else:
         mid = f'proj {proj:g}'
+    u = _units(r["proj_hit"], r["n_elev"], float(r["odds"]))
     return f"""
       <div class="mkt {cls}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">{stat}</span> o{r['line']:g}
-          <span class="mo">{_am(r['odds'])}</span></div>
+          <span class="mo">{_am(r['odds'])}</span> <span class="mu">{u:g}u</span></div>
         <div class="mmid">{mid}</div>
         <div class="mbadge {cls}">{html.escape(badge)}</div>
         <div class="chev">›</div>
@@ -182,17 +194,51 @@ def _player_card(player, rows, tip=None):
     </div>"""
 
 
-def _tt_panel():
-    """Table Tennis tab — today's flagged bets from tt_board.json (pushed from the private
-    tt-elite repo), grouped by league, ordered by game time (MT)."""
+def _load_tt():
     f = HERE / "tt_board.json"
     if not f.exists():
+        return None
+    try:
+        return json.loads(f.read_text())
+    except (ValueError, OSError):
+        return None
+
+
+def _tracker_panel(wnba_rec, tt_json):
+    """Tracker tab — live record / hit rate / units for WNBA and Table Tennis, flat 1u,
+    updated as each event settles."""
+    def card(emoji, title, w, l, u, note):
+        n = w + l
+        hit = f"{w/n*100:.0f}%" if n else "—"
+        roi = f"{u/n*100:+.0f}%" if n else ""
+        ucls = "up" if u > 0 else ("down" if u < 0 else "")
+        return f"""
+      <div class="tcard">
+        <div class="thead">{emoji} {html.escape(title)}</div>
+        <div class="trow">
+          <div class="tbox"><div class="tk">Record</div><div class="tv">{w}-{l}</div></div>
+          <div class="tbox"><div class="tk">Hit rate</div><div class="tv">{hit}</div></div>
+          <div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{u:+.1f}u</div></div>
+        </div>
+        <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
+      </div>"""
+    w, l, u = wnba_rec
+    out = card("🏀", "WNBA injury props", w, l, u, "flat 1u · settles live · since 7/9")
+    tt = (tt_json or {}).get("tracker")
+    if tt:
+        out += card("🏓", "Table tennis", tt.get("w", 0), tt.get("l", 0), tt.get("u", 0.0),
+                    "flat 1u · settles live · since 7/9")
+    else:
+        out += ('<div class="tcard"><div class="thead">🏓 Table tennis</div>'
+                '<div class="tsub">connecting… (needs the tt-elite bridge)</div></div>')
+    return out
+
+
+def _tt_panel(data):
+    """Table Tennis tab — today's flagged bets, grouped by league, ordered by game time."""
+    if not data:
         return ('<div class="empty">Table tennis feed connecting…<br>'
                 '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
-    try:
-        data = json.loads(f.read_text())
-    except (ValueError, OSError):
-        return '<div class="empty">TT feed unavailable</div>'
     bets = data.get("bets", [])
     if not bets:
         return ('<div class="empty">No TT bets flagged right now.<br>'
@@ -232,9 +278,9 @@ def build():
     cards = "\n".join(_player_card(p, rs, tips.get((rs[0].get("team") or "").upper()))
                       for p, rs in order) if order else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
-    rec = f"{w}‑{l}" if (w + l) else "0‑0"
-    units = f"{u:+.1f}u" if (w + l) else "—"
-    tt_html = _tt_panel()
+    tt_json = _load_tt()
+    tt_html = _tt_panel(tt_json)
+    tracker_html = _tracker_panel((w, l, u), tt_json)
     doc = f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="90"><title>Today's Plays</title>
@@ -309,6 +355,15 @@ def build():
   .ttmain {{ font-size:15px; }}
   .ttsub {{ color:#93a0b4; font-size:12.5px; margin-top:3px; }}
   .ttside {{ color:#5b9dff; font-weight:700; }}
+  .mu {{ color:#c99a52; font-weight:700; font-size:13px; margin-left:4px; }}
+  .tcard {{ background:#121620; border:1px solid #1f2836; border-radius:16px; padding:18px 16px; margin-bottom:14px; }}
+  .thead {{ font-size:16px; font-weight:700; margin-bottom:14px; }}
+  .trow {{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }}
+  .tbox {{ text-align:center; }}
+  .tk {{ color:#7d8696; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px; }}
+  .tv {{ font-size:24px; font-weight:800; line-height:1; }}
+  .tv.up {{ color:#4ade80; }} .tv.down {{ color:#f87171; }}
+  .tsub {{ color:#7d8696; font-size:11.5px; text-align:center; margin-top:14px; }}
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
@@ -316,22 +371,22 @@ def build():
   </header>
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
-    <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 Table Tennis</div>
+    <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 TT</div>
+    <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
   </div>
   <div class="panel" id="wnba">
-    <div class="stats">
-      <div class="stat"><div class="k">Board</div><div class="v">{len(order)}<span class="sv"> player{'s' if len(order)!=1 else ''}</span></div></div>
-      <div class="stat"><div class="k">Record · 7/9</div><div class="v">{rec}<div class="sv">{units}</div></div></div>
-      <div class="stat"><div class="k">Pending</div><div class="v">{pend}</div></div>
-    </div>
-    <h2>Beneficiaries · tap a bet for the game log</h2>
+    <h2>{len(order)} beneficiar{'y' if len(order)==1 else 'ies'} · {pend} pending · tap a bet for the game log</h2>
     {cards}
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · by league &amp; game time</h2>
     {tt_html}
   </div>
-  <div class="foot">Auto-generated on GitHub · self-refreshing</div>
+  <div class="panel hidden" id="tracker">
+    <h2>Live record · settles as each event ends</h2>
+    {tracker_html}
+  </div>
+  <div class="foot">Auto-generated on GitHub · self-refreshing · quarter-Kelly unit sizing</div>
 </div>
 <script>
   function showTab(t) {{
@@ -343,7 +398,7 @@ def build():
 </script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
-    print(f"dashboard: {len(order)} beneficiaries / {len(rows)} spots, record {rec}, {pend} pending -> {OUT}")
+    print(f"dashboard: {len(order)} beneficiaries / {len(rows)} spots, record {w}-{l} ({u:+.1f}u), {pend} pending -> {OUT}")
 
 
 if __name__ == "__main__":
