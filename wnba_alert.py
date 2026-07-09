@@ -86,11 +86,15 @@ def collect():
                               "proj_min": round(proj, 1), "n_elev": e["n"],
                               "ev": round(e["ev"], 3), "stale": int(e["stale"]),
                               "d_stat": e["d_stat"], "d_fga": e["d_fga"], "d_min": e["d_min"]})
-            dd = T.double_double_rate(blog, proj)
-            if dd and dd[0] >= 0.40:                     # strong lagging-market DD candidate
-                alerts.append((dd[0] - 0.5, f"{name}|{n}|dd",
-                    f"{_short(name)} OUT -> {_short(n)} DOUBLE-DOUBLE {dd[0]*100:.0f}% in "
-                    f"{dd[1]} role gms — check DD price (backup bigs lag)"))
+            dd = T.double_double_rate(blog, proj, w)
+            if dd and dd["rate"] >= 0.40:                # strong lagging-market DD candidate
+                bits = [f"reb {dd['d_reb']:+g}" if dd["d_reb"] is not None else "",
+                        f"pts {dd['d_pts']:+g}" if dd["d_pts"] is not None else "",
+                        f"min {dd['d_min']:+g}" if dd["d_min"] is not None else ""]
+                wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
+                alerts.append((dd["rate"] - 0.5, f"{today}|{n}|dd",
+                    f"{_short(name)} OUT -> {_short(n)} DOUBLE-DOUBLE {dd['rate']*100:.0f}% in "
+                    f"{dd['n']} role gms{wo} — check DD price (backup bigs lag)"))
     return sorted(alerts, reverse=True), preds
 
 

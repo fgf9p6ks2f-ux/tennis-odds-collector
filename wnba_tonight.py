@@ -119,14 +119,26 @@ def prop_edges(player, log, proj_min, w=None):
     return sorted(out, key=lambda d: -d["ev"])
 
 
-def double_double_rate(log, proj_min):
+def double_double_rate(log, proj_min, w=None):
     """DD hit rate in the player's elevated-role games — the lagging high-odds market on
-    backup bigs (Embiid out → Drummond DD at 2.5-4x). (rate, n) or None if thin."""
+    backup bigs (Embiid out → Drummond DD at 2.5-4x). Threads the same judgment signals:
+    the reb/pts/min RISE without the out player (`w`), the two stats a big's DD is built
+    from. Returns {rate, n, d_reb, d_pts, d_min} or None if thin / role clearly shrinks."""
     floor = max(proj_min - 4, ROLE_FLOOR - 5)
     elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) < 4:
         return None
-    return sum(1 for g in elevated if g["dd"]) / len(elevated), len(elevated)
+
+    def wd(k):
+        if not w or w.get("n_with", 0) < 1 or w.get("n_without", 0) < 1:
+            return None
+        return round(w["without"][k]["mean"] - w["with"][k]["mean"], 1)
+    d_reb, d_pts, d_min = wd("reb"), wd("pts"), wd("min")
+    # the DD comes from the role EXPANDING — skip if both scoring and boards fall off
+    if d_reb is not None and d_pts is not None and d_reb < -1.0 and d_pts < -1.0:
+        return None
+    return {"rate": sum(1 for g in elevated if g["dd"]) / len(elevated), "n": len(elevated),
+            "d_reb": d_reb, "d_pts": d_pts, "d_min": d_min}
 
 ESPN = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
 EH = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
@@ -231,10 +243,13 @@ def main():
                     print(f"       ✅ {e['stat']} over {e['line']:g} @ {_am(e['dec'])} — "
                           f"{d}elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
                           f"hit {e['hit']*100:.0f}%/{e['n']}g (+{e['ev']*100:.0f}% EV){star}")
-                dd = double_double_rate(blog, proj_min)
-                if dd and dd[0] >= 0.35:                 # check the lagging DD market
-                    print(f"       ★ double-double {dd[0]*100:.0f}% in {dd[1]} elevated games "
-                          f"— check the DD price (often stale/generous for backup bigs)")
+                dd = double_double_rate(blog, proj_min, w)
+                if dd and dd["rate"] >= 0.35:            # check the lagging DD market
+                    wo = ""
+                    if dd["d_reb"] is not None:
+                        wo = f" (reb {dd['d_reb']:+g}, pts {dd['d_pts']:+g} w/o)"
+                    print(f"       ★ double-double {dd['rate']*100:.0f}% in {dd['n']} elevated "
+                          f"games{wo} — check the DD price (often stale for backup bigs)")
         except RuntimeError:
             print("  (stats fetch failed, retry)")
         print()
