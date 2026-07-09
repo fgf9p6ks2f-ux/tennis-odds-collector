@@ -1,22 +1,22 @@
 # MLB prop edge report
 
-_2026-07-08 18:07 UTC_ — 1081 prop lines collected
+_2026-07-09 19:08 UTC_ — 1474 prop lines collected
 
-### strikeouts — 25 settled lines
-
-| metric | value |
-|---|---|
-| log-loss our / Pinnacle | 0.6488 / 0.6576 (we beat sharp) |
-| over-shading (actual − implied) | +0.013 |
-| ROI into Pinnacle | +6.37% (15 bets) |
-
-### outs — 17 settled lines
+### strikeouts — 64 settled lines
 
 | metric | value |
 |---|---|
-| log-loss our / Pinnacle | 0.6840 / 0.7160 (we beat sharp) |
-| over-shading (actual − implied) | +0.003 |
-| ROI into Pinnacle | +36.42% (12 bets) |
+| log-loss our / Pinnacle | 0.6620 / 0.6683 (we beat sharp) |
+| over-shading (actual − implied) | -0.011 |
+| ROI into Pinnacle | +12.64% (39 bets) |
+
+### outs — 55 settled lines
+
+| metric | value |
+|---|---|
+| log-loss our / Pinnacle | 0.7080 / 0.6953 (Pinnacle wins) |
+| over-shading (actual − implied) | -0.083 |
+| ROI into Pinnacle | -8.47% (41 bets) |
 
 
 Small samples are noisy; trust once a few hundred lines settle.
