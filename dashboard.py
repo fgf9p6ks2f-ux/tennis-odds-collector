@@ -92,16 +92,18 @@ def _load(mt_date):
         return [], (0, 0, 0.0, 0)
     con = sqlite3.connect(LEDGER)
     con.row_factory = sqlite3.Row
+    # BOARD shows only un-settled bets — a bet drops off the moment it grades (its result
+    # then lives in the Tracker record, below).
     rows = [dict(r) for r in con.execute(
-        "SELECT * FROM predictions WHERE pred_date=? ORDER BY ev DESC", (mt_date,))]
+        "SELECT * FROM predictions WHERE pred_date=? AND result IS NULL ORDER BY ev DESC",
+        (mt_date,))]
     g = con.execute("SELECT result,odds FROM predictions WHERE graded=1 "
                     "AND pred_date>='2026-07-09'").fetchall()
     con.close()
     dec = [r for r in g if r[0] in ("over", "under")]
     w = sum(1 for r in dec if r[0] == "over")
     u = sum((r[1] - 1) if r[0] == "over" else -1 for r in dec)
-    pend = sum(1 for r in rows if r["result"] is None)
-    return rows, (w, len(dec) - w, u, pend)
+    return rows, (w, len(dec) - w, u, len(rows))
 
 
 def _bars(r):
@@ -235,34 +237,31 @@ def _tracker_panel(wnba_rec, tt_json):
 
 
 def _tt_ladder(lad, model_line, zone):
-    """Tap-to-expand hit-rate ladder: for a matchup, the raw H2H over/under rate at every
-    line a book might post (70.5–80.5), so the user can read the rate at THEIR exact line,
-    not just the model's 74.5. Split bar = over(green)/under(red) balance; record shows the
-    sample. Over% is monotone down the ladder."""
+    """Tap-to-expand hit-rate ladder: the raw H2H hit rate of the FLAGGED SIDE at every line
+    a book might post (70.5–80.5), so the user reads the rate at THEIR exact line, not just
+    the model's 74.5. Over bet -> over% per line; under bet -> under% per line. Record shows
+    the sample."""
     if not lad:
         return '<div class="ttlad"><div class="ladnote">no H2H line ladder</div></div>'
     over_side = zone.startswith("O")
+    sidelbl = "over" if over_side else "under"
     rows = ""
     for r in lad:
-        op = r["op"]
-        up = 100 - op
+        pct = r["op"] if over_side else 100 - r["op"]
+        hit = r["o"] if over_side else r["u"]
+        miss = r["u"] if over_side else r["o"]
         mk = " mark" if abs(r["line"] - model_line) < 0.01 else ""
         lbl = f'{r["line"]:g}' + (' <span class="ladm">◄</span>' if mk else "")
-        # emphasize the model's flagged side's number
-        ocls = "lo hi" if over_side else "lo"
-        ucls = "lu hi" if not over_side else "lu"
         rows += (f'<div class="ladrow{mk}">'
                  f'<span class="ladl">{lbl}</span>'
-                 f'<span class="ladbar"><i class="lo" style="width:{op}%"></i>'
-                 f'<i class="lu" style="width:{up}%"></i></span>'
-                 f'<span class="ladv"><b class="{ocls}">{op}</b>'
-                 f'<span class="lsl">/</span><b class="{ucls}">{up}</b></span>'
-                 f'<span class="ladr">{r["o"]}-{r["u"]}</span></div>')
+                 f'<span class="ladbar"><i style="width:{pct}%"></i></span>'
+                 f'<span class="ladv">{pct}%</span>'
+                 f'<span class="ladr">{hit}-{miss}</span></div>')
     return (f'<div class="ttlad">'
-            f'<div class="ladhead"><span>Line</span><span>over / under</span>'
-            f'<span class="ladv">O% / U%</span><span class="ladr">rec</span></div>'
+            f'<div class="ladhead"><span>Line</span><span>{sidelbl} hit rate</span>'
+            f'<span class="ladv">%</span><span class="ladr">rec</span></div>'
             f'{rows}'
-            f'<div class="ladnote">raw H2H hit rate per line · ◄ model line · pick your book\'s line</div></div>')
+            f'<div class="ladnote">{sidelbl} hit rate per line · ◄ model line (74.5) · pick your book\'s line</div></div>')
 
 
 def _tt_panel(data):
@@ -393,7 +392,7 @@ def build():
   .ttlad {{ display:none; padding:6px 0 12px; }}
   .ttlad.open {{ display:block; }}
   .ttlad:last-child {{ border-bottom:0; }}
-  .ladhead, .ladrow {{ display:grid; grid-template-columns:52px 1fr 62px 38px; gap:9px;
+  .ladhead, .ladrow {{ display:grid; grid-template-columns:52px 1fr 44px 40px; gap:10px;
     align-items:center; }}
   .ladhead {{ color:#6b7484; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em;
     padding:4px 6px 6px; }}
@@ -402,14 +401,9 @@ def build():
   .ladl {{ color:#aeb8c7; font-weight:700; font-variant-numeric:tabular-nums; }}
   .ladm {{ color:#5b9dff; font-size:10px; }}
   .ladbar {{ display:flex; height:7px; border-radius:4px; overflow:hidden; background:#0f141d; }}
-  .ladbar i.lo {{ background:#2f9e63; }}
-  .ladbar i.lu {{ background:#8a3b46; }}
-  .ladv {{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }}
-  .ladv b {{ font-weight:600; font-size:11.5px; }}
-  .ladv b.lo {{ color:#5bbd85; }}
-  .ladv b.lu {{ color:#d98a94; }}
-  .ladv b.hi {{ font-weight:800; }}
-  .ladv .lsl {{ color:#3c4658; margin:0 1px; }}
+  .ladbar i {{ background:#2f9e63; }}
+  .ladv {{ text-align:right; font-variant-numeric:tabular-nums; font-weight:600; font-size:12px;
+    color:#cdd5e0; }}
   .ladr {{ text-align:right; color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }}
   .ladnote {{ color:#5a6474; font-size:10.5px; margin-top:9px; padding:0 6px; }}
   .mu {{ color:#c99a52; font-weight:700; font-size:13px; margin-left:4px; }}
