@@ -109,13 +109,15 @@ def _bars(r):
     over = sum(1 for v in vals if v > line)
     note = ("elevated-role games" if r["basis"] == "elevated"
             else f"projected to ~{r['proj_min']:.0f} min")
-    cols = "".join(
-        f'<div class="col"><div class="b {"o" if v > line else "u"}" style="height:{v/mx*100:.0f}%">'
-        f'<span class="bv">{v:g}</span></div><span class="bo">{html.escape(str(opp) or "")}</span></div>'
-        for v, opp, *_ in s)
+    # bars (baseline = chart bottom) and opponent labels are SEPARATE rows, so the bars and
+    # the prop line share one baseline + scale.
+    bars = "".join(
+        f'<div class="col"><div class="b {"o" if v > line else "u"}" style="height:{v/mx*100:.1f}%">'
+        f'<span class="bv">{v:g}</span></div></div>' for v, *_ in s)
+    opps = "".join(f'<span>{html.escape(str(o) or "")}</span>' for _, o, *_ in s)
     return (f'<div class="bars"><div class="chart">'
-            f'<div class="pline" style="bottom:{line/mx*100:.0f}%"><span>{line:g}</span></div>'
-            f'{cols}</div>'
+            f'<div class="pline" style="bottom:{line/mx*100:.1f}%"><span>{line:g}</span></div>'
+            f'{bars}</div><div class="opps">{opps}</div>'
             f'<div class="bnote">{over}/{len(s)} over {line:g} · {note}</div></div>')
 
 
@@ -235,13 +237,14 @@ def build():
   .mkt:has(+ .bars.open) .chev {{ transform:rotate(90deg); }}
   .bars {{ display:none; padding:20px 2px 4px; }}
   .bars.open {{ display:block; }}
-  .chart {{ position:relative; display:flex; align-items:flex-end; gap:5px; height:88px; overflow:visible; }}
-  .col {{ flex:1; display:flex; flex-direction:column; align-items:center; height:100%; justify-content:flex-end; }}
+  .chart {{ position:relative; display:flex; gap:5px; height:88px; overflow:visible; }}
+  .col {{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; }}
   .b {{ width:100%; max-width:26px; border-radius:4px 4px 0 0; position:relative; min-height:3px; }}
   .b.o {{ background:#2f9e63; }}
   .b.u {{ background:#8a3b46; }}
   .bv {{ position:absolute; top:-15px; left:0; right:0; text-align:center; font-size:10.5px; color:#aab3c1; }}
-  .bo {{ font-size:9.5px; color:#6b7484; margin-top:4px; }}
+  .opps {{ display:flex; gap:5px; margin-top:5px; }}
+  .opps span {{ flex:1; text-align:center; font-size:9.5px; color:#6b7484; }}
   .pline {{ position:absolute; left:0; right:0; height:0; border-top:1.5px dashed #5b9dff88; z-index:2; }}
   .pline span {{ position:absolute; right:0; top:-8px; font-size:9.5px; color:#5b9dff; background:#0a0d13; padding:0 3px; }}
   .bnote {{ color:#7d8696; font-size:11.5px; margin-top:9px; text-align:center; }}
