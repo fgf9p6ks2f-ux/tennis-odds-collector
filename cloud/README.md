@@ -1,10 +1,19 @@
-# WNBA injury watcher — cloud speed layer
+# WNBA injury watcher — cloud speed layer (optional)
 
-The whole edge is **latency**: beat the book to reprice after an injury drops. GitHub's
-scheduled cron is throttled (real cadence ~5–20 min), and a local Mac poller only runs
-while the Mac is awake. This is an always‑on cloud worker that polls **every minute**,
-independent of both, and fires an urgent phone push the instant a key player is newly
-ruled out.
+> **You probably don't need this.** `wnba-watch.yml` already gives true ~60‑second
+> polling on GitHub alone, free, with no external account: GitHub throttles per *cron
+> tick*, not per *job*, so that workflow lets cron merely START one job every 30 min and
+> the job loops internally every 60s. That's the recommended free path.
+>
+> This external worker only matters if you'd rather offload polling off GitHub entirely.
+> **Val Town's free tier caps cron at 15‑min intervals** — too slow — so for the external
+> route use **Cloudflare Workers** (Cron Triggers allow every‑minute, free, no card); the
+> same fetch/diff logic below ports directly, swapping Val Town's `blob` for a Workers KV
+> namespace.
+
+The whole edge is **latency**: beat the book to reprice after an injury drops. This
+always‑on worker polls **every minute**, independent of GitHub, and fires an urgent phone
+push the instant a key player is newly ruled out.
 
 ## What it does
 

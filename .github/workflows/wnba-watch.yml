@@ -1,20 +1,22 @@
 name: wnba-watch
-# Fast injury watcher — the SPEED layer. Polls every ~5 min through the game window and
-# fires an URGENT push the instant a key player is newly ruled out (the latency the edge
-# lives in). Cheap by design: a no-change poll is ~1s (roster cached to disk); the full
-# 47s scan runs only on a detected change. Public repo, so frequency is free. NOTE:
-# GitHub throttles/delays high-frequency schedules under load, so real cadence is closer
-# to every 5-20 min — a local poller (launchd) is the true low-latency path; this is the
-# always-on backstop. Shares the wnba-props concurrency group so writes never race it.
+# True ~60s injury polling on GitHub ALONE — no second platform, no account, no card.
+# GitHub throttles per CRON TICK, not per job, so instead of a (throttled) every-minute
+# cron we let cron merely START one job every 30 min, and the job LOOPS internally every
+# 60s. Restarts every 30 min; cancel-in-progress hands the baton to the fresh run so
+# coverage stays continuous even when GitHub delays a start (the old job keeps polling
+# up to 60 min until superseded). Public repo => free minutes.
+#
+# The edge is latency: the instant a key player on tonight's slate is newly ruled out,
+# wnba_watch.py fires an URGENT push naming who dropped + the beneficiary spots.
 on:
   schedule:
-    - cron: "*/5 15-23 * * *"   # ~11am-7pm ET: pre-tip windows through evening tips
-    - cron: "*/5 0-4 * * *"     # ~8pm-1am ET: late / West-coast games
+    - cron: "*/30 15-23 * * *"   # ~11am-7pm ET: pre-tip windows through evening tips
+    - cron: "*/30 0-4 * * *"     # ~8pm-1am ET: late / West-coast games
   workflow_dispatch: {}
 
 concurrency:
-  group: wnba-props
-  cancel-in-progress: false
+  group: wnba-watch            # its own group; cancel-in-progress = seamless restart
+  cancel-in-progress: true
 
 permissions:
   contents: write
@@ -22,25 +24,31 @@ permissions:
 jobs:
   watch:
     runs-on: ubuntu-latest
+    timeout-minutes: 60        # keep polling until the next 30-min run supersedes us
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - run: pip install requests
-      - name: poll injuries; scan + urgent push only on a new out
+      - name: poll every 60s; urgent push on a new out
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python wnba_watch.py || echo "watch skipped"
-      - name: commit state
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          # add each file independently — a single `git add a b c` aborts (stages NOTHING)
-          # if any path is missing, which on cold start silently persisted no state
-          for f in wnba_injury_state.json wnba_players_cache.json wnba_notified.txt wnba_ledger.sqlite; do
-            git add -f "$f" 2>/dev/null || true
+          for i in $(seq 1 56); do
+            python wnba_watch.py || echo "poll $i skipped"
+            # persist only on a real change (state file is written deterministically, so a
+            # no-change poll produces no diff -> no commit). add each file independently.
+            if [ -n "$(git status --porcelain)" ]; then
+              for f in wnba_injury_state.json wnba_players_cache.json wnba_notified.txt wnba_ledger.sqlite; do
+                git add -f "$f" 2>/dev/null || true
+              done
+              if git commit -m "wnba watch [skip ci]" >/dev/null 2>&1; then
+                git pull --rebase --autostash -q || true
+                git push -q || true
+              fi
+            fi
+            sleep 60
           done
-          git commit -m "wnba watch [skip ci]" || { echo "no change"; exit 0; }
-          git pull --rebase --autostash || true
-          git push
