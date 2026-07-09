@@ -44,9 +44,19 @@ def lineup_kpct(batter_ids: list[int], hand: str, splits: dict, lg_k: float) -> 
     return num / den if den else lg_k
 
 
+# Home/away calibration (k_characteristics study, 2,378 starts 2025-26): the model
+# under-projects HOME starters. Pooled bias was +0.28 home / -0.06 away; we apply a
+# CONSERVATIVE half of the stable home lift (away flipped sign in 2026, so leave it ~0)
+# — a small accuracy fix, NOT a standalone edge (sharp books already price home/away).
+HOME_ADJ = 0.15
+
+
 def project_mean(k_sum: float, bf_sum: float, n_starts: int, opp_kpct: float,
-                 lg_k: float, w_prior: float) -> float:
-    """Mean projected Ks for one start."""
+                 lg_k: float, w_prior: float, is_home: bool | None = None) -> float:
+    """Mean projected Ks for one start. `is_home` applies the home/away calibration."""
     k_pct = (k_sum + PRIOR_BF * w_prior) / (bf_sum + PRIOR_BF)
     exp_bf = float(np.clip(bf_sum / max(n_starts, 1), 18, 27))
-    return strikeouts.project(k_pct, opp_kpct, lg_k, exp_bf)["mean_k"]
+    mean = strikeouts.project(k_pct, opp_kpct, lg_k, exp_bf)["mean_k"]
+    if is_home is True:
+        mean += HOME_ADJ
+    return mean
