@@ -18,6 +18,7 @@ import datetime
 
 import requests
 
+import wnba_context as CTX
 import wnba_ledger as L
 import wnba_tonight as T
 import wnba_wowy as W
@@ -40,6 +41,7 @@ def collect():
     matchups = T.tonight_matchups()
     inj = T.injuries()
     today = datetime.date.today().isoformat()
+    lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
     # players who are themselves out can't be beneficiaries of a teammate sitting
     out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")}
     alerts, preds = [], []
@@ -66,20 +68,29 @@ def collect():
             if proj - w["with"]["min"]["mean"] <= 0:     # only genuine beneficiaries: must
                 continue                                 # play MORE without the out player
             vacated = {"points": p["pts"], "rebounds": p["reb"], "assists": p["ast"]}
-            for e in T.prop_edges(n, blog, proj, w, vacated):
+            ctx = CTX.matchup_context(p["team"], matchups.get(p["team"], ""), lines, rates)
+            env = []
+            if ctx["total"]:
+                env.append(f"O/U{ctx['total']:g}")
+            if ctx["pace_vs_lg"] is not None and abs(ctx["pace_vs_lg"]) > 2:
+                env.append("fast" if ctx["pace_vs_lg"] > 0 else "slow")
+            env_tag = " · " + " ".join(env) if env else ""
+            for e in T.prop_edges(n, blog, proj, w, vacated, ctx):
                 # beneficiary-centric + dated: dedups when several stars are out together
                 # (same spot triggered by each), re-fires on the next day's slate
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
-                # per-stat driver: points shows FGA, rebounds shows reb, assists shows ast
+                # per-stat driver: points shows FGA (+FTA/3PA), rebounds reb, assists ast
                 dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
                 bits = [f"{dl} {e['driver']:+g}" if e["driver"] is not None else "",
                         f"min {e['d_min']:+g}" if e["d_min"] is not None else ""]
+                if e["stat"] == "points" and e["d_fta"] is not None:
+                    bits += [f"FTA {e['d_fta']:+g}", f"3PA {e['d_3pa']:+g}"]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
                 alerts.append((e["ev"], key,
                     f"{_short(name)} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
                     f"{T._am(e['dec'])}{wo} | {e['hit']*100:.0f}%/{e['n']}g "
-                    f"elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{tag}"))
+                    f"elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{tag}{env_tag}"))
                 preds.append({"pred_date": today, "out_player": name, "player": n,
                               "team": p["team"], "opp": matchups.get(p["team"], ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
@@ -88,7 +99,9 @@ def collect():
                               "proj_min": round(proj, 1), "n_elev": e["n"],
                               "ev": round(e["ev"], 3), "stale": int(e["stale"]),
                               "d_stat": e["d_stat"], "d_fga": e["d_fga"], "d_min": e["d_min"],
-                              "driver": e["driver"], "vac": e["vac"]})
+                              "driver": e["driver"], "vac": e["vac"],
+                              "total": e["total"], "pace": e["pace"], "opp_def": e["opp_def"],
+                              "d_fta": e["d_fta"], "d_3pa": e["d_3pa"]})
             dd = T.double_double_rate(blog, proj, w)
             if dd and dd["rate"] >= 0.40:                # strong lagging-market DD candidate
                 bits = [f"reb {dd['d_reb']:+g}" if dd["d_reb"] is not None else "",

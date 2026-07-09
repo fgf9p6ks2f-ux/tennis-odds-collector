@@ -42,7 +42,7 @@ jobs:
             # persist only on a real change (state file is written deterministically, so a
             # no-change poll produces no diff -> no commit). add each file independently.
             if [ -n "$(git status --porcelain)" ]; then
-              for f in wnba_injury_state.json wnba_players_cache.json wnba_notified.txt wnba_ledger.sqlite; do
+              for f in wnba_injury_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite; do
                 git add -f "$f" 2>/dev/null || true
               done
               if git commit -m "wnba watch [skip ci]" >/dev/null 2>&1; then

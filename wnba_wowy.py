@@ -140,9 +140,10 @@ def wowy(player_log, teammate_log):
     with_g = [g for g in player_log if g["game_id"] in tm_games]
     without_g = [g for g in player_log if g["game_id"] not in tm_games]
     def block(gs):
-        # fga included: the user's usage tell — a beneficiary who SHOOTS more without the
-        # out player (not just plays more) is the real bet.
-        return {s: _summ(gs, s) for s in ("min", "pts", "reb", "ast", "fga")}
+        # fga/fta/fg3a included: the scoring-opportunity channels that drive POINTS —
+        # a beneficiary who shoots, gets to the line, and launches more threes without the
+        # out player is where the scoring redistributes.
+        return {s: _summ(gs, s) for s in ("min", "pts", "reb", "ast", "fga", "fta", "fg3a")}
     return {"with": block(with_g), "without": block(without_g),
             "n_with": len(with_g), "n_without": len(without_g)}
 

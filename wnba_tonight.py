@@ -26,7 +26,7 @@ try:
 except Exception:
     ET = dt.timezone(dt.timedelta(hours=-4))
 
-import wnba_dvp as DVP
+import wnba_context as CTX
 import wnba_wowy as W
 
 PROPS_DB = Path(os.environ.get("FD_DB",
@@ -70,7 +70,7 @@ ROLE_FLOOR = 22.0
 STAT_DRIVER = {"points": "fga", "rebounds": "reb", "assists": "ast"}
 
 
-def prop_edges(player, log, proj_min, w=None, vacated=None):
+def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
     production and a line the book anchored to the SEASON AVERAGE. For each posted line:
     hit rate in the player's elevated games (min >= max(proj-4, 22)), credibility-shrunk
@@ -78,20 +78,23 @@ def prop_edges(player, log, proj_min, w=None, vacated=None):
 
     Per-stat judgment signals (`w` = beneficiary's WOWY split vs the OUT player):
       points   decided on d_fga + d_min;  rebounds on d_reb + d_min;  assists on d_ast + d_min.
-    Plus `vacated` = the out player's own avg in that stat = the SIZE of the pool being
-    redistributed. `driver` is the deciding delta for the stat, `d_min` the minutes rise.
-    Won't post an over on a stat that DROPS without the player. Returns list of dicts."""
+    Points also carry d_fta/d_3pa (line/three scoring channels). `vacated` = the out
+    player's own avg in that stat = SIZE of the redistributed pool. `ctx` = matchup
+    context (Vegas total, pace, opp points allowed) — the game environment, which lifts
+    all counting stats. All attached as features; the learned model weights them. Won't
+    post an over on a stat that DROPS without the player. Returns list of dicts."""
     floor = max(proj_min - 4, ROLE_FLOOR)
     elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) < 4:
         return []
     fga = st.mean([g["fga"] for g in elevated])
+    ctx = ctx or {}
 
     def wdelta(k):                                  # without-minus-with, or None if no split
         if not w or w.get("n_with", 0) < 1 or w.get("n_without", 0) < 1:
             return None
         return round(w["without"][k]["mean"] - w["with"][k]["mean"], 1)
-    d_min, d_fga = wdelta("min"), wdelta("fga")
+    d_min, d_fga, d_fta, d_3pa = wdelta("min"), wdelta("fga"), wdelta("fta"), wdelta("fg3a")
 
     out = []
     for stat, best in posted_props(player).items():
@@ -123,11 +126,18 @@ def prop_edges(player, log, proj_min, w=None, vacated=None):
             # projects meaningfully higher — the book hasn't repriced the new role.
             stale = elev_avg - season_avg >= 1.0 and line <= (season_avg + elev_avg) / 2
             if ev >= 0.05:
-                out.append({"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
-                            "n": n, "fga": fga, "season_avg": round(season_avg, 1),
-                            "elev_avg": round(elev_avg, 1), "stale": stale,
-                            "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,
-                            "driver": driver, "vac": vac})
+                spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
+                        "n": n, "fga": fga, "season_avg": round(season_avg, 1),
+                        "elev_avg": round(elev_avg, 1), "stale": stale,
+                        "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,
+                        "driver": driver, "vac": vac,
+                        # matchup environment (same across the team's props)
+                        "total": ctx.get("total"), "pace": ctx.get("pace"),
+                        "opp_def": ctx.get("opp_pts_allowed"),
+                        # points-only scoring channels
+                        "d_fta": d_fta if stat == "points" else None,
+                        "d_3pa": d_3pa if stat == "points" else None}
+                out.append(spot)
     return sorted(out, key=lambda d: -d["ev"])
 
 
@@ -209,6 +219,7 @@ def main():
     playing = set(matchups)
     inj = injuries()
     out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")}
+    lines, rates = CTX.game_lines(), CTX.team_rates()     # Vegas total + pace, once
     print(f"Tonight: {len(playing)} teams in action · {len(inj)} injury-listed players\n")
 
     # key OUT players whose team plays tonight
@@ -227,7 +238,9 @@ def main():
         return
 
     for name, status, p in flagged:
-        note = DVP.matchup_note(matchups.get(p["team"], ""))
+        opp = matchups.get(p["team"], "")
+        note = CTX.matchup_note(p["team"], opp, lines, rates)
+        ctx = CTX.matchup_context(p["team"], opp, lines, rates)
         print(f"=== {name} ({p['team']}) {status} — {p['min']:.0f} mpg, {p['pts']:.0f} ppg "
               f"vacated ===" + (f"  [{note}]" if note else ""))
         try:
@@ -250,13 +263,15 @@ def main():
                 # the user's judgment, on one line: more minutes, more shots, more production
                 print(f"  {n:22} → ~{proj_min:.0f}min ({dmin:+.0f}), {dpts:+.1f}pts, "
                       f"{dfga:+.1f}FGA w/o {name.split()[-1]}")
-                for e in prop_edges(n, blog, proj_min, w, vacated):
+                for e in prop_edges(n, blog, proj_min, w, vacated, ctx):
                     star = " ⟵ stale line" if e["stale"] else ""
                     dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
                     d = f"{dl} {e['driver']:+g}, min {e['d_min']:+g} w/o, " if e["driver"] is not None else ""
+                    ch = (f" [FTA {e['d_fta']:+g}, 3PA {e['d_3pa']:+g}]"
+                          if e["stat"] == "points" and e["d_fta"] is not None else "")
                     print(f"       ✅ {e['stat']} over {e['line']:g} @ {_am(e['dec'])} — "
                           f"{d}elev {e['elev_avg']:g} vs season {e['season_avg']:g}, "
-                          f"hit {e['hit']*100:.0f}%/{e['n']}g (+{e['ev']*100:.0f}% EV){star}")
+                          f"hit {e['hit']*100:.0f}%/{e['n']}g (+{e['ev']*100:.0f}% EV){star}{ch}")
                 dd = double_double_rate(blog, proj_min, w)
                 if dd and dd["rate"] >= 0.35:            # check the lagging DD market
                     wo = ""

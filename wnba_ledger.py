@@ -38,14 +38,16 @@ CREATE TABLE IF NOT EXISTS predictions(
   proj_hit REAL, season_avg REAL, elev_avg REAL, proj_min REAL, n_elev INTEGER,
   ev REAL, stale INTEGER,
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
+  total REAL, pace REAL, opp_def REAL, d_fta REAL, d_3pa REAL,
   result TEXT, actual REAL, graded INTEGER DEFAULT 0,
   UNIQUE(pred_date, player, stat, line)
 );
 """
-# WOWY judgment features added 2026-07-09; migrate older DBs in place.
-# driver = the per-stat deciding delta (FGA rise for points, reb/ast rise otherwise);
-# vac = the out player's own avg in the stat (size of the pool being redistributed).
-_MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac")
+# Model features, migrated into older DBs in place. driver = per-stat deciding delta
+# (FGA rise for points, reb/ast rise otherwise); vac = out player's own avg in the stat
+# (pool size); total/pace/opp_def = matchup environment; d_fta/d_3pa = points channels.
+_MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac",
+            "total", "pace", "opp_def", "d_fta", "d_3pa")
 
 
 def _con():
@@ -68,7 +70,8 @@ def log_predictions(rows):
     con = _con()
     cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds",
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
-            "d_stat", "d_fga", "d_min", "driver", "vac")
+            "d_stat", "d_fga", "d_min", "driver", "vac",
+            "total", "pace", "opp_def", "d_fta", "d_3pa")
     n = 0
     for r in rows:
         cur = con.execute(
