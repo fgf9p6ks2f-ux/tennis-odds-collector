@@ -21,3 +21,15 @@ EBASKETBALL: today 2-0 +1.77u · all-time 2-0 +1.77u ($+177)
 BASEBALL: today 14-16 -3.71u · all-time 14-16 -3.71u ($-371)
 Pending: 3 (settle tomorrow)
 ```
+
+## 2026-07-09 (forced)
+
+```
+Daily digest - 2026-07-09 (MT)
+
+WNBA AUTOBETTER (injury props):
+TODAY: no bets graded yet
+ALL-TIME (since 7/9): 0-0  +0.00u ($+0)
+
+Focus: TT + WNBA. MLB / tennis / esports benched (data kept). Table tennis has its own nightly digest.
+```
