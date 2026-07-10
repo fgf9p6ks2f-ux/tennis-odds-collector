@@ -41,7 +41,9 @@ def collect():
     playing = T.tonight_teams()
     matchups = T.tonight_matchups()
     inj = T.injuries()
-    today = datetime.date.today().isoformat()
+    # ET slate date, NOT UTC — else a game tipping ~02:00Z (10pm ET) gets logged under two
+    # different UTC dates across midnight and the SAME bets double-count in the tracker.
+    today = datetime.datetime.now(T.ET).date().isoformat()
     lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
     gids = T.game_ids()                                  # team -> game id (for lineup lookup)
     # truly out = listed out AND no fresh posted props (a book posting a slate = playing)
