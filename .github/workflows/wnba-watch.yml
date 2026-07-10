@@ -25,7 +25,7 @@ permissions:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 355       # one start covers ~5.9h (GitHub's 6h job max) -> max robustness to dropped cron starts
+    timeout-minutes: 350       # loop runs ~5.3h then a guaranteed always() step redispatches the next run
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          for i in $(seq 1 350); do
+          for i in $(seq 1 315); do
             python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
             if [ $((i % 10)) -eq 1 ]; then                       # ~every 10 min: settle finished games LIVE
               python wnba_ledger.py --grade >/dev/null 2>&1 || echo "grade skipped"
@@ -59,3 +59,22 @@ jobs:
             fi
             sleep 60
           done
+      - name: self-redispatch — keep the loop IMMORTAL regardless of dropped cron starts
+        if: always()               # runs even if the poll step errored, so the chain never breaks
+        env:
+          DISPATCH_PAT: ${{ secrets.DISPATCH_PAT }}
+        run: |
+          if [ -z "$DISPATCH_PAT" ]; then
+            echo "no DISPATCH_PAT secret set — relying on cron starts (add the PAT to make the loop immortal)"
+            exit 0
+          fi
+          # the default GITHUB_TOKEN can't re-trigger a workflow (anti-recursion), so use the PAT.
+          # cancel-in-progress supersedes the (finishing) current run -> seamless handoff. Crons
+          # remain as a fallback if this ever fails.
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $DISPATCH_PAT" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/wnba-watch.yml/dispatches" \
+            -d '{"ref":"main"}')
+          if [ "$code" = "204" ]; then echo "✓ redispatched next watch loop (immortal chain)"; \
+          else echo "redispatch HTTP $code — cron starts are the fallback"; fi
