@@ -100,6 +100,15 @@ def _load(mt_date):
     g = con.execute("SELECT result,odds FROM predictions WHERE graded=1 "
                     "AND pred_date>='2026-07-09'").fetchall()
     con.close()
+    # durable user-played marks (wnba_played.txt) — read-only, so the ✓ shows on the board
+    # independent of when CI last synced the DB column
+    pf = HERE / "wnba_played.txt"
+    if pf.exists():
+        marks = [ln.split("|") for ln in pf.read_text().splitlines() if ln.count("|") == 3]
+        for r in rows:
+            if any(d == r["pred_date"] and s == r["stat"] and pl.lower() in (r["player"] or "").lower()
+                   and abs((r["line"] or 0) - float(ln)) < 1e-9 for d, pl, s, ln in marks):
+                r["played"] = 1
     dec = [r for r in g if r[0] in ("over", "under")]
     w = sum(1 for r in dec if r[0] == "over")
     u = sum((r[1] - 1) if r[0] == "over" else -1 for r in dec)
@@ -151,11 +160,22 @@ def _mkt_row(r):
         mid = f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%)'
     else:
         mid = f'proj {proj:g}'
+    # injury-driven boost for this stat (usage rise for pts, reb/ast rise otherwise) — the
+    # tell for a role-inheritor vs a maxed-out star who plays the same (Copper: +0.6).
+    drv = r.get("driver")
+    if drv is not None:
+        lbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "")
+        if drv < 1:
+            mid += ' · <span class="drv none">baseline</span>'
+        else:
+            mid += f' · <span class="drv {"big" if drv >= 3 else ""}">▲{drv:+.0f} {lbl}</span>'
     u = _units(r["proj_hit"], r["n_elev"], float(r["odds"]))
+    juice = ' <span class="juice">⚠ juice</span>' if float(r["odds"]) < 1.50 else ''  # worse than -200
+    played = ' <span class="played">✓</span>' if r.get("played") else ''
     return f"""
       <div class="mkt {cls}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">{stat}</span> o{r['line']:g}
-          <span class="mo">{_am(r['odds'])}</span> <span class="mu">{u:g}u</span></div>
+          <span class="mo">{_am(r['odds'])}</span>{juice} <span class="mu">{u:g}u</span>{played}</div>
         <div class="mmid">{mid}</div>
         <div class="mbadge {cls}">{html.escape(badge)}</div>
         <div class="chev">›</div>
@@ -176,13 +196,23 @@ def _player_card(player, rows, tip=None):
               r0.get("confidence") or "projected", ("", ""))
     conf_html = f'<span class="cconf {cb[1]}">{cb[0]}</span>' if cb[0] else ""
     ctx = []
-    if r0.get("proj_min"):
-        dm = f" ({r0['d_min']:+g})" if r0.get("d_min") is not None else ""
-        ctx.append(f"~{r0['proj_min']:.0f} min{dm}")
     if r0.get("total"):
         ctx.append(f"O/U {r0['total']:g}")
     if r0.get("opp_def"):
         ctx.append(f"opp allows {r0['opp_def']:g}")
+    # role-jump badge: minutes gained without the out player = the clearest "did the role
+    # actually change" — a role-inheritor jumps (Ayayi +17), a maxed-out star barely moves
+    # (Copper +3). Green when it's a real jump, muted when it isn't.
+    role = ""
+    if r0.get("proj_min"):
+        dm = r0.get("d_min")
+        if dm is not None:
+            jcls = "jbig" if dm >= 6 else ("jnone" if dm < 3 else "")
+            role = f'<span class="jump {jcls}">~{r0["proj_min"]:.0f} min · ▲{dm:+.0f} role</span>'
+        else:
+            role = f'<span class="jump">~{r0["proj_min"]:.0f} min</span>'
+    ctxtext = ' · '.join(html.escape(c) for c in ctx)
+    cctx = role + (f' · {ctxtext}' if ctxtext else "")
     mkts = "".join(_mkt_row(r) for r in sorted(rows, key=lambda r: -_conf(r)))
     return f"""
     <div class="card">
@@ -191,7 +221,7 @@ def _player_card(player, rows, tip=None):
         <div class="ctag">{html.escape(outs)} out</div>
       </div>
       <div class="cgame">{html.escape(game)}{conf_html}</div>
-      <div class="cctx">{' · '.join(html.escape(c) for c in ctx)}</div>
+      <div class="cctx">{cctx}</div>
       {mkts}
     </div>"""
 
@@ -352,6 +382,14 @@ def build():
   .mo {{ color:#5b9dff; font-weight:700; }}
   .mmid {{ flex:1; color:#8b94a3; font-size:13px; }}
   .mmid b {{ color:#cdd5e0; font-weight:700; }}
+  .juice {{ color:#e0a458; font-size:11px; font-weight:700; white-space:nowrap; }}
+  .played {{ color:#4ade80; font-size:12.5px; font-weight:800; }}
+  .drv {{ font-size:11.5px; color:#8b94a3; }}
+  .drv.big {{ color:#5bbd85; font-weight:700; }}
+  .drv.none {{ color:#6b7484; }}
+  .jump {{ font-size:13px; color:#93a0b4; font-weight:600; }}
+  .jump.jbig {{ color:#4ade80; }}
+  .jump.jnone {{ color:#7d8696; font-weight:500; }}
   .thin {{ color:#c99a52; font-size:11px; background:#241c0e; padding:1px 6px; border-radius:6px; margin-left:2px; }}
   .mbadge {{ font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:20px; white-space:nowrap; }}
   .mbadge.pend {{ background:transparent; color:#39435500; font-size:0; }}

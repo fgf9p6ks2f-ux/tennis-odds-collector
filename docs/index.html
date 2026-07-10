@@ -34,6 +34,14 @@
   .mo { color:#5b9dff; font-weight:700; }
   .mmid { flex:1; color:#8b94a3; font-size:13px; }
   .mmid b { color:#cdd5e0; font-weight:700; }
+  .juice { color:#e0a458; font-size:11px; font-weight:700; white-space:nowrap; }
+  .played { color:#4ade80; font-size:12.5px; font-weight:800; }
+  .drv { font-size:11.5px; color:#8b94a3; }
+  .drv.big { color:#5bbd85; font-weight:700; }
+  .drv.none { color:#6b7484; }
+  .jump { font-size:13px; color:#93a0b4; font-weight:600; }
+  .jump.jbig { color:#4ade80; }
+  .jump.jnone { color:#7d8696; font-weight:500; }
   .thin { color:#c99a52; font-size:11px; background:#241c0e; padding:1px 6px; border-radius:6px; margin-left:2px; }
   .mbadge { font-size:11.5px; font-weight:700; padding:4px 9px; border-radius:20px; white-space:nowrap; }
   .mbadge.pend { background:transparent; color:#39435500; font-size:0; }
@@ -104,7 +112,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated 7:15 PM MT · self-refreshing</div>
+    <div class="live"><span class="dot"></span>Updated 7:47 PM MT · self-refreshing</div>
   </header>
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
@@ -120,26 +128,26 @@
         <div class="ctag">C. Clark out</div>
       </div>
       <div class="cgame">IND vs PHX · 8:00 PM MT<span class="cconf cmid">lineup TBD</span></div>
-      <div class="cctx">~21 min (+2) · O/U 171.5 · opp allows 85.2</div>
+      <div class="cctx"><span class="jump jnone">~21 min · ▲+2 role</span> · O/U 171.5 · opp allows 85.2</div>
       
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">REB</span> o5.5
-          <span class="mo">-140</span> <span class="mu">2u</span></div>
-        <div class="mmid">proj 7.4 · <b>6-1</b> (86%)</div>
+          <span class="mo">-140</span> <span class="mu">2u</span> <span class="played">✓</span></div>
+        <div class="mmid">proj 7.4 · <b>6-1</b> (86%) · <span class="drv none">baseline</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:48.2%"><span>5.5</span></div><div class="col"><div class="b u" style="height:26.3%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:70.2%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:78.9%"><span class="bv">9</span></div></div><div class="col"><div class="b o" style="height:70.2%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:70.2%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">10</span></div></div><div class="col"><div class="b o" style="height:52.6%"><span class="bv">6</span></div></div></div><div class="opps"><span>DAL</span><span>LA</span><span>WSH</span><span>NY</span><span>CON</span><span>PHX</span><span>LA</span></div><div class="bnote">6/7 over 5.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">REB</span> o7.5
           <span class="mo">+225</span> <span class="mu">2u</span></div>
-        <div class="mmid">proj 7.4 · <b>5-2</b> (71%)</div>
+        <div class="mmid">proj 7.4 · <b>5-2</b> (71%) · <span class="drv none">baseline</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:65.8%"><span>7.5</span></div><div class="col"><div class="b u" style="height:26.3%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:70.2%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:78.9%"><span class="bv">9</span></div></div><div class="col"><div class="b o" style="height:70.2%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:70.2%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">10</span></div></div><div class="col"><div class="b u" style="height:52.6%"><span class="bv">6</span></div></div></div><div class="opps"><span>DAL</span><span>LA</span><span>WSH</span><span>NY</span><span>CON</span><span>PHX</span><span>LA</span></div><div class="bnote">5/7 over 7.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">PTS</span> o9.5
-          <span class="mo">+140</span> <span class="mu">1.5u</span></div>
-        <div class="mmid">proj 10.7 · <b>5-2</b> (71%)</div>
+          <span class="mo">+140</span> <span class="mu">1.5u</span> <span class="played">✓</span></div>
+        <div class="mmid">proj 10.7 · <b>5-2</b> (71%) · <span class="drv big">▲+3 usg</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:55.6%"><span>9.5</span></div><div class="col"><div class="b u" style="height:11.7%"><span class="bv">2</span></div></div><div class="col"><div class="b u" style="height:52.6%"><span class="bv">9</span></div></div><div class="col"><div class="b o" style="height:58.5%"><span class="bv">10</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">15</span></div></div><div class="col"><div class="b o" style="height:58.5%"><span class="bv">10</span></div></div><div class="col"><div class="b o" style="height:81.9%"><span class="bv">14</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">15</span></div></div></div><div class="opps"><span>DAL</span><span>LA</span><span>WSH</span><span>NY</span><span>CON</span><span>PHX</span><span>LA</span></div><div class="bnote">5/7 over 9.5 · elevated-role games</div></div>
@@ -151,19 +159,19 @@
         <div class="ctag">C. Clark out</div>
       </div>
       <div class="cgame">IND vs PHX · 8:00 PM MT<span class="cconf cmid">lineup TBD</span></div>
-      <div class="cctx">~22 min (+2) · O/U 171.5 · opp allows 85.2</div>
+      <div class="cctx"><span class="jump jnone">~22 min · ▲+2 role</span> · O/U 171.5 · opp allows 85.2</div>
       
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">REB</span> o3.5
           <span class="mo">-174</span> <span class="mu">2u</span></div>
-        <div class="mmid">proj 5.2 · <b>8-2</b> (80%)</div>
+        <div class="mmid">proj 5.2 · <b>8-2</b> (80%) · <span class="drv big">▲+3 reb</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:38.4%"><span>3.5</span></div><div class="col"><div class="b o" style="height:43.9%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:43.9%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:65.8%"><span class="bv">6</span></div></div><div class="col"><div class="b u" style="height:32.9%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:65.8%"><span class="bv">6</span></div></div><div class="col"><div class="b u" style="height:21.9%"><span class="bv">2</span></div></div><div class="col"><div class="b o" style="height:76.8%"><span class="bv">7</span></div></div><div class="col"><div class="b o" style="height:43.9%"><span class="bv">4</span></div></div></div><div class="opps"><span>WSH</span><span>POR</span><span>GS</span><span>GS</span><span>WSH</span><span>CHI</span><span>CON</span><span>PHX</span><span>LA</span><span>LV</span></div><div class="bnote">8/10 over 3.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">REB</span> o5.5
           <span class="mo">+265</span> <span class="mu">1u</span></div>
-        <div class="mmid">proj 5.2 · <b>5-5</b> (50%)</div>
+        <div class="mmid">proj 5.2 · <b>5-5</b> (50%) · <span class="drv big">▲+3 reb</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:60.3%"><span>5.5</span></div><div class="col"><div class="b u" style="height:43.9%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">8</span></div></div><div class="col"><div class="b u" style="height:43.9%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:65.8%"><span class="bv">6</span></div></div><div class="col"><div class="b u" style="height:32.9%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:65.8%"><span class="bv">6</span></div></div><div class="col"><div class="b u" style="height:21.9%"><span class="bv">2</span></div></div><div class="col"><div class="b o" style="height:76.8%"><span class="bv">7</span></div></div><div class="col"><div class="b u" style="height:43.9%"><span class="bv">4</span></div></div></div><div class="opps"><span>WSH</span><span>POR</span><span>GS</span><span>GS</span><span>WSH</span><span>CHI</span><span>CON</span><span>PHX</span><span>LA</span><span>LV</span></div><div class="bnote">5/10 over 5.5 · elevated-role games</div></div>
@@ -175,12 +183,12 @@
         <div class="ctag">N. Nogic out</div>
       </div>
       <div class="cgame">PHX vs IND · 8:00 PM MT<span class="cconf cmid">likely starts</span></div>
-      <div class="cctx">~32 min (+7.6) · O/U 171.5 · opp allows 88.6</div>
+      <div class="cctx"><span class="jump jbig">~32 min · ▲+8 role</span> · O/U 171.5 · opp allows 88.6</div>
       
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">REB</span> o6.5
           <span class="mo">-130</span> <span class="mu">1u</span></div>
-        <div class="mmid">proj 6.8 · <b>8-4</b> (67%)</div>
+        <div class="mmid">proj 6.8 · <b>8-4</b> (67%) · <span class="drv big">▲+4 reb</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:51.8%"><span>6.5</span></div><div class="col"><div class="b o" style="height:55.8%"><span class="bv">7</span></div></div><div class="col"><div class="b u" style="height:31.9%"><span class="bv">4</span></div></div><div class="col"><div class="b u" style="height:39.9%"><span class="bv">5</span></div></div><div class="col"><div class="b u" style="height:39.9%"><span class="bv">5</span></div></div><div class="col"><div class="b u" style="height:31.9%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:55.8%"><span class="bv">7</span></div></div><div class="col"><div class="b o" style="height:63.8%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">11</span></div></div><div class="col"><div class="b o" style="height:63.8%"><span class="bv">8</span></div></div><div class="col"><div class="b o" style="height:55.8%"><span class="bv">7</span></div></div></div><div class="opps"><span>CHI</span><span>TOR</span><span>LA</span><span>POR</span><span>GS</span><span>DAL</span><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">6/10 over 6.5 · elevated-role games</div></div>
@@ -192,26 +200,26 @@
         <div class="ctag">N. Nogic out</div>
       </div>
       <div class="cgame">PHX vs IND · 8:00 PM MT<span class="cconf cmid">likely starts</span></div>
-      <div class="cctx">~28 min (+16.6) · O/U 171.5 · opp allows 88.6</div>
+      <div class="cctx"><span class="jump jbig">~28 min · ▲+17 role</span> · O/U 171.5 · opp allows 88.6</div>
       
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">PTS</span> o14.5
-          <span class="mo">+260</span> <span class="mu">1.5u</span></div>
-        <div class="mmid">proj 16.5 · <b>3-1</b> (75%)</div>
+          <span class="mo">+260</span> <span class="mu">1.5u</span> <span class="played">✓</span></div>
+        <div class="mmid">proj 16.5 · <b>3-1</b> (75%) · <span class="drv big">▲+7 usg</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:63.6%"><span>14.5</span></div><div class="col"><div class="b o" style="height:83.3%"><span class="bv">19</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">20</span></div></div><div class="col"><div class="b o" style="height:78.9%"><span class="bv">18</span></div></div><div class="col"><div class="b u" style="height:39.5%"><span class="bv">9</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">3/4 over 14.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">PTS</span> o10.5
-          <span class="mo">-120</span> <span class="mu">1u</span></div>
-        <div class="mmid">proj 16.5 · <b>3-1</b> (75%)</div>
+          <span class="mo">-120</span> <span class="mu">1u</span> <span class="played">✓</span></div>
+        <div class="mmid">proj 16.5 · <b>3-1</b> (75%) · <span class="drv big">▲+7 usg</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:46.1%"><span>10.5</span></div><div class="col"><div class="b o" style="height:83.3%"><span class="bv">19</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">20</span></div></div><div class="col"><div class="b o" style="height:78.9%"><span class="bv">18</span></div></div><div class="col"><div class="b u" style="height:39.5%"><span class="bv">9</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">3/4 over 10.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">REB</span> o5.5
           <span class="mo">+148</span> <span class="mu">0.5u</span></div>
-        <div class="mmid">proj 4.2 · <b>2-2</b> (50%)</div>
+        <div class="mmid">proj 4.2 · <b>2-2</b> (50%) · <span class="drv ">▲+2 reb</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:80.4%"><span>5.5</span></div><div class="col"><div class="b u" style="height:43.9%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">6</span></div></div><div class="col"><div class="b u" style="height:29.2%"><span class="bv">2</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">6</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">2/4 over 5.5 · elevated-role games</div></div>
@@ -223,19 +231,19 @@
         <div class="ctag">C. Clark out</div>
       </div>
       <div class="cgame">IND vs PHX · 8:00 PM MT<span class="cconf cmid">likely starts</span></div>
-      <div class="cctx">~28 min (+18) · O/U 171.5 · opp allows 85.2</div>
+      <div class="cctx"><span class="jump jbig">~28 min · ▲+18 role</span> · O/U 171.5 · opp allows 85.2</div>
       
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">AST</span> o3.5
           <span class="mo">-174</span> <span class="mu">1u</span></div>
-        <div class="mmid">proj 4.8 · <b>3-1</b> (75%)</div>
+        <div class="mmid">proj 4.8 · <b>3-1</b> (75%) · <span class="drv big">▲+4 ast</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:43.9%"><span>3.5</span></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">7</span></div></div><div class="col"><div class="b u" style="height:37.6%"><span class="bv">3</span></div></div><div class="col"><div class="b o" style="height:62.7%"><span class="bv">5</span></div></div><div class="col"><div class="b o" style="height:50.1%"><span class="bv">4</span></div></div></div><div class="opps"><span>POR</span><span>LA</span><span>LV</span><span>LA</span></div><div class="bnote">3/4 over 3.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">PTS</span> o9.5
           <span class="mo">+185</span> <span class="mu">0.5u</span></div>
-        <div class="mmid">proj 7.5 · <b>2-2</b> (50%)</div>
+        <div class="mmid">proj 7.5 · <b>2-2</b> (50%) · <span class="drv big">▲+3 usg</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:52.1%"><span>9.5</span></div><div class="col"><div class="b u" style="height:0.0%"><span class="bv">0</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">16</span></div></div><div class="col"><div class="b u" style="height:21.9%"><span class="bv">4</span></div></div><div class="col"><div class="b o" style="height:54.8%"><span class="bv">10</span></div></div></div><div class="opps"><span>POR</span><span>LA</span><span>LV</span><span>LA</span></div><div class="bnote">2/4 over 9.5 · elevated-role games</div></div>
@@ -247,19 +255,19 @@
         <div class="ctag">N. Nogic out</div>
       </div>
       <div class="cgame">PHX vs IND · 8:00 PM MT<span class="cconf cmid">likely starts</span></div>
-      <div class="cctx">~34 min (+2.9) · O/U 171.5 · opp allows 88.6</div>
+      <div class="cctx"><span class="jump jnone">~34 min · ▲+3 role</span> · O/U 171.5 · opp allows 88.6</div>
       
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">PTS</span> o19.5
           <span class="mo">-122</span> <span class="mu">1u</span></div>
-        <div class="mmid">proj 22.9 · <b>10-6</b> (62%)</div>
+        <div class="mmid">proj 22.9 · <b>10-6</b> (62%) · <span class="drv none">baseline</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:41.7%"><span>19.5</span></div><div class="col"><div class="b u" style="height:40.7%"><span class="bv">19</span></div></div><div class="col"><div class="b u" style="height:34.2%"><span class="bv">16</span></div></div><div class="col"><div class="b u" style="height:34.2%"><span class="bv">16</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">41</span></div></div><div class="col"><div class="b o" style="height:55.6%"><span class="bv">26</span></div></div><div class="col"><div class="b o" style="height:42.8%"><span class="bv">20</span></div></div><div class="col"><div class="b o" style="height:59.9%"><span class="bv">28</span></div></div><div class="col"><div class="b o" style="height:57.8%"><span class="bv">27</span></div></div><div class="col"><div class="b o" style="height:64.2%"><span class="bv">30</span></div></div><div class="col"><div class="b o" style="height:53.5%"><span class="bv">25</span></div></div></div><div class="opps"><span>NY</span><span>NY</span><span>SEA</span><span>LA</span><span>LV</span><span>IND</span><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">7/10 over 19.5 · elevated-role games</div></div>
       <div class="mkt pend" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="mline"><span class="ms">PTS</span> o24.5
           <span class="mo">+245</span> <span class="mu">1u</span></div>
-        <div class="mmid">proj 22.9 · <b>7-9</b> (44%)</div>
+        <div class="mmid">proj 22.9 · <b>7-9</b> (44%) · <span class="drv none">baseline</span></div>
         <div class="mbadge pend">•</div>
         <div class="chev">›</div>
       </div><div class="bars"><div class="chart"><div class="pline" style="bottom:52.4%"><span>24.5</span></div><div class="col"><div class="b u" style="height:40.7%"><span class="bv">19</span></div></div><div class="col"><div class="b u" style="height:34.2%"><span class="bv">16</span></div></div><div class="col"><div class="b u" style="height:34.2%"><span class="bv">16</span></div></div><div class="col"><div class="b o" style="height:87.7%"><span class="bv">41</span></div></div><div class="col"><div class="b o" style="height:55.6%"><span class="bv">26</span></div></div><div class="col"><div class="b u" style="height:42.8%"><span class="bv">20</span></div></div><div class="col"><div class="b o" style="height:59.9%"><span class="bv">28</span></div></div><div class="col"><div class="b o" style="height:57.8%"><span class="bv">27</span></div></div><div class="col"><div class="b o" style="height:64.2%"><span class="bv">30</span></div></div><div class="col"><div class="b o" style="height:53.5%"><span class="bv">25</span></div></div></div><div class="opps"><span>NY</span><span>NY</span><span>SEA</span><span>LA</span><span>LV</span><span>IND</span><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span></div><div class="bnote">6/10 over 24.5 · elevated-role games</div></div>

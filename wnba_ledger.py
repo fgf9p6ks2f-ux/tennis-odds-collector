@@ -28,6 +28,8 @@ import wnba_wowy as W
 HERE = Path(__file__).resolve().parent
 DB = HERE / "wnba_ledger.sqlite"
 CAL = HERE / "wnba_proj_cal.json"
+PLAYED = HERE / "wnba_played.txt"      # durable user-played marks (plain text: merges clean,
+                                       # re-applied on every DB open so a CI DB-reset can't lose them)
 STATKEY = {"points": "pts", "rebounds": "reb", "assists": "ast"}
 MIN_TRAIN = 30                     # graded spots before a calibration is trustworthy
 
@@ -63,8 +65,46 @@ def _con():
     for col in _MIGRATE_TEXT:
         if col not in have:
             con.execute(f"ALTER TABLE predictions ADD COLUMN {col} TEXT")
+    if "played" not in have:      # user-approval label: did the user actually bet this flag?
+        con.execute("ALTER TABLE predictions ADD COLUMN played INTEGER DEFAULT 0")
     con.commit()
+    _apply_played(con)            # re-derive played marks from the durable text file
     return con
+
+
+def _apply_played(con):
+    """Re-apply the durable played marks (wnba_played.txt) onto the DB, so a fresh/reset CI
+    database always reflects what the user bet."""
+    if not PLAYED.exists():
+        return
+    for ln in PLAYED.read_text().splitlines():
+        p = ln.strip().split("|")
+        if len(p) == 4:
+            con.execute("UPDATE predictions SET played=1 WHERE pred_date=? AND player LIKE ? "
+                        "AND stat=? AND line=?", (p[0], f"%{p[1]}%", p[2], float(p[3])))
+    con.commit()
+
+
+def mark_played(specs, date=None):
+    """Tag flagged rows the USER actually bet — the human-approval label the learner trains
+    on (what distinguishes the plays he takes from the ones he passes). Writes to the durable
+    text file AND the DB. specs = list of (player_substr, stat, line); date defaults to the
+    latest slate. Returns count matched in the DB."""
+    con = _con()
+    if date is None:
+        row = con.execute("SELECT MAX(pred_date) FROM predictions").fetchone()
+        date = row[0] if row else None
+    keys = set(PLAYED.read_text().splitlines()) if PLAYED.exists() else set()
+    n = 0
+    for player, stat, line in specs:
+        keys.add(f"{date}|{player}|{stat}|{line:g}")
+        n += con.execute(
+            "UPDATE predictions SET played=1 WHERE pred_date=? AND player LIKE ? "
+            "AND stat=? AND line=?", (date, f"%{player}%", stat, float(line))).rowcount
+    PLAYED.write_text("\n".join(sorted(keys)))
+    con.commit()
+    con.close()
+    return n
 
 
 def log_predictions(rows):
@@ -246,19 +286,67 @@ def learn():
           "winners; as the sample grows they firm up and can re-weight the flagger's EV.")
 
 
+SELECT = HERE / "wnba_select.json"
+# selection also cares about price + line depth, so add them to the model features
+SELECT_FEATURES = LEARN_FEATURES + ["odds", "line"]
+
+
+def learn_selection():
+    """What separates the flags the USER PLAYS from the ones he PASSES — his selection filter,
+    learned from the `played` label rather than win/loss (juice aversion, role-jump preference,
+    …). Same Cohen's-d method as learn(). Independent of grading, so it fires as soon as there
+    are enough played+passed flags. This is the human-in-the-loop signal: eventually the
+    flagger can pre-rank toward what he'd actually bet."""
+    con = _con()
+    rows = con.execute(
+        f"SELECT played, {','.join(SELECT_FEATURES)} FROM predictions").fetchall()
+    con.close()
+    played = [r for r in rows if r[0] == 1]
+    passed = [r for r in rows if not r[0]]
+    if len(played) < 8 or len(passed) < 15:
+        print(f"\nselect: {len(played)} played / {len(passed)} passed — accumulating your "
+              f"selection profile (needs ~8 played / 15 passed to separate signal from noise).")
+        return
+    seps = []
+    for i, f in enumerate(SELECT_FEATURES, start=1):
+        pv = [r[i] for r in played if r[i] is not None]
+        qv = [r[i] for r in passed if r[i] is not None]
+        if len(pv) < 5 or len(qv) < 5:
+            continue
+        mp, mq = st.mean(pv), st.mean(qv)
+        sd = st.pstdev(pv + qv) or 1.0
+        seps.append((round((mp - mq) / sd, 3), f, round(mp, 2), round(mq, 2)))
+    seps.sort(key=lambda x: -abs(x[0]))
+    print(f"\nselect: PLAYED vs PASSED over {len(played)}+{len(passed)} flags\n")
+    for d, f, mp, mq in seps:
+        print(f"  {f:11} play {mp:>7} vs pass {mq:>7}  sep {d:+.2f}  "
+              f"{'PLAYS higher' if d > 0 else 'passes higher'}")
+    SELECT.write_text(json.dumps({"played": len(played), "passed": len(passed),
+                                  "separations": {f: d for d, f, _, _ in seps}}, indent=1))
+    print("  -> wrote wnba_select.json = your selection filter (what makes you take a flag).")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--grade", action="store_true")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--train", action="store_true")
     ap.add_argument("--learn", action="store_true")
+    ap.add_argument("--played", nargs="+", metavar="PLAYER/STAT/LINE",
+                    help="mark flagged rows the user bet, e.g. 'Billings/rebounds/5.5'")
     args = ap.parse_args()
+    if args.played:
+        specs = [(s.rsplit("/", 2)[0], s.rsplit("/", 2)[1], float(s.rsplit("/", 2)[2]))
+                 for s in args.played]
+        print(f"marked {mark_played(specs)} row(s) as played")
+        return
     if args.grade:
         print(f"graded {grade()} spots")
     if args.train:
         train()
     if args.learn:
         learn()
+        learn_selection()
     if args.report or not (args.grade or args.train or args.learn):
         report()
 
