@@ -33,6 +33,26 @@ def _short(name):
     return f"{p[0][0]}.{p[-1]}" if len(p) >= 2 else name
 
 
+# Positional role groups — a vacated role goes mostly to SAME-position players. A guard
+# (Clark) sitting hands minutes/usage to other GUARDS, not to a forward (Billings). So we
+# scale a beneficiary's projected elevation by how well their position matches the out
+# player's. This is the fix for flagging Billings (F) hard off Clark (G) — she was never a
+# real beneficiary of a guard's absence (tonight the guards Hull/Harris cashed, she didn't).
+_POSG = {"G": "G", "PG": "G", "SG": "G", "GF": "G", "F": "F", "SF": "F", "PF": "F",
+         "FC": "C", "C": "C", "CF": "C"}
+_COMPAT = {("G", "G"): 1.0, ("F", "F"): 1.0, ("C", "C"): 1.0,
+           ("F", "C"): 0.6, ("C", "F"): 0.6, ("G", "F"): 0.3, ("F", "G"): 0.3,
+           ("G", "C"): 0.15, ("C", "G"): 0.15}
+
+
+def position_compat(bene_pos, out_positions):
+    """1.0 = same role as an out player (a real beneficiary), down to 0.15 = opposite (a
+    guard's absence barely elevates a center). Best match across the out players."""
+    bg = _POSG.get((bene_pos or "F").upper(), "F")
+    return max((_COMPAT.get((bg, _POSG.get((op or "F").upper(), "F")), 0.4)
+                for op in out_positions), default=0.5)
+
+
 def collect():
     """Returns (alerts, preds): alerts are ntfy message tuples, preds are the full
     prediction rows logged to the ledger so every flagged spot gets graded and fed back
@@ -93,8 +113,15 @@ def collect():
                 w = max(cands, key=lambda x: x[0]["n_without"])[0]
             if w["n_without"] < 2:
                 continue
-            proj = w["without"]["min"]["mean"]
-            if proj - w["with"]["min"]["mean"] <= 0:     # genuine beneficiary: plays MORE
+            # POSITION MATCH: a vacated role goes to same-position players. Skip clear
+            # mismatches (a forward off a guard = pw 0.3) — not a real beneficiary — and for
+            # partial matches (F<->C, 0.6) scale the projected minutes-elevation down.
+            pw = position_compat(v.get("position"), [op.get("position") for _, op in outs])
+            if pw <= 0.3:
+                continue
+            with_min = w["with"]["min"]["mean"]
+            proj = with_min + pw * (w["without"]["min"]["mean"] - with_min)
+            if proj - with_min <= 0.5:                    # negligible real elevation
                 continue
             conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx):
