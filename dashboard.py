@@ -236,12 +236,11 @@ def _tracker_panel(wnba_rec, tt_json):
     return out
 
 
-def _tt_ladder(lad, play_to, zone, book_line=None):
+def _tt_ladder(lad, play_to, zone):
     """Tap-to-expand hit-rate ladder: the raw H2H hit rate of the FLAGGED SIDE at every line
-    a book might post (centered on the pair's scoring), so the user reads the rate at THEIR
-    exact line. Over bet -> over% per line; under bet -> under% per line. ◄ = the model's
-    validated cutoff (play up to here; rows past it dimmed). 📍 = the book's ACTUAL posted
-    line, when we have it — so you see at a glance whether the book shaded past your edge."""
+    a book might post (70.5–80.5), so the user reads the rate at THEIR exact line. Over bet
+    -> over% per line; under bet -> under% per line. The ◄ marks the furthest line still
+    worth playing (the model's validated cutoff); rows PAST that edge are dimmed = skip."""
     if not lad:
         return '<div class="ttlad"><div class="ladnote">no H2H line ladder</div></div>'
     over_side = zone.startswith("O")
@@ -252,24 +251,19 @@ def _tt_ladder(lad, play_to, zone, book_line=None):
         hit = r["o"] if over_side else r["u"]
         miss = r["u"] if over_side else r["o"]
         edge = abs(r["line"] - play_to) < 0.01
-        isbook = book_line is not None and abs(r["line"] - book_line) < 0.01
         noplay = (r["line"] > play_to) if over_side else (r["line"] < play_to)
         cls = " mark" if edge else (" dim" if noplay else "")
-        if isbook:
-            cls += " book"
-        marks = (' <span class="ladm">◄</span>' if edge else "") + \
-                (' <span class="ladbk">📍</span>' if isbook else "")
+        lbl = f'{r["line"]:g}' + (' <span class="ladm">◄</span>' if edge else "")
         rows += (f'<div class="ladrow{cls}">'
-                 f'<span class="ladl">{r["line"]:g}{marks}</span>'
+                 f'<span class="ladl">{lbl}</span>'
                  f'<span class="ladbar"><i style="width:{pct}%"></i></span>'
                  f'<span class="ladv">{pct}%</span>'
                  f'<span class="ladr">{hit}-{miss}</span></div>')
-    booknote = " · 📍 book's line" if book_line is not None else ""
     return (f'<div class="ttlad">'
             f'<div class="ladhead"><span>Line</span><span>{sidelbl} hit rate</span>'
             f'<span class="ladv">%</span><span class="ladr">rec</span></div>'
             f'{rows}'
-            f'<div class="ladnote">◄ play {sidelbl} up to here · dimmed = edge too thin{booknote}</div></div>')
+            f'<div class="ladnote">◄ play {sidelbl} up to here · dimmed rows = edge too thin, skip</div></div>')
 
 
 def _tt_panel(data):
@@ -294,24 +288,11 @@ def _tt_panel(data):
             when = (dt.datetime.fromtimestamp(b["ts"], MT).strftime("%-I:%M %p")
                     if b.get("ts") else "TBD")
             side = html.escape(b.get("side", ""))
-            bl = b.get("book_line")
-            lad = _tt_ladder(b.get("ladder", []), b.get("play_to", default_line),
-                             b.get("side", ""), bl)
-            book = ""
-            if bl is not None:
-                over_side = b.get("side", "").startswith("O")
-                pt = b.get("play_to")
-                good = pt is None or (bl <= pt if over_side else bl >= pt)   # still inside edge?
-                cls = "bkgood" if good else "bkbad"
-                verb = "over" if over_side else "under"
-                book = (f'<div class="ttbook {cls}">📍 book {bl:g} · {verb} {b.get("book_hit")}% '
-                        f'({b.get("book_rec")}) · O{b.get("book_over"):.2f}/U{b.get("book_under"):.2f}'
-                        f'{"" if good else " · past your edge"}</div>')
+            lad = _tt_ladder(b.get("ladder", []), b.get("play_to", default_line), b.get("side", ""))
             cards += f"""
       <div class="ttrow" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}<span class="ttchev">›</span></div>
         <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u</div>
-        {book}
       </div>{lad}"""
         out.append(f'<div class="card"><h3 class="ttlg">{html.escape(league)}</h3>{cards}</div>')
     return "\n".join(out)
@@ -420,16 +401,9 @@ def build():
   .ladrow {{ padding:5px 6px; border-radius:7px; font-size:12.5px; }}
   .ladrow.mark {{ background:#15263b; box-shadow:inset 2px 0 0 #5b9dff; }}
   .ladrow.mark .ladl {{ color:#7aa2e3; }}
-  .ladrow.book {{ box-shadow:inset 2px 0 0 #c99a52; }}
   .ladrow.dim {{ opacity:.34; }}
-  .ladrow.dim.book {{ opacity:.85; }}     /* book line past the edge — keep it legible */
   .ladl {{ color:#aeb8c7; font-weight:700; font-variant-numeric:tabular-nums; }}
   .ladm {{ color:#5b9dff; font-size:10px; }}
-  .ladbk {{ font-size:10px; }}
-  .ttbook {{ font-size:12px; font-weight:600; margin-top:6px; padding:5px 9px; border-radius:8px;
-    display:inline-block; }}
-  .ttbook.bkgood {{ background:#0e2c1a; color:#7ee0a6; }}
-  .ttbook.bkbad {{ background:#2a1214; color:#f0a6ad; }}
   .ladbar {{ display:flex; height:7px; border-radius:4px; overflow:hidden; background:#0f141d; }}
   .ladbar i {{ background:#2f9e63; }}
   .ladv {{ text-align:right; font-variant-numeric:tabular-nums; font-weight:600; font-size:12px;
