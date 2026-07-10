@@ -54,14 +54,14 @@ jobs:
       # BENCHED 2026-07-09 (focus = TT + WNBA): esports/MLB/NFL still COLLECT (data + grading
       # of existing bets preserved) but no NTFY_TOPIC -> no phone pushes. Un-bench = restore
       # NTFY_TOPIC here and drop --no-flags / ACTIVE_SPORTS.
-      - name: H2H GG esports — results only (benched: --no-flags)
+      - name: "H2H GG esports — results only (benched, --no-flags)"
         run: python gg_collect.py --no-flags || echo "gg collect skipped"
-      - name: collect mlb totals (benched: no push)
+      - name: "collect mlb totals (benched, no push)"
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
           MLB_TOTALS_DB: ${{ github.workspace }}/mlb_totals.sqlite
         run: python mlb_totals.py || echo "mlb totals skipped"
-      - name: collect nfl totals (dormant until Sept; benched: no push)
+      - name: "collect nfl totals (dormant until Sept; benched, no push)"
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
           NFL_TOTALS_DB: ${{ github.workspace }}/nfl_totals.sqlite

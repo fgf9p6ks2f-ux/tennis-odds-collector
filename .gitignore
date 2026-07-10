@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+wnba_pbp_cache/
+.claude/
