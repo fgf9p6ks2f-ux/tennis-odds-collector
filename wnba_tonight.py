@@ -36,12 +36,15 @@ _RW_CACHE = {}
 def rw_lineups():
     """RotoWire WNBA board (confirmed/projected lineups + ruled-out), fetched once per
     process and reused. Degrades to an empty board if RotoWire is unreachable, so the whole
-    pipeline never hard-depends on it."""
+    pipeline never hard-depends on it. Logs its status once so CI shows if it connected."""
     if "b" not in _RW_CACHE:
         try:
             _RW_CACHE["b"] = RW.board()
-        except Exception:
+            print(f"RotoWire OK: {len(_RW_CACHE['b'])} lineups, "
+                  f"{sum(len(t['out']) for t in _RW_CACHE['b'])} ruled out", flush=True)
+        except Exception as e:
             _RW_CACHE["b"] = []
+            print(f"RotoWire UNREACHABLE ({str(e)[:60]}) — ESPN fallback", flush=True)
     return _RW_CACHE["b"]
 
 PROPS_DB = Path(os.environ.get("FD_DB",
