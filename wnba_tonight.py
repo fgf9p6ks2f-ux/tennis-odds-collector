@@ -29,6 +29,7 @@ except Exception:
 
 import rotowire as RW
 import wnba_context as CTX
+import wnba_dvp as DVP
 import wnba_wowy as W
 
 _RW_CACHE = {}
@@ -163,7 +164,8 @@ def _ctx_mean(sample, vals, stat, out_logs, mates):
     return (wmean * eff + st.mean(vals) * 5.0) / (eff + 5.0)
 
 
-def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=None, mates=None):
+def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=None, mates=None,
+               opp=None, pos=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
     production and a line the book anchored to the SEASON AVERAGE. For each posted line:
     hit rate in the player's elevated games (min >= max(proj-4, 22)), credibility-shrunk
@@ -215,6 +217,11 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         # plain minutes-honest mean. Context-weighting is dropped: the backtest showed it
         # diluted the under edge (MH-alone unders +8.4 vs +6.5 with context) for no MAE gain.
         elev_avg = st.mean(vals)
+        # DvP tiebreaker: nudge toward the opponent's position- and pace-adjusted tendency to
+        # allow this stat (small — dvp_backtest showed it's marginal, so it breaks ties/orders
+        # overs by matchup but never overrides the validated under model). Logged as a feature.
+        dvp_c = DVP.dvp(opp, pos, key) if (opp and pos) else 0.0
+        elev_avg += dvp_c * proj_min
         n = len(vals)
         # per-game samples for the bar chart: [value, opponent, minutes], most recent first
         recent = sorted(sample, key=lambda g: g["date"], reverse=True)[:10]
