@@ -133,13 +133,16 @@ def log_predictions(rows):
 
 
 def grade():
-    """Grade every ungraded spot whose game has now been played. Matches the player's
-    first completed game on/after the prediction date (robust to UTC date rollover in CI),
-    reads the actual stat from the ESPN box score, records over/under + the actual value."""
-    today = datetime.date.today().isoformat()
+    """Grade every ungraded spot whose game has now been PLAYED, matched by OPPONENT — not
+    date alone. Date-only matching silently mis-fires: ESPN's gamelog dates games in UTC, so
+    a team that plays consecutive ET nights (e.g. IND @LA at 02:00Z, then IND vs PHX the next
+    ET night) has TWO games sharing one UTC date — and a prediction for the 2nd would grade
+    against the 1st. So we match the game whose opponent == the prediction's opp, that is
+    FINAL (has a W/L result), and is on/after the slate date. Reads the actual stat + records
+    over/under."""
     con = _con()
     rows = con.execute(
-        "SELECT rowid, pred_date, player, stat, line FROM predictions WHERE graded=0"
+        "SELECT rowid, pred_date, player, stat, line, opp FROM predictions WHERE graded=0"
     ).fetchall()
     if not rows:
         con.close()
@@ -147,7 +150,7 @@ def grade():
     ids = {n: v["id"] for n, v in W.players().items()}
     graded = 0
     log_cache = {}
-    for rowid, pred_date, player, stat, line in rows:
+    for rowid, pred_date, player, stat, line, opp in rows:
         pid = ids.get(player)
         if not pid:
             continue
@@ -156,11 +159,15 @@ def grade():
                 log_cache[pid] = W.game_log(pid)
             except RuntimeError:
                 log_cache[pid] = []
-        # first completed game on/after the night we predicted for
-        cand = sorted((g for g in log_cache[pid]
-                       if pred_date <= g["date"][:10] < today), key=lambda g: g["date"])
+        # the game this prediction was FOR: same opponent, FINAL, on/after the slate date
+        cand = sorted(
+            (g for g in log_cache[pid]
+             if g.get("result")                                    # FINAL (has W/L)
+             and g["date"][:10] >= pred_date                       # on/after the slate we bet
+             and (not opp or (g.get("matchup") or "").upper() == opp.upper())),
+            key=lambda g: g["date"])
         if not cand:
-            continue                       # not played yet (or DNP with no row) — leave open
+            continue                       # target game not final yet — leave open
         actual = cand[0][STATKEY[stat]]
         res = "over" if actual > line else ("push" if actual == line else "under")
         con.execute("UPDATE predictions SET result=?, actual=?, graded=1 WHERE rowid=?",

@@ -88,7 +88,8 @@ def game_log(pid):
                             "fga": fga, "fg3a": fg3a, "fta": fta, "tov": tov,
                             "poss": fga + 0.44 * fta + tov,
                             "dd": sum(1 for v in (p, rb, a) if v >= 10) >= 2,
-                            "matchup": opp})
+                            "matchup": opp,
+                            "result": m.get("gameResult", "")})   # 'W'/'L' once FINAL, '' if not
     return out
 
 
