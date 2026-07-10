@@ -139,7 +139,12 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None):
     if len(elevated) >= 4:
         sample, basis, shrink_k = elevated, "elevated", 6
         def val(g, key):
-            return g[key]                             # actual elevated-role production
+            # minutes-HONEST: scale each elevated game's production to TONIGHT's projected
+            # minutes. Otherwise the model cherry-picks a player's 26-min games (Billings'
+            # 7.4 reb) to project a ~19-min role. Capped at 1.35x so a genuine bump isn't
+            # clipped; counting stats only (rate stats like FGA-per already normalize).
+            r = min(proj_min / max(g["min"], 1.0), 1.35) if key in ("pts", "reb", "ast", "fga", "fta", "fg3a") else 1.0
+            return g[key] * r
     else:
         # BREAKOUT fallback: thin elevated history but a real projected role. Project each
         # game to the projected minutes via per-minute rate (the user's method for a bench

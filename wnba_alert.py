@@ -113,15 +113,16 @@ def collect():
                 w = max(cands, key=lambda x: x[0]["n_without"])[0]
             if w["n_without"] < 2:
                 continue
-            # POSITION MATCH: a vacated role goes to same-position players. Skip clear
-            # mismatches (a forward off a guard = pw 0.3) — not a real beneficiary — and for
-            # partial matches (F<->C, 0.6) scale the projected minutes-elevation down.
+            # POSITION MATCH (minutes): a vacated role's MINUTES go to same-position players,
+            # so scale the projected minutes-elevation by positional fit — a forward barely
+            # inherits a guard's minutes. But DON'T hard-drop cross-position beneficiaries: a
+            # high-usage / rebounding guard (Clark) still vacates shots + boards that reach the
+            # forwards on the floor. That production flows through the minutes-honest projection
+            # + the vacated pool, not a binary position gate.
             pw = position_compat(v.get("position"), [op.get("position") for _, op in outs])
-            if pw <= 0.3:
-                continue
             with_min = w["with"]["min"]["mean"]
             proj = with_min + pw * (w["without"]["min"]["mean"] - with_min)
-            if proj - with_min <= 0.5:                    # negligible real elevation
+            if proj - with_min <= 0.3 and pw < 0.6:        # no minutes bump AND no role overlap
                 continue
             conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx):
