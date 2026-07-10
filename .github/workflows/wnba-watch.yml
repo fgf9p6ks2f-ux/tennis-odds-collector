@@ -25,7 +25,7 @@ permissions:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 340       # one start covers ~5.5h -> robust to GitHub dropping ticks
+    timeout-minutes: 355       # one start covers ~5.9h (GitHub's 6h job max) -> max robustness to dropped cron starts
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,7 +38,7 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          for i in $(seq 1 330); do
+          for i in $(seq 1 350); do
             python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
             if [ $((i % 10)) -eq 1 ]; then                       # ~every 10 min: settle finished games LIVE
               python wnba_ledger.py --grade >/dev/null 2>&1 || echo "grade skipped"
