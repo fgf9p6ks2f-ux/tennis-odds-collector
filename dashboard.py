@@ -53,15 +53,16 @@ def _conf(r):
     return (ph * n + 0.5 * 6) / (n + 6)
 
 
-def _units(ph, n, dec):
-    """Quarter-Kelly recommended stake in units (see wnba_tonight.kelly_units)."""
-    if ph is None or not n or dec <= 1:
+def _units(dec):
+    """Recommended stake by ODDS (risk control), NOT model edge. Quarter-Kelly was wrong here:
+    it sized UP the longshots the model liked — but the model's edge on longshots is exactly
+    what's least reliable (every +240 alt-line busted the first slate). So: flat 1u through
+    +100, then lower the longer the price. ~0.7u @ +150, 0.5u @ +200, 0.4u @ +240, 0.3u @
+    +300, 0.25u floor."""
+    dec = float(dec)
+    if dec <= 2.0:                              # -inf .. +100 (favorites through pick'em): base
         return 1.0
-    p = (ph * n + (1.0 / dec) * 6) / (n + 6)
-    f = (p * dec - 1) / (dec - 1)
-    if f <= 0:
-        return 0.5
-    return max(0.5, min(3.0, round((0.25 * f / 0.04) * 2) / 2))
+    return max(0.25, round((2.0 / dec) ** 1.7 / 0.05) * 0.05)
 
 
 def _tip_times():
@@ -111,7 +112,9 @@ def _load(mt_date):
                 r["played"] = 1
     dec = [r for r in g if r[0] in ("over", "under")]
     w = sum(1 for r in dec if r[0] == "over")
-    u = sum((r[1] - 1) if r[0] == "over" else -1 for r in dec)
+    # P&L weighted by the recommended (odds-based) stake, so the tracker reflects how the
+    # plays are actually sized — a losing +240 longshot costs its 0.35u, not a flat 1u.
+    u = sum(_units(r[1]) * (r[1] - 1) if r[0] == "over" else -_units(r[1]) for r in dec)
     return rows, (w, len(dec) - w, u, len(rows))
 
 
@@ -169,7 +172,7 @@ def _mkt_row(r):
             mid += ' · <span class="drv none">baseline</span>'
         else:
             mid += f' · <span class="drv {"big" if drv >= 3 else ""}">▲{drv:+.0f} {lbl}</span>'
-    u = _units(r["proj_hit"], r["n_elev"], float(r["odds"]))
+    u = _units(float(r["odds"]))
     juice = ' <span class="juice">⚠ juice</span>' if float(r["odds"]) < 1.50 else ''  # worse than -200
     played = ' <span class="played">✓</span>' if r.get("played") else ''
     return f"""
