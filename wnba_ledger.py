@@ -129,7 +129,7 @@ def log_predictions(rows):
         cur = con.execute(
             f"INSERT INTO predictions({','.join(cols)}) VALUES ({','.join('?' * len(cols))}) "
             f"ON CONFLICT(pred_date, player, stat, line) DO UPDATE SET confidence=excluded.confidence, "
-            f"side=excluded.side",
+            f"side=excluded.side, samples=excluded.samples",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     con.commit()

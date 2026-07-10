@@ -225,7 +225,10 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         n = len(vals)
         # per-game samples for the bar chart: [value, opponent, minutes], most recent first
         recent = sorted(sample, key=lambda g: g["date"], reverse=True)[:10]
-        samples = [[round(val(g, key), 1), g["matchup"], round(g["min"])] for g in recent]
+        # store the ACTUAL game stat (whole number) + minutes for the chart — not the minutes-
+        # scaled projection value (which produced confusing decimals). The bars show what the
+        # player really did each game vs the line; the minutes overlay shows the role context.
+        samples = [[round(g[key]), g["matchup"], round(g["min"])] for g in recent]
         d_stat = wdelta(key)
         driver = wdelta(STAT_DRIVER[stat])          # the deciding signal for THIS market
         vac = round(vacated[stat], 1) if vacated and stat in vacated else None

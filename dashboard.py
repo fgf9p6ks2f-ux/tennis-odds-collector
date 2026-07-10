@@ -118,36 +118,75 @@ def _load(mt_date):
     return rows, (w, len(dec) - w, u, len(rows))
 
 
+def _reasoning(r):
+    """A generated, model-grounded 'why the model likes this' line for the dropdown, built from
+    the logged features (projection, role change, hit record, stale line, lineup status)."""
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
+    stat = STAT.get(r["stat"], r["stat"])
+    line = float(r["line"])
+    proj = r["elev_avg"]
+    savg, ph, n = r.get("season_avg"), r.get("proj_hit"), r.get("n_elev")
+    pm, dmin, drv = r.get("proj_min"), r.get("d_min"), r.get("driver")
+    out = _short(r["out_player"]) if r.get("out_player") else None
+    dl = {"points": "usage", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "")
+    role = ""
+    if out:
+        rb = []
+        if dmin is not None and abs(dmin) >= 1:
+            rb.append(f"{dmin:+.0f} min")
+        if drv is not None and drv >= 1:
+            rb.append(f"+{drv:.0f} {dl}")
+        role = f"{out} out" + (f" ({', '.join(rb)})" if rb else "")
+    b = [f"Model projects <b>{proj:g} {stat}</b>."]
+    if side == "under":
+        b.append(f"Under the {line:g} line — " + (
+            f"{role} lifts the role, but scaled honestly to a ~{pm:.0f}-min night the number lands "
+            f"at {proj:g} and the line runs ahead of it." if role
+            else f"the projected role doesn't reach {line:g}."))
+    else:
+        b.append(f"Clears the {line:g} line" + (f" — {role} inherits the vacated role." if role else "."))
+    if ph is not None and n:
+        b.append(f"The {side} hit <b>{round(ph*n)}/{n}</b> ({ph*100:.0f}%) in comparable role games.")
+    if r.get("stale") and savg is not None:
+        b.append(f"Book anchored near the season avg ({savg:g}) — it hasn't repriced the role.")
+    if r.get("confidence") == "bench":
+        b.append("⚠ not in the projected starting five — minutes uncertain.")
+    return " ".join(b)
+
+
 def _bars(r):
-    """PropsCash-style game log: vertical bars (oldest->newest), the line drawn across,
-    each game green if over / red if under, opponent under each bar."""
+    """Dropdown: generated reasoning + a PropsCash-style game log. Each game's ACTUAL stat is a
+    bar (green if it cashed our side, red if not) with the line drawn across, and a gray MINUTES
+    bar behind it (own 0-40 scale) so the role context is visible. Opponent under each bar."""
+    why = f'<div class="why">{_reasoning(r)}</div>'
     try:
         s = json.loads(r["samples"]) if r["samples"] else []
     except (ValueError, TypeError):
         s = []
     if not s:
-        return '<div class="nodata">no game data</div>'
+        return f'<div class="bars">{why}<div class="nodata">no game data</div></div>'
     s = list(reversed(s))                              # stored newest-first -> show oldest-left
     line = float(r["line"])
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     vals = [x[0] for x in s]
     mx = max(max(vals), line) * 1.14 or 1
-    # a bar is "on side" (green) when the game would have CASHED our bet — over the line for an
-    # over, under it for an under — so the chart reads as our hit rate, not raw overs.
     onside = (lambda v: v > line) if side == "over" else (lambda v: v < line)
     hits = sum(1 for v in vals if onside(v))
     note = ("elevated-role games" if r["basis"] == "elevated"
             else f"projected to ~{r['proj_min']:.0f} min")
-    # bars (baseline = chart bottom) and opponent labels are SEPARATE rows, so the bars and
-    # the prop line share one baseline + scale.
-    bars = "".join(
-        f'<div class="col"><div class="b {"o" if onside(v) else "u"}" style="height:{v/mx*100:.1f}%">'
-        f'<span class="bv">{v:g}</span></div></div>' for v, *_ in s)
+    cols = ""
+    for x in s:
+        v = x[0]
+        mn = x[2] if len(x) > 2 else 0                  # minutes that game (overlay, own 0-40 scale)
+        cols += (f'<div class="col">'
+                 f'<div class="m" style="height:{min(mn/40*100, 100):.0f}%"><span class="mv">{mn:g}\'</span></div>'
+                 f'<div class="b {"o" if onside(v) else "u"}" style="height:{v/mx*100:.1f}%">'
+                 f'<span class="bv">{v:g}</span></div></div>')
     opps = "".join(f'<span>{html.escape(str(o) or "")}</span>' for _, o, *_ in s)
-    return (f'<div class="bars"><div class="chart">'
+    return (f'<div class="bars">{why}<div class="chart">'
             f'<div class="pline" style="bottom:{line/mx*100:.1f}%"><span>{line:g}</span></div>'
-            f'{bars}</div><div class="opps">{opps}</div>'
-            f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · {note}</div></div>')
+            f'{cols}</div><div class="opps">{opps}</div>'
+            f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · gray bar = minutes · {note}</div></div>')
 
 
 def _mkt_row(r):
@@ -408,11 +447,15 @@ def build():
   .bars {{ display:none; padding:20px 2px 4px; }}
   .bars.open {{ display:block; }}
   .chart {{ position:relative; display:flex; gap:5px; height:88px; overflow:visible; }}
-  .col {{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; }}
-  .b {{ width:100%; max-width:26px; border-radius:4px 4px 0 0; position:relative; min-height:3px; }}
+  .col {{ flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end; position:relative; }}
+  .b {{ width:100%; max-width:26px; border-radius:4px 4px 0 0; position:relative; min-height:3px; z-index:1; }}
   .b.o {{ background:#2f9e63; }}
   .b.u {{ background:#8a3b46; }}
   .bv {{ position:absolute; top:-15px; left:0; right:0; text-align:center; font-size:10.5px; color:#aab3c1; }}
+  .m {{ position:absolute; bottom:0; left:0; right:0; background:#222b38; border-radius:3px 3px 0 0; z-index:0; }}
+  .mv {{ position:absolute; top:1px; left:0; right:0; text-align:center; font-size:8px; color:#5c6472; }}
+  .why {{ color:#9aa3b2; font-size:12.5px; line-height:1.55; margin:0 2px 14px; }}
+  .why b {{ color:#d3dae4; font-weight:700; }}
   .opps {{ display:flex; gap:5px; margin-top:5px; }}
   .opps span {{ flex:1; text-align:center; font-size:9.5px; color:#6b7484; }}
   .pline {{ position:absolute; left:0; right:0; height:0; border-top:1.5px dashed #5b9dff88; z-index:2; }}
