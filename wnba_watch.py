@@ -23,6 +23,7 @@ from pathlib import Path
 
 import requests
 
+import rotowire as RW
 import wnba_alert as A
 import wnba_ledger as L
 import wnba_tonight as T
@@ -66,8 +67,18 @@ def main():
     if not playing:
         print("no games on the slate — idle")
         return
-    inj = T.injuries()
     pl = players_cached()
+    inj = T.injuries()
+    # merge RotoWire's ruled-OUT list (mapped to full roster names via first-initial+lastname)
+    # — a 2nd injury source that catches outs the ESPN feed is slow on and confirms them via
+    # the actual posted lineup. Degrades silently if RotoWire is unreachable.
+    try:
+        rw_out = RW.out_players(T.rw_lineups())
+        for full in pl:
+            if RW.norm(full) in rw_out and inj.get(full) not in ("Out", "Doubtful"):
+                inj[full] = "Out"
+    except Exception as e:
+        print("rotowire merge skipped:", str(e)[:60])
     cur = key_outs(playing, inj, pl)
     first_run = not STATE.exists()
     prev = json.loads(STATE.read_text()) if STATE.exists() else {}
@@ -82,8 +93,25 @@ def main():
     # Out->Doubtful downgrade is not news worth a push.)
     new = {n: s for n, s in cur.items()
            if prev.get(n) != s and not (prev.get(n) == "Out" and s == "Doubtful")}
+    # BACK = was a key out last poll, now gone (off the injury report / active / props posted)
+    # -> the player RETURNED, so any beneficiary play off their absence is VOID. Push a warning.
+    back = sorted(n for n in prev if n not in cur)
+    topic = os.environ.get("NTFY_TOPIC")
+    if back:
+        bmsg = ", ".join(A._short(n) for n in back)
+        print(f"BACK (off injury report): {bmsg} — beneficiary plays off their absence now void")
+        if topic:
+            try:
+                requests.post(f"https://ntfy.sh/{topic}",
+                    data=(f"⚠ BACK: {bmsg} — OFF the injury report / now active. Pull any "
+                          f"beneficiary plays built on their absence.").encode("utf-8"),
+                    headers={"Title": f"WNBA: {bmsg} back"[:120], "Priority": "high",
+                             "Tags": "warning"}, timeout=15)
+                print("pushed (back)")
+            except requests.RequestException as e:
+                print("back push failed:", e)
     if not new:
-        print(f"no new outs ({len(cur)} already known: {', '.join(sorted(cur)) or 'none'})")
+        print(f"no new outs ({len(cur)} known: {', '.join(sorted(cur)) or 'none'})")
         return
 
     news = ", ".join(f"{A._short(n)} {s}" for n, s in sorted(new.items()))

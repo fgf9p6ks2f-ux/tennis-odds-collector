@@ -53,16 +53,19 @@ def parse(txt):
         st = re.search(r'lineup__status\s+is-([a-z]+)"', blk)
         status = {"confirmed": "confirmed", "expected": "projected"}.get(
             st.group(1) if st else "", "projected")
+        # each <li> is a player: position div (may carry a style attr), name, optional inj tag.
+        # The starting five are the first non-OUT entries; ruled-out players are listed too.
         starters, out = [], []
         for pos, nm, inj in re.findall(
-                r'lineup__pos">([A-Z]{1,3})</div>\s*<a[^>]*>([^<]+)</a>'
+                r'lineup__pos"[^>]*>([A-Z]{1,3})</div>\s*<a[^>]*>([^<]+)</a>'
                 r'(?:\s*<span class="lineup__inj[^"]*">([^<]*)</span>)?', blk):
             nm = H.unescape(nm.strip())
             inj = (inj or "").strip().upper()
-            starters.append((pos, nm, inj))
-            if inj in ("OUT", "GTD", "DOUBTFUL"):
+            if inj == "OUT":
                 out.append(nm)
-        if starters:
+            elif len(starters) < 5:
+                starters.append((pos, nm, inj))
+        if starters or out:
             teams.append({"team": TEAM_FIX.get(abbr, abbr), "status": status,
                           "starters": starters, "out": out})
     return teams

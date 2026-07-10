@@ -26,8 +26,23 @@ try:
 except Exception:
     ET = dt.timezone(dt.timedelta(hours=-4))
 
+import rotowire as RW
 import wnba_context as CTX
 import wnba_wowy as W
+
+_RW_CACHE = {}
+
+
+def rw_lineups():
+    """RotoWire WNBA board (confirmed/projected lineups + ruled-out), fetched once per
+    process and reused. Degrades to an empty board if RotoWire is unreachable, so the whole
+    pipeline never hard-depends on it."""
+    if "b" not in _RW_CACHE:
+        try:
+            _RW_CACHE["b"] = RW.board()
+        except Exception:
+            _RW_CACHE["b"] = []
+    return _RW_CACHE["b"]
 
 PROPS_DB = Path(os.environ.get("FD_DB",
                 Path(__file__).resolve().parent / "fanduel_props.sqlite"))
@@ -286,14 +301,23 @@ def game_starters(game_id):
     return out or None                        # empty -> lineup not out yet
 
 
-def starter_label(name, starters, proj_min):
+def starter_label(name, team, starters, proj_min):
     """Confidence in the elevated-MINUTES assumption (the user's key check — does the coach
-    actually start the beneficiary):
-       confirmed  — lineup is out and they ARE starting (minutes locked in)
-       bench      — lineup is out and they are NOT starting (projection likely too high)
-       likely     — lineup TBD, but projected to a starter-sized role (~26+ min)
+    actually start the beneficiary). RotoWire is PRIMARY (confirmed/projected lineups posted
+    hours ahead, locked ~30-60 min pre-tip); ESPN's box-score flag is the fallback:
+       confirmed  — RotoWire (or ESPN) has them in a CONFIRMED starting five
+       likely     — RotoWire has them in a PROJECTED five, or lineup TBD w/ starter-sized proj
+       bench      — a lineup is posted for their team and they're NOT in it (proj too high)
        projected  — lineup TBD, a rotation bump (minutes less certain)"""
-    if starters is not None:                  # lineup is set
+    board = rw_lineups()
+    st = RW.starter_status(board, team, name) if (board and team) else None
+    if st == "confirmed":
+        return "confirmed"
+    if st == "projected":
+        return "likely"                       # in a projected lineup = likely to start
+    if board and team and any(t["team"] == team.upper() for t in board):
+        return "bench"                        # RotoWire posted this team's five, they're not in it
+    if starters is not None:                  # ESPN fallback: box-score lineup is set
         return "confirmed" if starters.get(name) else "bench"
     return "likely" if proj_min >= 26 else "projected"
 

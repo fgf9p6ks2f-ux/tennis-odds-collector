@@ -94,7 +94,7 @@ def collect():
             proj = w["without"]["min"]["mean"]
             if proj - w["with"]["min"]["mean"] <= 0:     # genuine beneficiary: plays MORE
                 continue
-            conf = T.starter_label(n, starters, proj)    # confirmed/bench/likely/projected
+            conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx):
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"

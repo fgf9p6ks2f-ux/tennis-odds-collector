@@ -119,9 +119,13 @@ def log_predictions(rows):
             "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples", "confidence")
     n = 0
     for r in rows:
+        # insert new spots idempotently, but REFRESH the confidence label on re-log so the
+        # starter status tracks the lineup live through the day (projected -> likely ->
+        # confirmed / bench as RotoWire locks it). Everything else stays flag-time (CLV).
         cur = con.execute(
-            f"INSERT OR IGNORE INTO predictions({','.join(cols)}) "
-            f"VALUES ({','.join('?' * len(cols))})", tuple(r.get(c) for c in cols))
+            f"INSERT INTO predictions({','.join(cols)}) VALUES ({','.join('?' * len(cols))}) "
+            f"ON CONFLICT(pred_date, player, stat, line) DO UPDATE SET confidence=excluded.confidence",
+            tuple(r.get(c) for c in cols))
         n += cur.rowcount
     con.commit()
     con.close()
