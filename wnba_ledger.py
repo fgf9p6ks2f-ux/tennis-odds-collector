@@ -42,6 +42,7 @@ CREATE TABLE IF NOT EXISTS predictions(
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
   total REAL, pace REAL, opp_def REAL, d_fta REAL, d_3pa REAL,
   basis TEXT, samples TEXT, confidence TEXT,
+  side TEXT DEFAULT 'over',
   result TEXT, actual REAL, graded INTEGER DEFAULT 0,
   UNIQUE(pred_date, player, stat, line)
 );
@@ -67,6 +68,8 @@ def _con():
             con.execute(f"ALTER TABLE predictions ADD COLUMN {col} TEXT")
     if "played" not in have:      # user-approval label: did the user actually bet this flag?
         con.execute("ALTER TABLE predictions ADD COLUMN played INTEGER DEFAULT 0")
+    if "side" not in have:        # which side we bet ('over'/'under'); win = (result == side)
+        con.execute("ALTER TABLE predictions ADD COLUMN side TEXT DEFAULT 'over'")
     con.commit()
     _apply_played(con)            # re-derive played marks from the durable text file
     return con
@@ -116,7 +119,8 @@ def log_predictions(rows):
     cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds",
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
             "d_stat", "d_fga", "d_min", "driver", "vac",
-            "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples", "confidence")
+            "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples", "confidence",
+            "side")
     n = 0
     for r in rows:
         # insert new spots idempotently, but REFRESH the confidence label on re-log so the
@@ -124,8 +128,9 @@ def log_predictions(rows):
         # confirmed / bench as RotoWire locks it). Everything else stays flag-time (CLV).
         cur = con.execute(
             f"INSERT INTO predictions({','.join(cols)}) VALUES ({','.join('?' * len(cols))}) "
-            f"ON CONFLICT(pred_date, player, stat, line) DO UPDATE SET confidence=excluded.confidence",
-            tuple(r.get(c) for c in cols))
+            f"ON CONFLICT(pred_date, player, stat, line) DO UPDATE SET confidence=excluded.confidence, "
+            f"side=excluded.side",
+            tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     con.commit()
     con.close()
@@ -181,7 +186,7 @@ def grade():
 def report():
     con = _con()
     rows = con.execute(
-        "SELECT stat, result, line, elev_avg, season_avg, actual, odds, stale "
+        "SELECT stat, result, line, elev_avg, season_avg, actual, odds, stale, side "
         "FROM predictions WHERE graded=1").fetchall()
     n_open = con.execute("SELECT COUNT(*) FROM predictions WHERE graded=0").fetchone()[0]
     con.close()
@@ -190,24 +195,19 @@ def report():
         print("no graded spots yet — accumulating. Grades land the morning after each slate.")
         return
     by = {}
-    for stat, res, line, elev, savg, actual, odds, stale in rows:
-        by.setdefault(stat, []).append((res, line, elev, actual, odds, stale))
-        by.setdefault("ALL", []).append((res, line, elev, actual, odds, stale))
+    for stat, res, line, elev, savg, actual, odds, stale, side in rows:
+        won = res == side                                              # side-aware win
+        by.setdefault(stat, []).append((won, elev, actual, odds, side))
+        by.setdefault("ALL", []).append((won, elev, actual, odds, side))
     for stat, rs in sorted(by.items()):
-        dec = [r for r in rs if r[0] != "push"]
-        wins = sum(1 for r in dec if r[0] == "over")
-        units = sum((r[4] - 1) if r[0] == "over" else -1 for r in dec)  # 1u flat, over-bet
-        mae = st.mean([abs(r[3] - r[2]) for r in rs])                   # projection error
-        wr = wins / len(dec) * 100 if dec else 0
-        roi = units / len(dec) * 100 if dec else 0
-        print(f"  {stat:9} {wins}-{len(dec)-wins}  win {wr:4.0f}%  ROI {roi:+5.1f}%  "
-              f"proj MAE {mae:.1f}")
-    # is the 'stale line' read actually the edge? compare stale vs not
-    stale_dec = [r for r in by["ALL"] if r[0] != "push" and r[5]]
-    if stale_dec:
-        sw = sum(1 for r in stale_dec if r[0] == "over") / len(stale_dec) * 100
-        print(f"\n  stale-line spots (line anchored near season avg): "
-              f"{sw:.0f}% over on {len(stale_dec)} — this is the mechanism, watch it.")
+        wins = sum(1 for r in rs if r[0])
+        units = sum((r[3] - 1) if r[0] else -1 for r in rs)            # 1u flat
+        mae = st.mean([abs(r[2] - r[1]) for r in rs])                  # projection error
+        wr = wins / len(rs) * 100 if rs else 0
+        roi = units / len(rs) * 100 if rs else 0
+        nu = sum(1 for r in rs if r[4] == "under")
+        print(f"  {stat:9} {wins}-{len(rs)-wins}  win {wr:4.0f}%  ROI {roi:+5.1f}%  "
+              f"proj MAE {mae:.1f}  ({nu} under / {len(rs)-nu} over)")
 
 
 def train():
@@ -266,11 +266,11 @@ def learn():
     below a real N this is noise, and it says so."""
     con = _con()
     rows = con.execute(
-        f"SELECT result, {','.join(LEARN_FEATURES)} FROM predictions "
+        f"SELECT result, {','.join(LEARN_FEATURES)}, side FROM predictions "
         f"WHERE graded=1 AND result IN ('over','under')").fetchall()
     con.close()
-    wins = [r for r in rows if r[0] == "over"]
-    loss = [r for r in rows if r[0] == "under"]
+    wins = [r for r in rows if r[0] == r[-1]]        # result == side we bet
+    loss = [r for r in rows if r[0] != r[-1]]
     n = len(rows)
     if n < MIN_LEARN or len(wins) < 8 or len(loss) < 8:
         print(f"learn: {n}/{MIN_LEARN} graded bets ({len(wins)}W-{len(loss)}L) — accumulating. "

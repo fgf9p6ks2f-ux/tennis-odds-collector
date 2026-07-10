@@ -92,7 +92,9 @@ def playing_now(player):
 
 
 def posted_props(player):
-    """Latest WNBA props for a player: {stat_key: {line: best_over_dec}} across books."""
+    """Latest WNBA props for a player: {stat_key: {line: (best_over_dec, best_under_dec)}}
+    across books. Both sides now — the model bets whichever side the projection favors, so
+    it needs the under price too (0.0 if a book only posted the over)."""
     if not PROPS_DB.exists():
         return {}
     con = sqlite3.connect(PROPS_DB)
@@ -101,17 +103,25 @@ def posted_props(player):
         "WHERE sport='wnba' AND player=? AND collected_at > datetime('now','-1 day')",
         (player,)).fetchall()
     con.close()
-    best = defaultdict(dict)
+    best = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))   # stat -> line -> [over, under]
     for stat, line, side, odds, _bk in rows:
-        if stat in PROP_STATS and side == "over" and line is not None:
+        if stat in PROP_STATS and line is not None and side in ("over", "under"):
             k = round(float(line), 1)
-            best[stat][k] = max(best[stat].get(k, 0), float(odds))
-    return best
+            i = 0 if side == "over" else 1
+            best[stat][k][i] = max(best[stat][k][i], float(odds))
+    return {s: {k: tuple(v) for k, v in d.items()} for s, d in best.items()}
 
 
 # Role floor scaled for WNBA's shorter 40-min game (NBA is 48): a bench player promoted
 # to the starting lineup projects to ~22+ min, so judge production in their 22+ min games.
 ROLE_FLOOR = 22.0
+
+# Asymmetric EV bars from the backtest (14d+21d, leak-free) + the 07-09 real-line re-grade:
+# UNDERS on reduced/regressing roles beat a blind baseline by +6 to +9 pts (reb/ast esp.);
+# OVERS have ~no edge (elevated roles regress). So take the side minutes-honest favors, but
+# demand much more edge to bet an over than an under.
+OVER_EV_MIN = 0.10
+UNDER_EV_MIN = 0.04
 
 
 # The user's per-stat decision model: which WOWY signals DECIDE each market.
@@ -202,7 +212,9 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         key = PROP_STATS[stat]
         season_avg = st.mean([g[key] for g in log]) if log else 0
         vals = [val(g, key) for g in sample]
-        elev_avg = _ctx_mean(sample, vals, stat, out_logs, mates)
+        # plain minutes-honest mean. Context-weighting is dropped: the backtest showed it
+        # diluted the under edge (MH-alone unders +8.4 vs +6.5 with context) for no MAE gain.
+        elev_avg = st.mean(vals)
         n = len(vals)
         # per-game samples for the bar chart: [value, opponent, minutes], most recent first
         recent = sorted(sample, key=lambda g: g["date"], reverse=True)[:10]
@@ -210,29 +222,37 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         d_stat = wdelta(key)
         driver = wdelta(STAT_DRIVER[stat])          # the deciding signal for THIS market
         vac = round(vacated[stat], 1) if vacated and stat in vacated else None
-        # the user bets the INCREASE — don't post an over on a stat that falls without the
-        # out player (tolerate small negatives: WOWY samples are thin/noisy early season).
-        if d_stat is not None and d_stat < -1.0:
-            continue
-        for line, dec in sorted(best.items()):
-            # Keep the credible market, but don't throw out legit LADDER bets (the user
-            # plays o9.5 up to 15+ on a big projection). Fake-EV artifacts are specifically
-            # a NEAR-LOCK PRICED AS AN UNDERDOG (a 20-pt scorer's o4.5 @ +830) — filter THAT,
-            # not fairly-priced alt lines.
-            if line < 0.4 * elev_avg:            # only an absurd deep rung (o4.5 for a 16-projector)
+        for line, (over_dec, under_dec) in sorted(best.items()):
+            # Bet the side the minutes-honest projection favors vs THIS line: over if the
+            # projection sits above the line, else under. The validated edge is the UNDER on
+            # reduced/regressing roles; a strong over is still taken but must clear a higher bar.
+            side = "over" if elev_avg >= line else "under"
+            dec = over_dec if side == "over" else under_dec
+            if not dec or not (1.25 <= dec <= 5.0):   # no price that side, or lottery longshot
                 continue
-            if not (1.25 <= dec <= 5.0):          # allow +400 ladders; cap only lottery longshots
+            # skip trivial deep favorites — the line sits so far on one side of the projection
+            # it's a near-lock with no edge (a 15-pt scorer's o3.5, or a u30.5), just clutter.
+            if elev_avg > 0 and ((side == "over" and line < 0.4 * elev_avg)
+                                 or (side == "under" and line > 2.5 * elev_avg)):
                 continue
-            hit = sum(1 for v in vals if v > line) / n
-            if hit >= 0.92 and dec >= 2.0:        # ~certain over at plus money = mis-scrape, skip
+            # direction guard: don't bet an OVER on a stat that FALLS without the out player
+            # (tolerate small negatives — early-season WOWY samples are thin/noisy).
+            if side == "over" and d_stat is not None and d_stat < -1.0:
+                continue
+            hit = (sum(1 for v in vals if v > line) if side == "over"
+                   else sum(1 for v in vals if v < line)) / n
+            if hit >= 0.92 and dec >= 2.0:        # ~certain at plus money = mis-scrape, skip
                 continue
             p_adj = (hit * n + (1 / dec) * shrink_k) / (n + shrink_k)
             ev = p_adj * dec - 1
-            # the user's edge: line anchored near the SEASON avg while the elevated role
-            # projects meaningfully higher — the book hasn't repriced the new role.
-            stale = elev_avg - season_avg >= 1.0 and line <= (season_avg + elev_avg) / 2
-            if ev >= 0.05:
+            # stale line: the book anchored near the SEASON avg while the projected role sits
+            # on the OTHER side of it — over above the season/proj midpoint, under below.
+            mid = (season_avg + elev_avg) / 2
+            stale = abs(elev_avg - season_avg) >= 1.0 and (
+                (side == "over" and line <= mid) or (side == "under" and line >= mid))
+            if ev >= (OVER_EV_MIN if side == "over" else UNDER_EV_MIN):
                 spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
+                        "side": side,
                         "n": n, "fga": fga, "season_avg": round(season_avg, 1),
                         "elev_avg": round(elev_avg, 1), "stale": stale,
                         "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,

@@ -169,18 +169,19 @@ def collect():
                 if e["stat"] == "points" and e["d_fta"] is not None:
                     bits += [f"FTA {e['d_fta']:+g}", f"3PA {e['d_3pa']:+g}"]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
-                overs = round(e["hit"] * e["n"])          # elevated-games record
-                rec = f"{overs}-{e['n']-overs}"
+                hits = round(e["hit"] * e["n"])           # bet-side record in the role games
+                rec = f"{hits}-{e['n']-hits}"
                 ctag = {"confirmed": " ✓STARTING", "bench": " ⚠NOT STARTING",
                         "likely": " (likely starts)", "projected": " (lineup TBD)"}[conf]
+                sd = "o" if e["side"] == "over" else "u"   # over/under prefix on the line
                 alerts.append((e["ev"], key,
-                    f"{out_label} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
+                    f"{out_label} OUT -> {_short(n)} {e['stat'][:3]} {sd}{e['line']:g} "
                     f"{T._am(e['dec'])}{wo} | {rec} {e['hit']*100:.0f}% "
-                    f"| elev {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{ctag}{tag}{env_tag}"))
+                    f"| proj {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{ctag}{tag}{env_tag}"))
                 preds.append({"pred_date": today, "out_player": out_full, "player": n,
                               "team": team, "opp": matchups.get(team, ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
-                              "book": "fd", "proj_hit": round(e["hit"], 3),
+                              "book": "fd", "proj_hit": round(e["hit"], 3), "side": e["side"],
                               "season_avg": e["season_avg"], "elev_avg": e["elev_avg"],
                               "proj_min": round(proj, 1), "n_elev": e["n"],
                               "ev": round(e["ev"], 3), "stale": int(e["stale"]),

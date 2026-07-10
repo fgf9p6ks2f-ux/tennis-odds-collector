@@ -98,7 +98,7 @@ def _load(mt_date):
     rows = [dict(r) for r in con.execute(
         "SELECT * FROM predictions WHERE pred_date=? AND result IS NULL ORDER BY ev DESC",
         (mt_date,))]
-    g = con.execute("SELECT result,odds FROM predictions WHERE graded=1 "
+    g = con.execute("SELECT result,odds,side FROM predictions WHERE graded=1 "
                     "AND pred_date>='2026-07-09'").fetchall()
     con.close()
     # durable user-played marks (wnba_played.txt) — read-only, so the ✓ shows on the board
@@ -111,10 +111,10 @@ def _load(mt_date):
                    and abs((r["line"] or 0) - float(ln)) < 1e-9 for d, pl, s, ln in marks):
                 r["played"] = 1
     dec = [r for r in g if r[0] in ("over", "under")]
-    w = sum(1 for r in dec if r[0] == "over")
+    w = sum(1 for r in dec if r[0] == (r[2] or "over"))   # win = result matches the side we bet
     # P&L weighted by the recommended (odds-based) stake, so the tracker reflects how the
     # plays are actually sized — a losing +240 longshot costs its 0.35u, not a flat 1u.
-    u = sum(_units(r[1]) * (r[1] - 1) if r[0] == "over" else -_units(r[1]) for r in dec)
+    u = sum(_units(r[1]) * (r[1] - 1) if r[0] == (r[2] or "over") else -_units(r[1]) for r in dec)
     return rows, (w, len(dec) - w, u, len(rows))
 
 
@@ -129,40 +129,44 @@ def _bars(r):
         return '<div class="nodata">no game data</div>'
     s = list(reversed(s))                              # stored newest-first -> show oldest-left
     line = float(r["line"])
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     vals = [x[0] for x in s]
     mx = max(max(vals), line) * 1.14 or 1
-    over = sum(1 for v in vals if v > line)
+    # a bar is "on side" (green) when the game would have CASHED our bet — over the line for an
+    # over, under it for an under — so the chart reads as our hit rate, not raw overs.
+    onside = (lambda v: v > line) if side == "over" else (lambda v: v < line)
+    hits = sum(1 for v in vals if onside(v))
     note = ("elevated-role games" if r["basis"] == "elevated"
             else f"projected to ~{r['proj_min']:.0f} min")
     # bars (baseline = chart bottom) and opponent labels are SEPARATE rows, so the bars and
     # the prop line share one baseline + scale.
     bars = "".join(
-        f'<div class="col"><div class="b {"o" if v > line else "u"}" style="height:{v/mx*100:.1f}%">'
+        f'<div class="col"><div class="b {"o" if onside(v) else "u"}" style="height:{v/mx*100:.1f}%">'
         f'<span class="bv">{v:g}</span></div></div>' for v, *_ in s)
     opps = "".join(f'<span>{html.escape(str(o) or "")}</span>' for _, o, *_ in s)
     return (f'<div class="bars"><div class="chart">'
             f'<div class="pline" style="bottom:{line/mx*100:.1f}%"><span>{line:g}</span></div>'
             f'{bars}</div><div class="opps">{opps}</div>'
-            f'<div class="bnote">{over}/{len(s)} over {line:g} · {note}</div></div>')
+            f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · {note}</div></div>')
 
 
 def _mkt_row(r):
     stat = STAT.get(r["stat"], r["stat"].upper())
     res, actual = r["result"], r["actual"]
-    if res == "over":
-        badge, cls = f"HIT {actual:g}", "hit"
-    elif res == "under":
-        badge, cls = f"miss {actual:g}", "miss"
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
+    if res in ("over", "under"):                        # HIT when the outcome matches our side
+        won = res == side
+        badge, cls = (f"HIT {actual:g}", "hit") if won else (f"miss {actual:g}", "miss")
     elif res == "push":
         badge, cls = f"push {actual:g}", "pend"
     else:
         badge, cls = "•", "pend"
     proj, n, ph = r["elev_avg"], r["n_elev"], r["proj_hit"]
     if ph is not None and n:
-        overs = round(ph * n)
-        mid = f'proj {proj:g} · <b>{overs}-{n-overs}</b> ({ph*100:.0f}%)'
+        hits = round(ph * n)                           # bet-side record in the role games
+        mid = f'{side} · proj {proj:g} · <b>{hits}-{n-hits}</b> ({ph*100:.0f}%)'
     else:
-        mid = f'proj {proj:g}'
+        mid = f'{side} · proj {proj:g}'
     # injury-driven boost for this stat (usage rise for pts, reb/ast rise otherwise) — the
     # tell for a role-inheritor vs a maxed-out star who plays the same (Copper: +0.6).
     drv = r.get("driver")
@@ -177,7 +181,7 @@ def _mkt_row(r):
     played = ' <span class="played">✓</span>' if r.get("played") else ''
     return f"""
       <div class="mkt {cls}" onclick="this.nextElementSibling.classList.toggle('open')">
-        <div class="mline"><span class="ms">{stat}</span> o{r['line']:g}
+        <div class="mline"><span class="ms">{stat}</span> {'o' if side=='over' else 'u'}{r['line']:g}
           <span class="mo">{_am(r['odds'])}</span>{juice} <span class="mu">{u:g}u</span>{played}</div>
         <div class="mmid">{mid}</div>
         <div class="mbadge {cls}">{html.escape(badge)}</div>

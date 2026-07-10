@@ -60,8 +60,49 @@ def won(side, line, actual):
     return (side == "over" and actual > line) or (side == "under" and actual < line)
 
 
+def apply_sides(date):
+    """Write the new model's chosen side back into the ledger for `date`, so the tracker's
+    record becomes the NEW (minutes-honest, directional) model's record and continues from
+    there. Idempotent — re-run any time; it recomputes leak-free from game logs."""
+    con = sqlite3.connect(DB)
+    con.row_factory = sqlite3.Row
+    have = {r[1] for r in con.execute("PRAGMA table_info(predictions)")}
+    if "side" not in have:
+        con.execute("ALTER TABLE predictions ADD COLUMN side TEXT DEFAULT 'over'")
+    rows = con.execute("SELECT rowid, player, stat, line, proj_min FROM predictions "
+                       "WHERE pred_date=?", (date,)).fetchall()
+    idmap = _ids()
+
+    def find_id(name):
+        if name in idmap:
+            return idmap[name]
+        nn = W_norm(name)
+        return next((v for k, v in idmap.items() if W_norm(k) == nn), None)
+
+    n = 0
+    for r in rows:
+        pid, key = find_id(r["player"]), STAT.get(r["stat"])
+        if not pid or not key:
+            continue
+        pr = project(pid, key, r["proj_min"] or 24.0, date)
+        if not pr:
+            continue
+        _old, mh, _n = pr
+        side = "over" if mh >= r["line"] else "under"
+        n += con.execute("UPDATE predictions SET side=? WHERE rowid=?", (side, r["rowid"])).rowcount
+    con.commit()
+    con.close()
+    return n
+
+
 def main():
-    date = sys.argv[1] if len(sys.argv) > 1 else "2026-07-09"
+    args = [a for a in sys.argv[1:] if not a.startswith("-")]
+    date = args[0] if args else "2026-07-09"
+    if "--apply" in sys.argv:
+        n = apply_sides(date)
+        print(f"applied new-model sides to {n} ledger rows on {date} "
+              f"(tracker now reflects the new model). Re-run --report to see the record.")
+        return
     con = sqlite3.connect(DB)
     con.row_factory = sqlite3.Row
     rows = con.execute("SELECT * FROM predictions WHERE pred_date=? AND graded=1 "
