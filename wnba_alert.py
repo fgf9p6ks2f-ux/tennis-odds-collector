@@ -23,6 +23,7 @@ import requests
 import rotowire as RW
 import wnba_context as CTX
 import wnba_ledger as L
+import wnba_proj_log as PL
 import wnba_tonight as T
 import wnba_wowy as W
 
@@ -80,7 +81,7 @@ def collect():
                 and not T.playing_now(name)):
             outs_by_team[p["team"]].append((name, p))
 
-    alerts, preds = [], []
+    alerts, preds, proj_rows = [], [], []
     log_cache = {}                                   # fetch each player's game log at most once
 
     def glog(pid):
@@ -153,6 +154,15 @@ def collect():
             if proj - with_min <= 0.3 and pw < 0.6:        # no minutes bump AND no role overlap
                 continue
             conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
+            # PROJECTION TRACKER: log this beneficiary's FULL projection (min + pts/reb/ast +
+            # assumptions) whether or not any prop flags — the background learner grades it later.
+            pa = T.project_all(blog, proj)
+            if pa:
+                proj_rows.append({"date": today, "pid": v["id"], "player": n, "team": team,
+                                  "opp": matchups.get(team, ""), "out_player": out_full,
+                                  "confidence": conf, "pos": v.get("position"),
+                                  "d_min": round(w["without"]["min"]["mean"]
+                                                 - w["with"]["min"]["mean"], 1), **pa})
             mates_n = [(pg, dm, em) for (nm, pg, dm, em) in team_mates if nm != RW.norm(n)]
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm, mates=mates_n,
                                   opp=matchups.get(team, ""), pos=v.get("position")):
@@ -201,6 +211,7 @@ def collect():
                 alerts.append((dd["rate"] - 0.5, f"{today}|{n}|dd",
                     f"{out_label} OUT -> {_short(n)} DOUBLE-DOUBLE {dd['rate']*100:.0f}% in "
                     f"{dd['n']} role gms{wo} — check DD price (backup bigs lag)"))
+    PL.log(proj_rows)                       # background projection tracker (learning loop)
     return sorted(alerts, reverse=True), preds
 
 

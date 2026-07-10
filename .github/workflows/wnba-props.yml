@@ -27,6 +27,8 @@ jobs:
       - run: pip install requests curl_cffi
       - name: grade yesterday's logged spots off box scores (the learning loop)
         run: python wnba_ledger.py --grade || echo "grade skipped"
+      - name: grade + analyze the projection tracker (minutes/pts/reb/ast accuracy)
+        run: python wnba_proj_log.py --grade || echo "proj tracker skipped"
       - name: retrain projection calibration on graded results
         run: python wnba_ledger.py --train || echo "train skipped"
       - name: fit usage-redistribution model (ESPN data, datacenter-OK)
@@ -44,7 +46,7 @@ jobs:
           # 1) commit DATA only (NOT the generated dashboard) so the rebase has no volatile
           #    text file to conflict on. add each independently (a missing path would make
           #    `git add a b c` stage nothing).
-          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt wnba_dvp_cache.json; do
+          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_proj_accuracy.md; do
             git add -f "$f" 2>/dev/null || true
           done
           git commit -m "wnba props data [skip ci]" -q 2>/dev/null || echo "no data change"

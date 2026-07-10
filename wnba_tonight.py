@@ -164,6 +164,27 @@ def _ctx_mean(sample, vals, stat, out_logs, mates):
     return (wmean * eff + st.mean(vals) * 5.0) / (eff + 5.0)
 
 
+def project_all(log, proj_min):
+    """Full minutes-honest projection (min + pts/reb/ast) for the projection TRACKER — mirrors
+    prop_edges' elevated/breakout basis but for all three stats, regardless of flagging, so the
+    background learner can grade every projection the model makes (not just the flagged bets)."""
+    floor = max(proj_min - 4, ROLE_FLOOR)
+    elevated = [g for g in log if g["min"] >= floor]
+    if len(elevated) >= 4:
+        sample, basis, cap = elevated, "elevated", 1.35
+    else:
+        sample = [g for g in log if g["min"] >= 12]
+        basis, cap = "projected", 2.2
+    if len(sample) < 3:
+        return None
+
+    def pj(key):
+        return round(st.mean(g[key] * min(proj_min / max(g["min"], 1.0), cap) for g in sample), 2)
+
+    return {"proj_min": round(proj_min, 1), "proj_pts": pj("pts"), "proj_reb": pj("reb"),
+            "proj_ast": pj("ast"), "basis": basis, "n_games": len(sample)}
+
+
 def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=None, mates=None,
                opp=None, pos=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
