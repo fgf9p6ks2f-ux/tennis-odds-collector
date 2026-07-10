@@ -41,11 +41,22 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          # add each independently — one missing path makes `git add a b c` stage nothing
-          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json docs/index.html; do
+          # 1) commit DATA only (NOT the generated dashboard) so the rebase has no volatile
+          #    text file to conflict on. add each independently (a missing path would make
+          #    `git add a b c` stage nothing).
+          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt; do
             git add -f "$f" 2>/dev/null || true
           done
-          git commit -m "wnba props update [skip ci]" || { echo "no change"; exit 0; }
-          # -X theirs so the binary ledger never hard-fails the run (self-heals via dedup)
-          git pull --rebase --autostash -X theirs -q || git rebase --abort 2>/dev/null || true
-          git push -q || true
+          git commit -m "wnba props data [skip ci]" -q 2>/dev/null || echo "no data change"
+          # -X theirs so the binary ledger never hard-fails; a hard reset is the last resort so
+          # we always end ON A BRANCH (this run's ledger re-logs next run — UPSERT is idempotent)
+          git pull --rebase --autostash -X theirs -q 2>/dev/null \
+            || { git rebase --abort 2>/dev/null || true; git reset --hard origin/main -q; }
+          # 2) regenerate the dashboard from the MERGED data + commit it fresh — always newer
+          #    than remote's, so it can NEVER produce the docs/index.html rebase conflict that
+          #    was failing runs (exit 128 / detached HEAD).
+          python dashboard.py 2>/dev/null || echo "dashboard skipped"
+          git add -f docs/index.html 2>/dev/null || true
+          git commit -m "wnba dashboard [skip ci]" -q 2>/dev/null || echo "no dash change"
+          git push -q 2>/dev/null \
+            || { git pull --rebase --autostash -X theirs -q 2>/dev/null || git reset --hard origin/main -q; git push -q 2>/dev/null || true; }

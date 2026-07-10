@@ -44,14 +44,18 @@ jobs:
               python wnba_ledger.py --grade >/dev/null 2>&1 || echo "grade skipped"
             fi
             if [ -n "$(git status --porcelain)" ]; then
-              python dashboard.py || echo "dashboard skipped"
-              for f in wnba_injury_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite docs/index.html; do
+              # commit DATA first (never the generated dashboard) -> clean rebase, no docs
+              # conflict; then regenerate + commit the dashboard fresh on top (conflict-proof).
+              for f in wnba_injury_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt; do
                 git add -f "$f" 2>/dev/null || true
               done
-              if git commit -m "wnba watch [skip ci]" >/dev/null 2>&1; then
-                git pull --rebase --autostash -X theirs -q || git rebase --abort 2>/dev/null || true
-                git push -q || true
+              if git commit -m "wnba watch data [skip ci]" -q >/dev/null 2>&1; then
+                git pull --rebase --autostash -X theirs -q 2>/dev/null || { git rebase --abort 2>/dev/null || true; git reset --hard origin/main -q; }
               fi
+              python dashboard.py >/dev/null 2>&1 || echo "dashboard skipped"
+              git add -f docs/index.html 2>/dev/null || true
+              git commit -m "wnba watch dash [skip ci]" -q >/dev/null 2>&1 || true
+              git push -q 2>/dev/null || { git pull --rebase --autostash -X theirs -q 2>/dev/null || git reset --hard origin/main -q; git push -q 2>/dev/null || true; }
             fi
             sleep 60
           done
