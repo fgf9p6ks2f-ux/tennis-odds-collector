@@ -18,6 +18,7 @@ absence IS the signal.
 from __future__ import annotations
 
 import argparse
+import math
 import statistics as st
 import time
 
@@ -50,6 +51,41 @@ def _made_att(s):
         return int(m), int(a)
     except (ValueError, AttributeError):
         return 0, 0
+
+
+def context_project(bene_log, contexts, statkey, scale=12.0, k=5.0):
+    """Project a beneficiary's per-game `statkey` weighted toward evidence games whose LINEUP
+    CONTEXT matches tonight — the missing piece the plain WOWY ignores.
+
+    `contexts` = list of (teammate_game_log, expected_minutes_tonight). Each of the
+    beneficiary's games is weighted by the PRODUCT of Gaussian kernels on how closely every
+    context teammate's minutes that game match tonight's expectation. This captures, in ONE
+    scheme, both:
+      · the out star is absent  -> context (Clark_log, 0):   games where Clark sat weigh most
+      · the other C is on court -> context (Boston_log, 35):  games where Billings was the 2nd
+        big (few boards) weigh most, so a 12-rebound game where the C happened to be OUT is
+        correctly discounted when the C starts tonight.
+    Weighted mean shrunk toward the plain mean by k pseudo-obs (Kish effective-n), so a thin
+    context-matched sample can't run wild. Returns (projection, effective_n)."""
+    if not bene_log:
+        return None, 0.0
+    ctx = [({g["date"][:10]: g.get("min", 0.0) for g in log}, tgt) for log, tgt in contexts]
+    xs, ws = [], []
+    for g in bene_log:
+        d = g["date"][:10]
+        w = 1.0
+        for by_date, tgt in ctx:
+            cm = by_date.get(d, 0.0)                 # 0 = teammate didn't play that game
+            w *= math.exp(-((cm - tgt) / scale) ** 2)
+        xs.append(g.get(statkey, 0.0))
+        ws.append(w)
+    plain = sum(xs) / len(xs)
+    wsum = sum(ws)
+    if wsum <= 0:
+        return plain, 0.0
+    wmean = sum(x * w for x, w in zip(xs, ws)) / wsum
+    eff = wsum * wsum / sum(w * w for w in ws)       # Kish effective sample size
+    return (wmean * eff + plain * k) / (eff + k), eff
 
 
 def game_log(pid):
