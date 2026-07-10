@@ -118,6 +118,25 @@ def _load(mt_date):
     return rows, (w, len(dec) - w, u, len(rows))
 
 
+def _raw_record(r):
+    """Hit count on the ACTUAL game values shown in the chart — NOT the minutes-honest scaled
+    proj_hit. This is what really happened, so the reasoning, the record, and the bars all agree
+    on one number. Also returns how many of the last 3 (most recent) went OVER, to surface a
+    role that's climbing faster than the flat average shows."""
+    try:
+        s = json.loads(r["samples"]) if r["samples"] else []
+    except (ValueError, TypeError):
+        s = []
+    if not s:
+        return None
+    line = float(r["line"])
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
+    on = (lambda v: v > line) if side == "over" else (lambda v: v < line)
+    hits = sum(1 for x in s if on(x[0]))
+    recent_over = sum(1 for x in s[:3] if x[0] > line)      # samples are stored newest-first
+    return hits, len(s), side, recent_over
+
+
 def _reasoning(r):
     """A generated, model-grounded 'why the model likes this' line for the dropdown, built from
     the logged features (projection, role change, hit record, stale line, lineup status)."""
@@ -145,8 +164,14 @@ def _reasoning(r):
             else f"the projected role doesn't reach {line:g}."))
     else:
         b.append(f"Clears the {line:g} line" + (f" — {role} inherits the vacated role." if role else "."))
-    if ph is not None and n:
-        b.append(f"The {side} hit <b>{round(ph*n)}/{n}</b> ({ph*100:.0f}%) in comparable role games.")
+    rec = _raw_record(r)
+    if rec:
+        h, tot, sd, ro = rec
+        b.append(f"In {tot} comparable role games (min ≥ her elevated floor) she finished "
+                 f"{sd} {line:g} <b>{h}/{tot}</b> ({h/tot*100:.0f}%).")
+        if sd == "under" and ro >= 2:
+            b.append(f"⚠ But she's gone OVER in {ro} of her last 3 — the role may be climbing "
+                     f"faster than the flat average shows, so treat this under with caution.")
     if r.get("stale") and savg is not None:
         b.append(f"Book anchored near the season avg ({savg:g}) — it hasn't repriced the role.")
     if r.get("confidence") == "bench":
@@ -169,7 +194,11 @@ def _bars(r):
     line = float(r["line"])
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     vals = [x[0] for x in s]
-    mx = max(max(vals), line) * 1.14 or 1
+    # TWO scales so the gray MINUTES bar is always clearly TALLER than the colored stat bar
+    # (props.cash style): minutes fill toward the top on their own 0-42 range (a 30-min night ≈
+    # 71%), stats are compressed into the lower ~62% so the minute number atop every bar stays
+    # readable and never collides with the stat value.
+    mx = max(max(vals), line) * 1.62 or 1
     onside = (lambda v: v > line) if side == "over" else (lambda v: v < line)
     hits = sum(1 for v in vals if onside(v))
     note = ("elevated-role games" if r["basis"] == "elevated"
@@ -179,7 +208,7 @@ def _bars(r):
         v = x[0]
         mn = x[2] if len(x) > 2 else 0                  # minutes that game (overlay, own 0-40 scale)
         cols += (f'<div class="col">'
-                 f'<div class="m" style="height:{min(mn/40*100, 100):.0f}%"><span class="mv">{mn:g}\'</span></div>'
+                 f'<div class="m" style="height:{min(mn/42*100, 97):.0f}%"><span class="mv">{mn:g}\'</span></div>'
                  f'<div class="b {"o" if onside(v) else "u"}" style="height:{v/mx*100:.1f}%">'
                  f'<span class="bv">{v:g}</span></div></div>')
     opps = "".join(f'<span>{html.escape(str(o) or "")}</span>' for _, o, *_ in s)
@@ -200,10 +229,11 @@ def _mkt_row(r):
         badge, cls = f"push {actual:g}", "pend"
     else:
         badge, cls = "•", "pend"
-    proj, n, ph = r["elev_avg"], r["n_elev"], r["proj_hit"]
-    if ph is not None and n:
-        hits = round(ph * n)                           # bet-side record in the role games
-        mid = f'{side} · proj {proj:g} · <b>{hits}-{n-hits}</b> ({ph*100:.0f}%)'
+    proj = r["elev_avg"]
+    rec = _raw_record(r)                               # RAW record (matches the chart), not scaled
+    if rec:
+        h, tot, sd, _ = rec
+        mid = f'{sd} · proj {proj:g} · <b>{h}-{tot-h}</b> ({h/tot*100:.0f}%)'
     else:
         mid = f'{side} · proj {proj:g}'
     # injury-driven boost for this stat (usage rise for pts, reb/ast rise otherwise) — the
@@ -453,7 +483,7 @@ def build():
   .b.u {{ background:#8a3b46; }}
   .bv {{ position:absolute; top:-15px; left:0; right:0; text-align:center; font-size:10.5px; color:#aab3c1; }}
   .m {{ position:absolute; bottom:0; left:0; right:0; background:#222b38; border-radius:3px 3px 0 0; z-index:0; }}
-  .mv {{ position:absolute; top:1px; left:0; right:0; text-align:center; font-size:8px; color:#5c6472; }}
+  .mv {{ position:absolute; top:2px; left:0; right:0; text-align:center; font-size:9.5px; font-weight:600; color:#8b94a3; }}
   .why {{ color:#9aa3b2; font-size:12.5px; line-height:1.55; margin:0 2px 14px; }}
   .why b {{ color:#d3dae4; font-weight:700; }}
   .opps {{ display:flex; gap:5px; margin-top:5px; }}

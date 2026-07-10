@@ -27,17 +27,22 @@ STATS = ("pts", "reb", "ast")
 
 SCHEMA = """CREATE TABLE IF NOT EXISTS projections(
   date TEXT, pid TEXT, player TEXT, team TEXT, opp TEXT, out_player TEXT, confidence TEXT,
-  basis TEXT, n_games INTEGER, pos TEXT, d_min REAL,
+  basis TEXT, n_games INTEGER, pos TEXT, d_min REAL, flagged INTEGER DEFAULT 0,
   proj_min REAL, proj_pts REAL, proj_reb REAL, proj_ast REAL, logged_at TEXT,
   actual_min REAL, actual_pts REAL, actual_reb REAL, actual_ast REAL, graded INTEGER DEFAULT 0,
   UNIQUE(date, pid));"""
 COLS = ("date", "pid", "player", "team", "opp", "out_player", "confidence", "basis",
-        "n_games", "pos", "d_min", "proj_min", "proj_pts", "proj_reb", "proj_ast", "logged_at")
+        "n_games", "pos", "d_min", "flagged", "proj_min", "proj_pts", "proj_reb", "proj_ast",
+        "logged_at")
 
 
 def _con():
     con = sqlite3.connect(DB)
     con.execute(SCHEMA)
+    cols = {r[1] for r in con.execute("PRAGMA table_info(projections)")}
+    if "flagged" not in cols:                              # migrate older DBs
+        con.execute("ALTER TABLE projections ADD COLUMN flagged INTEGER DEFAULT 0")
+        con.commit()
     return con
 
 
@@ -139,6 +144,23 @@ def analyze():
     L += ["```",
           "(proj-bias +/- = actual over/under our projection; 'from minutes' vs 'from rate' says "
           "whether the miss is playing-time or per-minute production)", ""]
+
+    # 2b) FLAGGED bets (props that cleared the EV bar) vs ALL beneficiaries — do the spots we
+    # actually bet miss differently than the field? If flagged bias > all bias, the EV filter is
+    # selecting the spots we misjudge.
+    flg = [r for r in R if r.get("flagged")]
+    if len(flg) >= 10:
+        def _sb(grp, key):
+            v = [r[f"actual_{key}"] - r[f"proj_{key}"] for r in grp if r[f"proj_{key}"]]
+            return st.mean(v) if v else 0.0
+        L += ["## Flagged bets vs all projections", "```",
+              f"{'group':9}{'n':>5}{'min-bias':>10}{'pts':>8}{'reb':>8}{'ast':>8}"]
+        for label, grp in (("flagged", flg), ("all", R)):
+            mb2 = st.mean(r["actual_min"] - r["proj_min"] for r in grp)
+            L.append(f"{label:9}{len(grp):>5}{mb2:>+10.1f}"
+                     f"{_sb(grp, 'pts'):>+8.2f}{_sb(grp, 'reb'):>+8.2f}{_sb(grp, 'ast'):>+8.2f}")
+        L += ["```", "(bias = actual − projected; flagged bias worse than all = the EV filter is "
+              "picking spots we misjudge, so tighten it there)", ""]
 
     # 3) the single biggest SYSTEMATIC miss across segments (effect x sqrt(n))
     segs = []

@@ -151,18 +151,29 @@ def collect():
             pw = position_compat(v.get("position"), [op.get("position") for _, op in outs])
             with_min = w["with"]["min"]["mean"]
             proj = with_min + pw * (w["without"]["min"]["mean"] - with_min)
+            # RECENCY: the WOWY split averages OLD without-them games, so it lags a player whose
+            # role is actively expanding (Allemand: split says 30, she's played 35 the last 3).
+            # Credit the higher of the role estimate and recent minutes — only lifts ascending
+            # players, never lowers anyone. (Fixes the live-model stale-minutes gap; the backtest
+            # baseline already used trailing-5 minutes, so this closes LIVE up to that level.)
+            recent5 = [g["min"] for g in blog[:5] if g["min"] > 8]   # game_log is NEWEST-first
+            if recent5:
+                proj = max(proj, st.median(recent5))
             if proj - with_min <= 0.3 and pw < 0.6:        # no minutes bump AND no role overlap
                 continue
             conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
             # PROJECTION TRACKER: log this beneficiary's FULL projection (min + pts/reb/ast +
             # assumptions) whether or not any prop flags — the background learner grades it later.
             pa = T.project_all(blog, proj)
+            prow = None
             if pa:
-                proj_rows.append({"date": today, "pid": v["id"], "player": n, "team": team,
-                                  "opp": matchups.get(team, ""), "out_player": out_full,
-                                  "confidence": conf, "pos": v.get("position"),
-                                  "d_min": round(w["without"]["min"]["mean"]
-                                                 - w["with"]["min"]["mean"], 1), **pa})
+                prow = {"date": today, "pid": v["id"], "player": n, "team": team,
+                        "opp": matchups.get(team, ""), "out_player": out_full,
+                        "confidence": conf, "pos": v.get("position"), "flagged": 0,
+                        "d_min": round(w["without"]["min"]["mean"]
+                                       - w["with"]["min"]["mean"], 1), **pa}
+                proj_rows.append(prow)
+            n_preds0 = len(preds)                            # to mark whether this player got a bet
             mates_n = [(pg, dm, em) for (nm, pg, dm, em) in team_mates if nm != RW.norm(n)]
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm, mates=mates_n,
                                   opp=matchups.get(team, ""), pos=v.get("position")):
@@ -202,6 +213,8 @@ def collect():
                               "d_fta": e["d_fta"], "d_3pa": e["d_3pa"],
                               "basis": e["basis"], "samples": json.dumps(e["samples"]),
                               "confidence": conf})
+            if prow is not None:                            # did any prop for this player flag a bet?
+                prow["flagged"] = 1 if len(preds) > n_preds0 else 0
             dd = T.double_double_rate(blog, proj, w)
             if dd and dd["rate"] >= 0.40:                # strong lagging-market DD candidate
                 bits = [f"reb {dd['d_reb']:+g}" if dd["d_reb"] is not None else "",

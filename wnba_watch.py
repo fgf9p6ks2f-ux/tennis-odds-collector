@@ -31,6 +31,7 @@ import wnba_wowy as W
 
 HERE = Path(__file__).resolve().parent
 STATE = HERE / "wnba_injury_state.json"        # last-seen key-out statuses (for diffing)
+CONF_STATE = HERE / "wnba_confirm_state.json"  # last-seen set of CONFIRMED-lineup teams (for diffing)
 PCACHE = HERE / "wnba_players_cache.json"      # roster + season averages (skip the 47s rebuild)
 KEY_MIN = 20.0                                 # a player worth reacting to (mpg)
 
@@ -72,13 +73,21 @@ def main():
     # merge RotoWire's ruled-OUT list (mapped to full roster names via first-initial+lastname)
     # — a 2nd injury source that catches outs the ESPN feed is slow on and confirms them via
     # the actual posted lineup. Degrades silently if RotoWire is unreachable.
+    board = []
     try:
-        rw_out = RW.out_players(T.rw_lineups())
+        board = T.rw_lineups()
+        rw_out = RW.out_players(board)
         for full in pl:
             if RW.norm(full) in rw_out and inj.get(full) not in ("Out", "Doubtful"):
                 inj[full] = "Out"
     except Exception as e:
         print("rotowire merge skipped:", str(e)[:60])
+    # confirmation diff: a team flipping projected->CONFIRMED near tip changes the lineup labels
+    # (confirmed / bench) with NO new injury, so the dashboard must refresh even when `new` is empty.
+    conf_sig = sorted(t["team"] for t in board if t.get("status") == "confirmed")
+    prev_conf = json.loads(CONF_STATE.read_text()) if CONF_STATE.exists() else []
+    CONF_STATE.write_text(json.dumps(conf_sig))
+    conf_changed = bool(conf_sig) and conf_sig != prev_conf
     cur = key_outs(playing, inj, pl)
     first_run = not STATE.exists()
     prev = json.loads(STATE.read_text()) if STATE.exists() else {}
@@ -111,7 +120,14 @@ def main():
             except requests.RequestException as e:
                 print("back push failed:", e)
     if not new:
-        print(f"no new outs ({len(cur)} known: {', '.join(sorted(cur)) or 'none'})")
+        if conf_changed:
+            # lineups locked in (no new injury) — re-run the scan so the ledger's confidence
+            # labels flip likely->confirmed/bench and the dashboard regenerates. No push.
+            print(f"lineups confirmed ({len(conf_sig)} teams) — refreshing confidence, no push")
+            _, preds = A.collect()
+            L.log_predictions(preds)
+        else:
+            print(f"no new outs ({len(cur)} known: {', '.join(sorted(cur)) or 'none'})")
         return
 
     news = ", ".join(f"{A._short(n)} {s}" for n, s in sorted(new.items()))
