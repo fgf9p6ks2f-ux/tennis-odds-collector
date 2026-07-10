@@ -14,11 +14,13 @@ from __future__ import annotations
 import datetime
 import json
 import os
+import statistics as st
 from collections import defaultdict
 from pathlib import Path
 
 import requests
 
+import rotowire as RW
 import wnba_context as CTX
 import wnba_ledger as L
 import wnba_tonight as T
@@ -79,10 +81,19 @@ def collect():
             outs_by_team[p["team"]].append((name, p))
 
     alerts, preds = [], []
+    log_cache = {}                                   # fetch each player's game log at most once
+
+    def glog(pid):
+        if pid not in log_cache:
+            try:
+                log_cache[pid] = W.game_log(pid)
+            except Exception:
+                log_cache[pid] = []
+        return log_cache[pid]
+
     for team, outs in outs_by_team.items():
-        try:
-            out_logs = [W.game_log(p["id"]) for _, p in outs]
-        except RuntimeError:
+        out_logs = [glog(p["id"]) for _, p in outs]
+        if not all(out_logs):
             continue
         out_label = "+".join(_short(nm) for nm, _ in outs)      # "C.Clark+A.Boston"
         out_full = ", ".join(nm for nm, _ in outs)
@@ -98,12 +109,29 @@ def collect():
             env.append("fast" if ctx["pace_vs_lg"] > 0 else "slow")
         env_tag = " · " + " ".join(env) if env else ""
         starters = T.game_starters(gids.get(team))       # None until the lineup posts
+        # tonight's lineup CONTEXT for the context-weighted projection: date->minutes maps for
+        # the out stars (target 0) + the team's RotoWire starters (competitors, target = their
+        # expected minutes). Built once per team; degrades to no-context if RotoWire is thin.
+        out_dm = [{g["date"][:10]: g.get("min", 0) for g in ol} for ol in out_logs]
+        id_by_norm = {RW.norm(nm): vv["id"] for nm, vv in pl.items()}
+        team_mates = []
+        for t in T.rw_lineups():
+            if t["team"] != team:
+                continue
+            for p_pos, p_nm, inj in t["starters"]:
+                pid = id_by_norm.get(RW.norm(p_nm))
+                if inj or not pid:
+                    continue
+                lg = glog(pid)
+                mm = [g["min"] for g in lg[-10:] if g["min"] > 8]
+                if mm:
+                    team_mates.append((RW.norm(p_nm), T._PG.get(p_pos, "F"),
+                                       {g["date"][:10]: g["min"] for g in lg}, st.median(mm)))
         team_pl = {n: v for n, v in pl.items()
                    if v["team"] == team and n not in out_names and v["gp"] >= 5}
         for n, v in team_pl.items():
-            try:
-                blog = W.game_log(v["id"])
-            except RuntimeError:
+            blog = glog(v["id"])
+            if not blog:
                 continue
             # combined absence (all outs sitting together) — the compounded boost
             w = W.wowy_multi(blog, out_logs)
@@ -125,7 +153,8 @@ def collect():
             if proj - with_min <= 0.3 and pw < 0.6:        # no minutes bump AND no role overlap
                 continue
             conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
-            for e in T.prop_edges(n, blog, proj, w, vacated, ctx):
+            mates_n = [(pg, dm, em) for (nm, pg, dm, em) in team_mates if nm != RW.norm(n)]
+            for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm, mates=mates_n):
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
