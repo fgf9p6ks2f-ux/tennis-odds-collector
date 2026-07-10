@@ -14,6 +14,7 @@
 2026-07-10|DeWanna Bonner|rebounds|6.5
 2026-07-10|Kahleah Copper|points|19.5
 2026-07-10|Kahleah Copper|points|24.5
+2026-07-10|Kamilla Cardoso|dd
 2026-07-10|Lexie Hull|rebounds|3.5
 2026-07-10|Lexie Hull|rebounds|5.5
 2026-07-10|Monique Billings|points|9.5
