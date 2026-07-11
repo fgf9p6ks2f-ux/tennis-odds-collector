@@ -22,7 +22,8 @@ import wnba_wowy as W
 
 IMPACT = float(sys.argv[1]) if len(sys.argv) > 1 else 18.0
 MIN_NWO = 3
-STATS = {"pts": "points", "reb": "rebounds", "ast": "assists"}
+STATS = {"pts": "points", "reb": "rebounds", "ast": "assists",
+         "pra": "PRA", "pts_reb": "pts+reb", "pts_ast": "pts+ast", "reb_ast": "reb+ast"}
 
 
 def main():
