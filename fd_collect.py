@@ -187,21 +187,27 @@ def collect_page(customPageId, sport, is_match):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--wnba", action="store_true", help="WNBA page ONLY — fast poll for the 60s loop")
+    args = ap.parse_args()
     ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
     rows = []
-    try:
-        rows += collect_page("mlb", "mlb", lambda n: "@" in n)
-    except Exception as e:
-        print("mlb page err:", str(e)[:80])
+    if not args.wnba:
+        try:
+            rows += collect_page("mlb", "mlb", lambda n: "@" in n)
+        except Exception as e:
+            print("mlb page err:", str(e)[:80])
     try:
         rows += collect_page("wnba", "wnba", lambda n: "@" in n)
     except Exception as e:
         print("wnba page err:", str(e)[:80])
-    for pg in TENNIS_PAGES:
-        try:
-            rows += collect_page(pg.strip(), "tennis", lambda n: " v " in n.lower())
-        except Exception as e:
-            print(f"tennis page {pg} err:", str(e)[:80])
+    if not args.wnba:
+        for pg in TENNIS_PAGES:
+            try:
+                rows += collect_page(pg.strip(), "tennis", lambda n: " v " in n.lower())
+            except Exception as e:
+                print(f"tennis page {pg} err:", str(e)[:80])
     con = sqlite3.connect(DB)
     con.execute("""CREATE TABLE IF NOT EXISTS fd_lines (
         collected_at TEXT, sport TEXT, event TEXT, player TEXT, stat TEXT, line REAL,

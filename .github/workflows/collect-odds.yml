@@ -28,7 +28,7 @@ jobs:
       - name: collect tennis
         env:
           DB_PATH: ${{ github.workspace }}/odds.sqlite
-        run: python collect.py
+        run: python collect.py || echo "tennis collect skipped"   # never let one scrape kill the run
       - name: collect mlb props (pinnacle)
         env:
           MLB_DB: ${{ github.workspace }}/mlb_kprops.sqlite
@@ -76,8 +76,13 @@ jobs:
         run: |
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
-          git add -f odds.sqlite mlb_kprops.sqlite wnba_props.sqlite fanduel_props.sqlite \
-                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json gg.sqlite k_ladder.md mlb_totals.sqlite nfl_totals.sqlite
-          git commit -m "odds snapshot [skip ci]" || { echo "no change"; exit 0; }
-          git pull --rebase --autostash || true
-          git push
+          for f in odds.sqlite mlb_kprops.sqlite wnba_props.sqlite fanduel_props.sqlite \
+                 wnba_edge_report.md bet_ledger.sqlite bet_ledger_report.md bet_filters.json gg.sqlite k_ladder.md mlb_totals.sqlite nfl_totals.sqlite; do
+            git add -f "$f" 2>/dev/null || true
+          done
+          git commit -m "odds snapshot [skip ci]" -q || { echo "no change"; exit 0; }
+          # ROBUST push (was hard-failing on binary-DB rebase conflicts -> repeated failures ->
+          # GitHub throttled the schedule). -X theirs; reset-to-origin as last resort keeps us on
+          # a branch; the final || echo means a lost snapshot never fails the run (next run re-collects).
+          git pull --rebase --autostash -X theirs -q 2>/dev/null || { git rebase --abort 2>/dev/null || true; git reset --hard origin/main -q; }
+          git push -q 2>/dev/null || { git pull --rebase --autostash -X theirs -q 2>/dev/null || git reset --hard origin/main -q; git push -q 2>/dev/null || echo "push skipped (next run retries)"; }

@@ -39,9 +39,15 @@ jobs:
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
           for i in $(seq 1 315); do
+            if [ $((i % 2)) -eq 1 ]; then                        # ~every 2 min: REFRESH FanDuel WNBA
+              # lines IN-JOB (fresh flag_line for the scan + CLV shadow — the timing edge). Not
+              # committed here (24MB churn); collect-odds owns the persistent snapshot every 30 min.
+              FD_DB="$(pwd)/fanduel_props.sqlite" python fd_collect.py --wnba >/dev/null 2>&1 || echo "fd lines skipped"
+            fi
             python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
             if [ $((i % 10)) -eq 1 ]; then                       # ~every 10 min: settle finished games LIVE
               python wnba_ledger.py --grade >/dev/null 2>&1 || echo "grade skipped"
+              python wnba_clv.py --close >/dev/null 2>&1 || echo "clv close skipped"   # capture closing lines
             fi
             if [ -n "$(git status --porcelain)" ]; then
               # commit DATA first (never the generated dashboard) -> clean rebase, no docs
