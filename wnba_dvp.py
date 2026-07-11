@@ -19,7 +19,10 @@ import statistics as st
 from collections import defaultdict
 from pathlib import Path
 
-import numpy as np
+try:
+    import numpy as np                # only needed to FIT the DvP model (a separate --fit step); the
+except ImportError:                   # alert READS the cached JSON, so a missing numpy must never
+    np = None                         # crash module import and take down the whole alert pipeline.
 
 import wnba_pbp as P
 import wnba_wowy as W
@@ -129,6 +132,8 @@ def _boxscore(gid):
 
 
 def _fit(rows, lam=LAMBDA):
+    if np is None:                     # numpy absent — skip the fit; dvp() falls back to the cache/0
+        return {}
     pids = sorted({r[0] for r in rows})
     teams = sorted({r[1] for r in rows})
     if len(rows) < 40 or not teams:
