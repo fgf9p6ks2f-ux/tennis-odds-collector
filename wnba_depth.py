@@ -133,13 +133,21 @@ def projected_lineup(team, out_names, players=None, confirmed=None):
     usage = []
     if vacated:
         opid, oname, opos, olog = max(vacated, key=lambda v: st.mean(g["min"] for g in v[3]))
-        for pid, name, pos, log in kept:
+        # scan the FULL rotation, not just the kept starters — 86% of the time the role is absorbed
+        # with no new starter, and when a BIG sits it's small-ball 62% of the time, so the shots
+        # often go to a GUARD or a bench player, not a same-position starter. FGA-WOWY is empirical
+        # so it catches whoever actually shot more without the out player.
+        for pid, name, pos, log in rot:
+            if RW.norm(name) in onorm:
+                continue
             w = W.wowy(log, olog)
             wi, nwi = w["with"]["fga"]["mean"], w["with"]["fga"]["n"]
             wo, nwo = w["without"]["fga"]["mean"], w["without"]["fga"]["n"]
             # ROOM TO GROW: skip primary options (high baseline FGA) — they shoot regardless, so
             # their volume doesn't really rise off an injury. Only surface players who absorb shots.
-            if nwi >= 3 and nwo >= 2 and wo - wi > 0.5 and wi < PRIMARY_FGA:
+            # room to grow (wi < primary), volume actually rises, and lands at a REAL scoring role
+            # (wo >= 6 FGA — skips a 3-FGA bench end whose small bump isn't bettable).
+            if nwi >= 3 and nwo >= 2 and wo - wi > 0.5 and wi < PRIMARY_FGA and wo >= 6:
                 usage.append({"name": name, "d_fga": round(wo - wi, 1), "fga_wo": round(wo, 1),
                               "vs": oname})
         usage.sort(key=lambda x: -x["d_fga"])

@@ -157,12 +157,17 @@ def main():
                 by_team.setdefault(v["team"], []).append(on)
         for team, outs in by_team.items():
             lu = DP.projected_lineup(team, outs, pl_all)
-            for p in lu["promoted"]:                      # who fills the vacated STARTING slot
-                repl.append(f"↳ {team}: {A._short(p['name'])} STARTS ~{p['proj_min']:g}min "
-                            f"(replaces {A._short(p['replaces'])})")
-            for u in lu["usage_up"][:2]:                  # who absorbs the SHOTS (the volume bets)
-                repl.append(f"↳ {team}: {A._short(u['name'])} usage↑ +{u['d_fga']:g} FGA "
+            # LEAD with usage ABSORPTION — the data says 86% of the time NO bench player is promoted;
+            # the vacated shots go to EXISTING players (FGA-WOWY, which is empirical so it catches
+            # small-ball automatically). This is the reliable, bet-relevant signal.
+            for u in lu["usage_up"][:3]:
+                repl.append(f"↳ {team}: {A._short(u['name'])} absorbs +{u['d_fga']:g} FGA "
                             f"(→{u['fga_wo']:g}/g w/o {A._short(u['vs'])})")
+            # a bench player is actually promoted only ~14% of the time and our guess is ~20% top-1,
+            # so surface it HEDGED, not as a confident call.
+            for p in lu["promoted"]:
+                repl.append(f"↳ {team}: {A._short(p['name'])} may start ~{p['proj_min']:g}min "
+                            f"(low-conf guess for {A._short(p['replaces'])}'s slot)")
     except Exception as e:
         print("lineup read skipped:", str(e)[:60])
     for r in repl:
