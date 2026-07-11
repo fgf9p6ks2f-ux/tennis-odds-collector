@@ -1,53 +1,53 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-09T09:17:58 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-11T06:06:37 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 69-192  ·  **P&L:** -57.81u ($-5,781)  ·  **ROI:** -22.1%
-- **Avg CLV:** +7.94% over 265 closed bets  ·  **Open:** 37  ·  **Total logged:** 320
+- **Record:** 88-214  ·  **P&L:** -60.87u ($-6,087)  ·  **ROI:** -20.2%
+- **Avg CLV:** +7.64% over 294 closed bets  ·  **Open:** 13  ·  **Total logged:** 337
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
-Data OK — FanDuel 1840 lines @ `2026-07-09T08:57:47`.
+Data OK — FanDuel 948 lines @ `2026-07-11T06:06:10`.
 
 ### by sport / stat
 
 | sport | stat | bets | settled P&L (u) | avg CLV |
 |---|---|---|---|---|
-| ebasketball | total | 10 | +3.11 | — |
+| ebasketball | total | 10 | +4.54 | -6.98% |
 | efootball | total | 2 | -0.09 | — |
-| mlb | f5_total | 4 | +2.77 | — |
-| mlb | game_total | 12 | +1.75 | — |
-| mlb | strikeouts | 29 | -2.22 | +3.40% |
-| mlb | total_bases | 253 | -62.70 | +8.18% |
-| tennis | player_games | 10 | -0.43 | +13.74% |
+| mlb | f5_total | 9 | +4.40 | — |
+| mlb | game_total | 24 | +2.14 | — |
+| mlb | strikeouts | 29 | -5.91 | +3.87% |
+| mlb | total_bases | 253 | -61.42 | +8.10% |
+| tennis | player_games | 10 | -4.54 | +11.06% |
 
 ### recent settled bets
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
-| 2026-07-09 | mlb | Ivan Herrera | total_bases over 1.5 | 2.40 | L | 0 | -1.00u | +1.3% |
-| 2026-07-09 | mlb | Samuel Basallo | total_bases over 1.5 | 2.05 | L | 0 | -1.00u | +19.2% |
-| 2026-07-09 | mlb | Jake Bennett | strikeouts over 4.5 | 2.06 | L | 4 | -1.00u | -0.8% |
-| 2026-07-09 | mlb | Michael Harris II | total_bases over 1.5 | 1.91 | W | 2 | +0.91u | +1.5% |
-| 2026-07-09 | mlb | Fernando Tatis Jr. | total_bases over 1.5 | 1.83 | W | 2 | +0.83u | +3.7% |
-| 2026-07-09 | mlb | Heliot Ramos | total_bases over 1.5 | 2.50 | L | 1 | -1.00u | +0.5% |
-| 2026-07-09 | mlb | Heliot Ramos | total_bases over 2.5 | 4.40 | L | 1 | -1.00u | +12.8% |
-| 2026-07-09 | mlb | Blaze Jordan | total_bases over 1.5 | 2.85 | L | 1 | -1.00u | +5.2% |
-| 2026-07-09 | mlb | Nathan Church | total_bases over 1.5 | 3.30 | L | 0 | -1.00u | +8.5% |
-| 2026-07-09 | mlb | Ivan Herrera | total_bases over 2.5 | 4.00 | L | 0 | -1.00u | +5.7% |
-| 2026-07-09 | mlb | Garrett Mitchell | total_bases over 2.5 | 4.10 | W | 3 | +3.10u | +8.2% |
-| 2026-07-09 | mlb | Alec Burleson | total_bases over 2.5 | 4.60 | W | 6 | +3.60u | +4.3% |
-| 2026-07-09 | mlb | Sal Frelick | total_bases over 2.5 | 5.00 | L | 0 | -1.00u | +16.3% |
-| 2026-07-09 | mlb | Cooper Pratt | total_bases over 2.5 | 5.50 | L | 2 | -1.00u | +21.4% |
-| 2026-07-09 | mlb | Samuel Basallo | total_bases over 3.5 | 3.80 | L | 0 | -1.00u | +26.4% |
-| 2026-07-09 | mlb | Dansby Swanson | total_bases over 3.5 | 4.90 | L | 1 | -1.00u | +6.1% |
-| 2026-07-09 | mlb | Nicky Lopez | total_bases over 1.5 | 3.60 | L | 0 | -1.00u | +11.1% |
-| 2026-07-09 | mlb | Ezequiel Duran | total_bases over 2.5 | 4.90 | L | 0 | -1.00u | +19.1% |
-| 2026-07-09 | mlb | Jasson Dominguez | total_bases over 1.5 | 2.55 | W | 2 | +1.55u | -4.4% |
-| 2026-07-09 | mlb | Taylor Walls | total_bases over 1.5 | 4.00 | L | 0 | -1.00u | +2.5% |
-| 2026-07-09 | mlb | Paul Goldschmidt | total_bases over 2.5 | 3.20 | L | 0 | -1.00u | -3.3% |
-| 2026-07-09 | mlb | Ben Rice | total_bases over 2.5 | 3.30 | L | 1 | -1.00u | -4.0% |
-| 2026-07-09 | mlb | Jasson Dominguez | total_bases over 2.5 | 4.40 | L | 2 | -1.00u | -0.0% |
-| 2026-07-09 | mlb | Jose Caballero | total_bases over 2.5 | 5.40 | L | 1 | -1.00u | -0.5% |
-| 2026-07-09 | mlb | Chandler Simpson | total_bases over 2.5 | 5.80 | L | 1 | -1.00u | +21.8% |
+| 2026-07-11 | tennis | Coco Gauff | player_games under 12.5 | 1.72 | L | 14 | -1.00u | +10.6% |
+| 2026-07-11 | tennis | Karolina Muchova | player_games under 12.5 | 1.76 | L | 14 | -1.00u | +3.8% |
+| 2026-07-11 | tennis | Novak Djokovic | player_games under 17.5 | 1.89 | W | 12 | +0.89u | +5.1% |
+| 2026-07-11 | tennis | Jannik Sinner | player_games over 20.5 | 1.83 | L | 18 | -1.00u | +11.5% |
+| 2026-07-11 | mlb | GAME (game_total) | game_total under 9.0 | 1.87 | W | 3 | +0.87u | — |
+| 2026-07-11 | mlb | GAME (game_total) | game_total over 7.0 | 1.85 | W | 13 | +0.85u | — |
+| 2026-07-11 | mlb | GAME (game_total) | game_total over 9.5 | 1.91 | L | 5 | -1.00u | — |
+| 2026-07-11 | mlb | GAME (game_total) | game_total over 9.0 | 1.95 | L | 5 | -1.00u | — |
+| 2026-07-11 | tennis | Alexander Zverev | player_games over 19.5 | 1.77 | L | 19 | -1.00u | +7.0% |
+| 2026-07-11 | mlb | GAME (game_total) | game_total over 8.0 | 1.83 | W | 12 | +0.83u | — |
+| 2026-07-11 | mlb | GAME (game_total) | game_total under 9.5 | 1.82 | W | 1 | +0.82u | — |
+| 2026-07-11 | mlb | GAME (f5_total) | f5_total over 3.5 | 1.87 | W | 6 | +0.87u | — |
+| 2026-07-11 | tennis | Alexander Zverev | player_games over 20.5 | 1.96 | L | 19 | -1.00u | +4.6% |
+| 2026-07-11 | ebasketball | SHELL v RAMZ | total under 106.5 | 1.77 | W | 101 | +0.77u | — |
+| 2026-07-11 | ebasketball | MACHINE v MIST | total over 108.5 | 1.83 | W | 110 | +0.83u | -4.3% |
+| 2026-07-11 | ebasketball | MACHINE v BLAZER | total over 113.5 | 1.83 | W | 115 | +0.83u | -4.3% |
+| 2026-07-11 | ebasketball | HYPER v CHIEF | total under 120.5 | 1.83 | L | 134 | -1.00u | -12.4% |
+| 2026-07-11 | mlb | Romy Gonzalez | total_bases over 1.5 | 2.25 | L | 1 | -1.00u | +3.7% |
+| 2026-07-11 | mlb | Chase DeLauter | total_bases over 1.5 | 2.10 | W | 4 | +1.10u | +8.2% |
+| 2026-07-11 | mlb | Kody Clemens | total_bases over 1.5 | 2.17 | L | 0 | -1.00u | +2.3% |
+| 2026-07-11 | mlb | Kahlil Watson | total_bases over 1.5 | 2.20 | L | 0 | -1.00u | +29.6% |
+| 2026-07-11 | mlb | Gavin Williams | strikeouts over 6.5 | 2.36 | W | 11 | +1.36u | +8.1% |
+| 2026-07-11 | mlb | Alec Burleson | total_bases over 1.5 | 2.15 | W | 2 | +1.15u | +5.4% |
+| 2026-07-11 | mlb | Andre Pallante | strikeouts over 3.5 | 1.72 | L | 2 | -1.00u | +6.1% |
+| 2026-07-11 | mlb | Reid Detmers | strikeouts over 6.5 | 2.24 | L | 6 | -1.00u | +3.1% |
 
