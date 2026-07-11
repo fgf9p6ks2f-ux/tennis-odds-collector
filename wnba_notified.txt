@@ -46,3 +46,7 @@
 2026-07-10|Valeriane Ayayi|points|10.5
 2026-07-10|Valeriane Ayayi|points|14.5
 2026-07-10|Valeriane Ayayi|rebounds|5.5
+2026-07-11|DeWanna Bonner|points|10.5
+2026-07-11|DeWanna Bonner|rebounds|6.5
+2026-07-11|Kahleah Copper|points|20.5
+2026-07-11|Valeriane Ayayi|points|9.5
