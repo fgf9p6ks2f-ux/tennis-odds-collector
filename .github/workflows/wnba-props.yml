@@ -34,7 +34,7 @@ jobs:
           python wnba_clv.py --close || echo "clv close skipped"
           python wnba_clv.py --grade || echo "clv grade skipped"
           python wnba_clv.py --report || echo "clv report skipped"
-      - name: retrain empirical lineup model (learns each team's promote-vs-absorb from ESPN flags)
+      - name: retrain empirical lineup model (learns each team's replacement-by-position from clean swaps)
         run: python wnba_lineup_model.py || echo "lineup model skipped"
       - name: retrain projection calibration on graded results
         run: python wnba_ledger.py --train || echo "train skipped"

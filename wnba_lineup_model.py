@@ -1,16 +1,14 @@
-"""EMPIRICAL replacement model learned from ESPN starter flags.
+"""EMPIRICAL replacement model — learns, per (team, vacated-position), WHO a team actually promotes
+into the starting five, from clean ESPN-starter-flag swaps.
 
-The positional heuristic assumes a same-position backup fills the slot — but the data says 86% of
-the time the role is ABSORBED (no new starter) and big-outs go small-ball. So instead of guessing
-from positions, LEARN each team's actual response: when a starter at position P sits, did they
-promote a bench player (and who) or absorb it? Shrunk toward the league base rate so a thin team
-sample can't run wild.
+Correction (2026-07-11): an earlier version mis-counted games whose lineup didn't map cleanly as
+'role absorbed' and concluded 86% absorption. That was a bug — someone ALWAYS fills the fifth spot.
+So this learns from CLEAN 1-for-1 swaps only (a prior starter didn't play, exactly one new starter
+appeared) and offers the team's historical replacement-by-position to reorder the depth engine's
+shortlist. Sample is tiny early (the depth engine's top-3 ~60% is the workhorse); this sharpens as
+the season logs starter flags. The BET keys on usage-WOWY, not this (starter top-1 is only ~0-20%).
 
-Built + graded off wnba_starter_cache.json (populated by starter_backtest.py). This module both
-trains the model AND backtests it leak-free vs the old heuristic — if it can't beat the base rate
-on this sample, that's reported honestly (it accrues as the season logs more starter flags).
-
-    python wnba_lineup_model.py [days]      # train + leak-free backtest report
+    python wnba_lineup_model.py [days]     # refresh starter cache, train, ship, backtest
 """
 import json
 import sys
@@ -24,73 +22,27 @@ import wnba_wowy as W
 
 CACHE = Path(__file__).resolve().parent / "wnba_starter_cache.json"
 MODEL = Path(__file__).resolve().parent / "wnba_lineup_model.json"
-SHRINK = 4.0                # pseudo-count pulling a team/pos toward the league promotion rate
+MIN_SEEN = 2                 # trust a team's pattern only after it's repeated it >=2x
 
 
 def load_model():
-    """The shipped model for live use in wnba_depth. Returns None if not trained yet."""
     if not MODEL.exists():
+        return {}
+    return {tuple(k.split("|", 1)): Counter(v) for k, v in json.loads(MODEL.read_text()).items()}
+
+
+def likely_starter(team, pos, model=None):
+    """The team's historically-most-common replacement for a starter at `pos` — or None until the
+    team has actually repeated the pattern (MIN_SEEN). Used only to reorder the depth shortlist."""
+    model = model if model is not None else load_model()
+    c = model.get((str(team), str(pos)))
+    if not c:
         return None
-    d = json.loads(MODEL.read_text())
-    tp = {tuple(k.split("|", 1)): Counter(v) for k, v in d.get("tp", {}).items()}
-    return {"lg_promote": d.get("lg_promote", 0.14), "tp": tp}
+    name, cnt = c.most_common(1)[0]
+    return name if cnt >= MIN_SEEN else None
 
 
-def promotes(team, out_pos, model=None):
-    """LIVE gate: does this team empirically PROMOTE a bench player for an out at `out_pos` (vs
-    absorb it)? -> (bool, promoted_name_or_None). Defaults to False (absorb) — the data says that's
-    right 86% of the time — until a team shows a real, sample-backed tendency."""
-    model = model or load_model()
-    if not model:
-        return False, None
-    mode, who, _p = predict(model, team, out_pos)
-    return mode == "PROMOTE", who
-
-
-def _events(team_games, n2pos, upto=None):
-    """Yield (team, out_pos, outcome) where outcome is 'ABSORBED' or the promoted player's name.
-    upto: only events strictly before this date (leak-free)."""
-    for team, gl in team_games.items():
-        gl = sorted(gl, key=lambda x: x[0])
-        for i, (date, played, starters) in enumerate(gl):
-            if i < 5 or (upto and date >= upto):
-                continue
-            usual = {n for n, _ in Counter(s for _, _, ss in gl[max(0, i-5):i] for s in ss).most_common(5)}
-            promoted = [x for x in starters if x not in usual]
-            for ox in [x for x in usual if x not in played]:
-                opos = n2pos.get(ox, "F")
-                if not promoted:
-                    yield team, opos, "ABSORBED"
-                else:
-                    new = min(promoted, key=lambda p: 0 if n2pos.get(p) == opos else 1)
-                    yield team, opos, new
-
-
-def train(team_games, n2pos, upto=None):
-    """league promotion rate + per (team,pos) outcome distribution."""
-    league = Counter()
-    tp = defaultdict(Counter)
-    for team, opos, outcome in _events(team_games, n2pos, upto):
-        league[outcome != "ABSORBED"] += 1
-        tp[(team, opos)][outcome] += 1
-    lg_promote = league[True] / max(sum(league.values()), 1)
-    return {"lg_promote": lg_promote, "tp": tp}
-
-
-def predict(model, team, out_pos):
-    """-> (mode, promoted_name_or_None, promote_prob). Shrinks the team/pos sample toward league."""
-    c = model["tp"].get((team, out_pos), Counter())
-    n = sum(c.values())
-    promotes = sum(v for k, v in c.items() if k != "ABSORBED")
-    # credibility-shrunk promotion probability
-    p = (promotes + SHRINK * model["lg_promote"]) / (n + SHRINK)
-    if p < 0.5:
-        return "ABSORBED", None, round(p, 2)
-    who = Counter({k: v for k, v in c.items() if k != "ABSORBED"}).most_common(1)
-    return "PROMOTE", (who[0][0] if who else None), round(p, 2)
-
-
-def _load_team_games(days_pad=65):
+def _load(days_pad=70):
     players = W.players()
     n2team = {n: str(v.get("team", "")) for n, v in players.items()}
     n2pos = {n: D._pos(v.get("position")) for n, v in players.items()}
@@ -98,7 +50,7 @@ def _load_team_games(days_pad=65):
     dirty = False
     tg = defaultdict(list)
     for gid, date in B.game_ids(days_pad):
-        if gid not in cache:                              # fetch + cache new finished games' starters
+        if gid not in cache:
             cache[gid] = T.game_starters(gid) or {}
             dirty = True
         s = cache.get(gid)
@@ -113,55 +65,69 @@ def _load_team_games(days_pad=65):
             if isst:
                 stb[t].add(nm)
         for t in plb:
-            tg[t].append((date, plb[t], stb[t]))
+            if len(stb[t]) == 5:                         # CLEAN: skip games whose five didn't map
+                tg[t].append((date, plb[t], stb[t]))
     if dirty:
         CACHE.write_text(json.dumps(cache))
     return tg, n2pos
 
 
-def main():
-    days = int(sys.argv[1]) if len(sys.argv) > 1 else 30
-    tg, n2pos = _load_team_games()
-    dates = sorted({d for gl in tg.values() for d, *_ in gl})
-    cutoff = dates[-min(days, len(dates))] if dates else "9999"
-    # ship the full-data model for live use (wnba_depth.promotes gates the promotion guess on it)
-    m = train(tg, n2pos)
-    MODEL.write_text(json.dumps({"lg_promote": round(m["lg_promote"], 3),
-                                 "tp": {f"{t}|{p}": dict(c) for (t, p), c in m["tp"].items()}}))
-
-    # leak-free backtest: for each held-out event, train on prior, predict the OUTCOME class
-    n = base_hit = emp_hit = emp_promote_named = emp_promote_tot = 0
-    test = list(_events(tg, n2pos))                      # all events...
-    # re-derive with dates for the held-out split
+def _swaps(tg, n2pos, upto=None):
+    """clean 1-for-1 swaps -> (team, out_pos, replacement_name), strictly before `upto` if given."""
     for team, gl in tg.items():
         gl = sorted(gl, key=lambda x: x[0])
-        for i, (date, played, starters) in enumerate(gl):
-            if i < 5 or date < cutoff:
+        for i in range(1, len(gl)):
+            date, played, st = gl[i]
+            if upto and date >= upto:
                 continue
-            usual = {x for x, _ in Counter(s for _, _, ss in gl[max(0, i-5):i] for s in ss).most_common(5)}
-            promoted = [x for x in starters if x not in usual]
-            for ox in [x for x in usual if x not in played]:
-                opos = n2pos.get(ox, "F")
-                actual = "ABSORBED" if not promoted else "PROMOTE"
-                model = train(tg, n2pos, upto=date)      # only prior games
-                mode, who, _p = predict(model, team, opos)
-                n += 1
-                base_hit += 1 if actual == "ABSORBED" else 0     # "always absorbed" baseline
-                emp_hit += 1 if mode == actual else 0
-                if mode == "PROMOTE":
-                    emp_promote_tot += 1
-                    new = min(promoted, key=lambda p: 0 if n2pos.get(p) == opos else 1) if promoted else None
-                    emp_promote_named += 1 if who and who == new else 0
+            prev = gl[i - 1][2]
+            out = [x for x in prev if x not in played]
+            new = [x for x in st if x not in prev]
+            if len(out) == 1 and len(new) == 1:
+                yield team, n2pos.get(out[0], "F"), new[0]
 
-    print(f"\nEMPIRICAL LINEUP MODEL — leak-free backtest, last {days} days, {n} out-starter events\n")
-    if n:
-        print(f"  outcome-class accuracy (absorbed vs promote):")
-        print(f"    'always absorbed' baseline: {100*base_hit/n:.0f}%")
-        print(f"    empirical model:            {100*emp_hit/n:.0f}%")
-        print(f"  when the model calls a PROMOTION, it named the right player: "
-              f"{emp_promote_named}/{emp_promote_tot}")
-        print(f"\n  verdict: {'beats' if emp_hit > base_hit else 'does NOT beat'} the base rate "
-              f"on this sample (Δ {emp_hit-base_hit:+d} events)")
+
+def train(tg, n2pos, upto=None):
+    m = defaultdict(Counter)
+    for team, pos, repl in _swaps(tg, n2pos, upto):
+        m[(team, pos)][repl] += 1
+    return m
+
+
+def main():
+    days = int(sys.argv[1]) if len(sys.argv) > 1 else 60
+    tg, n2pos = _load()
+    m = train(tg, n2pos)
+    MODEL.write_text(json.dumps({f"{t}|{p}": dict(c) for (t, p), c in m.items()}))
+
+    dates = sorted({d for gl in tg.values() for d, *_ in gl})
+    cutoff = dates[-min(days, len(dates))] if dates else "9999"
+    n = emp1 = emp3 = 0
+    for team, gl in tg.items():
+        gl = sorted(gl, key=lambda x: x[0])
+        for i in range(1, len(gl)):
+            date, played, st = gl[i]
+            if date < cutoff:
+                continue
+            prev = gl[i - 1][2]
+            out = [x for x in prev if x not in played]
+            new = [x for x in st if x not in prev]
+            if len(out) != 1 or len(new) != 1:
+                continue
+            opos = n2pos.get(out[0], "F")
+            prior = train(tg, n2pos, upto=date)          # leak-free
+            c = prior.get((team, opos), Counter())
+            ranked = [nm for nm, _ in c.most_common()]
+            n += 1
+            emp1 += 1 if ranked and ranked[0] == new[0] else 0
+            emp3 += 1 if new[0] in ranked[:3] else 0
+    stored = sum(1 for c in m.values() for k, v in c.items() if v >= MIN_SEEN)
+    print(f"\nEMPIRICAL replacement model (clean swaps) — {sum(len(c.values()) for c in m.values())} "
+          f"training swaps, {stored} repeated (team,pos)->player patterns learned\n")
+    print(f"  leak-free backtest on {n} held-out swaps: empirical top-1 "
+          f"{100*emp1/n if n else 0:.0f}%, top-3 {100*emp3/n if n else 0:.0f}%")
+    print(f"  (depth-engine heuristic was 0% / 62%; empirical only helps once teams repeat "
+          f"patterns — accrues forward)")
 
 
 if __name__ == "__main__":
