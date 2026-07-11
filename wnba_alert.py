@@ -202,7 +202,7 @@ def collect():
                 if e["ev"] > 0.35 or e["n"] < 6:
                     tag += " [thin-sample, be skeptical]"
                 # per-stat driver: points shows FGA (+FTA/3PA), rebounds reb, assists ast
-                dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
+                dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}.get(e["stat"], "FGA")
                 bits = [f"{dl} {e['driver']:+g}" if e["driver"] is not None else "",
                         f"min {e['d_min']:+g}" if e["d_min"] is not None else ""]
                 if e["stat"] == "points" and e["d_fta"] is not None:

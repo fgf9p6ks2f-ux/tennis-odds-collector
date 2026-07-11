@@ -28,8 +28,10 @@ except Exception:
 HERE = Path(__file__).resolve().parent
 LEDGER = HERE / "wnba_ledger.sqlite"
 OUT = HERE / "docs" / "index.html"
-STAT = {"points": "PTS", "rebounds": "REB", "assists": "AST"}
-STATKEY = {"points": "pts", "rebounds": "reb", "assists": "ast"}
+STAT = {"points": "PTS", "rebounds": "REB", "assists": "AST",
+        "pra": "PRA", "pts_reb": "P+R", "pts_ast": "P+A", "reb_ast": "R+A"}
+STATKEY = {"points": "pts", "rebounds": "reb", "assists": "ast",
+           "pra": "pra", "pts_reb": "pts_reb", "pts_ast": "pts_ast", "reb_ast": "reb_ast"}
 THIN_EV = 0.35
 LOGO = "https://a.espncdn.com/i/teamlogos/wnba/500/{}.png"
 

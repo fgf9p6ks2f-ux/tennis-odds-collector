@@ -123,6 +123,7 @@ def game_log(pid):
                             "min": num("minutes"), "pts": p, "reb": rb, "ast": a,
                             "fga": fga, "fg3a": fg3a, "fta": fta, "tov": tov,
                             "poss": fga + 0.44 * fta + tov,
+                            "pra": p + rb + a, "pts_reb": p + rb, "pts_ast": p + a, "reb_ast": rb + a,
                             "dd": sum(1 for v in (p, rb, a) if v >= 10) >= 2,
                             "matchup": opp,
                             "result": m.get("gameResult", "")})   # 'W'/'L' once FINAL, '' if not
@@ -181,7 +182,8 @@ def wowy_multi(player_log, teammate_logs):
     with_g = [g for g in player_log if g["game_id"] in present]
     without_g = [g for g in player_log if g["game_id"] not in present]
     def block(gs):
-        return {s: _summ(gs, s) for s in ("min", "pts", "reb", "ast", "fga", "fta", "fg3a")}
+        return {s: _summ(gs, s) for s in ("min", "pts", "reb", "ast", "fga", "fta", "fg3a",
+                                          "pra", "pts_reb", "pts_ast", "reb_ast")}
     return {"with": block(with_g), "without": block(without_g),
             "n_with": len(with_g), "n_without": len(without_g)}
 

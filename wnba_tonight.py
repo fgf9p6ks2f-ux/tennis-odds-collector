@@ -52,7 +52,8 @@ def rw_lineups():
 PROPS_DB = Path(os.environ.get("FD_DB",
                 Path(__file__).resolve().parent / "fanduel_props.sqlite"))
 # fd_lines stat keys we can project from a game log
-PROP_STATS = {"points": "pts", "rebounds": "reb", "assists": "ast"}
+PROP_STATS = {"points": "pts", "rebounds": "reb", "assists": "ast",
+              "pra": "pra", "pts_reb": "pts_reb", "pts_ast": "pts_ast", "reb_ast": "reb_ast"}
 
 
 def _am(dec):
@@ -139,7 +140,8 @@ VOL_LIVE = True
 #   rebounds -> rebounds + minutes                   (own rate + playing time)
 #   assists  -> assists + minutes                    (own rate + playing time)
 # FGA is a POINTS driver only; it's noise for reb/ast.
-STAT_DRIVER = {"points": "fga", "rebounds": "reb", "assists": "ast"}
+STAT_DRIVER = {"points": "fga", "rebounds": "reb", "assists": "ast",
+               "pra": "fga", "pts_reb": "fga", "pts_ast": "fga", "reb_ast": "reb"}
 
 
 _PG = {"G": "G", "PG": "G", "SG": "G", "GF": "G", "F": "F", "SF": "F", "PF": "F",
@@ -253,7 +255,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # minutes. Otherwise the model cherry-picks a player's 26-min games (Billings'
             # 7.4 reb) to project a ~19-min role. Capped at 1.35x so a genuine bump isn't
             # clipped; counting stats only (rate stats like FGA-per already normalize).
-            r = min(proj_min / max(g["min"], 1.0), 1.35) if key in ("pts", "reb", "ast", "fga", "fta", "fg3a") else 1.0
+            r = min(proj_min / max(g["min"], 1.0), 1.35) if key in ("pts", "reb", "ast", "fga", "fta", "fg3a", "pra", "pts_reb", "pts_ast", "reb_ast") else 1.0
             return g[key] * r
     else:
         # BREAKOUT fallback: thin elevated history but a real projected role. Project each
@@ -569,7 +571,7 @@ def main():
                       f"{dfga:+.1f}FGA w/o {name.split()[-1]}")
                 for e in prop_edges(n, blog, proj_min, w, vacated, ctx):
                     star = " ⟵ stale line" if e["stale"] else ""
-                    dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}[e["stat"]]
+                    dl = {"points": "FGA", "rebounds": "reb", "assists": "ast"}.get(e["stat"], "FGA")
                     d = f"{dl} {e['driver']:+g}, min {e['d_min']:+g} w/o, " if e["driver"] is not None else ""
                     ch = (f" [FTA {e['d_fta']:+g}, 3PA {e['d_3pa']:+g}]"
                           if e["stat"] == "points" and e["d_fta"] is not None else "")
