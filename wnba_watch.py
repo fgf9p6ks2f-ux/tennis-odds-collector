@@ -25,6 +25,7 @@ import requests
 
 import rotowire as RW
 import wnba_alert as A
+import wnba_depth as DP
 import wnba_ledger as L
 import wnba_tonight as T
 import wnba_wowy as W
@@ -132,6 +133,25 @@ def main():
 
     news = ", ".join(f"{A._short(n)} {s}" for n, s in sorted(new.items()))
     print(f"NEW: {news} — running scan")
+    # FAST REPLACEMENT READ: the instant the news hits, name who likely slides into the role +
+    # projected minutes (position + WOWY depth) — before RotoWire confirms / the line moves.
+    repl = []
+    try:
+        pl_all = W.players()
+        for on in new:
+            v = pl_all.get(on)
+            if not v:
+                continue
+            rot = DP.team_rotation(v.get("team"), pl_all)
+            olog = [g for g in W.game_log(v["id"]) if g["min"] > 0]
+            p = DP.primary(v["id"], v.get("position"), olog, rot)
+            if p:
+                repl.append(f"↳ {A._short(on)} out → {A._short(p['name'])} ~{p['proj_min']:g}min "
+                            f"({p['pos']}{'✓' if p['confirmed'] else ''})")
+    except Exception as e:
+        print("depth read skipped:", str(e)[:60])
+    for r in repl:
+        print("  " + r)
     alerts, preds = A.collect()
     logged = L.log_predictions(preds)
     seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
@@ -146,7 +166,8 @@ def main():
         print("  " + m)
     topic = os.environ.get("NTFY_TOPIC")
     if topic and fresh:
-        body = f"JUST IN: {news}\n" + "\n".join(m for _e, _k, m in fresh[:20])
+        body = (f"JUST IN: {news}\n" + ("\n".join(repl) + "\n" if repl else "")
+                + "\n".join(m for _e, _k, m in fresh[:20]))
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
                           headers={"Title": f"WNBA news: {news}"[:120],
