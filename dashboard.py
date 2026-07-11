@@ -179,8 +179,8 @@ def _reasoning(r):
     rec = _raw_record(r)
     if rec:
         h, tot, sd, ro = rec
-        b.append(f"In {tot} comparable role games (min ≥ her elevated floor) she finished "
-                 f"{sd} {line:g} <b>{h}/{tot}</b> ({h/tot*100:.0f}%).")
+        ctxg = f"games without {out}" if out else "comparable role games"
+        b.append(f"In {tot} {ctxg} she finished {sd} {line:g} <b>{h}/{tot}</b> ({h/tot*100:.0f}%).")
         if sd == "under" and ro >= 2:
             b.append(f"⚠ But she's gone OVER in {ro} of her last 3 — the role may be climbing "
                      f"faster than the flat average shows, so treat this under with caution.")
@@ -251,9 +251,11 @@ def _bars(r):
     mx = max(max(vals), line) * 1.62 or 1
     onside = (lambda v: v > line) if side == "over" else (lambda v: v < line)
     hits = sum(1 for v in vals if onside(v))
+    # the bars are the player's games matching tonight's injury context (out-set absent), so name it
+    outs = ", ".join(_short(nm.strip()) for nm in (r.get("out_player") or "").split(",") if nm.strip())
     note = ("volume-confirmed role · bars = actual pts (shooting varies, volume doesn't)"
-            if r["basis"] == "volume" else "elevated-role games" if r["basis"] == "elevated"
-            else f"projected to ~{r['proj_min']:.0f} min")
+            if r["basis"] == "volume" else (f"games without {outs}" if outs else "elevated-role games")
+            if r["basis"] == "elevated" else f"projected to ~{r['proj_min']:.0f} min")
     cols = ""
     for x in s:
         v = x[0]

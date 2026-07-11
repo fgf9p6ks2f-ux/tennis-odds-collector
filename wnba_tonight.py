@@ -296,8 +296,17 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         if use_vol:
             elev_avg = round(vp["vol_pts"], 1)      # sticky-volume projection drives the points ladder
         n = len(vals)
-        # per-game samples for the bar chart: [value, opponent, minutes], most recent first
-        recent = sorted(sample, key=lambda g: g["date"], reverse=True)[:10]
+        # per-game samples for the bar chart. Show the games that match TONIGHT's injury context —
+        # the player's games where the SAME out-set was ABSENT (the user: "only the bars without
+        # Mack and Nogic"). out_logs = each out player's {date: minutes}, so a game is same-context
+        # when none of them appear on that date. Fall back to elevated-role games only if too few
+        # same-context games exist yet, so a brand-new out-set still renders a chart.
+        chart_pool = sample
+        if out_logs:
+            same_ctx = [g for g in log if all(g["date"][:10] not in om for om in out_logs)]
+            if len(same_ctx) >= 2:
+                chart_pool = same_ctx
+        recent = sorted(chart_pool, key=lambda g: g["date"], reverse=True)[:10]
         # store the ACTUAL game stat (whole number) + minutes for the chart — not the minutes-
         # scaled projection value (which produced confusing decimals). The bars show what the
         # player really did each game vs the line; the minutes overlay shows the role context.
