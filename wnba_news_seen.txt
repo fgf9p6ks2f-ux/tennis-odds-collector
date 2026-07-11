@@ -16,3 +16,5 @@ rw|ezimagbegor|Magbegor (face) has been ruled out for S
 rw|tainamair|Mair (coach's decision) has been ruled o
 rw|temifagbenle|Fagbenle (concussion) has been ruled out
 rw|quionchecarter|Carter (coach's decision) has been ruled
+rw|taniyalatson|Latson (coach's decision) has been ruled
+rw|danaevans|Evans (leg) is listed as out for Saturda
