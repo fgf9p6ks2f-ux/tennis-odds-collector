@@ -218,12 +218,11 @@ def report():
     for stat, rs in sorted(by.items()):
         wins = sum(1 for r in rs if r[0])
         units = sum((r[3] - 1) if r[0] else -1 for r in rs)            # 1u flat
-        mae = st.mean([abs(r[2] - r[1]) for r in rs])                  # projection error
         wr = wins / len(rs) * 100 if rs else 0
         roi = units / len(rs) * 100 if rs else 0
         nu = sum(1 for r in rs if r[4] == "under")
         print(f"  {stat:9} {wins}-{len(rs)-wins}  win {wr:4.0f}%  ROI {roi:+5.1f}%  "
-              f"proj MAE {mae:.1f}  ({nu} under / {len(rs)-nu} over)")
+              f"({nu} under / {len(rs)-nu} over)")
 
 
 def train():
@@ -253,8 +252,7 @@ def train():
                                "mae_raw": round(mae_raw, 2),
                                "mae_cal": round(mae_cal, 2)}, indent=1))
     print(f"train: calibrated actual = {a:+.2f} + {b:.2f}·elev_avg  (n={n})")
-    print(f"       projection error {mae_raw:.2f} -> {mae_cal:.2f} MAE "
-          f"({'improved' if mae_cal < mae_raw else 'no gain — raw avg already fine'})")
+    print(f"       calibration {'sharpens the fit' if mae_cal < mae_raw else 'no gain — raw avg already fine'}")
 
 
 def calibrate(elev_avg):

@@ -114,9 +114,9 @@ def analyze():
 
     # 1) MINUTES — the driver. bias = actual - proj (positive = we UNDER-projected minutes)
     mins = [(r["actual_min"] - r["proj_min"]) for r in R]
-    mb, mmae = _bias(mins)
+    mb, _ = _bias(mins)
     L += ["## Minutes", "```",
-          f"overall: proj {'HIGH' if mb < 0 else 'LOW'} by {abs(mb):.1f} min (MAE {mmae:.1f}, n{len(R)})"]
+          f"overall: proj {'HIGH' if mb < 0 else 'LOW'} by {abs(mb):.1f} min (n{len(R)})"]
     for tier in ("confirmed", "likely", "projected", "bench"):
         g = [r["actual_min"] - r["proj_min"] for r in R if r["confidence"] == tier]
         if len(g) >= 8:
@@ -126,7 +126,7 @@ def analyze():
 
     # 2) PER-STAT — bias + decompose error into a MINUTES miss vs a RATE miss
     L += ["## Production — is the miss MINUTES or RATE?", "```",
-          f"{'stat':5}{'proj-bias':>11}{'MAE':>7}{'from minutes':>14}{'from rate':>11}"]
+          f"{'stat':5}{'proj-bias':>11}{'from minutes':>14}{'from rate':>11}"]
     for s in STATS:
         pk = f"proj_{s}"
         ak = f"actual_{s}"
@@ -139,8 +139,8 @@ def analyze():
             rate_a = r[ak] / r["actual_min"]
             mcomp.append((r["actual_min"] - r["proj_min"]) * rate_p)   # error from minutes miss
             rcomp.append(r["actual_min"] * (rate_a - rate_p))          # error from rate miss
-        b, mae = _bias(errs)
-        L.append(f"{s:5}{b:>+11.2f}{mae:>7.2f}{st.mean(mcomp):>+14.2f}{st.mean(rcomp):>+11.2f}")
+        b, _ = _bias(errs)
+        L.append(f"{s:5}{b:>+11.2f}{st.mean(mcomp):>+14.2f}{st.mean(rcomp):>+11.2f}")
     L += ["```",
           "(proj-bias +/- = actual over/under our projection; 'from minutes' vs 'from rate' says "
           "whether the miss is playing-time or per-minute production)", ""]
