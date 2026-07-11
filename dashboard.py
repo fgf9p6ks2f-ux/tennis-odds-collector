@@ -54,15 +54,14 @@ def _conf(r):
 
 
 def _units(dec):
-    """Recommended stake by ODDS (risk control), NOT model edge. Quarter-Kelly was wrong here:
-    it sized UP the longshots the model liked — but the model's edge on longshots is exactly
-    what's least reliable (every +240 alt-line busted the first slate). So: flat 1u through
-    +100, then lower the longer the price. ~0.7u @ +150, 0.5u @ +200, 0.4u @ +240, 0.3u @
-    +300, 0.25u floor."""
+    """Recommended stake by ODDS (risk control), NOT model edge — calibrated to the user's own
+    ladder staking: full 1u at the anchor (~-110 through +100), then decay hard up the ladder so
+    you never overexpose on one player. ~0.5u @ +170, 0.4u @ +200, 0.25u @ +250, 0.2u @ +300,
+    0.15u floor for the deep +500/+600 lottery rungs."""
     dec = float(dec)
-    if dec <= 2.0:                              # -inf .. +100 (favorites through pick'em): base
+    if dec <= 2.05:                             # -inf .. ~+105 (favorites through pick'em): base
         return 1.0
-    return max(0.25, round((2.0 / dec) ** 1.7 / 0.05) * 0.05)
+    return max(0.15, round((2.0 / dec) ** 2.4 / 0.05) * 0.05)
 
 
 def _tip_times():

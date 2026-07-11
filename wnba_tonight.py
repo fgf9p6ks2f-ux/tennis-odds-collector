@@ -314,7 +314,8 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                 continue
             dec = over_dec if side == "over" else under_dec
             hi_odds = 7.0 if use_vol else 5.0          # volume overs LADDER UP to +600 alt lines
-            if not dec or not (1.25 <= dec <= hi_odds):   # no price that side, or lottery longshot
+            lo_odds = 1.6 if use_vol else 1.25         # ...but NEVER a deep favorite under the line
+            if not dec or not (lo_odds <= dec <= hi_odds):   # no price, deep fav, or lottery longshot
                 continue
             # skip trivial deep favorites — the line sits so far on one side of the projection
             # it's a near-lock with no edge (a 15-pt scorer's o3.5, or a u30.5), just clutter.
@@ -366,7 +367,10 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
     out.sort(key=lambda d: -d["ev"])
     kept = []
     for e in out:
-        if any(k["stat"] == e["stat"] and abs(k["line"] - e["line"]) <= 1.5 for k in kept):
+        # spread the volume LADDER (>=3pt gaps) so it's an anchor + a couple rungs up, not five
+        # stacked near-even bets that overexpose one player; tighter dedup for everything else.
+        gap = 3.0 if e.get("basis") == "volume" else 1.5
+        if any(k["stat"] == e["stat"] and abs(k["line"] - e["line"]) <= gap for k in kept):
             continue
         kept.append(e)
     return kept
