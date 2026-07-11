@@ -40,8 +40,8 @@ jobs:
             python wnba_watch.py || echo "poll $i skipped"    # injuries -> ntfy push + CLV shadow on a new out
             # commit ONLY the small state files (NOT the 24MB fanduel DB — collect-odds owns that);
             # so a commit fires only when an injury/CLV shadow actually changed something.
-            if [ -n "$(git status --porcelain -- wnba_injury_state.json wnba_confirm_state.json wnba_ledger.sqlite wnba_clv.sqlite wnba_proj_log.sqlite)" ]; then
-              for f in wnba_injury_state.json wnba_confirm_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt wnba_clv.sqlite wnba_proj_log.sqlite; do
+            if [ -n "$(git status --porcelain -- wnba_injury_state.json wnba_confirm_state.json wnba_ledger.sqlite wnba_clv.sqlite wnba_proj_log.sqlite wnba_news_seen.txt)" ]; then
+              for f in wnba_injury_state.json wnba_confirm_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt wnba_clv.sqlite wnba_proj_log.sqlite wnba_news_seen.txt; do
                 git add -f "$f" 2>/dev/null || true
               done
               if git commit -m "wnba night watch [skip ci]" -q >/dev/null 2>&1; then

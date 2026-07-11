@@ -27,6 +27,7 @@ import rotowire as RW
 import wnba_alert as A
 import wnba_depth as DP
 import wnba_ledger as L
+import wnba_news as NEWS
 import wnba_tonight as T
 import wnba_wowy as W
 
@@ -83,6 +84,17 @@ def main():
                 inj[full] = "Out"
     except Exception as e:
         print("rotowire merge skipped:", str(e)[:60])
+    # NEWS aggregator (3rd source, FASTEST): RotoWire's player-news blurbs + Google News post minutes
+    # ahead of the formal ESPN injury status. Merge a news-detected OUT that references TODAY into the
+    # injury dict -> the existing diff fires the scan + beneficiary flags + push sooner. Degrades silently.
+    try:
+        for it in NEWS.new_items(list(pl)):
+            if (it["on_roster"] and it["status"] == "out" and NEWS.references_today(it["text"])
+                    and inj.get(it["player"]) not in ("Out", "Doubtful")):
+                inj[it["player"]] = "Out"
+                print(f"news OUT (ahead of ESPN): {it['player']} — {it['text'][:70]}")
+    except Exception as e:
+        print("news aggregator skipped:", str(e)[:60])
     # confirmation diff: a team flipping projected->CONFIRMED near tip changes the lineup labels
     # (confirmed / bench) with NO new injury, so the dashboard must refresh even when `new` is empty.
     conf_sig = sorted(t["team"] for t in board if t.get("status") == "confirmed")
