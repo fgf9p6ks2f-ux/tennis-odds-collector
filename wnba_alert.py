@@ -252,6 +252,26 @@ def collect():
     return sorted(alerts, reverse=True), preds
 
 
+def _notif_body(fresh, limit=20):
+    """Group the fresh alerts by the OUT player(s) into a SCANNABLE ntfy body: an injury header,
+    one bullet per bet, a blank line between injuries — instead of one dense clump of text. Drops
+    the verbose ' | w/o: ...' driver deltas for the push (they stay in the console log + dashboard);
+    each bullet keeps the bet, the record, and the EV."""
+    groups = {}
+    for _ev, _k, m in fresh[:limit]:
+        if " OUT -> " in m:
+            out, rest = m.split(" OUT -> ", 1)
+        else:
+            out, rest = "", m
+        rest = " | ".join(p for p in rest.split(" | ") if not p.startswith("w/o:"))
+        groups.setdefault(out, []).append(rest)
+    blocks = []
+    for out, bets in groups.items():
+        bullets = "\n".join(f"• {b}" for b in bets)
+        blocks.append(f"🚨 {out} OUT\n{bullets}" if out else bullets)
+    return "\n\n".join(blocks)
+
+
 def main():
     alerts, preds = collect()
     logged = L.log_predictions(preds)                    # feed the learning loop
@@ -267,7 +287,7 @@ def main():
         print("  " + msg)
     topic = os.environ.get("NTFY_TOPIC")
     if topic and fresh:
-        body = "\n".join(m for _e, _k, m in fresh[:20])
+        body = _notif_body(fresh)
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
                           headers={"Title": "WNBA prop spots (injury-driven)",

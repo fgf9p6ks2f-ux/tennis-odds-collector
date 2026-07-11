@@ -187,8 +187,8 @@ def main():
         print("  " + m)
     topic = os.environ.get("NTFY_TOPIC")
     if topic and fresh:
-        body = (f"JUST IN: {news}\n" + ("\n".join(repl) + "\n" if repl else "")
-                + "\n".join(m for _e, _k, m in fresh[:20]))
+        body = (f"🚨 {news}\n\n" + ("\n".join(repl) + "\n\n" if repl else "")
+                + A._notif_body(fresh))
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
                           headers={"Title": f"WNBA news: {news}"[:120],
