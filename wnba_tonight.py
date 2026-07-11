@@ -123,7 +123,15 @@ ROLE_FLOOR = 22.0
 # demand much more edge to bet an over than an under.
 OVER_EV_MIN = 0.10
 UNDER_EV_MIN = 0.04
-VOL_EV_MIN = 0.07     # volume-confirmed points OVERS: validated edge, so a middle bar (the ladder)
+VOL_EV_MIN = 0.07     # volume-confirmed points OVERS EV bar (only used if VOL_LIVE)
+# KILL SWITCH — OFF. The synthetic backtest (season-anchored lines) said the volume over was +EV,
+# but the REAL-LINE backtest (volume_reallines_backtest.py, vs the actual logged FanDuel lines +
+# odds, 7/7-7/9) went 2-21 broad / 0-5 robust: the projection OVER-shoots (recent elevated volume
+# regresses, and FanDuel's lines already price the role). Same lesson as the over->under pivot,
+# confirmed on real lines. So volume points overs are NOT auto-bet — the projection is logged as a
+# SHADOW (wnba_proj_log) to prove/disprove it forward before it ever risks money. Revisit for NBA
+# (softer, deeper markets) in October.
+VOL_LIVE = False
 
 
 # The user's per-stat decision model: which WOWY signals DECIDE each market.
@@ -281,7 +289,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         # overs by matchup but never overrides the validated under model). Logged as a feature.
         dvp_c = DVP.dvp(opp, pos, key) if (opp and pos) else 0.0
         elev_avg += dvp_c * proj_min
-        use_vol = vol_ok and stat == "points"
+        use_vol = vol_ok and stat == "points" and VOL_LIVE     # VOL_LIVE=False: shadow only, no bets
         if use_vol:
             elev_avg = round(vp["vol_pts"], 1)      # sticky-volume projection drives the points ladder
         n = len(vals)
