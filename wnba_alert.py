@@ -24,6 +24,7 @@ import rotowire as RW
 import wnba_context as CTX
 import wnba_ledger as L
 import wnba_proj_log as PL
+import wnba_regime as RG
 import wnba_tonight as T
 import wnba_wowy as W
 
@@ -212,7 +213,11 @@ def collect():
                               "total": e["total"], "pace": e["pace"], "opp_def": e["opp_def"],
                               "d_fta": e["d_fta"], "d_3pa": e["d_3pa"],
                               "basis": e["basis"], "samples": json.dumps(e["samples"]),
-                              "confidence": conf})
+                              "confidence": conf,
+                              # injury-regime comps (display flag): closest historical games to
+                              # tonight's EXACT absence set, for a consistent-minutes player
+                              "regime": json.dumps(RG.regime_note(
+                                  blog, out_logs, [_short(nm) for nm, _ in outs], e["stat"]) or {})})
             if prow is not None:                            # did any prop for this player flag a bet?
                 prow["flagged"] = 1 if len(preds) > n_preds0 else 0
             dd = T.double_double_rate(blog, proj, w)

@@ -179,11 +179,39 @@ def _reasoning(r):
     return " ".join(b)
 
 
+def _regime_html(r):
+    """Injury-regime comps block: the historical games most like tonight's EXACT absence set, with
+    the player's line in them, and whether their average supports the bet. This operationalizes the
+    'find the closest comp' read — the automated regime projection backtested as a wash, so this is
+    a decision aid, not a projection change. Only present for consistent-minutes players."""
+    try:
+        rg = json.loads(r["regime"]) if r.get("regime") else {}
+    except (ValueError, TypeError):
+        rg = {}
+    if not rg or not rg.get("comps"):
+        return ""
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
+    line = float(r["line"])
+    stat = STAT.get(r["stat"], r["stat"])
+    avg = rg["comp_avg"]
+    names = ", ".join(rg.get("sig_names", [])[:3]) or "key players"
+    supports = (avg < line) if side == "under" else (avg > line)
+    verdict = "supports the " + side if supports else "⚠ leans against the " + side
+    vcls = "sup" if supports else "warn"
+    chips = "".join(f'<span class="cmp">{html.escape(c["date"][5:])} '
+                    f'{html.escape(str(c["opp"]))} <b>{c["val"]:g}</b> · {c["min"]:g}\'</span>'
+                    for c in rg["comps"])
+    div = ' · <span class="warn">tonight\'s injuries differ from her last 3</span>' if rg.get("divergent") else ""
+    return (f'<div class="regime"><div class="rgh">Closest comps · <b>{html.escape(names)}</b> out '
+            f'— avg <b>{avg:g}</b> {stat} (<span class="{vcls}">{verdict}</span>){div}</div>'
+            f'<div class="cmps">{chips}</div></div>')
+
+
 def _bars(r):
     """Dropdown: generated reasoning + a PropsCash-style game log. Each game's ACTUAL stat is a
     bar (green if it cashed our side, red if not) with the line drawn across, and a gray MINUTES
     bar behind it (own 0-40 scale) so the role context is visible. Opponent under each bar."""
-    why = f'<div class="why">{_reasoning(r)}</div>'
+    why = f'<div class="why">{_reasoning(r)}</div>{_regime_html(r)}'
     try:
         s = json.loads(r["samples"]) if r["samples"] else []
     except (ValueError, TypeError):
@@ -491,6 +519,13 @@ def build():
   .pline {{ position:absolute; left:0; right:0; height:0; border-top:1.5px dashed #5b9dff88; z-index:2; }}
   .pline span {{ position:absolute; right:0; top:-8px; font-size:9.5px; color:#5b9dff; background:#0a0d13; padding:0 3px; }}
   .bnote {{ color:#7d8696; font-size:11.5px; margin-top:9px; text-align:center; }}
+  .regime {{ margin:10px 0 4px; padding:9px 11px; background:#141c28; border:1px solid #223047; border-radius:8px; }}
+.rgh {{ font-size:12px; color:#aab3c1; margin-bottom:7px; }}
+.cmps {{ display:flex; flex-wrap:wrap; gap:6px; }}
+.cmp {{ font-size:11px; color:#8b94a3; background:#1c2634; border-radius:5px; padding:2px 7px; }}
+.cmp b {{ color:#e6ebf2; }}
+.sup {{ color:#4ea373; }}
+.warn {{ color:#c98a3c; }}
   .nodata {{ color:#6b7484; font-size:12px; padding:8px 0; }}
   .empty {{ color:#93a0b4; background:#121620; border:1px solid #1f2836; border-radius:16px; padding:26px 20px; text-align:center; font-size:15px; }}
   .empty span {{ color:#6b7484; font-size:13px; }}
