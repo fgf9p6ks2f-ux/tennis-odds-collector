@@ -23,6 +23,7 @@ import requests
 import rotowire as RW
 import wnba_context as CTX
 import wnba_ledger as L
+import wnba_clv as CLV
 import wnba_proj_log as PL
 import wnba_regime as RG
 import wnba_tonight as T
@@ -174,6 +175,13 @@ def collect():
                         "d_min": round(w["without"]["min"]["mean"]
                                        - w["with"]["min"]["mean"], 1), **pa}
                 proj_rows.append(prow)
+                # CLV shadow: capture our injury-driven projection vs the line AT DETECTION TIME
+                # (INSERT-OR-IGNORE keeps the earliest flag) — the timing-edge proof loop.
+                props_now = T.posted_props(n)
+                if props_now:
+                    CLV.log_shadow(today, n, out_full,
+                                   {"points": pa["proj_pts"], "rebounds": pa["proj_reb"],
+                                    "assists": pa["proj_ast"]}, props_now)
             n_preds0 = len(preds)                            # to mark whether this player got a bet
             mates_n = [(pg, dm, em) for (nm, pg, dm, em) in team_mates if nm != RW.norm(n)]
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm, mates=mates_n,
