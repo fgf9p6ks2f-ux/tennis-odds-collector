@@ -21,6 +21,7 @@ HERE = Path(__file__).resolve().parent
 VOL = json.loads((HERE / "wnba_volume_cache.json").read_text())     # pid -> [games w/ fga/fta/pts/min/date]
 DAYS = ("2026-07-07", "2026-07-08", "2026-07-09")
 KEY_MIN = 18            # a "key" out teammate plays >=18 min (a real rotation loss)
+PRIMARY_FGA = 13.0      # baseline FGA at/above this = a primary option (Mabrey) — exclude, no room to grow
 
 
 def games_for(pid):
@@ -89,6 +90,10 @@ def main():
             fga_with = st.mean(g["fga"] for g in withk)
             if fga_a < fga_with + 1.0:
                 continue
+            # ROOM TO GROW (the user's key filter): players with LOW-to-MODERATE baseline usage
+            # benefit — a bench->starter or a secondary starter (Hamby) absorbs the vacated shots. A
+            # primary option (Mabrey) already gets his shots regardless, so his "jump" is just noise.
+            is_primary = fga_with >= PRIMARY_FGA
             ladder = _ladder(con, player, date)
             picks = [(L, dec) for L, dec in sorted(ladder.items())
                      if vol_pts >= L + 1 and 1.25 <= dec <= 5.0 and L >= 0.4 * vol_pts]
@@ -101,7 +106,7 @@ def main():
             for L, dec in kept:
                 won = gm["pts"] > L
                 bets.append({"date": date, "player": player, "line": L, "dec": dec, "vp": vol_pts,
-                             "act": gm["pts"], "fga": f"{fga_with:.1f}->{fga_a:.1f}",
+                             "act": gm["pts"], "fga": f"{fga_with:.1f}->{fga_a:.1f}", "primary": is_primary,
                              "nanalog": len(analog), "kout": len(key_out),
                              "won": won, "u": (dec - 1) if won else -1.0})
     con.close()
@@ -111,16 +116,24 @@ def main():
         return
     print(f"\nINJURY-DRIVEN VOLUME POINTS OVERS vs REAL FanDuel lines — {DAYS[0]}..{DAYS[-1]}\n")
     print(f"  {'date':11}{'player':19}{'bet':>8}{'odds':>7}{'proj':>6}{'act':>5}"
-          f"{'FGA w/wo':>11}{'#an':>4}  W/L")
-    w = 0
-    for b in sorted(bets, key=lambda b: (b["date"], b["player"])):
+          f"{'FGA w/wo':>11}  tier   W/L")
+    for b in sorted(bets, key=lambda b: (b["primary"], b["date"], b["player"])):
         am = f'+{round((b["dec"]-1)*100)}' if b["dec"] >= 2 else f'-{round(100/(b["dec"]-1))}'
-        w += b["won"]
+        tier = "PRIMARY" if b["primary"] else "role   "
         print(f'  {b["date"]:11}{b["player"][:18]:19}{"o"+format(b["line"],"g"):>8}{am:>7}'
-              f'{b["vp"]:>6.1f}{b["act"]:>5.0f}{b["fga"]:>11}{b["nanalog"]:>4}  {"WIN " if b["won"] else "loss"}')
-    u = sum(b["u"] for b in bets)
-    print(f'\n  record {w}-{len(bets)-w} ({100*w/len(bets):.0f}%)  ·  {u:+.2f}u  ·  '
-          f'ROI {100*u/len(bets):+.1f}%  (n={len(bets)})')
+              f'{b["vp"]:>6.1f}{b["act"]:>5.0f}{b["fga"]:>11}  {tier} {"WIN " if b["won"] else "loss"}')
+
+    def rec(sub, label):
+        if not sub:
+            return
+        w = sum(b["won"] for b in sub)
+        u = sum(b["u"] for b in sub)
+        print(f'  {label:36} {w}-{len(sub)-w} ({100*w/len(sub):.0f}%)  ·  {u:+.2f}u  ·  '
+              f'ROI {100*u/len(sub):+.1f}%  (n={len(sub)})')
+    print()
+    rec([b for b in bets if not b["primary"]], "ROLE PLAYERS (room to grow, your bets):")
+    rec([b for b in bets if b["primary"]], "PRIMARY options (Mabrey-type, excluded):")
+    rec(bets, "all:")
 
 
 def _active(pl_by_date, pid, date, win=24):

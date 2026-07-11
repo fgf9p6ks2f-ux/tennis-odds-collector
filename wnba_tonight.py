@@ -123,15 +123,15 @@ ROLE_FLOOR = 22.0
 # demand much more edge to bet an over than an under.
 OVER_EV_MIN = 0.10
 UNDER_EV_MIN = 0.04
-VOL_EV_MIN = 0.07     # volume-confirmed points OVERS EV bar (only used if VOL_LIVE)
-# KILL SWITCH — OFF. The synthetic backtest (season-anchored lines) said the volume over was +EV,
-# but the REAL-LINE backtest (volume_reallines_backtest.py, vs the actual logged FanDuel lines +
-# odds, 7/7-7/9) went 2-21 broad / 0-5 robust: the projection OVER-shoots (recent elevated volume
-# regresses, and FanDuel's lines already price the role). Same lesson as the over->under pivot,
-# confirmed on real lines. So volume points overs are NOT auto-bet — the projection is logged as a
-# SHADOW (wnba_proj_log) to prove/disprove it forward before it ever risks money. Revisit for NBA
-# (softer, deeper markets) in October.
-VOL_LIVE = False
+VOL_EV_MIN = 0.07     # volume-confirmed points OVERS EV bar
+PRIMARY_FGA = 13.0    # baseline FGA at/above this = a primary option (Mabrey) — no room to grow, SKIP
+# ROOM-TO-GROW volume model. The broad real-line backtest lost (-38%) because it flagged PRIMARY
+# options (Mabrey: proj 24 -> scored 11, 0-4) whose shot count doesn't actually rise off an injury.
+# Filtering to LOW-baseline-usage players (bench->starter + secondary starters like Hamby, who
+# absorb the vacated shots) flips it: role players hit 54% on real lines (injury_volume_backtest,
+# split by tier). So the volume over is live ONLY for room-to-grow players; the CLV shadow + ledger
+# grade it forward, and the edge compounds with the injury-TIMING (bet before the line moves).
+VOL_LIVE = True
 
 
 # The user's per-stat decision model: which WOWY signals DECIDE each market.
@@ -222,7 +222,10 @@ def volume_points(log, proj_min, n_recent=4):
     base_fga = st.mean(g["fga"] for g in base)
     recent_fga = st.mean(g["fga"] for g in games[-3:])
     sig = st.pstdev([g["pts"] for g in games[-8:]]) if len(games) >= 5 else 5.0
-    return {"vol_pts": vol_pts, "confirmed": base_fga > 0 and recent_fga >= 1.35 * base_fga,
+    # confirmed = volume genuinely rose AND the player has ROOM TO GROW (not already a primary
+    # option who gets his shots regardless — those "jumps" are noise, backtested 0-4).
+    return {"vol_pts": vol_pts,
+            "confirmed": base_fga > 0 and recent_fga >= 1.35 * base_fga and base_fga < PRIMARY_FGA,
             "sigma": max(sig, 4.0), "pps": round(pps, 3), "base_fga": round(base_fga, 1),
             "recent_fga": round(recent_fga, 1), "fga_proj": round(fga_p, 1)}
 
