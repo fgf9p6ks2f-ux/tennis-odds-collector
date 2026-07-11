@@ -313,7 +313,8 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             if use_vol and side == "under":           # the volume layer ladders OVERS only
                 continue
             dec = over_dec if side == "over" else under_dec
-            if not dec or not (1.25 <= dec <= 5.0):   # no price that side, or lottery longshot
+            hi_odds = 7.0 if use_vol else 5.0          # volume overs LADDER UP to +600 alt lines
+            if not dec or not (1.25 <= dec <= hi_odds):   # no price that side, or lottery longshot
                 continue
             # skip trivial deep favorites — the line sits so far on one side of the projection
             # it's a near-lock with no edge (a 15-pt scorer's o3.5, or a u30.5), just clutter.
