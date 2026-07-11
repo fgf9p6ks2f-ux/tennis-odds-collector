@@ -157,7 +157,8 @@ def _reasoning(r):
                 f"— ladder the alt lines the book anchored low.")
     savg, ph, n = r.get("season_avg"), r.get("proj_hit"), r.get("n_elev")
     pm, dmin, drv = r.get("proj_min"), r.get("d_min"), r.get("driver")
-    out = _short(r["out_player"]) if r.get("out_player") else None
+    _on = [_short(nm.strip()) for nm in (r.get("out_player") or "").split(",") if nm.strip()]
+    out = " + ".join(_on) if _on else None      # full out-set, not a mangled single name
     dl = {"points": "usage", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "")
     role = ""
     if out:
@@ -300,7 +301,10 @@ def _mkt_row(r):
 
 
 def _player_card(player, rows, tip=None, top=False):
-    outs = ", ".join(sorted({_short(r["out_player"]) for r in rows}))
+    # out_player holds the FULL comma-joined out-set (e.g. "Satou Sabally, Leonie Fiebich"); split
+    # it so EVERY impact player out is shown, not just one — the usage context the user reads off.
+    outset = {_short(nm.strip()) for r in rows for nm in (r["out_player"] or "").split(",") if nm.strip()}
+    outs = ", ".join(sorted(outset))
     r0 = rows[0]
     team = (r0.get("team") or "").upper()
     logo = (f'<img class="logo" src="{LOGO.format(team.lower())}" alt="" '

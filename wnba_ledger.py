@@ -123,14 +123,20 @@ def log_predictions(rows):
             "side", "regime", "vol")
     n = 0
     for r in rows:
-        # insert new spots idempotently, but REFRESH the confidence label on re-log so the
-        # starter status tracks the lineup live through the day (projected -> likely ->
-        # confirmed / bench as RotoWire locks it). Everything else stays flag-time (CLV).
+        # insert new spots idempotently, and REFRESH on re-log so the row tracks live info through
+        # the day: the confidence label (projected -> likely -> confirmed/bench as RotoWire locks),
+        # AND the out-set + projection when a SECOND star is ruled out later (the timing edge — the
+        # multi-out boost compounds; the row must reflect it, not freeze at the single-out read).
+        # The earliest-flag record for CLV lives in wnba_clv's own table, so this can't corrupt it.
+        # The recorded ODDS stay flag-time (the price we'd have locked).
         cur = con.execute(
             f"INSERT INTO predictions({','.join(cols)}) VALUES ({','.join('?' * len(cols))}) "
             f"ON CONFLICT(pred_date, player, stat, line) DO UPDATE SET confidence=excluded.confidence, "
-            f"side=excluded.side, samples=excluded.samples, regime=excluded.regime, "
-            f"vol=excluded.vol",
+            f"side=excluded.side, samples=excluded.samples, regime=excluded.regime, vol=excluded.vol, "
+            f"out_player=excluded.out_player, elev_avg=excluded.elev_avg, ev=excluded.ev, "
+            f"proj_hit=excluded.proj_hit, proj_min=excluded.proj_min, n_elev=excluded.n_elev, "
+            f"d_fga=excluded.d_fga, d_min=excluded.d_min, d_fta=excluded.d_fta, "
+            f"d_3pa=excluded.d_3pa, driver=excluded.driver, stale=excluded.stale, vac=excluded.vac",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     # SELF-HEAL: when a projection updates (e.g. recent-minutes lift takes a player off an under),

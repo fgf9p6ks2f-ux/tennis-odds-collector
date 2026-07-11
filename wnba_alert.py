@@ -79,8 +79,12 @@ def collect():
     outs_by_team = defaultdict(list)
     for name, status in inj.items():
         p = pl.get(name)
-        if (p and p["team"] in playing and p["min"] >= 20 and status in ("Out", "Doubtful")
-                and not T.playing_now(name)):
+        # impact out = vacates real MINUTES (>=20mpg) OR real USAGE (>=10ppg). A depressed-minutes
+        # but high-usage scorer (Satou Sabally 17mpg / 10pts) is exactly the 2nd star whose absence
+        # compounds a beneficiary's role — a minutes-only cutoff misses her, so the model saw NY as
+        # a Fiebich-only spot and under-projected Johannes. Catch both kinds of impact.
+        if (p and p["team"] in playing and status in ("Out", "Doubtful")
+                and (p["min"] >= 20 or p["pts"] >= 10) and not T.playing_now(name)):
             outs_by_team[p["team"]].append((name, p))
 
     alerts, preds, proj_rows = [], [], []
