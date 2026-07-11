@@ -44,10 +44,22 @@ def _con():
     return con
 
 
+def nearest_over(ladder, proj):
+    """The over we'd actually BET: the posted rung closest to our projection with a usable over
+    price. This is stable even on a THIN early ladder (we only need one rung near proj), unlike the
+    balanced 'main line' which needs a mature ladder — and thin early lines are exactly the pre-
+    move spots the timing edge lives in. CLV is then the odds move on THIS fixed line to the close."""
+    cand = [(round(float(line), 1), o) for line, (o, u) in ladder.items() if o and 1.2 <= o <= 8.0]
+    if not cand:
+        return None, None
+    line, o = min(cand, key=lambda x: (abs(x[0] - proj), x[0]))
+    return line, round(o, 3)
+
+
 def main_line(ladder):
     """The book's balanced main line from {line: (over_dec, under_dec)} — the rung where the over
     and under prices are CLOSEST (both ~-110), i.e. where the book thinks the player actually lands.
-    (Picking 'over nearest -110' alone can grab a mispriced deep rung.)"""
+    Used only as secondary context now (needs a mature ladder); the fixed-line odds are primary."""
     bal = [(round(float(line), 1), o, u) for line, (o, u) in ladder.items()
            if o and u and 1.3 <= o <= 3.5 and 1.3 <= u <= 3.5]
     if len(bal) < 2:        # thin/early ladder — the balanced rung is unreliable, don't log a shadow
@@ -71,7 +83,7 @@ def log_shadow(date, player, out_player, projs, props):
         ladder = props.get(stat)
         if not ladder:
             continue
-        fl, fo = main_line(ladder)
+        fl, fo = nearest_over(ladder, proj)              # the fixed over line nearest our number
         if fl is None:
             continue
         n += con.execute(
@@ -86,8 +98,8 @@ def log_shadow(date, player, out_player, projs, props):
 def _latest_ladder(con_p, player, stat, date):
     rows = con_p.execute(
         "SELECT line, side, odds, collected_at FROM fd_lines WHERE sport='wnba' AND player=? "
-        "AND stat=? AND substr(collected_at,1,10) BETWEEN ? AND ?",
-        (player, stat, date, _plus(date, 1))).fetchall()
+        "AND stat=? AND substr(collected_at,1,10) BETWEEN ? AND ?",   # ±1 day: ET slate vs UTC stamp
+        (player, stat, _plus(date, -1), _plus(date, 1))).fetchall()
     best = {}
     for line, side, odds, ca in rows:
         if line is None or side not in ("over", "under"):
@@ -114,10 +126,12 @@ def capture_close():
         lad = _latest_ladder(con_p, player, stat, date)
         if not lad:
             continue
-        cl, co = main_line(lad)
-        over_at_flag = lad.get(round(flag_line, 1), (None, None))[0]   # closing over price at OUR line
+        cl, _co = main_line(lad)                          # secondary context (needs mature ladder)
+        close_over = lad.get(round(flag_line, 1), (None, None))[0]   # closing over price at OUR line
+        if close_over is None and cl is not None and cl > flag_line:
+            close_over = 1.10     # our over line is now well ITM (the market moved past it) = big CLV
         con.execute("UPDATE clv SET close_line=?, close_over=?, closed=1 WHERE rowid=?",
-                    (cl, over_at_flag or co, rid))
+                    (cl, close_over, rid))
         n += 1
     con.commit()
     con_p.close()
@@ -157,43 +171,35 @@ def report():
     R = [dict(r) for r in con.execute(
         "SELECT * FROM clv WHERE closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL")]
     con.close()
-    L = ["# WNBA injury-timing CLV — does our read beat the line move?", "",
-         f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {len(R)} closed shadows_", ""]
-    if len(R) < MIN_GRADED:
-        L.append(f"Accumulating — {len(R)}/{MIN_GRADED} closed shadows before CLV is trustworthy.")
+    # OVER spots = the over we'd actually bet (our projection sits at/above the fixed line we track)
+    ov = [r for r in R if r["close_over"] and r["close_over"] > 0 and r["proj"] >= r["flag_line"] - 0.5]
+    L = ["# WNBA injury-timing CLV — do our reads beat the closing number?", "",
+         f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {len(R)} closed shadows "
+         f"({len(ov)} over-side)_", ""]
+    if len(ov) < MIN_GRADED:
+        L.append(f"Accumulating — {len(ov)}/{MIN_GRADED} over shadows before CLV is trustworthy.")
         REPORT.write_text("\n".join(L) + "\n")
-        print(f"clv report: {len(R)}/{MIN_GRADED} closed — accumulating")
+        print(f"clv report: {len(ov)}/{MIN_GRADED} over shadows — accumulating")
         return
-    # our directional edge vs the realized line move
-    moved_our_way = corr_num = 0
-    edges, moves = [], []
-    for r in R:
-        edge = r["proj"] - r["flag_line"]           # + = we say line is LOW (bet over)
-        move = r["close_line"] - r["flag_line"]      # + = line rose by close
-        edges.append(edge)
-        moves.append(move)
-        if edge != 0 and (edge > 0) == (move > 0) and move != 0:
-            moved_our_way += 1
-    signed = [(1 if e > 0 else -1) * m for e, m in zip(edges, moves)]   # CLV in points, our direction
-    # odds CLV: over got more expensive by close on the spots we liked (proj>line)
-    over_spots = [r for r in R if r["proj"] > r["flag_line"] and r["flag_over"] and r["close_over"]]
-    odds_clv = [100 * (r["flag_over"] / r["close_over"] - 1) for r in over_spots]
-    L += ["## Did the line move the way we projected?", "```",
-          f"closed shadows:        {len(R)}",
-          f"line moved OUR way:    {moved_our_way}/{sum(1 for e,m in zip(edges,moves) if e and m)} "
-          f"(of spots where both our edge and the line actually moved)",
-          f"avg signed line-CLV:   {st.mean(signed):+.2f} pts   (>0 = the line drifts toward our read)",
-          f"avg edge (proj-line):  {st.mean(edges):+.2f} pts",
-          f"corr(edge, line move): {_corr(edges, moves):+.2f}   (>0 = our read predicts the move)"]
-    if odds_clv:
-        L += [f"over-price CLV:         {st.mean(odds_clv):+.1f}%   (>0 = our overs got more "
-              f"expensive by close, n{len(odds_clv)})"]
+    # CLV at the FIXED line: the over we locked at flag vs its price at the close. flag_over >
+    # close_over  <=>  we got a LONGER price than the market closed at  <=>  positive CLV.
+    clvs = [100 * (r["flag_over"] / r["close_over"] - 1) for r in ov]
+    pos = sum(1 for c in clvs if c > 0)
+    graded = [r for r in ov if r["graded"] and r["actual"] is not None]
+    won = sum(1 for r in graded if r["actual"] > r["flag_line"])
+    L += ["## Do our injury reads beat the closing number?", "```",
+          f"over shadows:           {len(ov)}",
+          f"avg CLV (our px vs close): {st.mean(clvs):+.1f}%   (>0 = we locked a LONGER price than "
+          f"the close = we beat the book)",
+          f"positive-CLV rate:      {pos}/{len(clvs)} ({100*pos/len(clvs):.0f}%)",
+          (f"realized over hit:      {won}/{len(graded)} ({100*won/len(graded):.0f}%)"
+           if graded else "realized over hit:      pending")]
     L += ["```",
-          "If line-CLV and the correlation are positive, the injury-timing edge is REAL — we "
-          "consistently price the reprice before the book. That is the autobetter's green light.", ""]
+          "Positive CLV = we consistently price the injury reprice BEFORE the book. That is the "
+          "timing edge — the autobetter's green light to flag-and-notify with real money.", ""]
     REPORT.write_text("\n".join(L) + "\n")
-    print(f"clv report: {len(R)} closed · signed line-CLV {st.mean(signed):+.2f}pts · "
-          f"corr {_corr(edges, moves):+.2f} · wrote {REPORT.name}")
+    print(f"clv report: {len(ov)} over shadows · CLV {st.mean(clvs):+.1f}% · "
+          f"{100*pos/len(clvs):.0f}% positive · wrote {REPORT.name}")
 
 
 def _corr(a, b):
