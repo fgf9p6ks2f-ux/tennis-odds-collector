@@ -33,6 +33,97 @@ STATKEY = {"points": "pts", "rebounds": "reb", "assists": "ast"}
 THIN_EV = 0.35
 LOGO = "https://a.espncdn.com/i/teamlogos/wnba/500/{}.png"
 
+# ---- LIVE bar recompute ----------------------------------------------------------------------
+# The dropdown bars are recomputed FRESH on every dashboard build from current game logs + the
+# current out-set — so a change to bar logic (or a game just played) shows up on the next rebuild
+# instead of waiting for the alert to re-log the frozen `samples` snapshot. Falls back to the stored
+# samples on any lookup/fetch failure, so the dashboard never hard-depends on the network.
+_GLOG_TTL = 1200                                   # 20 min: a 60s dashboard loop won't refetch each build
+_GLOG_FILE = HERE / "wnba_gamelog_cache.json"
+_glog_mem = {}
+_glog_disk = None
+
+
+def _name2id():
+    try:
+        d = json.loads((HERE / "wnba_players_cache.json").read_text())
+        return {n: v.get("id") for n, v in d.get("players", {}).items() if v.get("id")}
+    except (OSError, ValueError):
+        return {}
+
+
+NAME2ID = _name2id()
+
+
+def _glog(pid):
+    """A player's game log, cached in-process + on disk with a TTL. Returns the stale copy (or [])
+    if the fetch fails, so the dashboard degrades to stored samples instead of breaking."""
+    global _glog_disk
+    if pid in _glog_mem:
+        return _glog_mem[pid]
+    if _glog_disk is None:
+        try:
+            _glog_disk = json.loads(_GLOG_FILE.read_text())
+        except (OSError, ValueError):
+            _glog_disk = {}
+    now = dt.datetime.now(dt.timezone.utc).timestamp()
+    ent = _glog_disk.get(pid)
+    if ent and now - ent.get("ts", 0) < _GLOG_TTL:
+        _glog_mem[pid] = ent["log"]
+        return ent["log"]
+    try:
+        import wnba_wowy as W                       # lazy: keeps dashboard import light + numpy-free
+        log = W.game_log(pid)
+    except Exception:
+        log = ent["log"] if ent else []
+    _glog_disk[pid] = {"ts": now, "log": log}
+    _glog_mem[pid] = log
+    try:
+        _GLOG_FILE.write_text(json.dumps(_glog_disk))
+    except OSError:
+        pass
+    return log
+
+
+def _fresh_bars(r):
+    """Recompute the same-injury-context bars live: the player's games where tonight's ENTIRE out-set
+    was absent, newest-first (up to 10). Returns None to fall back to the stored snapshot (unknown id,
+    no logs, or <2 same-context games — the same floor the logger uses)."""
+    try:
+        pid = NAME2ID.get(r["player"])
+        key = STATKEY.get(r["stat"])
+        if not pid or not key:
+            return None
+        blog = [g for g in _glog(pid) if (g.get("min") or 0) > 0]
+        out_sets = []
+        for nm in (r.get("out_player") or "").split(","):
+            opid = NAME2ID.get(nm.strip())
+            if opid:
+                out_sets.append({g["date"][:10] for g in _glog(opid) if (g.get("min") or 0) > 0})
+        if not out_sets:
+            return None
+        same = [g for g in blog if all(g["date"][:10] not in s for s in out_sets)]
+        if len(same) < 2:
+            return None
+        recent = sorted(same, key=lambda g: g["date"], reverse=True)[:10]
+        return [[round(g.get(key, 0)), g.get("matchup", ""), round(g.get("min", 0))] for g in recent]
+    except Exception:
+        return None
+
+
+def _samples(r):
+    """Bar samples for a row — recomputed live when possible, else the stored snapshot. Cached on the
+    row so _bars and _raw_record agree and don't double-fetch."""
+    if "_barcache" not in r:
+        s = _fresh_bars(r)
+        if s is None:
+            try:
+                s = json.loads(r["samples"]) if r["samples"] else []
+            except (ValueError, TypeError):
+                s = []
+        r["_barcache"] = s
+    return r["_barcache"]
+
 
 def _am(dec):
     dec = float(dec)
@@ -122,10 +213,7 @@ def _raw_record(r):
     proj_hit. This is what really happened, so the reasoning, the record, and the bars all agree
     on one number. Also returns how many of the last 3 (most recent) went OVER, to surface a
     role that's climbing faster than the flat average shows."""
-    try:
-        s = json.loads(r["samples"]) if r["samples"] else []
-    except (ValueError, TypeError):
-        s = []
+    s = _samples(r)
     if not s:
         return None
     line = float(r["line"])
@@ -234,13 +322,10 @@ def _bars(r):
     bar (green if it cashed our side, red if not) with the line drawn across, and a gray MINUTES
     bar behind it (own 0-40 scale) so the role context is visible. Opponent under each bar."""
     why = f'<div class="why">{_reasoning(r)}</div>{_regime_html(r)}'
-    try:
-        s = json.loads(r["samples"]) if r["samples"] else []
-    except (ValueError, TypeError):
-        s = []
+    s = _samples(r)
     if not s:
         return f'<div class="bars">{why}<div class="nodata">no game data</div></div>'
-    s = list(reversed(s))                              # stored newest-first -> show oldest-left
+    s = list(reversed(s))                              # newest-first -> show oldest-left
     line = float(r["line"])
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     vals = [x[0] for x in s]
