@@ -136,6 +136,10 @@ def collect():
                                        {g["date"][:10]: g["min"] for g in lg}, st.median(mm)))
         team_pl = {n: v for n, v in pl.items()
                    if v["team"] == team and n not in out_names and v["gp"] >= 5}
+        # the team's OTHER impact players expected to PLAY tonight (Ionescu, Stewart...) — a game is
+        # only a true comp if these were ALSO on the floor, since their presence caps a beneficiary's
+        # usage (Johannes averages 15.8 with Ionescu also out but 9.5 with her in). >=20mpg OR >=10ppg.
+        in_impact = [(nm, vv) for nm, vv in team_pl.items() if vv["min"] >= 20 or vv["pts"] >= 10]
         for n, v in team_pl.items():
             blog = glog(v["id"])
             if not blog:
@@ -230,7 +234,9 @@ def collect():
                               # injury-regime comps (display flag): closest historical games to
                               # tonight's EXACT absence set, for a consistent-minutes player
                               "regime": json.dumps(RG.regime_note(
-                                  blog, out_logs, [_short(nm) for nm, _ in outs], e["stat"]) or {})})
+                                  blog, out_logs, [_short(nm) for nm, _ in outs], e["stat"],
+                                  in_logs=[glog(vv["id"]) for nm2, vv in in_impact if nm2 != n],
+                                  in_names=[_short(nm2) for nm2, vv in in_impact if nm2 != n]) or {})})
             if prow is not None:                            # did any prop for this player flag a bet?
                 prow["flagged"] = 1 if len(preds) > n_preds0 else 0
             dd = T.double_double_rate(blog, proj, w)

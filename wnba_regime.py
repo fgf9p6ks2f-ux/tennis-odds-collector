@@ -33,53 +33,68 @@ def _active_around(dates, d, win=24):
     return any(lo <= x <= hi and x != d for x in dates)
 
 
-def regime_note(blog, out_logs, out_names, stat):
-    """blog: beneficiary game log. out_logs: tonight's ruled-out teammates' logs. out_names: their
-    short names (aligned to out_logs). stat: 'points'|'rebounds'|'assists'. Returns a dict for the
-    dashboard, or None when it doesn't apply (fringe minutes / no comps / no injuries)."""
+def _role(log):
+    m = [g["min"] for g in log if (g.get("min") or 0) > 0]
+    return st.mean(m) if m else 0.0
+
+
+def regime_note(blog, out_logs, out_names, stat, in_logs=None, in_names=None):
+    """Closest COMPS conditioned on the FULL impact lineup — the ruled-out players ABSENT *and* the
+    key in-players PRESENT. Basketball usage is defined by 2-3+ impact players, not one: Johannes
+    with Sabally+Fiebich out AVERAGES 13.7, but that's 15.8 with Ionescu ALSO out vs 9.5 with
+    Ionescu IN — so a comp that ignores who's on the floor is misleading. We weight every impact
+    teammate by role size and score each historical game by how much of tonight's exact in/out
+    configuration it reproduces; comp_avg is over the games that match tonight BEST.
+
+    blog: beneficiary log. out_logs/out_names: tonight's ruled-out teammates. in_logs/in_names:
+    the team's OTHER impact players expected to PLAY tonight (Ionescu, Stewart...). stat: the market.
+    Returns a dashboard dict, or None when it doesn't apply."""
     key = KEY.get(stat, stat)
     games = sorted((g for g in blog if (g.get("min") or 0) > 0), key=lambda g: g["date"])
-    if len(games) < 6 or not out_logs:
+    if len(games) < 6 or not out_logs or max(g["min"] for g in games) < 18:
         return None
-    # plausible rotation player — but do NOT require overall minutes consistency. A bench player who
-    # becomes a primary option ONLY when 2 impact stars sit (Johannes: 3-7pts normally, 17-25 with
-    # both out) is exactly the multi-out inheritor these comps are for. We instead gate on the COMP
-    # games' own minutes below, so comps are trusted only when she actually played a role in them.
-    if max(g["min"] for g in games) < 18:
+    in_logs, in_names = in_logs or [], in_names or []
+    out_played = [_played(ol) for ol in out_logs]
+    in_played = [_played(il) for il in in_logs]
+    wt_out = [_role(ol) for ol in out_logs]
+    wt_in = [_role(il) for il in in_logs]
+    if max(wt_out, default=0) <= 0:
         return None
-    outd = [_played(ol) for ol in out_logs]
-    # role weight per absent teammate = mean minutes when active (impact size). Match keys on the
-    # HIGH-impact absences only (>= half the biggest out's minutes) so bench-end outs don't dilute
-    # it — a Rice/Sykes-out game shouldn't score low just because a 10-min reserve also sits.
-    wt = []
-    for ol in out_logs:
-        played = [g["min"] for g in ol if (g.get("min") or 0) > 0]
-        wt.append(st.mean(played) if played else 0.0)
-    if max(wt) <= 0:
+    # key config members = role >= half the biggest OUT's minutes (screens out bench-end noise on
+    # both sides). sig_out defines the absences; sig_in the presences that suppress a usage spike.
+    thr = 0.5 * max(wt_out)
+    sig_out = [i for i in range(len(out_logs)) if wt_out[i] >= thr]
+    sig_in = [j for j in range(len(in_logs)) if wt_in[j] >= thr]
+    if not sig_out:
         return None
-    thr = 0.5 * max(wt)
-    sig = [i for i in range(len(out_logs)) if wt[i] >= thr]    # the absences that define the regime
-    tw = sum(wt[i] for i in sig) or 1.0
-    sig_names = [out_names[i] for i in sig if i < len(out_names)]
+    sig_names = [out_names[i] for i in sig_out if i < len(out_names)]
+    inn = [in_names[j] for j in sig_in if j < len(in_names)]
+    tw = (sum(wt_out[i] for i in sig_out) + sum(wt_in[j] for j in sig_in)) or 1.0
 
-    def match(d):     # role-weighted share of the KEY absences that also applied on date d
-        return sum(wt[i] for i in sig if d not in outd[i] and _active_around(outd[i], d)) / tw
+    def match(d):     # role-weighted share of tonight's config (outs absent + ins present) on date d
+        s = 0.0
+        for i in sig_out:
+            if d not in out_played[i] and _active_around(out_played[i], d):
+                s += wt_out[i]
+        for j in sig_in:
+            if d in in_played[j]:
+                s += wt_in[j]
+        return s / tw
 
     rows = [(g, match(g["date"][:10])) for g in games]
-    # the CLOSEST available analogues to tonight — top matches (>=0.5 share of the key absences),
-    # up to 6. Not a hard exact-match cut: when the precise combo is rare we still surface the
-    # nearest games rather than collapse to one. comp_avg is over exactly these.
-    close = [r for r in sorted(rows, key=lambda r: r[1], reverse=True) if r[1] >= 0.5][:6]
-    if len(close) < 2:                                        # need a couple of real comps to trust
+    close = [r for r in sorted(rows, key=lambda r: r[1], reverse=True) if r[1] >= 0.55][:6]
+    if len(close) < 2 or st.median([r[0]["min"] for r in close]) < 15:
         return None
-    if st.median([r[0]["min"] for r in close]) < 15:         # comps must show a REAL role in the regime
-        return None
+    # comp_avg over the games matching tonight BEST (within 0.12 of the top match) so the Ionescu-IN
+    # games drive the number tonight, not the Ionescu-OUT blowouts that inflate the raw split.
+    best = close[0][1]
+    primary = [r for r in close if r[1] >= best - 0.08]        # near-exact config matches only
     disp = sorted(close, key=lambda r: r[0]["date"], reverse=True)
     comps = [{"date": r[0]["date"][:10], "opp": (r[0].get("matchup") or ""),
               "min": round(r[0]["min"]), "val": round(r[0].get(key, 0)), "match": round(r[1], 2)}
              for r in disp]
     recent_match = st.mean(r[1] for r in rows[-3:])
-    return {"divergent": recent_match < 0.55,                 # recent games miss the KEY absences
-            "recent_match": round(recent_match, 2), "sig_names": sig_names,
-            "comps": comps, "comp_avg": round(st.mean(r[0].get(key, 0) for r in close), 1),
-            "n_comps": len(comps)}
+    return {"divergent": recent_match < 0.55,                 # recent games miss tonight's config
+            "recent_match": round(recent_match, 2), "sig_names": sig_names, "in_names": inn,
+            "comps": comps, "comp_avg": round(st.mean(r[0].get(key, 0) for r in primary), 1),
+            "n_comps": len(comps), "n_primary": len(primary)}

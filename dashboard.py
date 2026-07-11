@@ -192,10 +192,10 @@ def _reasoning(r):
 
 
 def _regime_html(r):
-    """Injury-regime comps block: the historical games most like tonight's EXACT absence set, with
-    the player's line in them, and whether their average supports the bet. This operationalizes the
-    'find the closest comp' read — the automated regime projection backtested as a wash, so this is
-    a decision aid, not a projection change. Only present for consistent-minutes players."""
+    """Same-lineup comps block: the historical games that best reproduce tonight's FULL impact
+    configuration — the ruled-out players absent AND the key teammates present — with the player's
+    line in them and whether their average supports the bet. Conditioning on who's IN (not just who's
+    out) is the point: usage is set by the whole lineup. A decision aid, not a projection change."""
     try:
         rg = json.loads(r["regime"]) if r.get("regime") else {}
     except (ValueError, TypeError):
@@ -207,15 +207,25 @@ def _regime_html(r):
     stat = STAT.get(r["stat"], r["stat"])
     avg = rg["comp_avg"]
     names = ", ".join(rg.get("sig_names", [])[:3]) or "key players"
+    # the IN-config that defines a TRUE comp — who's on the floor caps usage as much as who's out
+    # (Johannes avg 13.7 ignoring this, but 9.5 once Ionescu/Stewart must be present as they are
+    # tonight). Show it so the comp is legible: same lineup, not just same absences.
+    inn = ", ".join(n.split()[-1] for n in rg.get("in_names", [])[:3])
+    incfg = f' · <b>{html.escape(inn)}</b> in' if inn else ""
+    np = rg.get("n_primary", rg.get("n_comps", 0))
     supports = (avg < line) if side == "under" else (avg > line)
     verdict = "supports the " + side if supports else "⚠ leans against the " + side
     vcls = "sup" if supports else "warn"
-    chips = "".join(f'<span class="cmp">{html.escape(c["date"][5:])} '
+    # mark the chips that match tonight's lineup BEST (the ones the avg is over) so it's obvious
+    # which games are true same-lineup comps vs looser ones (a blowout where a starter also sat).
+    bestm = max((c.get("match", 0) for c in rg["comps"]), default=0)
+    chips = "".join(f'<span class="cmp{" pr" if c.get("match", 0) >= bestm - 0.08 else ""}">'
+                    f'{html.escape(c["date"][5:])} '
                     f'{html.escape(str(c["opp"]))} <b>{c["val"]:g}</b> · {c["min"]:g}\'</span>'
                     for c in rg["comps"])
-    div = ' · <span class="warn">tonight\'s injuries differ from her last 3</span>' if rg.get("divergent") else ""
-    return (f'<div class="regime"><div class="rgh">Closest comps · <b>{html.escape(names)}</b> out '
-            f'— avg <b>{avg:g}</b> {stat} (<span class="{vcls}">{verdict}</span>){div}</div>'
+    div = ' · <span class="warn">tonight differs from her recent games</span>' if rg.get("divergent") else ""
+    return (f'<div class="regime"><div class="rgh">Same-lineup comps · <b>{html.escape(names)}</b> out'
+            f'{incfg} — avg <b>{avg:g}</b> {stat} over {np} (<span class="{vcls}">{verdict}</span>){div}</div>'
             f'<div class="cmps">{chips}</div></div>')
 
 
@@ -530,7 +540,8 @@ def build():
   .regime {{ margin:10px 0 4px; padding:9px 11px; background:#141c28; border:1px solid #223047; border-radius:8px; }}
 .rgh {{ font-size:12px; color:#aab3c1; margin-bottom:7px; }}
 .cmps {{ display:flex; flex-wrap:wrap; gap:6px; }}
-.cmp {{ font-size:11px; color:#8b94a3; background:#1c2634; border-radius:5px; padding:2px 7px; }}
+.cmp {{ font-size:11px; color:#8b94a3; background:#1c2634; border-radius:5px; padding:2px 7px; opacity:.5; }}
+.cmp.pr {{ opacity:1; box-shadow:inset 0 0 0 1px #5b9dff66; }}
 .cmp b {{ color:#e6ebf2; }}
 .sup {{ color:#4ea373; }}
 .warn {{ color:#c98a3c; }}
