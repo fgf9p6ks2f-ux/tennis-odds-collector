@@ -117,11 +117,22 @@ def projected_lineup(team, out_names, players=None, confirmed=None):
     bench = [(pid, name, pos, log) for pid, name, pos, log in rot
              if pid not in base_ids and RW.norm(name) not in onorm]
     promoted = []
+    try:
+        import wnba_lineup_model as LM                    # lazy: LM imports this module
+        model = LM.load_model()
+    except Exception:
+        model, LM = None, None
     for opid, oname, opos, olog in vacated:
+        # EMPIRICAL gate: only predict a bench PROMOTION when this team has actually shown that
+        # tendency for this position (learned from ESPN starter flags). Defaults to ABSORB — the
+        # data says that's right 86% of the time — so we stop naming phantom starters.
+        does_promote, emp_who = LM.promotes(team, opos, model) if LM else (False, None)
+        if confirmed is None and not does_promote:
+            continue
         cands = replacements(opid, opos, olog, bench, confirmed)
         if not cands:
             continue
-        top = cands[0]
+        top = next((c for c in cands if emp_who and RW.norm(c["name"]) == RW.norm(emp_who)), cands[0])
         bp = next((b for b in bench if RW.norm(b[1]) == RW.norm(top["name"])), None)
         if bp:
             promoted.append({"name": top["name"], "pos": top["pos"], "proj_min": top["proj_min"],
