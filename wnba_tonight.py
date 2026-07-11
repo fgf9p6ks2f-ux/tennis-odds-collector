@@ -335,6 +335,15 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # (tolerate small negatives — early-season WOWY samples are thin/noisy).
             if side == "over" and d_stat is not None and d_stat < -1.0 and not use_vol:
                 continue
+            # CONVICTION gate: an injury-driven OVER only pays when the role actually EXPANDS — more
+            # minutes or more shot volume. A flat/negative WOWY driver = a coin-flip star-over that
+            # regresses to the mean (Stewart o18.5 w/ Fiebich out: usage +0.1, minutes -3.5 -> lost).
+            # Leak-free backtest: flat-role overs hit 38-42% (~-20% ROI) vs role-jump overs 53-59%
+            # (+1..+14%). Require minutes +2 OR usage(FGA) +1 to flag the over. Volume plays are
+            # already usage-confirmed, so they're exempt.
+            if (side == "over" and not use_vol and d_min is not None and d_fga is not None
+                    and not (d_min > 2 or d_fga > 1)):
+                continue
             if use_vol:
                 # P(points > line) from the VOLUME projection (normal around vol_pts) — strips the
                 # single-game shooting variance the empirical elevated-game hit rate carries.
