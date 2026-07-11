@@ -377,15 +377,18 @@ def _mkt_row(r):
     if ev is not None:
         ecls = "ehi" if ev >= 0.15 else ("emid" if ev >= 0.07 else "elo")
         evchip = f' · <span class="edge {ecls}">{ev*100:+.0f}% edge</span>'
-    # role tell — surface ONLY the strong signals: a real inheritor (big usage jump) or a maxed-out
-    # star whose role barely moves (flat = his shots come regardless). Skip the middling ones.
-    drv, dchip = r.get("driver"), ""
+    # role tell — aligned with the conviction gate (over kept iff minutes +2 OR usage +1): a real
+    # inheritor (usage jump), a minutes-driven expansion, or a maxed-out star whose role doesn't move
+    # (flat = shots come regardless). Don't say "flat role" on a bet the minutes actually carried.
+    drv, dm, dchip = r.get("driver"), r.get("d_min"), ""
     if drv is not None:
-        lbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "")
-        if drv < 1:
-            dchip = ' · <span class="drv none">flat role</span>'
-        elif drv >= 3:
+        lbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
+        if drv >= 3:
             dchip = f' · <span class="drv big">▲{drv:+.0f} {lbl}</span>'
+        elif dm is not None and dm > 2:
+            dchip = f' · <span class="drv">▲{dm:+.0f} min</span>'
+        elif drv < 1 and (dm is None or dm <= 2):
+            dchip = ' · <span class="drv none">flat role</span>'
     vol = '<span class="volb">VOL</span> ' if r.get("basis") == "volume" else ""
     u = _units(float(r["odds"]))
     juice = ' <span class="juice">juice</span>' if float(r["odds"]) < 1.80 else ""  # -125 or worse: vig-heavy
