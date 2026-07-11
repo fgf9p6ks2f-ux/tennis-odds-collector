@@ -87,6 +87,62 @@ def primary(out_pid, out_pos, out_log, rotation, starters=None):
     return r[0] if r else None
 
 
+def base_five(team, players=None, recent=8):
+    """The team's usual starting five = the 5 highest recent-minute players (our own projected
+    lineup, no RotoWire needed). ESPN's per-game starter flag is post-tip; minutes are the robust
+    pre-news proxy for who starts."""
+    scored = []
+    for pid, name, pos, log in team_rotation(team, players):
+        rec = sorted(log, key=lambda g: g["date"])[-recent:]
+        scored.append((st.mean(g["min"] for g in rec), pid, name, pos, log))
+    scored.sort(key=lambda x: -x[0])
+    return [(pid, name, pos, log) for _m, pid, name, pos, log in scored[:5]]
+
+
+def projected_lineup(team, out_names, players=None, confirmed=None):
+    """OUR projected starting five given tonight's injury report — the RotoWire replacement, built
+    from our own data so we can fire the instant news breaks. Take the usual 5, drop whoever's out,
+    and promote the best position-matched bench replacement into each vacated slot. Returns the
+    projected five, who's NEWLY promoted (the beneficiaries) + their minutes, and the vacated slots.
+    `confirmed` (RotoWire) overrides when posted — we only ever need them for the confirmed lineup."""
+    players = players or W.players()
+    onorm = {RW.norm(o) for o in (out_names or [])}
+    rot = team_rotation(team, players)
+    base = base_five(team, players)
+    base_ids = {pid for pid, *_ in base}
+    kept = [(pid, name, pos, log) for pid, name, pos, log in base if RW.norm(name) not in onorm]
+    vacated = [(pid, name, pos, log) for pid, name, pos, log in base if RW.norm(name) in onorm]
+    bench = [(pid, name, pos, log) for pid, name, pos, log in rot
+             if pid not in base_ids and RW.norm(name) not in onorm]
+    promoted = []
+    for opid, oname, opos, olog in vacated:
+        cands = replacements(opid, opos, olog, bench, confirmed)
+        if not cands:
+            continue
+        top = cands[0]
+        bp = next((b for b in bench if RW.norm(b[1]) == RW.norm(top["name"])), None)
+        if bp:
+            promoted.append({"name": top["name"], "pos": top["pos"], "proj_min": top["proj_min"],
+                             "replaces": oname, "d_min": top["d_min"], "confirmed": top["confirmed"]})
+            bench = [b for b in bench if b[0] != bp[0]]
+    # USAGE beneficiaries: existing starters who stay in the five but absorb the out player's SHOTS
+    # (Hamby/Burrell when Plum sits) — distinct from who fills the empty slot. This is the volume
+    # signal that drives the points bets, keyed on the highest-usage out player.
+    usage = []
+    if vacated:
+        opid, oname, opos, olog = max(vacated, key=lambda v: st.mean(g["min"] for g in v[3]))
+        for pid, name, pos, log in kept:
+            w = W.wowy(log, olog)
+            wi, nwi = w["with"]["fga"]["mean"], w["with"]["fga"]["n"]
+            wo, nwo = w["without"]["fga"]["mean"], w["without"]["fga"]["n"]
+            if nwi >= 3 and nwo >= 2 and wo - wi > 0.5:
+                usage.append({"name": name, "d_fga": round(wo - wi, 1), "fga_wo": round(wo, 1),
+                              "vs": oname})
+        usage.sort(key=lambda x: -x["d_fga"])
+    return {"team": team, "starters": [n for _p, n, _po, _l in kept] + [p["name"] for p in promoted],
+            "promoted": promoted, "usage_up": usage, "vacated": [n for _p, n, _po, _l in vacated]}
+
+
 # ---- validation: did our pre-game pick actually get the minutes? -------------------------------
 def _validate():
     players = W.players()
@@ -179,9 +235,20 @@ def main():
     ap.add_argument("--team")
     ap.add_argument("--out")
     ap.add_argument("--validate", action="store_true")
+    ap.add_argument("--lineup", action="store_true")
     args = ap.parse_args()
     if args.validate:
         _validate()
+        return
+    if args.lineup:
+        outs = [o.strip() for o in (args.out or "").split(",") if o.strip()]
+        lu = projected_lineup(args.team, outs)
+        print(f"\nprojected {args.team} starting five with {', '.join(outs) or 'nobody'} out:")
+        print("  ", " · ".join(lu["starters"]))
+        for p in lu["promoted"]:
+            print(f"  STARTS: {p['name']} ~{p['proj_min']:g}min (fills {p['replaces']}'s slot)")
+        for u in lu["usage_up"]:
+            print(f"  usage↑: {u['name']} +{u['d_fga']:g} FGA/g (→{u['fga_wo']:g} w/o {u['vs']})")
         return
     players = W.players()
     opid = next((v["id"] for name, v in players.items() if RW.norm(name) == RW.norm(args.out)), None)

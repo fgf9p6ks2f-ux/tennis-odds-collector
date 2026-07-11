@@ -138,18 +138,21 @@ def main():
     repl = []
     try:
         pl_all = W.players()
+        by_team = {}
         for on in new:
             v = pl_all.get(on)
-            if not v:
-                continue
-            rot = DP.team_rotation(v.get("team"), pl_all)
-            olog = [g for g in W.game_log(v["id"]) if g["min"] > 0]
-            p = DP.primary(v["id"], v.get("position"), olog, rot)
-            if p:
-                repl.append(f"↳ {A._short(on)} out → {A._short(p['name'])} ~{p['proj_min']:g}min "
-                            f"({p['pos']}{'✓' if p['confirmed'] else ''})")
+            if v and v.get("team"):
+                by_team.setdefault(v["team"], []).append(on)
+        for team, outs in by_team.items():
+            lu = DP.projected_lineup(team, outs, pl_all)
+            for p in lu["promoted"]:                      # who fills the vacated STARTING slot
+                repl.append(f"↳ {team}: {A._short(p['name'])} STARTS ~{p['proj_min']:g}min "
+                            f"(replaces {A._short(p['replaces'])})")
+            for u in lu["usage_up"][:2]:                  # who absorbs the SHOTS (the volume bets)
+                repl.append(f"↳ {team}: {A._short(u['name'])} usage↑ +{u['d_fga']:g} FGA "
+                            f"(→{u['fga_wo']:g}/g w/o {A._short(u['vs'])})")
     except Exception as e:
-        print("depth read skipped:", str(e)[:60])
+        print("lineup read skipped:", str(e)[:60])
     for r in repl:
         print("  " + r)
     alerts, preds = A.collect()
