@@ -17,6 +17,8 @@ import wnba_wowy as W
 
 PG = {"G": "G", "PG": "G", "SG": "G", "GF": "G", "F": "F", "SF": "F", "PF": "F",
       "FC": "C", "C": "C", "CF": "C"}
+PRIMARY_FGA = 13.0    # baseline FGA at/above this = a primary option who shoots regardless of who's
+#                       out (Mabrey) — NOT a volume beneficiary. Matches wnba_tonight.PRIMARY_FGA.
 _COMPAT = {("G", "F"): 0.3, ("F", "G"): 0.3, ("F", "C"): 0.6, ("C", "F"): 0.6,
            ("G", "C"): 0.15, ("C", "G"): 0.15}
 
@@ -135,7 +137,9 @@ def projected_lineup(team, out_names, players=None, confirmed=None):
             w = W.wowy(log, olog)
             wi, nwi = w["with"]["fga"]["mean"], w["with"]["fga"]["n"]
             wo, nwo = w["without"]["fga"]["mean"], w["without"]["fga"]["n"]
-            if nwi >= 3 and nwo >= 2 and wo - wi > 0.5:
+            # ROOM TO GROW: skip primary options (high baseline FGA) — they shoot regardless, so
+            # their volume doesn't really rise off an injury. Only surface players who absorb shots.
+            if nwi >= 3 and nwo >= 2 and wo - wi > 0.5 and wi < PRIMARY_FGA:
                 usage.append({"name": name, "d_fga": round(wo - wi, 1), "fga_wo": round(wo, 1),
                               "vs": oname})
         usage.sort(key=lambda x: -x["d_fga"])
