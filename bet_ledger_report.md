@@ -1,13 +1,13 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-11T18:10:37 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-11T21:14:35 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 88-214  ·  **P&L:** -60.87u ($-6,087)  ·  **ROI:** -20.2%
-- **Avg CLV:** +7.64% over 294 closed bets  ·  **Open:** 15  ·  **Total logged:** 339
+- **Record:** 89-214  ·  **P&L:** -59.93u ($-5,993)  ·  **ROI:** -19.8%
+- **Avg CLV:** +7.64% over 294 closed bets  ·  **Open:** 23  ·  **Total logged:** 348
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
-Data OK — FanDuel 2196 lines @ `2026-07-11T18:09:49`.
+Data OK — FanDuel 1740 lines @ `2026-07-11T21:13:54`.
 
 ### by sport / stat
 
@@ -15,8 +15,8 @@ Data OK — FanDuel 2196 lines @ `2026-07-11T18:09:49`.
 |---|---|---|---|---|
 | ebasketball | total | 10 | +4.54 | -6.98% |
 | efootball | total | 2 | -0.09 | — |
-| mlb | f5_total | 9 | +4.40 | — |
-| mlb | game_total | 26 | +2.14 | — |
+| mlb | f5_total | 11 | +4.40 | — |
+| mlb | game_total | 33 | +3.09 | — |
 | mlb | strikeouts | 29 | -5.91 | +3.87% |
 | mlb | total_bases | 253 | -61.42 | +8.10% |
 | tennis | player_games | 10 | -4.54 | +11.06% |
@@ -25,6 +25,7 @@ Data OK — FanDuel 2196 lines @ `2026-07-11T18:09:49`.
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-11 | mlb | GAME (game_total) | game_total over 10.5 | 1.94 | W | 13 | +0.94u | — |
 | 2026-07-11 | tennis | Coco Gauff | player_games under 12.5 | 1.72 | L | 14 | -1.00u | +10.6% |
 | 2026-07-11 | tennis | Karolina Muchova | player_games under 12.5 | 1.76 | L | 14 | -1.00u | +3.8% |
 | 2026-07-11 | tennis | Novak Djokovic | player_games under 17.5 | 1.89 | W | 12 | +0.89u | +5.1% |
@@ -49,5 +50,4 @@ Data OK — FanDuel 2196 lines @ `2026-07-11T18:09:49`.
 | 2026-07-11 | mlb | Gavin Williams | strikeouts over 6.5 | 2.36 | W | 11 | +1.36u | +8.1% |
 | 2026-07-11 | mlb | Alec Burleson | total_bases over 1.5 | 2.15 | W | 2 | +1.15u | +5.4% |
 | 2026-07-11 | mlb | Andre Pallante | strikeouts over 3.5 | 1.72 | L | 2 | -1.00u | +6.1% |
-| 2026-07-11 | mlb | Reid Detmers | strikeouts over 6.5 | 2.24 | L | 6 | -1.00u | +3.1% |
 
