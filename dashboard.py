@@ -144,6 +144,18 @@ def _reasoning(r):
     stat = STAT.get(r["stat"], r["stat"])
     line = float(r["line"])
     proj = r["elev_avg"]
+    # VOLUME-confirmed points over: a distinct rationale (project off sticky shot volume, not
+    # recent points, which lag on shooting variance — the user's laddering edge).
+    try:
+        vol = json.loads(r["vol"]) if r.get("vol") else {}
+    except (ValueError, TypeError):
+        vol = {}
+    if r.get("basis") == "volume" and vol:
+        return (f"<b>Volume play.</b> Projecting <b>{vol['vp']:g} pts</b> off shot VOLUME, not recent "
+                f"scoring — her FGA jumped <b>{vol['bf']:g}→{vol['rf']:g}</b> in the elevated role, and "
+                f"volume is sticky while shooting is variance. At her {vol['pps']:g} pts-per-shot that's "
+                f"a sustainable {vol['vp']:g}, so a cold night can hide it but the <b>over is the value</b> "
+                f"— ladder the alt lines the book anchored low.")
     savg, ph, n = r.get("season_avg"), r.get("proj_hit"), r.get("n_elev")
     pm, dmin, drv = r.get("proj_min"), r.get("d_min"), r.get("driver")
     out = _short(r["out_player"]) if r.get("out_player") else None
@@ -229,7 +241,8 @@ def _bars(r):
     mx = max(max(vals), line) * 1.62 or 1
     onside = (lambda v: v > line) if side == "over" else (lambda v: v < line)
     hits = sum(1 for v in vals if onside(v))
-    note = ("elevated-role games" if r["basis"] == "elevated"
+    note = ("volume-confirmed role · bars = actual pts (shooting varies, volume doesn't)"
+            if r["basis"] == "volume" else "elevated-role games" if r["basis"] == "elevated"
             else f"projected to ~{r['proj_min']:.0f} min")
     cols = ""
     for x in s:
@@ -258,12 +271,16 @@ def _mkt_row(r):
     else:
         badge, cls = "•", "pend"
     proj = r["elev_avg"]
-    rec = _raw_record(r)                               # RAW record (matches the chart), not scaled
-    if rec:
-        h, tot, sd, _ = rec
-        mid = f'{sd} · proj {proj:g} · <b>{h}-{tot-h}</b> ({h/tot*100:.0f}%)'
+    if r.get("basis") == "volume":                    # headline the VOLUME probability, not the raw
+        ph = r.get("proj_hit")                         # points record (which the variance suppresses)
+        mid = f'over · proj {proj:g} · <b>{ph*100:.0f}%</b> on volume' if ph else f'over · proj {proj:g}'
     else:
-        mid = f'{side} · proj {proj:g}'
+        rec = _raw_record(r)                           # RAW record (matches the chart), not scaled
+        if rec:
+            h, tot, sd, _ = rec
+            mid = f'{sd} · proj {proj:g} · <b>{h}-{tot-h}</b> ({h/tot*100:.0f}%)'
+        else:
+            mid = f'{side} · proj {proj:g}'
     # injury-driven boost for this stat (usage rise for pts, reb/ast rise otherwise) — the
     # tell for a role-inheritor vs a maxed-out star who plays the same (Copper: +0.6).
     drv = r.get("driver")
@@ -273,6 +290,8 @@ def _mkt_row(r):
             mid += ' · <span class="drv none">baseline</span>'
         else:
             mid += f' · <span class="drv {"big" if drv >= 3 else ""}">▲{drv:+.0f} {lbl}</span>'
+    if r.get("basis") == "volume":                    # volume-confirmed points-over ladder
+        mid = '<span class="volb">VOL●</span> ' + mid
     u = _units(float(r["odds"]))
     juice = ' <span class="juice">⚠ juice</span>' if float(r["odds"]) < 1.50 else ''  # worse than -200
     played = ' <span class="played">✓</span>' if r.get("played") else ''
@@ -487,6 +506,7 @@ def build():
   .mmid {{ flex:1; color:#8b94a3; font-size:13px; }}
   .mmid b {{ color:#cdd5e0; font-weight:700; }}
   .juice {{ color:#e0a458; font-size:11px; font-weight:700; white-space:nowrap; }}
+  .volb {{ color:#7aa2e3; font-weight:800; font-size:10px; letter-spacing:.02em; }}
   .played {{ color:#4ade80; font-size:12.5px; font-weight:800; }}
   .drv {{ font-size:11.5px; color:#8b94a3; }}
   .drv.big {{ color:#5bbd85; font-weight:700; }}

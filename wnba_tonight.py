@@ -123,6 +123,7 @@ ROLE_FLOOR = 22.0
 # demand much more edge to bet an over than an under.
 OVER_EV_MIN = 0.10
 UNDER_EV_MIN = 0.04
+VOL_EV_MIN = 0.07     # volume-confirmed points OVERS: validated edge, so a middle bar (the ladder)
 
 
 # The user's per-stat decision model: which WOWY signals DECIDE each market.
@@ -185,6 +186,39 @@ def project_all(log, proj_min):
             "proj_ast": pj("ast"), "basis": basis, "n_games": len(sample)}
 
 
+def _norm_sf(z):
+    """P(X > z) for standard normal — no scipy."""
+    return 0.5 * math.erfc(z / math.sqrt(2))
+
+
+def volume_points(log, proj_min, n_recent=4):
+    """VOLUME-BASED points projection (the user's laddering edge). Shooting % is variance, but
+    FGA/FTA volume is sticky (role/minutes-driven) — so project points off the ELEVATED volume at
+    the player's SEASON efficiency (points per true-shot = pts / (FGA + 0.44·FTA)), not off recent
+    points that carry single-game shooting noise the book fades. `confirmed` = the recent shot
+    volume is genuinely elevated vs the pre-surge baseline (the real-role-vs-hot-night tell).
+    Backtested (volume_points_backtest.py): more accurate than a recent-points projection in
+    role-jump spots, and the over stays profitable where a recent-points over regresses."""
+    games = sorted((g for g in log if (g.get("min") or 0) > 0), key=lambda g: g["date"])
+    if len(games) < 5:
+        return None
+    ts_tot = sum(g["fga"] + 0.44 * g["fta"] for g in games)
+    if ts_tot <= 0:
+        return None
+    pps = sum(g["pts"] for g in games) / ts_tot                 # season points per true-shot
+    recent = games[-n_recent:]
+    fga_p = st.mean(g["fga"] / max(g["min"], 1) for g in recent) * proj_min
+    fta_p = st.mean(g["fta"] / max(g["min"], 1) for g in recent) * proj_min
+    vol_pts = (fga_p + 0.44 * fta_p) * pps
+    base = games[:-3] or games                                  # pre-surge baseline volume
+    base_fga = st.mean(g["fga"] for g in base)
+    recent_fga = st.mean(g["fga"] for g in games[-3:])
+    sig = st.pstdev([g["pts"] for g in games[-8:]]) if len(games) >= 5 else 5.0
+    return {"vol_pts": vol_pts, "confirmed": base_fga > 0 and recent_fga >= 1.35 * base_fga,
+            "sigma": max(sig, 4.0), "pps": round(pps, 3), "base_fga": round(base_fga, 1),
+            "recent_fga": round(recent_fga, 1), "fga_proj": round(fga_p, 1)}
+
+
 def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=None, mates=None,
                opp=None, pos=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
@@ -229,6 +263,10 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             return None
         return round(w["without"][k]["mean"] - w["with"][k]["mean"], 1)
     d_min, d_fga, d_fta, d_3pa = wdelta("min"), wdelta("fga"), wdelta("fta"), wdelta("fg3a")
+    # VOLUME layer (points only): if the role's shot volume is genuinely elevated, project points
+    # off that sticky volume and ladder the OVERS — the validated laddering edge.
+    vp = volume_points(log, proj_min)
+    vol_ok = bool(vp and vp["confirmed"])
 
     out = []
     for stat, best in posted_props(player).items():
@@ -243,6 +281,9 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         # overs by matchup but never overrides the validated under model). Logged as a feature.
         dvp_c = DVP.dvp(opp, pos, key) if (opp and pos) else 0.0
         elev_avg += dvp_c * proj_min
+        use_vol = vol_ok and stat == "points"
+        if use_vol:
+            elev_avg = round(vp["vol_pts"], 1)      # sticky-volume projection drives the points ladder
         n = len(vals)
         # per-game samples for the bar chart: [value, opponent, minutes], most recent first
         recent = sorted(sample, key=lambda g: g["date"], reverse=True)[:10]
@@ -258,6 +299,8 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # projection sits above the line, else under. The validated edge is the UNDER on
             # reduced/regressing roles; a strong over is still taken but must clear a higher bar.
             side = "over" if elev_avg >= line else "under"
+            if use_vol and side == "under":           # the volume layer ladders OVERS only
+                continue
             dec = over_dec if side == "over" else under_dec
             if not dec or not (1.25 <= dec <= 5.0):   # no price that side, or lottery longshot
                 continue
@@ -268,10 +311,15 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                 continue
             # direction guard: don't bet an OVER on a stat that FALLS without the out player
             # (tolerate small negatives — early-season WOWY samples are thin/noisy).
-            if side == "over" and d_stat is not None and d_stat < -1.0:
+            if side == "over" and d_stat is not None and d_stat < -1.0 and not use_vol:
                 continue
-            hit = (sum(1 for v in vals if v > line) if side == "over"
-                   else sum(1 for v in vals if v < line)) / n
+            if use_vol:
+                # P(points > line) from the VOLUME projection (normal around vol_pts) — strips the
+                # single-game shooting variance the empirical elevated-game hit rate carries.
+                hit = _norm_sf((line - vp["vol_pts"]) / vp["sigma"])
+            else:
+                hit = (sum(1 for v in vals if v > line) if side == "over"
+                       else sum(1 for v in vals if v < line)) / n
             if hit >= 0.92 and dec >= 2.0:        # ~certain at plus money = mis-scrape, skip
                 continue
             p_adj = (hit * n + (1 / dec) * shrink_k) / (n + shrink_k)
@@ -281,7 +329,8 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             mid = (season_avg + elev_avg) / 2
             stale = abs(elev_avg - season_avg) >= 1.0 and (
                 (side == "over" and line <= mid) or (side == "under" and line >= mid))
-            if ev >= (OVER_EV_MIN if side == "over" else UNDER_EV_MIN):
+            ev_bar = VOL_EV_MIN if use_vol else (OVER_EV_MIN if side == "over" else UNDER_EV_MIN)
+            if ev >= ev_bar:
                 spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
                         "side": side,
                         "n": n, "fga": fga, "season_avg": round(season_avg, 1),
@@ -294,8 +343,10 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                         # points-only scoring channels
                         "d_fta": d_fta if stat == "points" else None,
                         "d_3pa": d_3pa if stat == "points" else None,
-                        # basis (elevated vs projected) + per-game bars
-                        "basis": basis, "samples": samples}
+                        # basis: 'volume' marks a volume-confirmed points-over ladder rung
+                        "basis": "volume" if use_vol else basis, "samples": samples,
+                        "vol": ({"vp": round(vp["vol_pts"], 1), "bf": vp["base_fga"],
+                                 "rf": vp["recent_fga"], "pps": vp["pps"]} if use_vol else None)}
                 out.append(spot)
     # collapse adjacent alt-line rungs (same stat, within 1.5 pts) to the best-value one —
     # e.g. keep points o10.5 over the redundant, more-juiced o9.5, but keep a real ladder

@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS predictions(
   ev REAL, stale INTEGER,
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
   total REAL, pace REAL, opp_def REAL, d_fta REAL, d_3pa REAL,
-  basis TEXT, samples TEXT, confidence TEXT, regime TEXT,
+  basis TEXT, samples TEXT, confidence TEXT, regime TEXT, vol TEXT,
   side TEXT DEFAULT 'over',
   result TEXT, actual REAL, graded INTEGER DEFAULT 0,
   UNIQUE(pred_date, player, stat, line)
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS predictions(
 # (pool size); total/pace/opp_def = matchup environment; d_fta/d_3pa = points channels.
 _MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac",
             "total", "pace", "opp_def", "d_fta", "d_3pa")
-_MIGRATE_TEXT = ("basis", "samples", "confidence", "regime")   # regime = injury-comp JSON (display)
+_MIGRATE_TEXT = ("basis", "samples", "confidence", "regime", "vol")   # regime/vol = display JSON
 
 
 def _con():
@@ -120,7 +120,7 @@ def log_predictions(rows):
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
             "d_stat", "d_fga", "d_min", "driver", "vac",
             "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples", "confidence",
-            "side", "regime")
+            "side", "regime", "vol")
     n = 0
     for r in rows:
         # insert new spots idempotently, but REFRESH the confidence label on re-log so the
@@ -129,7 +129,8 @@ def log_predictions(rows):
         cur = con.execute(
             f"INSERT INTO predictions({','.join(cols)}) VALUES ({','.join('?' * len(cols))}) "
             f"ON CONFLICT(pred_date, player, stat, line) DO UPDATE SET confidence=excluded.confidence, "
-            f"side=excluded.side, samples=excluded.samples, regime=excluded.regime",
+            f"side=excluded.side, samples=excluded.samples, regime=excluded.regime, "
+            f"vol=excluded.vol",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     # SELF-HEAL: when a projection updates (e.g. recent-minutes lift takes a player off an under),

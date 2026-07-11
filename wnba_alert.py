@@ -213,6 +213,7 @@ def collect():
                               "total": e["total"], "pace": e["pace"], "opp_def": e["opp_def"],
                               "d_fta": e["d_fta"], "d_3pa": e["d_3pa"],
                               "basis": e["basis"], "samples": json.dumps(e["samples"]),
+                              "vol": json.dumps(e.get("vol") or {}),
                               "confidence": conf,
                               # injury-regime comps (display flag): closest historical games to
                               # tonight's EXACT absence set, for a consistent-minutes player
