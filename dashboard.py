@@ -358,91 +358,107 @@ def _bars(r):
             f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · gray bar = minutes · {note}</div></div>')
 
 
-def _mkt_row(r):
-    """One scannable line: STAT o/u-LINE ODDS ......... Nu ›, with a compact evidence line under
-    it (role hit-record + model edge). The board only ever holds un-graded bets, so there's no
-    result badge here — settled results live in the Tracker tab."""
+def _prop_row(r):
+    """props.cash-style prop: a side indicator + line + stat on the left, odds + model edge on the
+    right, and a color-coded stat grid (HIT / MIN / DRIVER / PROJ) below — green = favourable. Taps
+    to expand the game-log bars. Green good, blue = under direction, amber = juice/caution."""
     stat = STAT.get(r["stat"], r["stat"].upper())
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
-    o = "o" if side == "over" else "u"
-    if r.get("basis") == "volume":                    # volume play: headline the volume probability
+    o = "O" if side == "over" else "U"
+    # HIT cell — role hit-rate % (matches the chart) with the W-L underneath
+    if r.get("basis") == "volume":
         ph = r.get("proj_hit")
-        rectxt = f'<b>{ph*100:.0f}%</b> on volume' if ph else "volume play"
+        hit_v, hit_sub, hit_good = (f"{ph*100:.0f}%" if ph else "—"), "vol", bool(ph and ph >= 0.6)
     else:
-        rec = _raw_record(r)                          # RAW role record (matches the chart)
-        rectxt = (f'<b>{rec[0]}-{rec[1]-rec[0]}</b> ({rec[0]/rec[1]*100:.0f}%) in role'
-                  if rec else f'proj {r["elev_avg"]:g}')
+        rec = _raw_record(r)
+        pct = rec[0] / rec[1] if rec else None
+        hit_v = f"{pct*100:.0f}%" if pct is not None else f"{r['elev_avg']:g}"
+        hit_sub = f"{rec[0]}-{rec[1]-rec[0]}" if rec else "proj"
+        hit_good = bool(pct is not None and pct >= 0.65)
+    # EDGE (top-right, like props.cash)
     ev = r.get("ev")
-    evchip = ""
-    if ev is not None:
-        ecls = "ehi" if ev >= 0.15 else ("emid" if ev >= 0.07 else "elo")
-        evchip = f' · <span class="edge {ecls}">{ev*100:+.0f}% edge</span>'
-    # role tell — aligned with the conviction gate (over kept iff minutes +2 OR usage +1): a real
-    # inheritor (usage jump), a minutes-driven expansion, or a maxed-out star whose role doesn't move
-    # (flat = shots come regardless). Don't say "flat role" on a bet the minutes actually carried.
-    drv, dm, dchip = r.get("driver"), r.get("d_min"), ""
-    if drv is not None:
-        lbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
-        if drv >= 3:
-            dchip = f' · <span class="drv big">▲{drv:+.0f} {lbl}</span>'
-        elif dm is not None and dm > 2:
-            dchip = f' · <span class="drv">▲{dm:+.0f} min</span>'
-        elif drv < 1 and (dm is None or dm <= 2):
-            dchip = ' · <span class="drv none">flat role</span>'
-    vol = '<span class="volb">VOL</span> ' if r.get("basis") == "volume" else ""
-    u = _units(float(r["odds"]))
-    juice = ' <span class="juice">juice</span>' if float(r["odds"]) < 1.80 else ""  # -125 or worse: vig-heavy
-    played = ' <span class="played">✓</span>' if r.get("played") else ""
+    edge_v = f"{ev*100:+.0f}%" if ev is not None else ""
+    ecls = "hi" if (ev or 0) >= 0.15 else ("mid" if (ev or 0) >= 0.07 else "lo")
+    # MIN — projected minutes + trend
+    pm, dm = r.get("proj_min"), r.get("d_min")
+    min_v = f"~{pm:.0f}'" if pm else "—"
+    min_sub = f"▲{dm:+.0f}" if dm is not None else ""
+    min_good = bool(dm is not None and dm >= 4)
+    # DRIVER — the conviction tell (usage jump / minutes / flat)
+    drv = r.get("driver")
+    lbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
+    if drv is not None and drv >= 1:
+        drv_v, drv_sub, drv_good = f"▲{drv:+.0f}", lbl, drv >= 3
+    elif dm is not None and dm > 2:
+        drv_v, drv_sub, drv_good = f"▲{dm:+.0f}", "min", False
+    else:
+        drv_v, drv_sub, drv_good = "flat", "role", False
+    # PROJ vs the line
+    proj = r.get("elev_avg")
+    proj_v = f"{proj:g}" if proj is not None else "—"
+    proj_good = bool(proj is not None and ((proj > r["line"]) == (side == "over")))
+
+    def cell(lbl, v, sub, good):
+        return (f'<div class="gc"><span class="gcl">{lbl}</span>'
+                f'<span class="gcv{" good" if good else ""}">{v}</span>'
+                f'<span class="gcs">{sub}</span></div>')
+    grid = (cell("HIT", hit_v, hit_sub, hit_good) + cell("MIN", min_v, min_sub, min_good)
+            + cell("DRIVER", drv_v, drv_sub, drv_good) + cell("PROJ", proj_v, f"vs {r['line']:g}", proj_good))
+    juice = ' <span class="juice">juice</span>' if float(r["odds"]) < 1.80 else ""
+    played = ' <span class="pv">✓</span>' if r.get("played") else ""
     return f"""
-      <div class="mkt" onclick="this.nextElementSibling.classList.toggle('open')">
-        <div class="mrow1"><span class="ms">{stat}</span><span class="ml">{o}{r['line']:g}</span>
-          <span class="mo">{_am(r['odds'])}</span>{juice}<span class="msp"></span>
-          <span class="mu">{u:g}u</span>{played}<span class="chev">›</span></div>
-        <div class="mrow2">{vol}{rectxt}{evchip}{dchip}</div>
+      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+        <div class="prow">
+          <span class="pind {o.lower()}">{o}</span>
+          <span class="plno">{r['line']:g}</span><span class="pstat">{stat}</span>
+          <span class="psp"></span>
+          <span class="podds">{_am(r['odds'])}</span>{juice}
+          <span class="pedge {ecls}">{edge_v}</span>{played}<span class="pchev">›</span></div>
+        <div class="pgrid">{grid}</div>
       </div>{_bars(r)}"""
 
 
-def _player_card(player, rows, tip=None, top=False):
-    # out_player holds the FULL comma-joined out-set (e.g. "Satou Sabally, Leonie Fiebich"); split
-    # it so EVERY impact player out is shown, not just one — the usage context the user reads off.
-    outset = {_short(nm.strip()) for r in rows for nm in (r["out_player"] or "").split(",") if nm.strip()}
-    outs = ", ".join(sorted(outset))
+def _player_block(player, rows, top=False):
+    """One beneficiary inside a game: name + lineup status + projected minutes on the header row,
+    then their props. The team-level injury context (who's out) lives on the GAME header, not here,
+    so it isn't repeated per player."""
     r0 = rows[0]
-    team = (r0.get("team") or "").upper()
-    logo = (f'<img class="logo" src="{LOGO.format(team.lower())}" alt="" '
-            f'onerror="this.style.display=\'none\'">' if team else "")
-    when = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
-    meta = " · ".join(x for x in (f"{team} vs {r0['opp']}" if r0.get("opp") else team,
-                                  f"{when} MT" if when else "") if x)
-    # ONE muted context line: lineup status · projected minutes+role jump · who's out.
-    cb = {"confirmed": ("✓ starting", "cok"), "bench": ("⚠ not starting", "cbad"),
-          "likely": ("likely starts", "cmid"), "projected": ("lineup TBD", "cmid")}.get(
+    cb = {"confirmed": ("✓ starting", "cok"), "bench": ("⚠ bench", "cbad"),
+          "likely": ("likely", "cmid"), "projected": ("TBD", "cmid")}.get(
               r0.get("confidence") or "projected", ("", ""))
-    parts = []
-    if cb[0]:
-        parts.append(f'<span class="cf {cb[1]}">{cb[0]}</span>')
-    if r0.get("proj_min"):
-        dm = r0.get("d_min")
-        if dm is not None:
-            jcls = "jbig" if dm >= 6 else ("jnone" if dm < 3 else "")
-            parts.append(f'<span class="jump {jcls}">~{r0["proj_min"]:.0f}min ▲{dm:+.0f}</span>')
-        else:
-            parts.append(f'~{r0["proj_min"]:.0f}min')
-    sp = r0.get("spread")                      # +mag = beneficiary's team is the underdog
-    if sp is not None and sp >= 8:             # big dog = blowout/garbage-time risk for overs
-        parts.append(f'<span class="dog">⚠ +{sp:.0f} dog</span>')
-    parts.append(f'<span class="cout">{html.escape(outs)} out</span>')
-    ctx = " · ".join(parts)
-    mkts = "".join(_mkt_row(r) for r in sorted(rows, key=lambda r: -(r.get("ev") or 0)))
-    return f"""
-    <div class="card{' top' if top else ''}">
-      <div class="chead">
-        <div class="cname">{logo}{html.escape(_short(player))}</div>
-        <div class="cmeta">{html.escape(meta)}</div>
-      </div>
-      <div class="cctx">{ctx}</div>
-      {mkts}
-    </div>"""
+    pm, dm = r0.get("proj_min"), r0.get("d_min")
+    mins = ""
+    if pm:
+        trend = (f' <span class="{"up" if dm >= 4 else ""}">▲{dm:+.0f}</span>' if dm is not None else "")
+        mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
+    sp = r0.get("spread")
+    dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
+    props = "".join(_prop_row(r) for r in sorted(rows, key=lambda r: -(r.get("ev") or 0)))
+    return (f'<div class="pblk{" top" if top else ""}">'
+            f'<div class="phd"><span class="pname">{html.escape(_short(player))}</span>'
+            f'<span class="pflag {cb[1]}">{cb[0]}</span>{dogchip}'
+            f'<span class="psp2"></span>{mins}</div>{props}</div>')
+
+
+def _game_group(players, tips):
+    """A GAME: a header (matchup + tip time) and the shared injury context (who's out), then the
+    beneficiary blocks. This is the separation between games the board was missing. `players` =
+    [(player, rows)] already ordered by edge."""
+    r0 = players[0][1][0]
+    team = (r0.get("team") or "").upper()
+    opp = (r0.get("opp") or "").upper()
+    tip = tips.get(team)
+    when = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
+    outset = {_short(nm.strip()) for _, prs in players for r in prs
+              for nm in (r.get("out_player") or "").split(",") if nm.strip()}
+    outs = " + ".join(sorted(outset))
+    blocks = "".join(_player_block(p, prs, top=max((x.get("ev") or 0) for x in prs) >= 0.20)
+                     for p, prs in players)
+    return (f'<div class="game">'
+            f'<div class="ghd"><span class="gmatch">{team} <span class="gvs">vs</span> {opp or "—"}</span>'
+            f'<span class="gtime">{when}</span></div>'
+            + (f'<div class="gout">🚑 {html.escape(outs)} out</div>' if outs else "")
+            + blocks + "</div>")
 
 
 def _load_tt():
@@ -621,19 +637,22 @@ def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)
     rows, (w, l, u, pend) = _load(now.date().isoformat())
     tips = _tip_times()
-    groups = defaultdict(list)
+    # GROUP BY GAME, then player — so the board reads game > player > props with clear separation.
+    by_player = defaultdict(list)
     for r in rows:
-        groups[r["player"]].append(r)
-    # rank by CONVICTION — best model edge first, so the strongest plays sit up top for a fast
-    # scan; tip time breaks ties. Cards whose best play clears +20% edge get a subtle accent.
-    def _key(kv):
-        best_ev = max((r.get("ev") or 0) for r in kv[1])
-        t = tips.get((kv[1][0].get("team") or "").upper())
-        return (-best_ev, t.timestamp() if t else 9e18)
-    order = sorted(groups.items(), key=_key)
-    top_names = {p for p, rs in order if max((r.get("ev") or 0) for r in rs) >= 0.20}
-    cards = "\n".join(_player_card(p, rs, tips.get((rs[0].get("team") or "").upper()), p in top_names)
-                      for p, rs in order) if order else \
+        by_player[r["player"]].append(r)
+    games = defaultdict(list)                              # {teams-pair: [(player, rows)]}
+    for player, prs in by_player.items():
+        team = (prs[0].get("team") or "").upper()
+        opp = (prs[0].get("opp") or "").upper()
+        games[tuple(sorted((team, opp)))].append((player, prs))
+
+    def _pedge(prs):
+        return max((r.get("ev") or 0) for r in prs)
+    ordered = sorted(games.values(), key=lambda pl: -max(_pedge(prs) for _, prs in pl))
+    for pl in ordered:                                    # strongest player first within each game
+        pl.sort(key=lambda pp: -_pedge(pp[1]))
+    cards = "\n".join(_game_group(pl, tips) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     wl_html = _watchlist_html()
     tt_json = _load_tt()
@@ -645,7 +664,7 @@ def build():
 <style>
   :root {{ color-scheme: dark; }}
   * {{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }}
-  body {{ margin:0; background:#0a0d13; color:#e8ecf2;
+  body {{ margin:0; background:#08090c; color:#e8ecf2;
     font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; }}
   .wrap {{ max-width:600px; margin:0 auto; padding:22px 16px 48px; }}
   h1 {{ font-size:22px; font-weight:700; margin:0; letter-spacing:-.01em; }}
@@ -658,17 +677,23 @@ def build():
   .stat .v {{ font-size:21px; font-weight:700; line-height:1; }}
   .stat .sv {{ color:#7d8696; font-size:12px; font-weight:500; }}
   h2 {{ font-size:12px; color:#7d8696; text-transform:uppercase; letter-spacing:.07em; margin:0 0 12px; font-weight:600; }}
-  .card {{ background:#121620; border:1px solid #1f2836; border-radius:16px; padding:14px 15px; margin-bottom:12px; }}
-  .card.top {{ box-shadow:inset 3px 0 0 #4ade80; }}
-  .chead {{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }}
-  .cname {{ font-size:17px; font-weight:700; display:flex; align-items:center; gap:9px; }}
-  .logo {{ width:24px; height:24px; object-fit:contain; }}
-  .cmeta {{ color:#8b94a3; font-size:12px; font-weight:600; white-space:nowrap; }}
-  .cctx {{ color:#8b94a3; font-size:12.5px; margin-top:5px; padding-bottom:10px; border-bottom:1px solid #1c2431; }}
-  .cf {{ font-weight:700; }}
-  .cf.cok {{ color:#4ade80; }} .cf.cbad {{ color:#e0a458; }} .cf.cmid {{ color:#7aa2e3; }}
-  .cout {{ color:#7d8696; }}
-  .jump {{ color:#8b94a3; font-weight:600; }} .jump.jbig {{ color:#4ade80; }} .jump.jnone {{ color:#7d8696; font-weight:500; }}
+  /* GAME group — the separation between games */
+  .game {{ margin-bottom:24px; }}
+  .ghd {{ display:flex; justify-content:space-between; align-items:baseline; padding:0 3px 2px; }}
+  .gmatch {{ font-size:15px; font-weight:800; letter-spacing:.01em; }}
+  .gvs {{ color:#59606d; font-weight:600; font-size:12px; margin:0 3px; }}
+  .gtime {{ color:#6b7484; font-size:12px; font-weight:600; }}
+  .gout {{ color:#eaa15a; font-size:12.5px; font-weight:600; margin:2px 3px 11px; }}
+  /* PLAYER block */
+  .pblk {{ background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:11px 13px 5px; margin-bottom:9px; }}
+  .pblk.top {{ border-color:#254a37; box-shadow:inset 3px 0 0 #37d67f; }}
+  .phd {{ display:flex; align-items:center; gap:8px; }}
+  .pname {{ font-size:16px; font-weight:800; letter-spacing:-.01em; }}
+  .pflag {{ font-size:11.5px; font-weight:700; white-space:nowrap; }}
+  .pflag.cok {{ color:#37d67f; }} .pflag.cbad {{ color:#eaa15a; }} .pflag.cmid {{ color:#7aa2e3; }}
+  .psp2 {{ flex:1; }}
+  .pmin {{ color:#8a93a3; font-size:12.5px; font-weight:600; white-space:nowrap; }}
+  .pmin .up {{ color:#37d67f; }}
   .dog {{ color:#e0a458; font-weight:700; }}
   .watchlist {{ margin-top:22px; padding-top:4px; border-top:1px solid #1c2230; }}
   .wl-title {{ color:#e0a458; font-size:13px; font-weight:800; letter-spacing:.02em; margin:14px 2px 10px; }}
@@ -681,23 +706,31 @@ def build():
   .wl-leg b {{ color:#e8ecf2; }}
   .wl-ev {{ color:#4ade80; font-weight:700; margin-left:7px; }}
   .wl-meta {{ color:#7d8696; font-size:11px; margin-left:7px; }}
-  .mkt {{ padding:11px 0 10px; border-bottom:1px solid #161d28; cursor:pointer; }}
-  .card .mkt:last-of-type {{ border-bottom:0; padding-bottom:2px; }}
-  .mrow1 {{ display:flex; align-items:center; gap:8px; font-size:15.5px; font-weight:600; }}
-  .ms {{ color:#8b94a3; font-weight:700; font-size:12px; width:30px; letter-spacing:.02em; }}
-  .ml {{ font-weight:700; font-variant-numeric:tabular-nums; }}
-  .mo {{ color:#5b9dff; font-weight:700; }}
-  .msp {{ flex:1; }}
-  .mu {{ color:#c3cbd8; font-weight:600; font-size:13.5px; }}
-  .played {{ color:#4ade80; font-weight:800; font-size:13px; }}
-  .chev {{ color:#3c4658; font-size:19px; transition:transform .15s; }}
-  .mkt:has(+ .bars.open) .chev {{ transform:rotate(90deg); }}
-  .mrow2 {{ color:#8b94a3; font-size:12.5px; margin-top:4px; padding-left:38px; }}
-  .mrow2 b {{ color:#cdd5e0; font-weight:700; }}
-  .edge {{ font-weight:700; }} .edge.ehi {{ color:#4ade80; }} .edge.emid {{ color:#7aa2e3; }} .edge.elo {{ color:#7d8696; }}
-  .juice {{ color:#e0a458; font-size:11px; font-weight:700; white-space:nowrap; }}
-  .volb {{ color:#7aa2e3; font-weight:800; font-size:10px; letter-spacing:.02em; }}
-  .drv.big {{ color:#5bbd85; font-weight:700; }} .drv.none {{ color:#8b7a52; }}
+  /* PROP row — side pill · line · stat ......... odds · edge, then a color-coded stat grid */
+  .prop {{ padding:9px 0 2px; cursor:pointer; border-top:1px solid #171c25; margin-top:8px; }}
+  .pblk .prop:first-of-type {{ border-top:0; margin-top:6px; }}
+  .prow {{ display:flex; align-items:center; gap:8px; }}
+  .pind {{ width:20px; height:20px; border-radius:50%; display:grid; place-items:center;
+    font-size:11px; font-weight:800; border:1.5px solid; flex:none; }}
+  .pind.o {{ color:#37d67f; border-color:#37d67f66; }}
+  .pind.u {{ color:#5b9dff; border-color:#5b9dff66; }}
+  .plno {{ font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; }}
+  .pstat {{ color:#8a93a3; font-weight:700; font-size:12px; letter-spacing:.03em; }}
+  .psp {{ flex:1; }}
+  .podds {{ color:#5b9dff; font-weight:700; font-size:13.5px; font-variant-numeric:tabular-nums; }}
+  .pedge {{ font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; }}
+  .pedge.hi {{ color:#37d67f; }} .pedge.mid {{ color:#9fd8a8; }} .pedge.lo {{ color:#6b7484; }}
+  .pchev {{ color:#454f5e; font-size:17px; transition:transform .15s; }}
+  .prop:has(+ .bars.open) .pchev {{ transform:rotate(90deg); }}
+  .pv {{ color:#37d67f; font-weight:800; font-size:13px; }}
+  .juice {{ color:#eaa15a; font-size:10.5px; font-weight:700; white-space:nowrap; }}
+  .pgrid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:9px 0 2px; }}
+  .gc {{ background:#080a0e; border:1px solid #171c26; border-radius:9px; padding:6px 3px;
+    display:flex; flex-direction:column; align-items:center; gap:1px; }}
+  .gcl {{ color:#59606d; font-size:9px; font-weight:700; letter-spacing:.05em; }}
+  .gcv {{ font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; color:#e8ecf2; }}
+  .gcv.good {{ color:#37d67f; }}
+  .gcs {{ color:#697181; font-size:10px; font-weight:600; }}
   .bars {{ display:none; padding:20px 2px 4px; }}
   .bars.open {{ display:block; }}
   .chart {{ position:relative; display:flex; gap:5px; height:88px; overflow:visible; }}
@@ -713,7 +746,7 @@ def build():
   .opps {{ display:flex; gap:5px; margin-top:5px; }}
   .opps span {{ flex:1; text-align:center; font-size:9.5px; color:#6b7484; }}
   .pline {{ position:absolute; left:0; right:0; height:0; border-top:1.5px dashed #5b9dff88; z-index:2; }}
-  .pline span {{ position:absolute; right:0; top:-8px; font-size:9.5px; color:#5b9dff; background:#0a0d13; padding:0 3px; }}
+  .pline span {{ position:absolute; right:0; top:-8px; font-size:9.5px; color:#5b9dff; background:#08090c; padding:0 3px; }}
   .bnote {{ color:#7d8696; font-size:11.5px; margin-top:9px; text-align:center; }}
   .regime {{ margin:10px 0 4px; padding:9px 11px; background:#141c28; border:1px solid #223047; border-radius:8px; }}
 .rgh {{ font-size:12px; color:#aab3c1; margin-bottom:7px; }}
@@ -803,7 +836,8 @@ def build():
 </script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
-    print(f"dashboard: {len(order)} beneficiaries / {len(rows)} spots, record {w}-{l} ({u:+.1f}u), {pend} pending -> {OUT}")
+    print(f"dashboard: {len(ordered)} games / {sum(len(g) for g in ordered)} beneficiaries / "
+          f"{len(rows)} spots, record {w}-{l} ({u:+.1f}u), {pend} pending -> {OUT}")
 
 
 if __name__ == "__main__":
