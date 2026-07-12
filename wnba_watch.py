@@ -19,6 +19,8 @@ from __future__ import annotations
 import datetime as dt
 import json
 import os
+import sqlite3
+import sys
 from pathlib import Path
 
 import requests
@@ -36,6 +38,7 @@ STATUS_STATE = HERE / "wnba_status_state.json" # last-seen key-player injury TAG
 CONF_STATE = HERE / "wnba_confirm_state.json"  # last-seen set of CONFIRMED-lineup teams (for diffing)
 PRICED_STATE = HERE / "wnba_priced_state.json" # {date, count} — priced-player count at the last opening scan
 PRICE_JUMP = 6                                 # +this many freshly-priced players = a new batch of lines
+WATCHDOG_STATE = HERE / "wnba_watchdog_state.json"  # last watchdog alert signature (dedup: 1/issue/day)
 
 FIRM = ("OUT", "DOUBTFUL")                     # tags that drive the firm beneficiary scan
 WATCH = ("QUESTIONABLE", "GTD")                # tags that drive the questionable-tier watchlist
@@ -419,5 +422,56 @@ def main():
         A.SEEN.write_text("\n".join(sorted(seen)[-2000:]))
 
 
+def watchdog():
+    """Heartbeat alarm for the SILENT-failure class that hid today's grading freeze for days. Pings
+    ntfy (deduped to 1/issue/day) when: (a) bets whose slate is 2+ days old are still ungraded ->
+    grading is stuck, or (b) the WNBA line feed has gone stale mid-day -> a collector died. Read-only;
+    never touches bets. Runs from the loop's maintenance cycle."""
+    topic = os.environ.get("NTFY_TOPIC")
+    if not topic:
+        return
+    issues = []
+    try:                                                 # (a) grading stuck: final games never graded
+        con = sqlite3.connect(f"file:{L.DB}?mode=ro", uri=True)
+        cutoff = (dt.datetime.now(T.ET).date() - dt.timedelta(days=2)).isoformat()
+        stuck = con.execute("SELECT COUNT(*) FROM predictions WHERE result IS NULL AND pred_date<=?",
+                            (cutoff,)).fetchone()[0]
+        con.close()
+        if stuck:
+            issues.append(f"{stuck} bets stuck ungraded (slate 2+ days old) — grading may be broken")
+    except Exception as e:
+        print("watchdog grade-check skipped:", str(e)[:60])
+    try:                                                 # (b) line feed stale >5h during the day
+        import wnba_props_db as PDB
+        con = sqlite3.connect(f"file:{PDB.props_db()}?mode=ro", uri=True)
+        newest = con.execute("SELECT MAX(collected_at) FROM fd_lines WHERE sport='wnba'").fetchone()[0]
+        con.close()
+        if newest:
+            now_naive = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None)
+            age_h = (now_naive - dt.datetime.fromisoformat(newest)).total_seconds() / 3600
+            if age_h > 5:
+                issues.append(f"WNBA line feed stale: newest line {age_h:.1f}h old (collector may be down)")
+    except Exception as e:
+        print("watchdog line-check skipped:", str(e)[:60])
+    if not issues:
+        return
+    sig = dt.datetime.now(T.ET).date().isoformat() + "|" + "|".join(sorted(issues))   # 1 alert/issue/day
+    if WATCHDOG_STATE.exists() and WATCHDOG_STATE.read_text() == sig:
+        return
+    try:
+        resp = requests.post(f"https://ntfy.sh/{topic}",
+                             data=("\U0001F6A8 WNBA watchdog\n" + "\n".join(issues)).encode("utf-8"),
+                             headers={"Title": "WNBA watchdog", "Priority": "high", "Tags": "warning"},
+                             timeout=15)
+        resp.raise_for_status()
+        WATCHDOG_STATE.write_text(sig)                    # only dedup after a CONFIRMED alert
+        print("watchdog alerted:", issues)
+    except requests.RequestException as e:
+        print("watchdog push failed:", str(e)[:60])
+
+
 if __name__ == "__main__":
-    main()
+    if "--watchdog" in sys.argv:
+        watchdog()
+    else:
+        main()
