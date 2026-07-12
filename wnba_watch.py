@@ -187,7 +187,7 @@ def key_status(playing, inj, board, pl):
         p = pl.get(n)
         if not (p and p.get("team") in playing and (p["min"] >= KEY_MIN or p["pts"] >= 10)):
             continue
-        if s in ("Out", "Doubtful") and not T.playing_now(n):
+        if s in ("Out", "Doubtful") and not T.confirmed_playing(n, p.get("team")):
             st[n] = s.upper()
         elif s == "Questionable":
             st[n] = "QUESTIONABLE"
@@ -248,6 +248,13 @@ def main():
     cur_all = key_status(playing, inj, board, pl)
     first_run = not STATUS_STATE.exists()
     prev_all = json.loads(STATUS_STATE.read_text()) if STATUS_STATE.exists() else {}
+    # ACCURACY GUARD #1: a failed/partial ESPN injuries fetch returns {} (or far fewer tags than
+    # reality). Diffing against it would fire a FLOOD of false 'now active' clears — the catastrophic
+    # class of error. If the report collapsed vs last poll, treat it as a bad fetch: keep the prior
+    # snapshot untouched and skip. Never tell the user an OUT player is active off a transient miss.
+    if prev_all and len(cur_all) < max(1, 0.6 * len(prev_all)):
+        print(f"injury report collapsed {len(prev_all)}->{len(cur_all)} — likely a bad fetch, skipping poll")
+        return
     STATUS_STATE.write_text(json.dumps(cur_all, indent=1, sort_keys=True))  # deterministic -> stable
     # CALIBRATION LOG: record every key questionable/doubtful/GTD player on tonight's slate (once, via
     # INSERT-OR-IGNORE) so wnba_question_log can resolve sit-vs-play later and recalibrate SIT_PROB.
@@ -286,6 +293,26 @@ def main():
     d = diff_report(prev_all, cur_all)
     added, removed, changed = d["added"], d["removed"], d["changed"]
     new, new_q, back, back_q = d["new"], d["new_q"], d["back"], d["back_q"]
+    # ACCURACY GUARD #2: a 'now active' clear is the single highest-risk message — it tells the user an
+    # OUT player is playing / to void a good bet. Fire it ONLY when the player is POSITIVELY active:
+    # confirmed in a starting lineup, OR (on a fresh re-fetch) no longer tagged on ESPN *or* RotoWire.
+    # A player merely absent from one poll's snapshot is NOT proof of a return (that's the Sabally bug).
+    if back or back_q:
+        recheck = T.injuries()
+        rw_out_now, rw_q_now = set(RW.out_players(board)), set(RW.questionable_players(board))
+
+        def _really_active(n):
+            if T.confirmed_playing(n, pl.get(n, {}).get("team")):     # positively confirmed starting
+                return True
+            if not recheck:                                            # re-fetch failed -> stay silent
+                return False
+            return (recheck.get(n) not in ("Out", "Doubtful", "Questionable")
+                    and RW.norm(n) not in rw_out_now and RW.norm(n) not in rw_q_now)
+        supp = [n for n in back + back_q if not _really_active(n)]
+        if supp:
+            print(f"suppressed unconfirmed 'active' clear(s): {sorted(supp)}")
+            back = [n for n in back if n not in supp]
+            back_q = [n for n in back_q if n not in supp]
     topic = os.environ.get("NTFY_TOPIC")
     # OPENING-LINES TRIGGER: a fresh BATCH of posted props (the slate's opening lines dropping) fires a
     # scan even when the injury report is unchanged — otherwise stable-injury beneficiaries + the

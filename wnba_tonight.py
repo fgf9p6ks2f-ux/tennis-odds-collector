@@ -148,6 +148,21 @@ def playing_now(player):
     return n > 0
 
 
+def confirmed_playing(player, team):
+    """True ONLY if RotoWire's CONFIRMED starting five (not merely 'projected') lists this player — a
+    POSITIVE 'they are playing tonight' signal, the one thing that can safely override a stale ESPN
+    out-tag (a genuinely-returned player). Unlike 'their props are still posted', a book's LAG in
+    pulling a freshly-ruled-out player's props CANNOT fake this — that lag is exactly what reported
+    Satou Sabally (ruled OUT) as active. Defaults False (TRUST THE INJURY REPORT) whenever RotoWire
+    hasn't confirmed the lineup yet or is unreachable, so an OUT tag is never overridden on a guess."""
+    if not team:
+        return False
+    try:
+        return RW.starter_status(rw_lineups(), team, player) == "confirmed"
+    except Exception:
+        return False
+
+
 FRESH_MIN = 90   # a book's CURRENT ladder = rungs re-posted within this many minutes of its newest
                  # stamp. A prior slate's rows (~24h back) fall outside it, so a stale alt price can
                  # never merge into tonight's ladder (the bug that logged o14.5 @ +280 vs a real 17.5).
@@ -815,7 +830,8 @@ def main():
     inj = injuries()
     # truly out = listed Out/Doubtful AND no fresh posted props (books pull props for the
     # genuinely out; a returning player still tagged 'Out' still has a full slate)
-    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful") and not playing_now(n)}
+    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")
+                 and not (n in pl and confirmed_playing(n, pl[n]["team"]))}
     lines, rates = CTX.game_lines(), CTX.team_rates()     # Vegas total + pace, once
     print(f"Tonight: {len(playing)} teams in action · {len(inj)} injury-listed players\n")
 
@@ -825,7 +841,7 @@ def main():
         p = pl.get(name)
         if not p or p["team"] not in playing or p["min"] < args.min_out:
             continue
-        if status not in ("Out", "Doubtful") or playing_now(name):   # skip stale 'Out'
+        if status not in ("Out", "Doubtful") or confirmed_playing(name, p["team"]):   # trust the report
             continue
         flagged.append((name, status, p))
     flagged.sort(key=lambda x: -x[2]["min"])

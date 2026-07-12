@@ -72,7 +72,8 @@ def collect():
     lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
     gids = T.game_ids()                                  # team -> game id (for lineup lookup)
     # truly out = listed out AND no fresh posted props (a book posting a slate = playing)
-    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful") and not T.playing_now(n)}
+    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")
+                 and not (n in pl and T.confirmed_playing(n, pl[n]["team"]))}
     # group tonight's genuine key outs BY TEAM — a beneficiary gets ONE projection off the
     # COMBINED absence (the user's edge: 2+ impact players out compounds the boost), not a
     # duplicate per out-player.
@@ -84,7 +85,7 @@ def collect():
         # compounds a beneficiary's role — a minutes-only cutoff misses her, so the model saw NY as
         # a Fiebich-only spot and under-projected Johannes. Catch both kinds of impact.
         if (p and p["team"] in playing and status in ("Out", "Doubtful")
-                and (p["min"] >= 20 or p["pts"] >= 10) and not T.playing_now(name)):
+                and (p["min"] >= 20 or p["pts"] >= 10) and not T.confirmed_playing(name, p["team"])):
             outs_by_team[p["team"]].append((name, p))
 
     alerts, preds, proj_rows = [], [], []
