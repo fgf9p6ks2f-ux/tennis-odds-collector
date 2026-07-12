@@ -358,63 +358,92 @@ def _bars(r):
             f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · gray bar = minutes · {note}</div></div>')
 
 
+def _splits(r):
+    """The player's OVER/UNDER hit rate AT THIS LINE over recent windows — L5 / L10 / season / vs
+    this opponent (H2H) — from the live game log. Returns {'l5':(hits,n), ...} or None. This is the
+    props.cash time-split heatmap: raw recent form at the exact number, beside our ROLE edge."""
+    pid = NAME2ID.get(r["player"])
+    key = STATKEY.get(r["stat"])
+    if not pid or not key:
+        return None
+    log = [g for g in _glog(pid) if (g.get("min") or 0) > 0]      # played games, newest-first
+    if not log:
+        return None
+    line = float(r["line"])
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
+
+    def hr(games):
+        vals = [g.get(key) for g in games if g.get(key) is not None]
+        if not vals:
+            return None
+        return sum(1 for v in vals if (v > line) == (side == "over")), len(vals)
+
+    opp = (r.get("opp") or "").upper()
+    h2h = hr([g for g in log if (g.get("matchup") or "").upper() == opp]) if opp else None
+    return {"l5": hr(log[:5]), "l10": hr(log[:10]), "szn": hr(log), "h2h": h2h}
+
+
+def _hrcell(lbl, hr):
+    """One heatmap cell: hit% at the line, colored green (strong) / red (weak), W/N underneath."""
+    if not hr or not hr[1]:
+        return (f'<div class="gc"><span class="gcl">{lbl}</span>'
+                f'<span class="gcv dim">—</span><span class="gcs"></span></div>')
+    pct = hr[0] / hr[1] * 100
+    cls = "good" if pct >= 65 else ("bad" if pct <= 35 else "")
+    return (f'<div class="gc"><span class="gcl">{lbl}</span>'
+            f'<span class="gcv {cls}">{pct:.0f}%</span><span class="gcs">{hr[0]}/{hr[1]}</span></div>')
+
+
 def _prop_row(r):
-    """props.cash-style prop: a side indicator + line + stat on the left, odds + model edge on the
-    right, and a color-coded stat grid (HIT / MIN / DRIVER / PROJ) below — green = favourable. Taps
-    to expand the game-log bars. Green good, blue = under direction, amber = juice/caution."""
+    """props.cash-style prop: side pill + line + stat, odds + model edge on the right, then the
+    hit-rate HEATMAP (ROLE injury-context · L5 · L10 · season · H2H, green/red) and a compact
+    context line (usage driver + matchup D). Taps to expand the game-log bars."""
     stat = STAT.get(r["stat"], r["stat"].upper())
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     o = "O" if side == "over" else "U"
-    # HIT cell — role hit-rate % (matches the chart) with the W-L underneath
-    if r.get("basis") == "volume":
-        ph = r.get("proj_hit")
-        hit_v, hit_sub, hit_good = (f"{ph*100:.0f}%" if ph else "—"), "vol", bool(ph and ph >= 0.6)
-    else:
-        rec = _raw_record(r)
-        pct = rec[0] / rec[1] if rec else None
-        hit_v = f"{pct*100:.0f}%" if pct is not None else f"{r['elev_avg']:g}"
-        hit_sub = f"{rec[0]}-{rec[1]-rec[0]}" if rec else "proj"
-        hit_good = bool(pct is not None and pct >= 0.65)
-    # EDGE (top-right, like props.cash)
     ev = r.get("ev")
     edge_v = f"{ev*100:+.0f}%" if ev is not None else ""
     ecls = "hi" if (ev or 0) >= 0.15 else ("mid" if (ev or 0) >= 0.07 else "lo")
-    # MIN — projected minutes + trend
-    pm, dm = r.get("proj_min"), r.get("d_min")
-    min_v = f"~{pm:.0f}'" if pm else "—"
-    min_sub = f"▲{dm:+.0f}" if dm is not None else ""
-    min_good = bool(dm is not None and dm >= 4)
-    # DRIVER — the conviction tell (usage jump / minutes / flat)
-    drv = r.get("driver")
-    lbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
-    if drv is not None and drv >= 1:
-        drv_v, drv_sub, drv_good = f"▲{drv:+.0f}", lbl, drv >= 3
-    elif dm is not None and dm > 2:
-        drv_v, drv_sub, drv_good = f"▲{dm:+.0f}", "min", False
+    # ROLE cell = the injury-context record (our edge); a volume play shows the volume probability
+    if r.get("basis") == "volume" and r.get("proj_hit"):
+        ph = r["proj_hit"]
+        role_cell = (f'<div class="gc"><span class="gcl">ROLE</span>'
+                     f'<span class="gcv {"good" if ph >= 0.6 else ""}">{ph*100:.0f}%</span>'
+                     f'<span class="gcs">vol</span></div>')
     else:
-        drv_v, drv_sub, drv_good = "flat", "role", False
-    # PROJ vs the line
-    proj = r.get("elev_avg")
-    proj_v = f"{proj:g}" if proj is not None else "—"
-    proj_good = bool(proj is not None and ((proj > r["line"]) == (side == "over")))
-
-    def cell(lbl, v, sub, good):
-        return (f'<div class="gc"><span class="gcl">{lbl}</span>'
-                f'<span class="gcv{" good" if good else ""}">{v}</span>'
-                f'<span class="gcs">{sub}</span></div>')
-    grid = (cell("HIT", hit_v, hit_sub, hit_good) + cell("MIN", min_v, min_sub, min_good)
-            + cell("DRIVER", drv_v, drv_sub, drv_good) + cell("PROJ", proj_v, f"vs {r['line']:g}", proj_good))
+        rec = _raw_record(r)
+        role_cell = _hrcell("ROLE", (rec[0], rec[1]) if rec else None)
+    sp = _splits(r) or {}
+    grid = (role_cell + _hrcell("L5", sp.get("l5")) + _hrcell("L10", sp.get("l10"))
+            + _hrcell("SZN", sp.get("szn")) + _hrcell("H2H", sp.get("h2h")))
+    # context line — our injury driver + the DvP matchup note (qualitative signals, not hit rates)
+    ctx, drv, dm = [], r.get("driver"), r.get("d_min")
+    dlbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
+    if drv is not None and drv >= 1:
+        ctx.append(f'<span class="cdrv">▲{drv:+.0f} {dlbl}</span>')
+    elif dm is not None and dm > 2:
+        ctx.append(f'<span class="cdrv">▲{dm:+.0f} min</span>')
+    try:
+        import wnba_dvp as DVP
+        note = DVP.matchup_note((r.get("opp") or "").upper(), r.get("pos") or "", r["stat"])
+        if note:
+            ctx.append(f'<span class="cdvp {note}">{note} D</span>')
+    except Exception:
+        pass
+    if r.get("elev_avg") is not None:
+        ctx.append(f'proj {r["elev_avg"]:g}')
+    ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
     juice = ' <span class="juice">juice</span>' if float(r["odds"]) < 1.80 else ""
     played = ' <span class="pv">✓</span>' if r.get("played") else ""
     return f"""
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="{side}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind {o.lower()}">{o}</span>
           <span class="plno">{r['line']:g}</span><span class="pstat">{stat}</span>
           <span class="psp"></span>
           <span class="podds">{_am(r['odds'])}</span>{juice}
           <span class="pedge {ecls}">{edge_v}</span>{played}<span class="pchev">›</span></div>
-        <div class="pgrid">{grid}</div>
+        <div class="pgrid">{grid}</div>{ctxline}
       </div>{_bars(r)}"""
 
 
@@ -454,7 +483,9 @@ def _game_group(players, tips):
     outs = " + ".join(sorted(outset))
     blocks = "".join(_player_block(p, prs, top=max((x.get("ev") or 0) for x in prs) >= 0.20)
                      for p, prs in players)
-    return (f'<div class="game">'
+    gedge = max((x.get("ev") or 0) for _, prs in players for x in prs)
+    gtip = tip.timestamp() if tip else 9e15
+    return (f'<div class="game" data-edge="{gedge:.4f}" data-tip="{gtip:.0f}">'
             f'<div class="ghd"><span class="gmatch">{team} <span class="gvs">vs</span> {opp or "—"}</span>'
             f'<span class="gtime">{when}</span></div>'
             + (f'<div class="gout">🚑 {html.escape(outs)} out</div>' if outs else "")
@@ -677,6 +708,10 @@ def build():
   .stat .v {{ font-size:21px; font-weight:700; line-height:1; }}
   .stat .sv {{ color:#7d8696; font-size:12px; font-weight:500; }}
   h2 {{ font-size:12px; color:#7d8696; text-transform:uppercase; letter-spacing:.07em; margin:0 0 12px; font-weight:600; }}
+  .fbar {{ display:flex; gap:8px; margin:0 0 18px; flex-wrap:wrap; }}
+  .fgrp {{ display:flex; gap:3px; background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:3px; }}
+  .pill {{ padding:6px 13px; font-size:12.5px; font-weight:700; color:#8a93a3; border-radius:8px; cursor:pointer; user-select:none; }}
+  .pill.on {{ background:#37d67f; color:#08240f; }}
   /* GAME group — the separation between games */
   .game {{ margin-bottom:24px; }}
   .ghd {{ display:flex; justify-content:space-between; align-items:baseline; padding:0 3px 2px; }}
@@ -695,16 +730,16 @@ def build():
   .pmin {{ color:#8a93a3; font-size:12.5px; font-weight:600; white-space:nowrap; }}
   .pmin .up {{ color:#37d67f; }}
   .dog {{ color:#e0a458; font-weight:700; }}
-  .watchlist {{ margin-top:22px; padding-top:4px; border-top:1px solid #1c2230; }}
-  .wl-title {{ color:#e0a458; font-size:13px; font-weight:800; letter-spacing:.02em; margin:14px 2px 10px; }}
-  .wl-title span {{ color:#7d8696; font-weight:600; }}
-  .wl-grp {{ border-left:2px dashed #e0a45855; background:#12100b; border-radius:8px;
-    padding:9px 12px; margin-bottom:9px; }}
-  .wl-hd {{ color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:5px; }}
+  .watchlist {{ margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }}
+  .wl-title {{ color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
+  .wl-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
+  .wl-grp {{ border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
+    border-radius:10px; padding:10px 13px; margin-bottom:9px; }}
+  .wl-hd {{ color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:6px; }}
   .wl-hd b {{ color:#e8ecf2; }}
-  .wl-leg {{ font-size:13px; padding:2px 0; }}
-  .wl-leg b {{ color:#e8ecf2; }}
-  .wl-ev {{ color:#4ade80; font-weight:700; margin-left:7px; }}
+  .wl-leg {{ font-size:13.5px; padding:3px 0; }}
+  .wl-leg b {{ color:#e8ecf2; font-weight:800; }}
+  .wl-ev {{ color:#37d67f; font-weight:800; margin-left:7px; }}
   .wl-meta {{ color:#7d8696; font-size:11px; margin-left:7px; }}
   /* PROP row — side pill · line · stat ......... odds · edge, then a color-coded stat grid */
   .prop {{ padding:9px 0 2px; cursor:pointer; border-top:1px solid #171c25; margin-top:8px; }}
@@ -724,13 +759,16 @@ def build():
   .prop:has(+ .bars.open) .pchev {{ transform:rotate(90deg); }}
   .pv {{ color:#37d67f; font-weight:800; font-size:13px; }}
   .juice {{ color:#eaa15a; font-size:10.5px; font-weight:700; white-space:nowrap; }}
-  .pgrid {{ display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:9px 0 2px; }}
-  .gc {{ background:#080a0e; border:1px solid #171c26; border-radius:9px; padding:6px 3px;
+  .pgrid {{ display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin:9px 0 2px; }}
+  .gc {{ background:#080a0e; border:1px solid #171c26; border-radius:8px; padding:5px 2px;
     display:flex; flex-direction:column; align-items:center; gap:1px; }}
-  .gcl {{ color:#59606d; font-size:9px; font-weight:700; letter-spacing:.05em; }}
-  .gcv {{ font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; color:#e8ecf2; }}
-  .gcv.good {{ color:#37d67f; }}
-  .gcs {{ color:#697181; font-size:10px; font-weight:600; }}
+  .gcl {{ color:#59606d; font-size:8.5px; font-weight:700; letter-spacing:.04em; }}
+  .gcv {{ font-size:13.5px; font-weight:800; font-variant-numeric:tabular-nums; color:#e8ecf2; }}
+  .gcv.good {{ color:#37d67f; }} .gcv.bad {{ color:#f8716b; }} .gcv.dim {{ color:#454f5e; }}
+  .gcs {{ color:#697181; font-size:9.5px; font-weight:600; }}
+  .pctx {{ color:#7d8696; font-size:11.5px; font-weight:600; margin:7px 1px 2px; }}
+  .cdrv {{ color:#8fcf9e; }}
+  .cdvp.soft {{ color:#37d67f; }} .cdvp.tough {{ color:#f0a860; }}
   .bars {{ display:none; padding:20px 2px 4px; }}
   .bars.open {{ display:block; }}
   .chart {{ position:relative; display:flex; gap:5px; height:88px; overflow:visible; }}
@@ -793,14 +831,14 @@ def build():
     color:#cdd5e0; }}
   .ladr {{ text-align:right; color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }}
   .ladnote {{ color:#5a6474; font-size:10.5px; margin-top:9px; padding:0 6px; }}
-  .tcard {{ background:#121620; border:1px solid #1f2836; border-radius:16px; padding:18px 16px; margin-bottom:14px; }}
-  .thead {{ font-size:16px; font-weight:700; margin-bottom:14px; }}
-  .trow {{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }}
-  .tbox {{ text-align:center; }}
-  .tk {{ color:#7d8696; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px; }}
-  .tv {{ font-size:24px; font-weight:800; line-height:1; }}
-  .tv.up {{ color:#4ade80; }} .tv.down {{ color:#f87171; }}
-  .tsub {{ color:#7d8696; font-size:11.5px; text-align:center; margin-top:14px; }}
+  .tcard {{ background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:16px 15px; margin-bottom:11px; }}
+  .thead {{ font-size:15px; font-weight:800; margin-bottom:13px; }}
+  .trow {{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }}
+  .tbox {{ text-align:center; background:#080a0e; border:1px solid #171c26; border-radius:9px; padding:9px 4px; }}
+  .tk {{ color:#59606d; font-size:9px; text-transform:uppercase; letter-spacing:.05em; font-weight:700; margin-bottom:5px; }}
+  .tv {{ font-size:22px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }}
+  .tv.up {{ color:#37d67f; }} .tv.down {{ color:#f8716b; }}
+  .tsub {{ color:#7d8696; font-size:11.5px; text-align:center; margin-top:12px; }}
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
@@ -812,8 +850,19 @@ def build():
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
   </div>
   <div class="panel" id="wnba">
-    <h2>{pend} plays · strongest first · tap any bet for the game log</h2>
-    {cards}
+    <h2>{pend} plays · grouped by game · tap any bet for the game log</h2>
+    <div class="fbar">
+      <div class="fgrp" data-f="side">
+        <span class="pill on" data-v="all" onclick="setF('side','all')">All</span>
+        <span class="pill" data-v="over" onclick="setF('side','over')">Overs</span>
+        <span class="pill" data-v="under" onclick="setF('side','under')">Unders</span>
+      </div>
+      <div class="fgrp" data-f="sort">
+        <span class="pill on" data-v="edge" onclick="setF('sort','edge')">Edge</span>
+        <span class="pill" data-v="time" onclick="setF('sort','time')">Time</span>
+      </div>
+    </div>
+    <div id="games">{cards}</div>
     {wl_html}
   </div>
   <div class="panel hidden" id="tt">
@@ -833,6 +882,24 @@ def build():
     try {{ localStorage.setItem('tab', t); }} catch (e) {{}}
   }}
   try {{ const s = localStorage.getItem('tab'); if (s) showTab(s); }} catch (e) {{}}
+  // WNBA filter (over/under) + sort (edge/time) — pure client-side over the server-rendered games
+  const F = {{ side:'all', sort:'edge' }};
+  function applyF() {{
+    document.querySelectorAll('.prop').forEach(p =>
+      p.style.display = (F.side==='all' || p.dataset.side===F.side) ? '' : 'none');
+    document.querySelectorAll('.pblk').forEach(b =>
+      b.style.display = [...b.querySelectorAll('.prop')].some(p => p.style.display!=='none') ? '' : 'none');
+    document.querySelectorAll('.game').forEach(g =>
+      g.style.display = [...g.querySelectorAll('.pblk')].some(b => b.style.display!=='none') ? '' : 'none');
+    const wrap = document.getElementById('games');
+    if (wrap) [...wrap.children].sort((a,b) => F.sort==='time'
+        ? (a.dataset.tip-b.dataset.tip) : (b.dataset.edge-a.dataset.edge)).forEach(g => wrap.appendChild(g));
+  }}
+  function setF(k,v) {{
+    F[k]=v;
+    document.querySelectorAll(`[data-f="${{k}}"] .pill`).forEach(p => p.classList.toggle('on', p.dataset.v===v));
+    applyF();
+  }}
 </script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)

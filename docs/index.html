@@ -17,6 +17,10 @@
   .stat .v { font-size:21px; font-weight:700; line-height:1; }
   .stat .sv { color:#7d8696; font-size:12px; font-weight:500; }
   h2 { font-size:12px; color:#7d8696; text-transform:uppercase; letter-spacing:.07em; margin:0 0 12px; font-weight:600; }
+  .fbar { display:flex; gap:8px; margin:0 0 18px; flex-wrap:wrap; }
+  .fgrp { display:flex; gap:3px; background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:3px; }
+  .pill { padding:6px 13px; font-size:12.5px; font-weight:700; color:#8a93a3; border-radius:8px; cursor:pointer; user-select:none; }
+  .pill.on { background:#37d67f; color:#08240f; }
   /* GAME group — the separation between games */
   .game { margin-bottom:24px; }
   .ghd { display:flex; justify-content:space-between; align-items:baseline; padding:0 3px 2px; }
@@ -35,16 +39,16 @@
   .pmin { color:#8a93a3; font-size:12.5px; font-weight:600; white-space:nowrap; }
   .pmin .up { color:#37d67f; }
   .dog { color:#e0a458; font-weight:700; }
-  .watchlist { margin-top:22px; padding-top:4px; border-top:1px solid #1c2230; }
-  .wl-title { color:#e0a458; font-size:13px; font-weight:800; letter-spacing:.02em; margin:14px 2px 10px; }
-  .wl-title span { color:#7d8696; font-weight:600; }
-  .wl-grp { border-left:2px dashed #e0a45855; background:#12100b; border-radius:8px;
-    padding:9px 12px; margin-bottom:9px; }
-  .wl-hd { color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:5px; }
+  .watchlist { margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }
+  .wl-title { color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }
+  .wl-title span { color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }
+  .wl-grp { border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
+    border-radius:10px; padding:10px 13px; margin-bottom:9px; }
+  .wl-hd { color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:6px; }
   .wl-hd b { color:#e8ecf2; }
-  .wl-leg { font-size:13px; padding:2px 0; }
-  .wl-leg b { color:#e8ecf2; }
-  .wl-ev { color:#4ade80; font-weight:700; margin-left:7px; }
+  .wl-leg { font-size:13.5px; padding:3px 0; }
+  .wl-leg b { color:#e8ecf2; font-weight:800; }
+  .wl-ev { color:#37d67f; font-weight:800; margin-left:7px; }
   .wl-meta { color:#7d8696; font-size:11px; margin-left:7px; }
   /* PROP row — side pill · line · stat ......... odds · edge, then a color-coded stat grid */
   .prop { padding:9px 0 2px; cursor:pointer; border-top:1px solid #171c25; margin-top:8px; }
@@ -64,13 +68,16 @@
   .prop:has(+ .bars.open) .pchev { transform:rotate(90deg); }
   .pv { color:#37d67f; font-weight:800; font-size:13px; }
   .juice { color:#eaa15a; font-size:10.5px; font-weight:700; white-space:nowrap; }
-  .pgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:9px 0 2px; }
-  .gc { background:#080a0e; border:1px solid #171c26; border-radius:9px; padding:6px 3px;
+  .pgrid { display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin:9px 0 2px; }
+  .gc { background:#080a0e; border:1px solid #171c26; border-radius:8px; padding:5px 2px;
     display:flex; flex-direction:column; align-items:center; gap:1px; }
-  .gcl { color:#59606d; font-size:9px; font-weight:700; letter-spacing:.05em; }
-  .gcv { font-size:14px; font-weight:800; font-variant-numeric:tabular-nums; color:#e8ecf2; }
-  .gcv.good { color:#37d67f; }
-  .gcs { color:#697181; font-size:10px; font-weight:600; }
+  .gcl { color:#59606d; font-size:8.5px; font-weight:700; letter-spacing:.04em; }
+  .gcv { font-size:13.5px; font-weight:800; font-variant-numeric:tabular-nums; color:#e8ecf2; }
+  .gcv.good { color:#37d67f; } .gcv.bad { color:#f8716b; } .gcv.dim { color:#454f5e; }
+  .gcs { color:#697181; font-size:9.5px; font-weight:600; }
+  .pctx { color:#7d8696; font-size:11.5px; font-weight:600; margin:7px 1px 2px; }
+  .cdrv { color:#8fcf9e; }
+  .cdvp.soft { color:#37d67f; } .cdvp.tough { color:#f0a860; }
   .bars { display:none; padding:20px 2px 4px; }
   .bars.open { display:block; }
   .chart { position:relative; display:flex; gap:5px; height:88px; overflow:visible; }
@@ -133,14 +140,14 @@
     color:#cdd5e0; }
   .ladr { text-align:right; color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }
   .ladnote { color:#5a6474; font-size:10.5px; margin-top:9px; padding:0 6px; }
-  .tcard { background:#121620; border:1px solid #1f2836; border-radius:16px; padding:18px 16px; margin-bottom:14px; }
-  .thead { font-size:16px; font-weight:700; margin-bottom:14px; }
-  .trow { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
-  .tbox { text-align:center; }
-  .tk { color:#7d8696; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:5px; }
-  .tv { font-size:24px; font-weight:800; line-height:1; }
-  .tv.up { color:#4ade80; } .tv.down { color:#f87171; }
-  .tsub { color:#7d8696; font-size:11.5px; text-align:center; margin-top:14px; }
+  .tcard { background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:16px 15px; margin-bottom:11px; }
+  .thead { font-size:15px; font-weight:800; margin-bottom:13px; }
+  .trow { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
+  .tbox { text-align:center; background:#080a0e; border:1px solid #171c26; border-radius:9px; padding:9px 4px; }
+  .tk { color:#59606d; font-size:9px; text-transform:uppercase; letter-spacing:.05em; font-weight:700; margin-bottom:5px; }
+  .tv { font-size:22px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }
+  .tv.up { color:#37d67f; } .tv.down { color:#f8716b; }
+  .tsub { color:#7d8696; font-size:11.5px; text-align:center; margin-top:12px; }
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
@@ -152,80 +159,91 @@
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
   </div>
   <div class="panel" id="wnba">
-    <h2>8 plays · strongest first · tap any bet for the game log</h2>
-    <div class="game"><div class="ghd"><span class="gmatch">PHX <span class="gvs">vs</span> LV</span><span class="gtime"></span></div><div class="gout">🚑 J. Nogic + N. Mack out</div><div class="pblk top"><div class="phd"><span class="pname">D. Bonner</span><span class="pflag cok">✓ starting</span><span class="psp2"></span><span class="pmin">~31' <span class="up">▲+7</span></span></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+    <h2>8 plays · grouped by game · tap any bet for the game log</h2>
+    <div class="fbar">
+      <div class="fgrp" data-f="side">
+        <span class="pill on" data-v="all" onclick="setF('side','all')">All</span>
+        <span class="pill" data-v="over" onclick="setF('side','over')">Overs</span>
+        <span class="pill" data-v="under" onclick="setF('side','under')">Unders</span>
+      </div>
+      <div class="fgrp" data-f="sort">
+        <span class="pill on" data-v="edge" onclick="setF('sort','edge')">Edge</span>
+        <span class="pill" data-v="time" onclick="setF('sort','time')">Time</span>
+      </div>
+    </div>
+    <div id="games"><div class="game" data-edge="0.3080" data-tip="9000000000000000"><div class="ghd"><span class="gmatch">PHX <span class="gvs">vs</span> LV</span><span class="gtime"></span></div><div class="gout">🚑 J. Nogic + N. Mack out</div><div class="pblk top"><div class="phd"><span class="pname">D. Bonner</span><span class="pflag cok">✓ starting</span><span class="psp2"></span><span class="pmin">~31' <span class="up">▲+7</span></span></div>
+      <div class="prop" data-side="over" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
           <span class="plno">6.5</span><span class="pstat">REB</span>
           <span class="psp"></span>
           <span class="podds">+116</span>
           <span class="pedge hi">+31%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">83%</span><span class="gcs">5-1</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv good">~31'</span><span class="gcs">▲+7</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv good">▲+4</span><span class="gcs">reb</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">6.8</span><span class="gcs">vs 6.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">83%</span><span class="gcs">5/6</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv good">80%</span><span class="gcs">4/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv ">50%</span><span class="gcs">5/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv ">38%</span><span class="gcs">10/26</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv bad">33%</span><span class="gcs">1/3</span></div></div><div class="pctx"><span class="cdrv">▲+4 reb</span> · proj 6.8</div>
       </div><div class="bars"><div class="why">Model projects <b>6.8 REB</b>. Clears the 6.5 line — N. Mack + J. Nogic out (+7 min, +4 reb) inherits the vacated role. In 6 games without N. Mack + J. Nogic she finished over 6.5 <b>5/6</b> (83%).</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, N.Brochant, K.Copper</b> in — avg <b>7</b> REB over 2 (<span class="sup">supports the over</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>7</b> · 27'</span><span class="cmp pr">07-08 CHI <b>7</b> · 31'</span><span class="cmp">07-03 SEA <b>8</b> · 31'</span><span class="cmp">06-24 IND <b>8</b> · 33'</span><span class="cmp">05-29 NY <b>3</b> · 22'</span><span class="cmp">05-27 NY <b>5</b> · 24'</span></div></div><div class="chart"><div class="pline" style="bottom:36.5%"><span>6.5</span></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b o" style="height:44.9%"><span class="bv">8</span></div></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b o" style="height:61.7%"><span class="bv">11</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:44.9%"><span class="bv">8</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:39.3%"><span class="bv">7</span></div></div><div class="col"><div class="m" style="height:64%"><span class="mv">27'</span></div><div class="b o" style="height:39.3%"><span class="bv">7</span></div></div><div class="col"><div class="m" style="height:52%"><span class="mv">22'</span></div><div class="b u" style="height:22.4%"><span class="bv">4</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">5/6 over 6.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="under" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind u">U</span>
           <span class="plno">10.5</span><span class="pstat">PTS</span>
           <span class="psp"></span>
           <span class="podds">-110</span>
           <span class="pedge lo">+6%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv">50%</span><span class="gcs">3-3</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv good">~31'</span><span class="gcs">▲+7</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv">▲+2</span><span class="gcs">usg</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">10.3</span><span class="gcs">vs 10.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv ">50%</span><span class="gcs">3/6</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv ">60%</span><span class="gcs">3/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv good">70%</span><span class="gcs">7/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv good">73%</span><span class="gcs">19/26</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv good">67%</span><span class="gcs">2/3</span></div></div><div class="pctx"><span class="cdrv">▲+2 usg</span> · proj 10.3</div>
       </div><div class="bars"><div class="why">Model projects <b>10.3 PTS</b>. Under the 10.5 line — N. Mack + J. Nogic out (+7 min, +2 usage) lifts the role, but scaled honestly to a ~31-min night the number lands at 10.3 and the line runs ahead of it. In 6 games without N. Mack + J. Nogic she finished under 10.5 <b>3/6</b> (50%). Book anchored near the season avg (8.8) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, N.Brochant, K.Copper</b> in — avg <b>10.5</b> PTS over 2 (<span class="warn">⚠ leans against the under</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>9</b> · 27'</span><span class="cmp pr">07-08 CHI <b>12</b> · 31'</span><span class="cmp">07-03 SEA <b>6</b> · 31'</span><span class="cmp">06-24 IND <b>13</b> · 33'</span><span class="cmp">05-29 NY <b>4</b> · 22'</span><span class="cmp">05-27 NY <b>2</b> · 24'</span></div></div><div class="chart"><div class="pline" style="bottom:49.9%"><span>10.5</span></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b u" style="height:61.7%"><span class="bv">13</span></div></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b u" style="height:61.7%"><span class="bv">13</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:28.5%"><span class="bv">6</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b u" style="height:57.0%"><span class="bv">12</span></div></div><div class="col"><div class="m" style="height:64%"><span class="mv">27'</span></div><div class="b o" style="height:42.7%"><span class="bv">9</span></div></div><div class="col"><div class="m" style="height:52%"><span class="mv">22'</span></div><div class="b o" style="height:9.5%"><span class="bv">2</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">3/6 under 10.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div></div><div class="pblk top"><div class="phd"><span class="pname">V. Ayayi</span><span class="pflag cok">✓ starting</span><span class="psp2"></span><span class="pmin">~28' <span class="up">▲+17</span></span></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="over" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
           <span class="plno">14.5</span><span class="pstat">P+R</span>
           <span class="psp"></span>
           <span class="podds">-108</span>
           <span class="pedge hi">+25%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">67%</span><span class="gcs">4-2</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv good">~28'</span><span class="gcs">▲+17</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv good">▲+6</span><span class="gcs">usg</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">19.2</span><span class="gcs">vs 14.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">67%</span><span class="gcs">4/6</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv ">60%</span><span class="gcs">3/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv ">50%</span><span class="gcs">5/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv bad">28%</span><span class="gcs">5/18</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv bad">0%</span><span class="gcs">0/2</span></div></div><div class="pctx"><span class="cdrv">▲+6 usg</span> · proj 19.2</div>
       </div><div class="bars"><div class="why">Model projects <b>19.2 P+R</b>. Clears the 14.5 line — N. Mack + J. Nogic out (+17 min, +6 ) inherits the vacated role. In 6 games without N. Mack + J. Nogic she finished over 14.5 <b>4/6</b> (67%). Book anchored near the season avg (10.4) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>13.5</b> P+R over 2 (<span class="warn">⚠ leans against the over</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>12</b> · 30'</span><span class="cmp pr">07-08 CHI <b>15</b> · 28'</span><span class="cmp">07-03 SEA <b>20</b> · 27'</span><span class="cmp">06-24 IND <b>22</b> · 28'</span><span class="cmp">05-29 NY <b>1</b> · 3'</span><span class="cmp">05-27 NY <b>3</b> · 9'</span></div></div><div class="chart"><div class="pline" style="bottom:34.4%"><span>14.5</span></div><div class="col"><div class="m" style="height:67%"><span class="mv">28'</span></div><div class="b o" style="height:52.2%"><span class="bv">22</span></div></div><div class="col"><div class="m" style="height:64%"><span class="mv">27'</span></div><div class="b o" style="height:61.7%"><span class="bv">26</span></div></div><div class="col"><div class="m" style="height:64%"><span class="mv">27'</span></div><div class="b o" style="height:47.5%"><span class="bv">20</span></div></div><div class="col"><div class="m" style="height:67%"><span class="mv">28'</span></div><div class="b o" style="height:35.6%"><span class="bv">15</span></div></div><div class="col"><div class="m" style="height:71%"><span class="mv">30'</span></div><div class="b u" style="height:28.5%"><span class="bv">12</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b u" style="height:28.5%"><span class="bv">12</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">4/6 over 14.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="over" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
           <span class="plno">9.5</span><span class="pstat">PTS</span>
           <span class="psp"></span>
           <span class="podds">-130</span> <span class="juice">juice</span>
           <span class="pedge hi">+15%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">73%</span><span class="gcs">vol</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv good">~28'</span><span class="gcs">▲+17</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv good">▲+6</span><span class="gcs">usg</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">13.6</span><span class="gcs">vs 9.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">73%</span><span class="gcs">vol</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv ">60%</span><span class="gcs">3/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv ">50%</span><span class="gcs">5/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv bad">28%</span><span class="gcs">5/18</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv bad">0%</span><span class="gcs">0/2</span></div></div><div class="pctx"><span class="cdrv">▲+6 usg</span> · proj 13.6</div>
       </div><div class="bars"><div class="why"><b>Volume play.</b> Projecting <b>13.6 pts</b> off shot VOLUME, not recent scoring — her FGA jumped <b>4.1→8.3</b> in the elevated role, and volume is sticky while shooting is variance. At her 1.186 pts-per-shot that's a sustainable 13.6, so a cold night can hide it but the <b>over is the value</b> — ladder the alt lines the book anchored low.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>9.5</b> PTS over 2 (<span class="warn">⚠ leans against the over</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>10</b> · 30'</span><span class="cmp pr">07-08 CHI <b>9</b> · 28'</span><span class="cmp">07-03 SEA <b>18</b> · 27'</span><span class="cmp">06-24 IND <b>19</b> · 28'</span><span class="cmp">05-29 NY <b>0</b> · 3'</span><span class="cmp">05-27 NY <b>3</b> · 9'</span></div></div><div class="chart"><div class="pline" style="bottom:29.3%"><span>9.5</span></div><div class="col"><div class="m" style="height:67%"><span class="mv">28'</span></div><div class="b o" style="height:58.6%"><span class="bv">19</span></div></div><div class="col"><div class="m" style="height:64%"><span class="mv">27'</span></div><div class="b o" style="height:61.7%"><span class="bv">20</span></div></div><div class="col"><div class="m" style="height:64%"><span class="mv">27'</span></div><div class="b o" style="height:55.6%"><span class="bv">18</span></div></div><div class="col"><div class="m" style="height:67%"><span class="mv">28'</span></div><div class="b u" style="height:27.8%"><span class="bv">9</span></div></div><div class="col"><div class="m" style="height:71%"><span class="mv">30'</span></div><div class="b o" style="height:30.9%"><span class="bv">10</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b u" style="height:15.4%"><span class="bv">5</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">4/6 over 9.5 · gray bar = minutes · volume-confirmed role · bars = actual pts (shooting varies, volume doesn't)</div></div></div><div class="pblk top"><div class="phd"><span class="pname">K. Copper</span><span class="pflag cok">✓ starting</span><span class="psp2"></span><span class="pmin">~34' <span class="">▲+2</span></span></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="over" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
           <span class="plno">24.5</span><span class="pstat">P+R</span>
           <span class="psp"></span>
           <span class="podds">-102</span>
           <span class="pedge hi">+21%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">83%</span><span class="gcs">5-1</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv">~34'</span><span class="gcs">▲+2</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv">▲+2</span><span class="gcs">min</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">26.9</span><span class="gcs">vs 24.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">83%</span><span class="gcs">5/6</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv good">80%</span><span class="gcs">4/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv good">70%</span><span class="gcs">7/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv ">36%</span><span class="gcs">9/25</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv bad">33%</span><span class="gcs">1/3</span></div></div><div class="pctx"><span class="cdrv">▲+2 min</span> · proj 26.9</div>
       </div><div class="bars"><div class="why">Model projects <b>26.9 P+R</b>. Clears the 24.5 line — N. Mack + J. Nogic out (+2 min) inherits the vacated role. In 6 games without N. Mack + J. Nogic she finished over 24.5 <b>5/6</b> (83%). Book anchored near the season avg (24.3) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>28</b> P+R over 2 (<span class="sup">supports the over</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>27</b> · 32'</span><span class="cmp pr">07-08 CHI <b>29</b> · 34'</span><span class="cmp">07-03 SEA <b>37</b> · 36'</span><span class="cmp">06-24 IND <b>31</b> · 31'</span><span class="cmp">05-29 NY <b>19</b> · 37'</span><span class="cmp">05-27 NY <b>21</b> · 36'</span></div></div><div class="chart"><div class="pline" style="bottom:40.9%"><span>24.5</span></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:51.7%"><span class="bv">31</span></div></div><div class="col"><div class="m" style="height:81%"><span class="mv">34'</span></div><div class="b o" style="height:53.4%"><span class="bv">32</span></div></div><div class="col"><div class="m" style="height:86%"><span class="mv">36'</span></div><div class="b o" style="height:61.7%"><span class="bv">37</span></div></div><div class="col"><div class="m" style="height:81%"><span class="mv">34'</span></div><div class="b o" style="height:48.4%"><span class="bv">29</span></div></div><div class="col"><div class="m" style="height:76%"><span class="mv">32'</span></div><div class="b o" style="height:45.0%"><span class="bv">27</span></div></div><div class="col"><div class="m" style="height:69%"><span class="mv">29'</span></div><div class="b u" style="height:21.7%"><span class="bv">13</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">5/6 over 24.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="over" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
           <span class="plno">20.5</span><span class="pstat">PTS</span>
           <span class="psp"></span>
           <span class="podds">-105</span>
           <span class="pedge hi">+20%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">83%</span><span class="gcs">5-1</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv">~34'</span><span class="gcs">▲+2</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv">▲+2</span><span class="gcs">min</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">22.7</span><span class="gcs">vs 20.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">83%</span><span class="gcs">5/6</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv good">80%</span><span class="gcs">4/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv good">70%</span><span class="gcs">7/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv ">36%</span><span class="gcs">9/25</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv bad">33%</span><span class="gcs">1/3</span></div></div><div class="pctx"><span class="cdrv">▲+2 min</span> · proj 22.7</div>
       </div><div class="bars"><div class="why">Model projects <b>22.7 PTS</b>. Clears the 20.5 line — N. Mack + J. Nogic out (+2 min) inherits the vacated role. In 6 games without N. Mack + J. Nogic she finished over 20.5 <b>5/6</b> (83%). Book anchored near the season avg (20.6) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>23.5</b> PTS over 2 (<span class="sup">supports the over</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>22</b> · 32'</span><span class="cmp pr">07-08 CHI <b>25</b> · 34'</span><span class="cmp">07-03 SEA <b>30</b> · 36'</span><span class="cmp">06-24 IND <b>28</b> · 31'</span><span class="cmp">05-29 NY <b>16</b> · 37'</span><span class="cmp">05-27 NY <b>19</b> · 36'</span></div></div><div class="chart"><div class="pline" style="bottom:42.2%"><span>20.5</span></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:57.6%"><span class="bv">28</span></div></div><div class="col"><div class="m" style="height:81%"><span class="mv">34'</span></div><div class="b o" style="height:55.6%"><span class="bv">27</span></div></div><div class="col"><div class="m" style="height:86%"><span class="mv">36'</span></div><div class="b o" style="height:61.7%"><span class="bv">30</span></div></div><div class="col"><div class="m" style="height:81%"><span class="mv">34'</span></div><div class="b o" style="height:51.4%"><span class="bv">25</span></div></div><div class="col"><div class="m" style="height:76%"><span class="mv">32'</span></div><div class="b o" style="height:45.3%"><span class="bv">22</span></div></div><div class="col"><div class="m" style="height:69%"><span class="mv">29'</span></div><div class="b u" style="height:18.5%"><span class="bv">9</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">5/6 over 20.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="over" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
           <span class="plno">26.5</span><span class="pstat">PRA</span>
           <span class="psp"></span>
           <span class="podds">-104</span>
           <span class="pedge mid">+11%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">83%</span><span class="gcs">5-1</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv">~34'</span><span class="gcs">▲+2</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv">▲+2</span><span class="gcs">min</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">28.7</span><span class="gcs">vs 26.5</span></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">83%</span><span class="gcs">5/6</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv good">80%</span><span class="gcs">4/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv good">70%</span><span class="gcs">7/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv ">36%</span><span class="gcs">9/25</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv bad">33%</span><span class="gcs">1/3</span></div></div><div class="pctx"><span class="cdrv">▲+2 min</span> · proj 28.7</div>
       </div><div class="bars"><div class="why">Model projects <b>28.7 PRA</b>. Clears the 26.5 line — N. Mack + J. Nogic out (+2 min) inherits the vacated role. In 6 games without N. Mack + J. Nogic she finished over 26.5 <b>5/6</b> (83%). Book anchored near the season avg (26) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>29.5</b> PRA over 2 (<span class="sup">supports the over</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>29</b> · 32'</span><span class="cmp pr">07-08 CHI <b>30</b> · 34'</span><span class="cmp">07-03 SEA <b>40</b> · 36'</span><span class="cmp">06-24 IND <b>32</b> · 31'</span><span class="cmp">05-29 NY <b>20</b> · 37'</span><span class="cmp">05-27 NY <b>23</b> · 36'</span></div></div><div class="chart"><div class="pline" style="bottom:40.9%"><span>26.5</span></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:49.4%"><span class="bv">32</span></div></div><div class="col"><div class="m" style="height:81%"><span class="mv">34'</span></div><div class="b o" style="height:50.9%"><span class="bv">33</span></div></div><div class="col"><div class="m" style="height:86%"><span class="mv">36'</span></div><div class="b o" style="height:61.7%"><span class="bv">40</span></div></div><div class="col"><div class="m" style="height:81%"><span class="mv">34'</span></div><div class="b o" style="height:46.3%"><span class="bv">30</span></div></div><div class="col"><div class="m" style="height:76%"><span class="mv">32'</span></div><div class="b o" style="height:44.8%"><span class="bv">29</span></div></div><div class="col"><div class="m" style="height:69%"><span class="mv">29'</span></div><div class="b u" style="height:20.1%"><span class="bv">13</span></div></div></div><div class="opps"><span>IND</span><span>TOR</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">5/6 over 26.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div></div><div class="pblk"><div class="phd"><span class="pname">A. Thomas</span><span class="pflag cok">✓ starting</span><span class="psp2"></span><span class="pmin">~34' <span class="">▲+2</span></span></div>
-      <div class="prop" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="under" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind u">U</span>
           <span class="plno">15.5</span><span class="pstat">R+A</span>
           <span class="psp"></span>
           <span class="podds">-102</span>
           <span class="pedge mid">+8%</span><span class="pchev">›</span></div>
-        <div class="pgrid"><div class="gc"><span class="gcl">HIT</span><span class="gcv good">80%</span><span class="gcs">4-1</span></div><div class="gc"><span class="gcl">MIN</span><span class="gcv">~34'</span><span class="gcs">▲+2</span></div><div class="gc"><span class="gcl">DRIVER</span><span class="gcv">▲+1</span><span class="gcs">usg</span></div><div class="gc"><span class="gcl">PROJ</span><span class="gcv good">15.3</span><span class="gcs">vs 15.5</span></div></div>
-      </div><div class="bars"><div class="why">Model projects <b>15.3 R+A</b>. Under the 15.5 line — N. Mack + J. Nogic out (+2 min, +1 ) lifts the role, but scaled honestly to a ~34-min night the number lands at 15.3 and the line runs ahead of it. In 5 games without N. Mack + J. Nogic she finished under 15.5 <b>4/5</b> (80%).</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>12.5</b> R+A over 2 (<span class="sup">supports the under</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>13</b> · 33'</span><span class="cmp pr">07-08 CHI <b>12</b> · 31'</span><span class="cmp">07-03 SEA <b>22</b> · 33'</span><span class="cmp">06-24 IND <b>12</b> · 38'</span><span class="cmp">05-29 NY <b>11</b> · 36'</span><span class="cmp">05-27 NY <b>16</b> · 32'</span></div></div><div class="chart"><div class="pline" style="bottom:43.5%"><span>15.5</span></div><div class="col"><div class="m" style="height:90%"><span class="mv">38'</span></div><div class="b o" style="height:33.7%"><span class="bv">12</span></div></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b u" style="height:61.7%"><span class="bv">22</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:33.7%"><span class="bv">12</span></div></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b o" style="height:36.5%"><span class="bv">13</span></div></div><div class="col"><div class="m" style="height:69%"><span class="mv">29'</span></div><div class="b o" style="height:19.6%"><span class="bv">7</span></div></div></div><div class="opps"><span>IND</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">4/5 under 15.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div></div></div>
+        <div class="pgrid"><div class="gc"><span class="gcl">ROLE</span><span class="gcv good">80%</span><span class="gcs">4/5</span></div><div class="gc"><span class="gcl">L5</span><span class="gcv good">80%</span><span class="gcs">4/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv ">60%</span><span class="gcs">6/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv ">62%</span><span class="gcs">15/24</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv good">67%</span><span class="gcs">2/3</span></div></div><div class="pctx"><span class="cdrv">▲+1 usg</span> · proj 15.3</div>
+      </div><div class="bars"><div class="why">Model projects <b>15.3 R+A</b>. Under the 15.5 line — N. Mack + J. Nogic out (+2 min, +1 ) lifts the role, but scaled honestly to a ~34-min night the number lands at 15.3 and the line runs ahead of it. In 5 games without N. Mack + J. Nogic she finished under 15.5 <b>4/5</b> (80%).</div><div class="regime"><div class="rgh">Same-lineup comps · <b>N.Mack, J.Nogic</b> out · <b>M.Makani, D.Bonner, N.Brochant</b> in — avg <b>12.5</b> R+A over 2 (<span class="sup">supports the under</span>)</div><div class="cmps"><span class="cmp pr">07-10 IND <b>13</b> · 33'</span><span class="cmp pr">07-08 CHI <b>12</b> · 31'</span><span class="cmp">07-03 SEA <b>22</b> · 33'</span><span class="cmp">06-24 IND <b>12</b> · 38'</span><span class="cmp">05-29 NY <b>11</b> · 36'</span><span class="cmp">05-27 NY <b>16</b> · 32'</span></div></div><div class="chart"><div class="pline" style="bottom:43.5%"><span>15.5</span></div><div class="col"><div class="m" style="height:90%"><span class="mv">38'</span></div><div class="b o" style="height:33.7%"><span class="bv">12</span></div></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b u" style="height:61.7%"><span class="bv">22</span></div></div><div class="col"><div class="m" style="height:74%"><span class="mv">31'</span></div><div class="b o" style="height:33.7%"><span class="bv">12</span></div></div><div class="col"><div class="m" style="height:79%"><span class="mv">33'</span></div><div class="b o" style="height:36.5%"><span class="bv">13</span></div></div><div class="col"><div class="m" style="height:69%"><span class="mv">29'</span></div><div class="b o" style="height:19.6%"><span class="bv">7</span></div></div></div><div class="opps"><span>IND</span><span>SEA</span><span>CHI</span><span>IND</span><span>LV</span></div><div class="bnote">4/5 under 15.5 · gray bar = minutes · games without N. Mack, J. Nogic</div></div></div></div></div>
     
   </div>
   <div class="panel hidden" id="tt">
@@ -306,4 +324,22 @@
     try { localStorage.setItem('tab', t); } catch (e) {}
   }
   try { const s = localStorage.getItem('tab'); if (s) showTab(s); } catch (e) {}
+  // WNBA filter (over/under) + sort (edge/time) — pure client-side over the server-rendered games
+  const F = { side:'all', sort:'edge' };
+  function applyF() {
+    document.querySelectorAll('.prop').forEach(p =>
+      p.style.display = (F.side==='all' || p.dataset.side===F.side) ? '' : 'none');
+    document.querySelectorAll('.pblk').forEach(b =>
+      b.style.display = [...b.querySelectorAll('.prop')].some(p => p.style.display!=='none') ? '' : 'none');
+    document.querySelectorAll('.game').forEach(g =>
+      g.style.display = [...g.querySelectorAll('.pblk')].some(b => b.style.display!=='none') ? '' : 'none');
+    const wrap = document.getElementById('games');
+    if (wrap) [...wrap.children].sort((a,b) => F.sort==='time'
+        ? (a.dataset.tip-b.dataset.tip) : (b.dataset.edge-a.dataset.edge)).forEach(g => wrap.appendChild(g));
+  }
+  function setF(k,v) {
+    F[k]=v;
+    document.querySelectorAll(`[data-f="${k}"] .pill`).forEach(p => p.classList.toggle('on', p.dataset.v===v));
+    applyF();
+  }
 </script></body></html>
