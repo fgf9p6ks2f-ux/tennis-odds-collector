@@ -58,6 +58,7 @@
 2026-07-12|Isabelle Harrison|points|14.5
 2026-07-12|Isabelle Harrison|pts_reb|21.5
 2026-07-12|Jonquel Jones|dd
+2026-07-12|Jonquel Jones|pts_ast|19.5
 2026-07-12|Jonquel Jones|rebounds|13.5
 2026-07-12|Julie Allemand|pra|19.5
 2026-07-12|Julie Allemand|pts_ast|15.5
