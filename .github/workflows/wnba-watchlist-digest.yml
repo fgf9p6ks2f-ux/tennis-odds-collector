@@ -10,6 +10,11 @@ on:
     - cron: "0 16 * * *"    # 12:00 ET — ahead of afternoon games
     - cron: "0 20 * * *"    # 16:00 ET — ahead of evening games
   workflow_dispatch:
+    inputs:
+      test:
+        description: "send a clearly-marked SAMPLE push to verify delivery (ignores the slate)"
+        type: boolean
+        default: false
 
 concurrency:
   group: wnba-watchlist-digest
@@ -27,4 +32,10 @@ jobs:
       - name: push the watchlist digest (only if any questionable stars)
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python show_watchlist.py --push || echo "digest skipped"
+          TEST: ${{ github.event.inputs.test }}
+        run: |
+          if [ "$TEST" = "true" ]; then
+            python show_watchlist.py --push --test
+          else
+            python show_watchlist.py --push || echo "digest skipped"
+          fi

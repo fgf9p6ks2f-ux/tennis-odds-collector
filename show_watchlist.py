@@ -24,6 +24,17 @@ import wnba_wowy as W
 _ABBR = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
          "pts_reb": "P+R", "pts_ast": "P+A", "reb_ast": "R+A"}
 
+# --test payload: a realistic SAMPLE board to verify the ntfy delivery path when no slate is live.
+_SAMPLE_QS = {"NY": [("Leonie Fiebich", "Questionable", {"min": 30}, 0.80, 2.0),
+                     ("Nyara Sabally", "GTD", {"min": 22}, 0.50, 7.0)]}
+_SAMPLE_SPOTS = [
+    {"star": "Fiebich", "status": "Questionable", "sit": 0.80, "lead": 2.0,
+     "player": "Sabrina Ionescu", "stat": "points", "line": 21.5, "ev": 0.12,
+     "elev_avg": 24.1, "hit": 0.6, "n": 10, "dec": 1.9, "conf": "likely"},
+    {"star": "Fiebich", "status": "Questionable", "sit": 0.80, "lead": 2.0,
+     "player": "Sabrina Ionescu", "stat": "assists", "line": 6.5, "ev": 0.09,
+     "elev_avg": 7.8, "hit": 0.6, "n": 10, "dec": 1.87, "conf": "likely"}]
+
 
 def _short(name):
     p = name.split()
@@ -104,24 +115,36 @@ def push_body(qs, spots):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--push", action="store_true", help="post the board to ntfy (NTFY_TOPIC)")
+    ap.add_argument("--test", action="store_true",
+                    help="push a clearly-marked SAMPLE board to verify delivery (ignores the slate)")
     a = ap.parse_args()
-    playing, qs, spots = gather()
-    print_console(playing, qs, spots)
+    if a.test:
+        qs, spots = _SAMPLE_QS, _SAMPLE_SPOTS
+        print_console(["NY", "SEA"], qs, spots)
+    else:
+        playing, qs, spots = gather()
+        print_console(playing, qs, spots)
     if not a.push:
         return
     topic = os.environ.get("NTFY_TOPIC")
     if not topic:
         print("push: NTFY_TOPIC not set")
-    elif not sum(len(v) for v in qs.values()):
+        return
+    if not sum(len(v) for v in qs.values()):
         print("push: nothing to push (no questionable stars)")     # never spam an empty board
-    else:
-        try:
-            requests.post(f"https://ntfy.sh/{topic}", data=push_body(qs, spots).encode("utf-8"),
-                          headers={"Title": "WNBA watchlist (questionable)", "Priority": "default",
-                                   "Tags": "hourglass_flowing_sand"}, timeout=15)
-            print("push: sent")
-        except requests.RequestException as e:
-            print("push failed:", e)
+        return
+    body = push_body(qs, spots)
+    title = "WNBA watchlist (questionable)"
+    if a.test:
+        body = "[TEST] sample board — confirming the digest push reaches your phone.\n\n" + body
+        title = "WNBA watchlist [TEST]"
+    try:
+        requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
+                      headers={"Title": title, "Priority": "default",
+                               "Tags": "hourglass_flowing_sand"}, timeout=15)
+        print("push: sent")
+    except requests.RequestException as e:
+        print("push failed:", e)
 
 
 if __name__ == "__main__":
