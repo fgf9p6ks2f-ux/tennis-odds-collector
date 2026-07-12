@@ -165,6 +165,28 @@ def players():
     return out
 
 
+def roster_ids():
+    """{name: espn_id} for every rostered player — teams + rosters ONLY, no per-player game_log.
+    Grading just needs the id map, so this skips the ~180-call season-average rebuild players()
+    does (that rebuild throttles and aborts the grade pass). Per-team guarded: one flaky roster
+    fetch drops only that team, never the whole map."""
+    out = {}
+    try:
+        teams = _get(f"{SITE}/teams").get("sports", [{}])[0].get("leagues", [{}])[0].get("teams", [])
+    except RuntimeError:
+        return out
+    for t in teams:
+        try:
+            roster = _get(f"{SITE}/teams/{t['team']['id']}/roster").get("athletes", [])
+        except RuntimeError:
+            continue
+        for a in roster:
+            pid, name = a.get("id"), a.get("displayName")
+            if pid and name:
+                out[name] = pid
+    return out
+
+
 def _summ(games, stat):
     vals = [g[stat] for g in games]
     return {"n": len(vals), "mean": st.mean(vals) if vals else 0,

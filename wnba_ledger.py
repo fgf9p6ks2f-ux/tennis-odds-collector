@@ -176,32 +176,46 @@ def grade():
     if not rows:
         con.close()
         return 0
-    ids = {n: v["id"] for n, v in W.players().items()}
+    # name->id from the cheap guarded roster map (NOT players()'s ~180-call rebuild, which throttles
+    # and used to abort the whole pass -> final bets sat ungraded, inflating the record).
+    ids = W.roster_ids()
+    if not ids:
+        print("grade: roster map empty (ESPN fetch failed) — leaving bets open, retry next run")
+        con.close()
+        return 0
     graded = 0
     log_cache = {}
     for rowid, pred_date, player, stat, line, opp in rows:
-        pid = ids.get(player)
-        if not pid:
-            continue
-        if pid not in log_cache:
-            try:
-                log_cache[pid] = W.game_log(pid)
-            except RuntimeError:
-                log_cache[pid] = []
-        # the game this prediction was FOR: same opponent, FINAL, on/after the slate date
-        cand = sorted(
-            (g for g in log_cache[pid]
-             if g.get("result")                                    # FINAL (has W/L)
-             and g["date"][:10] >= pred_date                       # on/after the slate we bet
-             and (not opp or (g.get("matchup") or "").upper() == opp.upper())),
-            key=lambda g: g["date"])
-        if not cand:
-            continue                       # target game not final yet — leave open
-        actual = cand[0][STATKEY[stat]]
-        res = "over" if actual > line else ("push" if actual == line else "under")
-        con.execute("UPDATE predictions SET result=?, actual=?, graded=1 WHERE rowid=?",
-                    (res, actual, rowid))
-        graded += 1
+        try:                                          # one bad row must never roll back the batch
+            pid = ids.get(player)
+            if not pid:
+                continue
+            if pid not in log_cache:
+                try:
+                    log_cache[pid] = W.game_log(pid)
+                except RuntimeError:
+                    log_cache[pid] = []
+            # the game this prediction was FOR: same opponent, FINAL, on/after the slate date
+            cand = sorted(
+                (g for g in log_cache[pid]
+                 if g.get("result")                                    # FINAL (has W/L)
+                 and g["date"][:10] >= pred_date                       # on/after the slate we bet
+                 and (not opp or (g.get("matchup") or "").upper() == opp.upper())),
+                key=lambda g: g["date"])
+            if not cand:
+                continue                       # target game not final yet — leave open
+            # combo stats (pra/pts_reb/pts_ast/reb_ast) are keyed by their own name in the game dict;
+            # base stats map to pts/reb/ast. .get() (not []) so a missing stat skips, never KeyErrors
+            # the whole pass (the bug that froze all grading the moment a combo game went final).
+            actual = cand[0].get(STATKEY.get(stat, stat))
+            if actual is None:
+                continue
+            res = "over" if actual > line else ("push" if actual == line else "under")
+            con.execute("UPDATE predictions SET result=?, actual=?, graded=1 WHERE rowid=?",
+                        (res, actual, rowid))
+            graded += 1
+        except Exception as e:
+            print(f"grade: row {rowid} ({player} {stat}) skipped: {str(e)[:80]}")
     con.commit()
     con.close()
     return graded
