@@ -66,6 +66,9 @@ _STAT_COMPONENTS = {"points": frozenset("p"), "rebounds": frozenset("r"), "assis
 HIGH_EV = 0.20      # a player gets a 2ND (uncorrelated) original-line play only if BOTH anchors clear this
 LADDER_MAX = 3      # at most this many OVER ladder rungs above the original line (FD ladders overs only)
 LADDER_GAP = 2.0    # min spacing between kept ladder rungs, so it's a spread ladder not 5 stacked rungs
+POINTS_PREF_MARGIN = 0.08   # prefer a POINTS anchor over a points-containing combo (pra/pts_reb/pts_ast)
+                            # when points' EV is within this of the combo's — points is the ladderable
+                            # volume edge; a combo is largely its components repackaged and can't ladder
 
 
 def _main_line(ladder):
@@ -440,6 +443,17 @@ def _select_player_bets(out):
             plays[stat] = legs
         else:
             plays[stat] = [anchor]                          # under: single original-line play, no ladder
+    # PREFER POINTS over points-containing combos (user pref): if a +EV points anchor is within
+    # POINTS_PREF_MARGIN of the best points-combo, keep points (it ladders — the volume edge) and drop
+    # pra/pts_reb/pts_ast so they don't out-rank it. If the combo is clearly better, leave it be (the
+    # correlation rule below then drops points anyway). Only the POINTS family — reb/ast stay pure-EV.
+    pts_family = [s for s in plays if "p" in _STAT_COMPONENTS[s]]   # points, pra, pts_reb, pts_ast
+    if "points" in plays and len(pts_family) > 1:
+        best_combo = max(plays[s][0]["ev"] for s in pts_family if s != "points")
+        if plays["points"][0]["ev"] >= best_combo - POINTS_PREF_MARGIN:
+            for s in pts_family:
+                if s != "points":
+                    del plays[s]
     ranked = sorted(plays, key=lambda s: -plays[s][0]["ev"])   # by anchor EV
     chosen, used = [], frozenset()
     for stat in ranked:
