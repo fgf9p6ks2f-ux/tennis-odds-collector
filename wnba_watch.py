@@ -275,8 +275,10 @@ def main():
     ps = json.loads(PRICED_STATE.read_text()) if PRICED_STATE.exists() else {}
     prev_priced = ps.get("count", 0) if ps.get("date") == today_et else 0   # reset each day
     lines_new = cur_priced >= max(prev_priced + PRICE_JUMP, PRICE_JUMP)
-    if lines_new:
-        PRICED_STATE.write_text(json.dumps({"date": today_et, "count": cur_priced}))
+    # NB: the PRICED_STATE high-water is advanced only AFTER a successful scan (in the scan block
+    # below), never here — else a scan crash on the first lines_new of the day would strand the
+    # trigger (high-water advanced but no shadows written, lines_new never re-trips) and the whole
+    # slate's opening-line CLV capture would be dead until tomorrow.
 
     # OPENING-LINE TIMING SPOTS, computed UP FRONT (before any early-return) so recovery never depends
     # on lines_new re-tripping the priced high-water mark: a spot whose shadow was captured earlier but
@@ -342,6 +344,8 @@ def main():
         try:                                            # a transient scan failure must NOT kill the
             alerts, preds = A.collect()                 # timing push below (it reads already-captured
             logged = L.log_predictions(preds)           # shadows) — else priced_state blocks any retry
+            if lines_new:                               # advance the high-water ONLY on scan success,
+                PRICED_STATE.write_text(json.dumps({"date": today_et, "count": cur_priced}))
         except Exception as e:
             print("scan (A.collect) failed — keeping timing spots alive:", str(e)[:90])
             alerts, logged = [], 0
@@ -368,6 +372,7 @@ def main():
             print("  ⚡ " + m)
 
     # ---- ONE push: injury feed -> EARLY opener spots -> +EV plays -> void warnings ----
+    push_ok = False                                     # only mark spots SEEN once we CONFIRM delivery
     if topic and (feed_txt or fresh_timing or fresh or back or back_q):
         parts, timing_lead = [], bool(fresh_timing and not feed_txt)
         if feed_txt:
@@ -391,12 +396,14 @@ def main():
         title = "WNBA opening lines" if timing_lead else "WNBA injury update"
         tags = "rotating_light" if new else "zap" if timing_lead else "hourglass_flowing_sand"
         try:
-            requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                          headers={"Title": title, "Priority": prio, "Tags": tags}, timeout=15)
+            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
+                                 headers={"Title": title, "Priority": prio, "Tags": tags}, timeout=15)
+            resp.raise_for_status()                     # a 5xx/timeout must NOT count as delivered
+            push_ok = True
             print(f"pushed ({prio})")
         except requests.RequestException as e:
-            print("push failed:", e)
-    if fresh or fresh_timing:                           # remember pushed spots so they don't re-fire
+            print("push failed — leaving spots unSEEN to retry next cycle:", str(e)[:80])
+    if push_ok and (fresh or fresh_timing):             # remember ONLY spots we actually delivered
         seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
         for _e, k, _m in fresh:
             seen.add(k)

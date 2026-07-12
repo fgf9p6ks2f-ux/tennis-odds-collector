@@ -350,18 +350,22 @@ def main():
     for _ev, _k, msg in fresh:
         print("  " + msg)
     topic = os.environ.get("NTFY_TOPIC")
+    push_ok = False
     if topic and fresh:
         body = _notif_body(fresh)
         try:
-            requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                          headers={"Title": "WNBA prop spots (injury-driven)",
-                                   "Priority": "high", "Tags": "basketball"}, timeout=15)
+            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
+                                 headers={"Title": "WNBA prop spots (injury-driven)",
+                                          "Priority": "high", "Tags": "basketball"}, timeout=15)
+            resp.raise_for_status()                      # 5xx/timeout != delivered
+            push_ok = True
             print("pushed")
         except requests.RequestException as e:
-            print("push failed:", e)
-    for _e, k, _m in fresh:
-        seen.add(k)
-    SEEN.write_text("\n".join(sorted(seen)[-2000:]))
+            print("push failed — not marking SEEN, will retry:", str(e)[:80])
+    if push_ok:                                          # only remember spots we ACTUALLY delivered
+        for _e, k, _m in fresh:
+            seen.add(k)
+        SEEN.write_text("\n".join(sorted(seen)[-2000:]))
 
 
 if __name__ == "__main__":

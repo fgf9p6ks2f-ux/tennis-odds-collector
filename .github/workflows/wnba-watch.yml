@@ -65,12 +65,15 @@ jobs:
                 git add -f "$f" 2>/dev/null || true
               done
               if git commit -m "wnba watch data [skip ci]" -q >/dev/null 2>&1; then
-                git pull --rebase --autostash -X theirs -q 2>/dev/null || { git rebase --abort 2>/dev/null || true; git reset --hard origin/main -q; }
+                # reconcile onto origin; on an unresolvable rebase, ABORT (keep local commits) and defer
+                # to next cycle — NEVER reset --hard, which would discard this cycle's freshly-graded
+                # ledger / captured shadows / SEEN and re-fire already-sent alerts.
+                git pull --rebase --autostash -X theirs -q 2>/dev/null || git rebase --abort 2>/dev/null || true
               fi
               python dashboard.py >/dev/null 2>&1 || echo "dashboard skipped"
               git add -f docs/index.html 2>/dev/null || true
               git commit -m "wnba watch dash [skip ci]" -q >/dev/null 2>&1 || true
-              git push -q 2>/dev/null || { git pull --rebase --autostash -X theirs -q 2>/dev/null || git reset --hard origin/main -q; git push -q 2>/dev/null || true; }
+              git push -q 2>/dev/null || { git pull --rebase --autostash -X theirs -q 2>/dev/null && git push -q 2>/dev/null; } || { git rebase --abort 2>/dev/null || true; echo "push deferred to next cycle (local commits preserved)"; }
             fi
             sleep 60
           done
