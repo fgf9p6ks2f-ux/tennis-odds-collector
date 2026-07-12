@@ -96,25 +96,44 @@ def playing_now(player):
     return n > 0
 
 
+FRESH_MIN = 90   # a book's CURRENT ladder = rungs re-posted within this many minutes of its newest
+                 # stamp. A prior slate's rows (~24h back) fall outside it, so a stale alt price can
+                 # never merge into tonight's ladder (the bug that logged o14.5 @ +280 vs a real 17.5).
+
+
 def posted_props(player):
-    """Latest WNBA props for a player: {stat_key: {line: (best_over_dec, best_under_dec)}}
-    across books. Both sides now — the model bets whichever side the projection favors, so
-    it needs the under price too (0.0 if a book only posted the over)."""
+    """CURRENT WNBA ladder for a player: {stat_key: {line: (best_over_dec, best_under_dec)}} across
+    books. Both sides (the model bets whichever side the projection favors; 0.0 if a book posted only
+    one). CRITICAL: uses only the latest snapshot — for each rung we take the NEWEST price (never the
+    max across time) and drop rungs not re-posted this cycle — otherwise a mispriced alt from a prior
+    slate (yesterday's o14.5 @ +280) survives as a phantom live line and fabricates huge fake edges."""
     db = PDB.props_db()                                # freshest of collect-odds' DB / the watch loop's
     if not Path(db).exists():
         return {}
     con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     rows = con.execute(
-        "SELECT stat, line, side, odds, COALESCE(book,'fd') FROM fd_lines "
+        "SELECT stat, line, side, odds, COALESCE(book,'fd'), collected_at FROM fd_lines "
         "WHERE sport='wnba' AND player=? AND collected_at > datetime('now','-1 day')",
         (player,)).fetchall()
     con.close()
+    if not rows:
+        return {}
+    latest = max(r[5] for r in rows)                   # this player's newest collection stamp
+    try:
+        cutoff = (dt.datetime.fromisoformat(latest) - dt.timedelta(minutes=FRESH_MIN)).isoformat()
+    except ValueError:
+        cutoff = ""
+    newest = {}                                        # (stat, line, side, book) -> (collected_at, odds)
+    for stat, line, side, odds, bk, ca in rows:
+        if stat not in PROP_STATS or line is None or side not in ("over", "under") or ca < cutoff:
+            continue
+        k = (stat, round(float(line), 1), side, bk)
+        if k not in newest or ca > newest[k][0]:       # keep the LATEST price for this rung — not the max
+            newest[k] = (ca, float(odds))
     best = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))   # stat -> line -> [over, under]
-    for stat, line, side, odds, _bk in rows:
-        if stat in PROP_STATS and line is not None and side in ("over", "under"):
-            k = round(float(line), 1)
-            i = 0 if side == "over" else 1
-            best[stat][k][i] = max(best[stat][k][i], float(odds))
+    for (stat, line, side, bk), (ca, odds) in newest.items():
+        i = 0 if side == "over" else 1
+        best[stat][line][i] = max(best[stat][line][i], odds)      # best price across BOOKS, same cycle
     return {s: {k: tuple(v) for k, v in d.items()} for s, d in best.items()}
 
 
