@@ -1,0 +1,30 @@
+name: wnba-watchlist-digest
+
+# Cloud-side consolidated QUESTIONABLE-TIER watchlist -> ntfy, so the full "if he sits" board lands
+# on the phone a few hours before games WITHOUT any local machine open. The 60s watcher already
+# pushes NEW questionables in real time; this is the tidy periodic snapshot of the whole board.
+# Fires only when there are questionable stars (never spams an empty slate). Times cover the usual
+# WNBA shape (afternoon + evening ET); workflow_dispatch to send one on demand.
+on:
+  schedule:
+    - cron: "0 16 * * *"    # 12:00 ET — ahead of afternoon games
+    - cron: "0 20 * * *"    # 16:00 ET — ahead of evening games
+  workflow_dispatch:
+
+concurrency:
+  group: wnba-watchlist-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests curl_cffi numpy
+      - name: push the watchlist digest (only if any questionable stars)
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+        run: python show_watchlist.py --push || echo "digest skipped"
