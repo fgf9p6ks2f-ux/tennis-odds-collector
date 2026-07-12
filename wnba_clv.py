@@ -25,6 +25,12 @@ from pathlib import Path
 
 import wnba_wowy as W
 
+try:
+    from zoneinfo import ZoneInfo
+    ET = ZoneInfo("America/New_York")
+except Exception:
+    ET = dt.timezone(dt.timedelta(hours=-4))
+
 HERE = Path(__file__).resolve().parent
 DB = HERE / "wnba_clv.sqlite"
 REPORT = HERE / "wnba_clv.md"
@@ -32,6 +38,8 @@ PROPS_DB = HERE / "fanduel_props.sqlite"
 STAT_KEY = {"points": "pts", "rebounds": "reb", "assists": "ast"}
 MIN_GRADED = 20
 MIN_DATES = 5      # distinct slates — one night's shadows are correlated, not independent evidence
+FRESH_MIN = 90     # only trust ladder rungs re-posted within this many min of the newest in-window
+                   # stamp — same rule posted_props uses, so a stale/phantom rung can't pose as a line
 
 SCHEMA = """CREATE TABLE IF NOT EXISTS clv(
   date TEXT, player TEXT, stat TEXT, out_player TEXT, flagged_at TEXT, proj REAL,
@@ -44,8 +52,11 @@ def _con():
     con.execute(SCHEMA)
     # v = format version. v2 = flag_line & close_line are BOTH the book main line (opening vs closing).
     # Pre-v2 rows mixed nearest-rung flag with main-line close (the 24.5-vs-5.5 bug) -> excluded.
-    if "v" not in {r[1] for r in con.execute("PRAGMA table_info(clv)")}:
+    cols = {r[1] for r in con.execute("PRAGMA table_info(clv)")}
+    if "v" not in cols:
         con.execute("ALTER TABLE clv ADD COLUMN v INTEGER")
+    if "tip" not in cols:                    # naive-UTC game tip time -> when the 'close' is real
+        con.execute("ALTER TABLE clv ADD COLUMN tip TEXT")
     return con
 
 
@@ -66,11 +77,13 @@ def book_line(ladder):
     return line, round(o, 3)
 
 
-def log_shadow(date, player, out_player, projs, props):
+def log_shadow(date, player, out_player, projs, props, tip=None):
     """Log the EARLIEST injury-driven flag (INSERT OR IGNORE keeps the first = the timing capture).
-    projs: {stat: projection}. props: posted_props(player) = {stat: {line: (over, under)}}."""
+    projs: {stat: projection}. props: posted_props(player) = {stat: {line: (over, under)}}. tip = the
+    game's naive-UTC tip datetime (or its iso) so the close is captured pre-tip, not seconds later."""
     con = _con()
     ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
+    tip_iso = tip.isoformat() if hasattr(tip, "isoformat") else (tip or None)
     n = 0
     for stat, proj in projs.items():
         ladder = props.get(stat)
@@ -81,24 +94,39 @@ def log_shadow(date, player, out_player, projs, props):
             continue
         n += con.execute(
             "INSERT OR IGNORE INTO clv(date, player, stat, out_player, flagged_at, proj, "
-            "flag_line, flag_over, v) VALUES (?,?,?,?,?,?,?,?,2)",
-            (date, player, stat, out_player, ts, round(proj, 1), fl, fo)).rowcount
+            "flag_line, flag_over, v, tip) VALUES (?,?,?,?,?,?,?,?,2,?)",
+            (date, player, stat, out_player, ts, round(proj, 1), fl, fo, tip_iso)).rowcount
     con.commit()
     con.close()
     return n
 
 
-def _latest_ladder(con_p, player, stat, date):
+def _latest_ladder(con_p, player, stat, date, before=None):
+    """The player's CURRENT ladder for the slate on `date`: latest price per (line,side), but ONLY
+    from the newest snapshot — rungs whose newest stamp is >FRESH_MIN older than the newest in-window
+    stamp are dropped (the same rule posted_props uses, so flag and close share one laddering
+    definition; without it a stale/phantom rung from a prior collection posed as the closing line and
+    fabricated huge fake CLV moves). `before` (a tip iso) caps to pre-tip lines so the NEXT game's
+    lines can't leak in as this game's close."""
     rows = con_p.execute(
         "SELECT line, side, odds, collected_at FROM fd_lines WHERE sport='wnba' AND player=? "
         "AND stat=? AND substr(collected_at,1,10) BETWEEN ? AND ?",   # ±1 day: ET slate vs UTC stamp
         (player, stat, _plus(date, -1), _plus(date, 1))).fetchall()
+    rows = [(l, s, o, ca) for (l, s, o, ca) in rows
+            if l is not None and s in ("over", "under") and (before is None or ca <= before)]
+    if not rows:
+        return {}
+    newest = max(ca for _, _, _, ca in rows)             # the current (pre-tip if capped) snapshot stamp
+    try:
+        cutoff = (dt.datetime.fromisoformat(newest) - dt.timedelta(minutes=FRESH_MIN)).isoformat()
+    except ValueError:
+        cutoff = ""
     best = {}
     for line, side, odds, ca in rows:
-        if line is None or side not in ("over", "under"):
+        if ca < cutoff:                                  # a rung not re-posted this snapshot -> stale, drop
             continue
         k = (round(float(line), 1), side)
-        if k not in best or ca > best[k][1]:
+        if k not in best or ca > best[k][1]:             # latest price for the rung (never max-over-time)
             best[k] = (float(odds), ca)
     lad = {}
     for (line, side), (odds, _ca) in best.items():
@@ -107,26 +135,36 @@ def _latest_ladder(con_p, player, stat, date):
 
 
 def capture_close():
-    """Fill the closing line/odds for open shadows from the LATEST logged FanDuel ladder. Run at/
-    after tip so 'latest' == the closing number."""
+    """ROLL each open shadow's close toward the latest PRE-TIP main line every pass, and FREEZE
+    (closed=1) only once the game has tipped — so close_line is the real closing number, not the line
+    seconds after the flag. (The old one-shot 'first book_line after flag' collapsed the open->close
+    interval to ~0 because --close runs every ~10 min: 89% of shadows showed zero move, so the timing
+    edge — the whole thesis — was never measured.)"""
     import wnba_props_db as PDB
     db = PDB.props_db()                                # freshest lines DB (resilient to a dropped cron)
     if not Path(db).exists():
         return 0
     con = _con()
     con_p = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
-    rows = con.execute("SELECT rowid, player, stat, date FROM clv WHERE closed=0 AND v=2").fetchall()
+    rows = con.execute("SELECT rowid, player, stat, date, tip FROM clv WHERE closed=0 AND v=2").fetchall()
+    now_utc = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
+    today_et = dt.datetime.now(ET).date().isoformat()
     n = 0
-    for rid, player, stat, date in rows:
-        lad = _latest_ladder(con_p, player, stat, date)
-        if not lad:
-            continue
-        cl, co = book_line(lad)                           # the CLOSING main line — same concept as flag
-        if cl is None:                                    # closing ladder too thin -> leave open, retry
-            continue
-        con.execute("UPDATE clv SET close_line=?, close_over=?, closed=1 WHERE rowid=?",
-                    (cl, co, rid))
-        n += 1
+    for rid, player, stat, date, tip in rows:
+        # cap the ladder to PRE-TIP lines so the next game's lines can't become this close: exact when
+        # tip is known, else the end of the ET slate's UTC-next-day window (legacy rows logged pre-fix).
+        before = tip if tip else (_plus(date, 1) + "T23:59:59")
+        lad = _latest_ladder(con_p, player, stat, date, before=before)
+        if lad:
+            cl, co = book_line(lad)
+            if cl is not None:                            # roll close toward the latest pre-tip main line
+                con.execute("UPDATE clv SET close_line=?, close_over=? WHERE rowid=?", (cl, co, rid))
+        # freeze only once the game has tipped (known tip past, or a prior slate for legacy rows), and
+        # only if we actually captured a close_line — else leave open and retry next pass.
+        tipped = (tip and now_utc >= tip) or (not tip and date < today_et)
+        if tipped and con.execute("SELECT close_line FROM clv WHERE rowid=?", (rid,)).fetchone()[0] is not None:
+            con.execute("UPDATE clv SET closed=1 WHERE rowid=?", (rid,))
+            n += 1
     con.commit()
     con_p.close()
     con.close()

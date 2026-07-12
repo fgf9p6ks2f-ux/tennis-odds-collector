@@ -65,6 +65,7 @@ def collect():
     pl = W.players()
     playing = T.tonight_teams()
     matchups = T.tonight_matchups()
+    tips = T.tip_times()                                  # {team: naive-UTC tip} for the CLV close-gate
     inj = T.injuries()
     # ET slate date, NOT UTC — else a game tipping ~02:00Z (10pm ET) gets logged under two
     # different UTC dates across midnight and the SAME bets double-count in the tracker.
@@ -189,7 +190,7 @@ def collect():
                 if props_now:
                     CLV.log_shadow(today, n, out_full,
                                    {"points": pa["proj_pts"], "rebounds": pa["proj_reb"],
-                                    "assists": pa["proj_ast"]}, props_now)
+                                    "assists": pa["proj_ast"]}, props_now, tip=tips.get(team))
             n_preds0 = len(preds)                            # to mark whether this player got a bet
             mates_n = [(pg, dm, em) for (nm, pg, dm, em) in team_mates if nm != RW.norm(n)]
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm, mates=mates_n,
