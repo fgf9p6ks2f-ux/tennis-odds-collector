@@ -98,6 +98,7 @@ timing|2026-07-12|Maria Conde|points|11.5
 timing|2026-07-12|Marine Johannes|points|7.5
 timing|2026-07-12|Pauline Astier|points|7.5
 timing|2026-07-12|Sabrina Ionescu|points|15.5
+timing|2026-07-12|Sydney Taylor|points|13.5
 timing|2026-07-12|Sydney Taylor|points|14.5
 watch|2026-07-12|Isabelle Harrison|rebounds|5.5
 watch|2026-07-12|Maria Conde|assists|3.5
