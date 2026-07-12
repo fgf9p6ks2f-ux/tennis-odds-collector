@@ -172,32 +172,6 @@ _PG = {"G": "G", "PG": "G", "SG": "G", "GF": "G", "F": "F", "SF": "F", "PF": "F"
 _STAT_CTX = {"points": ("G", "F", "C"), "rebounds": ("C", "F"), "assists": ("G",)}
 
 
-def _ctx_mean(sample, vals, stat, out_logs, mates):
-    """Context-weighted mean of the (minutes-honest) sample: weight each game by how closely
-    its lineup matched tonight — the out star(s) ABSENT (target 0 min) and the position-
-    relevant competitors PRESENT (target = their expected minutes). Rebounds condition on the
-    other bigs (C/F), assists on the guards. Kish-effective-n shrinkage toward the plain mean
-    so a thin context match can't run wild; degrades to the plain mean when no context data."""
-    ctx = [(bd, 0.0) for bd in (out_logs or [])]
-    want = _STAT_CTX.get(stat, ("G", "F", "C"))
-    ctx += [(bd, em) for (pg, bd, em) in (mates or []) if pg in want]
-    if not ctx or len(vals) < 4:
-        return st.mean(vals)
-    ws = []
-    for g in sample:
-        d = g["date"][:10]
-        wt = 1.0
-        for bd, tgt in ctx:
-            wt *= math.exp(-((bd.get(d, 0.0) - tgt) / 12.0) ** 2)
-        ws.append(wt)
-    wsum = sum(ws)
-    if wsum <= 0:
-        return st.mean(vals)
-    wmean = sum(v * wt for v, wt in zip(vals, ws)) / wsum
-    eff = wsum * wsum / sum(wt * wt for wt in ws)
-    return (wmean * eff + st.mean(vals) * 5.0) / (eff + 5.0)
-
-
 def project_all(log, proj_min):
     """Full minutes-honest projection (min + pts/reb/ast) for the projection TRACKER — mirrors
     prop_edges' elevated/breakout basis but for all three stats, regardless of flagging, so the
@@ -255,7 +229,7 @@ def volume_points(log, proj_min, n_recent=4):
             "recent_fga": round(recent_fga, 1), "fga_proj": round(fga_p, 1)}
 
 
-def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=None, mates=None,
+def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=None,
                opp=None, pos=None):
     """+EV over-props, framed as the user's actual edge: the gap between ELEVATED-ROLE
     production and a line the book anchored to the SEASON AVERAGE. For each posted line:

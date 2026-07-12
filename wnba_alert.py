@@ -20,7 +20,6 @@ from pathlib import Path
 
 import requests
 
-import rotowire as RW
 import wnba_context as CTX
 import wnba_ledger as L
 import wnba_clv as CLV
@@ -117,24 +116,12 @@ def collect():
             env.append("fast" if ctx["pace_vs_lg"] > 0 else "slow")
         env_tag = " · " + " ".join(env) if env else ""
         starters = T.game_starters(gids.get(team))       # None until the lineup posts
-        # tonight's lineup CONTEXT for the context-weighted projection: date->minutes maps for
-        # the out stars (target 0) + the team's RotoWire starters (competitors, target = their
-        # expected minutes). Built once per team; degrades to no-context if RotoWire is thin.
+        # per-out-player date->minutes maps: which of the beneficiary's past games were played WITHOUT
+        # each out star, so the chart + record show the same-injury-context games (the user's "only the
+        # bars without X"). Feeds prop_edges' out_logs. (The old context-WEIGHTED projection that also
+        # pulled every starter's game log per cycle was dropped — the pivot backtest showed it diluted
+        # the under edge — so that plumbing is gone.)
         out_dm = [{g["date"][:10]: g.get("min", 0) for g in ol} for ol in out_logs]
-        id_by_norm = {RW.norm(nm): vv["id"] for nm, vv in pl.items()}
-        team_mates = []
-        for t in T.rw_lineups():
-            if t["team"] != team:
-                continue
-            for p_pos, p_nm, st_inj in t["starters"]:   # st_inj = this starter's GTD flag; do NOT
-                pid = id_by_norm.get(RW.norm(p_nm))      # name it `inj` — that shadows the injuries
-                if st_inj or not pid:                    # dict used far below at line ~283 (crash)
-                    continue
-                lg = glog(pid)
-                mm = [g["min"] for g in lg[-10:] if g["min"] > 8]
-                if mm:
-                    team_mates.append((RW.norm(p_nm), T._PG.get(p_pos, "F"),
-                                       {g["date"][:10]: g["min"] for g in lg}, st.median(mm)))
         team_pl = {n: v for n, v in pl.items()
                    if v["team"] == team and n not in out_names and v["gp"] >= 5}
         # the team's OTHER impact players expected to PLAY tonight (Ionescu, Stewart...) — a game is
@@ -192,8 +179,7 @@ def collect():
                                    {"points": pa["proj_pts"], "rebounds": pa["proj_reb"],
                                     "assists": pa["proj_ast"]}, props_now, tip=tips.get(team))
             n_preds0 = len(preds)                            # to mark whether this player got a bet
-            mates_n = [(pg, dm, em) for (nm, pg, dm, em) in team_mates if nm != RW.norm(n)]
-            for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm, mates=mates_n,
+            for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm,
                                   opp=matchups.get(team, ""), pos=v.get("position")):
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{today}|{n}|{e['stat']}|{e['line']}"
