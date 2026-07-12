@@ -394,10 +394,32 @@ def _hrcell(lbl, hr):
             f'<span class="gcv {cls}">{pct:.0f}%</span><span class="gcs">{hr[0]}/{hr[1]}</span></div>')
 
 
+PROPS_DB = HERE / "fanduel_props.sqlite"
+
+
+def _book_prices(r):
+    """[(book, dec_odds)] for THIS prop's bet side, BEST price first, from the last day of fd_lines
+    (FanDuel + DraftKings live in the same table). Lets the card show WHERE the best number is so the
+    bet gets placed at it. [] if the props DB is missing/unreachable."""
+    if not PROPS_DB.exists():
+        return []
+    side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
+    try:
+        con = sqlite3.connect(f"file:{PROPS_DB}?mode=ro", uri=True)
+        rows = con.execute(
+            "SELECT COALESCE(book,'fd') b, MAX(odds) FROM fd_lines WHERE sport='wnba' AND player=? "
+            "AND stat=? AND ROUND(line,1)=? AND side=? AND collected_at > datetime('now','-1 day') "
+            "GROUP BY b", (r["player"], r["stat"], round(float(r["line"]), 1), side)).fetchall()
+        con.close()
+    except Exception:
+        return []
+    return sorted([(b, o) for b, o in rows if o], key=lambda x: -x[1])
+
+
 def _prop_row(r):
-    """props.cash-style prop: side pill + line + stat, odds + model edge on the right, then the
-    hit-rate HEATMAP (ROLE injury-context · L5 · L10 · season · H2H, green/red) and a compact
-    context line (usage driver + matchup D). Taps to expand the game-log bars."""
+    """props.cash-style prop: side pill + line + stat, best-book odds + model edge on the right, the
+    hit-rate HEATMAP (ROLE injury-context · L5 · L10 · season · H2H, green/red), and a compact
+    context line (usage driver + matchup D + the runner-up book price). Taps to expand the bars."""
     stat = STAT.get(r["stat"], r["stat"].upper())
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     o = "O" if side == "over" else "U"
@@ -432,8 +454,18 @@ def _prop_row(r):
         pass
     if r.get("elev_avg") is not None:
         ctx.append(f'proj {r["elev_avg"]:g}')
+    # BEST PRICE across books — show WHICH book has the best number, runner-up in the context line
+    bp = _book_prices(r)
+    if bp:
+        best_bk, best_dec = bp[0]
+        odds_html = f'<span class="podds">{_am(best_dec)}</span><span class="pbk">{best_bk.upper()}</span>'
+        if len(bp) > 1:
+            ctx.append(f'{bp[1][0].upper()} {_am(bp[1][1])}')
+    else:
+        best_dec = float(r["odds"])
+        odds_html = f'<span class="podds">{_am(best_dec)}</span>'
     ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
-    juice = ' <span class="juice">juice</span>' if float(r["odds"]) < 1.80 else ""
+    juice = ' <span class="juice">juice</span>' if best_dec < 1.80 else ""
     played = ' <span class="pv">✓</span>' if r.get("played") else ""
     return f"""
       <div class="prop" data-side="{side}" onclick="this.nextElementSibling.classList.toggle('open')">
@@ -441,7 +473,7 @@ def _prop_row(r):
           <span class="pind {o.lower()}">{o}</span>
           <span class="plno">{r['line']:g}</span><span class="pstat">{stat}</span>
           <span class="psp"></span>
-          <span class="podds">{_am(r['odds'])}</span>{juice}
+          {odds_html}{juice}
           <span class="pedge {ecls}">{edge_v}</span>{played}<span class="pchev">›</span></div>
         <div class="pgrid">{grid}</div>{ctxline}
       </div>{_bars(r)}"""
@@ -753,6 +785,8 @@ def build():
   .pstat {{ color:#8a93a3; font-weight:700; font-size:12px; letter-spacing:.03em; }}
   .psp {{ flex:1; }}
   .podds {{ color:#5b9dff; font-weight:700; font-size:13.5px; font-variant-numeric:tabular-nums; }}
+  .pbk {{ color:#8a93a3; font-size:9px; font-weight:800; letter-spacing:.03em; margin-left:3px;
+    background:#171c26; border-radius:4px; padding:1px 4px; position:relative; top:-1px; }}
   .pedge {{ font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; }}
   .pedge.hi {{ color:#37d67f; }} .pedge.mid {{ color:#9fd8a8; }} .pedge.lo {{ color:#6b7484; }}
   .pchev {{ color:#454f5e; font-size:17px; transition:transform .15s; }}
