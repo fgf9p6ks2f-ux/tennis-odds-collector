@@ -61,6 +61,7 @@
 2026-07-12|Jonquel Jones|rebounds|13.5
 2026-07-12|Julie Allemand|pra|19.5
 2026-07-12|Julie Allemand|pts_ast|15.5
+2026-07-12|Julie Allemand|pts_reb|11.5
 2026-07-12|Julie Allemand|pts_reb|12.5
 2026-07-12|Julie Allemand|reb_ast|11.5
 2026-07-12|Maria Conde|assists|3.5
@@ -74,6 +75,7 @@
 2026-07-12|Marina Mabrey|rebounds|3.5
 2026-07-12|Marine Johannes|assists|1.5
 2026-07-12|Marine Johannes|points|9.5
+2026-07-12|Natasha Cloud|pts_ast|15.5
 2026-07-12|Natasha Cloud|reb_ast|8.5
 2026-07-12|Pauline Astier|assists|3.5
 2026-07-12|Pauline Astier|reb_ast|6.5
