@@ -45,7 +45,11 @@ jobs:
               # when GitHub throttles collect-odds' cron (its 30MB full DB is left to collect-odds).
               FD_DB="$(pwd)/wnba_lines.sqlite" python fd_collect.py --wnba >/dev/null 2>&1 || echo "fd lines skipped"
               FD_DB="$(pwd)/wnba_lines.sqlite" python dk_collect.py --wnba >/dev/null 2>&1 || echo "dk lines skipped"
-              python -c "import sqlite3; c=sqlite3.connect('wnba_lines.sqlite'); c.execute(\"DELETE FROM fd_lines WHERE collected_at < datetime('now','-2 days')\"); c.commit(); c.close()" 2>/dev/null || true
+              # prune to 2 days, then stamp the latest line-time into a tiny COMMITTED marker: when
+              # fresh lines land it changes -> trips the porcelain gate below -> the dashboard regen
+              # picks up the new best-price (via the resolver) without committing the 1.6MB sqlite.
+              # No new lines (e.g. overnight) -> MAX unchanged -> marker unchanged -> no spurious commit.
+              python -c "import sqlite3; c=sqlite3.connect('wnba_lines.sqlite'); c.execute(\"DELETE FROM fd_lines WHERE collected_at < datetime('now','-2 days')\"); c.commit(); ts=c.execute(\"SELECT COALESCE(MAX(collected_at),'') FROM fd_lines WHERE sport='wnba'\").fetchone()[0]; c.close(); open('wnba_lines_ts.txt','w').write(ts)" 2>/dev/null || true
             fi
             python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
             if [ $((i % 10)) -eq 1 ]; then                       # ~every 10 min: settle finished games LIVE
@@ -57,7 +61,7 @@ jobs:
             if [ -n "$(git status --porcelain)" ]; then
               # commit DATA first (never the generated dashboard) -> clean rebase, no docs
               # conflict; then regenerate + commit the dashboard fresh on top (conflict-proof).
-              for f in wnba_status_state.json wnba_confirm_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_clv.sqlite wnba_news_seen.txt wnba_question_log.sqlite wnba_sit_prob.json; do
+              for f in wnba_lines_ts.txt wnba_status_state.json wnba_confirm_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_clv.sqlite wnba_news_seen.txt wnba_question_log.sqlite wnba_sit_prob.json; do
                 git add -f "$f" 2>/dev/null || true
               done
               if git commit -m "wnba watch data [skip ci]" -q >/dev/null 2>&1; then
