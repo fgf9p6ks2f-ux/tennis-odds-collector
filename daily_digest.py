@@ -60,16 +60,18 @@ def _wnba_autobetter(target_date):
     if not WNBA_LEDGER.exists():
         return (["WNBA AUTOBETTER: ledger initializing"], False)
     con = sqlite3.connect(WNBA_LEDGER)
-    rows = con.execute("SELECT pred_date, result, odds FROM predictions "
+    rows = con.execute("SELECT pred_date, result, odds, side FROM predictions "
                        "WHERE graded=1 AND pred_date>=?", (EPOCH[:10],)).fetchall()
     pend = con.execute("SELECT COUNT(*) FROM predictions WHERE graded=0 AND pred_date>=?",
                        (EPOCH[:10],)).fetchone()[0]
     con.close()
 
     def rec(rs):
-        dec = [r for r in rs if r[1] in ("over", "under")]
-        w = sum(1 for r in dec if r[1] == "over")
-        u = sum((r[2] - 1) if r[1] == "over" else -1 for r in dec)
+        # win = result == the side we bet (the model bets unders too since the pivot;
+        # counting 'over hit' as the win was flipping the record on every under).
+        dec = [r for r in rs if r[1] in ("over", "under")]   # decided (excludes push)
+        w = sum(1 for r in dec if r[1] == r[3])
+        u = sum((r[2] - 1) if r[1] == r[3] else -1 for r in dec)
         return w, len(dec) - w, u
 
     today = [r for r in rows if r[0] == target_date]
@@ -88,6 +90,14 @@ def build(target_date):
     lines = [f"Daily digest - {mt_date} (MT)", ""]
     wnba_lines, _ = _wnba_autobetter(mt_date)
     lines += wnba_lines
+    try:                                     # OOS calibration trend — silent until >=6 slates
+        import wnba_oos_backtest as OOS
+        oos = OOS.digest_lines(WNBA_LEDGER)
+        if oos:
+            lines.append("")
+            lines += oos
+    except Exception:
+        pass
     lines.append("")
     lines.append("Focus: TT + WNBA. MLB / tennis / esports benched (data kept). "
                  "Table tennis has its own nightly digest.")

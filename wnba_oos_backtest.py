@@ -91,6 +91,58 @@ def fit_mult(train):
     return (best[1], best[2]) if best else (None, None)
 
 
+def _load_graded(path):
+    con = sqlite3.connect(path)
+    con.row_factory = sqlite3.Row
+    rows = [dict(r) for r in con.execute(
+        "SELECT proj_hit,n_elev,odds,side,basis,result,pred_date FROM predictions "
+        "WHERE graded=1 AND result IN ('over','under') AND proj_hit IS NOT NULL AND n_elev>0")]
+    con.close()
+    return rows
+
+
+def _verdict(old, ship, fit):
+    """One-line actionable read of the held-out result."""
+    gap = lambda s: abs(s[2] - s[3])  # |realized - model_p|
+    if fit and ship and fit[5] > ship[5] + 3 and gap(fit) < gap(ship):
+        return "harder shrink STILL helps OOS -> consider bumping k"
+    best_roi = max(s[5] for s in (old, ship, fit) if s)
+    if best_roi < 0:
+        return "still losing after best calibration -> issue is PROJECTIONS, not sizing"
+    if ship[5] >= 0 and gap(ship) < 0.08:
+        return "calibrated & profitable OOS -> healthy"
+    return "mixed -- keep measuring"
+
+
+def digest_lines(path, min_slates=6, holdout=2):
+    """Compact OOS calibration read for the nightly digest. Stays SILENT (returns [])
+    until there are >= min_slates graded slates, so it only speaks with enough forward
+    data to mean something. Never raises — the digest must not die on this."""
+    try:
+        rows = _load_graded(path)
+        slates = sorted(set(r["pred_date"] for r in rows))
+        if len(slates) < min_slates:
+            return []
+        cutoff = slates[-holdout]
+        train = [r for r in rows if r["pred_date"] < cutoff]
+        test = [r for r in rows if r["pred_date"] >= cutoff]
+        if not train or not test:
+            return []
+        mult, _ = fit_mult(train)
+        s_ship = score(betset(test, SHIPPED))
+        s_old = score(betset(test, OLD))
+        s_fit = score(betset(test, cfg_for(mult))) if mult else None
+        if not s_ship:
+            return []
+        n, w, real, mp, u, roi = s_ship
+        out = [f"CALIBRATION (out-of-sample: {len(slates) - holdout} train / {holdout} test slates, {n} held-out bets):",
+               f"  shipped k=11/14: {w}-{n - w}, ROI {roi:+.0f}%, over-conf gap {(real - mp) * 100:+.0f}p",
+               f"  -> {_verdict(s_old, s_ship, s_fit)}"]
+        return out
+    except Exception:
+        return []
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--holdout", type=int, default=2, help="# most-recent slates to hold out as test")
