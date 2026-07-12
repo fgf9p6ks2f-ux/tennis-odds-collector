@@ -638,11 +638,18 @@ def questionable_stars(pl, playing, inj, firm_out, date=None, tips=None, first_s
         except Exception:
             first_seen = {}
     cand = {n: "Questionable" for n, s in inj.items() if s == "Questionable"}
-    norm2name = {RW.norm(n): n for n in pl}
+    # RotoWire names are first-initial+lastname, so a norm can map to 2+ real players (Chelsea vs
+    # Chance Gray). A last-wins dict would tag whichever roster player sorted last, dropping the real
+    # star's GTD. Build norm counts and only accept norms that resolve to a SINGLE roster player.
+    norm2name, norm_ct = {}, {}
+    for n in pl:
+        k = RW.norm(n)
+        norm2name[k] = n
+        norm_ct[k] = norm_ct.get(k, 0) + 1
     for nnm, tag in RW.questionable_players(rw_lineups() or []).items():
         full = norm2name.get(nnm)
-        if full and full not in cand and full not in firm_out:
-            cand[full] = tag                                  # RotoWire game-time decision
+        if full and norm_ct.get(nnm) == 1 and full not in cand and full not in firm_out:
+            cand[full] = tag                                  # RotoWire game-time decision (unambiguous)
     by_team = defaultdict(list)
     for n, status in cand.items():
         p = pl.get(n)

@@ -201,8 +201,15 @@ def main():
     try:
         board = T.rw_lineups()
         rw_out = RW.out_players(board)
+        # RotoWire names are first-initial+lastname ('C. Gray'), so a norm can match 2+ real players
+        # (Chelsea vs Chance Gray). Auto-flagging OUT on an ambiguous norm would false-flag the wrong
+        # star, so only merge norms that map to a SINGLE roster player; ambiguous ones fall to ESPN.
+        norm_ct = {}
         for full in pl:
-            if RW.norm(full) in rw_out and inj.get(full) not in ("Out", "Doubtful"):
+            norm_ct[RW.norm(full)] = norm_ct.get(RW.norm(full), 0) + 1
+        for full in pl:
+            k = RW.norm(full)
+            if k in rw_out and norm_ct[k] == 1 and inj.get(full) not in ("Out", "Doubtful"):
                 inj[full] = "Out"
     except Exception as e:
         print("rotowire merge skipped:", str(e)[:60])
