@@ -82,6 +82,34 @@ def _main_line(ladder):
     return line if 1.6 <= o <= 2.6 else None
 
 
+PLAY_PROB_GATE = 0.85   # only DNP-discount OVERS whose role-realization is below this (the fringe tail);
+                        # confirmed/locked-in roles sit near 1.0 and are left untouched
+
+
+def _play_prob(log, out_logs, proj_min):
+    """P(the beneficiary reaches ~the projected role | they play) — the availability/DNP discount for
+    OVERS. A fringe player projected on injury-elevated minutes often plays a SMALLER role than we
+    project; the book's plus-money over already prices that, but our `hit` is conditional on the
+    elevated role, so an over like Gardner o4.5 @ +305 reads as huge fake EV. Estimate = the fraction of
+    the player's WITHOUT-the-out-star games (the injury creates the role, so condition on it) that they
+    actually PLAYED (min >= 8 — a true DNP just VOIDS the prop, so it's excluded, not counted a loss) in
+    which they reached the projected role (min >= 0.7*proj_min). Shrunk toward a prior so a 1-2 game
+    sample can't swing to 0/1: ~1 for a locked-in starter, lower for a sporadic bench player."""
+    if not proj_min or proj_min <= 0:
+        return 1.0
+    out_dates = set().union(*[set(om) for om in out_logs]) if out_logs else set()
+    ctx = [g for g in log if g["date"][:10] not in out_dates] or log[-10:]   # without-games, else recent
+    played = [g for g in ctx if g.get("min", 0) >= 8]                        # DNP voids -> not a loss
+    if not played:
+        return 1.0                                                          # no signal -> no discount
+    # average fraction of the PROJECTED minutes the player actually logs when active (capped at 1 so
+    # over-performing a game doesn't offset a benching). Smooth, no floor cliff — a reliable starter
+    # sits ~1.0, a fringe player who plays half the projected role sits ~0.5. Shrunk toward a prior.
+    ratios = [min(g.get("min", 0) / proj_min, 1.0) for g in played]
+    K, prior = 4.0, 0.85
+    return (sum(ratios) + prior * K) / (len(ratios) + K)
+
+
 def _am(dec):
     return f"+{round((dec-1)*100)}" if dec >= 2 else f"{round(-100/(dec-1))}"
 
@@ -297,6 +325,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             return None
         return round(w["without"][k]["mean"] - w["with"][k]["mean"], 1)
     d_min, d_fga, d_fta, d_3pa = wdelta("min"), wdelta("fga"), wdelta("fta"), wdelta("fg3a")
+    play_prob = _play_prob(log, out_logs, proj_min)   # role-realization; discounts fringe-role OVERS
     # VOLUME layer (points only): if the role's shot volume is genuinely elevated, project points
     # off that sticky volume and ladder the OVERS — the validated laddering edge.
     vp = volume_points(log, proj_min)
@@ -379,6 +408,13 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             else:
                 hit = (sum(1 for v in vals if v > line) if side == "over"
                        else sum(1 for v in vals if v < line)) / n
+            # AVAILABILITY/DNP discount (OVERS only): `hit` is conditional on the elevated role; if the
+            # player realizes that role only part of the time (fringe/bench), the over's unconditional
+            # win prob is lower — the book's plus-money price already reflects it. Confirmed roles
+            # (play_prob >= gate) are untouched; a reduced role makes the OVER miss (unders are helped,
+            # so we leave them). This is what kills the Gardner o4.5 @ +305 fake edge.
+            if side == "over" and play_prob < PLAY_PROB_GATE:
+                hit *= play_prob
             if hit >= 0.92 and dec >= 2.0:        # ~certain at plus money = mis-scrape, skip
                 continue
             p_adj = (hit * n + (1 / dec) * shrink_k) / (n + shrink_k)
@@ -391,7 +427,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             ev_bar = VOL_EV_MIN if use_vol else (OVER_EV_MIN if side == "over" else UNDER_EV_MIN)
             if ev >= ev_bar:
                 spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
-                        "side": side, "orig_line": orig_line,
+                        "side": side, "orig_line": orig_line, "pi_role": round(play_prob, 2),
                         "n": n, "fga": fga, "season_avg": round(season_avg, 1),
                         "elev_avg": round(elev_avg, 1), "stale": stale,
                         "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,

@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS predictions(
   pred_date TEXT, out_player TEXT, player TEXT, team TEXT, opp TEXT,
   stat TEXT, line REAL, odds REAL, book TEXT,
   proj_hit REAL, season_avg REAL, elev_avg REAL, proj_min REAL, n_elev INTEGER,
-  ev REAL, stale INTEGER,
+  ev REAL, stale INTEGER, pi_role REAL,
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
   total REAL, pace REAL, opp_def REAL, spread REAL, d_fta REAL, d_3pa REAL,
   basis TEXT, samples TEXT, confidence TEXT, regime TEXT, vol TEXT,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS predictions(
 # (pool size); total/pace/opp_def = matchup environment; d_fta/d_3pa = points channels.
 # spread = signed line FOR the beneficiary's team (+mag = underdog / blowout risk).
 _MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac",
-            "total", "pace", "opp_def", "spread", "d_fta", "d_3pa")
+            "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "pi_role")
 _MIGRATE_TEXT = ("basis", "samples", "confidence", "regime", "vol")   # regime/vol = display JSON
 
 

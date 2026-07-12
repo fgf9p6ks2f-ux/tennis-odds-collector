@@ -208,6 +208,7 @@ def collect():
                               "team": team, "opp": matchups.get(team, ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
                               "book": "fd", "proj_hit": round(e["hit"], 3), "side": e["side"],
+                              "pi_role": e.get("pi_role"),
                               "season_avg": e["season_avg"], "elev_avg": e["elev_avg"],
                               "proj_min": round(proj, 1), "n_elev": e["n"],
                               "ev": round(e["ev"], 3), "stale": int(e["stale"]),
