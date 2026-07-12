@@ -33,6 +33,7 @@ import wnba_wowy as W
 
 HERE = Path(__file__).resolve().parent
 STATE = HERE / "wnba_injury_state.json"        # last-seen key-out statuses (for diffing)
+Q_STATE = HERE / "wnba_question_state.json"    # last-seen key QUESTIONABLE/GTD statuses (for diffing)
 CONF_STATE = HERE / "wnba_confirm_state.json"  # last-seen set of CONFIRMED-lineup teams (for diffing)
 PCACHE = HERE / "wnba_players_cache.json"      # roster + season averages (skip the 47s rebuild)
 KEY_MIN = 20.0                                 # a player worth reacting to (mpg)
@@ -63,6 +64,15 @@ def key_outs(playing, inj, pl):
             if s in ("Out", "Doubtful") and n in pl
             and pl[n]["team"] in playing and pl[n]["min"] >= KEY_MIN
             and not T.playing_now(n)}
+
+
+def key_q(playing, inj, pl):
+    """{name: 'Questionable'} for key (>=20 mpg / >=10 ppg) players on today's slate who are
+    QUESTIONABLE — a NEW one triggers an early watchlist scan before they resolve to Out (which
+    is when the line moves). RotoWire GTD is folded in upstream by questionable_stars."""
+    return {n: "Questionable" for n, s in inj.items()
+            if s == "Questionable" and n in pl and pl[n]["team"] in playing
+            and (pl[n]["min"] >= KEY_MIN or pl[n]["pts"] >= 10)}
 
 
 def main():
@@ -105,16 +115,23 @@ def main():
     first_run = not STATE.exists()
     prev = json.loads(STATE.read_text()) if STATE.exists() else {}
     STATE.write_text(json.dumps(cur, indent=1, sort_keys=True))   # deterministic -> no-op runs don't commit
+    cur_q = key_q(playing, inj, pl)                               # questionable/GTD tier (the timing edge)
+    prev_q = json.loads(Q_STATE.read_text()) if Q_STATE.exists() else {}
+    Q_STATE.write_text(json.dumps(cur_q, indent=1, sort_keys=True))
     if first_run:
         # cold start: record the baseline, don't fire the whole current injury list as
         # "news". The 4x/day full-board alert covers already-known outs; this watcher
         # only ever pushes genuine deltas from here on.
-        print(f"cold start — baselined {len(cur)} known outs, no push")
+        print(f"cold start — baselined {len(cur)} known outs, {len(cur_q)} questionable, no push")
         return
     # NEW = newly Out/Doubtful, or escalated Doubtful->Out, since the last poll. (An
     # Out->Doubtful downgrade is not news worth a push.)
     new = {n: s for n, s in cur.items()
            if prev.get(n) != s and not (prev.get(n) == "Out" and s == "Doubtful")}
+    # newly QUESTIONABLE since the last poll -> fire the early watchlist scan (positions us on the
+    # beneficiary before the star resolves to Out). Drop any that ALSO newly went Out (the firm
+    # `new` path already covers those, at full urgency).
+    new_q = {n: s for n, s in cur_q.items() if prev_q.get(n) != s and n not in new}
     # BACK = was a key out last poll, now gone (off the injury report / active / props posted)
     # -> the player RETURNED, so any beneficiary play off their absence is VOID. Push a warning.
     back = sorted(n for n in prev if n not in cur)
@@ -132,7 +149,7 @@ def main():
                 print("pushed (back)")
             except requests.RequestException as e:
                 print("back push failed:", e)
-    if not new:
+    if not new and not new_q:
         if conf_changed:
             # lineups locked in (no new injury) — re-run the scan so the ledger's confidence
             # labels flip likely->confirmed/bench and the dashboard regenerates. No push.
@@ -144,9 +161,11 @@ def main():
         return
 
     news = ", ".join(f"{A._short(n)} {s}" for n, s in sorted(new.items()))
-    print(f"NEW: {news} — running scan")
+    qnews = ", ".join(f"{A._short(n)} Q" for n in sorted(new_q))
+    print(f"NEW: {news or '(none)'} · questionable: {qnews or '(none)'} — running scan")
     # FAST REPLACEMENT READ: the instant the news hits, name who likely slides into the role +
     # projected minutes (position + WOWY depth) — before RotoWire confirms / the line moves.
+    # Only for firm OUTs — a questionable-only trigger produces no `new`, so this loop no-ops.
     repl = []
     try:
         pl_all = W.players()
@@ -187,13 +206,17 @@ def main():
         print("  " + m)
     topic = os.environ.get("NTFY_TOPIC")
     if topic and fresh:
-        body = (f"🚨 {news}\n\n" + ("\n".join(repl) + "\n\n" if repl else "")
-                + A._notif_body(fresh))
+        if new:                          # a firm OUT broke -> URGENT push, with the replacement read
+            body = (f"🚨 {news}\n\n" + ("\n".join(repl) + "\n\n" if repl else "")
+                    + A._notif_body(fresh))
+            title, prio, tags = f"WNBA news: {news}"[:120], "urgent", "rotating_light"
+        else:                            # questionable-only trigger -> softer early WATCH heads-up
+            body = f"⏳ Questionable: {qnews}\n\n" + A._notif_body(fresh)
+            title, prio, tags = f"WNBA watch: {qnews}"[:120], "high", "hourglass_flowing_sand"
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                          headers={"Title": f"WNBA news: {news}"[:120],
-                                   "Priority": "urgent", "Tags": "rotating_light"}, timeout=15)
-            print("pushed (urgent)")
+                          headers={"Title": title, "Priority": prio, "Tags": tags}, timeout=15)
+            print(f"pushed ({prio})")
         except requests.RequestException as e:
             print("push failed:", e)
     for _e, k, _m in fresh:

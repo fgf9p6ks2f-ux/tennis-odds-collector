@@ -274,16 +274,48 @@ def collect():
                   if tuple(a[1].split("|")[1:3]) not in drop]
         print(f"correlation cap: dropped {len(drop)} redundant same-team same-family over-leg(s)")
     PL.log(proj_rows)                       # background projection tracker (learning loop)
+
+    # QUESTIONABLE-TIER WATCHLIST: surface beneficiaries EARLY while a star is still a game-time
+    # decision (the timing edge), tagged with who it hinges on + how likely they are to sit — but
+    # keep them OUT of the graded ledger (preds) so the track record only counts resolved bets.
+    # They graduate into the firm pipeline the moment the star is ruled OUT. Appended to `alerts`
+    # so both push paths (wnba_alert.main + wnba_watch) surface them via the same dedup.
+    watch = T.questionable_beneficiaries(pl, playing, matchups, lines, rates, inj,
+                                         out_names, outs_by_team, glog=glog)
+    _write_watchlist(watch, today)                       # dashboard JSON (separate from the ledger)
+    for s in sorted(watch, key=lambda s: -(s.get("ev") or 0)):
+        sd = "o" if s["side"] == "over" else "u"
+        hits = round(s["hit"] * s["n"])
+        ctag = {"confirmed": " ✓STARTING", "bench": " ⚠NOT STARTING",
+                "likely": " (likely starts)", "projected": " (lineup TBD)"}.get(s["conf"], "")
+        alerts.append((s["ev"] - 1.0,                    # sort BELOW firm bets (never outrank a real bet)
+            f"watch|{today}|{s['player']}|{s['stat']}|{s['line']}",
+            f"{s['star']} {s['status'].upper()} -> {_short(s['player'])} {s['stat'][:3]} "
+            f"{sd}{s['line']:g} {T._am(s['dec'])} | {hits}-{s['n']-hits} {s['hit']*100:.0f}% "
+            f"| proj {s['elev_avg']:g} +{s['ev']*100:.0f}%EV · ~{s['sit']*100:.0f}% to sit{ctag}"))
     return sorted(alerts, reverse=True), preds
+
+
+def _write_watchlist(watch, today):
+    """Dump the questionable-tier watchlist to JSON for the dashboard. Intra-job only (read by
+    dashboard.py in the same loop step), so it's never committed — no churn, no conflicts."""
+    try:
+        (HERE / "wnba_watchlist.json").write_text(
+            json.dumps({"date": today, "spots": watch}, default=str))
+    except OSError:
+        pass
 
 
 def _notif_body(fresh, limit=20):
     """Group the fresh alerts by the OUT player(s) into a SCANNABLE ntfy body: an injury header,
     one bullet per bet, a blank line between injuries — instead of one dense clump of text. Drops
     the verbose ' | w/o: ...' driver deltas for the push (they stay in the console log + dashboard);
-    each bullet keeps the bet, the record, and the EV."""
+    each bullet keeps the bet, the record, and the EV. Questionable-tier watch spots (key 'watch|')
+    are pulled into their own trailing '⏳ WATCH' block so they never read as confirmed bets."""
+    firm = [(e, k, m) for e, k, m in fresh if not k.startswith("watch|")]
+    watch = [(e, k, m) for e, k, m in fresh if k.startswith("watch|")]
     groups = {}
-    for _ev, _k, m in fresh[:limit]:
+    for _ev, _k, m in firm[:limit]:
         if " OUT -> " in m:
             out, rest = m.split(" OUT -> ", 1)
         else:
@@ -294,6 +326,9 @@ def _notif_body(fresh, limit=20):
     for out, bets in groups.items():
         bullets = "\n".join(f"• {b}" for b in bets)
         blocks.append(f"🚨 {out} OUT\n{bullets}" if out else bullets)
+    if watch:
+        wl = "\n".join(f"• {m}" for _e, _k, m in watch[:8])
+        blocks.append("⏳ WATCH — if the questionable star sits (not yet a firm bet):\n" + wl)
     return "\n\n".join(blocks)
 
 

@@ -55,7 +55,7 @@ def parse(txt):
             st.group(1) if st else "", "projected")
         # each <li> is a player: position div (may carry a style attr), name, optional inj tag.
         # The starting five are the first non-OUT entries; ruled-out players are listed too.
-        starters, out = [], []
+        starters, out, q = [], [], []
         for pos, nm, inj in re.findall(
                 r'lineup__pos"[^>]*>([A-Z]{1,3})</div>\s*<a[^>]*>([^<]+)</a>'
                 r'(?:\s*<span class="lineup__inj[^"]*">([^<]*)</span>)?', blk):
@@ -63,11 +63,14 @@ def parse(txt):
             inj = (inj or "").strip().upper()
             if inj == "OUT":
                 out.append(nm)
-            elif len(starters) < 5:
-                starters.append((pos, nm, inj))
-        if starters or out:
+            else:
+                if inj:                       # a non-OUT injury tag = RotoWire's "GTD" game-time
+                    q.append((nm, inj))       # decision -> the questionable tier (might still sit)
+                if len(starters) < 5:
+                    starters.append((pos, nm, inj))
+        if starters or out or q:
             teams.append({"team": TEAM_FIX.get(abbr, abbr), "status": status,
-                          "starters": starters, "out": out})
+                          "starters": starters, "out": out, "q": q})
     return teams
 
 
@@ -91,6 +94,13 @@ def out_players(teams):
     """{normalized_name: 'OUT'} across all teams — RotoWire's ruled-out list, to cross-check
     (and often beat) the ESPN injury feed."""
     return {norm(nm): "OUT" for t in teams for nm in t["out"]}
+
+
+def questionable_players(teams):
+    """{normalized_name: designation} for players carrying a non-OUT injury tag — RotoWire's
+    'GTD' (game-time decision) tier. These are the coin-flip absences to position on BEFORE
+    they're ruled OUT; out_players only catches them once they've already flipped."""
+    return {norm(nm): tag for t in teams for nm, tag in t.get("q", [])}
 
 
 if __name__ == "__main__":

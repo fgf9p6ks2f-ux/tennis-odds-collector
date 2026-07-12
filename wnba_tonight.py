@@ -514,6 +514,95 @@ def injuries():
     return out
 
 
+# --- Questionable / GTD tier ------------------------------------------------------------------
+# The timing edge is positioning on a beneficiary WHILE the star is still a game-time decision,
+# not only once ESPN/RotoWire flips them to OUT (which is when the market moves too). These surface
+# as an early WATCHLIST: the full "if he sits" projection, tagged with the star it hinges on and how
+# likely that star is to sit. They are NOT logged as firm graded bets — the moment the star is ruled
+# OUT they graduate into the normal firm pipeline. sit_prob is a LABELING prior (recalibrate once
+# resolutions are logged) shown for the user to weight; it does not discount the projection itself.
+SIT_PROB = {"OUT": 1.0, "DOUBTFUL": 0.80, "QUESTIONABLE": 0.50, "GTD": 0.50, "PROBABLE": 0.20}
+
+
+def sit_prob(status):
+    return SIT_PROB.get((status or "").strip().upper(), 0.5)
+
+
+def questionable_stars(pl, playing, inj, firm_out):
+    """{team: [(name, status, player, sit_prob)]} — impact players who are QUESTIONABLE tonight:
+    ESPN 'Questionable' UNION RotoWire 'GTD', minus anyone already firm-out. Impact = >=20 mpg OR
+    >=10 ppg (the same bar a firm out clears), so a coin-flip star's absence is worth positioning."""
+    cand = {n: "Questionable" for n, s in inj.items() if s == "Questionable"}
+    norm2name = {RW.norm(n): n for n in pl}
+    for nnm, tag in RW.questionable_players(rw_lineups() or []).items():
+        full = norm2name.get(nnm)
+        if full and full not in cand and full not in firm_out:
+            cand[full] = tag                                  # RotoWire game-time decision
+    by_team = defaultdict(list)
+    for n, status in cand.items():
+        p = pl.get(n)
+        if not p or p["team"] not in playing or n in firm_out:
+            continue
+        if p["min"] < 20 and p["pts"] < 10:                   # impact filter (matches firm outs)
+            continue
+        by_team[p["team"]].append((n, status, p, sit_prob(status)))
+    return by_team
+
+
+def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_out, firm_by_team,
+                               glog=None):
+    """Provisional +EV OVERS that open up IF tonight's questionable stars sit. Out-set = the team's
+    firm outs PLUS the questionable star(s), so each spot is the incremental upside on top of any
+    firm play. Returns [{player, team, star, status, sit, conf, ...prop_edge fields}] for an early
+    watchlist. Deliberately lighter than the firm projection (no mate/context weighting) — a heads-up
+    that graduates into the fully modelled firm pipeline the instant the star is ruled out."""
+    glog = glog or W.game_log
+    spots = []
+    for team, qs in questionable_stars(pl, playing, inj, firm_out).items():
+        outs = list(firm_by_team.get(team, [])) + [(n, p) for n, _, p, _ in qs]
+        try:
+            out_logs = [glog(p["id"]) for _, p in outs]
+        except Exception:
+            continue
+        if not all(out_logs):
+            continue
+        vacated = {"points": sum(p["pts"] for _, p in outs),
+                   "rebounds": sum(p["reb"] for _, p in outs),
+                   "assists": sum(p["ast"] for _, p in outs)}
+        ctx = CTX.matchup_context(team, matchups.get(team, ""), lines, rates)
+        star = "+".join(n.split()[-1] for n, _, _, _ in qs)
+        status = qs[0][1] if len(qs) == 1 else "Questionable"
+        sit = min(s for *_, s in qs)
+        out_here = {n for n, _ in outs}
+        team_pl = {n: v for n, v in pl.items()
+                   if v["team"] == team and n not in firm_out and n not in out_here
+                   and v["gp"] >= 5}
+        for n, v in team_pl.items():
+            try:
+                blog = glog(v["id"])
+            except Exception:
+                continue
+            if not blog:
+                continue
+            w = W.wowy_multi(blog, out_logs)
+            if w["n_without"] < 2:
+                continue
+            proj = w["without"]["min"]["mean"]
+            recent5 = [g["min"] for g in blog[:5] if g["min"] > 8]   # newest-first; only lifts
+            if recent5:
+                proj = max(proj, st.median(recent5))
+            if proj - w["with"]["min"]["mean"] <= 0.3:              # no real minutes bump
+                continue
+            conf = starter_label(n, team, None, proj)
+            for e in prop_edges(n, blog, proj, w, vacated, ctx,
+                                opp=matchups.get(team, ""), pos=v.get("position")):
+                if e["side"] != "over":                             # watchlist thesis = role UP
+                    continue
+                spots.append({"player": n, "team": team, "star": star, "status": status,
+                              "sit": sit, "conf": conf, "proj_min": round(proj, 1), **e})
+    return spots
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--min-out", type=float, default=20.0,

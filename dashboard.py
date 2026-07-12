@@ -547,6 +547,46 @@ def _tt_panel(data):
     return "\n".join(out)
 
 
+_WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
+            "pts_reb": "P+R", "pts_ast": "P+A", "reb_ast": "R+A"}
+
+
+def _watchlist_html():
+    """Questionable-tier watchlist: provisional spots that open up IF a game-time-decision star
+    sits. Rendered distinctly (amber, dashed) so it never reads as a firm bet. Read from the JSON
+    wnba_alert writes each cycle; missing / stale (not today) / empty -> no section."""
+    f = HERE / "wnba_watchlist.json"
+    if not f.exists():
+        return ""
+    try:
+        d = json.loads(f.read_text())
+    except (ValueError, OSError):
+        return ""
+    today = dt.datetime.now(dt.timezone.utc).astimezone(MT).date().isoformat()
+    spots = d.get("spots") or []
+    if d.get("date") != today or not spots:
+        return ""
+    by_star = defaultdict(list)
+    for s in sorted(spots, key=lambda s: -(s.get("ev") or 0)):
+        by_star[(s.get("star"), s.get("status"), s.get("sit"))].append(s)
+    blocks = []
+    for (star, status, sit), ss in by_star.items():
+        sitpct = f"~{sit * 100:.0f}% to sit" if sit is not None else ""
+        legs = "".join(
+            f'<div class="wl-leg"><b>{html.escape(_short(s["player"]))}</b> '
+            f'{_WL_STAT.get(s.get("stat"), s.get("stat"))} o{s["line"]:g}'
+            f'<span class="wl-ev">+{(s.get("ev") or 0) * 100:.0f}%</span>'
+            f'<span class="wl-meta">proj {s.get("elev_avg", 0):g} · '
+            f'{round((s.get("hit") or 0) * (s.get("n") or 0))}/{s.get("n") or 0} in role</span></div>'
+            for s in ss)
+        blocks.append(
+            f'<div class="wl-grp"><div class="wl-hd">if <b>{html.escape(star or "?")}</b> '
+            f'({html.escape(status or "Q")} · {sitpct}) sits</div>{legs}</div>')
+    return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist · questionable stars '
+            '<span>— provisional, not firm bets; fire when ruled out</span></div>'
+            + "".join(blocks) + "</div>")
+
+
 def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)
     rows, (w, l, u, pend) = _load(now.date().isoformat())
@@ -565,6 +605,7 @@ def build():
     cards = "\n".join(_player_card(p, rs, tips.get((rs[0].get("team") or "").upper()), p in top_names)
                       for p, rs in order) if order else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
+    wl_html = _watchlist_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
     tracker_html = _tracker_panel((w, l, u), tt_json)
@@ -599,6 +640,17 @@ def build():
   .cout {{ color:#7d8696; }}
   .jump {{ color:#8b94a3; font-weight:600; }} .jump.jbig {{ color:#4ade80; }} .jump.jnone {{ color:#7d8696; font-weight:500; }}
   .dog {{ color:#e0a458; font-weight:700; }}
+  .watchlist {{ margin-top:22px; padding-top:4px; border-top:1px solid #1c2230; }}
+  .wl-title {{ color:#e0a458; font-size:13px; font-weight:800; letter-spacing:.02em; margin:14px 2px 10px; }}
+  .wl-title span {{ color:#7d8696; font-weight:600; }}
+  .wl-grp {{ border-left:2px dashed #e0a45855; background:#12100b; border-radius:8px;
+    padding:9px 12px; margin-bottom:9px; }}
+  .wl-hd {{ color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:5px; }}
+  .wl-hd b {{ color:#e8ecf2; }}
+  .wl-leg {{ font-size:13px; padding:2px 0; }}
+  .wl-leg b {{ color:#e8ecf2; }}
+  .wl-ev {{ color:#4ade80; font-weight:700; margin-left:7px; }}
+  .wl-meta {{ color:#7d8696; font-size:11px; margin-left:7px; }}
   .mkt {{ padding:11px 0 10px; border-bottom:1px solid #161d28; cursor:pointer; }}
   .card .mkt:last-of-type {{ border-bottom:0; padding-bottom:2px; }}
   .mrow1 {{ display:flex; align-items:center; gap:8px; font-size:15.5px; font-weight:600; }}
@@ -699,6 +751,7 @@ def build():
   <div class="panel" id="wnba">
     <h2>{pend} plays · strongest first · tap any bet for the game log</h2>
     {cards}
+    {wl_html}
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · by league &amp; game time</h2>
