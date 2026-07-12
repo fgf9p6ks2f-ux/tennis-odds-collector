@@ -39,7 +39,9 @@ jobs:
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
           for i in $(seq 1 315); do
-            if [ $((i % 2)) -eq 1 ]; then                        # ~every 2 min: REFRESH FanDuel + DK WNBA
+            if [ $((i % 1)) -eq 0 ]; then                        # EVERY ~60s: REFRESH FanDuel + DK WNBA
+              # (was every 2 min — tightened so a freshly-posted opening line is caught within a minute,
+              # which is the whole CLV edge: the poll below runs right after, on the fresh lines)
               # lines into a SMALL, WNBA-only wnba_lines.sqlite (~8k rows / <1MB) that IS committed
               # below — so the persistent snapshot the dashboard best-price + CLV read stays fresh even
               # when GitHub throttles collect-odds' cron (its 30MB full DB is left to collect-odds).
