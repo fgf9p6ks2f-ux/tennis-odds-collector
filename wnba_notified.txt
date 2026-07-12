@@ -99,6 +99,7 @@ timing|2026-07-12|Jonquel Jones|rebounds|12.5
 timing|2026-07-12|Kamilla Cardoso|pra|31.5
 timing|2026-07-12|Kamilla Cardoso|pra|32.5
 timing|2026-07-12|Kamilla Cardoso|pts_reb|27.5
+timing|2026-07-12|Kamilla Cardoso|rebounds|12.5
 timing|2026-07-12|Maria Conde|assists|2.5
 timing|2026-07-12|Maria Conde|points|11.5
 timing|2026-07-12|Marine Johannes|points|7.5
