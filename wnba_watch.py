@@ -118,6 +118,27 @@ def main():
     cur_q = key_q(playing, inj, pl)                               # questionable/GTD tier (the timing edge)
     prev_q = json.loads(Q_STATE.read_text()) if Q_STATE.exists() else {}
     Q_STATE.write_text(json.dumps(cur_q, indent=1, sort_keys=True))
+    # CALIBRATION LOG: record every key questionable/doubtful/GTD player on tonight's slate (once, via
+    # INSERT-OR-IGNORE) so wnba_question_log can resolve sit-vs-play later and recalibrate SIT_PROB.
+    try:
+        import wnba_question_log as QL
+        today_et = dt.datetime.now(T.ET).date().isoformat()
+        norm2name = {RW.norm(nn): nn for nn in pl}
+        obs, seen = [], set()
+        for nn, s in inj.items():                                 # ESPN Questionable / Doubtful
+            if s in ("Questionable", "Doubtful") and nn in pl and pl[nn]["team"] in playing \
+                    and (pl[nn]["min"] >= 20 or pl[nn]["pts"] >= 10):
+                obs.append((nn, pl[nn]["team"], s, pl[nn]["min"]))
+                seen.add(nn)
+        for nnm in RW.questionable_players(board):                # RotoWire GTD
+            full = norm2name.get(nnm)
+            if full and full not in seen and pl[full]["team"] in playing \
+                    and (pl[full]["min"] >= 20 or pl[full]["pts"] >= 10):
+                obs.append((full, pl[full]["team"], "GTD", pl[full]["min"]))
+        if obs:
+            QL.record(today_et, obs)
+    except Exception as e:
+        print("question-log record skipped:", str(e)[:60])
     if first_run:
         # cold start: record the baseline, don't fire the whole current injury list as
         # "news". The 4x/day full-board alert covers already-known outs; this watcher

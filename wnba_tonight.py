@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import json
 import math
 import os
 import sqlite3
@@ -522,10 +523,22 @@ def injuries():
 # OUT they graduate into the normal firm pipeline. sit_prob is a LABELING prior (recalibrate once
 # resolutions are logged) shown for the user to weight; it does not discount the projection itself.
 SIT_PROB = {"OUT": 1.0, "DOUBTFUL": 0.80, "QUESTIONABLE": 0.50, "GTD": 0.50, "PROBABLE": 0.20}
+_SIT_FILE = Path(__file__).resolve().parent / "wnba_sit_prob.json"   # empirical override (recalibrated)
+_SIT_OVERRIDE = None
 
 
 def sit_prob(status):
-    return SIT_PROB.get((status or "").strip().upper(), 0.5)
+    """P(this player SITS | designation). Prefers the EMPIRICAL rate once wnba_question_log has
+    resolved enough real questionable->sat/played outcomes (wnba_sit_prob.json); falls back to the
+    SIT_PROB prior otherwise. Recalibrate with: python wnba_question_log.py --resolve --recalibrate."""
+    global _SIT_OVERRIDE
+    if _SIT_OVERRIDE is None:
+        try:
+            _SIT_OVERRIDE = json.loads(_SIT_FILE.read_text())
+        except (OSError, ValueError):
+            _SIT_OVERRIDE = {}
+    s = (status or "").strip().upper()
+    return _SIT_OVERRIDE.get(s, SIT_PROB.get(s, 0.5))
 
 
 def questionable_stars(pl, playing, inj, firm_out):
