@@ -227,6 +227,7 @@ def collect():
                               "d_stat": e["d_stat"], "d_fga": e["d_fga"], "d_min": e["d_min"],
                               "driver": e["driver"], "vac": e["vac"],
                               "total": e["total"], "pace": e["pace"], "opp_def": e["opp_def"],
+                              "spread": e.get("spread"),
                               "d_fta": e["d_fta"], "d_3pa": e["d_3pa"],
                               "basis": e["basis"], "samples": json.dumps(e["samples"]),
                               "vol": json.dumps(e.get("vol") or {}),

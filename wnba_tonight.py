@@ -373,6 +373,8 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                         # matchup environment (same across the team's props)
                         "total": ctx.get("total"), "pace": ctx.get("pace"),
                         "opp_def": ctx.get("opp_pts_allowed"),
+                        # spread FOR the beneficiary's team: +mag = underdog (blowout risk)
+                        "spread": ctx.get("dog"),
                         # points-only scoring channels
                         "d_fta": d_fta if stat == "points" else None,
                         "d_3pa": d_3pa if stat == "points" else None,

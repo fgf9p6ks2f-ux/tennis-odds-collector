@@ -63,8 +63,14 @@ def game_lines():
         details = odds.get("details", "")                 # e.g. "PHX -1.5"
         m = re.search(r"-?\d+\.?\d*", details or "")
         mag = abs(float(m.group())) if m else None
+        fav = details.split()[0] if details else None     # favored team abbr, e.g. "PHX"
+        if fav not in ab:                                  # token didn't match a side -> don't guess
+            fav = None
         for i, a in enumerate(ab):
-            out[a] = {"opp": ab[1 - i], "total": total, "spread": details, "spread_mag": mag}
+            # signed spread FOR this team: +mag = underdog (blowout risk), -mag = favored
+            dog = None if (mag is None or fav is None) else (mag if a != fav else -mag)
+            out[a] = {"opp": ab[1 - i], "total": total, "spread": details,
+                      "spread_mag": mag, "dog": dog}
     return out
 
 
@@ -114,6 +120,7 @@ def matchup_context(team, opp, lines=None, rates=None):
     pace = round((r_opp["pace"] + r_me["pace"]) / 2, 1) if r_opp.get("pace") and r_me.get("pace") else None
     lg_avg = round(sum(v["pace"] for v in rates.values()) / len(rates), 1) if rates else None
     return {"total": ln.get("total"), "spread": ln.get("spread"), "spread_mag": ln.get("spread_mag"),
+            "dog": ln.get("dog"),  # +mag = this team is the underdog (blowout risk); -mag = favored
             "opp_pts_allowed": r_opp.get("oppg"), "pace": pace,
             "pace_vs_lg": round(pace - lg_avg, 1) if (pace and lg_avg) else None}
 

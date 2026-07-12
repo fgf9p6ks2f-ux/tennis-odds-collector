@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS predictions(
   proj_hit REAL, season_avg REAL, elev_avg REAL, proj_min REAL, n_elev INTEGER,
   ev REAL, stale INTEGER,
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
-  total REAL, pace REAL, opp_def REAL, d_fta REAL, d_3pa REAL,
+  total REAL, pace REAL, opp_def REAL, spread REAL, d_fta REAL, d_3pa REAL,
   basis TEXT, samples TEXT, confidence TEXT, regime TEXT, vol TEXT,
   side TEXT DEFAULT 'over',
   result TEXT, actual REAL, graded INTEGER DEFAULT 0,
@@ -50,8 +50,9 @@ CREATE TABLE IF NOT EXISTS predictions(
 # Model features, migrated into older DBs in place. driver = per-stat deciding delta
 # (FGA rise for points, reb/ast rise otherwise); vac = out player's own avg in the stat
 # (pool size); total/pace/opp_def = matchup environment; d_fta/d_3pa = points channels.
+# spread = signed line FOR the beneficiary's team (+mag = underdog / blowout risk).
 _MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac",
-            "total", "pace", "opp_def", "d_fta", "d_3pa")
+            "total", "pace", "opp_def", "spread", "d_fta", "d_3pa")
 _MIGRATE_TEXT = ("basis", "samples", "confidence", "regime", "vol")   # regime/vol = display JSON
 
 
@@ -119,7 +120,7 @@ def log_predictions(rows):
     cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds",
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
             "d_stat", "d_fga", "d_min", "driver", "vac",
-            "total", "pace", "opp_def", "d_fta", "d_3pa", "basis", "samples", "confidence",
+            "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "basis", "samples", "confidence",
             "side", "regime", "vol")
     n = 0
     for r in rows:
@@ -136,7 +137,8 @@ def log_predictions(rows):
             f"out_player=excluded.out_player, elev_avg=excluded.elev_avg, ev=excluded.ev, "
             f"proj_hit=excluded.proj_hit, proj_min=excluded.proj_min, n_elev=excluded.n_elev, "
             f"d_fga=excluded.d_fga, d_min=excluded.d_min, d_fta=excluded.d_fta, "
-            f"d_3pa=excluded.d_3pa, driver=excluded.driver, stale=excluded.stale, vac=excluded.vac",
+            f"d_3pa=excluded.d_3pa, driver=excluded.driver, stale=excluded.stale, vac=excluded.vac, "
+            f"spread=excluded.spread",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     # SELF-HEAL: when a projection updates (e.g. recent-minutes lift takes a player off an under),

@@ -428,6 +428,9 @@ def _player_card(player, rows, tip=None, top=False):
             parts.append(f'<span class="jump {jcls}">~{r0["proj_min"]:.0f}min ▲{dm:+.0f}</span>')
         else:
             parts.append(f'~{r0["proj_min"]:.0f}min')
+    sp = r0.get("spread")                      # +mag = beneficiary's team is the underdog
+    if sp is not None and sp >= 8:             # big dog = blowout/garbage-time risk for overs
+        parts.append(f'<span class="dog">⚠ +{sp:.0f} dog</span>')
     parts.append(f'<span class="cout">{html.escape(outs)} out</span>')
     ctx = " · ".join(parts)
     mkts = "".join(_mkt_row(r) for r in sorted(rows, key=lambda r: -(r.get("ev") or 0)))
@@ -595,6 +598,7 @@ def build():
   .cf.cok {{ color:#4ade80; }} .cf.cbad {{ color:#e0a458; }} .cf.cmid {{ color:#7aa2e3; }}
   .cout {{ color:#7d8696; }}
   .jump {{ color:#8b94a3; font-weight:600; }} .jump.jbig {{ color:#4ade80; }} .jump.jnone {{ color:#7d8696; font-weight:500; }}
+  .dog {{ color:#e0a458; font-weight:700; }}
   .mkt {{ padding:11px 0 10px; border-bottom:1px solid #161d28; cursor:pointer; }}
   .card .mkt:last-of-type {{ border-bottom:0; padding-bottom:2px; }}
   .mrow1 {{ display:flex; align-items:center; gap:8px; font-size:15.5px; font-weight:600; }}
