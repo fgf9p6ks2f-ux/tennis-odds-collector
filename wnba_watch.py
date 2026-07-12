@@ -105,6 +105,45 @@ def key_q(playing, inj, pl):
             and (pl[n]["min"] >= KEY_MIN or pl[n]["pts"] >= 10)}
 
 
+_STAT_ABBR = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
+              "pts_reb": "P+R", "pts_ast": "P+A", "reb_ast": "R+A"}
+
+
+def _timing_spots(today):
+    """The beneficiary plays to bet EARLY at the OPENING line — where our projection diverges from
+    the opener by a real margin, so the number should move toward us as the market digests the injury
+    (the CLV / timing edge: get down before the book corrects). Reads the freshly-captured opening
+    shadows; filters stub/mismapped openers (line far off the projection). Returns [(key, msg, div)]
+    sorted by divergence."""
+    import sqlite3
+    db = HERE / "wnba_clv.sqlite"
+    if not db.exists():
+        return []
+    try:
+        con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+        rows = con.execute("SELECT player, stat, flag_line, flag_over, proj, out_player FROM clv "
+                           "WHERE date=? AND flag_line IS NOT NULL AND proj IS NOT NULL",
+                           (today,)).fetchall()
+        con.close()
+    except Exception:
+        return []
+    spots = []
+    for pl, stat, line, over, proj, outp in rows:
+        if not proj or not line or not (0.5 * proj <= line <= 2.0 * proj):
+            continue                                    # stub / mismapped opener (line far off proj)
+        div = proj - line
+        if abs(div) < 1.5:                              # no real edge over the opener
+            continue
+        side = "o" if div > 0 else "u"
+        px = f" {T._am(over)}" if side == "o" and over and over > 1 else ""
+        off = A._short((outp or "").split(",")[0].strip())
+        key = f"timing|{today}|{pl}|{stat}|{line}"
+        msg = (f"{A._short(pl)} {_STAT_ABBR.get(stat, stat[:3])} {side}{line:g}{px} "
+               f"→ proj {proj:.1f} ({div:+.1f}) · off {off}")
+        spots.append((key, msg, abs(div)))
+    return sorted(spots, key=lambda x: -x[2])
+
+
 def _priced_count():
     """Distinct WNBA players with a FRESH posted prop (last 20 min), from the freshest lines DB. This
     jumps from ~0 to many the moment FanDuel/DK post the slate's OPENING lines — the signal that we
@@ -289,10 +328,10 @@ def main():
     if new or new_q or lines_new:
         alerts, preds = A.collect()
         logged = L.log_predictions(preds)
-        seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
+        seen0 = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
         this_run = set()
-        for ev, k, msg in alerts:                       # alerts sorted by EV desc
-            if k in seen or k in this_run:
+        for ev, k, msg in alerts:                       # +EV bets, sorted by EV desc
+            if k in seen0 or k in this_run:
                 continue
             this_run.add(k)
             fresh.append((ev, k, msg))
@@ -302,14 +341,32 @@ def main():
         for _e, _k, m in fresh:
             print("  " + m)
 
-    # ---- ONE comprehensive push: report changes -> replacement read -> plays -> void warnings ----
-    if topic and (feed_txt or fresh or back or back_q):
+    # OPENING-LINE TIMING SPOTS: the beneficiary plays to get down on EARLY, before the book corrects
+    # the opener (the user's proven CLV edge — speed beats the reprice). Surfaced whenever fresh lines
+    # land, NOT gated on +EV (the opener is often fairly priced NOW; the edge is the coming line move).
+    fresh_timing = []
+    if lines_new:
+        seen0 = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
+        fresh_timing = [(k, m) for k, m, _ in _timing_spots(today_et) if k not in seen0][:10]
+        if fresh_timing:
+            print(f"timing spots (bet early @ opener): {len(fresh_timing)}")
+            for _k, m in fresh_timing:
+                print("  ⚡ " + m)
+
+    # ---- ONE push: injury feed -> EARLY opener spots -> +EV plays -> void warnings ----
+    if topic and (feed_txt or fresh_timing or fresh or back or back_q):
+        parts, timing_lead = [], bool(fresh_timing and not feed_txt)
         if feed_txt:
-            parts = ["📋 WNBA injury update", feed_txt]
-        else:                                           # opening-lines-only trigger (no injury change)
-            parts = [f"📋 Opening lines posted — {len(fresh)} play{'s' if len(fresh) != 1 else ''}"]
+            parts += ["📋 WNBA injury update", feed_txt]
+        elif fresh_timing:
+            parts.append(f"⚡ Opening lines — {len(fresh_timing)} injury spot"
+                         f"{'s' if len(fresh_timing) != 1 else ''} to bet EARLY (before the book moves)")
+        elif fresh:
+            parts.append(f"📋 {len(fresh)} +EV play{'s' if len(fresh) != 1 else ''}")
         if repl:
             parts.append("\n".join(repl))
+        if fresh_timing:
+            parts.append("\n".join("• " + m for _, m in fresh_timing))
         if fresh:
             parts.append(A._notif_body(fresh))
         if back or back_q:
@@ -317,17 +374,19 @@ def main():
             parts.append(f"⚠ VOID any plays built on: {voids} (now active/cleared)")
         body = "\n\n".join(parts)
         prio = "urgent" if new else ("high" if (new_q or lines_new or back or back_q) else "default")
-        tags = "rotating_light" if new else "hourglass_flowing_sand"
+        title = "WNBA opening lines" if timing_lead else "WNBA injury update"
+        tags = "rotating_light" if new else "zap" if timing_lead else "hourglass_flowing_sand"
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                          headers={"Title": "WNBA injury update", "Priority": prio, "Tags": tags},
-                          timeout=15)
+                          headers={"Title": title, "Priority": prio, "Tags": tags}, timeout=15)
             print(f"pushed ({prio})")
         except requests.RequestException as e:
             print("push failed:", e)
-    if fresh:                                           # remember pushed spots so they don't re-fire
+    if fresh or fresh_timing:                           # remember pushed spots so they don't re-fire
         seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
         for _e, k, _m in fresh:
+            seen.add(k)
+        for k, _m in fresh_timing:
             seen.add(k)
         A.SEEN.write_text("\n".join(sorted(seen)[-2000:]))
 
