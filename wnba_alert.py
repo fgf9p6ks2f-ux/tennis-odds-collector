@@ -248,6 +248,30 @@ def collect():
                 alerts.append((dd["rate"] - 0.5, f"{today}|{n}|dd",
                     f"{out_label} OUT -> {_short(n)} DOUBLE-DOUBLE {dd['rate']*100:.0f}% in "
                     f"{dd['n']} role gms{wo} — check DD price (backup bigs lag)"))
+    # CORRELATION CAP (user preference): don't recommend 2+ players' OVERS on the same team + same
+    # prop FAMILY in one game — they're correlated, so one blowout / team-cold-shooting night sinks
+    # them together (PHX went 0-6 on its overs 2026-07-11; 5 were points-family across Copper+Ayayi).
+    # Keep the single highest-EV player per (team, family, over); drop other players' same-family
+    # overs. Different families on one team (a points over + a rebounds over) are fine — low
+    # correlation — and a single player's ladder rungs are kept (that's intentional laddering).
+    FAM = {"points": "PTS", "pra": "PTS", "pts_reb": "PTS", "pts_ast": "PTS",
+           "rebounds": "REB", "reb_ast": "REB", "assists": "AST"}
+    top = {}                                            # (team, family) -> (player, best_ev)
+    for p in preds:
+        if p.get("side") != "over" or not p.get("team"):
+            continue
+        k = (p["team"], FAM.get(p["stat"], p["stat"]))
+        if k not in top or (p.get("ev") or 0) > top[k][1]:
+            top[k] = (p["player"], p.get("ev") or 0)
+    drop = {(p["player"], p["stat"]) for p in preds                     # (player, stat) legs to cut
+            if p.get("side") == "over" and p.get("team")
+            and top[(p["team"], FAM.get(p["stat"], p["stat"]))][0] != p["player"]}
+    if drop:
+        preds = [p for p in preds
+                 if not (p.get("side") == "over" and (p["player"], p["stat"]) in drop)]
+        alerts = [a for a in alerts                                     # key = today|player|stat|line
+                  if tuple(a[1].split("|")[1:3]) not in drop]
+        print(f"correlation cap: dropped {len(drop)} redundant same-team same-family over-leg(s)")
     PL.log(proj_rows)                       # background projection tracker (learning loop)
     return sorted(alerts, reverse=True), preds
 
