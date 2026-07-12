@@ -313,7 +313,11 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
     floor = max(proj_min - 4, ROLE_FLOOR)
     elevated = [g for g in log if g["min"] >= floor]
     if len(elevated) >= 4:
-        sample, basis, shrink_k = elevated, "elevated", 6
+        # shrink_k 6->11: the graded ledger showed the empirical hit is IN-SAMPLE OPTIMISTIC — the
+        # shrunk P(win) read 64% vs a realized 51% (favorable-role games regress). A calibration
+        # backtest over the k-sweep narrowed the gap to ~6pts and lifted ROI at ~11-15; bumped
+        # conservatively (not to the fitted peak) to avoid overfitting a 45-bet sample.
+        sample, basis, shrink_k = elevated, "elevated", 11
         def val(g, key):
             # minutes-HONEST: scale each elevated game's production to TONIGHT's projected
             # minutes. Otherwise the model cherry-picks a player's 26-min games (Billings'
@@ -329,7 +333,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         base = [g for g in log if g["min"] >= 12]
         if len(base) < 3 or proj_min < ROLE_FLOOR:
             return []
-        sample, basis, shrink_k = base, "projected", 9
+        sample, basis, shrink_k = base, "projected", 14   # 9->14: thin breakout sample regresses even
         def val(g, key):
             return g[key] * min(proj_min / g["min"], 2.2)
     fga = st.mean([val(g, "fga") for g in sample])
