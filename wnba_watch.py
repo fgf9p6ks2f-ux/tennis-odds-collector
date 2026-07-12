@@ -39,6 +39,8 @@ CONF_STATE = HERE / "wnba_confirm_state.json"  # last-seen set of CONFIRMED-line
 PRICED_STATE = HERE / "wnba_priced_state.json" # {date, count} — priced-player count at the last opening scan
 PRICE_JUMP = 6                                 # +this many freshly-priced players = a new batch of lines
 WATCHDOG_STATE = HERE / "wnba_watchdog_state.json"  # last watchdog alert signature (dedup: 1/issue/day)
+UNDER_DIV_MIN = 1.5    # timing spots: min (line - proj) to surface an UNDER (the validated edge side)
+OVER_DIV_MIN = 3.0     # ...and a bigger (proj - line) gap for an OVER (elevated roles regress)
 
 FIRM = ("OUT", "DOUBTFUL")                     # tags that drive the firm beneficiary scan
 WATCH = ("QUESTIONABLE", "GTD")                # tags that drive the questionable-tier watchlist
@@ -135,9 +137,17 @@ def _timing_spots(today):
         if not proj or not line or not (0.5 * proj <= line <= 2.0 * proj):
             continue                                    # stub / mismapped opener (line far off proj)
         div = proj - line
-        if abs(div) < 1.5:                              # no real edge over the opener
-            continue
-        side = "o" if div > 0 else "u"
+        # asymmetric like prop_edges' EV bars (OVER 0.10 / UNDER 0.04 — the validated OVER->UNDER
+        # pivot): elevated-role OVERS regress to the mean, so demand a MUCH bigger projection-vs-opener
+        # gap to surface an over than an under. A symmetric 1.5 threshold pushed elevated-role overs
+        # the backtest says have ~zero edge (6/8 of 07-12's timing spots were exactly those).
+        if div >= OVER_DIV_MIN:
+            side = "o"
+        elif -div >= UNDER_DIV_MIN:
+            side = "u"
+        else:
+            continue                                    # not enough divergence for either side
+
         px = f" {T._am(over)}" if side == "o" and over and over > 1 else ""
         off = A._short((outp or "").split(",")[0].strip())
         key = f"timing|{today}|{pl}|{stat}|{line}"

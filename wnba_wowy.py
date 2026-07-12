@@ -97,6 +97,11 @@ def game_log(pid):
     meta = j.get("events", {}) or {}
     out = []
     for stype in j.get("seasonTypes") or []:
+        # DROP preseason: scrub-lineup exhibition games leak into the WOWY 'without' split, players()
+        # season averages, and the elevated-minutes sample — all of which drive LIVE bets. game_log is
+        # the shared source for serving AND backtesting, so filtering here keeps train/serve consistent.
+        if "preseason" in (stype.get("displayName") or "").lower():
+            continue
         for cat in stype.get("categories") or []:
             for ev in cat.get("events") or []:
                 s = ev.get("stats") or []
