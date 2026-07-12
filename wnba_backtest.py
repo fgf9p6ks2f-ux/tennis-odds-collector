@@ -42,21 +42,24 @@ def teams_on(date_iso):
 
 
 def historical_props(player, date_iso):
-    """{stat: {line: best_over_dec}} that the books ACTUALLY posted for player on date."""
+    """{stat: {line: (best_over_dec, best_under_dec)}} the books ACTUALLY posted for player on date —
+    mirrors posted_props' both-sides structure so prop_edges can test the UNDER side (the validated
+    edge), not just overs. (Was over-only single-value, which crashed the current prop_edges.)"""
     if not FD_DB.exists():
         return {}
     con = sqlite3.connect(FD_DB)
     rows = con.execute(
-        "SELECT stat, line, odds FROM fd_lines WHERE sport='wnba' AND player=? "
-        "AND side='over' AND line IS NOT NULL AND substr(collected_at,1,10)=?",
+        "SELECT stat, line, side, odds FROM fd_lines WHERE sport='wnba' AND player=? "
+        "AND line IS NOT NULL AND substr(collected_at,1,10)=?",
         (player, date_iso)).fetchall()
     con.close()
-    best = defaultdict(dict)
-    for stat, line, odds in rows:
-        if stat in T.PROP_STATS:
+    best = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
+    for stat, line, side, odds in rows:
+        if stat in T.PROP_STATS and side in ("over", "under"):
             k = round(float(line), 1)
-            best[stat][k] = max(best[stat].get(k, 0), float(odds))
-    return best
+            best[stat][k][0 if side == "over" else 1] = max(
+                best[stat][k][0 if side == "over" else 1], float(odds))
+    return {s: {k: tuple(v) for k, v in d.items()} for s, d in best.items()}
 
 
 def run():

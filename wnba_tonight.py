@@ -366,8 +366,12 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # Leak-free backtest: flat-role overs hit 38-42% (~-20% ROI) vs role-jump overs 53-59%
             # (+1..+14%). Require minutes +2 OR usage(FGA) +1 to flag the over. Volume plays are
             # already usage-confirmed, so they're exempt.
-            if (side == "over" and not use_vol and d_min is not None and d_fga is not None
-                    and not (d_min > 2 or d_fga > 1)):
+            # CONVICTION gate for overs: only flag an over whose role is CONFIRMED to expand (minutes
+            # +2 OR usage(FGA) +1). Missing WOWY (d_min/d_fga None — a new signing with no games
+            # alongside the out player) counts as UNCONFIRMED, so the over is skipped, not flagged on
+            # faith: an unconfirmed elevated-role over is exactly the bet the pivot says regresses.
+            if side == "over" and not use_vol and not (
+                    d_min is not None and d_fga is not None and (d_min > 2 or d_fga > 1)):
                 continue
             if use_vol:
                 # P(points > line) from the VOLUME projection (normal around vol_pts) — strips the
