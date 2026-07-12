@@ -1,5 +1,5 @@
-# WNBA injury-timing CLV — do our reads beat the closing number?
+# WNBA injury-timing CLV — does the line move our way, open to close?
 
-_2026-07-11 22:35 UTC · 6 closed shadows (5 over-side)_
+_2026-07-12 08:42 UTC · 36 closed shadows (opening line vs closing line)_
 
-Accumulating — 5/20 over shadows before CLV is trustworthy.
+Accumulating — 36/20 closed shadows over 1/5 slates before CLV is trustworthy (one slate's shadows are correlated).
