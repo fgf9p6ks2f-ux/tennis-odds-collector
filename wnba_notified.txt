@@ -107,6 +107,7 @@ timing|2026-07-12|Maria Conde|assists|2.5
 timing|2026-07-12|Maria Conde|points|11.5
 timing|2026-07-12|Marine Johannes|points|7.5
 timing|2026-07-12|Natasha Cloud|assists|6.5
+timing|2026-07-12|Natasha Cloud|pts_ast|17.5
 timing|2026-07-12|Pauline Astier|points|7.5
 timing|2026-07-12|Sabrina Ionescu|points|15.5
 timing|2026-07-12|Sydney Taylor|points|12.5
