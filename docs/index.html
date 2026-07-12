@@ -34,14 +34,14 @@
   .sdot { width:6px; height:6px; border-radius:50%; display:inline-block; flex:none; }
   .sdot.ok { background:#37d67f; } .sdot.warn { background:#eaa15a; } .sdot.mid { background:#5b9dff; }
   /* PLAYER block — logo + name lead; status is a quiet dot-chip; minutes right-aligned meta */
-  .pblk { background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:12px 14px 6px; margin-bottom:10px; }
-  .phd { display:flex; align-items:center; gap:8px; }
-  .plogo { width:21px; height:21px; object-fit:contain; filter:drop-shadow(0 0 1.5px rgba(255,255,255,.3)); }
-  .pname { font-size:16.5px; font-weight:800; letter-spacing:-.01em; }
-  .pflag { display:flex; align-items:center; gap:5px; color:#8a93a3; font-size:11.5px; font-weight:600; white-space:nowrap; }
+  .pblk { background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:15px 16px 9px; margin-bottom:11px; }
+  .phd { display:flex; align-items:center; gap:9px; }
+  .plogo { width:27px; height:27px; object-fit:contain; filter:drop-shadow(0 0 1.5px rgba(255,255,255,.3)); }
+  .pname { font-size:22px; font-weight:800; letter-spacing:-.015em; }
+  .pflag { display:flex; align-items:center; gap:5px; color:#8a93a3; font-size:13px; font-weight:600; white-space:nowrap; }
   .psp2 { flex:1; }
-  .pmin { color:#78818f; font-size:12.5px; font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums; }
-  .dog { color:#d9985c; font-size:11px; font-weight:700; }
+  .pmin { color:#78818f; font-size:13.5px; font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .dog { color:#d9985c; font-size:12.5px; font-weight:700; }
   .watchlist { margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }
   .wl-title { color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }
   .wl-title span { color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }
@@ -54,22 +54,22 @@
   .wl-ev { color:#e8ecf2; font-weight:800; margin-left:7px; }
   .wl-meta { color:#7d8696; font-size:11px; margin-left:7px; }
   /* PROP row — the read order is bet -> price -> EDGE (the one saturated-green number) */
-  .prop { padding:10px 0 3px; cursor:pointer; border-top:1px solid #14181f; margin-top:8px; }
-  .pblk .prop:first-of-type { border-top:0; margin-top:6px; }
-  .prow { display:flex; align-items:center; gap:8px; }
-  .pind { width:20px; height:20px; border-radius:50%; display:grid; place-items:center;
-    font-size:10.5px; font-weight:800; border:1.5px solid; flex:none; }
+  .prop { padding:13px 0 5px; cursor:pointer; border-top:1px solid #14181f; margin-top:9px; }
+  .pblk .prop:first-of-type { border-top:0; margin-top:8px; }
+  .prow { display:flex; align-items:center; gap:9px; }
+  .pind { width:27px; height:27px; border-radius:50%; display:grid; place-items:center;
+    font-size:13px; font-weight:800; border:1.5px solid; flex:none; }
   .pind.o { color:#57b389; border-color:#57b38944; }
   .pind.u { color:#6a9fe8; border-color:#6a9fe844; }
-  .plno { font-size:17px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
-  .pstat { color:#78818f; font-weight:700; font-size:11.5px; letter-spacing:.04em; }
+  .plno { font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em; }
+  .pstat { color:#78818f; font-weight:700; font-size:13px; letter-spacing:.04em; }
   .psp { flex:1; }
-  .podds { color:#6ba3f5; font-weight:700; font-size:13.5px; font-variant-numeric:tabular-nums; }
-  .pbk { color:#78818f; font-size:8.5px; font-weight:800; letter-spacing:.04em; margin-left:3px;
+  .podds { color:#6ba3f5; font-weight:700; font-size:16px; font-variant-numeric:tabular-nums; }
+  .pbk { color:#78818f; font-size:9.5px; font-weight:800; letter-spacing:.04em; margin-left:3px;
     background:#161b24; border:1px solid #1d232e; border-radius:4px; padding:1px 4px; position:relative; top:-1px; }
-  .pedge { font-weight:800; font-size:15px; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }
+  .pedge { font-weight:800; font-size:20px; font-variant-numeric:tabular-nums; letter-spacing:-.015em; }
   .pedge.hi { color:#37d67f; } .pedge.mid { color:#c3cdda; } .pedge.lo { color:#6b7484; }
-  .pchev { color:#3b4452; font-size:17px; transition:transform .15s; }
+  .pchev { color:#3b4452; font-size:20px; transition:transform .15s; }
   .prop:has(+ .bars.open) .pchev { transform:rotate(90deg); }
   .pv { color:#78818f; font-weight:800; font-size:13px; }
   .juice { color:#c08a4d; font-size:10px; font-weight:700; white-space:nowrap; }
@@ -160,7 +160,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated 4:15 PM MT · self-refreshing</div>
+    <div class="live"><span class="dot"></span>Updated 4:17 PM MT · self-refreshing</div>
   </header>
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
