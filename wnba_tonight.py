@@ -57,6 +57,27 @@ PROPS_DB = Path(os.environ.get("FD_DB",
 PROP_STATS = {"points": "pts", "rebounds": "reb", "assists": "ast",
               "pra": "pra", "pts_reb": "pts_reb", "pts_ast": "pts_ast", "reb_ast": "reb_ast"}
 
+# which base stats each market contains — two markets are CORRELATED (never both bet on one player)
+# if their component sets overlap: points & pra share {p}; rebounds & reb_ast share {r}; etc. A sharp
+# doesn't stack pts + PRA + PA on one player — one bad game sinks them all.
+_STAT_COMPONENTS = {"points": frozenset("p"), "rebounds": frozenset("r"), "assists": frozenset("a"),
+                    "pra": frozenset("pra"), "pts_reb": frozenset("pr"),
+                    "pts_ast": frozenset("pa"), "reb_ast": frozenset("ra")}
+HIGH_EV = 0.20      # a player gets a 2ND (uncorrelated) original-line play only if BOTH anchors clear this
+LADDER_MAX = 3      # at most this many OVER ladder rungs above the original line (FD ladders overs only)
+LADDER_GAP = 2.0    # min spacing between kept ladder rungs, so it's a spread ladder not 5 stacked rungs
+
+
+def _main_line(ladder):
+    """The ORIGINAL line: the rung whose over price sits closest to even (~2.0 dec) — i.e. FanDuel's
+    posted o/u number, the anchor the user bets. Returns the line (float) or None if the ladder is too
+    skewed to have a real main line (only deep alt rungs). Mirrors wnba_clv.book_line."""
+    cand = [(round(float(ln), 1), o) for ln, (o, u) in ladder.items() if o and 1.3 <= o <= 3.5]
+    if not cand:
+        return None
+    line, o = min(cand, key=lambda x: abs(x[1] - 2.0))
+    return line if 1.6 <= o <= 2.6 else None
+
 
 def _am(dec):
     return f"+{round((dec-1)*100)}" if dec >= 2 else f"{round(-100/(dec-1))}"
@@ -281,6 +302,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
     out = []
     for stat, best in posted_props(player).items():
         key = PROP_STATS[stat]
+        orig_line = _main_line(best)          # the ORIGINAL (posted o/u) line = the anchor for this stat
         season_avg = st.mean([g[key] for g in log]) if log else 0
         vals = [val(g, key) for g in sample]
         # plain minutes-honest mean. Context-weighting is dropped: the backtest showed it
@@ -366,7 +388,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             ev_bar = VOL_EV_MIN if use_vol else (OVER_EV_MIN if side == "over" else UNDER_EV_MIN)
             if ev >= ev_bar:
                 spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
-                        "side": side,
+                        "side": side, "orig_line": orig_line,
                         "n": n, "fga": fga, "season_avg": round(season_avg, 1),
                         "elev_avg": round(elev_avg, 1), "stale": stale,
                         "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,
@@ -384,18 +406,53 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                         "vol": ({"vp": round(vp["vol_pts"], 1), "bf": vp["base_fga"],
                                  "rf": vp["recent_fga"], "pps": vp["pps"]} if use_vol else None)}
                 out.append(spot)
-    # collapse adjacent alt-line rungs (same stat, within 1.5 pts) to the best-value one —
-    # e.g. keep points o10.5 over the redundant, more-juiced o9.5, but keep a real ladder
-    # rung like o14.5 that's a distinct bet.
-    out.sort(key=lambda d: -d["ev"])
-    kept = []
+    return _select_player_bets(out)
+
+
+def _select_player_bets(out):
+    """The sharp-exposure rule (user's spec): for ONE player, bet at most 2 UNCORRELATED original-line
+    plays (a 2nd only when both anchors are high-EV), and on an OVER stat add up to LADDER_MAX rungs
+    ABOVE the original line — never a pile of correlated legs (pts + PRA + PA) or deep favorites below
+    the line. `out` = every +EV rung for this player.
+      1. per stat: the ANCHOR = the +EV bet at the original line; OVER anchors also carry a spread
+         ladder of the +EV rungs above the line; UNDER anchors stand alone (FanDuel barely posts alt
+         unders). A stat with no +EV bet at its original line is dropped (we anchor on the posted o/u).
+      2. rank stats by anchor EV; take the best, then a 2nd only if its components are DISJOINT from
+         the 1st AND both anchors clear HIGH_EV."""
+    by_stat = defaultdict(list)
     for e in out:
-        # spread the volume LADDER (>=3pt gaps) so it's an anchor + a couple rungs up, not five
-        # stacked near-even bets that overexpose one player; tighter dedup for everything else.
-        gap = 3.0 if e.get("basis") == "volume" else 1.5
-        if any(k["stat"] == e["stat"] and abs(k["line"] - e["line"]) <= gap for k in kept):
+        if e.get("orig_line") is not None:
+            by_stat[e["stat"]].append(e)
+    plays = {}                                             # stat -> [anchor, ladder rungs...]
+    for stat, spots in by_stat.items():
+        orig = spots[0]["orig_line"]
+        anchor = next((s for s in spots if abs(s["line"] - orig) < 1e-6), None)
+        if not anchor:                                     # no +EV play at the posted o/u -> skip stat
             continue
-        kept.append(e)
+        if anchor["side"] == "over":                       # ladder UP: spread rungs above the line
+            legs, last = [anchor], orig
+            for s in sorted((x for x in spots if x["line"] > orig + 1e-6), key=lambda x: x["line"]):
+                if len(legs) > LADDER_MAX:
+                    break
+                if s["line"] - last >= LADDER_GAP:
+                    legs.append(s)
+                    last = s["line"]
+            plays[stat] = legs
+        else:
+            plays[stat] = [anchor]                          # under: single original-line play, no ladder
+    ranked = sorted(plays, key=lambda s: -plays[s][0]["ev"])   # by anchor EV
+    chosen, used = [], frozenset()
+    for stat in ranked:
+        comp = _STAT_COMPONENTS[stat]
+        if not chosen:
+            chosen.append(stat)
+            used = comp
+        elif len(chosen) < 2 and not (comp & used) \
+                and plays[chosen[0]][0]["ev"] >= HIGH_EV and plays[stat][0]["ev"] >= HIGH_EV:
+            chosen.append(stat)
+            used = used | comp
+    kept = [leg for stat in chosen for leg in plays[stat]]
+    kept.sort(key=lambda d: -d["ev"])
     return kept
 
 
