@@ -54,3 +54,11 @@
 2026-07-11|Kahleah Copper|pts_reb|24.5
 2026-07-11|Valeriane Ayayi|points|9.5
 2026-07-11|Valeriane Ayayi|pts_reb|14.5
+timing|2026-07-12|Jonquel Jones|points|13.5
+timing|2026-07-12|Jonquel Jones|rebounds|12.5
+timing|2026-07-12|Maria Conde|assists|2.5
+timing|2026-07-12|Maria Conde|points|11.5
+timing|2026-07-12|Marine Johannes|points|7.5
+timing|2026-07-12|Pauline Astier|points|7.5
+timing|2026-07-12|Sabrina Ionescu|points|15.5
+timing|2026-07-12|Sydney Taylor|points|14.5
