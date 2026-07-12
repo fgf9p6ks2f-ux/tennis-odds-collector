@@ -482,6 +482,34 @@ def _tracker_panel(wnba_rec, tt_json):
     else:
         out += ('<div class="tcard"><div class="thead">🏓 Table tennis</div>'
                 '<div class="tsub">connecting… (needs the tt-elite bridge)</div></div>')
+    # INJURY-TIMING CLV — the real proof-of-edge: does the line move toward our read from the moment
+    # we flag the injury (open) to the close? Accumulates as slates settle; the verdict is the green
+    # light to scale real money.
+    try:
+        import wnba_clv as CLV
+        cv = CLV.verdict()
+    except Exception:
+        cv = None
+    if cv and not cv["ready"]:
+        out += (f'<div class="tcard"><div class="thead">🎯 Injury-timing CLV</div>'
+                f'<div class="tsub">Accumulating <b>{cv["n"]}/{cv["need"]}</b> closed shadows — the '
+                f'"are we beating the close?" verdict unlocks at {cv["need"]}. This is the proof the '
+                f'timing edge is real before scaling stakes.</div></div>')
+    elif cv:
+        lm, good = cv["line_move"], cv["line_move"] > 0
+        vcls = "up" if good else "down"
+        hit = f'{cv["hit"] * 100:.0f}%' if cv["hit"] is not None else "—"
+        out += f"""
+      <div class="tcard">
+        <div class="thead">🎯 Injury-timing CLV</div>
+        <div class="trow">
+          <div class="tbox"><div class="tk">Line move</div><div class="tv {vcls}">{lm:+.2f}</div></div>
+          <div class="tbox"><div class="tk">Positive</div><div class="tv">{cv["pos_rate"] * 100:.0f}%</div></div>
+          <div class="tbox"><div class="tk">Corr</div><div class="tv">{cv["corr"]:+.2f}</div></div>
+        </div>
+        <div class="tsub">{'✓ line moves toward our read — beating the close' if good else '✗ line drifts against us'}
+          · realized {hit} · {cv['n']} shadows (open vs close)</div>
+      </div>"""
     return out
 
 

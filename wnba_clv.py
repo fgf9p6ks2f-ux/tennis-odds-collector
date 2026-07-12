@@ -156,44 +156,55 @@ def grade():
     return n
 
 
-def report():
+def verdict():
+    """Structured CLV verdict, shared by report() (markdown) and the dashboard (panel). LINE CLV:
+    the SAME book main line at the open (flag) vs the close, signed TOWARD our read — an over read
+    (proj above the opening line) wins when the line RISES, an under read when it FALLS. Returns
+    {n, need, ready, line_move (pts, signed toward us), pos_rate, corr, hit, hit_n}."""
     con = _con()
     con.row_factory = sqlite3.Row
     R = [dict(r) for r in con.execute(
         "SELECT * FROM clv WHERE v=2 AND closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL")]
     con.close()
-    L = ["# WNBA injury-timing CLV — does the line move our way, open to close?", "",
-         f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {len(R)} closed shadows "
-         f"(opening line vs closing line)_", ""]
-    if len(R) < MIN_GRADED:
-        L.append(f"Accumulating — {len(R)}/{MIN_GRADED} closed shadows before CLV is trustworthy.")
-        REPORT.write_text("\n".join(L) + "\n")
-        print(f"clv report: {len(R)}/{MIN_GRADED} closed shadows — accumulating")
-        return
-    # LINE CLV: the SAME (main) line at the open (flag) vs the close. Signed toward our read — an
-    # over read (proj above the opening line) wins when the line RISES; an under read when it FALLS.
-    def signed(r):
-        move = r["close_line"] - r["flag_line"]
-        return move if r["proj"] >= r["flag_line"] else -move
-    moves = [signed(r) for r in R]
-    pos = sum(1 for m in moves if m > 0)
-    corr = _corr([r["proj"] - r["flag_line"] for r in R], [r["close_line"] - r["flag_line"] for r in R])
+    n = len(R)
+    base = {"n": n, "need": MIN_GRADED, "ready": n >= MIN_GRADED,
+            "line_move": None, "pos_rate": None, "corr": None, "hit": None, "hit_n": 0}
+    if not n:
+        return base
+    moves = [(r["close_line"] - r["flag_line"]) * (1 if r["proj"] >= r["flag_line"] else -1) for r in R]
     graded = [r for r in R if r["graded"] and r["actual"] is not None]
     won = sum(1 for r in graded if (r["actual"] > r["flag_line"]) == (r["proj"] >= r["flag_line"]))
+    base.update(line_move=st.mean(moves), pos_rate=sum(1 for m in moves if m > 0) / n,
+                corr=_corr([r["proj"] - r["flag_line"] for r in R],
+                           [r["close_line"] - r["flag_line"] for r in R]),
+                hit=(won / len(graded) if graded else None), hit_n=len(graded))
+    return base
+
+
+def report():
+    v = verdict()
+    L = ["# WNBA injury-timing CLV — does the line move our way, open to close?", "",
+         f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {v['n']} closed shadows "
+         f"(opening line vs closing line)_", ""]
+    if not v["ready"]:
+        L.append(f"Accumulating — {v['n']}/{v['need']} closed shadows before CLV is trustworthy.")
+        REPORT.write_text("\n".join(L) + "\n")
+        print(f"clv report: {v['n']}/{v['need']} closed shadows — accumulating")
+        return
     L += ["## Does the line move toward our read from open to close?", "```",
-          f"closed shadows:            {len(R)}",
-          f"avg line move toward us:   {st.mean(moves):+.2f} pts   (>0 = the close moved our way)",
-          f"positive-CLV rate:         {pos}/{len(moves)} ({100*pos/len(moves):.0f}%)",
-          f"corr(our edge, line move): {corr:+.2f}   (does proj-minus-open predict open-to-close?)",
-          (f"realized hit (our side):   {won}/{len(graded)} ({100*won/len(graded):.0f}%)"
-           if graded else "realized hit (our side):   pending")]
+          f"closed shadows:            {v['n']}",
+          f"avg line move toward us:   {v['line_move']:+.2f} pts   (>0 = the close moved our way)",
+          f"positive-CLV rate:         {100*v['pos_rate']:.0f}%",
+          f"corr(our edge, line move): {v['corr']:+.2f}   (does proj-minus-open predict open-to-close?)",
+          (f"realized hit (our side):   {100*v['hit']:.0f}% ({v['hit_n']})" if v["hit"] is not None
+           else "realized hit (our side):   pending")]
     L += ["```",
           "The line moving toward our read between the flag (open) and the close = we price the "
           "injury reprice BEFORE the book. That is the timing edge — the green light to bet real money.",
           ""]
     REPORT.write_text("\n".join(L) + "\n")
-    print(f"clv report: {len(R)} closed shadows · line move {st.mean(moves):+.2f} · "
-          f"{100*pos/len(moves):.0f}% positive · wrote {REPORT.name}")
+    print(f"clv report: {v['n']} closed shadows · line move {v['line_move']:+.2f} · "
+          f"{100*v['pos_rate']:.0f}% positive · wrote {REPORT.name}")
 
 
 def _corr(a, b):
