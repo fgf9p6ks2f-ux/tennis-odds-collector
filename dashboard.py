@@ -21,11 +21,14 @@ import requests
 
 try:
     from zoneinfo import ZoneInfo
-    MT = ZoneInfo("America/Denver")
+    MT = ZoneInfo("America/Denver")            # user-local, for DISPLAY times only
+    ET = ZoneInfo("America/New_York")          # the slate day + pred_date basis, for DATE filters
 except Exception:
     MT = dt.timezone(dt.timedelta(hours=-6))
+    ET = dt.timezone(dt.timedelta(hours=-4))
 
 HERE = Path(__file__).resolve().parent
+FRESH_MIN = 90     # best-price: only quotes re-posted within this many min of the newest count as live
 LEDGER = HERE / "wnba_ledger.sqlite"
 OUT = HERE / "docs" / "index.html"
 STAT = {"points": "PTS", "rebounds": "REB", "assists": "AST",
@@ -409,13 +412,30 @@ def _book_prices(r):
     try:
         con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
         rows = con.execute(
-            "SELECT COALESCE(book,'fd') b, MAX(odds) FROM fd_lines WHERE sport='wnba' AND player=? "
-            "AND stat=? AND ROUND(line,1)=? AND side=? AND collected_at > datetime('now','-1 day') "
-            "GROUP BY b", (r["player"], r["stat"], round(float(r["line"]), 1), side)).fetchall()
+            "SELECT COALESCE(book,'fd') b, odds, collected_at FROM fd_lines WHERE sport='wnba' "
+            "AND player=? AND stat=? AND ROUND(line,1)=? AND side=? "
+            "AND collected_at > datetime('now','-1 day')",
+            (r["player"], r["stat"], round(float(r["line"]), 1), side)).fetchall()
         con.close()
     except Exception:
         return []
-    return sorted([(b, o) for b, o in rows if o], key=lambda x: -x[1])
+    if not rows:
+        return []
+    # CURRENT snapshot only: the LATEST quote per book, and drop a book whose newest quote for this
+    # rung is stale (>FRESH_MIN behind the newest) — never MAX-over-time, which showed an old, more
+    # generous price as the live 'best price' (the same bug fixed in posted_props).
+    newest = max(ca for _, _, ca in rows)
+    try:
+        cutoff = (dt.datetime.fromisoformat(newest) - dt.timedelta(minutes=FRESH_MIN)).isoformat()
+    except ValueError:
+        cutoff = ""
+    latest = {}                                        # book -> (collected_at, odds)
+    for b, o, ca in rows:
+        if o is None or ca < cutoff:
+            continue
+        if b not in latest or ca > latest[b][0]:
+            latest[b] = (ca, o)
+    return sorted([(b, o) for b, (ca, o) in latest.items()], key=lambda x: -x[1])
 
 
 def _prop_row(r):
@@ -683,7 +703,7 @@ def _watchlist_html():
         d = json.loads(f.read_text())
     except (ValueError, OSError):
         return ""
-    today = dt.datetime.now(dt.timezone.utc).astimezone(MT).date().isoformat()
+    today = dt.datetime.now(ET).date().isoformat()   # match the ET slate date the writer stamps
     spots = d.get("spots") or []
     if d.get("date") != today or not spots:
         return ""
@@ -711,8 +731,10 @@ def _watchlist_html():
 
 
 def build():
-    now = dt.datetime.now(dt.timezone.utc).astimezone(MT)
-    rows, (w, l, u, pend) = _load(now.date().isoformat())
+    now = dt.datetime.now(dt.timezone.utc).astimezone(MT)   # MT for the displayed clock only
+    # the BOARD's slate day is ET (matches pred_date the scanner stamps) — using MT hid plays during
+    # the ET-night / MT-evening window (a bet stamped ET-tomorrow was invisible on the MT-today board).
+    rows, (w, l, u, pend) = _load(dt.datetime.now(ET).date().isoformat())
     tips = _tip_times()
     # GROUP BY GAME, then player — so the board reads game > player > props with clear separation.
     by_player = defaultdict(list)

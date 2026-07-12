@@ -72,6 +72,12 @@ def extract(m, sport, event_name=""):
     # 0) WNBA player prop — two-sided "{Player} - Points" (Over/Under + handicap) or
     #    alt "To Score X+ Points" / "1+ Made Threes" (runners are players, over-only).
     if sport == "wnba":
+        # FanDuel posts per-period markets ("1st Quarter Points", "1st Half Rebounds") whose names
+        # substring-match "points"/"rebounds" and leak in as phantom low even-odds rungs that hijack
+        # full-game main-line detection (a 20-pt scorer's "points" main line reading 5.5). Full-game
+        # markets only — reject anything period-qualified before the WNBA_STATS substring match.
+        if re.search(r"\b(quarter|half|period)\b", low):
+            return rows
         wstat = next((v for k, v in WNBA_STATS.items() if k in low), None)
         if not wstat:
             return rows
