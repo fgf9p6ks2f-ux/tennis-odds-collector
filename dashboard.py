@@ -397,18 +397,17 @@ def _hrcell(lbl, hr, role=False):
             f'<span class="gcv">{pct:.0f}%</span><span class="gcs">{hr[0]}/{hr[1]}</span></div>')
 
 
-PROPS_DB = HERE / "fanduel_props.sqlite"
-
-
 def _book_prices(r):
     """[(book, dec_odds)] for THIS prop's bet side, BEST price first, from the last day of fd_lines
-    (FanDuel + DraftKings live in the same table). Lets the card show WHERE the best number is so the
-    bet gets placed at it. [] if the props DB is missing/unreachable."""
-    if not PROPS_DB.exists():
+    (FanDuel + DraftKings live in the same table). Reads the freshest lines DB (resilient to a
+    dropped collect-odds cron). Lets the card show WHERE the best number is. [] if unreachable."""
+    import wnba_props_db as PDB
+    db = PDB.props_db()
+    if not Path(db).exists():
         return []
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     try:
-        con = sqlite3.connect(f"file:{PROPS_DB}?mode=ro", uri=True)
+        con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
         rows = con.execute(
             "SELECT COALESCE(book,'fd') b, MAX(odds) FROM fd_lines WHERE sport='wnba' AND player=? "
             "AND stat=? AND ROUND(line,1)=? AND side=? AND collected_at > datetime('now','-1 day') "

@@ -109,10 +109,12 @@ def _latest_ladder(con_p, player, stat, date):
 def capture_close():
     """Fill the closing line/odds for open shadows from the LATEST logged FanDuel ladder. Run at/
     after tip so 'latest' == the closing number."""
-    if not PROPS_DB.exists():
+    import wnba_props_db as PDB
+    db = PDB.props_db()                                # freshest lines DB (resilient to a dropped cron)
+    if not Path(db).exists():
         return 0
     con = _con()
-    con_p = sqlite3.connect(PROPS_DB)
+    con_p = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     rows = con.execute("SELECT rowid, player, stat, date FROM clv WHERE closed=0 AND v=2").fetchall()
     n = 0
     for rid, player, stat, date in rows:

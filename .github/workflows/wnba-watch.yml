@@ -39,10 +39,13 @@ jobs:
           git config user.name "odds-bot"
           git config user.email "odds-bot@users.noreply.github.com"
           for i in $(seq 1 315); do
-            if [ $((i % 2)) -eq 1 ]; then                        # ~every 2 min: REFRESH FanDuel WNBA
-              # lines IN-JOB (fresh flag_line for the scan + CLV shadow — the timing edge). Not
-              # committed here (24MB churn); collect-odds owns the persistent snapshot every 30 min.
-              FD_DB="$(pwd)/fanduel_props.sqlite" python fd_collect.py --wnba >/dev/null 2>&1 || echo "fd lines skipped"
+            if [ $((i % 2)) -eq 1 ]; then                        # ~every 2 min: REFRESH FanDuel + DK WNBA
+              # lines into a SMALL, WNBA-only wnba_lines.sqlite (~8k rows / <1MB) that IS committed
+              # below — so the persistent snapshot the dashboard best-price + CLV read stays fresh even
+              # when GitHub throttles collect-odds' cron (its 30MB full DB is left to collect-odds).
+              FD_DB="$(pwd)/wnba_lines.sqlite" python fd_collect.py --wnba >/dev/null 2>&1 || echo "fd lines skipped"
+              FD_DB="$(pwd)/wnba_lines.sqlite" python dk_collect.py --wnba >/dev/null 2>&1 || echo "dk lines skipped"
+              python -c "import sqlite3; c=sqlite3.connect('wnba_lines.sqlite'); c.execute(\"DELETE FROM fd_lines WHERE collected_at < datetime('now','-2 days')\"); c.commit(); c.close()" 2>/dev/null || true
             fi
             python wnba_watch.py || echo "poll $i skipped"       # ntfy push happens in here, pre-commit
             if [ $((i % 10)) -eq 1 ]; then                       # ~every 10 min: settle finished games LIVE

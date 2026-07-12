@@ -31,6 +31,7 @@ except Exception:
 import rotowire as RW
 import wnba_context as CTX
 import wnba_dvp as DVP
+import wnba_props_db as PDB
 import wnba_wowy as W
 
 _RW_CACHE = {}
@@ -81,9 +82,10 @@ def playing_now(player):
     player's props the moment they're ruled out, so a full slate in the latest collection
     cycle means they're PLAYING. Guards against a stale injury feed (e.g. a returning
     player still tagged 'Out', like A'ja Wilson 7/9)."""
-    if not PROPS_DB.exists():
+    db = PDB.props_db()                                # freshest of collect-odds' DB / the watch loop's
+    if not Path(db).exists():
         return False
-    con = sqlite3.connect(PROPS_DB)
+    con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     latest = con.execute("SELECT MAX(collected_at) FROM fd_lines WHERE sport='wnba'").fetchone()[0]
     if not latest:
         con.close()
@@ -98,9 +100,10 @@ def posted_props(player):
     """Latest WNBA props for a player: {stat_key: {line: (best_over_dec, best_under_dec)}}
     across books. Both sides now — the model bets whichever side the projection favors, so
     it needs the under price too (0.0 if a book only posted the over)."""
-    if not PROPS_DB.exists():
+    db = PDB.props_db()                                # freshest of collect-odds' DB / the watch loop's
+    if not Path(db).exists():
         return {}
-    con = sqlite3.connect(PROPS_DB)
+    con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     rows = con.execute(
         "SELECT stat, line, side, odds, COALESCE(book,'fd') FROM fd_lines "
         "WHERE sport='wnba' AND player=? AND collected_at > datetime('now','-1 day')",

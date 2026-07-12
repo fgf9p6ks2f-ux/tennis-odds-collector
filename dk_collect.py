@@ -102,6 +102,10 @@ def collect_league(sport, lg):
 
 
 def main():
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--wnba", action="store_true", help="WNBA only (skip MLB) — for the resilient loop")
+    leagues = {"wnba": LEAGUES["wnba"]} if ap.parse_args().wnba else LEAGUES
     ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
     con = sqlite3.connect(DB)
     con.execute("""CREATE TABLE IF NOT EXISTS fd_lines (
@@ -111,7 +115,7 @@ def main():
     if "book" not in cols:
         con.execute("ALTER TABLE fd_lines ADD COLUMN book TEXT DEFAULT 'fd'")
     total = 0
-    for sport, lg in LEAGUES.items():
+    for sport, lg in leagues.items():
         try:
             rows = collect_league(sport, lg)
         except Exception as e:
