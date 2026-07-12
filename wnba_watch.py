@@ -41,6 +41,9 @@ PRICE_JUMP = 6                                 # +this many freshly-priced playe
 WATCHDOG_STATE = HERE / "wnba_watchdog_state.json"  # last watchdog alert signature (dedup: 1/issue/day)
 UNDER_DIV_MIN = 1.5    # timing spots: min (line - proj) to surface an UNDER (the validated edge side)
 OVER_DIV_MIN = 3.0     # ...and a bigger (proj - line) gap for an OVER (elevated roles regress)
+PROJ_CACHE = HERE / "wnba_proj_cache.json"     # {date, proj:{player:{out,min,pts,reb,ast}}} — the last
+                                               # full scan's line-independent projections, for the
+                                               # sub-minute opener alert (match vs a fresh line, no re-scan)
 
 FIRM = ("OUT", "DOUBTFUL")                     # tags that drive the firm beneficiary scan
 WATCH = ("QUESTIONABLE", "GTD")                # tags that drive the questionable-tier watchlist
@@ -114,12 +117,31 @@ _STAT_ABBR = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA"
               "pts_reb": "P+R", "pts_ast": "P+A", "reb_ast": "R+A"}
 
 
+def _div_spot(player, stat, proj, line, over, out_player, today):
+    """Shared opener/timing rule: turn a (projection vs main line) into a spot (key, msg, |div|), or
+    None if the divergence isn't enough. Asymmetric like prop_edges' EV bars (the validated OVER->UNDER
+    pivot): elevated-role OVERS regress, so demand a MUCH bigger proj-vs-line gap for an over than an
+    under; also drops a stub/mismapped line sitting far off the projection."""
+    if not proj or not line or not (0.5 * proj <= line <= 2.0 * proj):
+        return None
+    div = proj - line
+    if div >= OVER_DIV_MIN:
+        side = "o"
+    elif -div >= UNDER_DIV_MIN:
+        side = "u"
+    else:
+        return None
+    px = f" {T._am(over)}" if side == "o" and over and over > 1 else ""
+    off = A._short((out_player or "").split(",")[0].strip())
+    key = f"timing|{today}|{player}|{stat}|{line}"
+    msg = (f"{A._short(player)} {_STAT_ABBR.get(stat, stat[:3])} {side}{line:g}{px} "
+           f"→ proj {proj:.1f} ({div:+.1f}) · off {off}")
+    return (key, msg, abs(div))
+
+
 def _timing_spots(today):
-    """The beneficiary plays to bet EARLY at the OPENING line — where our projection diverges from
-    the opener by a real margin, so the number should move toward us as the market digests the injury
-    (the CLV / timing edge: get down before the book corrects). Reads the freshly-captured opening
-    shadows; filters stub/mismapped openers (line far off the projection). Returns [(key, msg, div)]
-    sorted by divergence."""
+    """Timing spots from the freshly-captured CLV opening SHADOWS (available only after a full scan
+    has run + logged them). The sub-minute path is _opener_spots; this is the post-scan complement."""
     import sqlite3
     db = HERE / "wnba_clv.sqlite"
     if not db.exists():
@@ -132,29 +154,54 @@ def _timing_spots(today):
         con.close()
     except Exception:
         return []
-    spots = []
-    for pl, stat, line, over, proj, outp in rows:
-        if not proj or not line or not (0.5 * proj <= line <= 2.0 * proj):
-            continue                                    # stub / mismapped opener (line far off proj)
-        div = proj - line
-        # asymmetric like prop_edges' EV bars (OVER 0.10 / UNDER 0.04 — the validated OVER->UNDER
-        # pivot): elevated-role OVERS regress to the mean, so demand a MUCH bigger projection-vs-opener
-        # gap to surface an over than an under. A symmetric 1.5 threshold pushed elevated-role overs
-        # the backtest says have ~zero edge (6/8 of 07-12's timing spots were exactly those).
-        if div >= OVER_DIV_MIN:
-            side = "o"
-        elif -div >= UNDER_DIV_MIN:
-            side = "u"
-        else:
-            continue                                    # not enough divergence for either side
-
-        px = f" {T._am(over)}" if side == "o" and over and over > 1 else ""
-        off = A._short((outp or "").split(",")[0].strip())
-        key = f"timing|{today}|{pl}|{stat}|{line}"
-        msg = (f"{A._short(pl)} {_STAT_ABBR.get(stat, stat[:3])} {side}{line:g}{px} "
-               f"→ proj {proj:.1f} ({div:+.1f}) · off {off}")
-        spots.append((key, msg, abs(div)))
+    spots = [s for pl, stat, ln, ov, pj, op in rows
+             if (s := _div_spot(pl, stat, pj, ln, ov, op, today))]
     return sorted(spots, key=lambda x: -x[2])
+
+
+def _opener_spots(today):
+    """SUB-MINUTE opener alert. Match each cached beneficiary PROJECTION (line-INDEPENDENT — it depends
+    on the injury picture, written by the last full scan) against the CURRENT posted main line, in
+    milliseconds. So the moment a fresh opening line lands, the 60s poll flags it and pushes — BEFORE
+    the ~47s full scan re-runs. This is the timing edge: bet the opener before the book corrects it."""
+    if not PROJ_CACHE.exists():
+        return []
+    try:
+        c = json.loads(PROJ_CACHE.read_text())
+    except (OSError, ValueError):
+        return []
+    if c.get("date") != today:                          # stale cache (a prior slate) -> ignore
+        return []
+    spots = []
+    for player, pr in c.get("proj", {}).items():
+        try:
+            lad = T.posted_props(player)
+        except Exception:
+            continue
+        if not lad:
+            continue
+        projs = {"points": pr.get("pts"), "rebounds": pr.get("reb"), "assists": pr.get("ast")}
+        if all(pr.get(k) is not None for k in ("pts", "reb", "ast")):
+            projs.update(pra=pr["pts"] + pr["reb"] + pr["ast"], pts_reb=pr["pts"] + pr["reb"],
+                         pts_ast=pr["pts"] + pr["ast"], reb_ast=pr["reb"] + pr["ast"])
+        for stat, proj in projs.items():
+            ladder = lad.get(stat)
+            if not ladder or proj is None:
+                continue
+            line = T._main_line(ladder)
+            if line is None:
+                continue
+            s = _div_spot(player, stat, proj, line, ladder.get(line, (None, None))[0], pr.get("out"), today)
+            if s:
+                spots.append(s)
+    # ONE opener line per player — the strongest divergence — so the fast heads-up isn't a correlated
+    # pile-up (Stewart PRA + P+R + P+A + pts all at once). The sharp 1-2-uncorrelated selection + ladder
+    # happens in the full scan that follows; this is just 'a beatable opener just posted, get down'.
+    best = {}
+    for key, msg, ad in sorted(spots, key=lambda x: -x[2]):
+        player = key.split("|")[2]
+        best.setdefault(player, (key, msg, ad))
+    return sorted(best.values(), key=lambda x: -x[2])
 
 
 def _priced_count():
@@ -206,6 +253,29 @@ def main():
         print("no games on the slate — idle")
         return
     pl = players_cached()
+
+    # ---- SUB-MINUTE OPENER ALERT (fires BEFORE the injuries fetch + the ~47s scan) ----
+    # Match the last full scan's cached, line-INDEPENDENT projections against the freshly-collected
+    # lines in milliseconds, so a just-posted opening line is on the phone within the 60s poll — the
+    # whole CLV/timing edge (bet the opener before the book corrects it). Shares SEEN so the post-scan
+    # timing push never double-fires it.
+    topic = os.environ.get("NTFY_TOPIC")
+    today_et = dt.datetime.now(T.ET).date().isoformat()
+    seen_op = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
+    opener = [(k, m) for k, m, _ in _opener_spots(today_et) if k not in seen_op][:10]
+    if opener and topic:
+        body = (f"⚡ Opening line{'s' if len(opener) != 1 else ''} — bet EARLY (before the book moves)\n\n"
+                + "\n".join("• " + m for _, m in opener))
+        try:
+            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
+                                 headers={"Title": "WNBA opening line", "Priority": "high", "Tags": "zap"},
+                                 timeout=15)
+            resp.raise_for_status()
+            A.SEEN.write_text("\n".join(sorted(seen_op | {k for k, _ in opener})[-2000:]))
+            print(f"⚡ sub-minute opener alert: {len(opener)} spot(s) pushed pre-scan")
+        except requests.RequestException as e:
+            print("opener push failed (will retry next poll):", str(e)[:60])
+
     inj = T.injuries()
     # merge RotoWire's ruled-OUT list (mapped to full roster names via first-initial+lastname)
     # — a 2nd injury source that catches outs the ESPN feed is slow on and confirms them via

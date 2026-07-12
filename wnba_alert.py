@@ -263,6 +263,20 @@ def collect():
                   if tuple(a[1].split("|")[1:3]) not in drop]
         print(f"correlation cap: dropped {len(drop)} redundant same-team same-family over-leg(s)")
     PL.log(proj_rows)                       # background projection tracker (learning loop)
+    # OPENER CACHE: persist each beneficiary's LINE-INDEPENDENT projection (it depends on the injury
+    # picture, not on when a line posts) so the 60s poll can flag a freshly-posted opening line against
+    # it in milliseconds — the sub-minute alert — WITHOUT waiting for this full ~47s scan to re-run.
+    # Rewritten every scan, i.e. whenever the injury picture moves.
+    try:
+        cache = {"date": today,
+                 "ts": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat(),
+                 "proj": {r["player"]: {"out": r["out_player"], "conf": r["confidence"],
+                                        "min": r["proj_min"], "pts": r["proj_pts"],
+                                        "reb": r["proj_reb"], "ast": r["proj_ast"]}
+                          for r in proj_rows if r.get("proj_pts") is not None}}
+        (HERE / "wnba_proj_cache.json").write_text(json.dumps(cache))
+    except Exception as e:
+        print("opener cache write skipped:", str(e)[:60])
 
     # QUESTIONABLE-TIER WATCHLIST: surface beneficiaries EARLY while a star is still a game-time
     # decision (the timing edge), tagged with who it hinges on + how likely they are to sit — but
