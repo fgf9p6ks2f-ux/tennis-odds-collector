@@ -35,40 +35,32 @@ MIN_GRADED = 20
 SCHEMA = """CREATE TABLE IF NOT EXISTS clv(
   date TEXT, player TEXT, stat TEXT, out_player TEXT, flagged_at TEXT, proj REAL,
   flag_line REAL, flag_over REAL, close_line REAL, close_over REAL, closed INTEGER DEFAULT 0,
-  actual REAL, graded INTEGER DEFAULT 0, UNIQUE(date, player, stat));"""
+  actual REAL, graded INTEGER DEFAULT 0, v INTEGER, UNIQUE(date, player, stat));"""
 
 
 def _con():
     con = sqlite3.connect(DB)
     con.execute(SCHEMA)
+    # v = format version. v2 = flag_line & close_line are BOTH the book main line (opening vs closing).
+    # Pre-v2 rows mixed nearest-rung flag with main-line close (the 24.5-vs-5.5 bug) -> excluded.
+    if "v" not in {r[1] for r in con.execute("PRAGMA table_info(clv)")}:
+        con.execute("ALTER TABLE clv ADD COLUMN v INTEGER")
     return con
 
 
-def nearest_over(ladder, proj):
-    """The over we'd actually BET: the posted rung closest to our projection with a usable over
-    price. This is stable even on a THIN early ladder (we only need one rung near proj), unlike the
-    balanced 'main line' which needs a mature ladder — and thin early lines are exactly the pre-
-    move spots the timing edge lives in. CLV is then the odds move on THIS fixed line to the close."""
-    cand = [(round(float(line), 1), o) for line, (o, u) in ladder.items() if o and 1.2 <= o <= 8.0]
+def book_line(ladder):
+    """The book's MAIN line and its over price from {line: (over_dec, under_dec)} — the rung whose
+    OVER price sits closest to even (~2.0 decimal), i.e. where the book thinks the player lands.
+    This is the SAME concept captured at flag (the OPENING line) and at close (the CLOSING line), so
+    CLV is a clean opening-vs-closing LINE move — not a mismatch of two different rungs. Works on a
+    THIN early ladder (needs only one near-even rung, which is exactly the pre-move spot the timing
+    edge lives in); returns (None, None) if the ladder is too skewed to identify a main line (only
+    deep alt rungs posted, no rung near even)."""
+    cand = [(round(float(line), 1), o) for line, (o, u) in ladder.items() if o and 1.3 <= o <= 3.5]
     if not cand:
         return None, None
-    line, o = min(cand, key=lambda x: (abs(x[0] - proj), x[0]))
-    return line, round(o, 3)
-
-
-def main_line(ladder):
-    """The book's balanced main line from {line: (over_dec, under_dec)} — the rung where the over
-    and under prices are CLOSEST (both ~-110), i.e. where the book thinks the player actually lands.
-    Used only as secondary context now (needs a mature ladder); the fixed-line odds are primary."""
-    bal = [(round(float(line), 1), o, u) for line, (o, u) in ladder.items()
-           if o and u and 1.3 <= o <= 3.5 and 1.3 <= u <= 3.5]
-    if len(bal) < 2:        # thin/early ladder — the balanced rung is unreliable, don't log a shadow
-        return None, None
-    line, o, _u = min(bal, key=lambda x: abs(x[1] - x[2]))
-    # sanity: the picked rung's over & under must BOTH be near even (a real main line, not a lone
-    # mispriced deep rung that happens to read 1.9). Guard against thin-ladder artifacts.
-    over, under = ladder[line] if line in ladder else (o, o)
-    if not (1.55 <= over <= 2.45 and 1.55 <= under <= 2.45):
+    line, o = min(cand, key=lambda x: abs(x[1] - 2.0))
+    if not (1.6 <= o <= 2.6):            # closest rung STILL isn't near even -> no real main line here
         return None, None
     return line, round(o, 3)
 
@@ -83,12 +75,12 @@ def log_shadow(date, player, out_player, projs, props):
         ladder = props.get(stat)
         if not ladder:
             continue
-        fl, fo = nearest_over(ladder, proj)              # the fixed over line nearest our number
+        fl, fo = book_line(ladder)                       # the book's MAIN line NOW = our OPENING line
         if fl is None:
             continue
         n += con.execute(
             "INSERT OR IGNORE INTO clv(date, player, stat, out_player, flagged_at, proj, "
-            "flag_line, flag_over) VALUES (?,?,?,?,?,?,?,?)",
+            "flag_line, flag_over, v) VALUES (?,?,?,?,?,?,?,?,2)",
             (date, player, stat, out_player, ts, round(proj, 1), fl, fo)).rowcount
     con.commit()
     con.close()
@@ -120,18 +112,17 @@ def capture_close():
         return 0
     con = _con()
     con_p = sqlite3.connect(PROPS_DB)
-    rows = con.execute("SELECT rowid, player, stat, date, flag_line FROM clv WHERE closed=0").fetchall()
+    rows = con.execute("SELECT rowid, player, stat, date FROM clv WHERE closed=0 AND v=2").fetchall()
     n = 0
-    for rid, player, stat, date, flag_line in rows:
+    for rid, player, stat, date in rows:
         lad = _latest_ladder(con_p, player, stat, date)
         if not lad:
             continue
-        cl, _co = main_line(lad)                          # secondary context (needs mature ladder)
-        close_over = lad.get(round(flag_line, 1), (None, None))[0]   # closing over price at OUR line
-        if close_over is None and cl is not None and cl > flag_line:
-            close_over = 1.10     # our over line is now well ITM (the market moved past it) = big CLV
+        cl, co = book_line(lad)                           # the CLOSING main line — same concept as flag
+        if cl is None:                                    # closing ladder too thin -> leave open, retry
+            continue
         con.execute("UPDATE clv SET close_line=?, close_over=?, closed=1 WHERE rowid=?",
-                    (cl, close_over, rid))
+                    (cl, co, rid))
         n += 1
     con.commit()
     con_p.close()
@@ -169,37 +160,40 @@ def report():
     con = _con()
     con.row_factory = sqlite3.Row
     R = [dict(r) for r in con.execute(
-        "SELECT * FROM clv WHERE closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL")]
+        "SELECT * FROM clv WHERE v=2 AND closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL")]
     con.close()
-    # OVER spots = the over we'd actually bet (our projection sits at/above the fixed line we track)
-    ov = [r for r in R if r["close_over"] and r["close_over"] > 0 and r["proj"] >= r["flag_line"] - 0.5]
-    L = ["# WNBA injury-timing CLV — do our reads beat the closing number?", "",
+    L = ["# WNBA injury-timing CLV — does the line move our way, open to close?", "",
          f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {len(R)} closed shadows "
-         f"({len(ov)} over-side)_", ""]
-    if len(ov) < MIN_GRADED:
-        L.append(f"Accumulating — {len(ov)}/{MIN_GRADED} over shadows before CLV is trustworthy.")
+         f"(opening line vs closing line)_", ""]
+    if len(R) < MIN_GRADED:
+        L.append(f"Accumulating — {len(R)}/{MIN_GRADED} closed shadows before CLV is trustworthy.")
         REPORT.write_text("\n".join(L) + "\n")
-        print(f"clv report: {len(ov)}/{MIN_GRADED} over shadows — accumulating")
+        print(f"clv report: {len(R)}/{MIN_GRADED} closed shadows — accumulating")
         return
-    # CLV at the FIXED line: the over we locked at flag vs its price at the close. flag_over >
-    # close_over  <=>  we got a LONGER price than the market closed at  <=>  positive CLV.
-    clvs = [100 * (r["flag_over"] / r["close_over"] - 1) for r in ov]
-    pos = sum(1 for c in clvs if c > 0)
-    graded = [r for r in ov if r["graded"] and r["actual"] is not None]
-    won = sum(1 for r in graded if r["actual"] > r["flag_line"])
-    L += ["## Do our injury reads beat the closing number?", "```",
-          f"over shadows:           {len(ov)}",
-          f"avg CLV (our px vs close): {st.mean(clvs):+.1f}%   (>0 = we locked a LONGER price than "
-          f"the close = we beat the book)",
-          f"positive-CLV rate:      {pos}/{len(clvs)} ({100*pos/len(clvs):.0f}%)",
-          (f"realized over hit:      {won}/{len(graded)} ({100*won/len(graded):.0f}%)"
-           if graded else "realized over hit:      pending")]
+    # LINE CLV: the SAME (main) line at the open (flag) vs the close. Signed toward our read — an
+    # over read (proj above the opening line) wins when the line RISES; an under read when it FALLS.
+    def signed(r):
+        move = r["close_line"] - r["flag_line"]
+        return move if r["proj"] >= r["flag_line"] else -move
+    moves = [signed(r) for r in R]
+    pos = sum(1 for m in moves if m > 0)
+    corr = _corr([r["proj"] - r["flag_line"] for r in R], [r["close_line"] - r["flag_line"] for r in R])
+    graded = [r for r in R if r["graded"] and r["actual"] is not None]
+    won = sum(1 for r in graded if (r["actual"] > r["flag_line"]) == (r["proj"] >= r["flag_line"]))
+    L += ["## Does the line move toward our read from open to close?", "```",
+          f"closed shadows:            {len(R)}",
+          f"avg line move toward us:   {st.mean(moves):+.2f} pts   (>0 = the close moved our way)",
+          f"positive-CLV rate:         {pos}/{len(moves)} ({100*pos/len(moves):.0f}%)",
+          f"corr(our edge, line move): {corr:+.2f}   (does proj-minus-open predict open-to-close?)",
+          (f"realized hit (our side):   {won}/{len(graded)} ({100*won/len(graded):.0f}%)"
+           if graded else "realized hit (our side):   pending")]
     L += ["```",
-          "Positive CLV = we consistently price the injury reprice BEFORE the book. That is the "
-          "timing edge — the autobetter's green light to flag-and-notify with real money.", ""]
+          "The line moving toward our read between the flag (open) and the close = we price the "
+          "injury reprice BEFORE the book. That is the timing edge — the green light to bet real money.",
+          ""]
     REPORT.write_text("\n".join(L) + "\n")
-    print(f"clv report: {len(ov)} over shadows · CLV {st.mean(clvs):+.1f}% · "
-          f"{100*pos/len(clvs):.0f}% positive · wrote {REPORT.name}")
+    print(f"clv report: {len(R)} closed shadows · line move {st.mean(moves):+.2f} · "
+          f"{100*pos/len(moves):.0f}% positive · wrote {REPORT.name}")
 
 
 def _corr(a, b):
