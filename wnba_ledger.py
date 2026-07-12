@@ -121,7 +121,7 @@ def log_predictions(rows):
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
             "d_stat", "d_fga", "d_min", "driver", "vac",
             "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "basis", "samples", "confidence",
-            "side", "regime", "vol")
+            "side", "regime", "vol", "pi_role")
     n = 0
     for r in rows:
         # insert new spots idempotently, and REFRESH on re-log so the row tracks live info through
@@ -138,7 +138,7 @@ def log_predictions(rows):
             f"proj_hit=excluded.proj_hit, proj_min=excluded.proj_min, n_elev=excluded.n_elev, "
             f"d_fga=excluded.d_fga, d_min=excluded.d_min, d_fta=excluded.d_fta, "
             f"d_3pa=excluded.d_3pa, driver=excluded.driver, stale=excluded.stale, vac=excluded.vac, "
-            f"spread=excluded.spread",
+            f"spread=excluded.spread, pi_role=excluded.pi_role",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     # SELF-HEAL: when a projection updates (e.g. recent-minutes lift takes a player off an under),
