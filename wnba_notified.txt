@@ -71,6 +71,7 @@
 2026-07-12|Marina Mabrey|points|24.5
 2026-07-12|Marina Mabrey|pra|28.5
 2026-07-12|Marina Mabrey|pts_ast|24.5
+2026-07-12|Marina Mabrey|pts_reb|24.5
 2026-07-12|Marina Mabrey|reb_ast|7.5
 2026-07-12|Marina Mabrey|rebounds|3.5
 2026-07-12|Marine Johannes|assists|1.5
