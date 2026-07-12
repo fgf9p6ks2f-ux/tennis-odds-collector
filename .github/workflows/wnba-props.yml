@@ -53,7 +53,7 @@ jobs:
           # 1) commit DATA only (NOT the generated dashboard) so the rebase has no volatile
           #    text file to conflict on. add each independently (a missing path would make
           #    `git add a b c` stage nothing).
-          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_proj_accuracy.md wnba_clv.sqlite wnba_clv.md wnba_starter_cache.json wnba_lineup_model.json; do
+          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_proj_accuracy.md wnba_clv.sqlite wnba_clv.md wnba_starter_cache.json wnba_lineup_model.json wnba_proj_cache.json wnba_status_state.json wnba_question_log.sqlite wnba_sit_prob.json; do
             git add -f "$f" 2>/dev/null || true
           done
           git commit -m "wnba props data [skip ci]" -q 2>/dev/null || echo "no data change"
