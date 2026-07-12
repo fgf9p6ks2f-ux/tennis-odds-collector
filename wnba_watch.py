@@ -34,6 +34,8 @@ import wnba_wowy as W
 HERE = Path(__file__).resolve().parent
 STATUS_STATE = HERE / "wnba_status_state.json" # last-seen key-player injury TAGS across ALL designations
 CONF_STATE = HERE / "wnba_confirm_state.json"  # last-seen set of CONFIRMED-lineup teams (for diffing)
+PRICED_STATE = HERE / "wnba_priced_state.json" # {date, count} — priced-player count at the last opening scan
+PRICE_JUMP = 6                                 # +this many freshly-priced players = a new batch of lines
 
 FIRM = ("OUT", "DOUBTFUL")                     # tags that drive the firm beneficiary scan
 WATCH = ("QUESTIONABLE", "GTD")                # tags that drive the questionable-tier watchlist
@@ -101,6 +103,25 @@ def key_q(playing, inj, pl):
     return {n: "Questionable" for n, s in inj.items()
             if s == "Questionable" and n in pl and pl[n]["team"] in playing
             and (pl[n]["min"] >= KEY_MIN or pl[n]["pts"] >= 10)}
+
+
+def _priced_count():
+    """Distinct WNBA players with a FRESH posted prop (last 20 min), from the freshest lines DB. This
+    jumps from ~0 to many the moment FanDuel/DK post the slate's OPENING lines — the signal that we
+    should scan for beneficiaries + capture the opening-line CLV, even with a stable injury report."""
+    import sqlite3
+    import wnba_props_db as PDB
+    db = PDB.props_db()
+    if not Path(db).exists():
+        return 0
+    try:
+        con = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+        n = con.execute("SELECT COUNT(DISTINCT player) FROM fd_lines WHERE sport='wnba' "
+                        "AND collected_at > datetime('now','-20 minutes')").fetchone()[0]
+        con.close()
+        return n
+    except Exception:
+        return 0
 
 
 def key_status(playing, inj, board, pl):
@@ -207,7 +228,17 @@ def main():
     added, removed, changed = d["added"], d["removed"], d["changed"]
     new, new_q, back, back_q = d["new"], d["new_q"], d["back"], d["back_q"]
     topic = os.environ.get("NTFY_TOPIC")
-    if not (added or removed or changed):
+    # OPENING-LINES TRIGGER: a fresh BATCH of posted props (the slate's opening lines dropping) fires a
+    # scan even when the injury report is unchanged — otherwise stable-injury beneficiaries + the
+    # softest opening-line CLV wouldn't get caught until the 4x/day board, hours later.
+    today_et = dt.datetime.now(T.ET).date().isoformat()
+    cur_priced = _priced_count()
+    ps = json.loads(PRICED_STATE.read_text()) if PRICED_STATE.exists() else {}
+    prev_priced = ps.get("count", 0) if ps.get("date") == today_et else 0   # reset each day
+    lines_new = cur_priced >= max(prev_priced + PRICE_JUMP, PRICE_JUMP)
+    if lines_new:
+        PRICED_STATE.write_text(json.dumps({"date": today_et, "count": cur_priced}))
+    if not (added or removed or changed) and not lines_new:
         if conf_changed:
             # lineups locked in (no report change) — re-run the scan so the ledger's confidence
             # labels flip likely->confirmed/bench and the dashboard regenerates. No push.
@@ -215,7 +246,7 @@ def main():
             _, preds = A.collect()
             L.log_predictions(preds)
         else:
-            print(f"no report changes ({len(cur_all)} tagged: {', '.join(sorted(cur_all)) or 'none'})")
+            print(f"no report changes ({len(cur_all)} tagged) · {cur_priced} priced")
         return
 
     def _tag(t):
@@ -252,10 +283,10 @@ def main():
         for r in repl:
             print("  " + r)
 
-    # run the beneficiary scan only when a PLAY could change (new firm out OR new questionable);
-    # a pure removal/downgrade still pushes the change feed but needs no re-scan.
+    # run the beneficiary scan when a PLAY could change: a new firm out / questionable, OR the slate's
+    # opening lines just posted. A pure removal/downgrade pushes the change feed but needs no re-scan.
     fresh = []
-    if new or new_q:
+    if new or new_q or lines_new:
         alerts, preds = A.collect()
         logged = L.log_predictions(preds)
         seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
@@ -265,13 +296,18 @@ def main():
                 continue
             this_run.add(k)
             fresh.append((ev, k, msg))
-        print(f"wnba-watch: {len(alerts)} spots, {len(fresh)} new, {logged} logged to ledger")
+        why = "opening lines posted" if lines_new and not (new or new_q) else "injury change"
+        print(f"wnba-watch [{why}, {cur_priced} priced]: {len(alerts)} spots, {len(fresh)} new, "
+              f"{logged} logged to ledger")
         for _e, _k, m in fresh:
             print("  " + m)
 
     # ---- ONE comprehensive push: report changes -> replacement read -> plays -> void warnings ----
-    if topic:
-        parts = ["📋 WNBA injury update", feed_txt]
+    if topic and (feed_txt or fresh or back or back_q):
+        if feed_txt:
+            parts = ["📋 WNBA injury update", feed_txt]
+        else:                                           # opening-lines-only trigger (no injury change)
+            parts = [f"📋 Opening lines posted — {len(fresh)} play{'s' if len(fresh) != 1 else ''}"]
         if repl:
             parts.append("\n".join(repl))
         if fresh:
@@ -280,7 +316,7 @@ def main():
             voids = ", ".join(A._short(n) for n in back + back_q)
             parts.append(f"⚠ VOID any plays built on: {voids} (now active/cleared)")
         body = "\n\n".join(parts)
-        prio = "urgent" if new else ("high" if (new_q or back or back_q) else "default")
+        prio = "urgent" if new else ("high" if (new_q or lines_new or back or back_q) else "default")
         tags = "rotating_light" if new else "hourglass_flowing_sand"
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
