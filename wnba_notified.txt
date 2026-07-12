@@ -93,9 +93,11 @@
 2026-07-12|Sabrina Ionescu|rebounds|5.5
 timing|2026-07-12|Jonquel Jones|points|13.5
 timing|2026-07-12|Jonquel Jones|rebounds|12.5
+timing|2026-07-12|Kamilla Cardoso|pts_reb|27.5
 timing|2026-07-12|Maria Conde|assists|2.5
 timing|2026-07-12|Maria Conde|points|11.5
 timing|2026-07-12|Marine Johannes|points|7.5
+timing|2026-07-12|Natasha Cloud|assists|6.5
 timing|2026-07-12|Pauline Astier|points|7.5
 timing|2026-07-12|Sabrina Ionescu|points|15.5
 timing|2026-07-12|Sydney Taylor|points|13.5
