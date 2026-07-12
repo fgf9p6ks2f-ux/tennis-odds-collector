@@ -31,6 +31,7 @@ REPORT = HERE / "wnba_clv.md"
 PROPS_DB = HERE / "fanduel_props.sqlite"
 STAT_KEY = {"points": "pts", "rebounds": "reb", "assists": "ast"}
 MIN_GRADED = 20
+MIN_DATES = 5      # distinct slates — one night's shadows are correlated, not independent evidence
 
 SCHEMA = """CREATE TABLE IF NOT EXISTS clv(
   date TEXT, player TEXT, stat TEXT, out_player TEXT, flagged_at TEXT, proj REAL,
@@ -167,7 +168,12 @@ def verdict():
         "SELECT * FROM clv WHERE v=2 AND closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL")]
     con.close()
     n = len(R)
-    base = {"n": n, "need": MIN_GRADED, "ready": n >= MIN_GRADED,
+    dates = len({r["date"] for r in R})
+    # READY needs BOTH volume and breadth: one slate's shadows are CORRELATED (same games, same
+    # injuries) — 24 shadows from one night is one observation, not 24. No verdict until the sample
+    # spans enough distinct slates to mean something.
+    base = {"n": n, "need": MIN_GRADED, "dates": dates, "need_dates": MIN_DATES,
+            "ready": n >= MIN_GRADED and dates >= MIN_DATES,
             "line_move": None, "pos_rate": None, "corr": None, "hit": None, "hit_n": 0}
     if not n:
         return base
@@ -187,9 +193,10 @@ def report():
          f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {v['n']} closed shadows "
          f"(opening line vs closing line)_", ""]
     if not v["ready"]:
-        L.append(f"Accumulating — {v['n']}/{v['need']} closed shadows before CLV is trustworthy.")
+        L.append(f"Accumulating — {v['n']}/{v['need']} closed shadows over {v['dates']}/{v['need_dates']} "
+                 f"slates before CLV is trustworthy (one slate's shadows are correlated).")
         REPORT.write_text("\n".join(L) + "\n")
-        print(f"clv report: {v['n']}/{v['need']} closed shadows — accumulating")
+        print(f"clv report: {v['n']}/{v['need']} shadows · {v['dates']}/{v['need_dates']} slates — accumulating")
         return
     L += ["## Does the line move toward our read from open to close?", "```",
           f"closed shadows:            {v['n']}",

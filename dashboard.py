@@ -383,15 +383,18 @@ def _splits(r):
     return {"l5": hr(log[:5]), "l10": hr(log[:10]), "szn": hr(log), "h2h": h2h}
 
 
-def _hrcell(lbl, hr):
-    """One heatmap cell: hit% at the line, colored green (strong) / red (weak), W/N underneath."""
+def _hrcell(lbl, hr, role=False):
+    """One heatmap cell: hit% at the line, W/N underneath. The TINT lives on the cell (faint green/
+    red wash, desaturated value) — not glowing text — so the grid reads as a heatmap, and saturated
+    green stays reserved for the model edge. `role` marks our injury-context cell (blue label)."""
+    base = "gc r" if role else "gc"
     if not hr or not hr[1]:
-        return (f'<div class="gc"><span class="gcl">{lbl}</span>'
-                f'<span class="gcv dim">—</span><span class="gcs"></span></div>')
+        return (f'<div class="{base}"><span class="gcl">{lbl}</span>'
+                f'<span class="gcv dim">—</span><span class="gcs">&nbsp;</span></div>')
     pct = hr[0] / hr[1] * 100
-    cls = "good" if pct >= 65 else ("bad" if pct <= 35 else "")
-    return (f'<div class="gc"><span class="gcl">{lbl}</span>'
-            f'<span class="gcv {cls}">{pct:.0f}%</span><span class="gcs">{hr[0]}/{hr[1]}</span></div>')
+    cls = " hot" if pct >= 65 else (" cold" if pct <= 35 else "")   # hot/cold: no collision with .b bars
+    return (f'<div class="{base}{cls}"><span class="gcl">{lbl}</span>'
+            f'<span class="gcv">{pct:.0f}%</span><span class="gcs">{hr[0]}/{hr[1]}</span></div>')
 
 
 PROPS_DB = HERE / "fanduel_props.sqlite"
@@ -429,12 +432,11 @@ def _prop_row(r):
     # ROLE cell = the injury-context record (our edge); a volume play shows the volume probability
     if r.get("basis") == "volume" and r.get("proj_hit"):
         ph = r["proj_hit"]
-        role_cell = (f'<div class="gc"><span class="gcl">ROLE</span>'
-                     f'<span class="gcv {"good" if ph >= 0.6 else ""}">{ph*100:.0f}%</span>'
-                     f'<span class="gcs">vol</span></div>')
+        role_cell = (f'<div class="gc r{" hot" if ph >= 0.6 else ""}"><span class="gcl">ROLE</span>'
+                     f'<span class="gcv">{ph*100:.0f}%</span><span class="gcs">vol</span></div>')
     else:
         rec = _raw_record(r)
-        role_cell = _hrcell("ROLE", (rec[0], rec[1]) if rec else None)
+        role_cell = _hrcell("ROLE", (rec[0], rec[1]) if rec else None, role=True)
     sp = _splits(r) or {}
     grid = (role_cell + _hrcell("L5", sp.get("l5")) + _hrcell("L10", sp.get("l10"))
             + _hrcell("SZN", sp.get("szn")) + _hrcell("H2H", sp.get("h2h")))
@@ -479,26 +481,30 @@ def _prop_row(r):
       </div>{_bars(r)}"""
 
 
-def _player_block(player, rows, top=False):
-    """One beneficiary inside a game: name + lineup status + projected minutes on the header row,
-    then their props. The team-level injury context (who's out) lives on the GAME header, not here,
-    so it isn't repeated per player."""
+def _player_block(player, rows):
+    """One beneficiary inside a game: team logo + name, lineup status as a quiet dot-chip, projected
+    minutes right-aligned. The team-level injury context (who's out) lives on the GAME header, not
+    here. Color discipline: the status is a small colored DOT + gray text, not colored text — the
+    saturated green on this surface belongs to the edge number alone."""
     r0 = rows[0]
-    cb = {"confirmed": ("✓ starting", "cok"), "bench": ("⚠ bench", "cbad"),
-          "likely": ("likely", "cmid"), "projected": ("TBD", "cmid")}.get(
+    team = (r0.get("team") or "").upper()
+    logo = (f'<img class="plogo" src="{LOGO.format(team.lower())}" alt="" loading="lazy" '
+            f'onerror="this.style.display=\'none\'">' if team else "")
+    cb = {"confirmed": ("starting", "ok"), "bench": ("bench", "warn"),
+          "likely": ("likely", "mid"), "projected": ("TBD", "mid")}.get(
               r0.get("confidence") or "projected", ("", ""))
+    flag = f'<span class="pflag"><i class="sdot {cb[1]}"></i>{cb[0]}</span>' if cb[0] else ""
     pm, dm = r0.get("proj_min"), r0.get("d_min")
     mins = ""
     if pm:
-        trend = (f' <span class="{"up" if dm >= 4 else ""}">▲{dm:+.0f}</span>' if dm is not None else "")
+        trend = f" ▲{dm:+.0f}" if dm is not None else ""
         mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
     sp = r0.get("spread")
     dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
     props = "".join(_prop_row(r) for r in sorted(rows, key=lambda r: -(r.get("ev") or 0)))
-    return (f'<div class="pblk{" top" if top else ""}">'
-            f'<div class="phd"><span class="pname">{html.escape(_short(player))}</span>'
-            f'<span class="pflag {cb[1]}">{cb[0]}</span>{dogchip}'
-            f'<span class="psp2"></span>{mins}</div>{props}</div>')
+    return (f'<div class="pblk">'
+            f'<div class="phd">{logo}<span class="pname">{html.escape(_short(player))}</span>'
+            f'{flag}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
 
 
 def _game_group(players, tips):
@@ -513,14 +519,18 @@ def _game_group(players, tips):
     outset = {_short(nm.strip()) for _, prs in players for r in prs
               for nm in (r.get("out_player") or "").split(",") if nm.strip()}
     outs = " + ".join(sorted(outset))
-    blocks = "".join(_player_block(p, prs, top=max((x.get("ev") or 0) for x in prs) >= 0.20)
-                     for p, prs in players)
+    blocks = "".join(_player_block(p, prs) for p, prs in players)
     gedge = max((x.get("ev") or 0) for _, prs in players for x in prs)
     gtip = tip.timestamp() if tip else 9e15
+
+    def glogo(ab):
+        return (f'<img class="glogo" src="{LOGO.format(ab.lower())}" alt="" loading="lazy" '
+                f'onerror="this.style.display=\'none\'">' if ab else "")
     return (f'<div class="game" data-edge="{gedge:.4f}" data-tip="{gtip:.0f}">'
-            f'<div class="ghd"><span class="gmatch">{team} <span class="gvs">vs</span> {opp or "—"}</span>'
+            f'<div class="ghd"><span class="gmatch">{glogo(team)}{team}'
+            f'<span class="gvs">vs</span>{glogo(opp)}{opp or "—"}</span>'
             f'<span class="gtime">{when}</span></div>'
-            + (f'<div class="gout">🚑 {html.escape(outs)} out</div>' if outs else "")
+            + (f'<div class="gout"><i class="sdot warn"></i>{html.escape(outs)} out</div>' if outs else "")
             + blocks + "</div>")
 
 
@@ -571,23 +581,28 @@ def _tracker_panel(wnba_rec, tt_json):
         cv = None
     if cv and not cv["ready"]:
         out += (f'<div class="tcard"><div class="thead">🎯 Injury-timing CLV</div>'
-                f'<div class="tsub">Accumulating <b>{cv["n"]}/{cv["need"]}</b> closed shadows — the '
-                f'"are we beating the close?" verdict unlocks at {cv["need"]}. This is the proof the '
-                f'timing edge is real before scaling stakes.</div></div>')
+                f'<div class="tsub">Accumulating <b>{cv["n"]}/{cv["need"]}</b> shadows over '
+                f'<b>{cv.get("dates", 0)}/{cv.get("need_dates", 5)}</b> slates — one night\'s shadows are '
+                f'correlated, so the "are we beating the close?" verdict waits for breadth. This is the '
+                f'proof the timing edge is real before scaling stakes.</div></div>')
     elif cv:
-        lm, good = cv["line_move"], cv["line_move"] > 0
-        vcls = "up" if good else "down"
-        hit = f'{cv["hit"] * 100:.0f}%' if cv["hit"] is not None else "—"
+        lm, pos = cv["line_move"], cv["pos_rate"]
+        good = lm > 0 and pos >= 0.5
+        mixed = lm > 0 and pos < 0.5
+        vcls = "up" if good else ("" if mixed else "down")
+        vtext = ('✓ line moves toward our read — beating the close' if good
+                 else '~ mixed: mean move positive but most lines drift against'
+                 if mixed else '✗ line drifts against us')
+        hit = f' · realized {cv["hit"] * 100:.0f}%' if cv["hit"] is not None else ""
         out += f"""
       <div class="tcard">
         <div class="thead">🎯 Injury-timing CLV</div>
         <div class="trow">
           <div class="tbox"><div class="tk">Line move</div><div class="tv {vcls}">{lm:+.2f}</div></div>
-          <div class="tbox"><div class="tk">Positive</div><div class="tv">{cv["pos_rate"] * 100:.0f}%</div></div>
+          <div class="tbox"><div class="tk">Positive</div><div class="tv">{pos * 100:.0f}%</div></div>
           <div class="tbox"><div class="tk">Corr</div><div class="tv">{cv["corr"]:+.2f}</div></div>
         </div>
-        <div class="tsub">{'✓ line moves toward our read — beating the close' if good else '✗ line drifts against us'}
-          · realized {hit} · {cv['n']} shadows (open vs close)</div>
+        <div class="tsub">{vtext}{hit} · {cv['n']} shadows / {cv.get('dates', '?')} slates (open vs close)</div>
       </div>"""
     return out
 
@@ -730,8 +745,8 @@ def build():
   body {{ margin:0; background:#08090c; color:#e8ecf2;
     font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; }}
   .wrap {{ max-width:600px; margin:0 auto; padding:22px 16px 48px; }}
-  h1 {{ font-size:22px; font-weight:700; margin:0; letter-spacing:-.01em; }}
-  .live {{ display:flex; align-items:center; gap:6px; color:#8b94a3; font-size:12.5px; margin-top:5px; }}
+  h1 {{ font-size:21px; font-weight:800; margin:0; letter-spacing:-.02em; }}
+  .live {{ display:flex; align-items:center; gap:6px; color:#78818f; font-size:12px; margin-top:5px; }}
   .dot {{ width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 3px #22c55e22; }}
   .stats {{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0 24px; }}
   .stat {{ background:#121620; border:1px solid #1f2836; border-radius:14px; padding:13px 12px; min-height:74px;
@@ -739,29 +754,32 @@ def build():
   .stat .k {{ color:#7d8696; font-size:10.5px; text-transform:uppercase; letter-spacing:.06em; }}
   .stat .v {{ font-size:21px; font-weight:700; line-height:1; }}
   .stat .sv {{ color:#7d8696; font-size:12px; font-weight:500; }}
-  h2 {{ font-size:12px; color:#7d8696; text-transform:uppercase; letter-spacing:.07em; margin:0 0 12px; font-weight:600; }}
-  .fbar {{ display:flex; gap:8px; margin:0 0 18px; flex-wrap:wrap; }}
+  h2 {{ font-size:10.5px; color:#5c6572; text-transform:uppercase; letter-spacing:.08em; margin:0 0 10px; font-weight:700; }}
+  .fbar {{ display:flex; gap:8px; margin:0 0 20px; flex-wrap:wrap; }}
   .fgrp {{ display:flex; gap:3px; background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:3px; }}
-  .pill {{ padding:6px 13px; font-size:12.5px; font-weight:700; color:#8a93a3; border-radius:8px; cursor:pointer; user-select:none; }}
-  .pill.on {{ background:#37d67f; color:#08240f; }}
-  /* GAME group — the separation between games */
-  .game {{ margin-bottom:24px; }}
-  .ghd {{ display:flex; justify-content:space-between; align-items:baseline; padding:0 3px 2px; }}
-  .gmatch {{ font-size:15px; font-weight:800; letter-spacing:.01em; }}
-  .gvs {{ color:#59606d; font-weight:600; font-size:12px; margin:0 3px; }}
-  .gtime {{ color:#6b7484; font-size:12px; font-weight:600; }}
-  .gout {{ color:#eaa15a; font-size:12.5px; font-weight:600; margin:2px 3px 11px; }}
-  /* PLAYER block */
-  .pblk {{ background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:11px 13px 5px; margin-bottom:9px; }}
-  .pblk.top {{ border-color:#254a37; box-shadow:inset 3px 0 0 #37d67f; }}
+  .pill {{ padding:6px 13px; font-size:12.5px; font-weight:700; color:#78818f; border-radius:8px; cursor:pointer; user-select:none; }}
+  .pill.on {{ background:#232c3d; color:#f2f5f9; }}
+  /* GAME group — the top of the hierarchy: logos + matchup, hairline rule, generous separation */
+  .game {{ margin-bottom:32px; }}
+  .ghd {{ display:flex; justify-content:space-between; align-items:center; padding:0 2px 9px;
+    margin-bottom:11px; border-bottom:1px solid #14181f; }}
+  .gmatch {{ font-size:17px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:7px; }}
+  .glogo {{ width:20px; height:20px; object-fit:contain; filter:drop-shadow(0 0 1.5px rgba(255,255,255,.3)); }}
+  .gvs {{ color:#4d5560; font-weight:600; font-size:11px; margin:0 1px; }}
+  .gtime {{ color:#6b7484; font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; }}
+  .gout {{ display:flex; align-items:center; gap:6px; color:#c08a4d; font-size:12px; font-weight:600;
+    margin:-3px 2px 12px; }}
+  .sdot {{ width:6px; height:6px; border-radius:50%; display:inline-block; flex:none; }}
+  .sdot.ok {{ background:#37d67f; }} .sdot.warn {{ background:#eaa15a; }} .sdot.mid {{ background:#5b9dff; }}
+  /* PLAYER block — logo + name lead; status is a quiet dot-chip; minutes right-aligned meta */
+  .pblk {{ background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:12px 14px 6px; margin-bottom:10px; }}
   .phd {{ display:flex; align-items:center; gap:8px; }}
-  .pname {{ font-size:16px; font-weight:800; letter-spacing:-.01em; }}
-  .pflag {{ font-size:11.5px; font-weight:700; white-space:nowrap; }}
-  .pflag.cok {{ color:#37d67f; }} .pflag.cbad {{ color:#eaa15a; }} .pflag.cmid {{ color:#7aa2e3; }}
+  .plogo {{ width:21px; height:21px; object-fit:contain; filter:drop-shadow(0 0 1.5px rgba(255,255,255,.3)); }}
+  .pname {{ font-size:16.5px; font-weight:800; letter-spacing:-.01em; }}
+  .pflag {{ display:flex; align-items:center; gap:5px; color:#8a93a3; font-size:11.5px; font-weight:600; white-space:nowrap; }}
   .psp2 {{ flex:1; }}
-  .pmin {{ color:#8a93a3; font-size:12.5px; font-weight:600; white-space:nowrap; }}
-  .pmin .up {{ color:#37d67f; }}
-  .dog {{ color:#e0a458; font-weight:700; }}
+  .pmin {{ color:#78818f; font-size:12.5px; font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums; }}
+  .dog {{ color:#d9985c; font-size:11px; font-weight:700; }}
   .watchlist {{ margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }}
   .wl-title {{ color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .wl-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
@@ -771,38 +789,42 @@ def build():
   .wl-hd b {{ color:#e8ecf2; }}
   .wl-leg {{ font-size:13.5px; padding:3px 0; }}
   .wl-leg b {{ color:#e8ecf2; font-weight:800; }}
-  .wl-ev {{ color:#37d67f; font-weight:800; margin-left:7px; }}
+  .wl-ev {{ color:#e8ecf2; font-weight:800; margin-left:7px; }}
   .wl-meta {{ color:#7d8696; font-size:11px; margin-left:7px; }}
-  /* PROP row — side pill · line · stat ......... odds · edge, then a color-coded stat grid */
-  .prop {{ padding:9px 0 2px; cursor:pointer; border-top:1px solid #171c25; margin-top:8px; }}
+  /* PROP row — the read order is bet -> price -> EDGE (the one saturated-green number) */
+  .prop {{ padding:10px 0 3px; cursor:pointer; border-top:1px solid #14181f; margin-top:8px; }}
   .pblk .prop:first-of-type {{ border-top:0; margin-top:6px; }}
   .prow {{ display:flex; align-items:center; gap:8px; }}
   .pind {{ width:20px; height:20px; border-radius:50%; display:grid; place-items:center;
-    font-size:11px; font-weight:800; border:1.5px solid; flex:none; }}
-  .pind.o {{ color:#37d67f; border-color:#37d67f66; }}
-  .pind.u {{ color:#5b9dff; border-color:#5b9dff66; }}
-  .plno {{ font-size:16px; font-weight:800; font-variant-numeric:tabular-nums; }}
-  .pstat {{ color:#8a93a3; font-weight:700; font-size:12px; letter-spacing:.03em; }}
+    font-size:10.5px; font-weight:800; border:1.5px solid; flex:none; }}
+  .pind.o {{ color:#57b389; border-color:#57b38944; }}
+  .pind.u {{ color:#6a9fe8; border-color:#6a9fe844; }}
+  .plno {{ font-size:17px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }}
+  .pstat {{ color:#78818f; font-weight:700; font-size:11.5px; letter-spacing:.04em; }}
   .psp {{ flex:1; }}
-  .podds {{ color:#5b9dff; font-weight:700; font-size:13.5px; font-variant-numeric:tabular-nums; }}
-  .pbk {{ color:#8a93a3; font-size:9px; font-weight:800; letter-spacing:.03em; margin-left:3px;
-    background:#171c26; border-radius:4px; padding:1px 4px; position:relative; top:-1px; }}
-  .pedge {{ font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; }}
-  .pedge.hi {{ color:#37d67f; }} .pedge.mid {{ color:#9fd8a8; }} .pedge.lo {{ color:#6b7484; }}
-  .pchev {{ color:#454f5e; font-size:17px; transition:transform .15s; }}
+  .podds {{ color:#6ba3f5; font-weight:700; font-size:13.5px; font-variant-numeric:tabular-nums; }}
+  .pbk {{ color:#78818f; font-size:8.5px; font-weight:800; letter-spacing:.04em; margin-left:3px;
+    background:#161b24; border:1px solid #1d232e; border-radius:4px; padding:1px 4px; position:relative; top:-1px; }}
+  .pedge {{ font-weight:800; font-size:15px; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }}
+  .pedge.hi {{ color:#37d67f; }} .pedge.mid {{ color:#c3cdda; }} .pedge.lo {{ color:#6b7484; }}
+  .pchev {{ color:#3b4452; font-size:17px; transition:transform .15s; }}
   .prop:has(+ .bars.open) .pchev {{ transform:rotate(90deg); }}
-  .pv {{ color:#37d67f; font-weight:800; font-size:13px; }}
-  .juice {{ color:#eaa15a; font-size:10.5px; font-weight:700; white-space:nowrap; }}
-  .pgrid {{ display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin:9px 0 2px; }}
-  .gc {{ background:#080a0e; border:1px solid #171c26; border-radius:8px; padding:5px 2px;
+  .pv {{ color:#78818f; font-weight:800; font-size:13px; }}
+  .juice {{ color:#c08a4d; font-size:10px; font-weight:700; white-space:nowrap; }}
+  /* HEATMAP — tint the CELL (faint wash), not the text; values stay near-neutral */
+  .pgrid {{ display:grid; grid-template-columns:repeat(5,1fr); gap:5px; margin:10px 0 2px; }}
+  .gc {{ background:#0b0d12; border:1px solid #161b24; border-radius:8px; padding:6px 2px 5px;
     display:flex; flex-direction:column; align-items:center; gap:1px; }}
-  .gcl {{ color:#59606d; font-size:8.5px; font-weight:700; letter-spacing:.04em; }}
-  .gcv {{ font-size:13.5px; font-weight:800; font-variant-numeric:tabular-nums; color:#e8ecf2; }}
-  .gcv.good {{ color:#37d67f; }} .gcv.bad {{ color:#f8716b; }} .gcv.dim {{ color:#454f5e; }}
-  .gcs {{ color:#697181; font-size:9.5px; font-weight:600; }}
-  .pctx {{ color:#7d8696; font-size:11.5px; font-weight:600; margin:7px 1px 2px; }}
-  .cdrv {{ color:#8fcf9e; }}
-  .cdvp.soft {{ color:#37d67f; }} .cdvp.tough {{ color:#f0a860; }}
+  .gc.hot {{ background:rgba(55,214,127,.07); border-color:rgba(55,214,127,.22); }}
+  .gc.cold {{ background:rgba(248,113,107,.06); border-color:rgba(248,113,107,.20); }}
+  .gc.r .gcl {{ color:#7aa2e3; }}
+  .gcl {{ color:#59606d; font-size:8.5px; font-weight:700; letter-spacing:.05em; }}
+  .gcv {{ font-size:13.5px; font-weight:800; font-variant-numeric:tabular-nums; color:#dbe2ec; }}
+  .gc.hot .gcv {{ color:#7fe0ac; }} .gc.cold .gcv {{ color:#f0928c; }} .gcv.dim {{ color:#3b4452; }}
+  .gcs {{ color:#5c6572; font-size:9.5px; font-weight:600; font-variant-numeric:tabular-nums; }}
+  .pctx {{ color:#67707f; font-size:11px; font-weight:500; margin:8px 1px 3px; }}
+  .cdrv {{ color:#98a4b5; font-weight:600; }}
+  .cdvp.soft {{ color:#79b598; }} .cdvp.tough {{ color:#d9a05f; }}
   .bars {{ display:none; padding:20px 2px 4px; }}
   .bars.open {{ display:block; }}
   .chart {{ position:relative; display:flex; gap:5px; height:88px; overflow:visible; }}
