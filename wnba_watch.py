@@ -333,10 +333,12 @@ def main():
         for r in repl:
             print("  " + r)
 
-    # run the beneficiary scan when a PLAY could change: a new firm out / questionable, OR the slate's
-    # opening lines just posted. A pure removal/downgrade pushes the change feed but needs no re-scan.
+    # run the beneficiary scan when a PLAY could change: a new firm out / questionable, the slate's
+    # opening lines just posted, OR we have fresh timing spots to push (so the ledger + watchlist the
+    # DASHBOARD renders stay in lockstep with the push — never alert 8 spots while the board shows 0).
+    # A pure removal/downgrade pushes the change feed but needs no re-scan.
     fresh = []
-    if new or new_q or lines_new:
+    if new or new_q or lines_new or fresh_timing:
         try:                                            # a transient scan failure must NOT kill the
             alerts, preds = A.collect()                 # timing push below (it reads already-captured
             logged = L.log_predictions(preds)           # shadows) — else priced_state blocks any retry
@@ -350,7 +352,8 @@ def main():
                 continue
             this_run.add(k)
             fresh.append((ev, k, msg))
-        why = "opening lines posted" if lines_new and not (new or new_q) else "injury change"
+        why = ("injury change" if (new or new_q) else "opening lines posted" if lines_new
+               else "refresh for timing spots")
         print(f"wnba-watch [{why}, {cur_priced} priced]: {len(alerts)} spots, {len(fresh)} new, "
               f"{logged} logged to ledger")
         for _e, _k, m in fresh:
