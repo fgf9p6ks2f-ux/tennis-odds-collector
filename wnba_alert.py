@@ -125,9 +125,9 @@ def collect():
         for t in T.rw_lineups():
             if t["team"] != team:
                 continue
-            for p_pos, p_nm, inj in t["starters"]:
-                pid = id_by_norm.get(RW.norm(p_nm))
-                if inj or not pid:
+            for p_pos, p_nm, st_inj in t["starters"]:   # st_inj = this starter's GTD flag; do NOT
+                pid = id_by_norm.get(RW.norm(p_nm))      # name it `inj` — that shadows the injuries
+                if st_inj or not pid:                    # dict used far below at line ~283 (crash)
                     continue
                 lg = glog(pid)
                 mm = [g["min"] for g in lg[-10:] if g["min"] > 8]

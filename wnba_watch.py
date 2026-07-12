@@ -277,16 +277,26 @@ def main():
     lines_new = cur_priced >= max(prev_priced + PRICE_JUMP, PRICE_JUMP)
     if lines_new:
         PRICED_STATE.write_text(json.dumps({"date": today_et, "count": cur_priced}))
+
+    # OPENING-LINE TIMING SPOTS, computed UP FRONT (before any early-return) so recovery never depends
+    # on lines_new re-tripping the priced high-water mark: a spot whose shadow was captured earlier but
+    # whose push was missed (a crash, a git hiccup) re-surfaces here every cycle until it lands in SEEN.
+    seen_now = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
+    fresh_timing = [(k, m) for k, m, _ in _timing_spots(today_et) if k not in seen_now][:10]
+
     if not (added or removed or changed) and not lines_new:
         if conf_changed:
             # lineups locked in (no report change) — re-run the scan so the ledger's confidence
-            # labels flip likely->confirmed/bench and the dashboard regenerates. No push.
-            print(f"lineups confirmed ({len(conf_sig)} teams) — refreshing confidence, no push")
+            # labels flip likely->confirmed/bench and the dashboard regenerates.
+            print(f"lineups confirmed ({len(conf_sig)} teams) — refreshing confidence")
             _, preds = A.collect()
             L.log_predictions(preds)
-        else:
-            print(f"no report changes ({len(cur_all)} tagged) · {cur_priced} priced")
-        return
+        if not fresh_timing:                    # nothing to push -> done (conf refresh, if any, ran above)
+            if not conf_changed:
+                print(f"no report changes ({len(cur_all)} tagged) · {cur_priced} priced")
+            return
+        # else: fall through — the injury-feed/scan blocks below all no-op cleanly (added/removed/
+        # changed and new/new_q/lines_new are all empty), and the single push surfaces the timing spots.
 
     def _tag(t):
         return {"QUESTIONABLE": "Questionable", "GTD": "GTD", "OUT": "OUT", "DOUBTFUL": "Doubtful"}.get(t, t)
@@ -295,7 +305,8 @@ def main():
             + [f"➖ {A._short(n)} OFF report (was {_tag(removed[n])}) — now active/cleared"
                for n in sorted(removed)])
     feed_txt = "\n".join(feed)
-    print("REPORT CHANGES:\n" + feed_txt)
+    if feed_txt:                                 # empty on a timing-only fall-through — don't print a stub
+        print("REPORT CHANGES:\n" + feed_txt)
 
     # FAST REPLACEMENT READ for newly-firm outs: who inherits the vacated shots/role, before the
     # line moves. Only for `new` (fresh OUT/DOUBTFUL); a questionable/removal-only change no-ops it.
@@ -326,8 +337,12 @@ def main():
     # opening lines just posted. A pure removal/downgrade pushes the change feed but needs no re-scan.
     fresh = []
     if new or new_q or lines_new:
-        alerts, preds = A.collect()
-        logged = L.log_predictions(preds)
+        try:                                            # a transient scan failure must NOT kill the
+            alerts, preds = A.collect()                 # timing push below (it reads already-captured
+            logged = L.log_predictions(preds)           # shadows) — else priced_state blocks any retry
+        except Exception as e:
+            print("scan (A.collect) failed — keeping timing spots alive:", str(e)[:90])
+            alerts, logged = [], 0
         seen0 = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
         this_run = set()
         for ev, k, msg in alerts:                       # +EV bets, sorted by EV desc
@@ -341,17 +356,13 @@ def main():
         for _e, _k, m in fresh:
             print("  " + m)
 
-    # OPENING-LINE TIMING SPOTS: the beneficiary plays to get down on EARLY, before the book corrects
-    # the opener (the user's proven CLV edge — speed beats the reprice). Surfaced whenever fresh lines
-    # land, NOT gated on +EV (the opener is often fairly priced NOW; the edge is the coming line move).
-    fresh_timing = []
-    if lines_new:
-        seen0 = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
-        fresh_timing = [(k, m) for k, m, _ in _timing_spots(today_et) if k not in seen0][:10]
-        if fresh_timing:
-            print(f"timing spots (bet early @ opener): {len(fresh_timing)}")
-            for _k, m in fresh_timing:
-                print("  ⚡ " + m)
+    # fresh_timing was computed up front (before the early-return). The beneficiary plays to get down
+    # on EARLY, before the book corrects the opener (the user's proven CLV edge — speed beats the
+    # reprice); NOT gated on +EV (the opener is often fairly priced NOW; the edge is the coming move).
+    if fresh_timing:
+        print(f"timing spots (bet early @ opener): {len(fresh_timing)}")
+        for _k, m in fresh_timing:
+            print("  ⚡ " + m)
 
     # ---- ONE push: injury feed -> EARLY opener spots -> +EV plays -> void warnings ----
     if topic and (feed_txt or fresh_timing or fresh or back or back_q):
