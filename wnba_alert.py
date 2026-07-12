@@ -282,9 +282,10 @@ def collect():
         ltag = (f", {'LATE ' if lead < 6 else ''}Q'd {lead:.0f}h pre-tip" if lead is not None else "")
         alerts.append((s["ev"] - 1.0,                    # sort BELOW firm bets (never outrank a real bet)
             f"watch|{today}|{s['player']}|{s['stat']}|{s['line']}",
-            f"{s['star']} {s['status'].upper()} -> {_short(s['player'])} {s['stat'][:3]} "
+            f"{s['star']} {s['status'].upper()} (LIKELY OUT {s['sit']*100:.0f}%) -> "
+            f"{_short(s['player'])} {s['stat'][:3]} "
             f"{sd}{s['line']:g} {T._am(s['dec'])} | {hits}-{s['n']-hits} {s['hit']*100:.0f}% "
-            f"| proj {s['elev_avg']:g} +{s['ev']*100:.0f}%EV · ~{s['sit']*100:.0f}% to sit{ltag}{ctag}"))
+            f"| proj {s['elev_avg']:g} +{s['ev']*100:.0f}%EV{ltag}{ctag}"))
     return sorted(alerts, reverse=True), preds
 
 

@@ -660,6 +660,8 @@ SIT_PROB = {
     "PROBABLE":     {"early": 0.15, "late": 0.30, "unk": 0.20},
 }
 _SIT_FILE = Path(__file__).resolve().parent / "wnba_sit_prob.json"   # empirical override (recalibrated)
+SIT_GATE = 0.5   # only SURFACE a questionable/GTD star when they're MORE LIKELY OUT than in (user's
+                 # rule: don't get pinged on a questionable player who'll probably play — noise/misfire)
 _SIT_OVERRIDE = None
 
 
@@ -786,6 +788,8 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
         star = "+".join(n.split()[-1] for n, _, _, _, _ in qs)
         status = qs[0][1] if len(qs) == 1 else "Questionable"
         sit = min(t[3] for t in qs)                           # conservative: scenario needs all to sit
+        if sit <= SIT_GATE:                                   # more likely to PLAY than sit -> don't surface
+            continue                                          # (user: only notify a questionable star likely OUT)
         lead = min((t[4] for t in qs if t[4] is not None), default=None)   # most late-breaking tag
         out_here = {n for n, _ in outs}
         team_pl = {n: v for n, v in pl.items()
