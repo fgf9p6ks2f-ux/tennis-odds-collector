@@ -25,6 +25,7 @@ import argparse
 import datetime as dt
 import json
 import sqlite3
+from collections import defaultdict
 from pathlib import Path
 
 import wnba_wowy as W
@@ -36,13 +37,15 @@ MIN_N = 20                       # resolved observations before a designation's 
 
 DDL = """CREATE TABLE IF NOT EXISTS question_log (
   date TEXT, player TEXT, team TEXT, designation TEXT, mpg REAL,
-  first_seen TEXT, resolved INTEGER DEFAULT 0, sat INTEGER,
+  first_seen TEXT, tip TEXT, resolved INTEGER DEFAULT 0, sat INTEGER,
   PRIMARY KEY(date, player))"""
 
 
 def _con():
     con = sqlite3.connect(DB)
     con.execute(DDL)
+    if "tip" not in {r[1] for r in con.execute("PRAGMA table_info(question_log)")}:
+        con.execute("ALTER TABLE question_log ADD COLUMN tip TEXT")   # migrate older DBs in place
     return con
 
 
@@ -51,19 +54,32 @@ def _now():
 
 
 def record(date, observations):
-    """observations = iterable of (player, team, designation, mpg). Log each once per (date, player)
-    — INSERT-OR-IGNORE keeps the FIRST (earliest) designation we saw them carry that slate day."""
+    """observations = iterable of (player, team, designation, mpg, tip). `tip` = the game's tip time
+    (naive-UTC iso) so lead-time = tip - first_seen is recoverable. Log each once per (date, player)
+    — INSERT-OR-IGNORE keeps the FIRST (earliest) sighting, so first_seen is the true lead anchor."""
     con = _con()
     ts = _now()
     n = 0
-    for player, team, desig, mpg in observations:
+    for row in observations:
+        player, team, desig, mpg = row[0], row[1], row[2], row[3]
+        tip = row[4] if len(row) > 4 else None
         cur = con.execute(
-            "INSERT OR IGNORE INTO question_log(date, player, team, designation, mpg, first_seen) "
-            "VALUES (?,?,?,?,?,?)", (date, player, team, (desig or "").strip().upper(), mpg, ts))
+            "INSERT OR IGNORE INTO question_log(date, player, team, designation, mpg, first_seen, tip) "
+            "VALUES (?,?,?,?,?,?,?)",
+            (date, player, team, (desig or "").strip().upper(), mpg, ts, tip))
         n += cur.rowcount
     con.commit()
     con.close()
     return n
+
+
+def first_seen_map(date):
+    """{player: first_seen_iso} for a slate date — the earliest moment we logged each player
+    questionable, so callers can compute lead time = tip - first_seen at projection time."""
+    con = _con()
+    r = con.execute("SELECT player, first_seen FROM question_log WHERE date=?", (date,)).fetchall()
+    con.close()
+    return {p: fs for p, fs in r}
 
 
 def resolve(game_log=None, players=None):
@@ -99,19 +115,41 @@ def resolve(game_log=None, players=None):
     return done
 
 
+def _lead_between(first_seen, tip):
+    """Hours from first_seen to tip (both naive-UTC iso). None if unknown/unparseable."""
+    if not first_seen or not tip:
+        return None
+    try:
+        return (dt.datetime.fromisoformat(tip)
+                - dt.datetime.fromisoformat(first_seen)).total_seconds() / 3600.0
+    except (ValueError, TypeError):
+        return None
+
+
 def rates(min_n=0):
-    """{designation: (n_resolved, P(sit))} over resolved rows, filtered to n >= min_n."""
+    """{(designation, bucket): (n, P(sit))} over resolved rows. bucket = early/late/unk from the
+    lead time (tip - first_seen), split via wnba_tonight.lead_bucket (one source of truth). Every
+    row ALSO contributes to (designation, 'unk') = the pooled designation rate, so a designation can
+    beat the prior on pooled evidence before any single lead bucket reaches n."""
+    from wnba_tonight import lead_bucket
     con = _con()
-    r = con.execute("SELECT designation, COUNT(*), COALESCE(SUM(sat), 0) FROM question_log "
-                    "WHERE resolved=1 GROUP BY designation").fetchall()
+    r = con.execute("SELECT designation, first_seen, tip, sat FROM question_log "
+                    "WHERE resolved=1").fetchall()
     con.close()
-    return {d: (n, s / n) for d, n, s in r if n and n >= min_n}
+    agg = defaultdict(lambda: [0, 0])                    # key -> [n, sat_sum]
+    for desig, fs, tip, sat in r:
+        b = lead_bucket(_lead_between(fs, tip))
+        for key in ((desig, b), (desig, "unk")):
+            agg[key][0] += 1
+            agg[key][1] += (sat or 0)
+    return {k: (n, s / n) for k, (n, s) in agg.items() if n and n >= min_n}
 
 
 def recalibrate(min_n=MIN_N):
-    """Write wnba_sit_prob.json = empirical P(sit) for designations with enough resolved n. sit_prob()
-    reads it and prefers it over the prior; designations short of MIN_N simply keep the prior."""
-    emp = {d: round(p, 3) for d, (n, p) in rates(min_n).items()}
+    """Write wnba_sit_prob.json = empirical P(sit) keyed 'DESIGNATION|bucket' for any bucket with
+    enough resolved n. sit_prob() prefers the specific bucket, then the pooled 'DESIG|unk', then the
+    prior — so calibration sharpens from prior -> pooled -> lead-conditional as data accrues."""
+    emp = {f"{desig}|{bucket}": round(p, 3) for (desig, bucket), (n, p) in rates(min_n).items()}
     OVERRIDE.write_text(json.dumps(emp, indent=1))
     return emp
 
@@ -123,11 +161,11 @@ def _report():
     print(f"question_log: {tot[0]} logged, {tot[1]} resolved")
     allr = rates()
     if not allr:
-        print("  no resolved observations yet — sit_prob() runs on the prior")
+        print("  no resolved observations yet — sit_prob() runs on the lead-aware prior")
         return
-    for d, (n, p) in sorted(allr.items()):
-        flag = "  <- OVERRIDES prior" if n >= MIN_N else f"  (need {MIN_N - n} more to override)"
-        print(f"  {d:14} n={n:3}  P(sit)={p:.2f}{flag}")
+    for (d, b), (n, p) in sorted(allr.items()):
+        flag = "  <- OVERRIDES prior" if n >= MIN_N else f"  (need {MIN_N - n} more)"
+        print(f"  {d:14} {b:5} n={n:3}  P(sit)={p:.2f}{flag}")
 
 
 def main():

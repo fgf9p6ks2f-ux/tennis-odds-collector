@@ -568,10 +568,12 @@ def _watchlist_html():
         return ""
     by_star = defaultdict(list)
     for s in sorted(spots, key=lambda s: -(s.get("ev") or 0)):
-        by_star[(s.get("star"), s.get("status"), s.get("sit"))].append(s)
+        by_star[(s.get("star"), s.get("status"), s.get("sit"), s.get("lead"))].append(s)
     blocks = []
-    for (star, status, sit), ss in by_star.items():
+    for (star, status, sit, lead), ss in by_star.items():
         sitpct = f"~{sit * 100:.0f}% to sit" if sit is not None else ""
+        # lead time is the tell: a late-breaking Q usually sits (and is the widest timing edge)
+        ltag = (f" · {'⚠ ' if lead < 6 else ''}tagged {lead:.0f}h pre-tip" if lead is not None else "")
         legs = "".join(
             f'<div class="wl-leg"><b>{html.escape(_short(s["player"]))}</b> '
             f'{_WL_STAT.get(s.get("stat"), s.get("stat"))} o{s["line"]:g}'
@@ -581,7 +583,7 @@ def _watchlist_html():
             for s in ss)
         blocks.append(
             f'<div class="wl-grp"><div class="wl-hd">if <b>{html.escape(star or "?")}</b> '
-            f'({html.escape(status or "Q")} · {sitpct}) sits</div>{legs}</div>')
+            f'({html.escape(status or "Q")} · {sitpct}{ltag}) sits</div>{legs}</div>')
     return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist · questionable stars '
             '<span>— provisional, not firm bets; fire when ruled out</span></div>'
             + "".join(blocks) + "</div>")

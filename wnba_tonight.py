@@ -522,15 +522,48 @@ def injuries():
 # likely that star is to sit. They are NOT logged as firm graded bets — the moment the star is ruled
 # OUT they graduate into the normal firm pipeline. sit_prob is a LABELING prior (recalibrate once
 # resolutions are logged) shown for the user to weight; it does not discount the projection itself.
-SIT_PROB = {"OUT": 1.0, "DOUBTFUL": 0.80, "QUESTIONABLE": 0.50, "GTD": 0.50, "PROBABLE": 0.20}
+# Sit probability by designation AND LEAD TIME. The user's NBA read (2026-07-11): a player listed
+# questionable LONG before tip usually PLAYS; one who was clean then tagged questionable a few HOURS
+# before tip has <20% chance of playing. So lead time (tip - when we FIRST saw the tag) flips the
+# prior — and that late-breaking tag is also the WIDEST timing edge (closest to tip, least time for
+# the line to move). Priors below encode that read; wnba_question_log recalibrates
+# P(sit | designation, bucket) from resolved outcomes into wnba_sit_prob.json (keys "DESIG|bucket"),
+# which sit_prob() prefers. WNBA may differ from the NBA read — the loop is exactly how we find out.
+LEAD_SPLIT = 6.0                 # hours before tip: first tagged >=6h out = "early", <6h = "late"
+SIT_PROB = {
+    "QUESTIONABLE": {"early": 0.30, "late": 0.80, "unk": 0.50},   # lead time DOMINATES
+    "GTD":          {"early": 0.35, "late": 0.75, "unk": 0.50},
+    "DOUBTFUL":     {"early": 0.80, "late": 0.88, "unk": 0.80},
+    "OUT":          {"early": 1.0,  "late": 1.0,  "unk": 1.0},
+    "PROBABLE":     {"early": 0.15, "late": 0.30, "unk": 0.20},
+}
 _SIT_FILE = Path(__file__).resolve().parent / "wnba_sit_prob.json"   # empirical override (recalibrated)
 _SIT_OVERRIDE = None
 
 
-def sit_prob(status):
-    """P(this player SITS | designation). Prefers the EMPIRICAL rate once wnba_question_log has
-    resolved enough real questionable->sat/played outcomes (wnba_sit_prob.json); falls back to the
-    SIT_PROB prior otherwise. Recalibrate with: python wnba_question_log.py --resolve --recalibrate."""
+def lead_bucket(lead_hours):
+    """early / late / unk from hours-before-tip the questionable tag first appeared."""
+    if lead_hours is None:
+        return "unk"
+    return "early" if lead_hours >= LEAD_SPLIT else "late"
+
+
+def _lead_hours(first_seen, tip):
+    """Hours from when we FIRST saw the questionable tag (first_seen, naive-UTC iso) to tip
+    (naive-UTC datetime). None if either is missing/unparseable."""
+    if not first_seen or tip is None:
+        return None
+    try:
+        return (tip - dt.datetime.fromisoformat(first_seen)).total_seconds() / 3600.0
+    except (ValueError, TypeError):
+        return None
+
+
+def sit_prob(status, lead_hours=None):
+    """P(this player SITS | designation, lead-time bucket). Prefers the EMPIRICAL rate once
+    wnba_question_log has resolved enough real outcomes (wnba_sit_prob.json, keyed 'DESIG|bucket',
+    then pooled 'DESIG|unk'); else the lead-aware SIT_PROB prior. Recalibrate with:
+    python wnba_question_log.py --resolve --recalibrate."""
     global _SIT_OVERRIDE
     if _SIT_OVERRIDE is None:
         try:
@@ -538,13 +571,50 @@ def sit_prob(status):
         except (OSError, ValueError):
             _SIT_OVERRIDE = {}
     s = (status or "").strip().upper()
-    return _SIT_OVERRIDE.get(s, SIT_PROB.get(s, 0.5))
+    b = lead_bucket(lead_hours)
+    if f"{s}|{b}" in _SIT_OVERRIDE:                 # bucketed empirical (enough n in this bucket)
+        return _SIT_OVERRIDE[f"{s}|{b}"]
+    if f"{s}|unk" in _SIT_OVERRIDE:                 # pooled empirical (designation-level)
+        return _SIT_OVERRIDE[f"{s}|unk"]
+    tbl = SIT_PROB.get(s, {})
+    return tbl.get(b, tbl.get("unk", 0.5))
 
 
-def questionable_stars(pl, playing, inj, firm_out):
-    """{team: [(name, status, player, sit_prob)]} — impact players who are QUESTIONABLE tonight:
-    ESPN 'Questionable' UNION RotoWire 'GTD', minus anyone already firm-out. Impact = >=20 mpg OR
-    >=10 ppg (the same bar a firm out clears), so a coin-flip star's absence is worth positioning."""
+def tip_times():
+    """{team_abbr: tip_datetime_naive_utc} for today's slate from ESPN — for lead-time (how long
+    before tip a questionable tag first appeared). Empty on any fetch/parse failure."""
+    out = {}
+    try:
+        et = dt.datetime.now(ET).strftime("%Y%m%d")
+        for e in _espn(f"scoreboard?dates={et}").get("events", []):
+            try:
+                tip = dt.datetime.fromisoformat((e.get("date") or "").replace("Z", "+00:00")) \
+                        .astimezone(dt.timezone.utc).replace(tzinfo=None)
+            except (ValueError, AttributeError):
+                continue
+            for c in (e.get("competitions") or [{}])[0].get("competitors", []):
+                ab = c.get("team", {}).get("abbreviation")
+                if ab:
+                    out[ab] = tip
+    except Exception:
+        pass
+    return out
+
+
+def questionable_stars(pl, playing, inj, firm_out, date=None, tips=None, first_seen=None):
+    """{team: [(name, status, player, sit_prob, lead_hours)]} — impact players who are QUESTIONABLE
+    tonight: ESPN 'Questionable' UNION RotoWire 'GTD', minus anyone already firm-out. Impact = >=20
+    mpg OR >=10 ppg. sit_prob is conditioned on LEAD TIME (tip - when we first logged the tag): an
+    early tag usually plays, a late-breaking one usually sits (the user's NBA read)."""
+    date = date or dt.datetime.now(ET).date().isoformat()
+    if tips is None:
+        tips = tip_times()
+    if first_seen is None:
+        try:
+            import wnba_question_log as QL
+            first_seen = QL.first_seen_map(date)              # {player: earliest-seen iso}
+        except Exception:
+            first_seen = {}
     cand = {n: "Questionable" for n, s in inj.items() if s == "Questionable"}
     norm2name = {RW.norm(n): n for n in pl}
     for nnm, tag in RW.questionable_players(rw_lineups() or []).items():
@@ -558,7 +628,8 @@ def questionable_stars(pl, playing, inj, firm_out):
             continue
         if p["min"] < 20 and p["pts"] < 10:                   # impact filter (matches firm outs)
             continue
-        by_team[p["team"]].append((n, status, p, sit_prob(status)))
+        lead = _lead_hours(first_seen.get(n), tips.get(p["team"]))
+        by_team[p["team"]].append((n, status, p, sit_prob(status, lead), lead))
     return by_team
 
 
@@ -572,7 +643,7 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
     glog = glog or W.game_log
     spots = []
     for team, qs in questionable_stars(pl, playing, inj, firm_out).items():
-        outs = list(firm_by_team.get(team, [])) + [(n, p) for n, _, p, _ in qs]
+        outs = list(firm_by_team.get(team, [])) + [(n, p) for n, _, p, _, _ in qs]
         try:
             out_logs = [glog(p["id"]) for _, p in outs]
         except Exception:
@@ -583,9 +654,10 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
                    "rebounds": sum(p["reb"] for _, p in outs),
                    "assists": sum(p["ast"] for _, p in outs)}
         ctx = CTX.matchup_context(team, matchups.get(team, ""), lines, rates)
-        star = "+".join(n.split()[-1] for n, _, _, _ in qs)
+        star = "+".join(n.split()[-1] for n, _, _, _, _ in qs)
         status = qs[0][1] if len(qs) == 1 else "Questionable"
-        sit = min(s for *_, s in qs)
+        sit = min(t[3] for t in qs)                           # conservative: scenario needs all to sit
+        lead = min((t[4] for t in qs if t[4] is not None), default=None)   # most late-breaking tag
         out_here = {n for n, _ in outs}
         team_pl = {n: v for n, v in pl.items()
                    if v["team"] == team and n not in firm_out and n not in out_here
@@ -612,7 +684,8 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
                 if e["side"] != "over":                             # watchlist thesis = role UP
                     continue
                 spots.append({"player": n, "team": team, "star": star, "status": status,
-                              "sit": sit, "conf": conf, "proj_min": round(proj, 1), **e})
+                              "sit": sit, "lead": round(lead, 1) if lead is not None else None,
+                              "conf": conf, "proj_min": round(proj, 1), **e})
     return spots
 
 

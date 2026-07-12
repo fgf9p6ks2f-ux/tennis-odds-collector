@@ -123,18 +123,24 @@ def main():
     try:
         import wnba_question_log as QL
         today_et = dt.datetime.now(T.ET).date().isoformat()
+        tips = T.tip_times()                                      # team -> tip (for lead time)
         norm2name = {RW.norm(nn): nn for nn in pl}
         obs, seen = [], set()
+
+        def _tip(team):
+            t = tips.get(team)
+            return t.isoformat() if t is not None else None
+
         for nn, s in inj.items():                                 # ESPN Questionable / Doubtful
             if s in ("Questionable", "Doubtful") and nn in pl and pl[nn]["team"] in playing \
                     and (pl[nn]["min"] >= 20 or pl[nn]["pts"] >= 10):
-                obs.append((nn, pl[nn]["team"], s, pl[nn]["min"]))
+                obs.append((nn, pl[nn]["team"], s, pl[nn]["min"], _tip(pl[nn]["team"])))
                 seen.add(nn)
         for nnm in RW.questionable_players(board):                # RotoWire GTD
             full = norm2name.get(nnm)
             if full and full not in seen and pl[full]["team"] in playing \
                     and (pl[full]["min"] >= 20 or pl[full]["pts"] >= 10):
-                obs.append((full, pl[full]["team"], "GTD", pl[full]["min"]))
+                obs.append((full, pl[full]["team"], "GTD", pl[full]["min"], _tip(pl[full]["team"])))
         if obs:
             QL.record(today_et, obs)
     except Exception as e:
