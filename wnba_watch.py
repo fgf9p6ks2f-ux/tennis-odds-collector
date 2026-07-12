@@ -32,9 +32,37 @@ import wnba_tonight as T
 import wnba_wowy as W
 
 HERE = Path(__file__).resolve().parent
-STATE = HERE / "wnba_injury_state.json"        # last-seen key-out statuses (for diffing)
-Q_STATE = HERE / "wnba_question_state.json"    # last-seen key QUESTIONABLE/GTD statuses (for diffing)
+STATUS_STATE = HERE / "wnba_status_state.json" # last-seen key-player injury TAGS across ALL designations
 CONF_STATE = HERE / "wnba_confirm_state.json"  # last-seen set of CONFIRMED-lineup teams (for diffing)
+
+FIRM = ("OUT", "DOUBTFUL")                     # tags that drive the firm beneficiary scan
+WATCH = ("QUESTIONABLE", "GTD")                # tags that drive the questionable-tier watchlist
+
+
+def diff_report(prev_all, cur_all):
+    """Compare two {player: TAG} injury snapshots and return the FULL change breakdown for every
+    designation. Pure (no I/O) so it's unit-testable:
+      added   {player: tag}         — newly on the report under any tag
+      removed {player: old_tag}     — dropped off the report entirely (now active/cleared)
+      changed {player: (old, new)}  — moved between tags (escalation or downgrade)
+    plus the derived action sets:
+      new     {player: tag}  — newly reads OUT/DOUBTFUL (fresh, or escalated up from a Q/GTD) -> firm scan
+      new_q   {player: tag}  — newly reads QUESTIONABLE/GTD (and not also a firm add)        -> watchlist scan
+      back    [player]       — was OUT/DOUBTFUL, now gone      -> void beneficiary plays
+      back_q  [player]       — was QUESTIONABLE/GTD, now gone  -> void the watchlist spot"""
+    added = {n: t for n, t in cur_all.items() if n not in prev_all}
+    removed = {n: prev_all[n] for n in prev_all if n not in cur_all}
+    changed = {n: (prev_all[n], cur_all[n]) for n in cur_all
+               if n in prev_all and prev_all[n] != cur_all[n]}
+    new = {n: t for n, t in added.items() if t in FIRM}
+    new.update({n: t for n, (o, t) in changed.items() if t in FIRM and o not in FIRM})
+    new_q = {n: t for n, t in added.items() if t in WATCH and n not in new}
+    new_q.update({n: t for n, (o, t) in changed.items()
+                  if t in WATCH and o not in WATCH and n not in new})
+    back = sorted(n for n, t in removed.items() if t in FIRM)
+    back_q = sorted(n for n, t in removed.items() if t in WATCH)
+    return {"added": added, "removed": removed, "changed": changed,
+            "new": new, "new_q": new_q, "back": back, "back_q": back_q}
 PCACHE = HERE / "wnba_players_cache.json"      # roster + season averages (skip the 47s rebuild)
 KEY_MIN = 20.0                                 # a player worth reacting to (mpg)
 
@@ -75,6 +103,30 @@ def key_q(playing, inj, pl):
             and (pl[n]["min"] >= KEY_MIN or pl[n]["pts"] >= 10)}
 
 
+def key_status(playing, inj, board, pl):
+    """{player: TAG} for EVERY key (>=20 mpg OR >=10 ppg) player on the slate carrying ANY injury
+    tag — OUT / DOUBTFUL / QUESTIONABLE from ESPN, plus GTD from RotoWire when ESPN hasn't tagged
+    them. The complete report snapshot the loop diffs each poll. OUT/DOUBTFUL are filtered by
+    `not playing_now` (a returning player still tagged out but with a full posted prop slate is
+    really playing); QUESTIONABLE/GTD are NOT (books post props for questionable players)."""
+    st = {}
+    for n, s in inj.items():
+        p = pl.get(n)
+        if not (p and p.get("team") in playing and (p["min"] >= KEY_MIN or p["pts"] >= 10)):
+            continue
+        if s in ("Out", "Doubtful") and not T.playing_now(n):
+            st[n] = s.upper()
+        elif s == "Questionable":
+            st[n] = "QUESTIONABLE"
+    norm2name = {RW.norm(n): n for n in pl}
+    for nnm in RW.questionable_players(board):
+        full = norm2name.get(nnm)
+        if (full and full not in st and pl.get(full, {}).get("team") in playing
+                and (pl[full]["min"] >= KEY_MIN or pl[full]["pts"] >= 10)):
+            st[full] = "GTD"
+    return st
+
+
 def main():
     playing = T.tonight_teams()
     if not playing:
@@ -111,13 +163,12 @@ def main():
     prev_conf = json.loads(CONF_STATE.read_text()) if CONF_STATE.exists() else []
     CONF_STATE.write_text(json.dumps(conf_sig))
     conf_changed = bool(conf_sig) and conf_sig != prev_conf
-    cur = key_outs(playing, inj, pl)
-    first_run = not STATE.exists()
-    prev = json.loads(STATE.read_text()) if STATE.exists() else {}
-    STATE.write_text(json.dumps(cur, indent=1, sort_keys=True))   # deterministic -> no-op runs don't commit
-    cur_q = key_q(playing, inj, pl)                               # questionable/GTD tier (the timing edge)
-    prev_q = json.loads(Q_STATE.read_text()) if Q_STATE.exists() else {}
-    Q_STATE.write_text(json.dumps(cur_q, indent=1, sort_keys=True))
+    # UNIFIED injury-report snapshot across ALL tags (OUT/DOUBTFUL/QUESTIONABLE/GTD), for a
+    # comprehensive who's-new / who's-off / who-changed diff every poll.
+    cur_all = key_status(playing, inj, board, pl)
+    first_run = not STATUS_STATE.exists()
+    prev_all = json.loads(STATUS_STATE.read_text()) if STATUS_STATE.exists() else {}
+    STATUS_STATE.write_text(json.dumps(cur_all, indent=1, sort_keys=True))  # deterministic -> stable
     # CALIBRATION LOG: record every key questionable/doubtful/GTD player on tonight's slate (once, via
     # INSERT-OR-IGNORE) so wnba_question_log can resolve sit-vs-play later and recalibrate SIT_PROB.
     try:
@@ -146,109 +197,103 @@ def main():
     except Exception as e:
         print("question-log record skipped:", str(e)[:60])
     if first_run:
-        # cold start: record the baseline, don't fire the whole current injury list as
-        # "news". The 4x/day full-board alert covers already-known outs; this watcher
-        # only ever pushes genuine deltas from here on.
-        print(f"cold start — baselined {len(cur)} known outs, {len(cur_q)} questionable, no push")
+        # cold start: baseline the whole report, don't fire it all as "news". The 4x/day full board
+        # covers already-known tags; from here on this watcher pushes only genuine deltas.
+        print(f"cold start — baselined {len(cur_all)} tagged key players, no push")
         return
-    # NEW = newly Out/Doubtful, or escalated Doubtful->Out, since the last poll. (An
-    # Out->Doubtful downgrade is not news worth a push.)
-    new = {n: s for n, s in cur.items()
-           if prev.get(n) != s and not (prev.get(n) == "Out" and s == "Doubtful")}
-    # newly QUESTIONABLE since the last poll -> fire the early watchlist scan (positions us on the
-    # beneficiary before the star resolves to Out). Drop any that ALSO newly went Out (the firm
-    # `new` path already covers those, at full urgency).
-    new_q = {n: s for n, s in cur_q.items() if prev_q.get(n) != s and n not in new}
-    # BACK = was a key out last poll, now gone (off the injury report / active / props posted)
-    # -> the player RETURNED, so any beneficiary play off their absence is VOID. Push a warning.
-    back = sorted(n for n in prev if n not in cur)
+
+    # ---- UNIFIED INJURY-REPORT DIFF across ALL tags (the comprehensive who's-new/off/changed feed) ----
+    d = diff_report(prev_all, cur_all)
+    added, removed, changed = d["added"], d["removed"], d["changed"]
+    new, new_q, back, back_q = d["new"], d["new_q"], d["back"], d["back_q"]
     topic = os.environ.get("NTFY_TOPIC")
-    if back:
-        bmsg = ", ".join(A._short(n) for n in back)
-        print(f"BACK (off injury report): {bmsg} — beneficiary plays off their absence now void")
-        if topic:
-            try:
-                requests.post(f"https://ntfy.sh/{topic}",
-                    data=(f"⚠ BACK: {bmsg} — OFF the injury report / now active. Pull any "
-                          f"beneficiary plays built on their absence.").encode("utf-8"),
-                    headers={"Title": f"WNBA: {bmsg} back"[:120], "Priority": "high",
-                             "Tags": "warning"}, timeout=15)
-                print("pushed (back)")
-            except requests.RequestException as e:
-                print("back push failed:", e)
-    if not new and not new_q:
+    if not (added or removed or changed):
         if conf_changed:
-            # lineups locked in (no new injury) — re-run the scan so the ledger's confidence
+            # lineups locked in (no report change) — re-run the scan so the ledger's confidence
             # labels flip likely->confirmed/bench and the dashboard regenerates. No push.
             print(f"lineups confirmed ({len(conf_sig)} teams) — refreshing confidence, no push")
             _, preds = A.collect()
             L.log_predictions(preds)
         else:
-            print(f"no new outs ({len(cur)} known: {', '.join(sorted(cur)) or 'none'})")
+            print(f"no report changes ({len(cur_all)} tagged: {', '.join(sorted(cur_all)) or 'none'})")
         return
 
-    news = ", ".join(f"{A._short(n)} {s}" for n, s in sorted(new.items()))
-    qnews = ", ".join(f"{A._short(n)} Q" for n in sorted(new_q))
-    print(f"NEW: {news or '(none)'} · questionable: {qnews or '(none)'} — running scan")
-    # FAST REPLACEMENT READ: the instant the news hits, name who likely slides into the role +
-    # projected minutes (position + WOWY depth) — before RotoWire confirms / the line moves.
-    # Only for firm OUTs — a questionable-only trigger produces no `new`, so this loop no-ops.
+    def _tag(t):
+        return {"QUESTIONABLE": "Questionable", "GTD": "GTD", "OUT": "OUT", "DOUBTFUL": "Doubtful"}.get(t, t)
+    feed = ([f"➕ {A._short(n)} → {_tag(added[n])}" for n in sorted(added)]
+            + [f"↕ {A._short(n)}: {_tag(changed[n][0])} → {_tag(changed[n][1])}" for n in sorted(changed)]
+            + [f"➖ {A._short(n)} OFF report (was {_tag(removed[n])}) — now active/cleared"
+               for n in sorted(removed)])
+    feed_txt = "\n".join(feed)
+    print("REPORT CHANGES:\n" + feed_txt)
+
+    # FAST REPLACEMENT READ for newly-firm outs: who inherits the vacated shots/role, before the
+    # line moves. Only for `new` (fresh OUT/DOUBTFUL); a questionable/removal-only change no-ops it.
     repl = []
-    try:
-        pl_all = W.players()
-        by_team = {}
-        for on in new:
-            v = pl_all.get(on)
-            if v and v.get("team"):
-                by_team.setdefault(v["team"], []).append(on)
-        for team, outs in by_team.items():
-            lu = DP.projected_lineup(team, outs, pl_all)
-            # LEAD with usage ABSORPTION — the vacated SHOTS flow to EXISTING players (FGA-WOWY,
-            # which is empirical so it catches small-ball automatically). This is the reliable,
-            # bet-relevant signal: the bet keys on WHO shoots more, not on who fills the spot.
-            for u in lu["usage_up"][:3]:
-                repl.append(f"↳ {team}: {A._short(u['name'])} absorbs +{u['d_fga']:g} FGA "
-                            f"(→{u['fga_wo']:g}/g w/o {A._short(u['vs'])})")
-            # someone ALWAYS fills the starting SPOT, but our exact-starter guess is only ~0-20%
-            # (top-3 ~60%) — so surface the SHORTLIST of likely fills, not one confident wrong name.
-            for p in lu["promoted"]:
-                cands = " / ".join(A._short(c) for c in p.get("candidates", [p["name"]]))
-                repl.append(f"↳ {team}: {A._short(p['replaces'])}'s spot → likely {cands} "
-                            f"(shortlist; exact starter ~coin-flip)")
-    except Exception as e:
-        print("lineup read skipped:", str(e)[:60])
-    for r in repl:
-        print("  " + r)
-    alerts, preds = A.collect()
-    logged = L.log_predictions(preds)
-    seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
-    fresh, this_run = [], set()
-    for ev, k, msg in alerts:                       # alerts sorted by EV desc
-        if k in seen or k in this_run:
-            continue
-        this_run.add(k)
-        fresh.append((ev, k, msg))
-    print(f"wnba-watch: {len(alerts)} spots, {len(fresh)} new, {logged} logged to ledger")
-    for _e, _k, m in fresh:
-        print("  " + m)
-    topic = os.environ.get("NTFY_TOPIC")
-    if topic and fresh:
-        if new:                          # a firm OUT broke -> URGENT push, with the replacement read
-            body = (f"🚨 {news}\n\n" + ("\n".join(repl) + "\n\n" if repl else "")
-                    + A._notif_body(fresh))
-            title, prio, tags = f"WNBA news: {news}"[:120], "urgent", "rotating_light"
-        else:                            # questionable-only trigger -> softer early WATCH heads-up
-            body = f"⏳ Questionable: {qnews}\n\n" + A._notif_body(fresh)
-            title, prio, tags = f"WNBA watch: {qnews}"[:120], "high", "hourglass_flowing_sand"
+    if new:
+        try:
+            pl_all = W.players()
+            by_team = {}
+            for on in new:
+                v = pl_all.get(on)
+                if v and v.get("team"):
+                    by_team.setdefault(v["team"], []).append(on)
+            for team, outs in by_team.items():
+                lu = DP.projected_lineup(team, outs, pl_all)
+                for u in lu["usage_up"][:3]:
+                    repl.append(f"↳ {team}: {A._short(u['name'])} absorbs +{u['d_fga']:g} FGA "
+                                f"(→{u['fga_wo']:g}/g w/o {A._short(u['vs'])})")
+                for p in lu["promoted"]:
+                    cands = " / ".join(A._short(c) for c in p.get("candidates", [p["name"]]))
+                    repl.append(f"↳ {team}: {A._short(p['replaces'])}'s spot → likely {cands} "
+                                f"(shortlist; exact starter ~coin-flip)")
+        except Exception as e:
+            print("lineup read skipped:", str(e)[:60])
+        for r in repl:
+            print("  " + r)
+
+    # run the beneficiary scan only when a PLAY could change (new firm out OR new questionable);
+    # a pure removal/downgrade still pushes the change feed but needs no re-scan.
+    fresh = []
+    if new or new_q:
+        alerts, preds = A.collect()
+        logged = L.log_predictions(preds)
+        seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
+        this_run = set()
+        for ev, k, msg in alerts:                       # alerts sorted by EV desc
+            if k in seen or k in this_run:
+                continue
+            this_run.add(k)
+            fresh.append((ev, k, msg))
+        print(f"wnba-watch: {len(alerts)} spots, {len(fresh)} new, {logged} logged to ledger")
+        for _e, _k, m in fresh:
+            print("  " + m)
+
+    # ---- ONE comprehensive push: report changes -> replacement read -> plays -> void warnings ----
+    if topic:
+        parts = ["📋 WNBA injury update", feed_txt]
+        if repl:
+            parts.append("\n".join(repl))
+        if fresh:
+            parts.append(A._notif_body(fresh))
+        if back or back_q:
+            voids = ", ".join(A._short(n) for n in back + back_q)
+            parts.append(f"⚠ VOID any plays built on: {voids} (now active/cleared)")
+        body = "\n\n".join(parts)
+        prio = "urgent" if new else ("high" if (new_q or back or back_q) else "default")
+        tags = "rotating_light" if new else "hourglass_flowing_sand"
         try:
             requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                          headers={"Title": title, "Priority": prio, "Tags": tags}, timeout=15)
+                          headers={"Title": "WNBA injury update", "Priority": prio, "Tags": tags},
+                          timeout=15)
             print(f"pushed ({prio})")
         except requests.RequestException as e:
             print("push failed:", e)
-    for _e, k, _m in fresh:
-        seen.add(k)
-    A.SEEN.write_text("\n".join(sorted(seen)[-2000:]))
+    if fresh:                                           # remember pushed spots so they don't re-fire
+        seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
+        for _e, k, _m in fresh:
+            seen.add(k)
+        A.SEEN.write_text("\n".join(sorted(seen)[-2000:]))
 
 
 if __name__ == "__main__":
