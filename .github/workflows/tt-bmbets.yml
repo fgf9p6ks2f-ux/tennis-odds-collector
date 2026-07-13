@@ -41,13 +41,12 @@ jobs:
       - name: clone private tt-elite (code never lives in this public repo)
         env:
           TT_ELITE_PAT: ${{ secrets.TT_ELITE_PAT }}
-          GHTOKEN: ${{ github.token }}
         run: |
-          # PAT when tt-elite is PRIVATE, else this repo's github.token (reads any PUBLIC repo).
-          # Never anonymous — that prompts for a username on the runner and dies.
-          TOKEN="${TT_ELITE_PAT:-$GHTOKEN}"
+          # Production path = the PAT (tt-elite is PRIVATE). Token-less clone works only while
+          # public. github.token is NOT a fallback — it can't read another repo cross-repo.
+          if [ -n "$TT_ELITE_PAT" ]; then AUTH="x-access-token:${TT_ELITE_PAT}@"; else AUTH=""; fi
           rm -rf "$RUNNER_TEMP/ttsrc"
-          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
+          git clone --depth 1 "https://${AUTH}github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
       - name: loop scrape + edge (~4-min cadence, ~50 min); soft odds -> private tt-elite
         env:
           BMBETS_PROXY: ${{ secrets.BMBETS_PROXY }}

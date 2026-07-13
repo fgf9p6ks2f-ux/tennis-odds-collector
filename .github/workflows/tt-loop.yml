@@ -32,15 +32,13 @@ jobs:
       - name: clone private tt-elite (code never lives in this public repo)
         env:
           TT_ELITE_PAT: ${{ secrets.TT_ELITE_PAT }}
-          GHTOKEN: ${{ github.token }}
         run: |
-          # Always tokenize the clone: the PAT when tt-elite is PRIVATE, else this repo's
-          # github.token (reads any PUBLIC repo) while it's still public. An anonymous clone
-          # prompts for a username on the runner and dies ("could not read Username").
-          # Push-back below stays PAT-only (a repo token can't push cross-repo).
-          TOKEN="${TT_ELITE_PAT:-$GHTOKEN}"
+          # Production path = the PAT (tt-elite is PRIVATE). While it's still public a token-less
+          # clone also works. github.token is NOT a fallback — an installation token can't read
+          # another repo cross-repo ("Repository not found"). Push-back below stays PAT-only.
+          if [ -n "$TT_ELITE_PAT" ]; then AUTH="x-access-token:${TT_ELITE_PAT}@"; else AUTH=""; fi
           rm -rf "$RUNNER_TEMP/ttsrc"
-          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
+          git clone --depth 1 "https://${AUTH}github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
           echo "cloned tt-elite -> $RUNNER_TEMP/ttsrc"
       - name: TT loop — refresh, flag, board; DATA->private tt-elite, BOARD->this public repo
         env:
