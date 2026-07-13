@@ -94,6 +94,7 @@
 timing|2026-07-12|Azura Stevens|pra|20.5
 timing|2026-07-12|Azura Stevens|pts_ast|17.5
 timing|2026-07-12|Azura Stevens|pts_reb|27.5
+timing|2026-07-12|Azura Stevens|pts_reb|30.5
 timing|2026-07-12|Courtney Vandersloot|points|10.5
 timing|2026-07-12|Courtney Vandersloot|pts_ast|15.5
 timing|2026-07-12|Gabriela Jaquez|points|9.5
