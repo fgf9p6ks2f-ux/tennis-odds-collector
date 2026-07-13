@@ -39,3 +39,4 @@ rw|costanzaverona|Verona (coach's decision) has been ruled
 rw|chloebibby|Bibby (coach's decision) has been ruled 
 rw|breehall|Hall (coach's decision) has been ruled o
 rw|taniyalatson|Latson (coach's decision) won't play Sun
+rw|temifagbenle|Fagbenle (concussion) is questionable fo
