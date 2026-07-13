@@ -61,11 +61,24 @@ def game_lines():
         odds = (comp.get("odds") or [{}])[0]
         total = odds.get("overUnder")
         details = odds.get("details", "")                 # e.g. "PHX -1.5"
-        m = re.search(r"-?\d+\.?\d*", details or "")
-        mag = abs(float(m.group())) if m else None
-        fav = details.split()[0] if details else None     # favored team abbr, e.g. "PHX"
-        if fav not in ab:                                  # token didn't match a side -> don't guess
-            fav = None
+        # spread magnitude from the STRUCTURED numeric field (robust); fall back to the details string
+        sp = odds.get("spread")
+        mag = abs(float(sp)) if sp is not None else None
+        if mag is None:
+            m = re.search(r"-?\d+\.?\d*", details or "")
+            mag = abs(float(m.group())) if m else None
+        # favorite from the STRUCTURED per-team flags — the old details-token parse silently failed
+        # ~96% of the time, leaving spread/dog empty; fall back to the details token if flags absent.
+        ao = odds.get("awayTeamOdds") or {}
+        ho = odds.get("homeTeamOdds") or {}
+        fav = None
+        for c in cs:
+            if (c.get("homeAway") == "home" and ho.get("favorite")) or \
+               (c.get("homeAway") == "away" and ao.get("favorite")):
+                fav = c["team"]["abbreviation"]
+        if fav is None and details:
+            tok = details.split()[0]
+            fav = tok if tok in ab else None
         for i, a in enumerate(ab):
             # signed spread FOR this team: +mag = underdog (blowout risk), -mag = favored
             dog = None if (mag is None or fav is None) else (mag if a != fav else -mag)
