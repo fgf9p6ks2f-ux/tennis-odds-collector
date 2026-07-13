@@ -1,0 +1,60 @@
+name: tt-digest
+# ~11:40pm-MT TT results digest, RUN FROM THE PUBLIC REPO so tt-elite can stay PRIVATE.
+# Clones the private tt-elite via TT_ELITE_PAT, grades any remaining paper bets, builds the
+# per-league digest, pushes it to the TT ntfy topic, and commits the dedupe log back to
+# tt-elite privately. Delay-tolerant: targets the completed MT day, deduped via the
+# tt_digests.md day header, so late/dropped crons + the catch-nets all resolve to one send.
+on:
+  schedule:
+    - cron: "40 5 * * *"     # 23:40 MDT (summer, primary)
+    - cron: "40 6 * * *"     # 23:40 MST (winter, primary)
+    - cron: "20 7 * * *"     # ~01:20 MT catch-net
+    - cron: "20 9 * * *"     # ~03:20 MT catch-net
+    - cron: "20 13 * * *"    # ~07:20 MT catch-net (absorbs multi-hour delays)
+  workflow_dispatch: {}
+
+concurrency:
+  group: tt-digest
+  cancel-in-progress: false
+
+permissions:
+  contents: read             # writes nothing to THIS public repo; pushes to tt-elite via PAT
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests curl_cffi
+      - name: clone private tt-elite (code never lives in this public repo)
+        env:
+          TT_ELITE_PAT: ${{ secrets.TT_ELITE_PAT }}
+        run: |
+          if [ -n "$TT_ELITE_PAT" ]; then AUTH="x-access-token:${TT_ELITE_PAT}@"; else AUTH=""; fi
+          rm -rf "$RUNNER_TEMP/ttsrc"
+          git clone --depth 1 "https://${AUTH}github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
+      - name: grade + build + push TT digest; commit dedupe log to private tt-elite
+        env:
+          TT_NTFY_TOPIC: ${{ secrets.TT_NTFY_TOPIC }}
+          TT_ELITE_PAT: ${{ secrets.TT_ELITE_PAT }}
+          FORCE_DIGEST: ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
+        run: |
+          cd "$RUNNER_TEMP/ttsrc"
+          git config user.name "tt-bot"
+          git config user.email "tt-bot@users.noreply.github.com"
+          if [ -n "$TT_ELITE_PAT" ]; then
+            git remote set-url origin "https://x-access-token:${TT_ELITE_PAT}@github.com/fgf9p6ks2f-ux/tt-elite.git"
+          fi
+          export NTFY_TOPIC="$TT_NTFY_TOPIC"    # the TT topic (NOT this repo's WNBA NTFY_TOPIC)
+          python ingest_24live.py --limit 500 || echo "ingest skipped"
+          python paper_ledger.py || echo "paper skipped"
+          python tt_digest.py $FORCE_DIGEST || echo "tt digest skipped"
+          # persist the dedupe log + graded ledger back to PRIVATE tt-elite (needs the PAT)
+          if [ -n "$TT_ELITE_PAT" ]; then
+            git add -f tt_digests.md tt.sqlite paper.md 2>/dev/null || true
+            git commit -m "nightly tt digest [skip ci]" -q || { echo "no change"; exit 0; }
+            git pull --rebase --autostash -X theirs -q || true
+            git push -q || true
+          fi
