@@ -141,21 +141,13 @@ def log_predictions(rows):
             f"spread=excluded.spread, pi_role=excluded.pi_role",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
-    # SELF-HEAL: when a projection updates (e.g. recent-minutes lift takes a player off an under),
-    # drop that player's now-orphaned PENDING bets so the board matches the current model. Scoped
-    # to players THIS scan actually covered — a player absent from the batch is left untouched, so
-    # a partial/RotoWire-down scan can never wipe games it didn't see. Never touches graded rows.
-    if len(rows) >= 5:
-        keep, seen = {}, {}
-        for r in rows:
-            keep.setdefault(r["pred_date"], set()).add((r["player"], r["stat"], float(r["line"])))
-            seen.setdefault(r["pred_date"], set()).add(r["player"])
-        for d, players in seen.items():
-            for pl, s, ln in con.execute("SELECT player, stat, line FROM predictions WHERE "
-                                         "pred_date=? AND graded=0 AND result IS NULL", (d,)).fetchall():
-                if pl in players and (pl, s, float(ln)) not in keep[d]:
-                    con.execute("DELETE FROM predictions WHERE pred_date=? AND player=? AND stat=? "
-                                "AND line=? AND graded=0 AND result IS NULL", (d, pl, s, ln))
+    # A FLAG IS A PLACED BET — kept FOREVER (2026-07-13, user's rule). He bets the soft opener early
+    # to capture the CLV, so a flagged bet must persist at its ORIGINAL line/odds until it GRADES; a
+    # re-scan must NEVER drop or replace it. (A prior "self-heal" deleted a player's pending bets when
+    # the model re-selected a different play — that nuked a WINNING Rae Burrell pts o14.5 the moment
+    # the line moved to 15.5 in his favour, so he cashed it out thinking it had died. Only grade()
+    # removes a pending bet, when its game settles.) INSERT-OR-IGNORE above keeps the earliest log,
+    # so the same (date, player, stat, line) never double-counts and its opening odds are preserved.
     con.commit()
     con.close()
     return n
