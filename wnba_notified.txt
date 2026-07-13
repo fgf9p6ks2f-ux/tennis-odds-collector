@@ -129,6 +129,7 @@ timing|2026-07-12|Sabrina Ionescu|points|15.5
 timing|2026-07-12|Sydney Taylor|points|12.5
 timing|2026-07-12|Sydney Taylor|points|13.5
 timing|2026-07-12|Sydney Taylor|points|14.5
+timing|2026-07-13|Erica Wheeler|pts_ast|15.5
 timing|2026-07-13|Kahleah Copper|pts_reb|23.5
 timing|2026-07-13|Monique Akoa Makani|pra|14.5
 timing|2026-07-13|Rae Burrell|pra|20.5
