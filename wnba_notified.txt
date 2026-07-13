@@ -101,6 +101,7 @@ timing|2026-07-12|Kamilla Cardoso|pra|32.5
 timing|2026-07-12|Kamilla Cardoso|pra|34.5
 timing|2026-07-12|Kamilla Cardoso|pra|35.5
 timing|2026-07-12|Kamilla Cardoso|pts_reb|27.5
+timing|2026-07-12|Kamilla Cardoso|pts_reb|33.5
 timing|2026-07-12|Kamilla Cardoso|rebounds|12.5
 timing|2026-07-12|Kamilla Cardoso|rebounds|13.5
 timing|2026-07-12|Kamilla Cardoso|rebounds|14.5
@@ -108,6 +109,7 @@ timing|2026-07-12|Maria Conde|assists|2.5
 timing|2026-07-12|Maria Conde|points|11.5
 timing|2026-07-12|Marine Johannes|points|7.5
 timing|2026-07-12|Natasha Cloud|assists|6.5
+timing|2026-07-12|Natasha Cloud|points|14.5
 timing|2026-07-12|Natasha Cloud|points|15.5
 timing|2026-07-12|Natasha Cloud|pts_ast|17.5
 timing|2026-07-12|Pauline Astier|points|7.5
