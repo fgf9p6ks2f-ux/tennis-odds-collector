@@ -254,6 +254,25 @@ def main():
         return
     pl = players_cached()
 
+    # Keep the opener cache on TODAY's slate. _opener_spots IGNORES a cache dated != today, so at the
+    # start of a new slate (or a missing cache) the sub-minute opener silently can't fire until
+    # wnba-props next happens to run — which is cron-throttled overnight, exactly when opening lines
+    # post. That was the SECOND half of the multi-day miss (the first was the loop dying). Fix: if the
+    # cache isn't today's, run ONE full scan now to build today's projections, then let the fast
+    # opener match resume on the next 60s poll with a fresh, correctly-dated cache. Runs once per slate.
+    _today = dt.datetime.now(T.ET).date().isoformat()
+    try:
+        _cd = json.loads(PROJ_CACHE.read_text()).get("date") if PROJ_CACHE.exists() else None
+    except Exception:
+        _cd = None
+    if _cd != _today:
+        print(f"proj cache {_cd} != {_today} — running a slate scan to refresh today's projections")
+        try:
+            A.collect()
+        except Exception as e:
+            print("slate refresh scan failed:", str(e)[:80])
+        return
+
     # ---- SUB-MINUTE OPENER ALERT (fires BEFORE the injuries fetch + the ~47s scan) ----
     # Match the last full scan's cached, line-INDEPENDENT projections against the freshly-collected
     # lines in milliseconds, so a just-posted opening line is on the phone within the 60s poll — the
