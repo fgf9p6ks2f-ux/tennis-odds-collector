@@ -93,6 +93,7 @@
 2026-07-12|Sabrina Ionescu|rebounds|5.5
 2026-07-13|Alyssa Thomas|reb_ast|15.5
 2026-07-13|Ariel Atkins|points|10.5
+2026-07-13|Ariel Atkins|pts_reb|13.5
 2026-07-13|DeWanna Bonner|rebounds|5.5
 2026-07-13|Erica Wheeler|pts_ast|14.5
 2026-07-13|Erica Wheeler|pts_ast|15.5
