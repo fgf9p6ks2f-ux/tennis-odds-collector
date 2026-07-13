@@ -802,7 +802,7 @@ def build():
     tracker_html = _tracker_panel((w, l, u), tt_json)
     doc = f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="90"><title>Today's Plays</title>
+<title>Today's Plays</title>
 <style>
   :root {{ color-scheme: dark; }}
   * {{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }}
@@ -1028,6 +1028,33 @@ def build():
     document.querySelectorAll(`[data-f="${{k}}"] .pill`).forEach(p => p.classList.toggle('on', p.dataset.v===v));
     applyF();
   }}
+  // Background refresh: fetch the freshly-built page every 90s and swap ONLY the panels whose
+  // data changed — no full reload, so scroll position, expanded ladders, active tab and filters
+  // all survive untouched unless there's genuinely new data. Replaces the old <meta refresh>.
+  async function bgRefresh() {{
+    try {{
+      const r = await fetch(location.pathname + '?_=' + Date.now(), {{ cache: 'no-store' }});
+      if (!r.ok) return;
+      const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      const y = window.scrollY;
+      let touched = false, wnba = false;
+      ['wnba','tt','tracker'].forEach(id => {{
+        const nw = doc.getElementById(id), cur = document.getElementById(id);
+        if (nw && cur && nw.innerHTML !== cur.innerHTML) {{
+          cur.innerHTML = nw.innerHTML; touched = true; if (id === 'wnba') wnba = true;
+        }}
+      }});
+      if (wnba) {{   // fresh cards come in server-default order/visibility — restore the user's filter
+        document.querySelectorAll('[data-f] .pill').forEach(p => {{
+          const g = p.closest('[data-f]').dataset.f;
+          p.classList.toggle('on', p.dataset.v === F[g]);
+        }});
+        applyF();
+      }}
+      if (touched) window.scrollTo(0, y);
+    }} catch (e) {{}}
+  }}
+  setInterval(bgRefresh, 90000);
 </script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
