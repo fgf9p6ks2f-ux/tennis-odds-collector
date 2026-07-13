@@ -82,7 +82,11 @@ jobs:
           # GitHub dropped its cron for ~11h on 2026-07-13, so no plays logged + the board went empty.
           # Sleep to a sane cadence, then github.token re-dispatches (actions: write) -> immortal
           # chain; the crons remain as a fallback seed.
-          sleep 1500   # ~25 min → ~30-min cadence (heavy retrain each run; no need to run continuously)
+          sleep 600    # ~10 min → ~14-min cadence (was 1500/~30 min). The beneficiary ALERT
+                       # (wnba_alert.py) rides this loop, so its cadence == injury-bet latency; halving
+                       # the sleep ~halves that. The heavy ESPN retrains rerun too (small extra load vs
+                       # the watch loop's 60s polling). Real fix = decouple the light alert onto the 60s
+                       # watch loop (or the Oracle VM daemon) so alerts fire in ~1-2 min, not ~14.
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
             -H "Authorization: Bearer $TOKEN" \
             -H "Accept: application/vnd.github+json" \
