@@ -644,16 +644,18 @@ def _tt_ladder(lad, play_to, zone):
         noplay = (r["line"] > play_to) if over_side else (r["line"] < play_to)
         cls = " mark" if edge else (" dim" if noplay else "")
         lbl = f'{r["line"]:g}' + (' <span class="ladm">◄</span>' if edge else "")
+        od = f'{r["od"]:.2f}' if r.get("od") else '·'    # actual bmbets soft price at this line
         rows += (f'<div class="ladrow{cls}">'
                  f'<span class="ladl">{lbl}</span>'
                  f'<span class="ladbar"><i style="width:{pct}%"></i></span>'
                  f'<span class="ladv">{pct}%</span>'
-                 f'<span class="ladr">{hit}-{miss}</span></div>')
+                 f'<span class="ladr">{hit}-{miss}</span>'
+                 f'<span class="ladod">{od}</span></div>')
     return (f'<div class="ttlad">'
             f'<div class="ladhead"><span>Line</span><span>{sidelbl} hit rate</span>'
-            f'<span class="ladv">%</span><span class="ladr">rec</span></div>'
+            f'<span class="ladv">%</span><span class="ladr">rec</span><span class="ladod">odds</span></div>'
             f'{rows}'
-            f'<div class="ladnote">◄ play {sidelbl} up to here · dimmed rows = edge too thin, skip</div></div>')
+            f'<div class="ladnote">◄ play {sidelbl} up to here · odds = softest book price · dimmed = skip</div></div>')
 
 
 def _tt_panel(data):
@@ -678,11 +680,14 @@ def _tt_panel(data):
             when = (dt.datetime.fromtimestamp(b["ts"], MT).strftime("%-I:%M %p")
                     if b.get("ts") else "TBD")
             side = html.escape(b.get("side", ""))
+            book = b.get("book")     # actual bmbets main line + softest price (None until odds land)
+            bk = (f' · <span class="ttbook">book {"O" if b.get("side", "").startswith("O") else "U"}'
+                  f'{book["line"]:g} @{book["od"]:.2f}</span>') if book else ""
             lad = _tt_ladder(b.get("ladder", []), b.get("play_to", default_line), b.get("side", ""))
             cards += f"""
       <div class="ttrow" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}<span class="ttchev">›</span></div>
-        <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u</div>
+        <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u{bk}</div>
       </div>{lad}"""
         out.append(f'<div class="card"><h3 class="ttlg">{html.escape(league)}</h3>{cards}</div>')
     return "\n".join(out)
@@ -889,11 +894,14 @@ def build():
   .ttrow:has(+ .ttlad.open) .ttchev {{ transform:rotate(90deg); }}
   .ttsub {{ color:#93a0b4; font-size:12.5px; margin-top:3px; }}
   .ttside {{ color:#5b9dff; font-weight:700; }}
+  .ttbook {{ color:#8ae0b0; font-weight:700; font-variant-numeric:tabular-nums; }}
   .ttlad {{ display:none; padding:6px 0 12px; }}
   .ttlad.open {{ display:block; }}
   .ttlad:last-child {{ border-bottom:0; }}
-  .ladhead, .ladrow {{ display:grid; grid-template-columns:58px 1fr 44px 40px; gap:10px;
+  .ladhead, .ladrow {{ display:grid; grid-template-columns:56px 1fr 36px 38px 46px; gap:9px;
     align-items:center; }}
+  .ladod {{ color:#5b9dff; font-weight:700; text-align:right; font-variant-numeric:tabular-nums; }}
+  .ladrow .ladod {{ color:#cdd6e4; }}
   .ladhead {{ color:#6b7484; font-size:9.5px; text-transform:uppercase; letter-spacing:.04em;
     padding:4px 6px 6px; }}
   .ladrow {{ padding:5px 6px; border-radius:7px; font-size:12.5px; }}
