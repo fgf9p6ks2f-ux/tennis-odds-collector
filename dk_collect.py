@@ -74,7 +74,23 @@ def _player(sel):
 def collect_league(sport, lg):
     root = _get(f"{B}/leagues/{lg}")
     subs = {s["id"]: (s["name"], s.get("categoryId")) for s in root.get("subcategories", [])}
-    events = {e["id"]: e.get("name", "") for e in root.get("events", [])}
+    # PRE-GAME events only: skip STARTED/live games, whose in-play line churn was firing false
+    # "opening line" alerts for the game being played right now. DK gives an explicit status;
+    # fall back to startEventDate (7-digit fraction, so trim to seconds before parsing).
+    now = dt.datetime.now(dt.timezone.utc)
+    events = {}
+    for e in root.get("events", []):
+        st = (e.get("status") or "").upper()
+        if st and st != "NOT_STARTED":
+            continue
+        if not st:
+            sd = (e.get("startEventDate") or "")[:19]
+            try:
+                if sd and dt.datetime.fromisoformat(sd).replace(tzinfo=dt.timezone.utc) <= now:
+                    continue
+            except ValueError:
+                pass
+        events[e["id"]] = e.get("name", "")
     rows, seen = [], set()          # seen = (marketId, side) — dedupe repeated subcats
     for sid, (sname, cat) in subs.items():
         key = _stat_key(sname)
@@ -95,9 +111,11 @@ def collect_league(sport, lg):
             k = (sel.get("marketId"), side)
             if k in seen:              # same player market surfaced in 'X' and 'X O/U'
                 continue
+            eid = emkt.get(sel.get("marketId"))
+            if eid not in events:      # market's game is live/started (pre-game filter above) — skip
+                continue
             seen.add(k)
-            rows.append((sport, events.get(emkt.get(sel.get("marketId")), ""), player,
-                         key, float(pts), side, dec))
+            rows.append((sport, events[eid], player, key, float(pts), side, dec))
     return rows
 
 

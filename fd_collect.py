@@ -165,10 +165,22 @@ def collect_page(customPageId, sport, is_match):
                f"&timezone=America%2FNew_York&_ak={AK}")
     evs = page.get("attachments", {}).get("events", {})
     out, seen = [], set()
+    now = dt.datetime.now(dt.timezone.utc)
     for eid, e in evs.items():
         nm = e.get("name") or ""
         if not is_match(nm):
             continue
+        # skip IN-PLAY games. Once the scheduled start (openDate, UTC ISO) passes, FanDuel flips
+        # the event's markets to live/in-play; those lines churn every possession and were firing
+        # false "opening line" alerts for the game being played RIGHT NOW. We bet PRE-GAME openers
+        # (incl. next-day), so only keep events that haven't started.
+        od = e.get("openDate")
+        if od:
+            try:
+                if dt.datetime.fromisoformat(od.replace("Z", "+00:00")) <= now:
+                    continue
+            except ValueError:
+                pass
         try:
             ev = get(f"{BASE}/event-page?eventId={eid}&_ak={AK}&timezone=America%2FNew_York")
         except Exception:
