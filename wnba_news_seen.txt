@@ -37,3 +37,5 @@ rw|haleyjones|Jones (coach's decision) has been ruled
 rw|samiwhitcomb|Whitcomb (knee) is probable for Monday's
 rw|costanzaverona|Verona (coach's decision) has been ruled
 rw|chloebibby|Bibby (coach's decision) has been ruled 
+rw|breehall|Hall (coach's decision) has been ruled o
+rw|taniyalatson|Latson (coach's decision) won't play Sun
