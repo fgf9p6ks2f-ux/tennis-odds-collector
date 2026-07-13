@@ -21,6 +21,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: write            # self-redispatch via github.token needs this (verified it works)
 
 jobs:
   watch:
@@ -85,19 +86,18 @@ jobs:
       - name: self-redispatch — keep the loop IMMORTAL regardless of dropped cron starts
         if: always()               # runs even if the poll step errored, so the chain never breaks
         env:
-          DISPATCH_PAT: ${{ secrets.DISPATCH_PAT }}
+          TOKEN: ${{ secrets.DISPATCH_PAT || github.token }}
         run: |
-          if [ -z "$DISPATCH_PAT" ]; then
-            echo "no DISPATCH_PAT secret set — relying on cron starts (add the PAT to make the loop immortal)"
-            exit 0
-          fi
-          # the default GITHUB_TOKEN can't re-trigger a workflow (anti-recursion), so use the PAT.
-          # cancel-in-progress supersedes the (finishing) current run -> seamless handoff. Crons
-          # remain as a fallback if this ever fails.
+          # VERIFIED 2026-07-13: the built-in GITHUB_TOKEN *can* self-dispatch (workflow_dispatch,
+          # with permissions: actions: write) — a test run self-spawned its next generation. So the
+          # chain is IMMORTAL with no secret. This is exactly what was silently missing: only
+          # NTFY_TOPIC was ever set, so the old PAT-gated redispatch always no-op'd -> the loop was
+          # cron-only, GitHub throttled the overnight ticks, and opening lines were missed for days.
+          # cancel-in-progress makes the handoff seamless; the cron stays as a seed fallback.
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
-            -H "Authorization: Bearer $DISPATCH_PAT" \
+            -H "Authorization: Bearer $TOKEN" \
             -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${{ github.repository }}/actions/workflows/wnba-watch.yml/dispatches" \
             -d '{"ref":"main"}')
           if [ "$code" = "204" ]; then echo "✓ redispatched next watch loop (immortal chain)"; \
-          else echo "redispatch HTTP $code — cron starts are the fallback"; fi
+          else echo "redispatch HTTP $code — cron is the fallback"; fi
