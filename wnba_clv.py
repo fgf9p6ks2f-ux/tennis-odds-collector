@@ -201,15 +201,18 @@ def grade():
     return n
 
 
-def verdict():
+def verdict(tier="firm"):
     """Structured CLV verdict, shared by report() (markdown) and the dashboard (panel). LINE CLV:
     the SAME book main line at the open (flag) vs the close, signed TOWARD our read — an over read
     (proj above the opening line) wins when the line RISES, an under read when it FALLS. Returns
-    {n, need, ready, line_move (pts, signed toward us), pos_rate, corr, hit, hit_n}."""
+    {n, need, ready, line_move (pts, signed toward us), pos_rate, corr, hit, hit_n}. `tier` keeps the
+    firm plays and the n1_speed pilot SEPARATE, so the pilot never contaminates the firm CLV number
+    (pre-tier rows have NULL tier, counted as 'firm')."""
     con = _con()
     con.row_factory = sqlite3.Row
     R = [dict(r) for r in con.execute(
-        "SELECT * FROM clv WHERE v=2 AND closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL")]
+        "SELECT * FROM clv WHERE v=2 AND closed=1 AND close_line IS NOT NULL AND flag_line IS NOT NULL "
+        "AND COALESCE(tier,'firm')=?", (tier,))]
     con.close()
     n = len(R)
     dates = len({r["date"] for r in R})
@@ -236,9 +239,22 @@ def report():
     L = ["# WNBA injury-timing CLV — does the line move our way, open to close?", "",
          f"_{dt.datetime.now(dt.timezone.utc):%Y-%m-%d %H:%M} UTC · {v['n']} closed shadows "
          f"(opening line vs closing line)_", ""]
+    p = verdict("n1_speed")                                  # the first-occurrence pilot, kept separate
+    def _pilot():
+        if not p["n"]:
+            return []
+        b = ["### ⚡ n1 speed-tier pilot — EXPERIMENTAL, separate from the firm number above", "```",
+             f"closed pilot shadows:      {p['n']} over {p['dates']} slate(s)"]
+        if p["line_move"] is not None:
+            b += [f"avg line move toward us:   {p['line_move']:+.2f} pts",
+                  f"positive-CLV rate:         {100*p['pos_rate']:.0f}%"]
+        return b + ["```", "First-occurrence (1-game-sample) plays, flagged only on a STALE line. Judge "
+                    "the pilot HERE before trusting it — positive pilot CLV = the speed thesis holds for "
+                    "thin samples too.", ""]
     if not v["ready"]:
         L.append(f"Accumulating — {v['n']}/{v['need']} closed shadows over {v['dates']}/{v['need_dates']} "
                  f"slates before CLV is trustworthy (one slate's shadows are correlated).")
+        L += [""] + _pilot()
         REPORT.write_text("\n".join(L) + "\n")
         print(f"clv report: {v['n']}/{v['need']} shadows · {v['dates']}/{v['need_dates']} slates — accumulating")
         return
@@ -253,6 +269,7 @@ def report():
           "The line moving toward our read between the flag (open) and the close = we price the "
           "injury reprice BEFORE the book. That is the timing edge — the green light to bet real money.",
           ""]
+    L += _pilot()
     REPORT.write_text("\n".join(L) + "\n")
     print(f"clv report: {v['n']} closed shadows · line move {v['line_move']:+.2f} · "
           f"{100*v['pos_rate']:.0f}% positive · wrote {REPORT.name}")
