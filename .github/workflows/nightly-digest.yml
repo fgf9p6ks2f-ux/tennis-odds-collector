@@ -21,6 +21,7 @@ concurrency:
 
 permissions:
   contents: write
+  actions: read           # read wnba-watch run history for the opener-loop heartbeat
 
 jobs:
   digest:
@@ -40,6 +41,7 @@ jobs:
       - name: build + push digest
         env:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          GH_TOKEN: ${{ github.token }}     # opener-loop heartbeat queries the Actions API
           FORCE_DIGEST: ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}
         run: python daily_digest.py $FORCE_DIGEST
       - name: refresh phone dashboard

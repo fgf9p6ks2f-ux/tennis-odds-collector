@@ -85,9 +85,40 @@ def _wnba_autobetter(target_date):
     return (lines, bool(rows or pend))
 
 
+def _watch_health():
+    """HEARTBEAT for the opening-line loop. wnba-watch self-redispatches every ~5h, so if its
+    most recent run STARTED more than 6h ago the immortal chain has broken and opener alerts are
+    OFF — exactly the silent failure that cost 4 days. Checks the Actions API (a true liveness
+    signal, independent of whether games are on). Returns a ⚠ line if down, '' if healthy. Never
+    raises — a digest must still send even if this check fails."""
+    tok = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
+    repo = os.environ.get("GITHUB_REPOSITORY", "fgf9p6ks2f-ux/tennis-odds-collector")
+    if not tok:
+        return ""
+    try:
+        import requests
+        r = requests.get(f"https://api.github.com/repos/{repo}/actions/workflows/wnba-watch.yml/runs",
+                         params={"per_page": 1}, timeout=15,
+                         headers={"Authorization": f"Bearer {tok}", "Accept": "application/vnd.github+json"})
+        runs = r.json().get("workflow_runs", [])
+        if not runs:
+            return "⚠️ OPENER LOOP DOWN — no wnba-watch runs found. Opening-line alerts are OFF."
+        age_h = (dt.datetime.now(dt.timezone.utc)
+                 - dt.datetime.fromisoformat(runs[0]["created_at"].replace("Z", "+00:00"))).total_seconds() / 3600
+        if age_h > 6:
+            return (f"⚠️ OPENER LOOP DOWN — wnba-watch last started {age_h:.0f}h ago; opening-line "
+                    f"alerts are OFF. Re-dispatch it (gh workflow run wnba-watch.yml).")
+        return ""
+    except Exception:
+        return ""
+
+
 def build(target_date):
     _, _, mt_date = mt_day_utc_window(target_date)
     lines = [f"Daily digest - {mt_date} (MT)", ""]
+    hb = _watch_health()                      # prominent at the top so a dead loop can't be missed
+    if hb:
+        lines += [hb, ""]
     wnba_lines, _ = _wnba_autobetter(mt_date)
     lines += wnba_lines
     try:                                     # OOS calibration trend — silent until >=6 slates
