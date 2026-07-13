@@ -31,10 +31,13 @@ jobs:
       - name: clone private tt-elite (code never lives in this public repo)
         env:
           TT_ELITE_PAT: ${{ secrets.TT_ELITE_PAT }}
+          GHTOKEN: ${{ github.token }}
         run: |
-          if [ -n "$TT_ELITE_PAT" ]; then AUTH="x-access-token:${TT_ELITE_PAT}@"; else AUTH=""; fi
+          # PAT when tt-elite is PRIVATE, else this repo's github.token (reads any PUBLIC repo).
+          # Never anonymous — that prompts for a username on the runner and dies.
+          TOKEN="${TT_ELITE_PAT:-$GHTOKEN}"
           rm -rf "$RUNNER_TEMP/ttsrc"
-          git clone --depth 1 "https://${AUTH}github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
+          git clone --depth 1 "https://x-access-token:${TOKEN}@github.com/fgf9p6ks2f-ux/tt-elite.git" "$RUNNER_TEMP/ttsrc"
       - name: grade + build + push TT digest; commit dedupe log to private tt-elite
         env:
           TT_NTFY_TOPIC: ${{ secrets.TT_NTFY_TOPIC }}
