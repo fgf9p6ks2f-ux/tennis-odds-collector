@@ -188,10 +188,12 @@ def _load(mt_date):
         return [], (0, 0, 0.0, 0)
     con = sqlite3.connect(LEDGER)
     con.row_factory = sqlite3.Row
-    # BOARD shows only un-settled bets — a bet drops off the moment it grades (its result
-    # then lives in the Tracker record, below).
+    # BOARD shows every un-settled bet from today ONWARD — a next-day play appears the moment
+    # it's written (not when its calendar date arrives); a bet drops off the moment it grades
+    # (its result then lives in the Tracker record, below).
     rows = [dict(r) for r in con.execute(
-        "SELECT * FROM predictions WHERE pred_date=? AND result IS NULL ORDER BY ev DESC",
+        "SELECT * FROM predictions WHERE pred_date>=? AND result IS NULL "
+        "ORDER BY pred_date ASC, ev DESC",
         (mt_date,))]
     g = con.execute("SELECT result,odds,side FROM predictions WHERE graded=1 "
                     "AND pred_date>='2026-07-09'").fetchall()
@@ -526,15 +528,23 @@ def _player_block(player, rows):
             f'{flag}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
 
 
-def _game_group(players, tips):
-    """A GAME: a header (matchup + tip time) and the shared injury context (who's out), then the
-    beneficiary blocks. This is the separation between games the board was missing. `players` =
-    [(player, rows)] already ordered by edge."""
+def _game_group(players, tips, today=None):
+    """A GAME: a header (matchup + tip time / slate day) and the shared injury context (who's
+    out), then the beneficiary blocks. `players` = [(player, rows)] already ordered by edge. A
+    play whose slate date isn't today is labelled with its weekday+date (tips only covers today)."""
     r0 = players[0][1][0]
     team = (r0.get("team") or "").upper()
     opp = (r0.get("opp") or "").upper()
     tip = tips.get(team)
-    when = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
+    tiptime = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
+    pd = r0.get("pred_date")
+    if pd and today and pd != today:                       # a next-day play: label the slate day
+        try:
+            when = dt.date.fromisoformat(pd).strftime("%a %-m/%-d") + (f" · {tiptime}" if tiptime else "")
+        except ValueError:
+            when = pd
+    else:
+        when = tiptime
     outset = {_short(nm.strip()) for _, prs in players for r in prs
               for nm in (r.get("out_player") or "").split(",") if nm.strip()}
     outs = " + ".join(sorted(outset))
@@ -739,24 +749,29 @@ def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)   # MT for the displayed clock only
     # the BOARD's slate day is ET (matches pred_date the scanner stamps) — using MT hid plays during
     # the ET-night / MT-evening window (a bet stamped ET-tomorrow was invisible on the MT-today board).
-    rows, (w, l, u, pend) = _load(dt.datetime.now(ET).date().isoformat())
+    today = dt.datetime.now(ET).date().isoformat()        # ET slate date the scanner stamps
+    rows, (w, l, u, pend) = _load(today)
     tips = _tip_times()
-    # GROUP BY GAME, then player — so the board reads game > player > props with clear separation.
+    # GROUP BY DAY > GAME > player — the board shows tonight's plays AND any already-posted
+    # next-day plays (keyed by date so the same matchup on back-to-back days stays separate).
     by_player = defaultdict(list)
     for r in rows:
-        by_player[r["player"]].append(r)
-    games = defaultdict(list)                              # {teams-pair: [(player, rows)]}
-    for player, prs in by_player.items():
+        by_player[(r.get("pred_date"), r["player"])].append(r)
+    games = defaultdict(list)                              # {(date, teams-pair): [(player, rows)]}
+    for (pd, player), prs in by_player.items():
         team = (prs[0].get("team") or "").upper()
         opp = (prs[0].get("opp") or "").upper()
-        games[tuple(sorted((team, opp)))].append((player, prs))
+        games[(pd, tuple(sorted((team, opp))))].append((player, prs))
 
     def _pedge(prs):
         return max((r.get("ev") or 0) for r in prs)
-    ordered = sorted(games.values(), key=lambda pl: -max(_pedge(prs) for _, prs in pl))
+    # soonest slate first, then strongest edge within a slate
+    order = sorted(games.items(),
+                   key=lambda kv: (kv[0][0] or "9999-99-99", -max(_pedge(prs) for _, prs in kv[1])))
+    ordered = [pl for _, pl in order]
     for pl in ordered:                                    # strongest player first within each game
         pl.sort(key=lambda pp: -_pedge(pp[1]))
-    cards = "\n".join(_game_group(pl, tips) for pl in ordered) if ordered else \
+    cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     wl_html = _watchlist_html()
     tt_json = _load_tt()
