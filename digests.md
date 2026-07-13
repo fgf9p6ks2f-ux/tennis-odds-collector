@@ -33,3 +33,16 @@ ALL-TIME (since 7/9): 0-0  +0.00u ($+0)
 
 Focus: TT + WNBA. MLB / tennis / esports benched (data kept). Table tennis has its own nightly digest.
 ```
+
+## 2026-07-12
+
+```
+Daily digest - 2026-07-12 (MT)
+
+WNBA AUTOBETTER (injury props):
+TODAY: 7-3  +3.53u ($+353)
+ALL-TIME (since 7/9): 32-23  +4.03u ($+403)
+Pending: 6 (grade after games settle)
+
+Focus: TT + WNBA. MLB / tennis / esports benched (data kept). Table tennis has its own nightly digest.
+```
