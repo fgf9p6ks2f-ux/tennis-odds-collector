@@ -745,6 +745,28 @@ def _watchlist_html():
             + "".join(blocks) + "</div>")
 
 
+def _openers_html():
+    """⚡ Openers: beatable opening lines just posted — line-shopping heads-ups (bet the soft number
+    before the book moves). DISTINCT from the tracked-bet cards above: these are NOT flagged injury
+    bets and they don't hit the record. Recomputed each ~60s poll by wnba_watch -> wnba_openers.json;
+    stale / other-day / empty -> no section."""
+    f = HERE / "wnba_openers.json"
+    if not f.exists():
+        return ""
+    try:
+        d = json.loads(f.read_text())
+    except (ValueError, OSError):
+        return ""
+    today = dt.datetime.now(ET).date().isoformat()
+    spots = d.get("spots") or []
+    if d.get("date") != today or not spots:
+        return ""
+    legs = "".join(f'<div class="op-leg">{html.escape(s.get("msg", ""))}</div>' for s in spots[:12])
+    return ('<div class="openers"><div class="op-title">⚡ Openers'
+            '<span> · beatable lines just posted · line-shopping, not tracked bets</span></div>'
+            f'{legs}</div>')
+
+
 def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)   # MT for the displayed clock only
     # the BOARD's slate day is ET (matches pred_date the scanner stamps) — using MT hid plays during
@@ -773,6 +795,7 @@ def build():
         pl.sort(key=lambda pp: -_pedge(pp[1]))
     cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
+    openers_html = _openers_html()
     wl_html = _watchlist_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
@@ -824,6 +847,10 @@ def build():
   .watchlist {{ margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }}
   .wl-title {{ color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .wl-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
+  .openers {{ margin-top:22px; }}
+  .op-title {{ color:#5b9dff; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
+  .op-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
+  .op-leg {{ background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:11px 13px; margin-bottom:8px; font-size:14px; color:#cdd4de; font-variant-numeric:tabular-nums; }}
   .wl-grp {{ border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
     border-radius:10px; padding:10px 13px; margin-bottom:9px; }}
   .wl-hd {{ color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:6px; }}
@@ -963,6 +990,7 @@ def build():
       </div>
     </div>
     <div id="games">{cards}</div>
+    {openers_html}
     {wl_html}
   </div>
   <div class="panel hidden" id="tt">

@@ -281,7 +281,19 @@ def main():
     topic = os.environ.get("NTFY_TOPIC")
     today_et = dt.datetime.now(T.ET).date().isoformat()
     seen_op = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
-    opener = [(k, m) for k, m, _ in _opener_spots(today_et) if k not in seen_op][:10]
+    all_op = _opener_spots(today_et)
+    opener = [(k, m) for k, m, _ in all_op if k not in seen_op][:10]
+    # persist the CURRENT openers for the dashboard's ⚡ Openers section — beatable posted lines
+    # (line-shopping heads-ups), shown separately from the tracked-bet ledger. Recomputed each poll.
+    try:
+        (HERE / "wnba_openers.json").write_text(json.dumps({
+            "date": today_et,
+            "ts": dt.datetime.now(dt.timezone.utc).isoformat(),
+            "spots": [{"player": k.split("|")[2], "stat": k.split("|")[3], "line": k.split("|")[4],
+                       "msg": m, "div": round(d, 1)} for k, m, d in all_op],
+        }))
+    except Exception as _e:
+        print("openers json write skipped:", str(_e)[:50])
     if opener and topic:
         body = (f"⚡ Opening line{'s' if len(opener) != 1 else ''} — bet EARLY (before the book moves)\n\n"
                 + "\n".join("• " + m for _, m in opener))
