@@ -57,6 +57,8 @@ def _con():
         con.execute("ALTER TABLE clv ADD COLUMN v INTEGER")
     if "tip" not in cols:                    # naive-UTC game tip time -> when the 'close' is real
         con.execute("ALTER TABLE clv ADD COLUMN tip TEXT")
+    if "tier" not in cols:                   # 'firm' (validated n>=2) vs 'n1_speed' (first-occurrence
+        con.execute("ALTER TABLE clv ADD COLUMN tier TEXT DEFAULT 'firm'")  # pilot) — split the CLV
     return con
 
 
@@ -77,10 +79,12 @@ def book_line(ladder):
     return line, round(o, 3)
 
 
-def log_shadow(date, player, out_player, projs, props, tip=None):
+def log_shadow(date, player, out_player, projs, props, tip=None, tier="firm"):
     """Log the EARLIEST injury-driven flag (INSERT OR IGNORE keeps the first = the timing capture).
     projs: {stat: projection}. props: posted_props(player) = {stat: {line: (over, under)}}. tip = the
-    game's naive-UTC tip datetime (or its iso) so the close is captured pre-tip, not seconds later."""
+    game's naive-UTC tip datetime (or its iso) so the close is captured pre-tip, not seconds later.
+    tier: 'firm' (the validated n>=2 plays) or 'n1_speed' (the first-occurrence pilot) — so the report
+    can judge the pilot's CLV separately without mixing it into the firm number."""
     con = _con()
     ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
     tip_iso = tip.isoformat() if hasattr(tip, "isoformat") else (tip or None)
@@ -94,8 +98,8 @@ def log_shadow(date, player, out_player, projs, props, tip=None):
             continue
         n += con.execute(
             "INSERT OR IGNORE INTO clv(date, player, stat, out_player, flagged_at, proj, "
-            "flag_line, flag_over, v, tip) VALUES (?,?,?,?,?,?,?,?,2,?)",
-            (date, player, stat, out_player, ts, round(proj, 1), fl, fo, tip_iso)).rowcount
+            "flag_line, flag_over, v, tip, tier) VALUES (?,?,?,?,?,?,?,?,2,?,?)",
+            (date, player, stat, out_player, ts, round(proj, 1), fl, fo, tip_iso, tier)).rowcount
     con.commit()
     con.close()
     return n

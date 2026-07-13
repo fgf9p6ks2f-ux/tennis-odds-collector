@@ -28,6 +28,13 @@ import wnba_regime as RG
 import wnba_tonight as T
 import wnba_wowy as W
 
+# FIRST-OCCURRENCE SPEED PILOT (2026-07-13). Also surface beneficiaries with only ONE game without
+# the out star (normally gated at n_without>=2), but ONLY when the posted line is still STALE and the
+# minutes bump is meaningful — the pre-move window the n1 backtest showed +15% ROI (vs -11% once the
+# line adjusts). These go to a distinct ⚡1G alert + the CLV shadow (tier='n1_speed') ONLY — never the
+# firm ledger/record (single-game sample; CLV judges it forward). Flip False to kill instantly.
+N1_PILOT = True
+
 HERE = Path(__file__).resolve().parent
 SEEN = HERE / "wnba_notified.txt"
 
@@ -139,8 +146,9 @@ def collect():
                 # too few games with ALL out together -> best single-out split as the proxy
                 cands = [(W.wowy(blog, ol), nm) for (nm, _), ol in zip(outs, out_logs)]
                 w = max(cands, key=lambda x: x[0]["n_without"])[0]
-            if w["n_without"] < 2:
-                continue
+            n1 = (w["n_without"] == 1)                     # first-occurrence speed-pilot tier (below)
+            if w["n_without"] < 1 or (n1 and not N1_PILOT):
+                continue                                   # 0 without-games (or pilot off) -> drop
             # POSITION MATCH (minutes): a vacated role's MINUTES go to same-position players,
             # so scale the projected minutes-elevation by positional fit — a forward barely
             # inherits a guard's minutes. But DON'T hard-drop cross-position beneficiaries: a
@@ -159,6 +167,30 @@ def collect():
             if recent5:
                 proj = max(proj, st.median(recent5))
             if proj - with_min <= 0.3 and pw < 0.6:        # no minutes bump AND no role overlap
+                continue
+            if n1:                                          # ── FIRST-OCCURRENCE SPEED PILOT ──
+                # One game without the star. Bet ONLY a MEANINGFUL minutes bump, and ONLY while the
+                # posted line is still STALE (book hasn't moved) — the pre-move window the backtest
+                # showed +15% ROI (vs -11% once it adjusts). Elevated OVER only. Distinct ⚡1G alert +
+                # CLV shadow (tier n1_speed); NEVER logged to the firm ledger/record. CLV judges it.
+                if (w["without"]["min"]["mean"] - with_min) < 3.0:
+                    continue
+                pa1 = T.project_all(blog, proj)
+                e1 = [e for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm,
+                                              opp=matchups.get(team, ""), pos=v.get("position"))
+                      if e["side"] == "over" and e["stale"]]
+                if e1:
+                    pn = T.posted_props(n)
+                    if pa1 and pn:
+                        CLV.log_shadow(today, n, out_full,
+                                       {"points": pa1["proj_pts"], "rebounds": pa1["proj_reb"],
+                                        "assists": pa1["proj_ast"]}, pn,
+                                       tip=tips.get(team), tier="n1_speed")
+                    for e in e1:
+                        alerts.append((e["ev"], f"n1|{today}|{n}|{e['stat']}|{e['line']:g}",
+                            f"⚡1G {out_label} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
+                            f"{T._am(e['dec'])} | proj {e['elev_avg']:g} +{e['ev']*100:.0f}%EV "
+                            f"· 1-game sample · STALE line — SPEED PILOT (not in record)"))
                 continue
             conf = T.starter_label(n, team, starters, proj)  # RotoWire-first confirmed/likely/bench
             # PROJECTION TRACKER: log this beneficiary's FULL projection (min + pts/reb/ast +
