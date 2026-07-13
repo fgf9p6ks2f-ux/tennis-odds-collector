@@ -91,6 +91,7 @@
 2026-07-12|Sabrina Ionescu|pts_ast|22.5
 2026-07-12|Sabrina Ionescu|pts_reb|22.5
 2026-07-12|Sabrina Ionescu|rebounds|5.5
+timing|2026-07-12|Azura Stevens|pts_ast|17.5
 timing|2026-07-12|Courtney Vandersloot|points|10.5
 timing|2026-07-12|Courtney Vandersloot|pts_ast|15.5
 timing|2026-07-12|Gabriela Jaquez|points|9.5
