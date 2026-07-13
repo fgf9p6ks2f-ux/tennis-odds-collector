@@ -57,7 +57,7 @@ jobs:
           # 1) commit DATA only (NOT the generated dashboard) so the rebase has no volatile
           #    text file to conflict on. add each independently (a missing path would make
           #    `git add a b c` stage nothing).
-          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_proj_accuracy.md wnba_clv.sqlite wnba_clv.md wnba_starter_cache.json wnba_lineup_model.json wnba_proj_cache.json wnba_status_state.json wnba_question_log.sqlite wnba_sit_prob.json wnba_context.md; do
+          for f in wnba_notified.txt wnba_context_cache.json wnba_redist.json wnba_ledger.sqlite wnba_proj_cal.json wnba_players_cache.json wnba_injury_state.json wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_proj_accuracy.md wnba_clv.sqlite wnba_clv.md wnba_starter_cache.json wnba_lineup_model.json wnba_proj_cache.json wnba_watchlist.json wnba_status_state.json wnba_question_log.sqlite wnba_sit_prob.json wnba_context.md; do
             git add -f "$f" 2>/dev/null || true
           done
           git commit -m "wnba props data [skip ci]" -q 2>/dev/null || echo "no data change"
@@ -82,11 +82,11 @@ jobs:
           # GitHub dropped its cron for ~11h on 2026-07-13, so no plays logged + the board went empty.
           # Sleep to a sane cadence, then github.token re-dispatches (actions: write) -> immortal
           # chain; the crons remain as a fallback seed.
-          sleep 600    # ~10 min → ~14-min cadence (was 1500/~30 min). The beneficiary ALERT
-                       # (wnba_alert.py) rides this loop, so its cadence == injury-bet latency; halving
-                       # the sleep ~halves that. The heavy ESPN retrains rerun too (small extra load vs
-                       # the watch loop's 60s polling). Real fix = decouple the light alert onto the 60s
-                       # watch loop (or the Oracle VM daemon) so alerts fire in ~1-2 min, not ~14.
+          sleep 1500   # ~25 min. This loop is the BACKSTOP + retrain, NOT the alert path: the 60s
+                       # wnba-watch loop already runs A.collect() event-driven the instant a new out or
+                       # opening line appears (wnba_watch.py ~line 491), so injury->beneficiary-alert is
+                       # already ~60s. Running the heavy ESPN retrains more often here buys no alert
+                       # speed and only risks throttling the shared feed — so keep it slow.
           code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
             -H "Authorization: Bearer $TOKEN" \
             -H "Accept: application/vnd.github+json" \

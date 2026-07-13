@@ -67,7 +67,7 @@ jobs:
             if [ -n "$(git status --porcelain)" ]; then
               # commit DATA first (never the generated dashboard) -> clean rebase, no docs
               # conflict; then regenerate + commit the dashboard fresh on top (conflict-proof).
-              for f in wnba_lines_ts.txt wnba_priced_state.json wnba_status_state.json wnba_confirm_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_clv.sqlite wnba_news_seen.txt wnba_question_log.sqlite wnba_sit_prob.json wnba_watchdog_state.json wnba_proj_cache.json wnba_openers.json; do
+              for f in wnba_lines_ts.txt wnba_priced_state.json wnba_status_state.json wnba_confirm_state.json wnba_players_cache.json wnba_context_cache.json wnba_notified.txt wnba_ledger.sqlite wnba_played.txt wnba_dvp_cache.json wnba_proj_log.sqlite wnba_clv.sqlite wnba_news_seen.txt wnba_question_log.sqlite wnba_sit_prob.json wnba_watchdog_state.json wnba_proj_cache.json wnba_watchlist.json wnba_openers.json; do
                 git add -f "$f" 2>/dev/null || true
               done
               if git commit -m "wnba watch data [skip ci]" -q >/dev/null 2>&1; then
