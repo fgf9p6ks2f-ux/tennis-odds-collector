@@ -132,6 +132,7 @@ timing|2026-07-12|Sydney Taylor|points|14.5
 timing|2026-07-13|Erica Wheeler|pts_ast|15.5
 timing|2026-07-13|Kahleah Copper|pts_reb|23.5
 timing|2026-07-13|Monique Akoa Makani|pra|14.5
+timing|2026-07-13|Monique Akoa Makani|pra|15.5
 timing|2026-07-13|Rae Burrell|pra|20.5
 timing|2026-07-13|Valeriane Ayayi|points|10.5
 watch|2026-07-12|Isabelle Harrison|rebounds|5.5
