@@ -41,3 +41,4 @@ rw|breehall|Hall (coach's decision) has been ruled o
 rw|taniyalatson|Latson (coach's decision) won't play Sun
 rw|temifagbenle|Fagbenle (concussion) is questionable fo
 rw|brittneygriner|Griner (quadriceps) is questionable for 
+rw|aneesahmorrow|Morrow (reconditioning) is out for Tuesd
