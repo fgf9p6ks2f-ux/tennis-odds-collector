@@ -123,7 +123,21 @@ def log_predictions(rows):
             "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "basis", "samples", "confidence",
             "side", "regime", "vol", "pi_role")
     n = 0
+    # LOCK THE PLAY (2026-07-13, user): a player's play (stat+side) is fixed at FIRST flag. Later
+    # scans may add more ladder RUNGS of that SAME play, but must NEVER introduce a different stat/
+    # side for an already-flagged player — the first flag is the bet you got down on the opener, and
+    # a re-scan changing its mind (a pts-over turning into an assists-under once the line moves) must
+    # not spawn a competing bet. `locked` is a pre-loop snapshot, so a net-new player's first batch
+    # (incl. the 2-uncorrelated selection) inserts freely; only cross-scan NEW plays are cut.
+    locked = {}
+    for d in {r.get("pred_date") for r in rows if r.get("pred_date")}:
+        for pl, s, sd in con.execute("SELECT player, stat, side FROM predictions WHERE pred_date=? "
+                                     "AND graded=0 AND result IS NULL", (d,)).fetchall():
+            locked.setdefault((d, pl), set()).add((s, sd or "over"))
     for r in rows:
+        lk = locked.get((r.get("pred_date"), r.get("player")))
+        if lk and (r.get("stat"), r.get("side") or "over") not in lk:
+            continue                                     # already flagged a different play — locked
         # insert new spots idempotently, and REFRESH on re-log so the row tracks live info through
         # the day: the confidence label (projected -> likely -> confirmed/bench as RotoWire locks),
         # AND the out-set + projection when a SECOND star is ruled out later (the timing edge — the
