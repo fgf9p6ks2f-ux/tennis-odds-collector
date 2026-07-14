@@ -708,13 +708,21 @@ def injuries():
 
 
 def genuinely_out(name):
-    """A player listed 'Out'/'Doubtful' by the injury FEED is only treated as OUT if the sportsbook has
-    PULLED their props. A full posted slate — especially an active POINTS market — means the feed's 'Out'
-    is stale or wrong and they're really questionable/PLAYING, so their role must NOT be vacated to
-    beneficiaries. (Root-cause data guard, 2026-07-14: ESPN tagged Brittney Griner 'Out' while FanDuel
-    still carried her full 16-line slate — so the bot built 3 Connecticut beneficiary plays on a player
-    who was actually playing. Genuinely-out Rivers/Morrow had 0 props; Griner had points/reb/ast/combos.)
-    On a fetch error, trust the status (the safeguard is additive, never breaks the pipeline)."""
+    """Is a player the ESPN feed calls 'Out'/'Doubtful' REALLY out? Cross-checked against two more
+    reliable sources before we vacate their role to beneficiaries:
+      1. RotoWire GTD tier — RotoWire's game-time-decision list (posted + locked closer to tip than
+         ESPN, and often correct when ESPN is stale). A GTD tag = questionable, NOT a firm out — this
+         BEATS the ESPN 'Out'. (7/14: ESPN said Griner 'Out'; RotoWire had her 'GTD' = questionable.)
+      2. The book's prop slate — a genuinely-out player has their props PULLED; a full slate (esp. an
+         active points market) means they're playing/questionable. (7/14: out Rivers/Morrow had 0 props;
+         Griner carried 16 — the bot had built 3 CON plays on a player who wasn't out.)
+    Returns True only if NEITHER source contradicts the 'Out'. Fails safe (trusts the status if a source
+    is unreachable) — the safeguard is additive, never breaks the pipeline."""
+    try:
+        if RW.norm(name) in RW.questionable_players(rw_lineups()):
+            return False                                  # RotoWire GTD -> game-time decision, not firm out
+    except Exception:
+        pass
     try:
         pp = posted_props(name) or {}
         if pp.get("points"):
