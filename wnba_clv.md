@@ -1,6 +1,6 @@
 # WNBA injury-timing CLV — does the line move our way, open to close?
 
-_2026-07-14 22:20 UTC · 67 closed shadows (opening line vs closing line)_
+_2026-07-14 22:49 UTC · 67 closed shadows (opening line vs closing line)_
 
 Accumulating — 67/20 closed shadows over 3/5 slates before CLV is trustworthy (one slate's shadows are correlated).
 
