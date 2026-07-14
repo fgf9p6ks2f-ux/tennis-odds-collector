@@ -394,16 +394,35 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             side = "over" if elev_avg >= line else "under"
             if use_vol and side == "under":           # the volume layer ladders OVERS only
                 continue
-            # ROLE-EXPANSION GUARD (2026-07-13): never bet an UNDER below a player's OWN production
-            # WITHOUT the out player. The minutes-honest proj mixes in WITH-them games (usage capped by
-            # the star) so it can under-shoot the real role — Wheeler's Plum-out avg was 16.4 (ascending
-            # to 24) yet the proj said 13.3, so it bet u14.5 and got smoked. If her same-injury-context
-            # mean (needs a real n_without) already sits AT/above the line, the under contradicts reality
-            # → kill it. Backtest: these went 0-4; the unders it keeps went 15-8.
+            # ROLE-EXPANSION GUARD + FLIP (2026-07-13): never bet an UNDER below a player's OWN
+            # production WITHOUT the out player. The minutes-honest proj mixes in WITH-them games (usage
+            # capped by the star) so it under-shoots the real role — Wheeler's Plum-out avg was 16.4
+            # (ascending to 24) yet the proj said 13.3, so it bet u14.5 and got smoked (suppressed unders
+            # backtested 0-4). When her same-injury-context mean (needs a real n_without) sits AT/above
+            # the line, the under is wrong: FLIP to the OVER, re-scored on the WITHOUT-the-star games
+            # (the truth), and bet it ONLY if +EV there — else drop (a ~50% coin-flip over stays a no-bet).
             if side == "under" and w and w.get("n_without", 0) >= ROLE_GUARD_MINN:
-                wo = (w.get("without", {}).get(key) or {}).get("mean")
+                wblk = w.get("without", {}).get(key) or {}
+                wo, wvals = wblk.get("mean"), wblk.get("vals")
                 if wo is not None and wo >= line:
-                    continue
+                    if wvals and len(wvals) >= ROLE_GUARD_MINN and 1.6 <= over_dec <= 5.0:
+                        nw = len(wvals)
+                        ho = sum(1 for v in wvals if v > line) / nw     # over-rate in without-star games
+                        po = (ho * nw + (1.0 / over_dec) * shrink_k) / (nw + shrink_k)
+                        eo = po * over_dec - 1
+                        if eo >= OVER_EV_MIN:
+                            out.append({"ev": eo, "stat": stat, "line": line, "dec": over_dec, "hit": ho,
+                                        "side": "over", "orig_line": orig_line, "pi_role": round(play_prob, 2),
+                                        "n": nw, "fga": fga, "season_avg": round(season_avg, 1),
+                                        "elev_avg": round(wo, 1), "stale": False,
+                                        "d_stat": d_stat, "d_fga": d_fga, "d_min": d_min,
+                                        "driver": driver, "vac": vac,
+                                        "total": ctx.get("total"), "pace": ctx.get("pace"),
+                                        "opp_def": ctx.get("opp_pts_allowed"), "spread": ctx.get("dog"),
+                                        "d_fta": d_fta if stat == "points" else None,
+                                        "d_3pa": d_3pa if stat == "points" else None,
+                                        "basis": "role_flip", "samples": samples, "vol": None})
+                    continue                                            # never emit the contradicted under
             dec = over_dec if side == "over" else under_dec
             hi_odds = 7.0 if use_vol else 5.0          # volume overs LADDER UP to +600 alt lines
             lo_odds = 1.6 if use_vol else 1.25         # ...but NEVER a deep favorite under the line
