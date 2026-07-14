@@ -440,7 +440,7 @@ def _book_prices(r):
     return sorted([(b, o) for b, (ca, o) in latest.items()], key=lambda x: -x[1])
 
 
-def _prop_row(r):
+def _prop_row(r, rungs=None):
     """props.cash-style prop: side pill + line + stat, best-book odds + model edge on the right, the
     hit-rate HEATMAP (ROLE injury-context · L5 · L10 · season · H2H, green/red), and a compact
     context line (usage driver + matchup D + the runner-up book price). Taps to expand the bars."""
@@ -490,15 +490,29 @@ def _prop_row(r):
     ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
     juice = ' <span class="juice">juice</span>' if best_dec < 1.80 else ""
     played = ' <span class="pv">✓</span>' if r.get("played") else ""
+    # GROUP same-stat/same-side rungs (an under whose anchor line moved across scans, or an overs
+    # ladder): ONE card showing the line RANGE + a strip of every rung's line@odds — declutters
+    # without dropping any flag (each rung stays its own ledger row / placed bet).
+    if rungs and len(rungs) > 1:
+        lns = sorted(x["line"] for x in rungs)
+        line_disp = f"{lns[0]:g}–{lns[-1]:g}"
+        chips = []
+        for rr in sorted(rungs, key=lambda x: x["line"]):
+            bpr = _book_prices(rr)
+            chips.append(f'<span class="rung"><b>{rr["line"]:g}</b> '
+                         f'<span class="ro">{_am(bpr[0][1] if bpr else float(rr["odds"]))}</span></span>')
+        rungs_html = f'<div class="prungs"><span class="rlbl">rungs</span>{"".join(chips)}</div>'
+    else:
+        line_disp, rungs_html = f"{r['line']:g}", ""
     return f"""
       <div class="prop" data-side="{side}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind {o.lower()}">{o}</span>
-          <span class="plno">{r['line']:g}</span><span class="pstat">{stat}</span>
+          <span class="plno">{line_disp}</span><span class="pstat">{stat}</span>
           <span class="psp"></span>
           {odds_html}{juice}
           <span class="pedge {ecls}">{edge_v}</span>{played}<span class="pchev">›</span></div>
-        <div class="pgrid">{grid}</div>{ctxline}
+        <div class="pgrid">{grid}</div>{ctxline}{rungs_html}
       </div>{_bars(r)}"""
 
 
@@ -522,7 +536,15 @@ def _player_block(player, rows):
         mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
     sp = r0.get("spread")
     dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
-    props = "".join(_prop_row(r) for r in sorted(rows, key=lambda r: -(r.get("ev") or 0)))
+    # group same-stat/same-side rungs into ONE card (the anchor line can move across scans and the
+    # keep-every-flag rule preserves each rung — so show them as one play with its line range, no flag
+    # dropped). Order groups by best rung EV; a single-rung group renders exactly as before.
+    groups = {}
+    for r in rows:
+        groups.setdefault((r["stat"], (r.get("side") or "over")), []).append(r)
+    ordered = sorted(groups.values(), key=lambda g: -max((x.get("ev") or 0) for x in g))
+    props = "".join(_prop_row(sorted(g, key=lambda x: -(x.get("ev") or 0))[0],
+                              rungs=g if len(g) > 1 else None) for g in ordered)
     return (f'<div class="pblk">'
             f'<div class="phd">{logo}<span class="pname">{html.escape(_short(player))}</span>'
             f'{flag}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
@@ -891,6 +913,10 @@ def build():
   .gc.hot .gcv {{ color:#7fe0ac; }} .gc.cold .gcv {{ color:#f0928c; }} .gcv.dim {{ color:#3b4452; }}
   .gcs {{ color:#5c6572; font-size:9.5px; font-weight:600; font-variant-numeric:tabular-nums; }}
   .pctx {{ color:#67707f; font-size:11px; font-weight:500; margin:8px 1px 3px; }}
+  .prungs {{ display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:7px 1px 2px; }}
+  .rlbl {{ color:#5c6572; font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.05em; }}
+  .rung {{ background:#161d29; border:1px solid #263041; border-radius:6px; padding:2px 7px; font-size:12px; color:#98a4b5; font-variant-numeric:tabular-nums; }}
+  .rung b {{ color:#c9d2de; font-weight:700; }} .rung .ro {{ color:#6ba3f5; font-weight:700; }}
   .cdrv {{ color:#98a4b5; font-weight:600; }}
   .cdvp.soft {{ color:#79b598; }} .cdvp.tough {{ color:#d9a05f; }}
   .bars {{ display:none; padding:20px 2px 4px; }}
