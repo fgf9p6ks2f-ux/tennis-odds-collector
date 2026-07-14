@@ -50,3 +50,4 @@ rw|quionchecarter|Carter (coach's decision) is out for Mon
 rw|shayciezki|Ciezki (coach's decision) won't play Mon
 rw|dorkajuhasz|Juhasz (knee) has been downgraded to dou
 rw|dorkajuhasz|Juhasz (knee) is doubtful to play in Mon
+rw|ashlonjackson|Jackson (coach's decision) has been rule
