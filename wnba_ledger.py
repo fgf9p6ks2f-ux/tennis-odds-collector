@@ -396,6 +396,17 @@ def main():
         return
     if args.grade:
         print(f"graded {grade()} spots")
+        # SELF-HEAL odds_other every grade cycle (both workflows call --grade). The ledger is a
+        # binary blob committed by BOTH wnba-props and wnba-watch with `git pull --rebase -X theirs`;
+        # a long-running loop that checked out before a manual odds_other write re-commits its stale
+        # DB and wipes it. Recomputing here (idempotent, fills only NULLs from fd_lines) means every
+        # loop's committed DB carries odds_other — so whichever wins the -X theirs race still has it,
+        # exactly how grades survive. Never fatal to grading.
+        try:
+            import backfill_odds_other
+            backfill_odds_other.main()
+        except Exception as e:
+            print(f"odds_other self-heal skipped: {e}")
     if args.train:
         train()
     if args.learn:
