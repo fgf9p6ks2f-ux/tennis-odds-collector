@@ -78,21 +78,26 @@ def collect():
     today = datetime.datetime.now(T.ET).date().isoformat()
     lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
     gids = T.game_ids()                                  # team -> game id (for lineup lookup)
-    # truly out = listed out AND no fresh posted props (a book posting a slate = playing)
-    out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")
-                 and not (n in pl and T.confirmed_playing(n, pl[n]["team"]))}
-    # group tonight's genuine key outs BY TEAM — a beneficiary gets ONE projection off the
-    # COMBINED absence (the user's edge: 2+ impact players out compounds the boost), not a
-    # duplicate per out-player.
-    outs_by_team = defaultdict(list)
+    # FIRM OUT = the feed says Out/Doubtful, they're not confirmed-starting, AND the book has PULLED
+    # their props. The props check is the ground truth the injury feed can lag: a full posted slate
+    # (esp. an active points market) = a stale/wrong 'Out' — really questionable/PLAYING — whose role
+    # must NOT be vacated to beneficiaries. This is the Griner fix: ESPN tagged her 'Out' while FanDuel
+    # carried her full 16-line slate, so the bot built 3 CON plays on a player who was actually playing.
+    # (Checked only for playing-team Out/Doubtful, not-confirmed players — a handful of net calls.)
+    out_names, outs_by_team = set(), defaultdict(list)
     for name, status in inj.items():
         p = pl.get(name)
-        # impact out = vacates real MINUTES (>=20mpg) OR real USAGE (>=10ppg). A depressed-minutes
-        # but high-usage scorer (Satou Sabally 17mpg / 10pts) is exactly the 2nd star whose absence
-        # compounds a beneficiary's role — a minutes-only cutoff misses her, so the model saw NY as
-        # a Fiebich-only spot and under-projected Johannes. Catch both kinds of impact.
-        if (p and p["team"] in playing and status in ("Out", "Doubtful")
-                and (p["min"] >= 20 or p["pts"] >= 10) and not T.confirmed_playing(name, p["team"])):
+        if not (p and p["team"] in playing and status in ("Out", "Doubtful")
+                and not T.confirmed_playing(name, p["team"])):
+            continue
+        if not T.genuinely_out(name):                    # props still posted -> stale 'Out', skip
+            continue
+        out_names.add(name)
+        # impact out = vacates real MINUTES (>=20mpg) OR real USAGE (>=10ppg) — a depressed-minutes but
+        # high-usage scorer (Satou Sabally 17mpg / 10pts) is the 2nd star whose absence compounds a
+        # beneficiary's role; a minutes-only cutoff misses her. A beneficiary gets ONE projection off
+        # the COMBINED absence, so 2+ impact outs on a team compound the boost.
+        if p["min"] >= 20 or p["pts"] >= 10:
             outs_by_team[p["team"]].append((name, p))
 
     alerts, preds, proj_rows = [], [], []

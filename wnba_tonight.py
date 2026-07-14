@@ -707,6 +707,23 @@ def injuries():
     return out
 
 
+def genuinely_out(name):
+    """A player listed 'Out'/'Doubtful' by the injury FEED is only treated as OUT if the sportsbook has
+    PULLED their props. A full posted slate — especially an active POINTS market — means the feed's 'Out'
+    is stale or wrong and they're really questionable/PLAYING, so their role must NOT be vacated to
+    beneficiaries. (Root-cause data guard, 2026-07-14: ESPN tagged Brittney Griner 'Out' while FanDuel
+    still carried her full 16-line slate — so the bot built 3 Connecticut beneficiary plays on a player
+    who was actually playing. Genuinely-out Rivers/Morrow had 0 props; Griner had points/reb/ast/combos.)
+    On a fetch error, trust the status (the safeguard is additive, never breaks the pipeline)."""
+    try:
+        pp = posted_props(name) or {}
+        if pp.get("points"):
+            return False                                  # active points market -> playing, not out
+        return sum(len(v) for v in pp.values()) <= 1      # slate pulled (allow 1 stray line) -> out
+    except Exception:
+        return True
+
+
 # --- Questionable / GTD tier ------------------------------------------------------------------
 # The timing edge is positioning on a beneficiary WHILE the star is still a game-time decision,
 # not only once ESPN/RotoWire flips them to OUT (which is when the market moves too). These surface
@@ -905,7 +922,7 @@ def main():
     # truly out = listed Out/Doubtful AND no fresh posted props (books pull props for the
     # genuinely out; a returning player still tagged 'Out' still has a full slate)
     out_names = {n for n, s in inj.items() if s in ("Out", "Doubtful")
-                 and not (n in pl and confirmed_playing(n, pl[n]["team"]))}
+                 and not (n in pl and confirmed_playing(n, pl[n]["team"])) and genuinely_out(n)}
     lines, rates = CTX.game_lines(), CTX.team_rates()     # Vegas total + pace, once
     print(f"Tonight: {len(playing)} teams in action · {len(inj)} injury-listed players\n")
 
@@ -915,8 +932,8 @@ def main():
         p = pl.get(name)
         if not p or p["team"] not in playing or p["min"] < args.min_out:
             continue
-        if status not in ("Out", "Doubtful") or confirmed_playing(name, p["team"]):   # trust the report
-            continue
+        if status not in ("Out", "Doubtful") or confirmed_playing(name, p["team"]) or not genuinely_out(name):
+            continue                                       # feed 'Out' but props still posted = playing
         flagged.append((name, status, p))
     flagged.sort(key=lambda x: -x[2]["min"])
 
