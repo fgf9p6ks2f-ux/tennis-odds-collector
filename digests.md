@@ -46,3 +46,17 @@ Pending: 6 (grade after games settle)
 
 Focus: TT + WNBA. MLB / tennis / esports benched (data kept). Table tennis has its own nightly digest.
 ```
+
+## 2026-07-13
+
+```
+Daily digest - 2026-07-13 (MT)
+
+WNBA AUTOBETTER (injury props · current-model picks):
+TODAY: 2-0  +1.85u ($+185)
+ALL-TIME (current-model, since 7/9): 18-8  +8.36u ($+836)
+Pending: 4 (grade after games settle)
+Calib: 33/100 · optimism +8% · ranking -9% (hi 50%/lo 59%) · accumulating 33/100 graded
+
+Focus: TT + WNBA. MLB / tennis / esports benched (data kept). Table tennis has its own nightly digest.
+```
