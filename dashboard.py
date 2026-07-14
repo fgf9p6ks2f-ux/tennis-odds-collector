@@ -797,6 +797,31 @@ def _openers_html():
             f'{legs}</div>')
 
 
+def _slip_html(rows):
+    """🎰 Parlays built from today's confident over-ladders (wnba_slip): 2-3 legs, max 2 players/team,
+    same-team legs use DISJOINT production pools. The per-player cards above already show the straights
+    and ladder rungs; this is the parlay layer on top of them."""
+    try:
+        import wnba_slip as S
+        overs = [r for r in rows if (r.get("side") or "over") == "over"]
+        pars = S.build(overs)["parlays"] if overs else []
+        if not pars:
+            return ""
+        items = ""
+        for p in pars:
+            legs = " · ".join(
+                f'{html.escape((l["player"] or "").split()[-1])} '
+                f'{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}' for l in p["legs"])
+            items += (f'<div class="par"><span class="pod">{S._am(p["dec"])}</span>'
+                      f'<span class="pev">+{p["ev"] * 100:.0f}%</span>'
+                      f'<span class="plegs">{legs}</span></div>')
+        return ('<div class="parlays"><div class="op-title">🎰 Parlays'
+                '<span> · from confident ladders · same-team legs = disjoint pools</span></div>'
+                f'{items}</div>')
+    except Exception:
+        return ""
+
+
 def build():
     now = dt.datetime.now(dt.timezone.utc).astimezone(MT)   # MT for the displayed clock only
     # the BOARD's slate day is ET (matches pred_date the scanner stamps) — using MT hid plays during
@@ -860,6 +885,7 @@ def build():
     cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     openers_html = _openers_html()
+    slip_html = _slip_html(rows)
     wl_html = _watchlist_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
@@ -914,6 +940,11 @@ def build():
   .openers {{ margin-top:22px; }}
   .op-title {{ color:#5b9dff; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .op-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
+  .parlays {{ margin-top:22px; }}
+  .par {{ display:flex; align-items:baseline; gap:10px; padding:8px 11px; background:#0b0e13; border:1px solid #171c26; border-radius:9px; margin-bottom:7px; }}
+  .pod {{ color:#37d67f; font-weight:800; font-size:13px; font-variant-numeric:tabular-nums; min-width:54px; }}
+  .pev {{ color:#5b9dff; font-weight:700; font-size:11px; min-width:42px; }}
+  .plegs {{ color:#c3c9d4; font-size:12.5px; }}
   .op-leg {{ background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:11px 13px; margin-bottom:8px; font-size:14px; color:#cdd4de; font-variant-numeric:tabular-nums; }}
   .wl-grp {{ border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
     border-radius:10px; padding:10px 13px; margin-bottom:9px; }}
@@ -1058,6 +1089,7 @@ def build():
       </div>
     </div>
     <div id="games">{cards}</div>
+    {slip_html}
     {openers_html}
     {wl_html}
   </div>
