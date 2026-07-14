@@ -542,9 +542,17 @@ def _player_block(player, rows):
     groups = {}
     for r in rows:
         groups.setdefault((r["stat"], (r.get("side") or "over")), []).append(r)
+    def _render(g):
+        side = g[0].get("side") or "over"
+        if side == "under" and len(g) > 1:
+            # NO UNDER LADDERS (user): a moved anchor left multiple under rungs; show ONLY the single
+            # best (highest = most room) under line, not a ladder. Display-only — the ledger keeps
+            # every flag (permanent-flag rule intact); we just don't surface the redundant rungs.
+            return _prop_row(max(g, key=lambda x: x["line"]))
+        g = sorted(g, key=lambda x: -(x.get("ev") or 0))            # overs: keep the intentional ladder
+        return _prop_row(g[0], rungs=g if len(g) > 1 else None)
     ordered = sorted(groups.values(), key=lambda g: -max((x.get("ev") or 0) for x in g))
-    props = "".join(_prop_row(sorted(g, key=lambda x: -(x.get("ev") or 0))[0],
-                              rungs=g if len(g) > 1 else None) for g in ordered)
+    props = "".join(_render(g) for g in ordered)
     return (f'<div class="pblk">'
             f'<div class="phd">{logo}<span class="pname">{html.escape(_short(player))}</span>'
             f'{flag}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
