@@ -240,6 +240,7 @@ def collect():
                 preds.append({"pred_date": today, "out_player": out_full, "player": n,
                               "team": team, "opp": matchups.get(team, ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
+                              "odds_other": e.get("odds_other"),
                               "book": "fd", "proj_hit": round(e["hit"], 3), "side": e["side"],
                               "pi_role": e.get("pi_role"),
                               "season_avg": e["season_avg"], "elev_avg": e["elev_avg"],

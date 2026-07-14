@@ -412,6 +412,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                         eo = po * over_dec - 1
                         if eo >= OVER_EV_MIN:
                             out.append({"ev": eo, "stat": stat, "line": line, "dec": over_dec, "hit": ho,
+                                        "odds_other": under_dec,
                                         "side": "over", "orig_line": orig_line, "pi_role": round(play_prob, 2),
                                         "n": nw, "fga": fga, "season_avg": round(season_avg, 1),
                                         "elev_avg": round(wo, 1), "stale": False,
@@ -476,6 +477,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             ev_bar = VOL_EV_MIN if use_vol else (OVER_EV_MIN if side == "over" else UNDER_EV_MIN)
             if ev >= ev_bar:
                 spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
+                        "odds_other": (under_dec if side == "over" else over_dec),
                         "side": side, "orig_line": orig_line, "pi_role": round(play_prob, 2),
                         "n": n, "fga": fga, "season_avg": round(season_avg, 1),
                         "elev_avg": round(elev_avg, 1), "stale": stale,

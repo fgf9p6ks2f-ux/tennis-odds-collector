@@ -36,7 +36,7 @@ MIN_TRAIN = 30                     # graded spots before a calibration is trustw
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS predictions(
   pred_date TEXT, out_player TEXT, player TEXT, team TEXT, opp TEXT,
-  stat TEXT, line REAL, odds REAL, book TEXT,
+  stat TEXT, line REAL, odds REAL, odds_other REAL, book TEXT,
   proj_hit REAL, season_avg REAL, elev_avg REAL, proj_min REAL, n_elev INTEGER,
   ev REAL, stale INTEGER, pi_role REAL,
   d_stat REAL, d_fga REAL, d_min REAL, driver REAL, vac REAL,
@@ -52,7 +52,8 @@ CREATE TABLE IF NOT EXISTS predictions(
 # (pool size); total/pace/opp_def = matchup environment; d_fta/d_3pa = points channels.
 # spread = signed line FOR the beneficiary's team (+mag = underdog / blowout risk).
 _MIGRATE = ("d_stat", "d_fga", "d_min", "driver", "vac",
-            "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "pi_role")
+            "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "pi_role",
+            "odds_other")   # opposite-side price at flag time — lets side-flips (role_flip) be backtested
 _MIGRATE_TEXT = ("basis", "samples", "confidence", "regime", "vol")   # regime/vol = display JSON
 
 
@@ -117,7 +118,7 @@ def log_predictions(rows):
     if not rows:
         return 0
     con = _con()
-    cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds",
+    cols = ("pred_date", "out_player", "player", "team", "opp", "stat", "line", "odds", "odds_other",
             "book", "proj_hit", "season_avg", "elev_avg", "proj_min", "n_elev", "ev", "stale",
             "d_stat", "d_fga", "d_min", "driver", "vac",
             "total", "pace", "opp_def", "spread", "d_fta", "d_3pa", "basis", "samples", "confidence",
