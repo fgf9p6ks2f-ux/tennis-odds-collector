@@ -93,6 +93,14 @@ def _wnba_autobetter(target_date):
     lines.append(f"ALL-TIME (overs, since 7/9): {aw}-{al}  {fmt_u(au)}")
     if pend:
         lines.append(f"Pending: {pend} (grade after games settle)")
+    try:                                                  # calibration monitor — the expand/edge-size gate
+        import wnba_calib as CAL
+        c = CAL.calibration()
+        if c:
+            lines.append(f"Calib: {c['n']}/{CAL.MIN_N} · optimism {c['optimism']*100:+.0f}% · "
+                         f"ranking {c['disc']*100:+.0f}% (hi {c['top']:.0%}/lo {c['bot']:.0%}) · {c['verdict'].split('—')[0].strip()}")
+    except Exception:
+        pass
     return (lines, bool(rows or pend))
 
 

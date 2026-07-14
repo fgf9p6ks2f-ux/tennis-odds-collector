@@ -654,6 +654,18 @@ def _tracker_panel(wnba_rec, tt_json):
                     f'</div><div class="tsub">{html.escape(sub)} · ROI {roi}</div></div>')
     except Exception:
         pass
+    try:                                                  # calibration monitor — the expand/edge-size green light
+        import wnba_calib as CAL
+        c = CAL.calibration()
+        if c:
+            dcls = "up" if c["disc"] > 0 else ("down" if c["disc"] < 0 else "")
+            out += (f'<div class="tcard"><div class="thead">📐 Calibration</div><div class="trow">'
+                    f'<div class="tbox"><div class="tk">Sample</div><div class="tv">{c["n"]}/{CAL.MIN_N}</div></div>'
+                    f'<div class="tbox"><div class="tk">Optimism</div><div class="tv">{c["optimism"] * 100:+.0f}%</div></div>'
+                    f'<div class="tbox"><div class="tk">Ranking</div><div class="tv {dcls}">{c["disc"] * 100:+.0f}%</div></div>'
+                    f'</div><div class="tsub">{html.escape(c["verdict"])}</div></div>')
+    except Exception:
+        pass
     tt = (tt_json or {}).get("tracker")
     if tt:
         out += card("🏓", "Table tennis", tt.get("w", 0), tt.get("l", 0), tt.get("u", 0.0),
