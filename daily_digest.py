@@ -62,7 +62,7 @@ def _wnba_autobetter(target_date):
     con = sqlite3.connect(WNBA_LEDGER)
     con.row_factory = sqlite3.Row
     rows = [dict(r) for r in con.execute(
-        "SELECT pred_date, result, odds, side, player, stat, line "
+        "SELECT pred_date, result, odds, side, player, stat, line, n_elev, d_min, ev "
         "FROM predictions WHERE graded=1 AND pred_date>=?", (EPOCH[:10],))]
     pend = con.execute("SELECT COUNT(*) FROM predictions WHERE graded=0 AND pred_date>=?",
                        (EPOCH[:10],)).fetchone()[0]
@@ -77,7 +77,8 @@ def _wnba_autobetter(target_date):
         # OVERS-ONLY record (2026-07-13) under the user's LADDER STAKING (2026-07-14): 1u base +
         # declining rungs (0.5/0.25/0.25), 2.5u cap per player-stat ladder. Historical unders stay
         # in the ledger but out of the headline number.
-        dec = [r for r in rs if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+        overs = [r for r in rs if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+        dec = SLIP.current_selection(overs)[0] if SLIP else overs   # current-model selection
         w = sum(1 for r in dec if r["result"] == (r["side"] or "over"))
         sm = SLIP.ladder_stake_map(dec) if SLIP else {}
         def stk(r):
@@ -88,9 +89,9 @@ def _wnba_autobetter(target_date):
     today = [r for r in rows if r["pred_date"] == target_date]
     tw, tl, tu = rec(today)
     aw, al, au = rec(rows)
-    lines = ["WNBA AUTOBETTER (injury props · overs):"]
+    lines = ["WNBA AUTOBETTER (injury props · current-model picks):"]
     lines.append(f"TODAY: {tw}-{tl}  {fmt_u(tu)}" if today else "TODAY: no bets graded yet")
-    lines.append(f"ALL-TIME (overs, since 7/9): {aw}-{al}  {fmt_u(au)}")
+    lines.append(f"ALL-TIME (current-model, since 7/9): {aw}-{al}  {fmt_u(au)}")
     if pend:
         lines.append(f"Pending: {pend} (grade after games settle)")
     try:                                                  # calibration monitor — the expand/edge-size gate

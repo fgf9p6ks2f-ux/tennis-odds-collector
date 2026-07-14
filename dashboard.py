@@ -195,7 +195,7 @@ def _load(mt_date):
         "SELECT * FROM predictions WHERE pred_date>=? AND result IS NULL "
         "ORDER BY pred_date ASC, ev DESC",
         (mt_date,))]
-    g = [dict(r) for r in con.execute("SELECT result,odds,side,pred_date,player,stat,line "
+    g = [dict(r) for r in con.execute("SELECT result,odds,side,pred_date,player,stat,line,n_elev,d_min,ev "
                                       "FROM predictions WHERE graded=1 AND pred_date>='2026-07-09'")]
     con.close()
     # durable user-played marks (wnba_played.txt) — read-only, so the ✓ shows on the board
@@ -207,10 +207,17 @@ def _load(mt_date):
             if any(d == r["pred_date"] and s == r["stat"] and pl.lower() in (r["player"] or "").lower()
                    and abs((r["line"] or 0) - float(ln)) < 1e-9 for d, pl, s, ln in marks):
                 r["played"] = 1
-    # OVERS-ONLY tracker (2026-07-13): the model bets overs only now, so the tracked record shows
-    # the OVER bets only — the historical unders (the losing pivot experiment) are kept in the ledger
-    # but excluded from the headline record, giving one continuous overs-only track record.
-    dec = [r for r in g if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+    # CURRENT-MODEL record (2026-07-14): overs-only, AND restated to what the current bot would PICK —
+    # wnba_slip.current_selection drops the thin-sample over-extrapolations the guard now skips (Ayayi)
+    # and the correlated over-stacks (Copper's points+pts_reb+pra -> keep best only). Rule-based +
+    # outcome-blind (it also drops a lucky thin-sample WIN), so it's the new bot's selection, not
+    # cherry-picking. The ledger keeps every real bet; this only restates the headline record.
+    overs = [r for r in g if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+    try:
+        import wnba_slip as _SL
+        dec, _dropped = _SL.current_selection(overs)
+    except Exception:
+        dec = overs
     w = sum(1 for r in dec if r["result"] == (r["side"] or "over"))   # win = result matches side
     # P&L under the user's LADDER STAKING (2026-07-14): 1u on the base line, declining rungs up the
     # ladder (0.5 / 0.25 / 0.25 ...), capped 2.5u per player-stat ladder — his real sizing + the
@@ -634,7 +641,7 @@ def _tracker_panel(wnba_rec, tt_json):
         <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
       </div>"""
     w, l, u = wnba_rec
-    out = card("🏀", "WNBA injury props", w, l, u, "overs only · 1u base + declining rungs · 2.5u ladder & per-game caps · since 7/9")
+    out = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9")
     try:                                                  # parlay ROI (played parlays, staked .25/.15u)
         import wnba_slip as SLIP
         pr = SLIP.parlay_record()

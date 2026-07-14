@@ -119,6 +119,58 @@ def ladders(overs):
     return out
 
 
+def current_selection(rows):
+    """The subset of OVER rows the CURRENT model would actually pick — used to restate the tracked
+    record to the new bot's selection. Drops two rule-based classes (returns (kept, dropped) where
+    dropped is [(row, reason)]):
+      1. THIN-SAMPLE over-extrapolation — n_elev<7 AND d_min>10 (the shipped guard; the Ayayi 0-5 pattern).
+      2. CORRELATED over-stack — per player-game, when 3+ DISTINCT stats share a production pool (P/R/A),
+         keep only the highest-EV stat (its ladder rungs included) and drop the redundant ones (Copper
+         bet points+pts_reb+pra, all keyed on her scoring). 2 correlated stats (a stat + one extending
+         combo, e.g. rebounds + P+R) are the user's intentional construction and are kept."""
+    from collections import defaultdict
+    overs = [r for r in rows if (r.get("side") or "over") == "over"]
+    kept, dropped = [], []
+
+    def thin(r):
+        n, dm = r.get("n_elev"), r.get("d_min")
+        return n is not None and dm is not None and n < 7 and dm > 10
+
+    survivors = []
+    for r in overs:
+        (dropped.append((r, "thin-sample guard")) if thin(r) else survivors.append(r))
+
+    bypg = defaultdict(list)
+    for r in survivors:
+        bypg[(r.get("pred_date"), r.get("player"))].append(r)
+    for rr in bypg.values():
+        stat_ev = defaultdict(lambda: -1.0)
+        for r in rr:
+            stat_ev[r["stat"]] = max(stat_ev[r["stat"]], r.get("ev") or 0.0)
+        stats = list(stat_ev)
+        parent = {s: s for s in stats}                    # union-find: cluster stats that share a pool
+
+        def find(s):
+            while parent[s] != s:
+                parent[s] = parent[parent[s]]
+                s = parent[s]
+            return s
+        for i, a in enumerate(stats):
+            for b in stats[i + 1:]:
+                if _comps(a) & _comps(b):
+                    parent[find(a)] = find(b)
+        clusters = defaultdict(list)
+        for s in stats:
+            clusters[find(s)].append(s)
+        keep_stats = set()
+        for cl in clusters.values():
+            keep_stats.add(max(cl, key=lambda s: stat_ev[s])) if len(cl) >= 3 else keep_stats.update(cl)
+        for r in rr:
+            (kept if r["stat"] in keep_stats else dropped).append(
+                r if r["stat"] in keep_stats else (r, "correlated over-stack (3+ stats share a pool)"))
+    return kept, dropped
+
+
 def player_bets(lads):
     """Same-player combo logic. Per player: keep the highest-EV anchor ladder; keep a combo that
     EXTENDS it (shares a component) to carry the secondary; DROP a standalone single that a kept
