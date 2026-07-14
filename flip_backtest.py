@@ -14,7 +14,7 @@ import sqlite3
 from pathlib import Path
 
 import wnba_wowy as W
-from wnba_tonight import PROP_STATS, ROLE_GUARD_MINN, OVER_EV_MIN, ROLE_FLOOR
+from wnba_tonight import PROP_STATS, ROLE_GUARD_MINN, OVER_EV_MIN, ROLE_FLOOR, flip_p_over
 
 HERE = Path(__file__).resolve().parent
 led = sqlite3.connect(HERE / "wnba_ledger.sqlite")
@@ -57,12 +57,12 @@ for r in unders:
     floor = max((r["proj_min"] or 0) - 4, ROLE_FLOOR)
     shrink_k = 11 if len([g for g in before(b, r["pred_date"]) if (g.get("min") or 0) >= floor]) >= 4 else 14
     nw = len(wvals) if wvals else 0
-    ho = (sum(1 for v in wvals if v > line) / nw) if nw else None
-    eo = None
+    p_over = eo = None
     if wvals and nw >= ROLE_GUARD_MINN and 1.6 <= over_dec <= 5.0:
-        po = (ho * nw + (1.0 / over_dec) * shrink_k) / (nw + shrink_k)
+        p_over = flip_p_over(wvals, line)                    # shared with prop_edges (no drift)
+        po = (p_over * nw + (1.0 / over_dec) * shrink_k) / (nw + shrink_k)
         eo = po * over_dec - 1
-    rec = {**r, "over_dec": over_dec, "eo": eo, "ho": ho, "wo": wo, "nw": nw, "win": r["result"] == "over"}
+    rec = {**r, "over_dec": over_dec, "eo": eo, "ho": p_over, "wo": wo, "nw": nw, "win": r["result"] == "over"}
     (flips if (eo is not None and eo >= OVER_EV_MIN) else vetoed).append(rec)
 
 def summarize(lst):
@@ -78,7 +78,7 @@ w, l, hit, roi = summarize(flips)
 print(f"\n=== FLIP-OVER record: {w}-{l} ({hit:.0f}% hit)   ROI {roi:+.1%}/unit   (n={len(flips)}) ===")
 for x in sorted(flips, key=lambda z: z["pred_date"]):
     print(f"    {x['pred_date']} {x['player'][:20]:20} {x['stat']:8} o{x['line']:<5g} @{x['over_dec']:.2f}  "
-          f"eo{x['eo']:+.2f} over-rate{x['ho']:.0%} wo{x['wo']:.1f} n{x['nw']} -> {'WIN' if x['win'] else 'loss'}")
+          f"eo{x['eo']:+.2f} P(ovr){x['ho']:.0%} wo{x['wo']:.1f} n{x['nw']} -> {'WIN' if x['win'] else 'loss'}")
 
 print("\n--- guard-vetoed unders where the flip did NOT fire (why + what the under did) ---")
 uv_win = sum(1 for x in vetoed if x["result"] == "under")
@@ -87,4 +87,4 @@ for x in sorted(vetoed, key=lambda z: z["pred_date"]):
     eo_s = f"{x['eo']:+.2f}" if x["eo"] is not None else "n/a"
     hr = f"{x['ho']:.0%}" if x["ho"] is not None else "n/a"
     print(f"    {x['pred_date']} {x['player'][:20]:20} {x['stat']:8} line{x['line']:<5g} over@{x['over_dec']:.2f} "
-          f"wo{x['wo']:.1f}(n{x['nw']}) over-rate{hr} -> flip eo {eo_s} | under {'WON' if x['result'] == 'under' else 'LOST'}")
+          f"wo{x['wo']:.1f}(n{x['nw']}) P(ovr){hr} -> flip eo {eo_s} | under {'WON' if x['result'] == 'under' else 'LOST'}")

@@ -215,6 +215,22 @@ ROLE_FLOOR = 22.0
 # demand much more edge to bet an over than an under.
 OVER_EV_MIN = 0.10
 UNDER_EV_MIN = 0.04
+
+
+def flip_p_over(wvals, line):
+    """P(over) for the role_flip, estimated from the WITHOUT-star game values `wvals`.
+    Uses Normal(mu, sigma) — magnitude-aware — instead of a raw line-cross hit-rate. On the
+    3-9 games a WOWY split gives, a hit-rate is coarse and discards HOW FAR production sits
+    from the line: a 2.9-assist mean into a 2.5 line is a real over-lean a 25%-hit-rate buries,
+    while a 60%-on-5 hit-rate overstates a mean sitting right on the line. sigma is floored
+    (CV 0.35 / abs 1.0) so a tiny-sample variance can't manufacture false confidence. Leak-free
+    backtest: the hit-rate ranked flips BACKWARDS (winner-minus-loser P(over) -0.06); this ranks
+    them the right way (+0.01) — a better estimator, NOT a lower bar. Shared with flip_backtest.py
+    so the backtest can't drift from production. n=6 can't validate the ordering; this is founded
+    on first principles + fixes the sign, and is tracked forward."""
+    mu = st.mean(wvals)
+    sg = max(st.pstdev(wvals) if len(wvals) > 1 else 0.0, 0.35 * mu, 1.0)
+    return 1 - 0.5 * (1 + math.erf(((line - mu) / sg) / math.sqrt(2)))
 VOL_EV_MIN = 0.07     # volume-confirmed points OVERS EV bar
 PRIMARY_FGA = 13.0    # baseline FGA at/above this = a primary option (Mabrey) — no room to grow, SKIP
 # ROOM-TO-GROW volume model. The broad real-line backtest lost (-38%) because it flagged PRIMARY
@@ -407,11 +423,11 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                 if wo is not None and wo >= line:
                     if wvals and len(wvals) >= ROLE_GUARD_MINN and 1.6 <= over_dec <= 5.0:
                         nw = len(wvals)
-                        ho = sum(1 for v in wvals if v > line) / nw     # over-rate in without-star games
-                        po = (ho * nw + (1.0 / over_dec) * shrink_k) / (nw + shrink_k)
+                        p_over = flip_p_over(wvals, line)     # magnitude-aware P(over), not a hit-rate
+                        po = (p_over * nw + (1.0 / over_dec) * shrink_k) / (nw + shrink_k)
                         eo = po * over_dec - 1
                         if eo >= OVER_EV_MIN:
-                            out.append({"ev": eo, "stat": stat, "line": line, "dec": over_dec, "hit": ho,
+                            out.append({"ev": eo, "stat": stat, "line": line, "dec": over_dec, "hit": p_over,
                                         "odds_other": under_dec,
                                         "side": "over", "orig_line": orig_line, "pi_role": round(play_prob, 2),
                                         "n": nw, "fga": fga, "season_avg": round(season_avg, 1),
