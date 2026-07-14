@@ -207,7 +207,10 @@ def _load(mt_date):
             if any(d == r["pred_date"] and s == r["stat"] and pl.lower() in (r["player"] or "").lower()
                    and abs((r["line"] or 0) - float(ln)) < 1e-9 for d, pl, s, ln in marks):
                 r["played"] = 1
-    dec = [r for r in g if r[0] in ("over", "under")]
+    # OVERS-ONLY tracker (2026-07-13): the model bets overs only now, so the tracked record shows
+    # the OVER bets only — the historical unders (the losing pivot experiment) are kept in the ledger
+    # but excluded from the headline record, giving one continuous overs-only track record.
+    dec = [r for r in g if r[0] in ("over", "under") and (r[2] or "over") == "over"]
     w = sum(1 for r in dec if r[0] == (r[2] or "over"))   # win = result matches the side we bet
     # P&L weighted by the recommended (odds-based) stake, so the tracker reflects how the
     # plays are actually sized — a losing +240 longshot costs its 0.35u, not a flat 1u.
@@ -622,7 +625,17 @@ def _tracker_panel(wnba_rec, tt_json):
         <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
       </div>"""
     w, l, u = wnba_rec
-    out = card("🏀", "WNBA injury props", w, l, u, "staked by odds (ladder) · settles live · since 7/9")
+    out = card("🏀", "WNBA injury props", w, l, u, "overs only · staked by odds (ladder) · settles live · since 7/9")
+    try:                                                  # parlay ROI — the money layer on the overs
+        import wnba_slip as SLIP
+        pw, pl_, pv, pu, _roi, pp = SLIP.parlay_record()
+        if pw + pl_ + pv + pp > 0:
+            note = "flat 1u · 2-3 leg from confident ladders"
+            note += f" · {pp} pending" if pp else ""
+            note += f" · {pv} void" if pv else ""
+            out += card("🎰", "WNBA parlays", pw, pl_, pu, note)
+    except Exception:
+        pass
     tt = (tt_json or {}).get("tracker")
     if tt:
         out += card("🏓", "Table tennis", tt.get("w", 0), tt.get("l", 0), tt.get("u", 0.0),

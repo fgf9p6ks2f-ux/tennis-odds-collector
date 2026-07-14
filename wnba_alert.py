@@ -375,6 +375,19 @@ def _notif_body(fresh, limit=20):
 def main():
     alerts, preds = collect()
     logged = L.log_predictions(preds)                    # feed the learning loop
+    # persist the day's recommended PARLAYS (from the flagged overs) so their ROI is tracked too.
+    # Built per slate-date; replaces the still-pending set each scan (graded ones are locked).
+    try:
+        import wnba_slip as SLIP
+        from collections import defaultdict as _dd
+        byd = _dd(list)
+        for p in preds:
+            if (p.get("side") or "over") == "over":
+                byd[p["pred_date"]].append(p)
+        for d, overs in byd.items():
+            SLIP.log_parlays(d, SLIP.build(overs)["parlays"])
+    except Exception as e:
+        print(f"parlay logging skipped: {e}")
     seen = set(SEEN.read_text().splitlines()) if SEEN.exists() else set()
     fresh, seen_this_run = [], set()
     for ev, k, msg in alerts:                             # alerts sorted by EV desc

@@ -15,7 +15,13 @@ RULES (2026-07-13, user):
       teammate's pts_reb share R, or two bigs' rebounds);
     * cross-team legs are unconstrained (his call).
 """
+import json
+import sqlite3
 from itertools import combinations
+from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+LEDGER = HERE / "wnba_ledger.sqlite"        # parlays live in the same DB as the straights (self-heals)
 
 # the finite production pools each market draws from
 COMPONENTS = {"points": frozenset("P"), "rebounds": frozenset("R"), "assists": frozenset("A"),
@@ -138,6 +144,130 @@ def render(slip):
                                 f"o{l['line']:g}" for l in p["legs"])
             lines.append(f"  {p['n']}-leg @ {_am(p['dec'])} (+{p['ev'] * 100:.0f}%):  {legs}")
     return "\n".join(lines)
+
+
+PARLAY_EPOCH = "2026-07-13"                  # overs-only + slip era; parlay record starts here
+
+_SCHEMA = """CREATE TABLE IF NOT EXISTS parlays(
+  pred_date TEXT, key TEXT, legs TEXT, n INTEGER, dec REAL, ev REAL,
+  result TEXT, pnl REAL, graded INTEGER DEFAULT 0, graded_at TEXT,
+  UNIQUE(pred_date, key));"""
+
+
+def _pcon():
+    con = sqlite3.connect(LEDGER)
+    con.execute(_SCHEMA)
+    return con
+
+
+def _key(legs):
+    return "|".join(sorted(f"{l['player']}/{l['stat']}/{l['line']:g}" for l in legs))
+
+
+def log_parlays(date, pars):
+    """Persist the day's recommended parlays for grading. Each scan REPLACES the still-pending set
+    for the date (parlays are live suggestions built from the current ladders, not locked like a
+    placed straight) — graded parlays are never touched. Flat 1u stake per parlay."""
+    con = _pcon()
+    con.execute("DELETE FROM parlays WHERE pred_date=? AND graded=0", (date,))
+    for p in pars:
+        legs = [{"player": l["player"], "team": l.get("team"), "stat": l["stat"],
+                 "line": l["line"], "side": "over", "odds": l.get("dec")} for l in p["legs"]]
+        con.execute("INSERT OR IGNORE INTO parlays(pred_date,key,legs,n,dec,ev,result) "
+                    "VALUES(?,?,?,?,?,?,'pending')",
+                    (date, _key(legs), json.dumps(legs), p["n"], p["dec"], p["ev"]))
+    con.commit()
+    con.close()
+
+
+def grade_parlays():
+    """Grade pending parlays whose legs have ALL settled, against the graded predictions. A voided
+    leg drops out and the parlay reprices on the survivors: loses if any non-void leg lost, wins if
+    all non-void legs won (payout = product of won legs' odds), void if every leg voided."""
+    con = _pcon()
+    con.row_factory = sqlite3.Row
+    pend = con.execute("SELECT rowid, pred_date, legs FROM parlays WHERE graded=0").fetchall()
+    n = 0
+    for row in pend:
+        legs = json.loads(row["legs"])
+        st = []
+        for l in legs:
+            r = con.execute(
+                "SELECT result FROM predictions WHERE pred_date=? AND player=? AND stat=? "
+                "AND ABS(line-?)<1e-6 AND graded=1",
+                (row["pred_date"], l["player"], l["stat"], l["line"])).fetchone()
+            if not r:
+                st.append("pending")
+            elif r["result"] in (None, "push", "void"):
+                st.append("void")
+            elif r["result"] == (l.get("side") or "over"):
+                st.append(("win", l))
+            elif r["result"] in ("over", "under"):
+                st.append("loss")
+            else:
+                st.append("pending")
+        if any(s == "pending" for s in st):
+            continue                                     # not all legs settled -> leave pending
+        if any(s == "loss" for s in st):
+            result, pnl = "loss", -1.0
+        else:
+            won = [s[1] for s in st if isinstance(s, tuple)]
+            if not won:
+                result, pnl = "void", 0.0
+            else:
+                payout = 1.0
+                for l in won:
+                    payout *= (l["odds"] or 1)
+                result, pnl = "win", payout - 1.0
+        con.execute("UPDATE parlays SET result=?, pnl=?, graded=1, graded_at=datetime('now') "
+                    "WHERE rowid=?", (result, pnl, row["rowid"]))
+        n += 1
+    con.commit()
+    con.close()
+    return n
+
+
+def sync_parlays():
+    """Self-heal + grade, run every grade cycle by BOTH loops (like odds_other): for each slate that
+    hasn't started settling yet, REBUILD its parlays from the predictions-table overs and persist them
+    — so a stale-loop ledger commit can't leave the parlays table wiped. A slate is frozen the moment
+    any leg grades (rebuilding from only-unsettled legs then would mangle a placed parlay). Returns the
+    number of parlays graded."""
+    con = _pcon()
+    con.row_factory = sqlite3.Row
+    dates = [r[0] for r in con.execute(
+        "SELECT DISTINCT pred_date FROM predictions WHERE result IS NULL "
+        "AND (side='over' OR side IS NULL)").fetchall()]
+    fresh = {}
+    for d in dates:
+        if con.execute("SELECT 1 FROM predictions WHERE pred_date=? AND graded=1 LIMIT 1", (d,)).fetchone():
+            continue                                      # slate settling -> freeze its parlays
+        fresh[d] = [dict(r) for r in con.execute(
+            "SELECT player, team, stat, line, side, odds, ev FROM predictions WHERE pred_date=? "
+            "AND result IS NULL AND (side='over' OR side IS NULL)", (d,)).fetchall()]
+    con.close()
+    for d, overs in fresh.items():
+        if overs:
+            log_parlays(d, build(overs)["parlays"])
+    return grade_parlays()
+
+
+def parlay_record(epoch=PARLAY_EPOCH):
+    """(w, l, void, units, roi, pending) over graded parlays since epoch, flat 1u. ROI over the
+    W+L settled (voids excluded from the denominator)."""
+    con = _pcon()
+    con.row_factory = sqlite3.Row
+    g = con.execute("SELECT result, pnl FROM parlays WHERE graded=1 AND pred_date>=?",
+                    (epoch,)).fetchall()
+    pending = con.execute("SELECT COUNT(*) FROM parlays WHERE graded=0 AND pred_date>=?",
+                          (epoch,)).fetchone()[0]
+    con.close()
+    w = sum(1 for r in g if r["result"] == "win")
+    l = sum(1 for r in g if r["result"] == "loss")
+    void = sum(1 for r in g if r["result"] == "void")
+    units = sum((r["pnl"] or 0) for r in g)
+    roi = units / (w + l) if (w + l) else 0.0
+    return w, l, void, units, roi, pending
 
 
 if __name__ == "__main__":

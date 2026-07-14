@@ -67,9 +67,10 @@ def _wnba_autobetter(target_date):
     con.close()
 
     def rec(rs):
-        # win = result == the side we bet (the model bets unders too since the pivot;
-        # counting 'over hit' as the win was flipping the record on every under).
-        dec = [r for r in rs if r[1] in ("over", "under")]   # decided (excludes push)
+        # OVERS-ONLY record (2026-07-13): the model bets overs only now, so the tracked record is
+        # the OVER bets only; historical unders stay in the ledger but out of the headline number.
+        # win = result == the side we bet.
+        dec = [r for r in rs if r[1] in ("over", "under") and (r[3] or "over") == "over"]
         w = sum(1 for r in dec if r[1] == r[3])
         u = sum((r[2] - 1) if r[1] == r[3] else -1 for r in dec)
         return w, len(dec) - w, u
@@ -77,9 +78,9 @@ def _wnba_autobetter(target_date):
     today = [r for r in rows if r[0] == target_date]
     tw, tl, tu = rec(today)
     aw, al, au = rec(rows)
-    lines = ["WNBA AUTOBETTER (injury props):"]
+    lines = ["WNBA AUTOBETTER (injury props · overs):"]
     lines.append(f"TODAY: {tw}-{tl}  {fmt_u(tu)}" if today else "TODAY: no bets graded yet")
-    lines.append(f"ALL-TIME (since 7/9): {aw}-{al}  {fmt_u(au)}")
+    lines.append(f"ALL-TIME (overs, since 7/9): {aw}-{al}  {fmt_u(au)}")
     if pend:
         lines.append(f"Pending: {pend} (grade after games settle)")
     return (lines, bool(rows or pend))

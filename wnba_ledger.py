@@ -407,6 +407,13 @@ def main():
             backfill_odds_other.main()
         except Exception as e:
             print(f"odds_other self-heal skipped: {e}")
+        try:                                              # self-heal + grade tracked parlays (both loops)
+            import wnba_slip
+            gp = wnba_slip.sync_parlays()
+            if gp:
+                print(f"graded {gp} parlays")
+        except Exception as e:
+            print(f"parlay sync/grading skipped: {e}")
     if args.train:
         train()
     if args.learn:
