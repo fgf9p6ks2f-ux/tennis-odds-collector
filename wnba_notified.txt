@@ -102,8 +102,10 @@
 2026-07-13|Rae Burrell|points|14.5
 2026-07-13|Valeriane Ayayi|pts_reb|14.5
 2026-07-14|Julie Allemand|assists|7.5
+2026-07-14|Julie Allemand|pts_reb|11.5
 2026-07-14|Leila Lacan|points|11.5
 2026-07-14|Marina Mabrey|reb_ast|7.5
+2026-07-14|Olivia Nelson-Ododa|pts_reb|18.5
 2026-07-14|Olivia Nelson-Ododa|rebounds|7.5
 timing|2026-07-12|Azura Stevens|pra|20.5
 timing|2026-07-12|Azura Stevens|pts_ast|17.5
