@@ -66,6 +66,7 @@ _STAT_COMPONENTS = {"points": frozenset("p"), "rebounds": frozenset("r"), "assis
 HIGH_EV = 0.20      # a player gets a 2ND (uncorrelated) original-line play only if BOTH anchors clear this
 LADDER_MAX = 3      # at most this many OVER ladder rungs above the original line (FD ladders overs only)
 LADDER_GAP = 2.0    # min spacing between kept ladder rungs, so it's a spread ladder not 5 stacked rungs
+ROLE_GUARD_MINN = 3 # min without-the-out-player games before the role-expansion under-guard trusts w['without']
 POINTS_PREF_MARGIN = 0.08   # prefer a POINTS anchor over a points-containing combo (pra/pts_reb/pts_ast)
                             # when points' EV is within this of the combo's — points is the ladderable
                             # volume edge; a combo is largely its components repackaged and can't ladder
@@ -393,6 +394,16 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             side = "over" if elev_avg >= line else "under"
             if use_vol and side == "under":           # the volume layer ladders OVERS only
                 continue
+            # ROLE-EXPANSION GUARD (2026-07-13): never bet an UNDER below a player's OWN production
+            # WITHOUT the out player. The minutes-honest proj mixes in WITH-them games (usage capped by
+            # the star) so it can under-shoot the real role — Wheeler's Plum-out avg was 16.4 (ascending
+            # to 24) yet the proj said 13.3, so it bet u14.5 and got smoked. If her same-injury-context
+            # mean (needs a real n_without) already sits AT/above the line, the under contradicts reality
+            # → kill it. Backtest: these went 0-4; the unders it keeps went 15-8.
+            if side == "under" and w and w.get("n_without", 0) >= ROLE_GUARD_MINN:
+                wo = (w.get("without", {}).get(key) or {}).get("mean")
+                if wo is not None and wo >= line:
+                    continue
             dec = over_dec if side == "over" else under_dec
             hi_odds = 7.0 if use_vol else 5.0          # volume overs LADDER UP to +600 alt lines
             lo_odds = 1.6 if use_vol else 1.25         # ...but NEVER a deep favorite under the line
