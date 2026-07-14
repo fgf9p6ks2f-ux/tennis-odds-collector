@@ -60,22 +60,32 @@ def _wnba_autobetter(target_date):
     if not WNBA_LEDGER.exists():
         return (["WNBA AUTOBETTER: ledger initializing"], False)
     con = sqlite3.connect(WNBA_LEDGER)
-    rows = con.execute("SELECT pred_date, result, odds, side FROM predictions "
-                       "WHERE graded=1 AND pred_date>=?", (EPOCH[:10],)).fetchall()
+    con.row_factory = sqlite3.Row
+    rows = [dict(r) for r in con.execute(
+        "SELECT pred_date, result, odds, side, player, stat, line "
+        "FROM predictions WHERE graded=1 AND pred_date>=?", (EPOCH[:10],))]
     pend = con.execute("SELECT COUNT(*) FROM predictions WHERE graded=0 AND pred_date>=?",
                        (EPOCH[:10],)).fetchone()[0]
     con.close()
 
+    try:
+        import wnba_slip as SLIP
+    except Exception:
+        SLIP = None
+
     def rec(rs):
-        # OVERS-ONLY record (2026-07-13): the model bets overs only now, so the tracked record is
-        # the OVER bets only; historical unders stay in the ledger but out of the headline number.
-        # win = result == the side we bet.
-        dec = [r for r in rs if r[1] in ("over", "under") and (r[3] or "over") == "over"]
-        w = sum(1 for r in dec if r[1] == r[3])
-        u = sum((r[2] - 1) if r[1] == r[3] else -1 for r in dec)
+        # OVERS-ONLY record (2026-07-13) under the user's LADDER STAKING (2026-07-14): 1u base +
+        # declining rungs (0.5/0.25/0.25), 2.5u cap per player-stat ladder. Historical unders stay
+        # in the ledger but out of the headline number.
+        dec = [r for r in rs if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+        w = sum(1 for r in dec if r["result"] == (r["side"] or "over"))
+        sm = SLIP.ladder_stake_map(dec) if SLIP else {}
+        def stk(r):
+            return sm.get((r["pred_date"], r["player"], r["stat"], r["line"]), 1.0)
+        u = sum(stk(r) * (r["odds"] - 1) if r["result"] == (r["side"] or "over") else -stk(r) for r in dec)
         return w, len(dec) - w, u
 
-    today = [r for r in rows if r[0] == target_date]
+    today = [r for r in rows if r["pred_date"] == target_date]
     tw, tl, tu = rec(today)
     aw, al, au = rec(rows)
     lines = ["WNBA AUTOBETTER (injury props · overs):"]

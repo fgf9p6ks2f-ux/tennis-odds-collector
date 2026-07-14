@@ -195,8 +195,8 @@ def _load(mt_date):
         "SELECT * FROM predictions WHERE pred_date>=? AND result IS NULL "
         "ORDER BY pred_date ASC, ev DESC",
         (mt_date,))]
-    g = con.execute("SELECT result,odds,side FROM predictions WHERE graded=1 "
-                    "AND pred_date>='2026-07-09'").fetchall()
+    g = [dict(r) for r in con.execute("SELECT result,odds,side,pred_date,player,stat,line "
+                                      "FROM predictions WHERE graded=1 AND pred_date>='2026-07-09'")]
     con.close()
     # durable user-played marks (wnba_played.txt) — read-only, so the ✓ shows on the board
     # independent of when CI last synced the DB column
@@ -210,11 +210,20 @@ def _load(mt_date):
     # OVERS-ONLY tracker (2026-07-13): the model bets overs only now, so the tracked record shows
     # the OVER bets only — the historical unders (the losing pivot experiment) are kept in the ledger
     # but excluded from the headline record, giving one continuous overs-only track record.
-    dec = [r for r in g if r[0] in ("over", "under") and (r[2] or "over") == "over"]
-    w = sum(1 for r in dec if r[0] == (r[2] or "over"))   # win = result matches the side we bet
-    # P&L weighted by the recommended (odds-based) stake, so the tracker reflects how the
-    # plays are actually sized — a losing +240 longshot costs its 0.35u, not a flat 1u.
-    u = sum(_units(r[1]) * (r[1] - 1) if r[0] == (r[2] or "over") else -_units(r[1]) for r in dec)
+    dec = [r for r in g if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+    w = sum(1 for r in dec if r["result"] == (r["side"] or "over"))   # win = result matches side
+    # P&L under the user's LADDER STAKING (2026-07-14): 1u on the base line, declining rungs up the
+    # ladder (0.5 / 0.25 / 0.25 ...), capped 2.5u per player-stat ladder — his real sizing + the
+    # exposure cap, so a fully-laddered cold game can't run past 2.5u on one stat.
+    try:
+        import wnba_slip as SLIP
+        sm = SLIP.ladder_stake_map(dec)
+        def _stk(r):
+            return sm.get((r["pred_date"], r["player"], r["stat"], r["line"]), 1.0)
+    except Exception:
+        def _stk(r):
+            return 1.0
+    u = sum(_stk(r) * (r["odds"] - 1) if r["result"] == (r["side"] or "over") else -_stk(r) for r in dec)
     return rows, (w, len(dec) - w, u, len(rows))
 
 
@@ -625,7 +634,7 @@ def _tracker_panel(wnba_rec, tt_json):
         <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
       </div>"""
     w, l, u = wnba_rec
-    out = card("🏀", "WNBA injury props", w, l, u, "overs only · staked by odds (ladder) · settles live · since 7/9")
+    out = card("🏀", "WNBA injury props", w, l, u, "overs only · 1u base + declining rungs (2.5u cap) · since 7/9")
     try:                                                  # parlay ROI (played parlays, staked .25/.15u)
         import wnba_slip as SLIP
         pr = SLIP.parlay_record()

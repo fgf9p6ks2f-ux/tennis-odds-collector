@@ -31,6 +31,37 @@ def _stake(dec):
     return 0.15 if (dec or 0) >= 11.0 else 0.25
 
 
+# STRAIGHT-LADDER staking (2026-07-14, user): 1u on the base (main -110) line, then DECLINING rungs up
+# the ladder (0.5 / 0.25 / 0.25 ...), total per player-stat ladder CAPPED at 2.5u — the exposure cap so
+# one cold game fully laddered (e.g. Copper's 3 rungs on a 9-pt night) can't run past 2.5u.
+LADDER_ANCHOR_U = 1.0
+LADDER_RUNG_US = (0.5, 0.25, 0.25)
+LADDER_RUNG_DEFAULT_U = 0.25
+LADDER_CAP_U = 2.5
+
+
+def ladder_stake_map(rows):
+    """Map each OVER row to its ladder stake: {(pred_date, player, stat, line): stake}. Per player-stat
+    ladder, the lowest line is the 1u anchor and higher rungs decline (0.5, 0.25, 0.25, ...), total
+    capped at LADDER_CAP_U. A lone over (no rungs) is just the 1u anchor."""
+    from collections import defaultdict
+    groups = defaultdict(list)
+    for r in rows:
+        if (r.get("side") or "over") != "over":
+            continue
+        groups[(r.get("pred_date"), r.get("player"), r.get("stat"))].append(r)
+    out = {}
+    for rungs in groups.values():
+        total = 0.0
+        for i, r in enumerate(sorted(rungs, key=lambda x: (x.get("line") or 0))):
+            base = LADDER_ANCHOR_U if i == 0 else (
+                LADDER_RUNG_US[i - 1] if i - 1 < len(LADDER_RUNG_US) else LADDER_RUNG_DEFAULT_U)
+            s = min(base, max(0.0, LADDER_CAP_U - total))
+            total += s
+            out[(r.get("pred_date"), r.get("player"), r.get("stat"), r.get("line"))] = s
+    return out
+
+
 def _pid(date, key):
     """Short stable id for a parlay (shown on the dashboard; used to mark it played)."""
     return hashlib.sha1(f"{date}|{key}".encode()).hexdigest()[:4]
