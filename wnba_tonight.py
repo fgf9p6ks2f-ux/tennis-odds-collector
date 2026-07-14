@@ -215,6 +215,8 @@ ROLE_FLOOR = 22.0
 # demand much more edge to bet an over than an under.
 OVER_EV_MIN = 0.10
 UNDER_EV_MIN = 0.04
+THIN_SAMPLE_N = 7      # fewer elevated games than this = an unreliable projection...
+BIG_JUMP_MIN = 10.0    # ...and combined with a huge projected minutes jump = over-extrapolation, skip
 
 
 def flip_p_over(wvals, line):
@@ -472,6 +474,16 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # faith: an unconfirmed elevated-role over is exactly the bet the pivot says regresses.
             if side == "over" and not use_vol and not (
                     d_min is not None and d_fga is not None and (d_min > 2 or d_fga > 1)):
+                continue
+            # THIN-SAMPLE OVER-EXTRAPOLATION GUARD (2026-07-14): skip an over built on a THIN elevated
+            # sample AND an EXTREME projected minutes jump — a deep-bench player extrapolated into a huge
+            # role off a handful of games. The model's clearest failure mode in the loss investigation:
+            # Valeriane Ayayi went 0-5, every bet n_elev<7 with d_min ~+16-18, delivering ~half the
+            # projection. Validated on the 34 graded overs (stable across n<6-8 / d_min>8-12): cuts a
+            # 1-5 set (-4.4u) -> record 18-10, ROI +9.4% -> +27.3%. Conservative (only the extreme
+            # corner); volume plays are usage-confirmed so they're exempt. Small sample (~1 player) —
+            # watch forward. (See flip_backtest.py-style validation in the ledger analysis.)
+            if side == "over" and not use_vol and n < THIN_SAMPLE_N and d_min is not None and d_min > BIG_JUMP_MIN:
                 continue
             if use_vol:
                 # P(points > line) from the VOLUME projection (normal around vol_pts) — strips the
