@@ -101,6 +101,7 @@
 2026-07-13|Rae Burrell|assists|2.5
 2026-07-13|Rae Burrell|points|14.5
 2026-07-13|Valeriane Ayayi|pts_reb|14.5
+2026-07-14|Aaliyah Edwards|pts_reb|11.5
 2026-07-14|Julie Allemand|assists|7.5
 2026-07-14|Julie Allemand|pts_reb|11.5
 2026-07-14|Leila Lacan|points|11.5
