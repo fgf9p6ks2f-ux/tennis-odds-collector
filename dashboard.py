@@ -815,14 +815,48 @@ def build():
         opp = (prs[0].get("opp") or "").upper()
         games[(pd, tuple(sorted((team, opp))))].append((player, prs))
 
-    def _pedge(prs):
-        return max((r.get("ev") or 0) for r in prs)
-    # soonest slate first, then strongest edge within a slate
+    # ── archetype-blended ranking + per-game cap (user: fewer plays, surface my favorites) ──
+    # Raw EV buried the plays he trusts (Thomas RA-under ranked last, Burrell volume-over unscored),
+    # so his 3 validated archetypes get a boost to lead; everything else fills remaining slots by EV.
+    ARCHE_BOOST, EXPAND_BAR, CAP = 0.15, 0.20, 3
+
+    def _arche(r):
+        side, stat = (r.get("side") or "over"), (r.get("stat") or "")
+        if side == "over" and stat == "points" and (r.get("basis") == "volume" or (r.get("d_fga") or 0) >= 2):
+            return ARCHE_BOOST                            # volume-over on a role player (Burrell)
+        if side == "under" and stat in ("rebounds", "assists", "reb_ast"):
+            return ARCHE_BOOST                            # reduced-role reb/ast under (Thomas)
+        if side == "over" and stat == "rebounds" and (r.get("d_min") or 0) >= 2:
+            return ARCHE_BOOST                            # role-player rebound over, vacated frontcourt (Bonner)
+        return 0.0
+
+    def _score(r):
+        return (r.get("ev") or 0) + _arche(r)
+
+    def _pscore(prs):
+        return max(_score(r) for r in prs)
+
+    # cap each game to the top-CAP PLAY-GROUPS (player × stat × side, so an under's rungs or an overs
+    # ladder count as ONE play), expandable for genuinely strong extras. Display-only — the ledger
+    # keeps every flag; we just stop flooding the board with marginal legs.
+    for gk in list(games.keys()):
+        pg = defaultdict(list)
+        for pl, prs in games[gk]:
+            for r in prs:
+                pg[(pl, r["stat"], (r.get("side") or "over"))].append(r)
+        ranked = sorted(pg.items(), key=lambda kv: -max(_score(x) for x in kv[1]))
+        keep = ranked[:CAP] + [x for x in ranked[CAP:] if max(_score(r) for r in x[1]) >= EXPAND_BAR]
+        byp = defaultdict(list)
+        for (pl, _st, _sd), rungs in keep:
+            byp[pl].extend(rungs)
+        games[gk] = sorted(byp.items(), key=lambda kv: -_pscore(kv[1]))
+
+    # soonest slate first, then strongest blended edge within a slate
     order = sorted(games.items(),
-                   key=lambda kv: (kv[0][0] or "9999-99-99", -max(_pedge(prs) for _, prs in kv[1])))
+                   key=lambda kv: (kv[0][0] or "9999-99-99", -max(_pscore(prs) for _, prs in kv[1])))
     ordered = [pl for _, pl in order]
     for pl in ordered:                                    # strongest player first within each game
-        pl.sort(key=lambda pp: -_pedge(pp[1]))
+        pl.sort(key=lambda pp: -_pscore(pp[1]))
     cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     openers_html = _openers_html()
