@@ -1,14 +1,14 @@
 # WNBA prop context report
-_updated 2026-07-14 17:26 UTC · 65 graded props (65 matched to finals)_
+_updated 2026-07-14 17:57 UTC · 67 graded props (67 matched to finals)_
 
-Overall **34-31 (52%)** · OVER 19-17 (53%) · UNDER 15-14 (52%)
+Overall **36-31 (54%)** · OVER 21-17 (55%) · UNDER 15-14 (52%)
 
 **By PRE-GAME total line (median 171.5) — the usable feature**
 
 | bucket | all | OVER bets | UNDER bets |
 |---|---|---|---|
 | >=171.5 (n=39) | 19-20 (49%) | 8-10 (44%) | 11-10 (52%) |
-| <171.5 (n=8) | 3-5 (38%) | 2-3 (40%) | 1-2 (33%) |
+| <171.5 (n=9) | 4-5 (44%) | 3-3 (50%) | 1-2 (33%) |
 
 **By UNDERDOG size (pre-game spread; +ve = dog)**
 
@@ -24,13 +24,13 @@ Overall **34-31 (52%)** · OVER 19-17 (53%) · UNDER 15-14 (52%)
 |---|---|---|---|
 | >189 (n=15) | 6-9 (40%) | 5-2 (71%) | 1-7 (12%) |
 | 181-189 (n=31) | 19-12 (61%) | 9-5 (64%) | 10-7 (59%) |
-| <181 (n=19) | 9-10 (47%) | 5-10 (33%) | 4-0 (100%) |
+| <181 (n=21) | 11-10 (52%) | 7-10 (41%) | 4-0 (100%) |
 
 **By blowout (|actual margin|)**
 
 | bucket | all | OVER bets | UNDER bets |
 |---|---|---|---|
 | blowout 12+ (n=27) | 14-13 (52%) | 7-7 (50%) | 7-6 (54%) |
-| close <12 (n=38) | 20-18 (53%) | 12-10 (55%) | 8-8 (50%) |
+| close <12 (n=40) | 22-18 (55%) | 14-10 (58%) | 8-8 (50%) |
 
-> 65 bets — **directional monitor, not a validated edge.** A low-total / big-dog OVER-fade needs a proper backtest (~200+ graded) before it changes the model.
+> 67 bets — **directional monitor, not a validated edge.** A low-total / big-dog OVER-fade needs a proper backtest (~200+ graded) before it changes the model.
