@@ -829,9 +829,9 @@ def _openers_html():
 
 
 def _slip_html():
-    """🎰 Parlays for the slate, read from the persisted (tracked) parlays table so each shows its
-    short id (#abcd — mark it played with `wnba_slip.py --played abcd`), its stake (.25u / .15u ≥+1000),
-    and a ✓ once played. 2-3 legs, max 2 players/team, same-team legs use disjoint production pools."""
+    """🎰 Parlays as BET-SLIP cards from the persisted (tracked) parlays table: stacked legs, combined
+    odds, stake (.25u / .15u ≥+1000), payout, a #id to mark played (`wnba_slip.py --played <id>`), and a
+    ✓ once played. 2-3 legs, max 2 players/team, same-team legs use disjoint production pools."""
     try:
         import wnba_slip as S
         con = sqlite3.connect(LEDGER)
@@ -840,24 +840,73 @@ def _slip_html():
         S._apply_parlay_marks(con)
         today = dt.datetime.now(ET).date().isoformat()
         pars = [dict(r) for r in con.execute(
-            "SELECT pred_date,key,legs,dec,played FROM parlays WHERE pred_date>=? AND graded=0 "
+            "SELECT pred_date,key,legs,n,dec,played FROM parlays WHERE pred_date>=? AND graded=0 "
             "ORDER BY ev DESC LIMIT 8", (today,))]
         con.close()
         if not pars:
             return ""
-        items = ""
+        cards = ""
         for p in pars:
-            legs = " · ".join(
-                f'{html.escape((l["player"] or "").split()[-1])} '
-                f'{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}' for l in json.loads(p["legs"]))
-            chk = ' <span class="pv">✓</span>' if p["played"] else ""
-            items += (f'<div class="par"><span class="pod">{S._am(p["dec"])}</span>'
-                      f'<span class="pev">{S._stake(p["dec"]):g}u</span>'
-                      f'<span class="plegs">{legs}{chk}</span>'
-                      f'<span class="pid">#{S._pid(p["pred_date"], p["key"])}</span></div>')
+            legs = json.loads(p["legs"])
+            stake = S._stake(p["dec"])
+            payout = stake * (p["dec"] or 1)
+            chk = '<span class="sv">✓ played</span>' if p["played"] else ""
+            leg_html = "".join(
+                f'<div class="sleg"><span class="slp">{html.escape((l["player"] or "").split()[-1])}</span>'
+                f'<span class="sls">{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}</span>'
+                f'<span class="slo">{S._am(l.get("odds") or 0)}</span></div>' for l in legs)
+            cards += (f'<div class="slip{" splayed" if p["played"] else ""}">'
+                      f'<div class="shd"><span class="sn">{p["n"]}-leg parlay</span>{chk}'
+                      f'<span class="ssp"></span><span class="sid">#{S._pid(p["pred_date"], p["key"])}</span></div>'
+                      f'<div class="slegs">{leg_html}</div>'
+                      f'<div class="sft"><span class="sstake">stake <b>{stake:g}u</b></span>'
+                      f'<span class="sodds">{S._am(p["dec"])}</span>'
+                      f'<span class="spay">→ {payout:.2f}u</span></div></div>')
         return ('<div class="parlays"><div class="op-title">🎰 Parlays'
-                '<span> · .25u (.15u ≥+1000) · same-team legs = disjoint pools</span></div>'
-                f'{items}</div>')
+                '<span> · .25u (.15u ≥+1000) · mark played: --played #id</span></div>'
+                f'<div class="slips">{cards}</div></div>')
+    except Exception:
+        return ""
+
+
+def _ladders_html(rows):
+    """🪜 Laddered plays pulled into their own section so they're easy to find: each player-stat with
+    2+ rungs, showing every rung's line/odds and the user's ladder stake (1u base + declining rungs)."""
+    try:
+        import wnba_slip as S
+        from collections import defaultdict
+        overs = [r for r in rows if (r.get("side") or "over") == "over"]
+        sm = S.ladder_stake_map(overs)
+        groups = defaultdict(list)
+        for r in overs:
+            groups[(r.get("pred_date"), r.get("player"), r.get("stat"))].append(r)
+        ladders = [(k, rr) for k, rr in groups.items() if len(rr) > 1]
+        if not ladders:
+            return ""
+        ladders.sort(key=lambda kr: -max((x.get("ev") or 0) for x in kr[1]))
+        cards = ""
+        for (d, player, stat), rr in ladders:
+            rr = sorted(rr, key=lambda x: x["line"])
+            lns = [x["line"] for x in rr]
+            tot = sum(sm.get((d, player, stat, x["line"]), 0.0) for x in rr)
+            rungs = ""
+            for x in rr:
+                bpr = _book_prices(x)
+                dec = bpr[0][1] if bpr else float(x["odds"])
+                stake = sm.get((d, player, stat, x["line"]), 0.0)
+                pv = ' <span class="lv">✓</span>' if x.get("played") else ""
+                rungs += (f'<div class="lrung"><b>o{x["line"]:g}</b>'
+                          f'<span class="lro">{_am(dec)}</span>'
+                          f'<span class="lst">{stake:g}u</span>{pv}</div>')
+            cards += (f'<div class="ladder"><div class="lhd">'
+                      f'<span class="lname">{html.escape(_short(player))}</span>'
+                      f'<span class="lstat">{S.STAT_LABEL.get(stat, stat)}</span>'
+                      f'<span class="lrange">o{lns[0]:g}–{lns[-1]:g}</span>'
+                      f'<span class="lsp"></span><span class="ltot">{tot:g}u <span>total</span></span></div>'
+                      f'<div class="lrungs">{rungs}</div></div>')
+        return ('<div class="ladders"><div class="op-title">🪜 Ladders'
+                '<span> · multi-rung plays · 1u base + declining rungs</span></div>'
+                f'{cards}</div>')
     except Exception:
         return ""
 
@@ -925,6 +974,7 @@ def build():
     cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     openers_html = _openers_html()
+    ladders_html = _ladders_html(rows)
     slip_html = _slip_html()
     wl_html = _watchlist_html()
     tt_json = _load_tt()
@@ -980,12 +1030,42 @@ def build():
   .openers {{ margin-top:22px; }}
   .op-title {{ color:#5b9dff; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .op-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
-  .parlays {{ margin-top:22px; }}
-  .par {{ display:flex; align-items:baseline; gap:10px; padding:8px 11px; background:#0b0e13; border:1px solid #171c26; border-radius:9px; margin-bottom:7px; }}
-  .pod {{ color:#37d67f; font-weight:800; font-size:13px; font-variant-numeric:tabular-nums; min-width:54px; }}
-  .pev {{ color:#5b9dff; font-weight:700; font-size:11px; min-width:42px; }}
-  .plegs {{ color:#c3c9d4; font-size:12.5px; flex:1; }}
-  .pid {{ color:#59606d; font-size:10px; font-variant-numeric:tabular-nums; letter-spacing:.03em; }}
+  .parlays, .ladders {{ margin-top:22px; }}
+  /* parlay bet-slips */
+  .slips {{ display:flex; flex-direction:column; gap:10px; }}
+  .slip {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; overflow:hidden; }}
+  .slip.splayed {{ border-color:#1f4a37; box-shadow:inset 0 0 0 1px #12301f; }}
+  .shd {{ display:flex; align-items:center; gap:8px; padding:8px 12px; background:#0e131b; border-bottom:1px solid #171c26; }}
+  .sn {{ color:#c3c9d4; font-weight:800; font-size:11px; text-transform:uppercase; letter-spacing:.04em; }}
+  .sv {{ color:#37d67f; font-size:10px; font-weight:800; }}
+  .ssp {{ flex:1; }}
+  .sid {{ color:#59606d; font-size:10px; font-variant-numeric:tabular-nums; letter-spacing:.03em; }}
+  .slegs {{ padding:2px 12px; }}
+  .sleg {{ display:flex; align-items:baseline; gap:9px; padding:7px 0; border-bottom:1px solid #12161e; }}
+  .sleg:last-child {{ border-bottom:none; }}
+  .slp {{ color:#e7ebf0; font-weight:700; font-size:12.5px; min-width:78px; }}
+  .sls {{ color:#9aa3b2; font-size:12px; flex:1; }}
+  .slo {{ color:#7d8696; font-size:11.5px; font-variant-numeric:tabular-nums; }}
+  .sft {{ display:flex; align-items:center; gap:10px; padding:8px 12px; background:#0e131b; border-top:1px solid #171c26; }}
+  .sstake {{ color:#9aa3b2; font-size:11.5px; font-variant-numeric:tabular-nums; }}
+  .sstake b {{ color:#c3c9d4; font-weight:700; }}
+  .sodds {{ color:#37d67f; font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; margin-left:auto; }}
+  .spay {{ color:#5b9dff; font-weight:700; font-size:12px; font-variant-numeric:tabular-nums; }}
+  /* laddered plays */
+  .ladder {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; margin-bottom:10px; overflow:hidden; }}
+  .lhd {{ display:flex; align-items:baseline; gap:9px; padding:8px 12px; background:#0e131b; border-bottom:1px solid #171c26; }}
+  .lname {{ color:#e7ebf0; font-weight:800; font-size:13px; }}
+  .lstat {{ color:#5b9dff; font-weight:800; font-size:10.5px; text-transform:uppercase; letter-spacing:.03em; }}
+  .lrange {{ color:#9aa3b2; font-size:12px; font-variant-numeric:tabular-nums; }}
+  .lsp {{ flex:1; }}
+  .ltot {{ color:#37d67f; font-weight:800; font-size:12.5px; font-variant-numeric:tabular-nums; }}
+  .ltot span {{ color:#59606d; font-weight:600; font-size:9.5px; text-transform:uppercase; }}
+  .lrungs {{ display:flex; flex-wrap:wrap; gap:8px; padding:10px 12px; }}
+  .lrung {{ display:flex; align-items:baseline; gap:6px; background:#12161e; border:1px solid #1b2130; border-radius:8px; padding:5px 10px; }}
+  .lrung b {{ color:#e7ebf0; font-size:12.5px; font-weight:700; font-variant-numeric:tabular-nums; }}
+  .lro {{ color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }}
+  .lst {{ color:#5b9dff; font-size:11px; font-weight:800; }}
+  .lv {{ color:#37d67f; font-size:10px; }}
   .op-leg {{ background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:11px 13px; margin-bottom:8px; font-size:14px; color:#cdd4de; font-variant-numeric:tabular-nums; }}
   .wl-grp {{ border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
     border-radius:10px; padding:10px 13px; margin-bottom:9px; }}
@@ -1130,6 +1210,7 @@ def build():
       </div>
     </div>
     <div id="games">{cards}</div>
+    {ladders_html}
     {slip_html}
     {openers_html}
     {wl_html}
