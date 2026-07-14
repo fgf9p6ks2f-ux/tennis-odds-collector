@@ -404,19 +404,18 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
         driver = wdelta(STAT_DRIVER[stat])          # the deciding signal for THIS market
         vac = round(vacated[stat], 1) if vacated and stat in vacated else None
         for line, (over_dec, under_dec) in sorted(best.items()):
-            # Bet the side the minutes-honest projection favors vs THIS line: over if the
-            # projection sits above the line, else under. The validated edge is the UNDER on
-            # reduced/regressing roles; a strong over is still taken but must clear a higher bar.
+            # Compute the side the projection favors vs THIS line (over if projection >= line). We now
+            # bet OVERS ONLY — the injury-beneficiary's over, laddered (the user's proven method, and
+            # the ledger split: overs +9.4% ROI vs unders -11.5%). `side` is still computed so the flip
+            # can rescue an over the projection under-shot and so the volume layer knows to ladder overs.
             side = "over" if elev_avg >= line else "under"
             if use_vol and side == "under":           # the volume layer ladders OVERS only
                 continue
-            # ROLE-EXPANSION GUARD + FLIP (2026-07-13): never bet an UNDER below a player's OWN
-            # production WITHOUT the out player. The minutes-honest proj mixes in WITH-them games (usage
-            # capped by the star) so it under-shoots the real role — Wheeler's Plum-out avg was 16.4
-            # (ascending to 24) yet the proj said 13.3, so it bet u14.5 and got smoked (suppressed unders
-            # backtested 0-4). When her same-injury-context mean (needs a real n_without) sits AT/above
-            # the line, the under is wrong: FLIP to the OVER, re-scored on the WITHOUT-the-star games
-            # (the truth), and bet it ONLY if +EV there — else drop (a ~50% coin-flip over stays a no-bet).
+            # FLIP (role-expansion over-rescue): when the projection lands UNDER a line but the player's
+            # production WITHOUT the out star sits AT/above it (needs a real n_without), the proj under-
+            # shot the expanded role — so bet the OVER, scored on the without-star games (magnitude-aware
+            # via flip_p_over), if +EV. In an overs-only world this is the one path that catches an over
+            # the naive side-pick misses; a ~50% coin-flip over stays a no-bet.
             if side == "under" and w and w.get("n_without", 0) >= ROLE_GUARD_MINN:
                 wblk = w.get("without", {}).get(key) or {}
                 wo, wvals = wblk.get("mean"), wblk.get("vals")
@@ -440,7 +439,14 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                                         "d_3pa": d_3pa if stat == "points" else None,
                                         "basis": "role_flip", "samples": samples, "vol": None})
                     continue                                            # never emit the contradicted under
-            dec = over_dec if side == "over" else under_dec
+            # OVERS-ONLY (2026-07-13, user's real method): never auto-bet an under. The flip above
+            # already appended any rescued OVER; every remaining under is skipped. Beneficiary overs
+            # carry the edge (+$321 in the ledger); auto-unders bled (-$333). Error-line unders are a
+            # manual/info call — the model can't generate them (its big-gap unders LOST: it under-
+            # projects low-minutes players who then get the injury bump and sail over).
+            if side == "under":
+                continue
+            dec = over_dec
             hi_odds = 7.0 if use_vol else 5.0          # volume overs LADDER UP to +600 alt lines
             lo_odds = 1.6 if use_vol else 1.25         # ...but NEVER a deep favorite under the line
             if not dec or not (lo_odds <= dec <= hi_odds):   # no price, deep fav, or lottery longshot
