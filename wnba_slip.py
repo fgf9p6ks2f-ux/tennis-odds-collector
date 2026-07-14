@@ -38,12 +38,18 @@ LADDER_ANCHOR_U = 1.0
 LADDER_RUNG_US = (0.5, 0.25, 0.25)
 LADDER_RUNG_DEFAULT_U = 0.25
 LADDER_CAP_U = 2.5
+# per-player-GAME cap: at most COMPONENT_CAP_U riding on any ONE production component (P/R/A) in a
+# single player-game. Scales down CORRELATED stacking (Copper: points+pts_reb+pra all key on points ->
+# 3u -> 2.5u) while leaving DISJOINT bets alone (Stewart: points+assists+rebounds are uncorrelated ->
+# untouched). Same disjoint-pool logic as the parlay rule. Validated: worst 1-game loss -3.0u -> -2.5u.
+COMPONENT_CAP_U = 2.5
 
 
 def ladder_stake_map(rows):
-    """Map each OVER row to its ladder stake: {(pred_date, player, stat, line): stake}. Per player-stat
-    ladder, the lowest line is the 1u anchor and higher rungs decline (0.5, 0.25, 0.25, ...), total
-    capped at LADDER_CAP_U. A lone over (no rungs) is just the 1u anchor."""
+    """Map each OVER row to its stake: {(pred_date, player, stat, line): stake}. TWO caps: (1) per
+    player-STAT ladder — lowest line is the 1u anchor, higher rungs decline (0.5/0.25/0.25...), total
+    capped at LADDER_CAP_U; (2) per player-GAME — exposure to any one component (P/R/A) capped at
+    COMPONENT_CAP_U, scaling correlated stacking down (a lone over is just the 1u anchor)."""
     from collections import defaultdict
     groups = defaultdict(list)
     for r in rows:
@@ -59,6 +65,16 @@ def ladder_stake_map(rows):
             s = min(base, max(0.0, LADDER_CAP_U - total))
             total += s
             out[(r.get("pred_date"), r.get("player"), r.get("stat"), r.get("line"))] = s
+    # (2) per-player-game component cap
+    comp_exp = defaultdict(lambda: defaultdict(float))     # (date,player) -> component -> exposure
+    for (d, p, stat, ln), stake in out.items():
+        for c in _comps(stat):
+            comp_exp[(d, p)][c] += stake
+    for k in list(out):
+        exps = comp_exp[(k[0], k[1])]
+        mx = max(exps.values()) if exps else 0.0
+        if mx > COMPONENT_CAP_U:
+            out[k] *= COMPONENT_CAP_U / mx
     return out
 
 

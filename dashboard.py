@@ -634,7 +634,7 @@ def _tracker_panel(wnba_rec, tt_json):
         <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
       </div>"""
     w, l, u = wnba_rec
-    out = card("🏀", "WNBA injury props", w, l, u, "overs only · 1u base + declining rungs (2.5u cap) · since 7/9")
+    out = card("🏀", "WNBA injury props", w, l, u, "overs only · 1u base + declining rungs · 2.5u ladder & per-game caps · since 7/9")
     try:                                                  # parlay ROI (played parlays, staked .25/.15u)
         import wnba_slip as SLIP
         pr = SLIP.parlay_record()
