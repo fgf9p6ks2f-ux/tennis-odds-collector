@@ -15,6 +15,7 @@ RULES (2026-07-13, user):
       teammate's pts_reb share R, or two bigs' rebounds);
     * cross-team legs are unconstrained (his call).
 """
+import hashlib
 import json
 import sqlite3
 from itertools import combinations
@@ -22,6 +23,17 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LEDGER = HERE / "wnba_ledger.sqlite"        # parlays live in the same DB as the straights (self-heals)
+PARLAY_MARKS = HERE / "wnba_parlays_played.txt"   # durable played marks (date|key), like wnba_played.txt
+
+
+def _stake(dec):
+    """User's parlay staking (2026-07-13): 0.25u, but 0.15u on a longshot at +1000 (dec 11.0) or longer."""
+    return 0.15 if (dec or 0) >= 11.0 else 0.25
+
+
+def _pid(date, key):
+    """Short stable id for a parlay (shown on the dashboard; used to mark it played)."""
+    return hashlib.sha1(f"{date}|{key}".encode()).hexdigest()[:4]
 
 # the finite production pools each market draws from
 COMPONENTS = {"points": frozenset("P"), "rebounds": frozenset("R"), "assists": frozenset("A"),
@@ -150,14 +162,29 @@ PARLAY_EPOCH = "2026-07-13"                  # overs-only + slip era; parlay rec
 
 _SCHEMA = """CREATE TABLE IF NOT EXISTS parlays(
   pred_date TEXT, key TEXT, legs TEXT, n INTEGER, dec REAL, ev REAL,
-  result TEXT, pnl REAL, graded INTEGER DEFAULT 0, graded_at TEXT,
+  result TEXT, pnl REAL, played INTEGER DEFAULT 0, graded INTEGER DEFAULT 0, graded_at TEXT,
   UNIQUE(pred_date, key));"""
 
 
 def _pcon():
     con = sqlite3.connect(LEDGER)
     con.execute(_SCHEMA)
+    if "played" not in {r[1] for r in con.execute("PRAGMA table_info(parlays)")}:
+        con.execute("ALTER TABLE parlays ADD COLUMN played INTEGER DEFAULT 0")
+    con.commit()
     return con
+
+
+def _apply_parlay_marks(con):
+    """Re-apply the durable played marks (wnba_parlays_played.txt: date|key) onto the DB, so a
+    rebuilt/clobbered parlays table still reflects what the user actually bet."""
+    if not PARLAY_MARKS.exists():
+        return
+    for ln in PARLAY_MARKS.read_text().splitlines():
+        p = ln.strip().split("|", 1)
+        if len(p) == 2:
+            con.execute("UPDATE parlays SET played=1 WHERE pred_date=? AND key=?", (p[0], p[1]))
+    con.commit()
 
 
 def _key(legs):
@@ -169,13 +196,16 @@ def log_parlays(date, pars):
     for the date (parlays are live suggestions built from the current ladders, not locked like a
     placed straight) — graded parlays are never touched. Flat 1u stake per parlay."""
     con = _pcon()
-    con.execute("DELETE FROM parlays WHERE pred_date=? AND graded=0", (date,))
+    # drop only the still-pending, NOT-yet-played suggestions; a played parlay is a placed bet and
+    # survives the rebuild (like a flagged straight) until it grades.
+    con.execute("DELETE FROM parlays WHERE pred_date=? AND graded=0 AND played=0", (date,))
     for p in pars:
         legs = [{"player": l["player"], "team": l.get("team"), "stat": l["stat"],
                  "line": l["line"], "side": "over", "odds": l.get("dec")} for l in p["legs"]]
         con.execute("INSERT OR IGNORE INTO parlays(pred_date,key,legs,n,dec,ev,result) "
                     "VALUES(?,?,?,?,?,?,'pending')",
                     (date, _key(legs), json.dumps(legs), p["n"], p["dec"], p["ev"]))
+    _apply_parlay_marks(con)
     con.commit()
     con.close()
 
@@ -186,9 +216,11 @@ def grade_parlays():
     all non-void legs won (payout = product of won legs' odds), void if every leg voided."""
     con = _pcon()
     con.row_factory = sqlite3.Row
-    pend = con.execute("SELECT rowid, pred_date, legs FROM parlays WHERE graded=0").fetchall()
+    _apply_parlay_marks(con)                              # re-assert played state before grading
+    pend = con.execute("SELECT rowid, pred_date, legs, dec FROM parlays WHERE graded=0").fetchall()
     n = 0
     for row in pend:
+        stake = _stake(row["dec"])                        # .25u, or .15u on a +1000-or-longer parlay
         legs = json.loads(row["legs"])
         st = []
         for l in legs:
@@ -209,16 +241,16 @@ def grade_parlays():
         if any(s == "pending" for s in st):
             continue                                     # not all legs settled -> leave pending
         if any(s == "loss" for s in st):
-            result, pnl = "loss", -1.0
+            result, pnl = "loss", -stake
         else:
             won = [s[1] for s in st if isinstance(s, tuple)]
             if not won:
-                result, pnl = "void", 0.0
+                result, pnl = "void", 0.0                 # all legs void -> stake returned
             else:
                 payout = 1.0
                 for l in won:
                     payout *= (l["odds"] or 1)
-                result, pnl = "win", payout - 1.0
+                result, pnl = "win", stake * (payout - 1)
         con.execute("UPDATE parlays SET result=?, pnl=?, graded=1, graded_at=datetime('now') "
                     "WHERE rowid=?", (result, pnl, row["rowid"]))
         n += 1
@@ -252,32 +284,118 @@ def sync_parlays():
     return grade_parlays()
 
 
-def parlay_record(epoch=PARLAY_EPOCH):
-    """(w, l, void, units, roi, pending) over graded parlays since epoch, flat 1u. ROI over the
-    W+L settled (voids excluded from the denominator)."""
+def parlay_record(epoch=PARLAY_EPOCH, played_only=True):
+    """Record of the PLAYED parlays since epoch (the user's actual bets), staked .25u / .15u by odds.
+    Returns a dict: w, l, void, units, staked, roi (units/staked), pending (played, unsettled),
+    suggested (un-played still-pending suggestions). played_only=False gives the model-suggested record."""
     con = _pcon()
     con.row_factory = sqlite3.Row
-    g = con.execute("SELECT result, pnl FROM parlays WHERE graded=1 AND pred_date>=?",
+    _apply_parlay_marks(con)
+    where = "played=1 AND " if played_only else ""
+    g = con.execute(f"SELECT result, pnl, dec FROM parlays WHERE graded=1 AND {where}pred_date>=?",
                     (epoch,)).fetchall()
-    pending = con.execute("SELECT COUNT(*) FROM parlays WHERE graded=0 AND pred_date>=?",
+    pending = con.execute(f"SELECT COUNT(*) FROM parlays WHERE graded=0 AND {where}pred_date>=?",
                           (epoch,)).fetchone()[0]
+    suggested = con.execute("SELECT COUNT(*) FROM parlays WHERE graded=0 AND played=0 AND pred_date>=?",
+                            (epoch,)).fetchone()[0]
     con.close()
     w = sum(1 for r in g if r["result"] == "win")
     l = sum(1 for r in g if r["result"] == "loss")
     void = sum(1 for r in g if r["result"] == "void")
     units = sum((r["pnl"] or 0) for r in g)
-    roi = units / (w + l) if (w + l) else 0.0
-    return w, l, void, units, roi, pending
+    staked = sum(_stake(r["dec"]) for r in g if r["result"] in ("win", "loss"))
+    return {"w": w, "l": l, "void": void, "units": units, "staked": staked,
+            "roi": (units / staked if staked else 0.0), "pending": pending, "suggested": suggested}
+
+
+def mark_parlay_played(pid, date=None, unmark=False):
+    """Mark a parlay (by its short id + slate date) as PLACED — durable in wnba_parlays_played.txt +
+    the DB. date defaults to the latest slate with parlays. Returns the matched leg description or None."""
+    con = _pcon()
+    con.row_factory = sqlite3.Row
+    if date is None:
+        r = con.execute("SELECT MAX(pred_date) FROM parlays").fetchone()
+        date = r[0] if r else None
+    hit = None
+    for row in con.execute("SELECT key, legs FROM parlays WHERE pred_date=?", (date,)):
+        if _pid(date, row["key"]) == pid:
+            hit = (row["key"], row["legs"])
+            break
+    if not hit:
+        con.close()
+        return None
+    key, legs = hit
+    marks = set(PARLAY_MARKS.read_text().splitlines()) if PARLAY_MARKS.exists() else set()
+    line = f"{date}|{key}"
+    if unmark:
+        marks.discard(line)
+        con.execute("UPDATE parlays SET played=0 WHERE pred_date=? AND key=?", (date, key))
+    else:
+        marks.add(line)
+        con.execute("UPDATE parlays SET played=1 WHERE pred_date=? AND key=?", (date, key))
+    con.commit()
+    con.close()
+    PARLAY_MARKS.write_text("\n".join(sorted(marks)))
+    return " × ".join(f"{l['player'].split()[-1]} {STAT_LABEL.get(l['stat'], l['stat'])} o{l['line']:g}"
+                      for l in json.loads(legs))
+
+
+def list_parlays(date=None):
+    """Persisted parlays for a slate (default latest), each with its short id + stake + played mark."""
+    con = _pcon()
+    con.row_factory = sqlite3.Row
+    if date is None:
+        r = con.execute("SELECT MAX(pred_date) FROM parlays").fetchone()
+        date = r[0] if r else None
+    out = []
+    for row in con.execute("SELECT key, legs, dec, played, result FROM parlays WHERE pred_date=? "
+                           "ORDER BY ev DESC", (date,)):
+        legs = " × ".join(f"{l['player'].split()[-1]} {STAT_LABEL.get(l['stat'], l['stat'])} o{l['line']:g}"
+                          for l in json.loads(row["legs"]))
+        out.append({"pid": _pid(date, row["key"]), "legs": legs, "dec": row["dec"],
+                    "stake": _stake(row["dec"]), "played": row["played"], "result": row["result"]})
+    con.close()
+    return date, out
 
 
 if __name__ == "__main__":
-    # demo on a synthetic slate
-    demo = [
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--played", nargs="+", metavar="PID", help="mark parlay(s) played by short id")
+    ap.add_argument("--unplay", nargs="+", metavar="PID", help="un-mark parlay(s) played")
+    ap.add_argument("--date", help="slate date (default: latest)")
+    ap.add_argument("--grade", action="store_true", help="self-heal + grade parlays")
+    ap.add_argument("--list", action="store_true", help="list a slate's parlays with ids")
+    ap.add_argument("--report", action="store_true", help="print the played-parlay record")
+    a = ap.parse_args()
+    if a.played or a.unplay:
+        for pid in (a.played or []):
+            d = mark_parlay_played(pid, a.date)
+            print(f"✓ played #{pid}: {d}" if d else f"no parlay #{pid} on {a.date or 'latest slate'}")
+        for pid in (a.unplay or []):
+            d = mark_parlay_played(pid, a.date, unmark=True)
+            print(f"un-played #{pid}: {d}" if d else f"no parlay #{pid}")
+    elif a.grade:
+        print(f"graded {sync_parlays()} parlays")
+    elif a.list:
+        date, ps = list_parlays(a.date)
+        print(f"parlays for {date}:")
+        for p in ps:
+            mk = " ✓PLAYED" if p["played"] else ""
+            st = f"{p['result']}" if p["result"] else "pending"
+            print(f"  #{p['pid']}  {_am(p['dec'])} · {p['stake']:g}u · {st}{mk}   {p['legs']}")
+    elif a.report:
+        r = parlay_record()
+        print(f"PLAYED parlays: {r['w']}-{r['l']} (void {r['void']}), {r['units']:+.2f}u on "
+              f"{r['staked']:.2f}u staked -> ROI {r['roi']:+.0%}; "
+              f"{r['pending']} pending, {r['suggested']} un-played suggestions")
+    else:
+        _demo = [
         {"player": "A Center", "team": "X", "stat": "rebounds", "line": 7.5, "dec": 1.9, "ev": 0.15, "side": "over"},
         {"player": "A Center", "team": "X", "stat": "rebounds", "line": 9.5, "dec": 2.4, "ev": 0.11, "side": "over"},
         {"player": "A Center", "team": "X", "stat": "pts_reb", "line": 18.5, "dec": 1.9, "ev": 0.12, "side": "over"},
         {"player": "A Center", "team": "X", "stat": "points", "line": 10.5, "dec": 1.85, "ev": 0.08, "side": "over"},
         {"player": "B Guard", "team": "X", "stat": "assists", "line": 5.5, "dec": 1.95, "ev": 0.13, "side": "over"},
         {"player": "C Wing", "team": "Y", "stat": "points", "line": 14.5, "dec": 1.9, "ev": 0.14, "side": "over"},
-    ]
-    print(render(build(demo)))
+        ]
+        print(render(build(_demo)))

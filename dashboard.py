@@ -626,14 +626,23 @@ def _tracker_panel(wnba_rec, tt_json):
       </div>"""
     w, l, u = wnba_rec
     out = card("🏀", "WNBA injury props", w, l, u, "overs only · staked by odds (ladder) · settles live · since 7/9")
-    try:                                                  # parlay ROI — the money layer on the overs
+    try:                                                  # parlay ROI (played parlays, staked .25/.15u)
         import wnba_slip as SLIP
-        pw, pl_, pv, pu, _roi, pp = SLIP.parlay_record()
-        if pw + pl_ + pv + pp > 0:
-            note = "flat 1u · 2-3 leg from confident ladders"
-            note += f" · {pp} pending" if pp else ""
-            note += f" · {pv} void" if pv else ""
-            out += card("🎰", "WNBA parlays", pw, pl_, pu, note)
+        pr = SLIP.parlay_record()
+        if pr["w"] + pr["l"] + pr["void"] + pr["pending"] + pr["suggested"] > 0:
+            hit = f"{pr['w'] / (pr['w'] + pr['l']) * 100:.0f}%" if (pr["w"] + pr["l"]) else "—"
+            roi = f"{pr['roi'] * 100:+.0f}%" if pr["staked"] else "—"
+            ucls = "up" if pr["units"] > 0 else ("down" if pr["units"] < 0 else "")
+            sub = ".25u · .15u ≥+1000 · played parlays"
+            extra = [f"{pr['pending']} pending"] if pr["pending"] else []
+            extra += [f"{pr['void']} void"] if pr["void"] else []
+            extra += [f"{pr['suggested']} suggested"] if pr["suggested"] else []
+            sub += (" · " + " · ".join(extra)) if extra else ""
+            out += (f'<div class="tcard"><div class="thead">🎰 WNBA parlays</div><div class="trow">'
+                    f'<div class="tbox"><div class="tk">Record</div><div class="tv">{pr["w"]}-{pr["l"]}</div></div>'
+                    f'<div class="tbox"><div class="tk">Hit rate</div><div class="tv">{hit}</div></div>'
+                    f'<div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{pr["units"]:+.2f}u</div></div>'
+                    f'</div><div class="tsub">{html.escape(sub)} · ROI {roi}</div></div>')
     except Exception:
         pass
     tt = (tt_json or {}).get("tracker")
@@ -810,26 +819,35 @@ def _openers_html():
             f'{legs}</div>')
 
 
-def _slip_html(rows):
-    """🎰 Parlays built from today's confident over-ladders (wnba_slip): 2-3 legs, max 2 players/team,
-    same-team legs use DISJOINT production pools. The per-player cards above already show the straights
-    and ladder rungs; this is the parlay layer on top of them."""
+def _slip_html():
+    """🎰 Parlays for the slate, read from the persisted (tracked) parlays table so each shows its
+    short id (#abcd — mark it played with `wnba_slip.py --played abcd`), its stake (.25u / .15u ≥+1000),
+    and a ✓ once played. 2-3 legs, max 2 players/team, same-team legs use disjoint production pools."""
     try:
         import wnba_slip as S
-        overs = [r for r in rows if (r.get("side") or "over") == "over"]
-        pars = S.build(overs)["parlays"] if overs else []
+        con = sqlite3.connect(LEDGER)
+        con.row_factory = sqlite3.Row
+        con.execute(S._SCHEMA)
+        S._apply_parlay_marks(con)
+        today = dt.datetime.now(ET).date().isoformat()
+        pars = [dict(r) for r in con.execute(
+            "SELECT pred_date,key,legs,dec,played FROM parlays WHERE pred_date>=? AND graded=0 "
+            "ORDER BY ev DESC LIMIT 8", (today,))]
+        con.close()
         if not pars:
             return ""
         items = ""
         for p in pars:
             legs = " · ".join(
                 f'{html.escape((l["player"] or "").split()[-1])} '
-                f'{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}' for l in p["legs"])
+                f'{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}' for l in json.loads(p["legs"]))
+            chk = ' <span class="pv">✓</span>' if p["played"] else ""
             items += (f'<div class="par"><span class="pod">{S._am(p["dec"])}</span>'
-                      f'<span class="pev">+{p["ev"] * 100:.0f}%</span>'
-                      f'<span class="plegs">{legs}</span></div>')
+                      f'<span class="pev">{S._stake(p["dec"]):g}u</span>'
+                      f'<span class="plegs">{legs}{chk}</span>'
+                      f'<span class="pid">#{S._pid(p["pred_date"], p["key"])}</span></div>')
         return ('<div class="parlays"><div class="op-title">🎰 Parlays'
-                '<span> · from confident ladders · same-team legs = disjoint pools</span></div>'
+                '<span> · .25u (.15u ≥+1000) · same-team legs = disjoint pools</span></div>'
                 f'{items}</div>')
     except Exception:
         return ""
@@ -898,7 +916,7 @@ def build():
     cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     openers_html = _openers_html()
-    slip_html = _slip_html(rows)
+    slip_html = _slip_html()
     wl_html = _watchlist_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
@@ -957,7 +975,8 @@ def build():
   .par {{ display:flex; align-items:baseline; gap:10px; padding:8px 11px; background:#0b0e13; border:1px solid #171c26; border-radius:9px; margin-bottom:7px; }}
   .pod {{ color:#37d67f; font-weight:800; font-size:13px; font-variant-numeric:tabular-nums; min-width:54px; }}
   .pev {{ color:#5b9dff; font-weight:700; font-size:11px; min-width:42px; }}
-  .plegs {{ color:#c3c9d4; font-size:12.5px; }}
+  .plegs {{ color:#c3c9d4; font-size:12.5px; flex:1; }}
+  .pid {{ color:#59606d; font-size:10px; font-variant-numeric:tabular-nums; letter-spacing:.03em; }}
   .op-leg {{ background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:11px 13px; margin-bottom:8px; font-size:14px; color:#cdd4de; font-variant-numeric:tabular-nums; }}
   .wl-grp {{ border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
     border-radius:10px; padding:10px 13px; margin-bottom:9px; }}
