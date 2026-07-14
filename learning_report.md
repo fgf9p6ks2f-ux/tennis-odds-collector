@@ -1,6 +1,6 @@
 # Soft-spot learning report
 
-_2026-07-13 18:53 UTC_
+_2026-07-14 16:57 UTC_
 
 Benches a (sport, stat, src) market once it has ≥40 CLV-measured bets whose average CLV ≤ -1% — or, when CLV coverage is thin, ≥60 settled bets at ROI ≤ -5%. The ledger then stops betting it. CLV is the teacher; realized ROI is the backstop.
 
