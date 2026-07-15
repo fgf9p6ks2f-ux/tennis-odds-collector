@@ -895,6 +895,7 @@ def _ladders_html(rows):
         import wnba_slip as S
         from collections import defaultdict
         overs = [r for r in rows if (r.get("side") or "over") == "over"]
+        overs = S.current_selection(overs)[0]            # favorite-only per cascade (matches tracked record)
         sm = S.ladder_stake_map(overs)
         groups = defaultdict(list)
         for r in overs:

@@ -168,6 +168,26 @@ def current_selection(rows):
         for r in rr:
             (kept if r["stat"] in keep_stats else dropped).append(
                 r if r["stat"] in keep_stats else (r, "correlated over-stack (3+ stats share a pool)"))
+
+    # 3. ONE PER INJURY CASCADE (2026-07-15, user + backtest: 15-6/+27% vs scatter 21-19/+0.7%). An
+    # injury vacates usage that CONCENTRATES into a single beneficiary (Edwards ate CON's frontcourt
+    # 7/14 -> 29 P+R while Miller/Nelson-Ododa got squeezed), so per (date, team) cascade keep only the
+    # FAVORITE (shortest book odds = the market's most-likely beneficiary; tie -> higher EV) and ladder
+    # THEM; drop the rest. Favorite beat EV/proj_hit in the backtest and matches the user's real method.
+    bycas = defaultdict(list)
+    for r in kept:
+        bycas[(r.get("pred_date"), r.get("team"))].append(r)
+    fav_kept = []
+    for grp in bycas.values():
+        byp = defaultdict(list)
+        for r in grp:
+            byp[r.get("player")].append(r)
+        fav = min(byp, key=lambda p: (min((x.get("odds") or 99) for x in byp[p]),
+                                      -max((x.get("ev") or 0.0) for x in byp[p])))
+        for r in grp:
+            (fav_kept if r.get("player") == fav else dropped).append(
+                r if r.get("player") == fav else (r, "non-favorite beneficiary (1 per cascade)"))
+    kept = fav_kept
     return kept, dropped
 
 
