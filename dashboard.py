@@ -937,6 +937,16 @@ def build():
     # the ET-night / MT-evening window (a bet stamped ET-tomorrow was invisible on the MT-today board).
     today = dt.datetime.now(ET).date().isoformat()        # ET slate date the scanner stamps
     rows, (w, l, u, pend) = _load(today)
+    # board shows FAVORITE-ONLY per injury cascade (matches the tracked record + ladders + parlays):
+    # one beneficiary per injury, so the play cards recommend exactly what to bet. Ledger keeps all.
+    try:
+        import wnba_slip as _SLB
+        _ov = [r for r in rows if (r.get("side") or "over") == "over"]
+        _keep = {(r["pred_date"], r["player"], r["stat"], r["line"]) for r in _SLB.current_selection(_ov)[0]}
+        rows = [r for r in rows if (r.get("side") or "over") != "over"
+                or (r["pred_date"], r["player"], r["stat"], r["line"]) in _keep]
+    except Exception:
+        pass
     tips = _tip_times()
     # GROUP BY DAY > GAME > player — the board shows tonight's plays AND any already-posted
     # next-day plays (keyed by date so the same matchup on back-to-back days stays separate).
