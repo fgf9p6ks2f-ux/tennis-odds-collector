@@ -29,14 +29,14 @@ i=0; hot_ticks=0; cold_i=0; was_hot=2
 while true; do i=$((i+1))
   if in_hot; then
     # HOT PATH: wnba_watch (scratch detector -> instant ntfy) every ~25s.
-    # Refresh odds/grade + push every 3rd tick (~75s); refresh dashboard every 15th tick (~6min).
+    # Refresh odds/grade + dashboard + push every 3rd tick (~75s) so the board tracks the action.
     if [ "$was_hot" != "1" ]; then echo "[$(date +%H:%M)] >>> HOT window (25s scratch polling)"; hot_ticks=0; fi
     was_hot=1; hot_ticks=$((hot_ticks+1))
     python3 wnba_watch.py >/dev/null 2>&1 || true
     if [ $((hot_ticks % 3)) -eq 0 ]; then
       git pull -q "$URL" main 2>/dev/null || true
       collectors
-      [ $((hot_ticks % 15)) -eq 0 ] && { python3 dashboard.py >/dev/null 2>&1 || true; }
+      python3 dashboard.py >/dev/null 2>&1 || true
       push
     fi
     sleep 25
