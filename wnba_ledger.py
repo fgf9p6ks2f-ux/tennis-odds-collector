@@ -21,6 +21,7 @@ import argparse
 import datetime
 import json
 import statistics as st
+import urllib.request
 from pathlib import Path
 
 import wnba_wowy as W
@@ -31,6 +32,49 @@ CAL = HERE / "wnba_proj_cal.json"
 PLAYED = HERE / "wnba_played.txt"      # durable user-played marks (plain text: merges clean,
                                        # re-applied on every DB open so a CI DB-reset can't lose them)
 STATKEY = {"points": "pts", "rebounds": "reb", "assists": "ast"}
+
+_BOX_CACHE = {}
+
+
+def box_actuals(date):
+    """{player displayName -> {points,rebounds,assists,pts_reb,pts_ast,reb_ast,pra}} for all FINAL games
+    on `date` (YYYY-MM-DD), from ESPN BOX SCORES. Fallback for grade() when the player game log lags or
+    goes stale (Rae Burrell 7/15: gamelog ended May 10, so a settled game silently never graded). Cached
+    per date; only hit when the game-log path fails, so normal grading is unaffected."""
+    if date in _BOX_CACHE:
+        return _BOX_CACHE[date]
+    out = {}
+
+    def _get(url):
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        return json.load(urllib.request.urlopen(req, timeout=20))
+
+    try:
+        base = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
+        sb = _get(f"{base}/scoreboard?dates={date.replace('-', '')}")
+        for ev in sb.get("events", []):
+            if ((ev.get("status") or {}).get("type") or {}).get("state") != "post":
+                continue                                          # only settled games
+            summ = _get(f"{base}/summary?event={ev['id']}")
+            for team in (summ.get("boxscore") or {}).get("players", []):
+                for grp in team.get("statistics", []):
+                    labels = grp.get("names") or grp.get("labels") or []
+                    for a in grp.get("athletes", []):
+                        nm = (a.get("athlete") or {}).get("displayName")
+                        z = dict(zip(labels, a.get("stats", [])))
+                        try:
+                            p, r, s = int(z["PTS"]), int(z["REB"]), int(z["AST"])
+                        except (KeyError, ValueError, TypeError):
+                            continue                              # DNP / missing line
+                        rec = {"points": p, "rebounds": r, "assists": s, "pts_reb": p + r,
+                               "pts_ast": p + s, "reb_ast": r + s, "pra": p + r + s}
+                        if nm:
+                            out[nm] = rec
+                            out.setdefault(nm.lower().replace(".", ""), rec)   # light name-norm fallback
+    except Exception as e:
+        print(f"box_actuals({date}) failed: {str(e)[:80]}")
+    _BOX_CACHE[date] = out
+    return out
 MIN_TRAIN = 30                     # graded spots before a calibration is trustworthy
 
 SCHEMA = """
@@ -194,29 +238,34 @@ def grade():
     log_cache = {}
     for rowid, pred_date, player, stat, line, opp in rows:
         try:                                          # one bad row must never roll back the batch
+            actual = None
             pid = ids.get(player)
-            if not pid:
-                continue
-            if pid not in log_cache:
-                try:
-                    log_cache[pid] = W.game_log(pid)
-                except RuntimeError:
-                    log_cache[pid] = []
-            # the game this prediction was FOR: same opponent, FINAL, on/after the slate date
-            cand = sorted(
-                (g for g in log_cache[pid]
-                 if g.get("result")                                    # FINAL (has W/L)
-                 and g["date"][:10] >= pred_date                       # on/after the slate we bet
-                 and (not opp or (g.get("matchup") or "").upper() == opp.upper())),
-                key=lambda g: g["date"])
-            if not cand:
-                continue                       # target game not final yet — leave open
-            # combo stats (pra/pts_reb/pts_ast/reb_ast) are keyed by their own name in the game dict;
-            # base stats map to pts/reb/ast. .get() (not []) so a missing stat skips, never KeyErrors
-            # the whole pass (the bug that froze all grading the moment a combo game went final).
-            actual = cand[0].get(STATKEY.get(stat, stat))
+            if pid:
+                if pid not in log_cache:
+                    try:
+                        log_cache[pid] = W.game_log(pid)
+                    except RuntimeError:
+                        log_cache[pid] = []
+                # the game this prediction was FOR: same opponent, FINAL, on/after the slate date
+                cand = sorted(
+                    (g for g in log_cache[pid]
+                     if g.get("result")                                    # FINAL (has W/L)
+                     and g["date"][:10] >= pred_date                       # on/after the slate we bet
+                     and (not opp or (g.get("matchup") or "").upper() == opp.upper())),
+                    key=lambda g: g["date"])
+                # combo stats (pra/pts_reb/...) keyed by their own name; base stats map to pts/reb/ast.
+                # .get() (not []) so a missing stat skips, never KeyErrors the whole pass.
+                if cand:
+                    actual = cand[0].get(STATKEY.get(stat, stat))
             if actual is None:
-                continue
+                # FALLBACK: the player game log lags/goes stale (Rae Burrell 7/15 -> log ended May 10) so a
+                # FINAL game silently never grades. The ESPN box score is fresh — grade from it, keyed by name.
+                bx = box_actuals(pred_date)
+                pa = bx.get(player) or bx.get(player.lower().replace(".", ""))
+                if pa is not None:
+                    actual = pa.get(stat)
+            if actual is None:
+                continue                       # game not final yet / player not found — leave open
             res = "over" if actual > line else ("push" if actual == line else "under")
             con.execute("UPDATE predictions SET result=?, actual=?, graded=1 WHERE rowid=?",
                         (res, actual, rowid))
