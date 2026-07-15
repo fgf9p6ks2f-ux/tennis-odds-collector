@@ -109,6 +109,10 @@
 2026-07-14|Marina Mabrey|reb_ast|7.5
 2026-07-14|Olivia Nelson-Ododa|pts_reb|18.5
 2026-07-14|Olivia Nelson-Ododa|rebounds|7.5
+2026-07-15|Ariel Atkins|assists|2.5
+2026-07-15|Kamilla Cardoso|dd
+2026-07-15|Natasha Cloud|pts_ast|16.5
+2026-07-15|Rae Burrell|pra|20.5
 timing|2026-07-12|Azura Stevens|pra|20.5
 timing|2026-07-12|Azura Stevens|pts_ast|17.5
 timing|2026-07-12|Azura Stevens|pts_reb|27.5
@@ -152,6 +156,7 @@ timing|2026-07-14|Aaliyah Edwards|pts_reb|11.5
 timing|2026-07-14|Brittney Griner|pra|24.5
 timing|2026-07-14|Laura Juskaite|pts_reb|15.5
 timing|2026-07-14|Marina Mabrey|pra|30.5
+timing|2026-07-15|Sydney Taylor|points|15.5
 watch|2026-07-12|Isabelle Harrison|rebounds|5.5
 watch|2026-07-12|Maria Conde|assists|3.5
 watch|2026-07-12|Maria Conde|reb_ast|8.5
