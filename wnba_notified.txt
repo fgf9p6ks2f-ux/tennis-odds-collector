@@ -158,6 +158,7 @@ timing|2026-07-14|Aaliyah Edwards|pts_reb|11.5
 timing|2026-07-14|Brittney Griner|pra|24.5
 timing|2026-07-14|Laura Juskaite|pts_reb|15.5
 timing|2026-07-14|Marina Mabrey|pra|30.5
+timing|2026-07-15|Courtney Williams|pra|25.5
 timing|2026-07-15|Sydney Taylor|points|15.5
 watch|2026-07-12|Isabelle Harrison|rebounds|5.5
 watch|2026-07-12|Maria Conde|assists|3.5
