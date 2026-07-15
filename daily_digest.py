@@ -62,7 +62,7 @@ def _wnba_autobetter(target_date):
     con = sqlite3.connect(WNBA_LEDGER)
     con.row_factory = sqlite3.Row
     rows = [dict(r) for r in con.execute(
-        "SELECT pred_date, result, odds, side, player, team, stat, line, n_elev, d_min, ev "
+        "SELECT pred_date, result, odds, side, player, team, stat, line, n_elev, d_min, ev, elev_avg "
         "FROM predictions WHERE graded=1 AND pred_date>=?", (EPOCH[:10],))]
     pend = con.execute("SELECT COUNT(*) FROM predictions WHERE graded=0 AND pred_date>=?",
                        (EPOCH[:10],)).fetchone()[0]
