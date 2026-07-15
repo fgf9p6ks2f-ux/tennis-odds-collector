@@ -195,7 +195,7 @@ def _load(mt_date):
         "SELECT * FROM predictions WHERE pred_date>=? AND result IS NULL "
         "ORDER BY pred_date ASC, ev DESC",
         (mt_date,))]
-    g = [dict(r) for r in con.execute("SELECT result,odds,side,pred_date,player,stat,line,n_elev,d_min,ev "
+    g = [dict(r) for r in con.execute("SELECT result,odds,side,pred_date,player,team,stat,line,n_elev,d_min,ev "
                                       "FROM predictions WHERE graded=1 AND pred_date>='2026-07-09'")]
     con.close()
     # durable user-played marks (wnba_played.txt) — read-only, so the ✓ shows on the board
