@@ -24,9 +24,20 @@ fullscan(){
 # exit 0 when a game is live or tips within ~75min -> switch to fast scratch polling
 in_hot(){ python3 hot_window.py >/dev/null 2>&1; }
 
+# liveness heartbeat: one parentless commit force-pushed to the `heartbeat` branch each cycle
+# (no history growth). The Actions vm-watchdog alerts if this stops updating (VM down / token dead).
+beat(){
+  local c b t k
+  c="$(date -u +%s) $(date -u +%FT%TZ)"
+  b=$(printf '%s\n' "$c" | git hash-object -w --stdin 2>/dev/null) || return 0
+  t=$(printf '100644 blob %s\theartbeat.txt\n' "$b" | git mktree 2>/dev/null) || return 0
+  k=$(printf 'vm heartbeat %s\n' "$c" | git commit-tree "$t" 2>/dev/null) || return 0
+  git push -q --force "$URL" "$k:refs/heads/heartbeat" 2>/dev/null || true; }
+
 echo "[$(date)] wnba-loop up (topic:$([ -n "$NTFY_TOPIC" ]&&echo yes||echo NO) pat:$([ -n "$GIT_PAT" ]&&echo yes||echo NO))"
 i=0; hot_ticks=0; cold_i=0; was_hot=2
 while true; do i=$((i+1))
+  beat
   if in_hot; then
     # HOT PATH: wnba_watch (scratch detector -> instant ntfy) every ~25s.
     # Refresh odds/grade + dashboard + push every 3rd tick (~75s) so the board tracks the action.
