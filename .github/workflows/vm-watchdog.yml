@@ -1,0 +1,52 @@
+name: vm-watchdog
+# Dead-man's switch for the Oracle VM WNBA loop. The VM force-pushes a `heartbeat` branch every
+# cycle; this checks its age on GitHub's infra (independent of the VM) and ntfy's the phone if it
+# goes stale (VM down / process crashed / push token dead). Low-frequency cron is what Actions is
+# actually good at, so its scheduling jitter is fine here.
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check VM heartbeat age
+        env:
+          REPO: ${{ github.repository }}
+          GH_TOKEN: ${{ github.token }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          THRESHOLD: "900"        # 15 min
+        run: |
+          python3 - <<'PY'
+          import os, json, sys, urllib.request, datetime
+          repo=os.environ["REPO"]; topic=os.environ.get("NTFY_TOPIC","")
+          thr=int(os.environ["THRESHOLD"]); tok=os.environ.get("GH_TOKEN","")
+          now=datetime.datetime.now(datetime.timezone.utc)
+          def ntfy(title, body):
+              if not topic:
+                  print("!! no NTFY_TOPIC secret set - cannot alert"); return
+              req=urllib.request.Request("https://ntfy.sh/"+topic, data=body.encode(),
+                  headers={"Title":title,"Priority":"urgent","Tags":"rotating_light"})
+              urllib.request.urlopen(req, timeout=15).read()
+          try:
+              h={"User-Agent":"vm-watchdog","Accept":"application/vnd.github+json"}
+              if tok: h["Authorization"]="Bearer "+tok
+              req=urllib.request.Request("https://api.github.com/repos/%s/commits/heartbeat"%repo, headers=h)
+              d=json.load(urllib.request.urlopen(req, timeout=20))
+              ds=d["commit"]["committer"]["date"]
+              hb=datetime.datetime.strptime(ds,"%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=datetime.timezone.utc)
+              age=int((now-hb).total_seconds())
+          except Exception as e:
+              print("heartbeat unreadable:", e)
+              ntfy("WNBA VM: NO heartbeat", "Watchdog can't read the heartbeat branch (%s). The VM may never have started or the branch is missing - check it." % e)
+              sys.exit(0)
+          print("heartbeat age = %ds (threshold %ds)" % (age, thr))
+          if age > thr:
+              ntfy("WNBA VM heartbeat STALE", "No VM push in %d min (threshold %d). The Oracle loop may be down. SSH in: sudo systemctl status wnba-loop" % (age//60, thr//60))
+              print("ALERTED: stale")
+          else:
+              print("healthy")
+          PY
