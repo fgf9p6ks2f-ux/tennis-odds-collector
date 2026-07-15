@@ -24,6 +24,49 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 LEDGER = HERE / "wnba_ledger.sqlite"        # parlays live in the same DB as the straights (self-heals)
 PARLAY_MARKS = HERE / "wnba_parlays_played.txt"   # durable played marks (date|key), like wnba_played.txt
+PROJ_LOG = HERE / "wnba_proj_log.sqlite"           # per-player component projections, for de-biasing
+
+# Calibration de-bias (fit 2026-07-15 on 97 graded projections): the projection engine OVER-projects
+# points ~15% and rebounds ~20% (assists ~unbiased). Used to compute an HONEST projection edge so the
+# cascade selector picks the real over — not an over-projected composite phantom (Rae Burrell P+R+A
+# projected 20.6 raw / 17.8 honest vs a 20.5 line = actually a 2.7-pt UNDER, yet the shortest-odds "fav").
+_DEBIAS = {"pts": 0.85, "reb": 0.80, "ast": 1.01}
+_STAT_COMPS = {"points": ["pts"], "rebounds": ["reb"], "assists": ["ast"],
+               "pts_reb": ["pts", "reb"], "pts_ast": ["pts", "ast"], "reb_ast": ["reb", "ast"],
+               "pra": ["pts", "reb", "ast"]}
+
+
+def _projmap():
+    """(date, player) -> component projections row {proj_pts, proj_reb, proj_ast}, for de-biasing."""
+    try:
+        con = sqlite3.connect(f"file:{PROJ_LOG}?mode=ro", uri=True)
+        con.row_factory = sqlite3.Row
+        m = {(r["date"], r["player"]): r
+             for r in con.execute("SELECT date, player, proj_pts, proj_reb, proj_ast FROM projections")}
+        con.close()
+        return m
+    except Exception:
+        return {}
+
+
+def honest_edge(row, pm):
+    """De-biased projection minus the line. For a composite (P+R+A ...) each component is de-biased and
+    summed. Falls back to the raw (elev_avg - line) edge if this player-date's components aren't logged,
+    so it degrades gracefully instead of dropping the bet."""
+    comps = _STAT_COMPS.get(row.get("stat"))
+    pr = pm.get((row.get("pred_date"), row.get("player")))
+    line = row.get("line") or 0.0
+    if comps and pr:
+        tot, ok = 0.0, True
+        for c in comps:
+            pj = pr["proj_" + c]
+            if pj is None:
+                ok = False; break
+            tot += _DEBIAS[c] * pj
+        if ok:
+            return tot - line
+    ea = row.get("elev_avg")
+    return (ea - line) if ea is not None else 0.0
 
 
 def _stake(dec):
@@ -169,11 +212,16 @@ def current_selection(rows):
             (kept if r["stat"] in keep_stats else dropped).append(
                 r if r["stat"] in keep_stats else (r, "correlated over-stack (3+ stats share a pool)"))
 
-    # 3. ONE PER INJURY CASCADE (2026-07-15, user + backtest: 15-6/+27% vs scatter 21-19/+0.7%). An
-    # injury vacates usage that CONCENTRATES into a single beneficiary (Edwards ate CON's frontcourt
-    # 7/14 -> 29 P+R while Miller/Nelson-Ododa got squeezed), so per (date, team) cascade keep only the
-    # FAVORITE (shortest book odds = the market's most-likely beneficiary; tie -> higher EV) and ladder
-    # THEM; drop the rest. Favorite beat EV/proj_hit in the backtest and matches the user's real method.
+    # 3. ONE PER INJURY CASCADE, picked by HONEST EDGE (2026-07-15, user). An injury's usage concentrates
+    # into one beneficiary, so keep ONE per (date, team). Pick the player with the best DE-BIASED
+    # projection edge — NOT shortest odds, which surfaced over-projected composite phantoms (Burrell P+R+A
+    # raw-edge +0.1 but honest -2.7, kept as "favorite" while the real assist edges got dropped). Drop the
+    # WHOLE cascade if even the best honest edge doesn't clear the line (no honest over to bet). Odds break ties.
+    pm = _projmap()
+
+    def _pscore(rs):
+        return (max(honest_edge(r, pm) for r in rs), -min((r.get("odds") or 99) for r in rs))
+
     bycas = defaultdict(list)
     for r in kept:
         bycas[(r.get("pred_date"), r.get("team"))].append(r)
@@ -182,11 +230,16 @@ def current_selection(rows):
         byp = defaultdict(list)
         for r in grp:
             byp[r.get("player")].append(r)
-        fav = min(byp, key=lambda p: (min((x.get("odds") or 99) for x in byp[p]),
-                                      -max((x.get("ev") or 0.0) for x in byp[p])))
+        best = max(byp, key=lambda p: _pscore(byp[p]))
+        best_he = max(honest_edge(r, pm) for r in byp[best])
+        keep = best if best_he > 0 else None
         for r in grp:
-            (fav_kept if r.get("player") == fav else dropped).append(
-                r if r.get("player") == fav else (r, "non-favorite beneficiary (1 per cascade)"))
+            if keep is not None and r.get("player") == keep:
+                fav_kept.append(r)
+            elif keep is None:
+                dropped.append((r, "no honest over in cascade (de-biased projection under the line)"))
+            else:
+                dropped.append((r, "non-favorite beneficiary (1 per cascade, honest-edge)"))
     kept = fav_kept
     return kept, dropped
 
