@@ -252,7 +252,11 @@ def parlays(lads, sizes=(2, 3), top=3):
 
 
 def build(overs):
-    """Full slip from the day's flagged overs: {'bets': {player: [ladders]}, 'parlays': [...]}."""
+    """Full slip from the day's flagged overs: {'bets': {player: [ladders]}, 'parlays': [...]}.
+    Overs are reduced to current_selection FIRST (favorite-only per injury cascade + thin-sample &
+    over-stack filters), so every ladder and parlay slip only ever contains the ONE beneficiary per
+    injury the tracked record also counts — source-of-truth so sync_parlays/wnba_alert stay consistent."""
+    overs = current_selection(overs)[0]
     lads = ladders(overs)
     bets = player_bets(lads)
     kept = [L for pl in bets.values() for L in pl]        # ladders that survived the combo logic
