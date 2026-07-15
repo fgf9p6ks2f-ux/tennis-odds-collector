@@ -110,6 +110,7 @@
 2026-07-14|Olivia Nelson-Ododa|pts_reb|18.5
 2026-07-14|Olivia Nelson-Ododa|rebounds|7.5
 2026-07-15|Ariel Atkins|assists|2.5
+2026-07-15|Azura Stevens|assists|2.5
 2026-07-15|Kamilla Cardoso|dd
 2026-07-15|Natasha Cloud|pts_ast|16.5
 2026-07-15|Rae Burrell|pra|20.5
