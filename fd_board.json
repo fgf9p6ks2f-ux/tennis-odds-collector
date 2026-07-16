@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T19:09:50Z",
+ "captured_at": "2026-07-16T19:14:24Z",
  "matches": [
   {
    "event_id": 35832243,
@@ -8,9 +8,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-16T18:55:00.000Z",
-   "line": 91.5,
-   "over_odds": -135,
-   "under_odds": -105
+   "line": 97.5,
+   "over_odds": -195,
+   "under_odds": 140
   },
   {
    "event_id": 35832224,
@@ -19,20 +19,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T19:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35832225,
-   "p1": "Kacper Adamus",
-   "p2": "Rafal Idaczyk",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "rafal idaczyk",
-   "open_date": "2026-07-16T19:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 59.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832234,
@@ -75,6 +64,28 @@
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-16T19:35:00.000Z",
    "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832276,
+   "p1": "Kacper Glazowski",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "kacper glazowski",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-16T19:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832277,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Dariusz Szlubowski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "dariusz szlubowski",
+   "open_date": "2026-07-16T19:40:00.000Z",
+   "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
   }
