@@ -35,6 +35,14 @@ import wnba_wowy as W
 # firm ledger/record (single-game sample; CLV judges it forward). Flip False to kill instantly.
 N1_PILOT = True
 
+# COLD-START n=0 PILOT (2026-07-16, user: "predict the beneficiary without history — the bot
+# must guess the replacement accurately"). When the team has NEVER played without the out star
+# (Gustafson/POR 7/16), WHO inherits isn't a guess: RotoWire's lineup page NAMES the promoted
+# starter (starter_label confirmed/likely). Minutes via proportional redistribution — the
+# NBA-validated cold-start cell (proj-line margin >=5 -> 63.7-67.8%, +17-24% ROI on 1,345
+# flags). ⚡COLD alert + CLV shadow (tier='n0_cold') ONLY — never the firm record.
+N0_COLD = True
+
 HERE = Path(__file__).resolve().parent
 SEEN = HERE / "wnba_notified.txt"
 
@@ -152,8 +160,42 @@ def collect():
                 cands = [(W.wowy(blog, ol), nm) for (nm, _), ol in zip(outs, out_logs)]
                 w = max(cands, key=lambda x: x[0]["n_without"])[0]
             n1 = (w["n_without"] == 1)                     # first-occurrence speed-pilot tier (below)
-            if w["n_without"] < 1 or (n1 and not N1_PILOT):
-                continue                                   # 0 without-games (or pilot off) -> drop
+            if w["n_without"] < 1:
+                # ── COLD-START n=0 ── the team has never played without this star. Only a
+                # RotoWire-NAMED promoted starter qualifies (that answers "which of the two
+                # candidates" — RW's lineup call), minutes = proportional share of the vacated
+                # pool with a starter floor, and only the validated margin >= 5 cell alerts.
+                if not N0_COLD:
+                    continue
+                lbl = T.starter_label(n, team, starters, 0)
+                if lbl not in ("confirmed", "likely") or v["min"] >= 22:
+                    continue                               # not RW-promoted into tonight's five
+                pw0 = position_compat(v.get("position"), [op.get("position") for _, op in outs])
+                rot = sum(vv["min"] for vv in team_pl.values() if 12 <= vv["min"] <= 32) or 1.0
+                vac_min = sum(op["min"] for _, op in outs)
+                proj0 = min(max(v["min"] + pw0 * vac_min * (v["min"] / rot), 22.0), 30.0)
+                pa0 = T.project_all(blog, proj0)
+                cold = [e for e in T.prop_edges(n, blog, proj0, None, vacated, ctx,
+                                                out_logs=out_dm, opp=matchups.get(team, ""),
+                                                pos=v.get("position"))
+                        if e["side"] == "over"
+                        and (e["elev_avg"] - e["line"]) >= T.COLD_START_MARGIN]
+                if cold:
+                    pn0 = T.posted_props(n)
+                    if pa0 and pn0:
+                        CLV.log_shadow(today, n, out_full,
+                                       {"points": pa0["proj_pts"], "rebounds": pa0["proj_reb"],
+                                        "assists": pa0["proj_ast"]}, pn0,
+                                       tip=tips.get(team), tier="n0_cold")
+                    for e in cold:
+                        alerts.append((e["ev"], f"n0|{today}|{n}|{e['stat']}|{e['line']:g}",
+                            f"⚡COLD {out_label} OUT -> {_short(n)} STARTS ({lbl}) "
+                            f"{e['stat'][:3]} o{e['line']:g} {T._am(e['dec'])} | "
+                            f"proj {e['elev_avg']:g} (+{e['elev_avg']-e['line']:.1f} over line) "
+                            f"· no prior sample — COLD tier (not in record)"))
+                continue
+            if n1 and not N1_PILOT:
+                continue                                   # pilot off -> drop 1-game samples
             # POSITION MATCH (minutes): a vacated role's MINUTES go to same-position players,
             # so scale the projected minutes-elevation by positional fit — a forward barely
             # inherits a guard's minutes. But DON'T hard-drop cross-position beneficiaries: a
