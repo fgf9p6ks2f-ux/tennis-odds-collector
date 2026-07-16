@@ -11,7 +11,11 @@ push(){ git add -A -f 2>/dev/null; git commit -m "vm loop data [skip ci]" -q 2>/
 
 collectors(){
   python3 fd_collect.py --wnba >/dev/null 2>&1 || true
-  python3 dk_collect.py --wnba >/dev/null 2>&1 || true
+  # dk_collect DISABLED on the VM (2026-07-16): DraftKings Akamai-blocks the Oracle datacenter
+  # IP -> it 403s EVERY cycle (never once landed a row from here), but still spawns a curl_cffi
+  # chrome-impersonation process each time = pure memory pressure on the 956MB box for nothing.
+  # Re-enable only behind a residential proxy. (DK line-shopping runs fine from the Mac.)
+  # python3 dk_collect.py --wnba >/dev/null 2>&1 || true
   python3 wnba_ledger.py --grade >/dev/null 2>&1 || true
   python3 wnba_clv.py --close >/dev/null 2>&1 || true
   board; }
