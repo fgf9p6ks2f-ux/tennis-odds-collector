@@ -90,7 +90,7 @@ def collect():
         if not (p and p["team"] in playing and status in ("Out", "Doubtful")
                 and not T.confirmed_playing(name, p["team"])):
             continue
-        if not T.genuinely_out(name):                    # props still posted -> stale 'Out', skip
+        if not T.genuinely_out(name):                    # RotoWire says GTD -> not a firm out, skip
             continue
         out_names.add(name)
         # impact out = vacates real MINUTES (>=20mpg) OR real USAGE (>=10ppg) — a depressed-minutes but

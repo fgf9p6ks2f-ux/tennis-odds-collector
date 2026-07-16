@@ -708,37 +708,23 @@ def injuries():
 
 
 def genuinely_out(name):
-    """Is a player the ESPN feed calls 'Out'/'Doubtful' REALLY out? Cross-checked against two more
-    reliable sources before we vacate their role to beneficiaries:
-      1. RotoWire GTD tier — RotoWire's game-time-decision list (posted + locked closer to tip than
-         ESPN, and often correct when ESPN is stale). A GTD tag = questionable, NOT a firm out — this
-         BEATS the ESPN 'Out'. (7/14: ESPN said Griner 'Out'; RotoWire had her 'GTD' = questionable.)
-      2. The book's prop slate — a genuinely-out player has their props PULLED; a full slate (esp. an
-         active points market) means they're playing/questionable. (7/14: out Rivers/Morrow had 0 props;
-         Griner carried 16 — the bot had built 3 CON plays on a player who wasn't out.)
-    Returns True only if NEITHER source contradicts the 'Out'. Fails safe (trusts the status if a source
-    is unreachable) — the safeguard is additive, never breaks the pipeline."""
+    """Is a player the ESPN feed calls 'Out'/'Doubtful' REALLY out? One cross-check only:
+    RotoWire's GTD tier (posted + locked closer to tip than ESPN, and often correct when ESPN
+    is stale). A GTD tag = game-time decision, NOT a firm out — this BEATS the ESPN 'Out'.
+    (7/14: ESPN said Griner 'Out'; RotoWire had her 'GTD'; she played.)
+
+    ⚡ The PROP-SLATE check was REMOVED 2026-07-16 (user call): gating on "FanDuel pulled her
+    props" meant waiting until the book had already PROCESSED the injury news — which is
+    exactly when the beneficiary lines get repriced. The whole edge is beating that reprice
+    (the $15k method), so the gate was structurally self-defeating (it cost the entire
+    Gustafson window on 7/16 while FD was slow to pull her slate). Speed > certainty: a rare
+    stale-'Out' costs one bet; waiting for the book costs the edge on every bet."""
     try:
         if RW.norm(name) in RW.questionable_players(rw_lineups()):
             return False                                  # RotoWire GTD -> game-time decision, not firm out
     except Exception:
         pass
-    try:
-        if RW.norm(name) in RW.out_players(rw_lineups()):
-            return True   # RotoWire's lineup page EXPLICITLY rules them out — the strongest signal,
-                          # beats a laggy prop slate. (7/16: Gustafson Out on ESPN + RotoWire's out
-                          # list while FD still posted her props -> the props check vetoed her and
-                          # POR's beneficiaries were never evaluated. Props stay the TIEBREAKER only
-                          # when RotoWire doesn't mention the player.)
-    except Exception:
-        pass
-    try:
-        pp = posted_props(name) or {}
-        if pp.get("points"):
-            return False                                  # active points market -> playing, not out
-        return sum(len(v) for v in pp.values()) <= 1      # slate pulled (allow 1 stray line) -> out
-    except Exception:
-        return True
+    return True                                           # trust the Out — race the book, don't follow it
 
 
 # --- Questionable / GTD tier ------------------------------------------------------------------
