@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T08:48:27Z",
+ "captured_at": "2026-07-16T08:52:56Z",
  "matches": [
-  {
-   "event_id": 35829869,
-   "p1": "Rafal Gajda",
-   "p2": "Igor Szymanski",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "igor szymanski",
-   "open_date": "2026-07-16T08:35:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35829871,
    "p1": "Mariusz Adamus",
@@ -19,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T08:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829872,
@@ -30,7 +19,7 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T08:45:00.000Z",
-   "line": 75.5,
+   "line": 86.5,
    "over_odds": -120,
    "under_odds": -115
   },
