@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T19:00:31Z",
+ "captured_at": "2026-07-16T19:05:13Z",
  "matches": [
-  {
-   "event_id": 35832181,
-   "p1": "Pawel Chojnacki",
-   "p2": "Jacek Zelezik",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "jacek zelezik",
-   "open_date": "2026-07-16T18:45:00.000Z",
-   "line": 82.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35832193,
-   "p1": "Konrad Staszczyk",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "konrad staszczyk",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-16T18:50:00.000Z",
-   "line": 58.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35832243,
    "p1": "Kazimierz Rybak",
@@ -30,9 +8,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-16T18:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832224,
