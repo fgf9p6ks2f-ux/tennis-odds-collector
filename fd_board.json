@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T07:03:59Z",
+ "captured_at": "2026-07-16T07:08:25Z",
  "matches": [
-  {
-   "event_id": 35829399,
-   "p1": "Krzysztof Wloczko",
-   "p2": "Kamil Kurowski",
-   "p1_norm": "krzysztof wloczko",
-   "p2_norm": "kamil kurowski",
-   "open_date": "2026-07-16T06:50:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35829409,
    "p1": "Rafal Gajda",
@@ -19,9 +8,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "michal durda",
    "open_date": "2026-07-16T06:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829410,
@@ -30,9 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-16T06:55:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 56.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35829411,
@@ -41,8 +30,8 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-16T06:55:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
+   "line": 88.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -108,6 +97,28 @@
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T07:20:00.000Z",
    "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35829467,
+   "p1": "Waldemar Glanowski",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-16T07:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829470,
+   "p1": "Marian Lebek",
+   "p2": "Adrian Burkacki",
+   "p1_norm": "marian lebek",
+   "p2_norm": "adrian burkacki",
+   "open_date": "2026-07-16T07:35:00.000Z",
+   "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
   }
