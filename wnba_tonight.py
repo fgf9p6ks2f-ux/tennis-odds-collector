@@ -724,6 +724,15 @@ def genuinely_out(name):
     except Exception:
         pass
     try:
+        if RW.norm(name) in RW.out_players(rw_lineups()):
+            return True   # RotoWire's lineup page EXPLICITLY rules them out — the strongest signal,
+                          # beats a laggy prop slate. (7/16: Gustafson Out on ESPN + RotoWire's out
+                          # list while FD still posted her props -> the props check vetoed her and
+                          # POR's beneficiaries were never evaluated. Props stay the TIEBREAKER only
+                          # when RotoWire doesn't mention the player.)
+    except Exception:
+        pass
+    try:
         pp = posted_props(name) or {}
         if pp.get("points"):
             return False                                  # active points market -> playing, not out
