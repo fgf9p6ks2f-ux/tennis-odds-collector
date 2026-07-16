@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T15:33:00Z",
+ "captured_at": "2026-07-16T15:37:47Z",
  "matches": [
   {
    "event_id": 35830943,
@@ -8,9 +8,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T15:25:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 91.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35830944,
@@ -19,20 +19,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T15:25:00.000Z",
-   "line": 60.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35830945,
-   "p1": "Kacper Glazowski",
-   "p2": "Tomasz Filbrandt",
-   "p1_norm": "kacper glazowski",
-   "p2_norm": "tomasz filbrandt",
-   "open_date": "2026-07-16T15:25:00.000Z",
-   "line": 70.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 55.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35830998,
@@ -41,9 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T15:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831000,
@@ -52,9 +41,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-16T15:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35831021,
@@ -86,6 +75,28 @@
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T15:55:00.000Z",
    "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35831252,
+   "p1": "Jakub Nowak",
+   "p2": "Rafal Idaczyk",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "rafal idaczyk",
+   "open_date": "2026-07-16T16:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35831326,
+   "p1": "Konrad Staszczyk",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "konrad staszczyk",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-16T16:05:00.000Z",
+   "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
   }
