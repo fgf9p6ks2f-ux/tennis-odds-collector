@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T21:48:44Z",
+ "captured_at": "2026-07-16T21:54:23Z",
  "matches": [
-  {
-   "event_id": 35832412,
-   "p1": "Kacper Adamus",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-16T21:35:00.000Z",
-   "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35832421,
    "p1": "Jakub Cyndera",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-16T21:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832422,
@@ -30,9 +19,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T21:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832423,
@@ -42,8 +31,8 @@
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-16T21:45:00.000Z",
    "line": 82.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832453,
@@ -77,6 +66,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832468,
+   "p1": "Jacek Zelezik",
+   "p2": "Dariusz Molenda",
+   "p1_norm": "jacek zelezik",
+   "p2_norm": "dariusz molenda",
+   "open_date": "2026-07-16T22:20:00.000Z",
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
