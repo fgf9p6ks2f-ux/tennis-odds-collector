@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T16:20:04Z",
+ "captured_at": "2026-07-16T16:24:57Z",
  "matches": [
-  {
-   "event_id": 35831326,
-   "p1": "Konrad Staszczyk",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "konrad staszczyk",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-16T16:05:00.000Z",
-   "line": 96.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35831336,
    "p1": "Michal Skorski",
@@ -19,20 +8,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "marcin kowalczyk",
    "open_date": "2026-07-16T16:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35831337,
-   "p1": "Kazimierz Rybak",
-   "p2": "Mateusz Karpiuk",
-   "p1_norm": "kazimierz rybak",
-   "p2_norm": "mateusz karpiuk",
-   "open_date": "2026-07-16T16:15:00.000Z",
-   "line": 67.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831344,
@@ -41,9 +19,9 @@
    "p1_norm": "piotr brozek",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T16:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831353,
@@ -86,6 +64,17 @@
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T16:40:00.000Z",
    "line": 68.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35831929,
+   "p1": "Rafal Idaczyk",
+   "p2": "Karol Jablonski",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-16T16:50:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
