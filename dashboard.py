@@ -674,7 +674,31 @@ def _tracker_panel(wnba_rec, tt_json):
     except Exception:
         pass
     tt = (tt_json or {}).get("tracker")
-    if tt:
+    leagues = (tt or {}).get("leagues")
+    if leagues:
+        SHORT = {"TT Elite Series": "TT Elite", "Setka Cup": "Setka Cup",
+                 "Czech Liga Pro": "Liga Pro", "TT Cup": "TT Cup", "Setka Women": "Setka W"}
+        elite = next((x for x in leagues if x["league"] == "TT Elite Series"), None)
+        if elite:                                          # the bettable one — real FanDuel line + odds
+            ep = (tt or {}).get("elite_pending", 0)
+            note = "graded at the actual FanDuel line + odds" + (f" · {ep} pending" if ep else "")
+            out += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note)
+        rest = [x for x in leagues if x["league"] != "TT Elite Series"]
+        if rest:                                           # shadow leagues — compact per-league table
+            trows = ""
+            for x in rest:
+                n = x["w"] + x["l"]
+                hit = f"{x['w'] / n * 100:.0f}%" if n else "—"
+                ucls = "up" if x["u"] > 0 else ("down" if x["u"] < 0 else "")
+                trows += (f'<div class="ttrkrow"><span>{html.escape(SHORT.get(x["league"], x["league"]))}</span>'
+                          f'<span>{x["w"]}-{x["l"]}</span><span>{hit}</span>'
+                          f'<span class="{ucls}">{x["u"]:+.1f}u</span></div>')
+            out += (f'<div class="tcard"><div class="thead">🏓 Other TT leagues '
+                    f'<span class="tsh">shadow · not bet</span></div>'
+                    f'<div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span>'
+                    f'<span>hit</span><span>units</span></div>{trows}</div>'
+                    f'<div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div>')
+    elif tt:                                               # backward-compat: old combined tracker
         out += card("🏓", "Table tennis", tt.get("w", 0), tt.get("l", 0), tt.get("u", 0.0),
                     "flat 1u · settles live · since 7/9")
     else:
@@ -865,40 +889,11 @@ def _tt_totals_card(tt_json, now=None):
 
 
 def _tt_panel(data):
-    """Table Tennis tab — TT Elite FLAGGED BETS at the FanDuel line (in the #tt-totals card,
-    server-baked here then re-rendered live by the tt-live script), followed by the OTHER leagues'
-    flagged bets grouped by league (fixed-line rule; Elite is excluded here since it's the card
-    above). Each non-Elite matchup taps open to a per-line hit-rate ladder."""
-    tc = '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
-    if not data:
-        return tc + ('<div class="empty">Table tennis feed connecting…<br>'
-                '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
-    bets = data.get("bets", [])
-    default_line = data.get("model_line", 74.5)
-    by = defaultdict(list)
-    for b in bets:
-        if b["league"] == "TT Elite Series":     # Elite lives in the #tt-totals flagged-bets card above
-            continue
-        by[b["league"]].append(b)
-    out = []
-    for league in sorted(by):
-        games = sorted(by[league], key=lambda b: b.get("ts") or 0)
-        cards = ""
-        for b in games:
-            when = (dt.datetime.fromtimestamp(b["ts"], MT).strftime("%-I:%M %p")
-                    if b.get("ts") else "TBD")
-            side = html.escape(b.get("side", ""))
-            book = b.get("book")     # actual bmbets main line + softest price (None until odds land)
-            bk = (f' · <span class="ttbook">book {"O" if b.get("side", "").startswith("O") else "U"}'
-                  f'{book["line"]:g} @{book["od"]:.2f}</span>') if book else ""
-            lad = _tt_ladder(b.get("ladder", []), b.get("play_to", default_line), b.get("side", ""))
-            cards += f"""
-      <div class="ttrow" onclick="this.nextElementSibling.classList.toggle('open')">
-        <div class="ttmain"><b>{html.escape(b['p1'])}</b> v {html.escape(b['p2'])}<span class="ttchev">›</span></div>
-        <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u{bk}</div>
-      </div>{lad}"""
-        out.append(f'<div class="card"><h3 class="ttlg">{html.escape(league)}</h3>{cards}</div>')
-    return tc + "\n".join(out)
+    """Table Tennis tab — TT Elite FLAGGED BETS at the FanDuel line ONLY (in the #tt-totals card:
+    server-baked here for instant paint, then re-rendered live by the tt-live script). The other TT
+    leagues are HIDDEN from the board per the user — they still get flagged + logged in the
+    background (paper ledger + the per-league tracker), just not shown as bet cards here."""
+    return '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
 
 
 _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
@@ -1317,6 +1312,11 @@ def build():
   .ttpick {{ margin-left:auto; padding-left:10px; font-size:14px; font-weight:800; letter-spacing:.01em; color:#8ae0b0; white-space:nowrap; font-variant-numeric:tabular-nums; }}
   .ttedge {{ color:#8ae0b0; font-weight:700; }}
   .ttempty {{ color:#93a0b4; font-size:13px; line-height:1.5; }}
+  .ttrk {{ margin-top:5px; }}
+  .ttrkrow {{ display:grid; grid-template-columns:1fr auto auto 62px; gap:10px; padding:6px 0; border-top:1px solid #161d28; font-size:13px; font-variant-numeric:tabular-nums; }}
+  .ttrkrow span {{ text-align:right; }} .ttrkrow span:first-child {{ text-align:left; font-weight:600; }}
+  .ttrkhd {{ border-top:0; color:#5b6b82; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }}
+  .tsh {{ color:#5b6b82; font-size:11px; font-weight:600; }}
   .ttcnt {{ color:#5b6b82; font-weight:600; font-size:11px; margin-left:6px; }}
   .ttfoot {{ color:#5b6b82; font-size:11px; margin-top:9px; }}
   .ttlad {{ display:none; padding:6px 0 12px; }}
