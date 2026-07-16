@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T10:48:05Z",
+ "captured_at": "2026-07-16T10:52:39Z",
  "matches": [
-  {
-   "event_id": 35830048,
-   "p1": "Karol Sulkowski",
-   "p2": "Dominik Solilo",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 80.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35830050,
    "p1": "Rafal Gajda",
@@ -19,9 +8,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 95.5,
+   "over_odds": 120,
+   "under_odds": -165
   },
   {
    "event_id": 35830058,
@@ -31,8 +20,8 @@
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T10:40:00.000Z",
    "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830080,
@@ -41,9 +30,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T10:50:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35830094,
