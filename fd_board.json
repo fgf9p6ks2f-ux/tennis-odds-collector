@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T18:51:06Z",
+ "captured_at": "2026-07-16T18:55:51Z",
  "matches": [
   {
    "event_id": 35832181,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-16T18:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 79.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832193,
@@ -19,20 +19,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-16T18:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832204,
-   "p1": "Michal Skorski",
-   "p2": "Dariusz Szlubowski",
-   "p1_norm": "michal skorski",
-   "p2_norm": "dariusz szlubowski",
-   "open_date": "2026-07-16T18:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 87.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832224,
@@ -63,6 +52,28 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T19:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832244,
+   "p1": "Jerzy Debski",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "jerzy debski",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-16T19:20:00.000Z",
+   "line": 69.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35832245,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Kamil Klocek",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-16T19:20:00.000Z",
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
