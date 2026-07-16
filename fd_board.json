@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T09:01:59Z",
+ "captured_at": "2026-07-16T09:06:31Z",
  "matches": [
   {
    "event_id": 35829871,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T08:45:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 105.5,
+   "over_odds": 125,
+   "under_odds": -175
   },
   {
    "event_id": 35829913,
@@ -19,9 +19,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829914,
@@ -30,9 +30,20 @@
    "p1_norm": "michal durda",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35829915,
+   "p1": "Josef Braun",
+   "p2": "Artur Daniel",
+   "p1_norm": "josef braun",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T09:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829916,
@@ -41,9 +52,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829920,
