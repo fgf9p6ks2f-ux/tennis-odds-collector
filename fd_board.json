@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T23:51:02Z",
+ "captured_at": "2026-07-16T23:56:43Z",
  "matches": [
   {
    "event_id": 35832532,
@@ -8,9 +8,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-16T23:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 97.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832537,
@@ -19,20 +19,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T23:45:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832547,
-   "p1": "Konrad Staszczyk",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "konrad staszczyk",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-16T23:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 54.5,
+   "over_odds": 110,
+   "under_odds": -155
   },
   {
    "event_id": 35832552,
@@ -64,6 +53,28 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-17T00:10:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832568,
+   "p1": "Patryk Jendrzejewski",
+   "p2": "Tomasz Filbrandt",
+   "p1_norm": "patryk jendrzejewski",
+   "p2_norm": "tomasz filbrandt",
+   "open_date": "2026-07-17T00:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832569,
+   "p1": "Adam Staniczek",
+   "p2": "Pawel Chojnacki",
+   "p1_norm": "adam staniczek",
+   "p2_norm": "pawel chojnacki",
+   "open_date": "2026-07-17T00:20:00.000Z",
+   "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
   }
