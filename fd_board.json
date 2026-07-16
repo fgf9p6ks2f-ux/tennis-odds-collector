@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T22:10:06Z",
+ "captured_at": "2026-07-16T22:15:46Z",
  "matches": [
   {
    "event_id": 35832460,
@@ -8,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T22:05:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832463,
@@ -19,9 +19,20 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T22:10:00.000Z",
-   "line": 78.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35832497,
+   "p1": "Michal Guzik",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "michal guzik",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-16T22:10:00.000Z",
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832468,
@@ -33,6 +44,17 @@
    "line": 70.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35832471,
+   "p1": "Jakub Nowak",
+   "p2": "Kacper Adamus",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "kacper adamus",
+   "open_date": "2026-07-16T22:25:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35832484,
@@ -66,6 +88,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35832494,
+   "p1": "Adam Staniczek",
+   "p2": "Dawid Pyrek",
+   "p1_norm": "adam staniczek",
+   "p2_norm": "dawid pyrek",
+   "open_date": "2026-07-16T22:40:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
