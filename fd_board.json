@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T16:39:55Z",
+ "captured_at": "2026-07-16T16:44:50Z",
  "matches": [
-  {
-   "event_id": 35831369,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-16T16:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35831373,
    "p1": "Dariusz Szlubowski",
@@ -19,20 +8,9 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T16:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35831461,
-   "p1": "Waldemar Glanowski",
-   "p2": "Krzysztof Hetnar",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "krzysztof hetnar",
-   "open_date": "2026-07-16T16:40:00.000Z",
-   "line": 68.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831929,
@@ -86,6 +64,17 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T17:05:00.000Z",
    "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832041,
+   "p1": "Jakub Nowak",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-16T17:10:00.000Z",
+   "line": 71.5,
    "over_odds": -118,
    "under_odds": -112
   }
