@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T20:15:07Z",
+ "captured_at": "2026-07-16T20:19:50Z",
  "matches": [
-  {
-   "event_id": 35832305,
-   "p1": "Jakub Cyndera",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-16T20:05:00.000Z",
-   "line": 51.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35832306,
    "p1": "Patryk Jendrzejewski",
@@ -19,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T20:05:00.000Z",
-   "line": 90.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832355,
@@ -53,8 +42,8 @@
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T20:30:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -116
   },
   {
    "event_id": 35832363,
@@ -75,6 +64,17 @@
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T20:30:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832374,
+   "p1": "Kacper Adamus",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-16T20:45:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
