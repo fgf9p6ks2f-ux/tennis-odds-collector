@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T13:14:29Z",
+ "captured_at": "2026-07-16T13:21:09Z",
  "matches": [
   {
    "event_id": 35830657,
@@ -9,8 +9,8 @@
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T13:20:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35830659,
@@ -31,8 +31,8 @@
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T13:30:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35830663,
@@ -42,8 +42,8 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T13:30:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35830664,
@@ -55,6 +55,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830795,
+   "p1": "Adrian Wiecek",
+   "p2": "Jakub Folwarski",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "jakub folwarski",
+   "open_date": "2026-07-16T13:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
