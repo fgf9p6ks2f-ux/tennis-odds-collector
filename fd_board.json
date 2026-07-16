@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T15:41:59Z",
+ "captured_at": "2026-07-16T15:46:47Z",
  "matches": [
   {
    "event_id": 35830998,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T15:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831000,
@@ -19,9 +19,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-16T15:35:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35831021,
