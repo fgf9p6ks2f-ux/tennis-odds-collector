@@ -827,6 +827,19 @@ TT_LIVE_JS = """
       if (r2.ok){ var d2 = await r2.json(); var mp = {}; (d2.elite_h2h || []).forEach(function(e){ mp[_ttKey(e.p1n, e.p2n)] = e; }); _ttH2H = mp; }
     } catch(e){}
     window._applyTTTotals();
+    _ttStamp();
+  };
+  function _ttStamp(){
+    var el = document.getElementById('rfchk');
+    if (!el) return;
+    var d = new Date(), p = function(n){ return (n<10?'0':'') + n; };
+    el.textContent = '\\u00B7 checked ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
+  window.manualRefresh = async function(btn){
+    if (btn){ btn.classList.add('spin'); btn.disabled = true; }
+    try { await window._fetchTTTotals(); } catch(e){}       // freshest TT picks (raw fd_board + tt_board)
+    try { if (typeof bgRefresh === 'function') await bgRefresh(); } catch(e){}  // latest baked WNBA/tracker panels
+    if (btn){ setTimeout(function(){ btn.classList.remove('spin'); btn.disabled = false; }, 450); }
   };
   window._fetchTTTotals();
   setInterval(window._fetchTTTotals, 60000);
@@ -1138,6 +1151,11 @@ def build():
   .wrap {{ max-width:600px; margin:0 auto; padding:22px 16px 48px; }}
   h1 {{ font-size:21px; font-weight:800; margin:0; letter-spacing:-.02em; }}
   .live {{ display:flex; align-items:center; gap:6px; color:#78818f; font-size:12px; margin-top:5px; }}
+  .rfrsh {{ background:#161d28; color:#8ab4ff; border:1px solid #24304a; border-radius:7px; width:24px; height:24px; font-size:14px; line-height:1; cursor:pointer; padding:0; display:inline-flex; align-items:center; justify-content:center; }}
+  .rfrsh:active {{ background:#1d2740; }} .rfrsh:disabled {{ opacity:.6; }}
+  .rfrsh.spin {{ animation:rfspin .6s linear infinite; }}
+  @keyframes rfspin {{ to {{ transform:rotate(360deg); }} }}
+  #rfchk {{ color:#5b6b82; font-size:11px; }}
   .dot {{ width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 3px #22c55e22; }}
   .stats {{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0 24px; }}
   .stat {{ background:#121620; border:1px solid #1f2836; border-radius:14px; padding:13px 12px; min-height:74px;
@@ -1351,7 +1369,9 @@ def build():
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated {now:%-I:%M %p} MT · self-refreshing</div>
+    <div class="live"><span class="dot"></span>Updated {now:%-I:%M %p} MT · self-refreshing
+      <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
+      <span id="rfchk"></span></div>
   </header>
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
