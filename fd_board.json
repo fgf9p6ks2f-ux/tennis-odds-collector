@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T14:28:21Z",
+ "captured_at": "2026-07-16T14:33:15Z",
  "matches": [
   {
    "event_id": 35830832,
@@ -8,9 +8,9 @@
    "p1_norm": "szymon sporek",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T14:15:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": 125,
+   "under_odds": -180
   },
   {
    "event_id": 35830853,
@@ -19,9 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T14:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830854,
@@ -30,9 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-16T14:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 77.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35830855,
@@ -41,9 +41,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T14:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 68.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35830862,
@@ -64,8 +64,8 @@
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T14:35:00.000Z",
    "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35830869,
@@ -97,8 +97,41 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T14:45:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830901,
+   "p1": "Konrad Staszczyk",
+   "p2": "Szymon Sporek",
+   "p1_norm": "konrad staszczyk",
+   "p2_norm": "szymon sporek",
+   "open_date": "2026-07-16T15:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35830902,
+   "p1": "Michal Skorski",
+   "p2": "Kamil Klocek",
+   "p1_norm": "michal skorski",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-16T15:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830903,
+   "p1": "Kazimierz Rybak",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "kazimierz rybak",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-16T15:00:00.000Z",
+   "line": 67.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
