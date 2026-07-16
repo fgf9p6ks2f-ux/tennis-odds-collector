@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T16:01:22Z",
+ "captured_at": "2026-07-16T16:05:22Z",
  "matches": [
   {
    "event_id": 35831024,
@@ -8,9 +8,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-16T15:50:00.000Z",
-   "line": 96.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 82.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35831114,
@@ -19,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T15:55:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35831252,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub nowak",
    "p2_norm": "rafal idaczyk",
    "open_date": "2026-07-16T16:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35831326,
@@ -42,8 +42,8 @@
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T16:05:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35831336,
@@ -85,6 +85,17 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-16T16:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35831369,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Szymon Sporek",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "szymon sporek",
+   "open_date": "2026-07-16T16:30:00.000Z",
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
