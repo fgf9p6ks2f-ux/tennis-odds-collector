@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T14:59:31Z",
+ "captured_at": "2026-07-16T15:04:19Z",
  "matches": [
   {
    "event_id": 35830901,
@@ -8,8 +8,8 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
+   "line": 78.5,
+   "over_odds": -115,
    "under_odds": -120
   },
   {
@@ -19,20 +19,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35830903,
-   "p1": "Kazimierz Rybak",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "kazimierz rybak",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 67.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35830917,
@@ -88,6 +77,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830998,
+   "p1": "Mariusz Adamus",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-16T15:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
