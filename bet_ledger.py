@@ -50,6 +50,9 @@ SPORTS = {
     "esoccer":     {"external": True},
     "ebasketball": {"external": True},
     "efootball":   {"external": True},
+    # NBA port: bets are inserted by nba_flags.py (injuries x WOWY priors x live lines);
+    # settlement via settle_nba (ESPN box scores). Paper-first until CLV validates (P3).
+    "nba":         {"external": True},
 }
 
 # Focus mode (2026-07-09): the user is concentrating on table tennis + WNBA, so MLB /
@@ -826,9 +829,68 @@ def settle_nfl(player, stat, start, event=None):
     return None
 
 
+_NBA_BOX_CACHE = {}          # date -> [(fold_name, pts, reb, ast)] — one fetch per date/run
+
+
+def _nba_fold(s):
+    import unicodedata
+    import re as _re
+    n = unicodedata.normalize("NFKD", s or "")
+    n = "".join(c for c in n if not unicodedata.combining(c))
+    return " ".join(_re.sub(r"[^a-z0-9 ]", "", n.lower()).split())
+
+
+def settle_nba(player, stat, start, event=None):
+    """NBA player props from ESPN box scores (works on CI, unlike stats.nba). Bets are
+    inserted by nba_flags.py; stat in points/rebounds/pra. Returns realized float or None
+    (game not final / player not found / DNP)."""
+    date = _game_date(start).replace("-", "")
+    if date not in _NBA_BOX_CACHE:
+        rows = []
+        try:
+            sb = requests.get("https://site.api.espn.com/apis/site/v2/sports/basketball/"
+                              "nba/scoreboard", params={"dates": date}, headers=MLB_H,
+                              timeout=25).json()
+            for gm in sb.get("events", []):
+                if (gm.get("competitions") or [{}])[0].get("status", {}).get(
+                        "type", {}).get("state") != "post":
+                    continue
+                summ = requests.get("https://site.api.espn.com/apis/site/v2/sports/"
+                                    "basketball/nba/summary",
+                                    params={"event": gm.get("id")}, headers=MLB_H,
+                                    timeout=25).json()
+                for side in (summ.get("boxscore") or {}).get("players", []):
+                    for grp in side.get("statistics", []):
+                        labels = grp.get("labels") or []
+                        try:
+                            ip, ir, ia = (labels.index("PTS"), labels.index("REB"),
+                                          labels.index("AST"))
+                        except ValueError:
+                            continue
+                        for ath in grp.get("athletes", []):
+                            st = ath.get("stats") or []
+                            if len(st) <= max(ip, ir, ia) or not st[ip]:
+                                continue
+                            nm = (ath.get("athlete") or {}).get("displayName") or ""
+                            try:
+                                rows.append((_nba_fold(nm), float(st[ip]),
+                                             float(st[ir]), float(st[ia])))
+                            except ValueError:
+                                continue
+        except (requests.RequestException, ValueError):
+            pass
+        _NBA_BOX_CACHE[date] = rows
+    pf = _nba_fold(str(player))
+    for nm, p, r, a in _NBA_BOX_CACHE[date]:
+        if nm == pf:
+            return {"points": p, "rebounds": r, "assists": a,
+                    "pra": p + r + a}.get(stat)
+    return None
+
+
 SETTLE = {"mlb": settle_mlb, "wnba": settle_wnba, "tennis": settle_tennis,
           "esoccer": settle_gg, "ebasketball": settle_gg, "efootball": settle_gg,
-          "nfl": settle_nfl}
+          "nfl": settle_nfl, "nba": settle_nba}
 
 
 # ----------------------------------------------------------------------------- ledger ops

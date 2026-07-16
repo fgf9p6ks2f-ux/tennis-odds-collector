@@ -58,6 +58,10 @@ jobs:
       # season-enders (harmless); proves the feed long before opening night.
       - name: "NBA injuries (P1 plumbing)"
         run: python nba_injuries.py || echo "nba injuries skipped"
+      # NBA flag-time engine (paper): injuries x WOWY priors x live FD/DK lines -> ledger.
+      # Offseason = clean no-op (no games / no posted props); armed for October.
+      - name: "NBA flags (paper, WOWY engine)"
+        run: python nba_flags.py || echo "nba flags skipped"
       # UN-BENCHED 2026-07-16, PAPER-FIRST: quotes + flags + ledger run every cycle
       # (validated: nba OVER-only 0.70/n10 went 12-1 on the Jul-8/9 real-line window;
       # tiers re-tuned in gg_collect.SPORTS_GG). No phone alerts until the paper
