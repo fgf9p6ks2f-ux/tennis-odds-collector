@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T10:04:49Z",
+ "captured_at": "2026-07-16T10:09:25Z",
  "matches": [
   {
    "event_id": 35829982,
@@ -8,7 +8,7 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-16T09:50:00.000Z",
-   "line": 95.5,
+   "line": 101.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -19,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T09:55:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 73.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35830001,
@@ -30,9 +30,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "adrian wiecek",
    "open_date": "2026-07-16T10:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 56.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830005,
@@ -41,9 +41,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T10:05:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830010,
@@ -74,9 +74,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-16T10:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35830033,
@@ -97,8 +97,30 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T10:30:00.000Z",
    "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35830048,
+   "p1": "Karol Sulkowski",
+   "p2": "Dominik Solilo",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "dominik solilo",
+   "open_date": "2026-07-16T10:35:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830050,
+   "p1": "Rafal Gajda",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T10:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
