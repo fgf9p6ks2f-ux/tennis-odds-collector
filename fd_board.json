@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T13:59:22Z",
+ "captured_at": "2026-07-16T14:04:05Z",
  "matches": [
-  {
-   "event_id": 35830800,
-   "p1": "Kamil Kurowski",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "kamil kurowski",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-16T13:50:00.000Z",
-   "line": 59.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35830812,
    "p1": "Piotr Brozek",
@@ -19,9 +8,9 @@
    "p1_norm": "piotr brozek",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830826,
