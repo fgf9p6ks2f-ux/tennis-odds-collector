@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T22:49:42Z",
+ "captured_at": "2026-07-16T22:55:21Z",
  "matches": [
-  {
-   "event_id": 35832494,
-   "p1": "Adam Staniczek",
-   "p2": "Dawid Pyrek",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "dawid pyrek",
-   "open_date": "2026-07-16T22:40:00.000Z",
-   "line": 48.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35832498,
    "p1": "Jan Orszulik",
@@ -19,20 +8,9 @@
    "p1_norm": "jan orszulik",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T22:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35832499,
-   "p1": "Jakub Kuzmicz",
-   "p2": "Patryk Jendrzejewski",
-   "p1_norm": "jakub kuzmicz",
-   "p2_norm": "patryk jendrzejewski",
-   "open_date": "2026-07-16T22:50:00.000Z",
-   "line": 78.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832502,
@@ -53,8 +31,8 @@
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-16T22:55:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832506,
@@ -77,6 +55,28 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832511,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-16T23:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832512,
+   "p1": "Michal Skorski",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "michal skorski",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-16T23:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
