@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T16:29:52Z",
+ "captured_at": "2026-07-16T16:34:50Z",
  "matches": [
-  {
-   "event_id": 35831336,
-   "p1": "Michal Skorski",
-   "p2": "Marcin Kowalczyk",
-   "p1_norm": "michal skorski",
-   "p2_norm": "marcin kowalczyk",
-   "open_date": "2026-07-16T16:15:00.000Z",
-   "line": 81.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35831344,
    "p1": "Piotr Brozek",
@@ -19,9 +8,9 @@
    "p1_norm": "piotr brozek",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T16:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831369,
@@ -30,9 +19,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T16:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35831373,
@@ -75,8 +64,8 @@
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T16:55:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35832021,
