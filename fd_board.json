@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T04:17:48Z",
+ "captured_at": "2026-07-16T04:22:02Z",
  "matches": [
-  {
-   "event_id": 35828843,
-   "p1": "Jacek Mitas",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "jacek mitas",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-16T04:00:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35828854,
    "p1": "Rafal Gajda",
@@ -19,20 +8,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-16T04:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35828861,
-   "p1": "Witold Stechly",
-   "p2": "Miroslaw Warzecha",
-   "p1_norm": "witold stechly",
-   "p2_norm": "miroslaw warzecha",
-   "open_date": "2026-07-16T04:20:00.000Z",
-   "line": 64.5,
-   "over_odds": -190,
-   "under_odds": 140
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35828869,
