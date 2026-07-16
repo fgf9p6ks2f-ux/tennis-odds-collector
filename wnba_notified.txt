@@ -118,6 +118,7 @@
 2026-07-16|Breanna Stewart|pra|31.5
 2026-07-16|Breanna Stewart|pts_ast|22.5
 2026-07-16|Jonquel Jones|dd
+2026-07-16|Pauline Astier|pts_reb|11.5
 timing|2026-07-12|Azura Stevens|pra|20.5
 timing|2026-07-12|Azura Stevens|pts_ast|17.5
 timing|2026-07-12|Azura Stevens|pts_reb|27.5

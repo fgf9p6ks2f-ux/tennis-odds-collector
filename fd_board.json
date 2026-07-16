@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T13:54:36Z",
+ "captured_at": "2026-07-16T13:59:22Z",
  "matches": [
   {
    "event_id": 35830800,
@@ -8,9 +8,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-16T13:50:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 59.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35830812,
@@ -19,31 +19,9 @@
    "p1_norm": "piotr brozek",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 77.5,
+   "line": 76.5,
    "over_odds": -110,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35830813,
-   "p1": "Aleksander Lilien",
-   "p2": "Karol Sulkowski",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "karol sulkowski",
-   "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35830814,
-   "p1": "Mariusz Baron",
-   "p2": "Rafal Gajda",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "rafal gajda",
-   "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "under_odds": -125
   },
   {
    "event_id": 35830826,
