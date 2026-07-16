@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T20:52:02Z",
+ "captured_at": "2026-07-16T20:56:40Z",
  "matches": [
-  {
-   "event_id": 35832364,
-   "p1": "Kazimierz Rybak",
-   "p2": "Jerzy Debski",
-   "p1_norm": "kazimierz rybak",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 109.5,
-   "over_odds": -150,
-   "under_odds": 110
-  },
   {
    "event_id": 35832381,
    "p1": "Konrad Staszczyk",
@@ -55,6 +44,39 @@
    "line": 74.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35832397,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Jerzy Debski",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "jerzy debski",
+   "open_date": "2026-07-16T21:20:00.000Z",
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35832398,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Kamil Klocek",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-16T21:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832399,
+   "p1": "Tomasz Filbrandt",
+   "p2": "Jakub Kuzmicz",
+   "p1_norm": "tomasz filbrandt",
+   "p2_norm": "jakub kuzmicz",
+   "open_date": "2026-07-16T21:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
