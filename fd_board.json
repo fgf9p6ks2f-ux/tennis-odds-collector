@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T23:45:27Z",
+ "captured_at": "2026-07-16T23:51:02Z",
  "matches": [
   {
    "event_id": 35832532,
@@ -8,9 +8,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-16T23:35:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832537,
@@ -19,9 +19,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T23:45:00.000Z",
-   "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832547,
