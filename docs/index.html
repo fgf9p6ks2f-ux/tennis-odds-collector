@@ -9,6 +9,11 @@
   .wrap { max-width:600px; margin:0 auto; padding:22px 16px 48px; }
   h1 { font-size:21px; font-weight:800; margin:0; letter-spacing:-.02em; }
   .live { display:flex; align-items:center; gap:6px; color:#78818f; font-size:12px; margin-top:5px; }
+  .rfrsh { background:#161d28; color:#8ab4ff; border:1px solid #24304a; border-radius:7px; width:24px; height:24px; font-size:14px; line-height:1; cursor:pointer; padding:0; display:inline-flex; align-items:center; justify-content:center; }
+  .rfrsh:active { background:#1d2740; } .rfrsh:disabled { opacity:.6; }
+  .rfrsh.spin { animation:rfspin .6s linear infinite; }
+  @keyframes rfspin { to { transform:rotate(360deg); } }
+  #rfchk { color:#5b6b82; font-size:11px; }
   .dot { width:7px; height:7px; border-radius:50%; background:#22c55e; box-shadow:0 0 0 3px #22c55e22; }
   .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin:16px 0 24px; }
   .stat { background:#121620; border:1px solid #1f2836; border-radius:14px; padding:13px 12px; min-height:74px;
@@ -222,7 +227,9 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated 10:48 PM MT · self-refreshing</div>
+    <div class="live"><span class="dot"></span>Updated 11:06 PM MT · self-refreshing
+      <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
+      <span id="rfchk"></span></div>
   </header>
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
@@ -259,7 +266,7 @@
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · by league &amp; game time</h2>
-    <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets</h3><div class="ttempty">No Elite bets flagged right now — nothing on the current FanDuel board clears the edge threshold. Check back closer to the games.</div></div></div>
+    <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets<span class="ttcnt">1</span></h3><div class="ttrow tflat"><div class="ttmain"><b>Grzegorz Adamiak</b> v Artur Daniel<span class="ttpick">UNDER 79.5</span></div><div class="ttsub">Wed 11:15 PM MT · <span class="ttrec">28-9</span> · 76% under · <span class="ttedge">+17% edge</span></div></div><div class="ttfoot">bet the highlighted side at that FanDuel line · record &amp; hit% = the pair's H2H at that line</div></div></div>
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record · settles as each event ends</h2>
@@ -280,7 +287,7 @@
           <div class="tbox"><div class="tk">Hit rate</div><div class="tv">60%</div></div>
           <div class="tbox"><div class="tk">Units</div><div class="tv up">+0.5u</div></div>
         </div>
-        <div class="tsub">graded at the actual FanDuel line + odds · 1 pending · ROI +11%</div>
+        <div class="tsub">graded at the actual FanDuel line + odds · 4 pending · ROI +11%</div>
       </div><div class="tcard"><div class="thead">🏓 Other TT leagues <span class="tsh">shadow · not bet</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>Setka Cup</span><span>11-6</span><span>65%</span><span class="up">+3.2u</span></div><div class="ttrkrow"><span>Liga Pro</span><span>12-8</span><span>60%</span><span class="up">+2.0u</span></div><div class="ttrkrow"><span>TT Cup</span><span>12-8</span><span>60%</span><span class="up">+2.0u</span></div><div class="ttrkrow"><span>Setka W</span><span>2-4</span><span>33%</span><span class="down">-2.3u</span></div></div><div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div><div class="tcard"><div class="thead">🎯 Injury-timing CLV</div><div class="tsub">Accumulating <b>107/20</b> shadows over <b>4/5</b> slates — one night's shadows are correlated, so the "are we beating the close?" verdict waits for breadth. This is the proof the timing edge is real before scaling stakes.</div></div>
   </div>
   <div class="foot">Auto-generated on GitHub · self-refreshing · quarter-Kelly unit sizing</div>
@@ -389,6 +396,19 @@
       if (r2.ok){ var d2 = await r2.json(); var mp = {}; (d2.elite_h2h || []).forEach(function(e){ mp[_ttKey(e.p1n, e.p2n)] = e; }); _ttH2H = mp; }
     } catch(e){}
     window._applyTTTotals();
+    _ttStamp();
+  };
+  function _ttStamp(){
+    var el = document.getElementById('rfchk');
+    if (!el) return;
+    var d = new Date(), p = function(n){ return (n<10?'0':'') + n; };
+    el.textContent = '\u00B7 checked ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+  }
+  window.manualRefresh = async function(btn){
+    if (btn){ btn.classList.add('spin'); btn.disabled = true; }
+    try { await window._fetchTTTotals(); } catch(e){}       // freshest TT picks (raw fd_board + tt_board)
+    try { if (typeof bgRefresh === 'function') await bgRefresh(); } catch(e){}  // latest baked WNBA/tracker panels
+    if (btn){ setTimeout(function(){ btn.classList.remove('spin'); btn.disabled = false; }, 450); }
   };
   window._fetchTTTotals();
   setInterval(window._fetchTTTotals, 60000);
