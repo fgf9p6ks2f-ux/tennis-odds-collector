@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T22:55:21Z",
+ "captured_at": "2026-07-16T23:00:58Z",
  "matches": [
   {
    "event_id": 35832498,
@@ -8,7 +8,7 @@
    "p1_norm": "jan orszulik",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T22:50:00.000Z",
-   "line": 70.5,
+   "line": 72.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,18 +19,7 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T22:55:00.000Z",
-   "line": 72.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35832503,
-   "p1": "Kamil Klocek",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "kamil klocek",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-16T22:55:00.000Z",
-   "line": 75.5,
+   "line": 71.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -63,9 +52,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-16T23:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35832512,
