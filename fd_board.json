@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T10:18:41Z",
+ "captured_at": "2026-07-16T10:23:17Z",
  "matches": [
   {
    "event_id": 35830005,
@@ -8,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T10:05:00.000Z",
-   "line": 85.5,
-   "over_odds": 105,
-   "under_odds": -145
+   "line": 86.5,
+   "over_odds": 150,
+   "under_odds": -220
   },
   {
    "event_id": 35830010,
@@ -19,9 +19,9 @@
    "p1_norm": "michal durda",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-16T10:10:00.000Z",
-   "line": 73.5,
+   "line": 52.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35830011,
@@ -31,8 +31,8 @@
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-16T10:10:00.000Z",
    "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35830024,
@@ -41,9 +41,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-16T10:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830033,
