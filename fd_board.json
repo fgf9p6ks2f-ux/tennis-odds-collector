@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T05:56:07Z",
+ "captured_at": "2026-07-16T06:00:32Z",
  "matches": [
-  {
-   "event_id": 35829290,
-   "p1": "Rafal Gajda",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-16T05:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35829292,
-   "p1": "Jakub Zochniak",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-16T05:40:00.000Z",
-   "line": 96.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35829309,
    "p1": "Krzysztof Hetnar",
@@ -30,9 +8,20 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T05:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35829343,
+   "p1": "Patryk Mecik",
+   "p2": "Adrian Burkacki",
+   "p1_norm": "patryk mecik",
+   "p2_norm": "adrian burkacki",
+   "open_date": "2026-07-16T05:55:00.000Z",
+   "line": 60.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829323,
@@ -41,9 +30,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-16T06:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829324,
@@ -88,6 +77,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35829353,
+   "p1": "Jacek Mitas",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "jacek mitas",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-16T06:25:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
