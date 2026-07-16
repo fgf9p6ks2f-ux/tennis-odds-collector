@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T03:14:42Z",
+ "captured_at": "2026-07-16T03:19:33Z",
  "matches": [
-  {
-   "event_id": 35828791,
-   "p1": "Adrian Wiecek",
-   "p2": "Artur Daniel",
-   "p1_norm": "adrian wiecek",
-   "p2_norm": "artur daniel",
-   "open_date": "2026-07-16T03:00:00.000Z",
-   "line": 53.5,
-   "over_odds": -135,
-   "under_odds": 100
-  },
-  {
-   "event_id": 35828792,
-   "p1": "Rafal Gajda",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-16T03:00:00.000Z",
-   "line": 68.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35828806,
    "p1": "Jakub Kaczmarek",
@@ -30,7 +8,7 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-16T03:10:00.000Z",
-   "line": 80.5,
+   "line": 74.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +19,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-16T03:25:00.000Z",
-   "line": 69.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35828814,
@@ -88,6 +66,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35828827,
+   "p1": "Josef Braun",
+   "p2": "Patrik Klos",
+   "p1_norm": "josef braun",
+   "p2_norm": "patrik klos",
+   "open_date": "2026-07-16T03:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
