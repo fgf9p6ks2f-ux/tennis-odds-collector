@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T19:32:41Z",
+ "captured_at": "2026-07-16T19:37:17Z",
  "matches": [
-  {
-   "event_id": 35832244,
-   "p1": "Jerzy Debski",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "jerzy debski",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-16T19:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35832245,
    "p1": "Jaroslaw Rolak",
@@ -19,20 +8,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T19:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832269,
-   "p1": "Wojciech Wojtaszczyk",
-   "p2": "Karol Jablonski",
-   "p1_norm": "wojciech wojtaszczyk",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-16T19:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832276,
@@ -66,6 +44,50 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832293,
+   "p1": "Pawel Kurek",
+   "p2": "Rafal Idaczyk",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "rafal idaczyk",
+   "open_date": "2026-07-16T20:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35832305,
+   "p1": "Jakub Cyndera",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "jakub cyndera",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-16T20:05:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832306,
+   "p1": "Patryk Jendrzejewski",
+   "p2": "Szymon Sporek",
+   "p1_norm": "patryk jendrzejewski",
+   "p2_norm": "szymon sporek",
+   "open_date": "2026-07-16T20:05:00.000Z",
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35832307,
+   "p1": "Mikolaj Lukaszewski",
+   "p2": "Kamil Klocek",
+   "p1_norm": "mikolaj lukaszewski",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-16T20:05:00.000Z",
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
