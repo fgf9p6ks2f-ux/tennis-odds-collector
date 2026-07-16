@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T07:52:52Z",
+ "captured_at": "2026-07-16T07:59:12Z",
  "matches": [
-  {
-   "event_id": 35829477,
-   "p1": "Grzegorz Poliniewicz",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "grzegorz poliniewicz",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-16T07:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35829489,
    "p1": "Grzegorz Adamiak",
@@ -19,20 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-16T07:45:00.000Z",
-   "line": 58.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35829490,
-   "p1": "Mariusz Baron",
-   "p2": "Michal Durda",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-16T07:45:00.000Z",
    "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829496,
@@ -41,9 +19,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T07:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829500,
@@ -88,6 +66,28 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35829831,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-16T08:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35829832,
+   "p1": "Oliver Vincenec",
+   "p2": "Adrian Burkacki",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "adrian burkacki",
+   "open_date": "2026-07-16T08:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
