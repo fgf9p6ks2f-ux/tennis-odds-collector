@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T23:39:51Z",
+ "captured_at": "2026-07-16T23:45:27Z",
  "matches": [
-  {
-   "event_id": 35832528,
-   "p1": "Aleksander Barton",
-   "p2": "Dawid Pyrek",
-   "p1_norm": "aleksander barton",
-   "p2_norm": "dawid pyrek",
-   "open_date": "2026-07-16T23:30:00.000Z",
-   "line": 59.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35832532,
    "p1": "Tomasz Filbrandt",
@@ -19,9 +8,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-16T23:35:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 58.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832537,
@@ -31,8 +20,8 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T23:45:00.000Z",
    "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832547,
@@ -55,6 +44,28 @@
    "line": 81.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35832558,
+   "p1": "Kazimierz Rybak",
+   "p2": "Jerzy Debski",
+   "p1_norm": "kazimierz rybak",
+   "p2_norm": "jerzy debski",
+   "open_date": "2026-07-17T00:10:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832559,
+   "p1": "Michal Skorski",
+   "p2": "Kamil Klocek",
+   "p1_norm": "michal skorski",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-17T00:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
