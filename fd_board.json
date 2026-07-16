@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T13:04:40Z",
+ "captured_at": "2026-07-16T13:09:37Z",
  "matches": [
   {
    "event_id": 35830637,
@@ -8,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-16T12:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 72.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35830642,
@@ -19,31 +19,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-16T13:00:00.000Z",
-   "line": 66.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35830645,
-   "p1": "Jakub Glanowski",
-   "p2": "Karol Sulkowski",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "karol sulkowski",
-   "open_date": "2026-07-16T13:05:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35830646,
-   "p1": "Michal Durda",
-   "p2": "Rafal Gajda",
-   "p1_norm": "michal durda",
-   "p2_norm": "rafal gajda",
-   "open_date": "2026-07-16T13:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -102,
-   "under_odds": -132
+   "line": 46.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35830650,
