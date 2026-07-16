@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T06:36:13Z",
+ "captured_at": "2026-07-16T06:41:55Z",
  "matches": [
-  {
-   "event_id": 35829344,
-   "p1": "Waldemar Glanowski",
-   "p2": "Mariusz Adamus",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "mariusz adamus",
-   "open_date": "2026-07-16T06:20:00.000Z",
-   "line": 89.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35829353,
    "p1": "Jacek Mitas",
@@ -19,9 +8,9 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-16T06:25:00.000Z",
-   "line": 84.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829361,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "josef braun",
    "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829362,
@@ -41,7 +30,7 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 82.5,
+   "line": 91.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +41,9 @@
    "p1_norm": "bartosz sulkowski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829406,
@@ -63,9 +52,9 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 65.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829385,
@@ -74,7 +63,7 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T06:45:00.000Z",
-   "line": 78.5,
+   "line": 77.5,
    "over_odds": -116,
    "under_odds": -116
   },
@@ -85,9 +74,9 @@
    "p1_norm": "krzysztof wloczko",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T06:50:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35829409,
