@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T17:45:36Z",
+ "captured_at": "2026-07-16T17:50:12Z",
  "matches": [
   {
    "event_id": 35832096,
@@ -8,9 +8,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-16T17:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 53.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832107,
@@ -19,9 +19,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-16T17:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832125,
