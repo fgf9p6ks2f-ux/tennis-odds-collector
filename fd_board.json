@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T11:02:04Z",
+ "captured_at": "2026-07-16T11:06:47Z",
  "matches": [
   {
    "event_id": 35830080,
@@ -8,9 +8,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T10:50:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830094,
@@ -19,9 +19,9 @@
    "p1_norm": "szymon sporek",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T10:55:00.000Z",
-   "line": 85.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35830103,
@@ -30,9 +30,20 @@
    "p1_norm": "michal minda",
    "p2_norm": "jacek mitas",
    "open_date": "2026-07-16T11:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 58.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35830104,
+   "p1": "Sebastian Juzek",
+   "p2": "Igor Szymanski",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-16T11:00:00.000Z",
+   "line": 56.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830106,
@@ -41,9 +52,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T11:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830470,
@@ -88,6 +99,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830498,
+   "p1": "Mariusz Adamus",
+   "p2": "Krzysztof Hetnar",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "krzysztof hetnar",
+   "open_date": "2026-07-16T11:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
