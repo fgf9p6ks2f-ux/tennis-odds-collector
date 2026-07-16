@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T07:39:39Z",
+ "captured_at": "2026-07-16T07:44:03Z",
  "matches": [
-  {
-   "event_id": 35829456,
-   "p1": "Jakub Folwarski",
-   "p2": "Artur Daniel",
-   "p1_norm": "jakub folwarski",
-   "p2_norm": "artur daniel",
-   "open_date": "2026-07-16T07:20:00.000Z",
-   "line": 104.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
   {
    "event_id": 35829467,
    "p1": "Waldemar Glanowski",
@@ -19,9 +8,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T07:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 95.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829470,
@@ -30,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-16T07:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829477,
@@ -41,9 +30,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-16T07:40:00.000Z",
-   "line": 82.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829489,
@@ -64,8 +53,8 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-16T07:45:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35829496,
@@ -110,6 +99,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35829823,
+   "p1": "Sebastian Juzek",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T08:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
