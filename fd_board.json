@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-16T04:50:01Z",
+ "captured_at": "2026-07-16T04:54:20Z",
  "matches": [
-  {
-   "event_id": 35828875,
-   "p1": "Patrik Klos",
-   "p2": "Artur Daniel",
-   "p1_norm": "patrik klos",
-   "p2_norm": "artur daniel",
-   "open_date": "2026-07-16T04:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35828842,
-   "p1": "Oliver Vincenec",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-16T04:40:00.000Z",
-   "line": 55.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35828885,
-   "p1": "Dawid Pyrek",
-   "p2": "Michal Machelski",
-   "p1_norm": "dawid pyrek",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-16T04:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35828981,
    "p1": "Jacek Mitas",
@@ -41,9 +8,9 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T04:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35828904,
