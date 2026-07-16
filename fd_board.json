@@ -1,50 +1,6 @@
 {
- "captured_at": "2026-07-16T07:30:56Z",
+ "captured_at": "2026-07-16T07:35:19Z",
  "matches": [
-  {
-   "event_id": 35829439,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-16T07:10:00.000Z",
-   "line": 107.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35829450,
-   "p1": "Jacek Mitas",
-   "p2": "Kamil Kurowski",
-   "p1_norm": "jacek mitas",
-   "p2_norm": "kamil kurowski",
-   "open_date": "2026-07-16T07:15:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35829454,
-   "p1": "Kamil Rudomina",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "kamil rudomina",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-16T07:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35829455,
-   "p1": "Igor Szymanski",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-16T07:20:00.000Z",
-   "line": 63.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35829456,
    "p1": "Jakub Folwarski",
@@ -52,9 +8,20 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T07:20:00.000Z",
-   "line": 93.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35829467,
+   "p1": "Waldemar Glanowski",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-16T07:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829470,
@@ -64,8 +31,8 @@
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-16T07:35:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35829477,
@@ -110,6 +77,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35829500,
+   "p1": "Patryk Mecik",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "patryk mecik",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-16T08:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
