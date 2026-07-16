@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T18:04:05Z",
+ "captured_at": "2026-07-16T18:08:37Z",
  "matches": [
   {
    "event_id": 35832128,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T18:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35832135,
@@ -44,6 +44,39 @@
    "line": 72.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832160,
+   "p1": "Kacper Glazowski",
+   "p2": "Patryk Jendrzejewski",
+   "p1_norm": "kacper glazowski",
+   "p2_norm": "patryk jendrzejewski",
+   "open_date": "2026-07-16T18:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832161,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Jakub Cyndera",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "jakub cyndera",
+   "open_date": "2026-07-16T18:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832162,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-16T18:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
