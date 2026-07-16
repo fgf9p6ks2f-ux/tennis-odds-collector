@@ -108,7 +108,7 @@ def collect():
         if p["min"] >= 20 or p["pts"] >= 10:
             outs_by_team[p["team"]].append((name, p))
 
-    alerts, preds, proj_rows = [], [], []
+    alerts, preds, proj_rows, cold_spots = [], [], [], []
     log_cache = {}                                   # fetch each player's game log at most once
 
     def glog(pid):
@@ -188,6 +188,10 @@ def collect():
                                         "assists": pa0["proj_ast"]}, pn0,
                                        tip=tips.get(team), tier="n0_cold")
                     for e in cold:
+                        cold_spots.append({"player": n, "team": team, "star": out_full,
+                                           "status": "OUT", "sit": 1.0, "lead": None,
+                                           "conf": lbl, "proj_min": round(proj0, 1),
+                                           "date": today, "cold": True, **e})
                         alerts.append((e["ev"], f"n0|{today}|{n}|{e['stat']}|{e['line']:g}",
                             f"⚡COLD {out_label} OUT -> {_short(n)} STARTS ({lbl}) "
                             f"{e['stat'][:3]} o{e['line']:g} {T._am(e['dec'])} | "
@@ -365,8 +369,42 @@ def collect():
     # so both push paths (wnba_alert.main + wnba_watch) surface them via the same dedup.
     watch = T.questionable_beneficiaries(pl, playing, matchups, lines, rates, inj,
                                          out_names, outs_by_team, glog=glog)
+    for s in watch:
+        s["date"] = today
+    # TOMORROW'S CONTINGENT PLAYS (2026-07-16, user): next-day lines post the evening before,
+    # while tomorrow's stars are still Questionable — the widest version of the timing edge.
+    # Same machinery on tomorrow's slate; spots carry date + the actual posted line.
+    try:
+        tom_dt = datetime.datetime.now(T.ET) + datetime.timedelta(days=1)
+        tom_ymd, tom_iso = tom_dt.strftime("%Y%m%d"), tom_dt.strftime("%Y-%m-%d")
+        matchups2 = T.tonight_matchups(tom_ymd)
+        playing2 = set(matchups2)
+        if playing2:
+            tips2 = T.tip_times(tom_ymd)
+            out_names2, outs_by_team2 = set(), defaultdict(list)
+            for nm2, st2 in inj.items():
+                p2 = pl.get(nm2)
+                if (p2 and p2["team"] in playing2 and st2 in ("Out", "Doubtful")
+                        and not T.confirmed_playing(nm2, p2["team"]) and T.genuinely_out(nm2)):
+                    out_names2.add(nm2)
+                    if p2["min"] >= 20 or p2["pts"] >= 10:
+                        outs_by_team2[p2["team"]].append((nm2, p2))
+            watch2 = T.questionable_beneficiaries(pl, playing2, matchups2, lines, rates, inj,
+                                                  out_names2, outs_by_team2, glog=glog,
+                                                  date=tom_iso, tips=tips2)
+            for s in watch2:
+                s["date"] = tom_iso
+            watch += watch2
+    except Exception as e:
+        print(f"tomorrow watchlist skipped: {str(e)[:80]}")
+    watch += cold_spots                                  # ⚡COLD spots -> dashboard too
     _write_watchlist(watch, today)                       # dashboard JSON (separate from the ledger)
     for s in sorted(watch, key=lambda s: -(s.get("ev") or 0)):
+        if s.get("cold"):
+            continue                                     # already ntfy'd by the n0 branch
+        if (s.get("sit") or 0) <= T.SIT_GATE:
+            continue                                     # dashboard shows it; don't PING unlikely sits
+        tmrw = "TMRW " if s.get("date") not in (None, today) else ""
         sd = "o" if s["side"] == "over" else "u"
         hits = round(s["hit"] * s["n"])
         ctag = {"confirmed": " ✓STARTING", "bench": " ⚠NOT STARTING",
@@ -375,8 +413,8 @@ def collect():
         # lead time is the tell: a LATE-breaking Q usually sits (and is the widest timing edge)
         ltag = (f", {'LATE ' if lead < 6 else ''}Q'd {lead:.0f}h pre-tip" if lead is not None else "")
         alerts.append((s["ev"] - 1.0,                    # sort BELOW firm bets (never outrank a real bet)
-            f"watch|{today}|{s['player']}|{s['stat']}|{s['line']}",
-            f"{s['star']} {s['status'].upper()} (LIKELY OUT {s['sit']*100:.0f}%) -> "
+            f"watch|{s.get('date', today)}|{s['player']}|{s['stat']}|{s['line']}",
+            f"{tmrw}{s['star']} {s['status'].upper()} (LIKELY OUT {s['sit']*100:.0f}%) -> "
             f"{_short(s['player'])} {s['stat'][:3]} "
             f"{sd}{s['line']:g} {T._am(s['dec'])} | {hits}-{s['n']-hits} {s['hit']*100:.0f}% "
             f"| proj {s['elev_avg']:g} +{s['ev']*100:.0f}%EV{ltag}{ctag}"))

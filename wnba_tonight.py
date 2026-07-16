@@ -633,12 +633,12 @@ def _espn(path):
     return r.json() if r.status_code == 200 else {}
 
 
-def tonight_matchups():
-    """{team abbrev: opponent abbrev} for TODAY's (US Eastern) non-final games. Query the
-    explicit ET date, NOT ESPN's default /scoreboard — the default stays stuck on
-    yesterday's finished slate until late morning ET, so the early crons would see zero
-    games. All four crons (18/21/23 + 00:30 UTC) map to the same ET slate date."""
-    et_date = dt.datetime.now(dt.timezone.utc).astimezone(ET).strftime("%Y%m%d")
+def tonight_matchups(date=None):
+    """{team abbrev: opponent abbrev} for the given ET slate date (default TODAY) — non-final
+    games. Query the explicit ET date, NOT ESPN's default /scoreboard — the default stays
+    stuck on yesterday's finished slate until late morning ET. date='YYYYMMDD' (e.g. tomorrow
+    for the next-day contingent watchlist)."""
+    et_date = date or dt.datetime.now(dt.timezone.utc).astimezone(ET).strftime("%Y%m%d")
     out = {}
     for e in _espn(f"scoreboard?dates={et_date}").get("events", []):
         if e.get("status", {}).get("type", {}).get("state") == "post":
@@ -828,12 +828,12 @@ def sit_prob(status, lead_hours=None):
     return tbl.get(b, tbl.get("unk", 0.5))
 
 
-def tip_times():
-    """{team_abbr: tip_datetime_naive_utc} for today's slate from ESPN — for lead-time (how long
-    before tip a questionable tag first appeared). Empty on any fetch/parse failure."""
+def tip_times(date=None):
+    """{team_abbr: tip_datetime_naive_utc} for the given ET slate date (default today) — for
+    lead-time (how long before tip a questionable tag first appeared). Empty on failure."""
     out = {}
     try:
-        et = dt.datetime.now(ET).strftime("%Y%m%d")
+        et = date or dt.datetime.now(ET).strftime("%Y%m%d")
         for e in _espn(f"scoreboard?dates={et}").get("events", []):
             try:
                 tip = dt.datetime.fromisoformat((e.get("date") or "").replace("Z", "+00:00")) \
@@ -889,7 +889,7 @@ def questionable_stars(pl, playing, inj, firm_out, date=None, tips=None, first_s
 
 
 def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_out, firm_by_team,
-                               glog=None):
+                               glog=None, date=None, tips=None):
     """Provisional +EV OVERS that open up IF tonight's questionable stars sit. Out-set = the team's
     firm outs PLUS the questionable star(s), so each spot is the incremental upside on top of any
     firm play. Returns [{player, team, star, status, sit, conf, ...prop_edge fields}] for an early
@@ -897,7 +897,7 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
     that graduates into the fully modelled firm pipeline the instant the star is ruled out."""
     glog = glog or W.game_log
     spots = []
-    for team, qs in questionable_stars(pl, playing, inj, firm_out).items():
+    for team, qs in questionable_stars(pl, playing, inj, firm_out, date=date, tips=tips).items():
         outs = list(firm_by_team.get(team, [])) + [(n, p) for n, _, p, _, _ in qs]
         try:
             out_logs = [glog(p["id"]) for _, p in outs]
@@ -912,8 +912,10 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
         star = "+".join(n.split()[-1] for n, _, _, _, _ in qs)
         status = qs[0][1] if len(qs) == 1 else "Questionable"
         sit = min(t[3] for t in qs)                           # conservative: scenario needs all to sit
-        if sit <= SIT_GATE:                                   # more likely to PLAY than sit -> don't surface
-            continue                                          # (user: only notify a questionable star likely OUT)
+        # SIT-GATE MOVED TO THE NTFY LAYER (2026-07-16, user): the DASHBOARD watchlist shows every
+        # impact-Q contingent play with its posted line regardless of sit% — "plays contingent on
+        # the questionable player being out is how we beat the books" (position while lines are
+        # stale). Phone pings stay gated at SIT_GATE in wnba_alert so unlikely sits don't spam.
         lead = min((t[4] for t in qs if t[4] is not None), default=None)   # most late-breaking tag
         out_here = {n for n, _ in outs}
         team_pl = {n: v for n, v in pl.items()
@@ -927,7 +929,12 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
             if not blog:
                 continue
             w = W.wowy_multi(blog, out_logs)
-            if w["n_without"] < 2:
+            if w["n_without"] < 2 and len(out_logs) > 1:
+                # combo (Clark+Boston) rarely has 2+ games with ALL out — best single-out
+                # split as the proxy, same fallback the firm pipeline uses
+                cands = [W.wowy(blog, ol) for ol in out_logs]
+                w = max(cands, key=lambda x: x["n_without"])
+            if w["n_without"] < 1:
                 continue
             proj = w["without"]["min"]["mean"]
             recent5 = [g["min"] for g in blog[:5] if g["min"] > 8]   # newest-first; only lifts
