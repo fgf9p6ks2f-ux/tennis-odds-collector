@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T09:22:30Z",
+ "captured_at": "2026-07-16T09:27:25Z",
  "matches": [
-  {
-   "event_id": 35829920,
-   "p1": "Krzysztof Hetnar",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "krzysztof hetnar",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-16T09:05:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35829938,
    "p1": "Adrian Wiecek",
@@ -19,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T09:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829939,
@@ -30,9 +19,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T09:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829954,
@@ -41,20 +30,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T09:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35829955,
-   "p1": "Aleksander Lilien",
-   "p2": "Jacek Mitas",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "jacek mitas",
-   "open_date": "2026-07-16T09:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829971,
@@ -88,6 +66,39 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35829982,
+   "p1": "Sebastian Juzek",
+   "p2": "Rafal Gajda",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "rafal gajda",
+   "open_date": "2026-07-16T09:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35829983,
+   "p1": "Michal Minda",
+   "p2": "Karol Sulkowski",
+   "p1_norm": "michal minda",
+   "p2_norm": "karol sulkowski",
+   "open_date": "2026-07-16T09:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35829997,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Piotr Brozek",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "piotr brozek",
+   "open_date": "2026-07-16T09:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
