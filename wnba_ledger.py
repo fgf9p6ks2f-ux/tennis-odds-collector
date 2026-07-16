@@ -222,11 +222,49 @@ def grade():
     over/under."""
     con = _con()
     rows = con.execute(
-        "SELECT rowid, pred_date, player, stat, line, opp FROM predictions WHERE graded=0"
+        "SELECT rowid, pred_date, player, stat, line, opp, team FROM predictions WHERE graded=0"
     ).fetchall()
     if not rows:
         con.close()
         return 0
+    # POSTPONEMENT SWEEP (2026-07-16: NY@DAL postponed AFTER the Stewart spot was logged —
+    # append-only state kept a "tonight" play for a game that won't happen). For each open
+    # slate date, any game whose scoreboard status says Postponed/Canceled voids its spots:
+    # result='void', graded=1 — excluded from the record like 'push' (FD voids the real bet
+    # too). Runs BEFORE the roster gate so voids land even when ESPN throttles rosters.
+    try:
+        def _sb(date):
+            req = urllib.request.Request(
+                "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/"
+                f"scoreboard?dates={date.replace('-', '')}",
+                headers={"User-Agent": "Mozilla/5.0"})
+            return json.load(urllib.request.urlopen(req, timeout=20))
+        voided = 0
+        for d in sorted({r[1] for r in rows}):
+            dead = []                                   # [{ABBR, ABBR}] postponed pairs
+            for ev in _sb(d).get("events", []):
+                desc = (((ev.get("status") or {}).get("type") or {}).get("description") or "")
+                if not any(k in desc.lower() for k in ("postpon", "cancel")):
+                    continue
+                comp = (ev.get("competitions") or [{}])[0].get("competitors", [])
+                abs_ = {(c.get("team", {}).get("abbreviation") or "").upper() for c in comp}
+                if len(abs_) == 2:
+                    dead.append(abs_)
+            if not dead:
+                continue
+            for rowid, pd, player, stat, line, opp, team in rows:
+                if pd == d and {(team or "").upper(), (opp or "").upper()} in dead:
+                    con.execute("UPDATE predictions SET result='void', graded=1 "
+                                "WHERE rowid=? AND graded=0", (rowid,))
+                    voided += 1
+        if voided:
+            con.commit()
+            print(f"grade: voided {voided} spot(s) on postponed/canceled games")
+            rows = [r for r in rows
+                    if con.execute("SELECT graded FROM predictions WHERE rowid=?",
+                                   (r[0],)).fetchone()[0] == 0]
+    except Exception as e:
+        print(f"grade: postponement sweep skipped: {str(e)[:80]}")
     # name->id from the cheap guarded roster map (NOT players()'s ~180-call rebuild, which throttles
     # and used to abort the whole pass -> final bets sat ungraded, inflating the record).
     ids = W.roster_ids()
@@ -236,7 +274,7 @@ def grade():
         return 0
     graded = 0
     log_cache = {}
-    for rowid, pred_date, player, stat, line, opp in rows:
+    for rowid, pred_date, player, stat, line, opp, team in rows:
         try:                                          # one bad row must never roll back the batch
             actual = None
             pid = ids.get(player)
@@ -290,6 +328,8 @@ def report():
         return
     by = {}
     for stat, res, line, elev, savg, actual, odds, stale, side in rows:
+        if res in ("push", "void"):                    # no-action results — not W, not L
+            continue
         won = res == side                                              # side-aware win
         by.setdefault(stat, []).append((won, elev, actual, odds, side))
         by.setdefault("ALL", []).append((won, elev, actual, odds, side))
@@ -310,7 +350,7 @@ def train():
     apply. Honest until then: reports how far off the sample is."""
     con = _con()
     rows = con.execute(
-        "SELECT elev_avg, actual FROM predictions WHERE graded=1 AND result!='push'"
+        "SELECT elev_avg, actual FROM predictions WHERE graded=1 AND result IN ('over','under')"
     ).fetchall()
     con.close()
     n = len(rows)
