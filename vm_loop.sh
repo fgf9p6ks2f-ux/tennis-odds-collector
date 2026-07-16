@@ -13,7 +13,12 @@ collectors(){
   python3 fd_collect.py --wnba >/dev/null 2>&1 || true
   python3 dk_collect.py --wnba >/dev/null 2>&1 || true
   python3 wnba_ledger.py --grade >/dev/null 2>&1 || true
-  python3 wnba_clv.py --close >/dev/null 2>&1 || true; }
+  python3 wnba_clv.py --close >/dev/null 2>&1 || true
+  # TT Elite FanDuel.ca total-line board — the VM is the only host that can reach FanDuel.ca
+  # (Actions' US IP is geo-blocked). Writes fd_board.json; push() commits it to this PUBLIC
+  # repo, and tt-elite's daily.yml fetches it via raw.githubusercontent to grade Elite at real
+  # lines. Tiny (a listing + ~7 event calls, exits) so it can't reprise the OOM thrash.
+  python3 fd_tt.py --board --captured-at "$(date -u +%FT%TZ)" >/dev/null 2>&1 || true; }
 
 fullscan(){
   python3 wnba_alert.py >/dev/null 2>&1 || true
