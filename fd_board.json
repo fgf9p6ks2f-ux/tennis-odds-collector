@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-16T08:52:56Z",
+ "captured_at": "2026-07-16T08:57:30Z",
  "matches": [
+  {
+   "event_id": 35829869,
+   "p1": "Rafal Gajda",
+   "p2": "Igor Szymanski",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-16T08:35:00.000Z",
+   "line": 101.5,
+   "over_odds": -240,
+   "under_odds": 170
+  },
   {
    "event_id": 35829871,
    "p1": "Mariusz Adamus",
@@ -8,9 +19,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T08:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35829872,
@@ -19,9 +30,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T08:45:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829913,
@@ -77,6 +88,50 @@
    "line": 72.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35829938,
+   "p1": "Adrian Wiecek",
+   "p2": "Grzegorz Adamiak",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "grzegorz adamiak",
+   "open_date": "2026-07-16T09:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829939,
+   "p1": "Kamil Kurowski",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "kamil kurowski",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-16T09:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35829954,
+   "p1": "Mariusz Baron",
+   "p2": "Igor Szymanski",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-16T09:25:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35829955,
+   "p1": "Aleksander Lilien",
+   "p2": "Jacek Mitas",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "jacek mitas",
+   "open_date": "2026-07-16T09:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
