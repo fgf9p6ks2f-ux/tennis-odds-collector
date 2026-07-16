@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T20:33:46Z",
+ "captured_at": "2026-07-16T20:38:26Z",
  "matches": [
   {
    "event_id": 35832357,
@@ -8,7 +8,7 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-16T20:20:00.000Z",
-   "line": 93.5,
+   "line": 102.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,7 +19,7 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 81.5,
+   "line": 91.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +30,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 82.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832374,
@@ -64,8 +64,19 @@
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-16T21:00:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35832386,
+   "p1": "Jacek Zelezik",
+   "p2": "Adam Staniczek",
+   "p1_norm": "jacek zelezik",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-16T21:05:00.000Z",
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
