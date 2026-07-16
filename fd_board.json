@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T12:17:36Z",
+ "captured_at": "2026-07-16T12:22:17Z",
  "matches": [
-  {
-   "event_id": 35830542,
-   "p1": "Jakub Folwarski",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "jakub folwarski",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-16T12:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35830553,
    "p1": "Karol Wisniewski",
@@ -19,7 +8,7 @@
    "p1_norm": "karol wisniewski",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T12:10:00.000Z",
-   "line": 80.5,
+   "line": 93.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T12:15:00.000Z",
-   "line": 61.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 55.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830558,
@@ -41,9 +30,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "jacek mitas",
    "open_date": "2026-07-16T12:15:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 55.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830573,
@@ -52,9 +41,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T12:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830582,
@@ -75,8 +64,8 @@
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T12:35:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35830597,
