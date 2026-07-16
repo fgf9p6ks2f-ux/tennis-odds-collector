@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T10:43:27Z",
+ "captured_at": "2026-07-16T10:48:05Z",
  "matches": [
   {
    "event_id": 35830048,
@@ -8,9 +8,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35830050,
@@ -19,9 +19,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 89.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35830058,
@@ -30,9 +30,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T10:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35830080,
@@ -88,6 +88,17 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35830470,
+   "p1": "Adrian Wiecek",
+   "p2": "Artur Daniel",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T11:15:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
