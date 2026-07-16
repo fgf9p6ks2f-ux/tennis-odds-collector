@@ -43,17 +43,23 @@ FD_H = {"User-Agent": HUD_H["User-Agent"], "Accept": "application/json"}
 ESPORTS_ETID = 27454571
 
 # hudstats sport code -> ledger sport key, FD competition fragment, totals market
-# fragment, alert tier. Tiers from the 2026-07-08 walk-forward validation on the
-# 30-day window: esoccer 76.5% (z=+16.8) vs pair-median lines -> 0.70; ebasketball
-# only 58-64% pair-aware -> stricter 0.75 and let the ledger judge; efootball
-# under-sampled (28 deep pairs) -> 0.75. Re-tune as gg.sqlite deepens.
+# fragment, tier + SIDES. Re-tuned 2026-07-16 on 24.6k banked results (walk-forward,
+# mid-line grid) + the Jul-8/9 REAL-FanDuel-line window (169 quotes):
+#   nba  OVER-ONLY 0.70/n>=10 -> grid 82.5%; REAL lines 12-1 (+9.06u). Unders LOSE on
+#        real lines (9-12 across sports) — same over-drift as WNBA/TT: H2H history
+#        under-predicts current scoring, so "always over" persists, "always under" decays.
+#   fifa both sides 0.75/n>=15 -> grid 74-75% (symmetric league, matches the ESB
+#        esoccer finding); no real-line sample yet (quotes weren't collected) — stricter
+#        tier until the paper ledger validates.
+#   nfl  OVER-ONLY 0.70/n>=15 -> grid 71.6%; real-line sample too thin to read.
+# Re-tune as the real-line paper record accumulates.
 SPORTS_GG = {
     "fifa": {"sport": "esoccer", "comp": "eSoccer", "market": "total goals",
-             "tier": 0.70, "min_n": 15, "tag": "EsocGG"},
+             "tier": 0.75, "min_n": 15, "sides": {"over", "under"}, "tag": "EsocGG"},
     "nba":  {"sport": "ebasketball", "comp": "eBasketball", "market": "total points",
-             "tier": 0.75, "min_n": 15, "tag": "EbbGG"},
+             "tier": 0.70, "min_n": 10, "sides": {"over"}, "tag": "EbbGG"},
     "nfl":  {"sport": "efootball", "comp": "eFootball", "market": "total points",
-             "tier": 0.75, "min_n": 15, "tag": "EfbGG"},
+             "tier": 0.70, "min_n": 15, "sides": {"over"}, "tag": "EfbGG"},
 }
 
 try:
@@ -215,6 +221,8 @@ def flag_and_log():
         side, rate = ("over", po) if po >= 0.5 else ("under", 1 - po)
         if rate < cfg["tier"]:
             continue
+        if side not in cfg["sides"]:                    # e.g. nba/nfl are OVER-only —
+            continue                                    # unders lose on real lines (9-12)
         odds = b["over"] if side == "over" else b["under"]
         ev = rate * odds - 1
         if ev <= 0:                                     # price too bad even at our rate
@@ -291,6 +299,9 @@ def main():
     ap.add_argument("--backfill", type=int, default=None,
                     help="days of history to pull (first run: 30)")
     ap.add_argument("--no-flags", action="store_true", help="ingest only")
+    ap.add_argument("--notify", action="store_true",
+                    help="send phone alerts for flags (default OFF: paper-first — "
+                         "flags/quotes/ledger run, no pings, until the record validates)")
     args = ap.parse_args()
     con = sqlite3.connect(GG_DB)
     con.executescript(DDL)
@@ -303,10 +314,12 @@ def main():
         return
     try:
         board, alerts, logged = flag_and_log()
-        print(f"FD board: {len(board)} priced events · {logged} new bets logged")
+        print(f"FD board: {len(board)} priced events · {logged} new bets logged"
+              + ("" if args.notify else " (paper — no pings)"))
         for a in alerts[:12]:
             print("  " + a["msg"])
-        notify(alerts)
+        if args.notify:
+            notify(alerts)
     except Exception as e:
         print(f"FD flag pass skipped: {e}")
 

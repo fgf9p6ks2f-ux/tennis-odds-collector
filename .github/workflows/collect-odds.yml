@@ -54,8 +54,12 @@ jobs:
       # BENCHED 2026-07-09 (focus = TT + WNBA): esports/MLB/NFL still COLLECT (data + grading
       # of existing bets preserved) but no NTFY_TOPIC -> no phone pushes. Un-bench = restore
       # NTFY_TOPIC here and drop --no-flags / ACTIVE_SPORTS.
-      - name: "H2H GG esports — results only (benched, --no-flags)"
-        run: python gg_collect.py --no-flags || echo "gg collect skipped"
+      # UN-BENCHED 2026-07-16, PAPER-FIRST: quotes + flags + ledger run every cycle
+      # (validated: nba OVER-only 0.70/n10 went 12-1 on the Jul-8/9 real-line window;
+      # tiers re-tuned in gg_collect.SPORTS_GG). No phone alerts until the paper
+      # record validates — flip by adding --notify (NTFY_TOPIC is already in this job).
+      - name: "H2H GG esports — results + quotes + PAPER flags"
+        run: python gg_collect.py || echo "gg collect skipped"
       - name: "collect mlb totals (benched, no push)"
         env:
           FD_DB: ${{ github.workspace }}/fanduel_props.sqlite
