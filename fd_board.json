@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T14:04:05Z",
+ "captured_at": "2026-07-16T14:09:00Z",
  "matches": [
   {
    "event_id": 35830812,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr brozek",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35830826,
@@ -66,6 +66,28 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830862,
+   "p1": "Josef Braun",
+   "p2": "Grzegorz Adamiak",
+   "p1_norm": "josef braun",
+   "p2_norm": "grzegorz adamiak",
+   "open_date": "2026-07-16T14:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35830863,
+   "p1": "Patrik Klos",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "patrik klos",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-16T14:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
