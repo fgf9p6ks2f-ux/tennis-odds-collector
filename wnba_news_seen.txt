@@ -65,3 +65,4 @@ rw|tejaoblak|Oblak (illness) is questionable for Thur
 rw|janiahbarker|Barker (leg) will be sidelined for the r
 rw|breehall|Hall (coach's decision) is out for Wedne
 rw|breannastewart|Stewart and the Liberty won't play again
+rw|sabrinaionescu|Ionescu and the Liberty won't play Thurs
