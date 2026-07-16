@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T08:43:59Z",
+ "captured_at": "2026-07-16T08:48:27Z",
  "matches": [
-  {
-   "event_id": 35829865,
-   "p1": "Kamil Kurowski",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "kamil kurowski",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-16T08:30:00.000Z",
-   "line": 70.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35829866,
-   "p1": "Adrian Wiecek",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "adrian wiecek",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-16T08:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35829869,
    "p1": "Rafal Gajda",
@@ -30,9 +8,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T08:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829871,
@@ -42,8 +20,8 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T08:45:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829872,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T08:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829913,
