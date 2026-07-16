@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T23:17:37Z",
+ "captured_at": "2026-07-16T23:23:10Z",
  "matches": [
   {
    "event_id": 35832506,
@@ -8,9 +8,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-16T23:10:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832507,
@@ -19,7 +19,7 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-16T23:15:00.000Z",
-   "line": 77.5,
+   "line": 82.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,20 +30,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-16T23:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35832512,
-   "p1": "Michal Skorski",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "michal skorski",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-16T23:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832528,
@@ -64,8 +53,8 @@
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-16T23:35:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35832533,
@@ -86,8 +75,8 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T23:45:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
