@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T22:32:35Z",
+ "captured_at": "2026-07-16T22:38:11Z",
  "matches": [
-  {
-   "event_id": 35832463,
-   "p1": "Mikolaj Lukaszewski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "mikolaj lukaszewski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-16T22:10:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35832484,
    "p1": "Konrad Staszczyk",
@@ -19,31 +8,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T22:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832488,
-   "p1": "Kazimierz Rybak",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "kazimierz rybak",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-16T22:35:00.000Z",
-   "line": 67.5,
-   "over_odds": -110,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832489,
-   "p1": "Michal Skorski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "michal skorski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-16T22:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832494,
@@ -52,9 +19,9 @@
    "p1_norm": "adam staniczek",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T22:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35832498,
@@ -97,8 +64,8 @@
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-16T22:55:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
