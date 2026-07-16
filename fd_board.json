@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T14:38:08Z",
+ "captured_at": "2026-07-16T14:44:51Z",
  "matches": [
   {
    "event_id": 35830862,
@@ -8,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T14:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830863,
@@ -19,31 +19,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T14:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35830869,
-   "p1": "Jakub Glanowski",
-   "p2": "Jacek Mitas",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "jacek mitas",
-   "open_date": "2026-07-16T14:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35830870,
-   "p1": "Michal Durda",
-   "p2": "Igor Szymanski",
-   "p1_norm": "michal durda",
-   "p2_norm": "igor szymanski",
-   "open_date": "2026-07-16T14:40:00.000Z",
-   "line": 55.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 91.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35830881,
@@ -98,6 +76,17 @@
    "open_date": "2026-07-16T15:05:00.000Z",
    "line": 76.5,
    "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35830922,
+   "p1": "Kacper Adamus",
+   "p2": "Karol Jablonski",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-16T15:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
    "under_odds": -118
   }
  ]
