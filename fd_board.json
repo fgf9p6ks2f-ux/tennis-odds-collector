@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-16T10:23:17Z",
+ "captured_at": "2026-07-16T10:27:54Z",
  "matches": [
-  {
-   "event_id": 35830005,
-   "p1": "Patrik Klos",
-   "p2": "Kamil Kurowski",
-   "p1_norm": "patrik klos",
-   "p2_norm": "kamil kurowski",
-   "open_date": "2026-07-16T10:05:00.000Z",
-   "line": 86.5,
-   "over_odds": 150,
-   "under_odds": -220
-  },
-  {
-   "event_id": 35830010,
-   "p1": "Michal Durda",
-   "p2": "Mariusz Baron",
-   "p1_norm": "michal durda",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-16T10:10:00.000Z",
-   "line": 52.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35830011,
-   "p1": "Jakub Glanowski",
-   "p2": "Aleksander Lilien",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "aleksander lilien",
-   "open_date": "2026-07-16T10:10:00.000Z",
-   "line": 92.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35830024,
    "p1": "Krzysztof Hetnar",
@@ -41,9 +8,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-16T10:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830033,
@@ -53,8 +20,8 @@
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T10:25:00.000Z",
    "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830042,
@@ -86,8 +53,8 @@
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T10:35:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35830058,
@@ -99,6 +66,28 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830080,
+   "p1": "Amirreza Abbasi",
+   "p2": "Grzegorz Adamiak",
+   "p1_norm": "amirreza abbasi",
+   "p2_norm": "grzegorz adamiak",
+   "open_date": "2026-07-16T10:50:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830094,
+   "p1": "Szymon Sporek",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "szymon sporek",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-16T10:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
