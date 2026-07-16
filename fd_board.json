@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T23:34:16Z",
+ "captured_at": "2026-07-16T23:39:51Z",
  "matches": [
-  {
-   "event_id": 35832511,
-   "p1": "Mateusz Karpiuk",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "mateusz karpiuk",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-16T23:20:00.000Z",
-   "line": 88.5,
-   "over_odds": -160,
-   "under_odds": 115
-  },
   {
    "event_id": 35832528,
    "p1": "Aleksander Barton",
@@ -19,9 +8,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T23:30:00.000Z",
-   "line": 66.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 59.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35832532,
@@ -30,20 +19,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-16T23:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35832533,
-   "p1": "Kacper Adamus",
-   "p2": "Marian Lebek",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-16T23:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832537,
