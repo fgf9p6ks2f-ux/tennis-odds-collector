@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T16:10:26Z",
+ "captured_at": "2026-07-16T16:15:11Z",
  "matches": [
-  {
-   "event_id": 35831114,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Krzysztof Hetnar",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "krzysztof hetnar",
-   "open_date": "2026-07-16T15:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35831252,
-   "p1": "Jakub Nowak",
-   "p2": "Rafal Idaczyk",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "rafal idaczyk",
-   "open_date": "2026-07-16T16:00:00.000Z",
-   "line": 72.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35831326,
    "p1": "Konrad Staszczyk",
@@ -30,9 +8,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T16:05:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35831336,
@@ -96,9 +74,20 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T16:35:00.000Z",
-   "line": 77.5,
+   "line": 81.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35831461,
+   "p1": "Waldemar Glanowski",
+   "p2": "Krzysztof Hetnar",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "krzysztof hetnar",
+   "open_date": "2026-07-16T16:40:00.000Z",
+   "line": 68.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
