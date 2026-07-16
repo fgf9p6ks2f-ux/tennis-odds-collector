@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T14:09:00Z",
+ "captured_at": "2026-07-16T14:13:49Z",
  "matches": [
   {
    "event_id": 35830812,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr brozek",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 88.5,
-   "over_odds": -135,
-   "under_odds": -105
+   "line": 91.5,
+   "over_odds": 155,
+   "under_odds": -230
   },
   {
    "event_id": 35830826,
@@ -19,9 +19,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T14:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 57.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830832,
@@ -88,6 +88,28 @@
    "line": 74.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35830869,
+   "p1": "Jakub Glanowski",
+   "p2": "Jacek Mitas",
+   "p1_norm": "jakub glanowski",
+   "p2_norm": "jacek mitas",
+   "open_date": "2026-07-16T14:40:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35830870,
+   "p1": "Michal Durda",
+   "p2": "Igor Szymanski",
+   "p1_norm": "michal durda",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-16T14:40:00.000Z",
+   "line": 55.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
