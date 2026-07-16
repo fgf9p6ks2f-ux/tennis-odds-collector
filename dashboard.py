@@ -704,6 +704,7 @@ def _tracker_panel(wnba_rec, tt_json):
     else:
         out += ('<div class="tcard"><div class="thead">🏓 Table tennis</div>'
                 '<div class="tsub">connecting… (needs the tt-elite bridge)</div></div>')
+    out += _gg_tracker_html()                              # GG esports paper record (per sport)
     # INJURY-TIMING CLV — the real proof-of-edge: does the line move toward our read from the moment
     # we flag the injury (open) to the close? Accumulates as slates settle; the verdict is the green
     # light to scale real money.
@@ -906,6 +907,124 @@ def _tt_panel(data):
     leagues are HIDDEN from the board per the user — they still get flagged + logged in the
     background (paper ledger + the per-league tracker), just not shown as bet cards here."""
     return '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
+
+
+# GG record epoch = the validated-rule go-live (nba OVER-only 0.70/n10, fifa both 0.75/n15,
+# nfl OVER-only 0.70/n15; un-benched paper-first 2026-07-16). Bets before this ran the old
+# symmetric rule and are excluded from the tracker — same treatment as the TT Elite reset.
+GG_EPOCH = "2026-07-16T08:30:00"
+_GG_SPORTS = {"esoccer": ("fifa", "Esoc"), "ebasketball": ("nba", "Ebb"),
+              "efootball": ("nfl", "Efb")}
+
+
+def _gg_open_bets():
+    """Open GG paper flags with a future start: [(start_dt, sport, p1, p2, side, line, odds)].
+    From bet_ledger (flags land there at FD's real price)."""
+    f = HERE / "bet_ledger.sqlite"
+    if not f.exists():
+        return []
+    now = dt.datetime.now(dt.timezone.utc)
+    out = []
+    try:
+        con = sqlite3.connect(f"file:{f}?mode=ro", uri=True)
+        rows = con.execute(
+            "SELECT sport, player, side, line, odds_taken, start_time FROM bets "
+            "WHERE sport IN ('esoccer','ebasketball','efootball') AND status='open'").fetchall()
+        con.close()
+    except sqlite3.Error:
+        return []
+    for sport, player, side, line, odds, start in rows:
+        try:
+            st = dt.datetime.fromisoformat(str(start).replace(".000Z", "Z").replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if st <= now or " v " not in (player or ""):
+            continue
+        p1, p2 = player.split(" v ", 1)
+        out.append((st, sport, p1, p2, side, line, odds))
+    return sorted(out, key=lambda r: r[0])
+
+
+def _gg_h2h(code, p1, p2, line, side):
+    """Pair record + hit% oriented to the flagged side at the flagged line, from gg.sqlite."""
+    try:
+        con = sqlite3.connect(f"file:{HERE / 'gg.sqlite'}?mode=ro", uri=True)
+        tots = [r[0] for r in con.execute(
+            "SELECT total FROM gg_matches WHERE sport=? AND total IS NOT NULL "
+            "AND ((p1=? AND p2=?) OR (p1=? AND p2=?))", (code, p1, p2, p2, p1))]
+        con.close()
+    except sqlite3.Error:
+        return ""
+    n = len(tots)
+    if not n:
+        return ""
+    ov = sum(1 for t in tots if t > line)
+    wins = ov if side == "over" else n - ov
+    return f'<span class="ttrec">{wins}-{n - wins}</span> · {round(wins / n * 100)}% {side}'
+
+
+def _gg_panel():
+    """GG esports tab — open paper flags (validated rule: nba/nfl OVER-only 70%, fifa both 75%),
+    each with the FanDuel line + the pair's H2H record at that line. Paper-first: flags log to
+    the ledger and grade automatically; no phone alerts until the record validates."""
+    bets = _gg_open_bets()
+    if not bets:
+        return ('<div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets</h3>'
+                '<div class="ttempty">No open GG flags right now — new ones land every '
+                '~30 min as FanDuel prices upcoming matches (24/7).</div></div>')
+    rows = ""
+    for st, sport, p1, p2, side, line, odds in bets:
+        code, tag = _GG_SPORTS.get(sport, (None, sport))
+        rec = _gg_h2h(code, p1, p2, line, side) if code else ""
+        am = round((odds - 1) * 100) if odds >= 2 else round(-100 / (odds - 1))
+        rows += (f'<div class="ttrow tflat"><div class="ttmain">'
+                 f'<b>{html.escape(p1)}</b> v {html.escape(p2)}'
+                 f'<span class="ttpick">{side.upper()} {line:g}</span></div>'
+                 f'<div class="ttsub">{tag} · {st.astimezone(MT).strftime("%-I:%M %p")} MT'
+                 f'{(" · " + rec) if rec else ""} · {am:+d}</div></div>')
+    return (f'<div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets'
+            f'<span class="ttcnt">{len(bets)}</span></h3>{rows}'
+            f'<div class="ttfoot">bet the highlighted side at that FanDuel line · '
+            f'record &amp; hit% = the pair\'s H2H at that line · paper</div></div>')
+
+
+def _gg_tracker_html():
+    """Tracker card: per-sport GG record since the rule go-live, graded at real FD odds."""
+    f = HERE / "bet_ledger.sqlite"
+    if not f.exists():
+        return ""
+    try:
+        con = sqlite3.connect(f"file:{f}?mode=ro", uri=True)
+        rows = con.execute(
+            "SELECT sport, COALESCE(SUM(result='W'),0), COALESCE(SUM(result='L'),0), "
+            "COALESCE(SUM(CASE WHEN result IN ('W','L') THEN pnl_units ELSE 0 END),0), "
+            "COALESCE(SUM(status='open'),0) FROM bets "
+            "WHERE sport IN ('esoccer','ebasketball','efootball') AND placed_at >= ? "
+            "GROUP BY sport ORDER BY sport", (GG_EPOCH,)).fetchall()
+        con.close()
+    except sqlite3.Error:
+        return ""
+    if not rows:
+        return ('<div class="tcard"><div class="thead">🎮 GG esports '
+                '<span class="tsh">paper · since 7/16</span></div>'
+                '<div class="tsub">record starts as the first flags settle (validated rule: '
+                'nba/nfl over-only 70% · fifa 75%)</div></div>')
+    NAME = {"esoccer": "eSoccer", "ebasketball": "eBasketball", "efootball": "eNFL"}
+    trows, pend = "", 0
+    for sport, w, l, u, op in rows:
+        pend += op
+        n = w + l
+        hit = f"{w / n * 100:.0f}%" if n else "—"
+        ucls = "up" if u > 0 else ("down" if u < 0 else "")
+        trows += (f'<div class="ttrkrow"><span>{NAME.get(sport, sport)}</span>'
+                  f'<span>{w}-{l}</span><span>{hit}</span>'
+                  f'<span class="{ucls}">{u:+.1f}u</span></div>')
+    return (f'<div class="tcard"><div class="thead">🎮 GG esports '
+            f'<span class="tsh">paper · since 7/16</span></div>'
+            f'<div class="ttrk"><div class="ttrkrow ttrkhd"><span>sport</span><span>W-L</span>'
+            f'<span>hit</span><span>units</span></div>{trows}</div>'
+            f'<div class="tsub">graded at real FD odds · {pend} pending · '
+            f'nba/nfl over-only 70% · fifa 75% · alerts off until validated</div></div>')
 
 
 _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
@@ -1134,6 +1253,7 @@ def build():
     wl_html = _watchlist_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
+    gg_html = _gg_panel()
     tracker_html = _tracker_panel((w, l, u), tt_json)
     # Client-side LIVE pre-match totals: refetch fd_board.json (the VM's FanDuel.ca board) from the
     # raw URL every 60s and re-render #tt-totals, so the totals update on their own between the
@@ -1375,6 +1495,7 @@ def build():
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
     <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 TT</div>
+    <div class="tab" data-tab="gg" onclick="showTab('gg')">🎮 GG</div>
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
   </div>
   <div class="panel" id="wnba">
@@ -1399,6 +1520,10 @@ def build():
   <div class="panel hidden" id="tt">
     <h2>Table tennis · by league &amp; game time</h2>
     {tt_html}
+  </div>
+  <div class="panel hidden" id="gg">
+    <h2>GG League esports · paper flags at the FanDuel line</h2>
+    {gg_html}
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record · settles as each event ends</h2>
@@ -1441,7 +1566,7 @@ def build():
       const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
       const y = window.scrollY;
       let touched = false, wnba = false;
-      ['wnba','tt','tracker'].forEach(id => {{
+      ['wnba','tt','gg','tracker'].forEach(id => {{
         const nw = doc.getElementById(id), cur = document.getElementById(id);
         if (nw && cur && nw.innerHTML !== cur.innerHTML) {{
           cur.innerHTML = nw.innerHTML; touched = true; if (id === 'wnba') wnba = true;
