@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T17:54:49Z",
+ "captured_at": "2026-07-16T17:59:27Z",
  "matches": [
-  {
-   "event_id": 35832107,
-   "p1": "Kazimierz Rybak",
-   "p2": "Jakub Cyndera",
-   "p1_norm": "kazimierz rybak",
-   "p2_norm": "jakub cyndera",
-   "open_date": "2026-07-16T17:45:00.000Z",
-   "line": 51.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35832125,
    "p1": "Kacper Adamus",
@@ -53,6 +42,17 @@
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-16T18:20:00.000Z",
    "line": 67.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832146,
+   "p1": "Rafal Idaczyk",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-16T18:25:00.000Z",
+   "line": 72.5,
    "over_odds": -118,
    "under_odds": -112
   }
