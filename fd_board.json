@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-16T10:14:04Z",
+ "captured_at": "2026-07-16T10:18:41Z",
  "matches": [
-  {
-   "event_id": 35829982,
-   "p1": "Sebastian Juzek",
-   "p2": "Rafal Gajda",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "rafal gajda",
-   "open_date": "2026-07-16T09:50:00.000Z",
-   "line": 103.5,
-   "over_odds": -170,
-   "under_odds": 120
-  },
-  {
-   "event_id": 35829997,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Piotr Brozek",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "piotr brozek",
-   "open_date": "2026-07-16T09:55:00.000Z",
-   "line": 100.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
-  {
-   "event_id": 35830001,
-   "p1": "Josef Braun",
-   "p2": "Adrian Wiecek",
-   "p1_norm": "josef braun",
-   "p2_norm": "adrian wiecek",
-   "open_date": "2026-07-16T10:00:00.000Z",
-   "line": 55.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35830005,
    "p1": "Patrik Klos",
@@ -41,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T10:05:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35830010,
@@ -63,7 +30,7 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-16T10:10:00.000Z",
-   "line": 83.5,
+   "line": 92.5,
    "over_odds": -115,
    "under_odds": -120
   },
