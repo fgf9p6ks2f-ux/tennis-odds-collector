@@ -764,31 +764,34 @@ TT_LIVE_JS = """
     var el = document.getElementById('tt-totals');
     if (!el || !_ttBoard) return;
     var now = Date.now(), mid = '\\u00B7';
-    var g = (_ttBoard || [])
-      .filter(function(m){ return m && m.line != null && m.open_date && new Date(m.open_date).getTime() > now; })
-      .sort(function(a,b){ return new Date(a.open_date) - new Date(b.open_date); });
-    if (!g.length){ el.innerHTML = ''; return; }
-    var rows = '';
-    for (var i=0; i<g.length; i++){
-      var m = g[i], line = +m.line;
-      var odds = (m.over_odds != null && m.under_odds != null)
-        ? '<span class="ttodds">O ' + _ttAm(m.over_odds) + ' ' + mid + ' U ' + _ttAm(m.under_odds) + '</span>' : '';
+    var bets = [];
+    (_ttBoard || []).forEach(function(m){
+      if (!m || m.line == null || !m.open_date || new Date(m.open_date).getTime() <= now) return;
       var entry = _ttH2H ? _ttH2H[_ttKey(m.p1_norm, m.p2_norm)] : null;
-      var tots = entry ? entry.totals : null, rec = '';
-      if (tots && tots.length){
-        var ov = 0; for (var j=0; j<tots.length; j++){ if (tots[j] > line) ov++; }
-        var n = tots.length;
-        rec = ' ' + mid + ' <span class="ttrec">' + ov + '-' + (n - ov) + '</span> ' + mid + ' ' + Math.round(ov/n*100) + '% over';
-      }
-      var pk = entry ? entry.pick : null;
-      var pick = pk ? '<span class="ttpick">' + pk.side.toUpperCase() + ' +' + pk.edge + '%</span> ' : '';
-      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(m.p1) + '</b> v ' + _ttEsc(m.p2)
-            + '<span class="ttnum"><span class="tttot">' + line.toString() + '</span>' + odds + '</span></div>'
-            + '<div class="ttsub">' + pick + _ttTime(m.open_date) + ' MT' + rec + '</div></div>';
+      if (!entry || !entry.pick) return;                 // ONLY flagged bets (a +EV side at the FanDuel line)
+      bets.push({m: m, line: +m.line, pick: entry.pick, tots: entry.totals || []});
+    });
+    bets.sort(function(a,b){ return new Date(a.m.open_date) - new Date(b.m.open_date); });
+    if (!bets.length){
+      el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flagged Bets</h3>'
+        + '<div class="ttempty">No Elite bets flagged right now ' + mid + ' nothing on the current FanDuel board clears the edge threshold.</div></div>';
+      return;
     }
-    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Pre-Match Totals'
-      + '<span class="ttcnt">' + g.length + '</span></h3>' + rows
-      + '<div class="ttfoot">green = the +EV side to bet at the FanDuel line ' + mid + ' record & hit% = H2H at that line ' + mid + ' live</div></div>';
+    var rows = '';
+    for (var i=0; i<bets.length; i++){
+      var b = bets[i], side = b.pick.side, tots = b.tots, n = tots.length;
+      var ov = 0; for (var j=0; j<n; j++){ if (tots[j] > b.line) ov++; }
+      var wins = side === 'over' ? ov : n - ov;
+      var rec = n ? '<span class="ttrec">' + wins + '-' + (n - wins) + '</span> ' + mid + ' ' + Math.round(wins/n*100) + '% ' + side
+                  : '<span class="ttrec">no H2H history</span>';
+      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(b.m.p1) + '</b> v ' + _ttEsc(b.m.p2)
+            + '<span class="ttpick">' + side.toUpperCase() + ' ' + b.line + '</span></div>'
+            + '<div class="ttsub">' + _ttTime(b.m.open_date) + ' MT ' + mid + ' ' + rec
+            + ' ' + mid + ' <span class="ttedge">+' + b.pick.edge + '% edge</span></div></div>';
+    }
+    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flagged Bets'
+      + '<span class="ttcnt">' + bets.length + '</span></h3>' + rows
+      + '<div class="ttfoot">bet the highlighted side at that FanDuel line ' + mid + ' record & hit% = the pair H2H at that line ' + mid + ' live</div></div>';
   };
   window._fetchTTTotals = async function(){
     try {
@@ -806,28 +809,22 @@ TT_LIVE_JS = """
 """
 
 
-def _am(o):
-    """American odds -> display string, e.g. -118 or +140."""
-    return f"+{o}" if o and o > 0 else str(o)
-
-
 def _tt_totals_card(tt_json, now=None):
-    """TT Elite pre-match card — each UPCOMING game's FanDuel Total Points line, O/U odds, and
-    the pair's H2H record + hit rate AT that line. Games already started are LIVE and excluded.
-    Line + odds come from fd_board.json (VM FanDuel.ca collector, ~4-min); the record is counted
-    from the pair's raw H2H totals in tt_board.json's elite_h2h (published by Actions) against the
-    line, so it always matches the displayed line."""
+    """TT Elite FLAGGED BETS — only games where the real-line engine has a +EV edge at the FanDuel
+    line. Each row: matchup, MT tip time, the FanDuel line to bet, the OVER/UNDER side, and the
+    pair's H2H record + hit rate AT that line. Names/time/line from fd_board.json (live, VM); pick
+    + H2H totals from tt_board.json elite_h2h (Actions). No board / no edges -> a short note."""
     f = HERE / "fd_board.json"
-    if not f.exists():
-        return ""
-    try:
-        board = json.loads(f.read_text())
-    except (ValueError, OSError):
-        return ""
+    board = {}
+    if f.exists():
+        try:
+            board = json.loads(f.read_text())
+        except (ValueError, OSError):
+            board = {}
     h2h = {frozenset((e.get("p1n"), e.get("p2n"))): e
            for e in (tt_json or {}).get("elite_h2h", [])}
     now = now or dt.datetime.now(dt.timezone.utc)
-    games = []
+    bets = []
     for m in board.get("matches", []):
         od, line = m.get("open_date"), m.get("line")
         if not od or line is None:
@@ -836,52 +833,52 @@ def _tt_totals_card(tt_json, now=None):
             start = dt.datetime.fromisoformat(od.replace("Z", "+00:00"))
         except ValueError:
             continue
-        if start <= now:                        # already started -> live line, exclude
+        if start <= now:                        # started -> live, exclude
             continue
-        games.append((start, m, line))
-    if not games:
-        return ""
-    games.sort(key=lambda g: g[0])
-    rows = ""
-    for start, m, line in games:
-        oo, uo = m.get("over_odds"), m.get("under_odds")
-        odds = (f'<span class="ttodds">O {_am(oo)} · U {_am(uo)}</span>'
-                if oo is not None and uo is not None else "")
         entry = h2h.get(frozenset((m.get("p1_norm"), m.get("p2_norm")))) or {}
-        tots = entry.get("totals")
-        rec = ""
-        if tots:
-            ov = sum(1 for t in tots if t > line)
-            n = len(tots)
-            rec = f' · <span class="ttrec">{ov}-{n - ov}</span> · {round(ov / n * 100)}% over'
-        pk = entry.get("pick")                  # model's +EV side at the FanDuel line (only when there's edge)
-        pick = f'<span class="ttpick">{pk["side"].upper()} +{pk["edge"]}%</span> ' if pk else ""
+        pick = entry.get("pick")
+        if not pick:                            # ONLY flagged bets (a +EV side at the FanDuel line)
+            continue
+        bets.append((start, m, line, pick, entry.get("totals") or []))
+    if not bets:
+        return ('<div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets</h3>'
+                '<div class="ttempty">No Elite bets flagged right now — nothing on the current '
+                'FanDuel board clears the edge threshold. Check back closer to the games.</div></div>')
+    bets.sort(key=lambda b: b[0])
+    rows = ""
+    for start, m, line, pick, tots in bets:
+        side = pick["side"]
+        n = len(tots)
+        over = sum(1 for t in tots if t > line)
+        wins = over if side == "over" else n - over
+        rec = (f'<span class="ttrec">{wins}-{n - wins}</span> · {round(wins / n * 100)}% {side}'
+               if n else '<span class="ttrec">no H2H history</span>')
         rows += (f'<div class="ttrow tflat"><div class="ttmain">'
                  f'<b>{html.escape(m.get("p1", "?"))}</b> v {html.escape(m.get("p2", "?"))}'
-                 f'<span class="ttnum"><span class="tttot">{line:g}</span>{odds}</span></div>'
-                 f'<div class="ttsub">{pick}{start.astimezone(MT).strftime("%-I:%M %p")} MT{rec}</div></div>')
-    return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Pre-Match Totals'
-            f'<span class="ttcnt">{len(games)}</span></h3>{rows}'
-            f'<div class="ttfoot">green = the +EV side to bet at the FanDuel line · '
-            f'record &amp; hit% = H2H at that line</div></div>')
+                 f'<span class="ttpick">{side.upper()} {line:g}</span></div>'
+                 f'<div class="ttsub">{start.astimezone(MT).strftime("%a %-I:%M %p")} MT · {rec}'
+                 f' · <span class="ttedge">+{pick["edge"]}% edge</span></div></div>')
+    return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets'
+            f'<span class="ttcnt">{len(bets)}</span></h3>{rows}'
+            f'<div class="ttfoot">bet the highlighted side at that FanDuel line · '
+            f'record &amp; hit% = the pair\'s H2H at that line</div></div>')
 
 
 def _tt_panel(data):
-    """Table Tennis tab — pre-match FanDuel totals for every upcoming Elite game, then today's
-    flagged bets grouped by league. Each flagged matchup taps open to a per-line hit-rate ladder.
-    The totals live in #tt-totals: server-baked here for instant paint, then the client refetches
-    fd_board.json (raw URL) every 60s and re-renders it live (see the tt-live script)."""
+    """Table Tennis tab — TT Elite FLAGGED BETS at the FanDuel line (in the #tt-totals card,
+    server-baked here then re-rendered live by the tt-live script), followed by the OTHER leagues'
+    flagged bets grouped by league (fixed-line rule; Elite is excluded here since it's the card
+    above). Each non-Elite matchup taps open to a per-line hit-rate ladder."""
     tc = '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
     if not data:
         return tc + ('<div class="empty">Table tennis feed connecting…<br>'
                 '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
     bets = data.get("bets", [])
-    if not bets:
-        return tc + ('<div class="empty">No TT bets flagged right now.<br>'
-                '<span>Fixtures post a few hours before play — check back closer to the slate.</span></div>')
     default_line = data.get("model_line", 74.5)
     by = defaultdict(list)
     for b in bets:
+        if b["league"] == "TT Elite Series":     # Elite lives in the #tt-totals flagged-bets card above
+            continue
         by[b["league"]].append(b)
     out = []
     for league in sorted(by):
@@ -1317,7 +1314,9 @@ def build():
   .tttot {{ color:#5b9dff; font-weight:700; font-size:15px; font-variant-numeric:tabular-nums; }}
   .ttodds {{ color:#8a93a3; font-size:10.5px; font-weight:600; font-variant-numeric:tabular-nums; margin-top:1px; white-space:nowrap; }}
   .ttrec {{ color:#cdd5e0; font-weight:700; font-variant-numeric:tabular-nums; }}
-  .ttpick {{ font-size:11px; font-weight:800; letter-spacing:.02em; padding:1px 7px; border-radius:6px; background:#12271c; color:#8ae0b0; white-space:nowrap; }}
+  .ttpick {{ margin-left:auto; padding-left:10px; font-size:14px; font-weight:800; letter-spacing:.01em; color:#8ae0b0; white-space:nowrap; font-variant-numeric:tabular-nums; }}
+  .ttedge {{ color:#8ae0b0; font-weight:700; }}
+  .ttempty {{ color:#93a0b4; font-size:13px; line-height:1.5; }}
   .ttcnt {{ color:#5b6b82; font-weight:600; font-size:11px; margin-left:6px; }}
   .ttfoot {{ color:#5b6b82; font-size:11px; margin-top:9px; }}
   .ttlad {{ display:none; padding:6px 0 12px; }}
