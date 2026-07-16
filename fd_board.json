@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T15:37:47Z",
+ "captured_at": "2026-07-16T15:41:59Z",
  "matches": [
-  {
-   "event_id": 35830943,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-16T15:25:00.000Z",
-   "line": 91.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35830944,
-   "p1": "Mateusz Karpiuk",
-   "p2": "Jerzy Debski",
-   "p1_norm": "mateusz karpiuk",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-16T15:25:00.000Z",
-   "line": 55.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35830998,
    "p1": "Mariusz Adamus",
@@ -30,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T15:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35831000,
@@ -41,7 +19,7 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-16T15:35:00.000Z",
-   "line": 73.5,
+   "line": 85.5,
    "over_odds": -120,
    "under_odds": -115
   },
