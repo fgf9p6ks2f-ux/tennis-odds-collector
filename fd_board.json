@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T09:11:03Z",
+ "captured_at": "2026-07-16T09:17:35Z",
  "matches": [
   {
    "event_id": 35829913,
@@ -8,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 93.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35829914,
@@ -19,9 +19,9 @@
    "p1_norm": "michal durda",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35829915,
@@ -30,20 +30,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35829916,
-   "p1": "Jakub Glanowski",
-   "p2": "Dominik Solilo",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35829920,
@@ -52,9 +41,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-16T09:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829938,
@@ -110,6 +99,28 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35829975,
+   "p1": "Amirreza Abbasi",
+   "p2": "Jakub Folwarski",
+   "p1_norm": "amirreza abbasi",
+   "p2_norm": "jakub folwarski",
+   "open_date": "2026-07-16T09:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35829979,
+   "p1": "Szymon Sporek",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "szymon sporek",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-16T09:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
