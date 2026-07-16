@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T21:01:20Z",
+ "captured_at": "2026-07-16T21:06:01Z",
  "matches": [
   {
    "event_id": 35832381,
@@ -8,9 +8,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-16T21:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832382,
@@ -19,20 +19,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-16T21:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35832386,
-   "p1": "Jacek Zelezik",
-   "p2": "Adam Staniczek",
-   "p1_norm": "jacek zelezik",
-   "p2_norm": "adam staniczek",
-   "open_date": "2026-07-16T21:05:00.000Z",
-   "line": 73.5,
+   "line": 86.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35832391,
@@ -77,6 +66,17 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832405,
+   "p1": "Pawel Chojnacki",
+   "p2": "Dariusz Molenda",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "dariusz molenda",
+   "open_date": "2026-07-16T21:30:00.000Z",
+   "line": 64.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
