@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T15:51:35Z",
+ "captured_at": "2026-07-16T15:56:29Z",
  "matches": [
   {
    "event_id": 35831000,
@@ -8,20 +8,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-16T15:35:00.000Z",
-   "line": 91.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35831021,
-   "p1": "Patryk Jendrzejewski",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "patryk jendrzejewski",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-16T15:45:00.000Z",
-   "line": 52.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 105.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35831024,
@@ -30,7 +19,7 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-16T15:50:00.000Z",
-   "line": 78.5,
+   "line": 86.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -42,8 +31,8 @@
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T15:55:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35831252,
@@ -88,6 +77,17 @@
    "line": 74.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35831344,
+   "p1": "Piotr Brozek",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "piotr brozek",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-16T16:20:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
