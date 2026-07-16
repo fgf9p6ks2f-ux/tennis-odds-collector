@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T22:15:46Z",
+ "captured_at": "2026-07-16T22:21:23Z",
  "matches": [
   {
    "event_id": 35832460,
@@ -8,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T22:05:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 90.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832463,
@@ -19,9 +19,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T22:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832497,
@@ -30,20 +30,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-16T22:10:00.000Z",
-   "line": 73.5,
+   "line": 86.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35832468,
-   "p1": "Jacek Zelezik",
-   "p2": "Dariusz Molenda",
-   "p1_norm": "jacek zelezik",
-   "p2_norm": "dariusz molenda",
-   "open_date": "2026-07-16T22:20:00.000Z",
-   "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
   },
   {
    "event_id": 35832471,
