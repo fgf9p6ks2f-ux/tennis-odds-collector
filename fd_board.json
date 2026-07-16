@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T08:12:27Z",
+ "captured_at": "2026-07-16T08:16:50Z",
  "matches": [
   {
    "event_id": 35829718,
@@ -8,7 +8,7 @@
    "p1_norm": "josef braun",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T08:05:00.000Z",
-   "line": 92.5,
+   "line": 93.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,9 +19,9 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-16T08:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829823,
@@ -30,7 +30,7 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T08:10:00.000Z",
-   "line": 77.5,
+   "line": 68.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -42,8 +42,8 @@
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-16T08:20:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35829832,
