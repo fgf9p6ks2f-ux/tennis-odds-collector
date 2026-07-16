@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T18:13:01Z",
+ "captured_at": "2026-07-16T18:17:34Z",
  "matches": [
   {
    "event_id": 35832128,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T18:05:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832135,
@@ -19,7 +19,7 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T18:10:00.000Z",
-   "line": 69.5,
+   "line": 52.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -77,6 +77,28 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35832180,
+   "p1": "Pawel Kurek",
+   "p2": "Jakub Nowak",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-16T18:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832181,
+   "p1": "Pawel Chojnacki",
+   "p2": "Jacek Zelezik",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "jacek zelezik",
+   "open_date": "2026-07-16T18:45:00.000Z",
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
