@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T08:35:19Z",
+ "captured_at": "2026-07-16T08:39:22Z",
  "matches": [
   {
    "event_id": 35829831,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-16T08:20:00.000Z",
-   "line": 97.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 99.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35829865,
@@ -19,9 +19,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-16T08:30:00.000Z",
-   "line": 70.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35829866,
@@ -30,9 +30,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-16T08:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829869,
@@ -41,9 +41,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T08:35:00.000Z",
-   "line": 57.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 69.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35829871,
@@ -54,7 +54,7 @@
    "open_date": "2026-07-16T08:45:00.000Z",
    "line": 79.5,
    "over_odds": -118,
-   "under_odds": -112
+   "under_odds": -116
   },
   {
    "event_id": 35829872,
@@ -86,8 +86,8 @@
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T09:00:00.000Z",
    "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35829915,
@@ -107,9 +107,20 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T09:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829920,
+   "p1": "Krzysztof Hetnar",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "krzysztof hetnar",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-16T09:05:00.000Z",
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
