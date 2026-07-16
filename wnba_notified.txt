@@ -115,6 +115,7 @@
 2026-07-15|Natasha Cloud|points|10.5
 2026-07-15|Natasha Cloud|pts_ast|16.5
 2026-07-15|Rae Burrell|pra|20.5
+2026-07-16|Breanna Stewart|pra|31.5
 2026-07-16|Breanna Stewart|pts_ast|22.5
 2026-07-16|Jonquel Jones|dd
 timing|2026-07-12|Azura Stevens|pra|20.5

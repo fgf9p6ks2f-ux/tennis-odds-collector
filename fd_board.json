@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T11:11:28Z",
+ "captured_at": "2026-07-16T11:16:03Z",
  "matches": [
   {
    "event_id": 35830080,
@@ -8,31 +8,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T10:50:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35830094,
-   "p1": "Szymon Sporek",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "szymon sporek",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-16T10:55:00.000Z",
-   "line": 91.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
-  {
-   "event_id": 35830103,
-   "p1": "Michal Minda",
-   "p2": "Jacek Mitas",
-   "p1_norm": "michal minda",
-   "p2_norm": "jacek mitas",
-   "open_date": "2026-07-16T11:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 94.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35830104,
@@ -41,9 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T11:00:00.000Z",
-   "line": 52.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 70.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35830106,
@@ -52,7 +30,7 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T11:05:00.000Z",
-   "line": 80.5,
+   "line": 86.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -64,8 +42,8 @@
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T11:15:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35830480,
@@ -107,6 +85,17 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T11:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35830507,
+   "p1": "Josef Braun",
+   "p2": "Amirreza Abbasi",
+   "p1_norm": "josef braun",
+   "p2_norm": "amirreza abbasi",
+   "open_date": "2026-07-16T11:40:00.000Z",
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
