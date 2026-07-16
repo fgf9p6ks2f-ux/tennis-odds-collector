@@ -43,7 +43,7 @@ def fetch():
     con = sqlite3.connect(DB)
     con.execute("""CREATE TABLE IF NOT EXISTS logs (
         season TEXT, game_id TEXT, date TEXT, team TEXT, player_id INTEGER,
-        player TEXT, min REAL, pts INTEGER, reb INTEGER, ast INTEGER,
+        player TEXT, min REAL, pts INTEGER, reb INTEGER, ast INTEGER, fg3m INTEGER,
         PRIMARY KEY (game_id, player_id))""")
     H = {"Referer": "https://www.nba.com/", "Origin": "https://www.nba.com",
          "Accept": "application/json", "x-nba-stats-origin": "stats",
@@ -61,8 +61,8 @@ def fetch():
                          r[idx["TEAM_ABBREVIATION"]], r[idx["PLAYER_ID"]],
                          r[idx["PLAYER_NAME"]], float(r[idx["MIN"]] or 0),
                          int(r[idx["PTS"]] or 0), int(r[idx["REB"]] or 0),
-                         int(r[idx["AST"]] or 0)))
-        con.executemany("INSERT OR IGNORE INTO logs VALUES (?,?,?,?,?,?,?,?,?,?)", rows)
+                         int(r[idx["AST"]] or 0), int(r[idx["FG3M"]] or 0)))
+        con.executemany("INSERT OR IGNORE INTO logs VALUES (?,?,?,?,?,?,?,?,?,?,?)", rows)
         con.commit()
         print(f"{season}: +{len(rows)} player-game rows")
     con.close()
