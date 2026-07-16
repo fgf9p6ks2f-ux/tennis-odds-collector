@@ -43,7 +43,8 @@ STAT_MAP = {
     "pts + ast": "pts_ast", "points + assists": "pts_ast",
     "reb + ast": "reb_ast", "rebounds + assists": "reb_ast",
 }
-LEAGUES = {"mlb": "84240", "wnba": "94682"}
+LEAGUES = {"mlb": "84240", "wnba": "94682",
+           "nba": "42648"}   # NBA port P1: idles until Oct; STAT_MAP already covers bball
 
 
 def _stat_key(subcat_name):

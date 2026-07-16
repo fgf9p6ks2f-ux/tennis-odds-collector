@@ -54,6 +54,10 @@ jobs:
       # BENCHED 2026-07-09 (focus = TT + WNBA): esports/MLB/NFL still COLLECT (data + grading
       # of existing bets preserved) but no NTFY_TOPIC -> no phone pushes. Un-bench = restore
       # NTFY_TOPIC here and drop --no-flags / ACTIVE_SPORTS.
+      # NBA port P1 (2026-07-16): injury feed plumbing — offseason output is stale
+      # season-enders (harmless); proves the feed long before opening night.
+      - name: "NBA injuries (P1 plumbing)"
+        run: python nba_injuries.py || echo "nba injuries skipped"
       # UN-BENCHED 2026-07-16, PAPER-FIRST: quotes + flags + ledger run every cycle
       # (validated: nba OVER-only 0.70/n10 went 12-1 on the Jul-8/9 real-line window;
       # tiers re-tuned in gg_collect.SPORTS_GG). No phone alerts until the paper

@@ -71,7 +71,10 @@ def extract(m, sport, event_name=""):
     rows = []
     # 0) WNBA player prop — two-sided "{Player} - Points" (Over/Under + handicap) or
     #    alt "To Score X+ Points" / "1+ Made Threes" (runners are players, over-only).
-    if sport == "wnba":
+    if sport in ("wnba", "nba"):
+        # NBA port: FanDuel uses IDENTICAL market naming for NBA and WNBA player props, so the
+        # whole branch (and WNBA_STATS) serves both. The nba page idles harmlessly until books
+        # post 2026-27 props (~early Oct) — then lines start banking with zero further changes.
         # FanDuel posts per-period markets ("1st Quarter Points", "1st Half Rebounds") whose names
         # substring-match "points"/"rebounds" and leak in as phantom low even-odds rungs that hijack
         # full-game main-line detection (a 20-pt scorer's "points" main line reading 5.5). Full-game
@@ -216,6 +219,10 @@ def main():
             rows += collect_page("mlb", "mlb", lambda n: "@" in n)
         except Exception as e:
             print("mlb page err:", str(e)[:80])
+        try:                       # NBA port P1: idles (0 prop rows) until Oct props post
+            rows += collect_page("nba", "nba", lambda n: "@" in n)
+        except Exception as e:
+            print("nba page err:", str(e)[:80])
     try:
         rows += collect_page("wnba", "wnba", lambda n: "@" in n)
     except Exception as e:

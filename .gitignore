@@ -8,3 +8,4 @@ wnba_gamelog_cache.json
 wnba_watchlist.json
 wnba_lines.sqlite
 nba_gamelogs.sqlite
+nba_injuries.json
