@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T11:20:16Z",
+ "captured_at": "2026-07-16T11:24:52Z",
  "matches": [
   {
    "event_id": 35830106,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T11:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 96.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35830470,
@@ -19,9 +19,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T11:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35830480,
@@ -30,9 +30,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T11:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35830488,
@@ -88,6 +88,28 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35830525,
+   "p1": "Jakub Glanowski",
+   "p2": "Michal Minda",
+   "p1_norm": "jakub glanowski",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-16T11:50:00.000Z",
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830526,
+   "p1": "Michal Durda",
+   "p2": "Sebastian Juzek",
+   "p1_norm": "michal durda",
+   "p2_norm": "sebastian juzek",
+   "open_date": "2026-07-16T11:50:00.000Z",
+   "line": 68.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
