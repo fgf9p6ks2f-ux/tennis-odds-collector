@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T03:48:09Z",
+ "captured_at": "2026-07-16T03:52:59Z",
  "matches": [
-  {
-   "event_id": 35828813,
-   "p1": "Grzegorz Adamiak",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "grzegorz adamiak",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-16T03:25:00.000Z",
-   "line": 92.5,
-   "over_odds": 110,
-   "under_odds": -150
-  },
-  {
-   "event_id": 35828821,
-   "p1": "Patryk Mecik",
-   "p2": "Marian Lebek",
-   "p1_norm": "patryk mecik",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-16T03:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
   {
    "event_id": 35828827,
    "p1": "Josef Braun",
@@ -41,9 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-16T03:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35828832,
@@ -54,7 +32,7 @@
    "open_date": "2026-07-16T03:50:00.000Z",
    "line": 73.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35828837,
@@ -66,17 +44,6 @@
    "line": 69.5,
    "over_odds": -120,
    "under_odds": -110
-  },
-  {
-   "event_id": 35828842,
-   "p1": "Oliver Vincenec",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-16T04:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35828843,
