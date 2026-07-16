@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T05:38:40Z",
+ "captured_at": "2026-07-16T05:43:01Z",
  "matches": [
   {
    "event_id": 35829284,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T05:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829286,
@@ -19,9 +19,9 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-16T05:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 55.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35829313,
@@ -30,20 +30,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T05:35:00.000Z",
-   "line": 78.5,
+   "line": 89.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35829290,
-   "p1": "Rafal Gajda",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-16T05:40:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
   },
   {
    "event_id": 35829291,
@@ -52,9 +41,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "josef braun",
    "open_date": "2026-07-16T05:40:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829292,
@@ -63,9 +52,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-16T05:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829309,
