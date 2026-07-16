@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T15:04:19Z",
+ "captured_at": "2026-07-16T15:09:15Z",
  "matches": [
   {
    "event_id": 35830901,
@@ -8,9 +8,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830902,
@@ -19,20 +19,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35830917,
-   "p1": "Piotr Brozek",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "piotr brozek",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-16T15:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830922,
@@ -86,6 +75,17 @@
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T15:30:00.000Z",
    "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35831000,
+   "p1": "Pawel Kurek",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-16T15:35:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
