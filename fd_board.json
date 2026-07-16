@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T15:09:15Z",
+ "captured_at": "2026-07-16T15:14:08Z",
  "matches": [
-  {
-   "event_id": 35830901,
-   "p1": "Konrad Staszczyk",
-   "p2": "Szymon Sporek",
-   "p1_norm": "konrad staszczyk",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35830902,
    "p1": "Michal Skorski",
@@ -19,20 +8,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35830922,
-   "p1": "Kacper Adamus",
-   "p2": "Karol Jablonski",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-16T15:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830943,
@@ -64,8 +42,8 @@
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T15:25:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35830998,
