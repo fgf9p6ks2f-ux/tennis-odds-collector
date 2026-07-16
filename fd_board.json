@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T15:14:08Z",
+ "captured_at": "2026-07-16T15:19:03Z",
  "matches": [
-  {
-   "event_id": 35830902,
-   "p1": "Michal Skorski",
-   "p2": "Kamil Klocek",
-   "p1_norm": "michal skorski",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-16T15:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35830943,
    "p1": "Marcin Kowalczyk",
@@ -66,6 +55,17 @@
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35831021,
+   "p1": "Patryk Jendrzejewski",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "patryk jendrzejewski",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-16T15:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
