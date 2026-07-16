@@ -217,6 +217,11 @@ OVER_EV_MIN = 0.10
 UNDER_EV_MIN = 0.04
 THIN_SAMPLE_N = 7      # fewer elevated games than this = an unreliable projection...
 BIG_JUMP_MIN = 10.0    # ...and combined with a huge projected minutes jump = over-extrapolation, skip
+COLD_START_MARGIN = 5.0  # ...UNLESS the elevated-sample median beats the line by this much — the
+                         # COLD-START tier (2026-07-16, user: "can't we predict the beneficiary
+                         # without history?"). NBA walk-forward (2,924 zero/low-WOWY flags,
+                         # absence game 1-2): margin 5-8 -> 63.7%, 8+ -> 67.8% (+17-24% ROI).
+                         # A 5-pt absolute margin is STRICTER in WNBA's lower-scoring context.
 
 
 def flip_p_over(wvals, line):
@@ -483,8 +488,13 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # 1-5 set (-4.4u) -> record 18-10, ROI +9.4% -> +27.3%. Conservative (only the extreme
             # corner); volume plays are usage-confirmed so they're exempt. Small sample (~1 player) —
             # watch forward. (See flip_backtest.py-style validation in the ledger analysis.)
-            if side == "over" and not use_vol and n < THIN_SAMPLE_N and d_min is not None and d_min > BIG_JUMP_MIN:
-                continue
+            if (side == "over" and not use_vol and n < THIN_SAMPLE_N and d_min is not None
+                    and d_min > BIG_JUMP_MIN
+                    and st.median(vals) - line < COLD_START_MARGIN):
+                continue          # thin + huge jump + only a small proj cushion -> Ayayi corner, skip.
+                                  # Margin >= COLD_START_MARGIN passes as the NBA-validated cold-start
+                                  # tier (first-absence beneficiaries with no elevated history — the
+                                  # 7/16 Gustafson/POR case the hard skip was silently eating).
             if use_vol:
                 # P(points > line) from the VOLUME projection (normal around vol_pts) — strips the
                 # single-game shooting variance the empirical elevated-game hit rate carries.
