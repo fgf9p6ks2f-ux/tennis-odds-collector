@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T13:45:01Z",
+ "captured_at": "2026-07-16T13:49:48Z",
  "matches": [
-  {
-   "event_id": 35830662,
-   "p1": "Jacek Mitas",
-   "p2": "Dominik Solilo",
-   "p1_norm": "jacek mitas",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-16T13:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35830664,
    "p1": "Igor Szymanski",
@@ -19,18 +8,7 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T13:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35830795,
-   "p1": "Adrian Wiecek",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "adrian wiecek",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-16T13:45:00.000Z",
-   "line": 78.5,
+   "line": 83.5,
    "over_odds": null,
    "under_odds": null
   },
@@ -53,8 +31,8 @@
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T13:55:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35830813,
@@ -88,6 +66,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35830832,
+   "p1": "Szymon Sporek",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "szymon sporek",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-16T14:15:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
