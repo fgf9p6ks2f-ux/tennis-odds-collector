@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T18:31:24Z",
+ "captured_at": "2026-07-16T18:36:00Z",
  "matches": [
   {
    "event_id": 35832143,
@@ -8,20 +8,9 @@
    "p1_norm": "adam staniczek",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-16T18:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35832146,
-   "p1": "Rafal Idaczyk",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-16T18:25:00.000Z",
-   "line": 41.5,
-   "over_odds": -165,
-   "under_odds": 120
+   "line": 87.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35832160,
@@ -30,7 +19,7 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-16T18:30:00.000Z",
-   "line": 82.5,
+   "line": 91.5,
    "over_odds": -115,
    "under_odds": -120
   },
