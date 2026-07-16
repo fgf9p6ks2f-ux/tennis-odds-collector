@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T05:29:37Z",
+ "captured_at": "2026-07-16T05:34:16Z",
  "matches": [
-  {
-   "event_id": 35829185,
-   "p1": "Grzegorz Poliniewicz",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "grzegorz poliniewicz",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-16T05:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35829186,
    "p1": "Grzegorz Adamiak",
@@ -19,18 +8,7 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T05:15:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35829297,
-   "p1": "Lukasz Oracz",
-   "p2": "Adrian Burkacki",
-   "p1_norm": "lukasz oracz",
-   "p2_norm": "adrian burkacki",
-   "open_date": "2026-07-16T05:20:00.000Z",
-   "line": 70.5,
+   "line": 84.5,
    "over_odds": -130,
    "under_odds": -105
   },
@@ -41,9 +19,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T05:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829286,
@@ -97,6 +75,17 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T05:55:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829323,
+   "p1": "Kamil Kurowski",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "kamil kurowski",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-16T06:00:00.000Z",
+   "line": 81.5,
    "over_odds": -118,
    "under_odds": -112
   }
