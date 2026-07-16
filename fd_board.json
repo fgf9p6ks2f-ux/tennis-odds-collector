@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T03:19:33Z",
+ "captured_at": "2026-07-16T03:24:22Z",
  "matches": [
   {
    "event_id": 35828806,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-16T03:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35828813,
@@ -77,6 +77,28 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35828831,
+   "p1": "Stapor Rafal",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-16T03:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35828832,
+   "p1": "Sebastian Juzek",
+   "p2": "Michal Durda",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-16T03:50:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
