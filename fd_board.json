@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T06:41:55Z",
+ "captured_at": "2026-07-16T06:46:21Z",
  "matches": [
-  {
-   "event_id": 35829353,
-   "p1": "Jacek Mitas",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "jacek mitas",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-16T06:25:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35829361,
    "p1": "Grzegorz Adamiak",
@@ -30,31 +19,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35829363,
-   "p1": "Bartosz Sulkowski",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "bartosz sulkowski",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35829406,
-   "p1": "Lukasz Oracz",
-   "p2": "Marian Lebek",
-   "p1_norm": "lukasz oracz",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 65.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": 100,
+   "under_odds": -135
   },
   {
    "event_id": 35829385,
@@ -63,9 +30,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T06:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35829399,
@@ -110,6 +77,28 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35829439,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-16T07:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829440,
+   "p1": "Mariusz Adamus",
+   "p2": "Piotr Brozek",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "piotr brozek",
+   "open_date": "2026-07-16T07:10:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
