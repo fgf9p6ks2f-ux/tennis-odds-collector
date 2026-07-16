@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T05:06:57Z",
+ "captured_at": "2026-07-16T05:11:36Z",
  "matches": [
-  {
-   "event_id": 35828904,
-   "p1": "Kamil Rudomina",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "kamil rudomina",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-16T04:55:00.000Z",
-   "line": 69.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35828906,
    "p1": "Josef Braun",
@@ -19,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-16T04:55:00.000Z",
-   "line": 90.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35829274,
@@ -30,7 +19,7 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-16T05:00:00.000Z",
-   "line": 79.5,
+   "line": 87.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -42,8 +31,8 @@
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-16T05:15:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35829185,
@@ -88,6 +77,17 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35829286,
+   "p1": "Jacek Mitas",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "jacek mitas",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-16T05:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
