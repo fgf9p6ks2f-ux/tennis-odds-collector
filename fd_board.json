@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T20:43:04Z",
+ "captured_at": "2026-07-16T20:47:43Z",
  "matches": [
-  {
-   "event_id": 35832357,
-   "p1": "Pawel Chojnacki",
-   "p2": "Adam Staniczek",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "adam staniczek",
-   "open_date": "2026-07-16T20:20:00.000Z",
-   "line": 97.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35832363,
    "p1": "Konrad Staszczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 103.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
    "event_id": 35832364,
@@ -30,20 +19,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 102.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35832374,
-   "p1": "Kacper Adamus",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-16T20:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 106.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832381,
