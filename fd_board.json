@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T11:06:47Z",
+ "captured_at": "2026-07-16T11:11:28Z",
  "matches": [
   {
    "event_id": 35830080,
@@ -8,9 +8,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T10:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830094,
@@ -19,9 +19,9 @@
    "p1_norm": "szymon sporek",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T10:55:00.000Z",
-   "line": 88.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 91.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35830103,
@@ -30,9 +30,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "jacek mitas",
    "open_date": "2026-07-16T11:00:00.000Z",
-   "line": 58.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830104,
@@ -41,9 +41,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T11:00:00.000Z",
-   "line": 56.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 52.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830106,
@@ -52,9 +52,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T11:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830470,
@@ -85,9 +85,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T11:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35830489,
@@ -96,9 +96,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T11:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35830498,
