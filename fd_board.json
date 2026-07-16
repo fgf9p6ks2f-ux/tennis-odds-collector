@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T10:52:39Z",
+ "captured_at": "2026-07-16T10:57:31Z",
  "matches": [
-  {
-   "event_id": 35830050,
-   "p1": "Rafal Gajda",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 95.5,
-   "over_odds": 120,
-   "under_odds": -165
-  },
-  {
-   "event_id": 35830058,
-   "p1": "Waldemar Glanowski",
-   "p2": "Piotr Brozek",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "piotr brozek",
-   "open_date": "2026-07-16T10:40:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35830080,
    "p1": "Amirreza Abbasi",
@@ -31,8 +9,8 @@
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T10:50:00.000Z",
    "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830094,
@@ -42,8 +20,8 @@
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T10:55:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830103,
@@ -88,6 +66,39 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35830480,
+   "p1": "Kamil Kurowski",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "kamil kurowski",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-16T11:20:00.000Z",
+   "line": 68.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35830488,
+   "p1": "Aleksander Lilien",
+   "p2": "Dominik Solilo",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "dominik solilo",
+   "open_date": "2026-07-16T11:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830489,
+   "p1": "Mariusz Baron",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T11:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
