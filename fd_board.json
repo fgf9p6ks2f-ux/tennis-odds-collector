@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T03:33:25Z",
+ "captured_at": "2026-07-16T03:38:23Z",
  "matches": [
   {
    "event_id": 35828813,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-16T03:25:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35828814,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-16T03:25:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35828815,
@@ -30,7 +30,7 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T03:25:00.000Z",
-   "line": 86.5,
+   "line": 98.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +41,7 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-16T03:30:00.000Z",
-   "line": 79.5,
+   "line": 72.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -53,8 +53,8 @@
    "p2_norm": "marian lebek",
    "open_date": "2026-07-16T03:35:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35828827,
@@ -96,9 +96,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-16T03:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35828842,
