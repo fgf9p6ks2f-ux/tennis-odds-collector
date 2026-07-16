@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T23:12:03Z",
+ "captured_at": "2026-07-16T23:17:37Z",
  "matches": [
-  {
-   "event_id": 35832502,
-   "p1": "Jakub Cyndera",
-   "p2": "Jerzy Debski",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-16T22:55:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35832506,
    "p1": "Jerzy Pelka",
@@ -19,9 +8,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-16T23:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832507,
@@ -30,9 +19,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-16T23:15:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832511,
@@ -41,9 +30,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-16T23:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35832512,
@@ -88,6 +77,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35832537,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Kamil Klocek",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-16T23:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
