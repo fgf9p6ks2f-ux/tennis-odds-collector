@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T07:35:19Z",
+ "captured_at": "2026-07-16T07:39:39Z",
  "matches": [
   {
    "event_id": 35829456,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T07:20:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 104.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35829467,
@@ -19,9 +19,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-16T07:30:00.000Z",
-   "line": 79.5,
+   "line": 83.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35829470,
@@ -30,9 +30,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-16T07:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35829477,
@@ -63,9 +63,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "michal durda",
    "open_date": "2026-07-16T07:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35829496,
@@ -75,8 +75,8 @@
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T07:55:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35829500,
@@ -88,6 +88,28 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35829718,
+   "p1": "Josef Braun",
+   "p2": "Artur Daniel",
+   "p1_norm": "josef braun",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T08:05:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35829729,
+   "p1": "Jacek Mitas",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "jacek mitas",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-16T08:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
