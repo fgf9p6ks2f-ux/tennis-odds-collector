@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T19:14:24Z",
+ "captured_at": "2026-07-16T19:19:05Z",
  "matches": [
-  {
-   "event_id": 35832243,
-   "p1": "Kazimierz Rybak",
-   "p2": "Michal Guzik",
-   "p1_norm": "kazimierz rybak",
-   "p2_norm": "michal guzik",
-   "open_date": "2026-07-16T18:55:00.000Z",
-   "line": 97.5,
-   "over_odds": -195,
-   "under_odds": 140
-  },
   {
    "event_id": 35832224,
    "p1": "Dariusz Molenda",
@@ -19,9 +8,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T19:10:00.000Z",
-   "line": 59.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 54.5,
+   "over_odds": -170,
+   "under_odds": 125
   },
   {
    "event_id": 35832234,
@@ -30,9 +19,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T19:15:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832244,
