@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T13:49:48Z",
+ "captured_at": "2026-07-16T13:54:36Z",
  "matches": [
-  {
-   "event_id": 35830664,
-   "p1": "Igor Szymanski",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-16T13:30:00.000Z",
-   "line": 83.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35830800,
    "p1": "Kamil Kurowski",
@@ -19,9 +8,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-16T13:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830812,
@@ -74,9 +63,42 @@
    "p1_norm": "szymon sporek",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T14:15:00.000Z",
-   "line": 76.5,
+   "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35830853,
+   "p1": "Sebastian Juzek",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T14:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830854,
+   "p1": "Mariusz Adamus",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-16T14:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35830855,
+   "p1": "Michal Minda",
+   "p2": "Dominik Solilo",
+   "p1_norm": "michal minda",
+   "p2_norm": "dominik solilo",
+   "open_date": "2026-07-16T14:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
