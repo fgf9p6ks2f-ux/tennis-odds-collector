@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T12:12:55Z",
+ "captured_at": "2026-07-16T12:17:36Z",
  "matches": [
   {
    "event_id": 35830542,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T12:05:00.000Z",
-   "line": 61.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830553,
@@ -19,9 +19,9 @@
    "p1_norm": "karol wisniewski",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T12:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830557,
@@ -30,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-16T12:15:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 61.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35830558,
@@ -53,8 +53,8 @@
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-16T12:20:00.000Z",
    "line": 71.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35830582,
@@ -77,6 +77,39 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830597,
+   "p1": "Mariusz Baron",
+   "p2": "Sebastian Juzek",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "sebastian juzek",
+   "open_date": "2026-07-16T12:40:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830598,
+   "p1": "Aleksander Lilien",
+   "p2": "Michal Minda",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-16T12:40:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35830606,
+   "p1": "Mariusz Adamus",
+   "p2": "Piotr Brozek",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "piotr brozek",
+   "open_date": "2026-07-16T12:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
