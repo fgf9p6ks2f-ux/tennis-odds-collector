@@ -1,27 +1,16 @@
 {
- "captured_at": "2026-07-16T22:38:11Z",
+ "captured_at": "2026-07-16T22:43:47Z",
  "matches": [
   {
-   "event_id": 35832484,
-   "p1": "Konrad Staszczyk",
-   "p2": "Tomasz Filbrandt",
-   "p1_norm": "konrad staszczyk",
-   "p2_norm": "tomasz filbrandt",
-   "open_date": "2026-07-16T22:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832494,
-   "p1": "Adam Staniczek",
-   "p2": "Dawid Pyrek",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "dawid pyrek",
-   "open_date": "2026-07-16T22:40:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "event_id": 35832488,
+   "p1": "Kazimierz Rybak",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "kazimierz rybak",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-16T22:35:00.000Z",
+   "line": 54.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35832498,
@@ -66,6 +55,17 @@
    "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35832506,
+   "p1": "Jerzy Pelka",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-16T23:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
