@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T19:05:13Z",
+ "captured_at": "2026-07-16T19:09:50Z",
  "matches": [
   {
    "event_id": 35832243,
@@ -8,9 +8,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-16T18:55:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35832224,
@@ -20,8 +20,8 @@
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T19:10:00.000Z",
    "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35832225,
@@ -63,6 +63,17 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T19:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35832269,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Karol Jablonski",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-16T19:35:00.000Z",
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
