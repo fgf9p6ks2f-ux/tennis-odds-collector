@@ -696,7 +696,13 @@ def starter_label(name, team, starters, proj_min):
 
 
 def injuries():
-    """{player_name: status} for Out / Doubtful / Questionable."""
+    """{player_name: status} — ESPN's league feed UNION RotoWire's game-day lineup out-list.
+    RotoWire is FASTER and more reliable on game day (7/14 Griner: RW right, ESPN wrong;
+    7/16 Gustafson: ESPN's injuries API had nothing for POR while RW's lineup page ruled her
+    out) — but it only covers today's slate, so ESPN stays for earlier/multi-day tags.
+    Earliest source triggers (⚡ speed doctrine: race the book, never wait for it). RW's
+    abbreviated names ('M. Gustafson') resolve to full ESPN names via the roster cache,
+    TEAM-SCOPED, skipping ambiguous initial+lastname collisions (the RotoWire lesson)."""
     out = {}
     for t in _espn("injuries").get("injuries", []):
         for p in t.get("injuries") or []:
@@ -704,6 +710,19 @@ def injuries():
             status = p.get("status")
             if nm and status in ("Out", "Doubtful", "Questionable"):
                 out[nm] = status
+    try:                                    # RotoWire game-day outs = first-class triggers
+        pl = json.loads((Path(__file__).resolve().parent
+                         / "wnba_players_cache.json").read_text()).get("players", {})
+        for t in rw_lineups() or []:
+            team = t.get("team")
+            for abbr in t.get("out") or []:
+                key = RW.norm(abbr)
+                full = [n for n, v in pl.items()
+                        if v.get("team") == team and RW.norm(n) == key]
+                if len(full) == 1:          # team-scoped; ambiguous collision -> skip
+                    out[full[0]] = "Out"    # RW lineup OUT is firm — beats ESPN's softer tag
+    except Exception:
+        pass
     return out
 
 
