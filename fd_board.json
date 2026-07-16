@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T13:21:09Z",
+ "captured_at": "2026-07-16T13:25:52Z",
  "matches": [
   {
    "event_id": 35830657,
@@ -9,8 +9,8 @@
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T13:20:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830659,
@@ -20,8 +20,8 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T13:25:00.000Z",
    "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830662,
@@ -66,6 +66,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35830800,
+   "p1": "Kamil Kurowski",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "kamil kurowski",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-16T13:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
