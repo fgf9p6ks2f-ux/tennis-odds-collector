@@ -748,6 +748,48 @@ def _tt_ladder(lad, play_to, zone):
             f'<div class="ladnote">◄ play {sidelbl} up to here · odds = softest book price · dimmed = skip</div></div>')
 
 
+# Client-side live-totals script. Kept as a plain (non-f) string so its JS braces pass through
+# verbatim; injected into the page via the {tt_live_js} f-string field. It re-renders #tt-totals
+# from a fresh fetch of fd_board.json (raw URL, ~5-min CDN cache) every 60s, and bgRefresh calls
+# window._applyTTTotals() after it swaps the TT panel so the live data survives the rebake swap.
+TT_LIVE_JS = """
+  const TT_BOARD_URL = 'https://raw.githubusercontent.com/fgf9p6ks2f-ux/tennis-odds-collector/main/fd_board.json';
+  let _ttBoard = null;
+  function _ttEsc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function _ttTime(iso){ try { return new Date(iso).toLocaleTimeString('en-US', {timeZone:'America/Denver', hour:'numeric', minute:'2-digit'}); } catch(e){ return ''; } }
+  window._applyTTTotals = function(){
+    var el = document.getElementById('tt-totals');
+    if (!el || !_ttBoard) return;
+    var now = Date.now();
+    var g = (_ttBoard || [])
+      .filter(function(m){ return m && m.line != null && m.open_date && new Date(m.open_date).getTime() > now; })
+      .sort(function(a,b){ return new Date(a.open_date) - new Date(b.open_date); });
+    if (!g.length){ el.innerHTML = ''; return; }
+    var rows = '';
+    for (var i=0; i<g.length; i++){
+      var m = g[i];
+      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(m.p1) + '</b> v ' + _ttEsc(m.p2)
+            + '<span class="tttot">' + (+m.line).toString() + '</span></div>'
+            + '<div class="ttsub">' + _ttTime(m.open_date) + ' MT</div></div>';
+    }
+    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite \\u00B7 Pre-Match Totals'
+      + '<span class="ttcnt">' + g.length + '</span></h3>' + rows
+      + '<div class="ttfoot">FanDuel Total Points \\u00B7 upcoming games \\u00B7 live</div></div>';
+  };
+  window._fetchTTTotals = async function(){
+    try {
+      var r = await fetch(TT_BOARD_URL + '?_=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      var d = await r.json();
+      _ttBoard = Array.isArray(d.matches) ? d.matches : [];
+      window._applyTTTotals();
+    } catch(e){}
+  };
+  window._fetchTTTotals();
+  setInterval(window._fetchTTTotals, 60000);
+"""
+
+
 def _tt_totals_card(now=None):
     """TT Elite pre-match FanDuel totals — every UPCOMING game's Total Points line. Games that
     have already started are LIVE and excluded (only pre-match totals). Read from fd_board.json
@@ -788,8 +830,10 @@ def _tt_totals_card(now=None):
 
 def _tt_panel(data):
     """Table Tennis tab — pre-match FanDuel totals for every upcoming Elite game, then today's
-    flagged bets grouped by league. Each flagged matchup taps open to a per-line hit-rate ladder."""
-    tc = _tt_totals_card()
+    flagged bets grouped by league. Each flagged matchup taps open to a per-line hit-rate ladder.
+    The totals live in #tt-totals: server-baked here for instant paint, then the client refetches
+    fd_board.json (raw URL) every 60s and re-renders it live (see the tt-live script)."""
+    tc = '<div id="tt-totals">' + _tt_totals_card() + '</div>'
     if not data:
         return tc + ('<div class="empty">Table tennis feed connecting…<br>'
                 '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
@@ -1049,6 +1093,10 @@ def build():
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
     tracker_html = _tracker_panel((w, l, u), tt_json)
+    # Client-side LIVE pre-match totals: refetch fd_board.json (the VM's FanDuel.ca board) from the
+    # raw URL every 60s and re-render #tt-totals, so the totals update on their own between the
+    # ~30-min dashboard rebakes. Injected as an f-string field so its JS braces stay literal.
+    tt_live_js = TT_LIVE_JS
     doc = f"""<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Today's Plays</title>
@@ -1347,9 +1395,11 @@ def build():
         applyF();
       }}
       if (touched) window.scrollTo(0, y);
+      if (window._applyTTTotals) window._applyTTTotals();   // keep live TT totals over the swapped-in bake
     }} catch (e) {{}}
   }}
   setInterval(bgRefresh, 90000);
+{tt_live_js}
 </script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
