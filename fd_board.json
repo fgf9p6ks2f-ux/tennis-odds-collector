@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T04:30:36Z",
+ "captured_at": "2026-07-16T04:34:55Z",
  "matches": [
   {
    "event_id": 35828869,
@@ -8,9 +8,9 @@
    "p1_norm": "krzysztof wloczko",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T04:25:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 55.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35828874,
@@ -19,9 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-16T04:30:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35828875,
@@ -31,8 +31,19 @@
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T04:30:00.000Z",
    "line": 79.5,
-   "over_odds": null,
-   "under_odds": null
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35828876,
+   "p1": "Michal Durda",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "michal durda",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T04:30:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35828842,
