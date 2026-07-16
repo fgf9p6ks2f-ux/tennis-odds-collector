@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T20:19:50Z",
+ "captured_at": "2026-07-16T20:24:29Z",
  "matches": [
-  {
-   "event_id": 35832306,
-   "p1": "Patryk Jendrzejewski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "patryk jendrzejewski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-16T20:05:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35832355,
-   "p1": "Jakub Nowak",
-   "p2": "Karol Jablonski",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-16T20:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35832357,
    "p1": "Pawel Chojnacki",
@@ -30,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-16T20:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832362,
