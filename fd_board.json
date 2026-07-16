@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T16:53:57Z",
+ "captured_at": "2026-07-16T16:58:36Z",
  "matches": [
   {
    "event_id": 35832020,
@@ -8,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T16:55:00.000Z",
-   "line": 77.5,
+   "line": 80.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35832021,
@@ -19,20 +19,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T16:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35832022,
-   "p1": "Mikolaj Lukaszewski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "mikolaj lukaszewski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-16T16:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832026,
