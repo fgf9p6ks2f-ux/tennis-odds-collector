@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T19:41:55Z",
+ "captured_at": "2026-07-16T19:46:31Z",
  "matches": [
   {
    "event_id": 35832276,
@@ -8,7 +8,7 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-16T19:40:00.000Z",
-   "line": 76.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,7 +19,7 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-16T19:40:00.000Z",
-   "line": 77.5,
+   "line": 53.5,
    "over_odds": -115,
    "under_odds": -120
   },
