@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T18:08:37Z",
+ "captured_at": "2026-07-16T18:13:01Z",
  "matches": [
   {
    "event_id": 35832128,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T18:05:00.000Z",
-   "line": 76.5,
+   "line": 82.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35832135,
@@ -19,9 +19,9 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T18:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832143,
