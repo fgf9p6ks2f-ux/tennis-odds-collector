@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T19:37:17Z",
+ "captured_at": "2026-07-16T19:41:55Z",
  "matches": [
-  {
-   "event_id": 35832245,
-   "p1": "Jaroslaw Rolak",
-   "p2": "Kamil Klocek",
-   "p1_norm": "jaroslaw rolak",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-16T19:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35832276,
    "p1": "Kacper Glazowski",
@@ -20,8 +9,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-16T19:40:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832277,
@@ -30,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-16T19:40:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832291,
