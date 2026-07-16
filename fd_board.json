@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T06:50:46Z",
+ "captured_at": "2026-07-16T06:55:14Z",
  "matches": [
   {
    "event_id": 35829361,
@@ -8,20 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "josef braun",
    "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35829362,
-   "p1": "Mariusz Baron",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-16T06:30:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 87.5,
+   "over_odds": -210,
+   "under_odds": 145
   },
   {
    "event_id": 35829385,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-16T06:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 61.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35829399,
@@ -41,9 +30,20 @@
    "p1_norm": "krzysztof wloczko",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T06:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 63.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35829445,
+   "p1": "Patryk Mecik",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "patryk mecik",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-16T06:50:00.000Z",
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829409,
@@ -64,8 +64,8 @@
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-16T06:55:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35829411,
@@ -75,8 +75,8 @@
    "p2_norm": "patrik klos",
    "open_date": "2026-07-16T06:55:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35829439,
@@ -110,6 +110,39 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35829454,
+   "p1": "Kamil Rudomina",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "kamil rudomina",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-16T07:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829455,
+   "p1": "Igor Szymanski",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T07:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35829456,
+   "p1": "Jakub Folwarski",
+   "p2": "Artur Daniel",
+   "p1_norm": "jakub folwarski",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T07:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
