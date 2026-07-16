@@ -12,7 +12,12 @@ push(){ git add -A -f 2>/dev/null
   # ignore -> committing/hashing 100MB every 75s + git auto-gc repacking those blobs = the
   # swap-thrash. Unstage it here each cycle (keeps -f for the small caches the digests need).
   git rm --cached -q wnba_lines.sqlite 2>/dev/null || true
-  git commit -m "vm loop data [skip ci]" -q 2>/dev/null || return 0
+  # NOTE: use `|| true`, NOT `|| return 0`. Since wnba_lines.sqlite (the file that changed every
+  # cycle) is now excluded, many cycles have "nothing to commit" — returning early there SKIPS the
+  # push, so any already-committed-but-unpushed commits (e.g. a fresh dashboard from fullscan, or a
+  # push that failed during a thrash) pile up and origin/Pages/Actions all lag the VM. Always fall
+  # through to pull+push so pending commits flush even on a no-change cycle.
+  git commit -m "vm loop data [skip ci]" -q 2>/dev/null || true
   git pull --rebase --autostash -X theirs -q "$URL" main 2>/dev/null || { git rebase --abort 2>/dev/null||true; git reset --hard origin/main -q 2>/dev/null||true; }
   git push -q "$URL" HEAD:main 2>/dev/null || echo "[$(date +%H:%M)] push deferred"; }
 
