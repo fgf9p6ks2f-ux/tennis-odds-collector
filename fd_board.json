@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T04:43:46Z",
+ "captured_at": "2026-07-16T04:50:01Z",
  "matches": [
   {
    "event_id": 35828875,
@@ -8,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T04:30:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35828842,
@@ -19,9 +19,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-16T04:40:00.000Z",
-   "line": 79.5,
+   "line": 55.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35828885,
@@ -30,7 +30,7 @@
    "p1_norm": "dawid pyrek",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-16T04:40:00.000Z",
-   "line": 73.5,
+   "line": 77.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -42,8 +42,8 @@
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T04:50:00.000Z",
    "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35828904,
@@ -53,8 +53,8 @@
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-16T04:55:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35828905,
@@ -88,6 +88,50 @@
    "line": 65.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35829184,
+   "p1": "Stapor Rafal",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-16T05:15:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35829185,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-16T05:15:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35829186,
+   "p1": "Grzegorz Adamiak",
+   "p2": "Artur Daniel",
+   "p1_norm": "grzegorz adamiak",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T05:15:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35829187,
+   "p1": "Mariusz Baron",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T05:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
