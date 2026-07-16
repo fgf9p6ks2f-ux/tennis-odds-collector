@@ -227,13 +227,14 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated 2:36 AM MT · self-refreshing
+    <div class="live"><span class="dot"></span>Updated 2:50 AM MT · self-refreshing
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
   <div class="tabs">
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
     <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 TT</div>
+    <div class="tab" data-tab="gg" onclick="showTab('gg')">🎮 GG</div>
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
   </div>
   <div class="panel" id="wnba">
@@ -268,6 +269,10 @@
     <h2>Table tennis · by league &amp; game time</h2>
     <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets</h3><div class="ttempty">No Elite bets flagged right now — no pair on the current FanDuel board hits a side 70%+ at its line. Check back closer to the games.</div></div></div>
   </div>
+  <div class="panel hidden" id="gg">
+    <h2>GG League esports · paper flags at the FanDuel line</h2>
+    <div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets<span class="ttcnt">1</span></h3><div class="ttrow tflat"><div class="ttmain"><b>HYPER</b> v JD<span class="ttpick">OVER 101.5</span></div><div class="ttsub">Ebb · 3:39 AM MT · <span class="ttrec">10-3</span> · 77% over · -120</div></div><div class="ttfoot">bet the highlighted side at that FanDuel line · record &amp; hit% = the pair's H2H at that line · paper</div></div>
+  </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record · settles as each event ends</h2>
     
@@ -288,7 +293,7 @@
           <div class="tbox"><div class="tk">Units</div><div class="tv down">-1.4u</div></div>
         </div>
         <div class="tsub">graded at the actual FanDuel line + odds · 1 pending · ROI -21%</div>
-      </div><div class="tcard"><div class="thead">🏓 Other TT leagues <span class="tsh">shadow · not bet</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>Setka Cup</span><span>12-6</span><span>67%</span><span class="up">+4.0u</span></div><div class="ttrkrow"><span>Liga Pro</span><span>13-8</span><span>62%</span><span class="up">+2.8u</span></div><div class="ttrkrow"><span>TT Cup</span><span>12-8</span><span>60%</span><span class="up">+2.0u</span></div><div class="ttrkrow"><span>Setka W</span><span>2-4</span><span>33%</span><span class="down">-2.3u</span></div></div><div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div><div class="tcard"><div class="thead">🎯 Injury-timing CLV</div><div class="tsub">Accumulating <b>107/20</b> shadows over <b>4/5</b> slates — one night's shadows are correlated, so the "are we beating the close?" verdict waits for breadth. This is the proof the timing edge is real before scaling stakes.</div></div>
+      </div><div class="tcard"><div class="thead">🏓 Other TT leagues <span class="tsh">shadow · not bet</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>Setka Cup</span><span>12-6</span><span>67%</span><span class="up">+4.0u</span></div><div class="ttrkrow"><span>Liga Pro</span><span>13-8</span><span>62%</span><span class="up">+2.8u</span></div><div class="ttrkrow"><span>TT Cup</span><span>12-8</span><span>60%</span><span class="up">+2.0u</span></div><div class="ttrkrow"><span>Setka W</span><span>2-4</span><span>33%</span><span class="down">-2.3u</span></div></div><div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div><div class="tcard"><div class="thead">🎮 GG esports <span class="tsh">paper · since 7/16</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>sport</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>eBasketball</span><span>0-0</span><span>—</span><span class="">+0.0u</span></div></div><div class="tsub">graded at real FD odds · 1 pending · nba/nfl over-only 70% · fifa 75% · alerts off until validated</div></div><div class="tcard"><div class="thead">🎯 Injury-timing CLV</div><div class="tsub">Accumulating <b>107/20</b> shadows over <b>4/5</b> slates — one night's shadows are correlated, so the "are we beating the close?" verdict waits for breadth. This is the proof the timing edge is real before scaling stakes.</div></div>
   </div>
   <div class="foot">Auto-generated on GitHub · self-refreshing · quarter-Kelly unit sizing</div>
 </div>
@@ -327,7 +332,7 @@
       const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
       const y = window.scrollY;
       let touched = false, wnba = false;
-      ['wnba','tt','tracker'].forEach(id => {
+      ['wnba','tt','gg','tracker'].forEach(id => {
         const nw = doc.getElementById(id), cur = document.getElementById(id);
         if (nw && cur && nw.innerHTML !== cur.innerHTML) {
           cur.innerHTML = nw.innerHTML; touched = true; if (id === 'wnba') wnba = true;
