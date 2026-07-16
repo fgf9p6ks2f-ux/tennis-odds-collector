@@ -5,7 +5,14 @@ GHREPO="github.com/fgf9p6ks2f-ux/tennis-odds-collector.git"
 git config user.name "odds-bot" 2>/dev/null; git config user.email "odds-bot@users.noreply.github.com" 2>/dev/null
 URL="https://x-access-token:${GIT_PAT}@${GHREPO}"
 
-push(){ git add -A -f 2>/dev/null; git commit -m "vm loop data [skip ci]" -q 2>/dev/null || return 0
+push(){ git add -A -f 2>/dev/null
+  # NEVER commit wnba_lines.sqlite: it's the VM-local WNBA lines DB, gitignored, and was
+  # ballooning to 100MB (the 2-day prune lived in the now-disabled wnba-watch.yml and was
+  # dropped on the VM migration). `git add -A -f` force-re-adds it every cycle despite the
+  # ignore -> committing/hashing 100MB every 75s + git auto-gc repacking those blobs = the
+  # swap-thrash. Unstage it here each cycle (keeps -f for the small caches the digests need).
+  git rm --cached -q wnba_lines.sqlite 2>/dev/null || true
+  git commit -m "vm loop data [skip ci]" -q 2>/dev/null || return 0
   git pull --rebase --autostash -X theirs -q "$URL" main 2>/dev/null || { git rebase --abort 2>/dev/null||true; git reset --hard origin/main -q 2>/dev/null||true; }
   git push -q "$URL" HEAD:main 2>/dev/null || echo "[$(date +%H:%M)] push deferred"; }
 
@@ -18,7 +25,18 @@ collectors(){
   # python3 dk_collect.py --wnba >/dev/null 2>&1 || true
   python3 wnba_ledger.py --grade >/dev/null 2>&1 || true
   python3 wnba_clv.py --close >/dev/null 2>&1 || true
-  board; }
+  prune_lines; board; }
+
+# Keep wnba_lines.sqlite at its intended ~2-day WNBA window (the retention that lived in the
+# now-disabled wnba-watch.yml, orphaned on the VM migration). Cheap DELETE each cycle; sqlite
+# reuses freed pages so the file stays ~1-2MB after the one-time VACUUM done at deploy.
+prune_lines(){ python3 - >/dev/null 2>&1 <<'PY' || true
+import sqlite3
+c=sqlite3.connect("wnba_lines.sqlite")
+c.execute("DELETE FROM fd_lines WHERE collected_at < datetime('now','-2 days')")
+c.commit(); c.close()
+PY
+}
 
 # TT Elite FanDuel.ca total-line board — the VM is the only host that can reach FanDuel.ca
 # (Actions' US IP is geo-blocked). Writes fd_board.json; push() commits it to this PUBLIC
