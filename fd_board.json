@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T03:52:59Z",
+ "captured_at": "2026-07-16T03:57:52Z",
  "matches": [
   {
    "event_id": 35828827,
@@ -8,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-16T03:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35828831,
@@ -19,7 +19,7 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-16T03:50:00.000Z",
-   "line": 76.5,
+   "line": 85.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +30,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "michal durda",
    "open_date": "2026-07-16T03:50:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35828837,
@@ -41,8 +41,8 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-16T03:55:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
+   "line": 73.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -88,6 +88,28 @@
    "line": 73.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35828861,
+   "p1": "Witold Stechly",
+   "p2": "Miroslaw Warzecha",
+   "p1_norm": "witold stechly",
+   "p2_norm": "miroslaw warzecha",
+   "open_date": "2026-07-16T04:20:00.000Z",
+   "line": 64.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35828869,
+   "p1": "Krzysztof Wloczko",
+   "p2": "Kamil Kurowski",
+   "p1_norm": "krzysztof wloczko",
+   "p2_norm": "kamil kurowski",
+   "open_date": "2026-07-16T04:25:00.000Z",
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
