@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T14:49:42Z",
+ "captured_at": "2026-07-16T14:54:38Z",
  "matches": [
   {
    "event_id": 35830862,
@@ -8,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T14:35:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830901,
@@ -31,8 +31,8 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T15:00:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35830903,
