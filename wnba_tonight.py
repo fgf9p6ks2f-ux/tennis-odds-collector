@@ -708,6 +708,11 @@ def injuries():
         for p in t.get("injuries") or []:
             nm = p.get("athlete", {}).get("displayName")
             status = p.get("status")
+            # ESPN's WNBA GTD tag is "Day-To-Day" (not "Questionable") — it was being dropped
+            # entirely, so ESPN-sourced GTD stars never reached the watchlist (7/16: Oblak).
+            # Map it to Questionable so the watchlist/sit-prob machinery just works.
+            if status == "Day-To-Day":
+                status = "Questionable"
             if nm and status in ("Out", "Doubtful", "Questionable"):
                 out[nm] = status
     try:                                    # RotoWire game-day outs = first-class triggers
