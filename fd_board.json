@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T14:13:49Z",
+ "captured_at": "2026-07-16T14:18:43Z",
  "matches": [
-  {
-   "event_id": 35830812,
-   "p1": "Piotr Brozek",
-   "p2": "Krzysztof Hetnar",
-   "p1_norm": "piotr brozek",
-   "p2_norm": "krzysztof hetnar",
-   "open_date": "2026-07-16T13:55:00.000Z",
-   "line": 91.5,
-   "over_odds": 155,
-   "under_odds": -230
-  },
   {
    "event_id": 35830826,
    "p1": "Amirreza Abbasi",
@@ -19,9 +8,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-16T14:10:00.000Z",
-   "line": 57.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830832,
@@ -30,9 +19,9 @@
    "p1_norm": "szymon sporek",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-16T14:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830853,
@@ -110,6 +99,17 @@
    "line": 55.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35830881,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-16T14:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
