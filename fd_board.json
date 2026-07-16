@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T22:04:30Z",
+ "captured_at": "2026-07-16T22:10:06Z",
  "matches": [
-  {
-   "event_id": 35832421,
-   "p1": "Jakub Cyndera",
-   "p2": "Kazimierz Rybak",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "kazimierz rybak",
-   "open_date": "2026-07-16T21:45:00.000Z",
-   "line": 92.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35832453,
-   "p1": "Jerzy Pelka",
-   "p2": "Jan Orszulik",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "jan orszulik",
-   "open_date": "2026-07-16T22:00:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35832460,
    "p1": "Patryk Jendrzejewski",
@@ -30,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-16T22:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832463,
@@ -42,8 +20,8 @@
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-16T22:10:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832468,
@@ -52,20 +30,9 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-16T22:20:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35832471,
-   "p1": "Jakub Nowak",
-   "p2": "Kacper Adamus",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-16T22:25:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35832484,
@@ -77,6 +44,28 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832488,
+   "p1": "Kazimierz Rybak",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "kazimierz rybak",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-16T22:35:00.000Z",
+   "line": 67.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35832489,
+   "p1": "Michal Skorski",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "michal skorski",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-16T22:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
