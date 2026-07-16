@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-16T09:45:48Z",
+ "captured_at": "2026-07-16T09:50:23Z",
  "matches": [
-  {
-   "event_id": 35829938,
-   "p1": "Adrian Wiecek",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "adrian wiecek",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-16T09:20:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35829971,
-   "p1": "Jakub Pruszkowski",
-   "p2": "Mariusz Adamus",
-   "p1_norm": "jakub pruszkowski",
-   "p2_norm": "mariusz adamus",
-   "open_date": "2026-07-16T09:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35829975,
    "p1": "Amirreza Abbasi",
@@ -30,9 +8,9 @@
    "p1_norm": "amirreza abbasi",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-16T09:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829979,
@@ -41,9 +19,9 @@
    "p1_norm": "szymon sporek",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-16T09:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829982,
