@@ -748,15 +748,54 @@ def _tt_ladder(lad, play_to, zone):
             f'<div class="ladnote">◄ play {sidelbl} up to here · odds = softest book price · dimmed = skip</div></div>')
 
 
+def _tt_totals_card(now=None):
+    """TT Elite pre-match FanDuel totals — every UPCOMING game's Total Points line. Games that
+    have already started are LIVE and excluded (only pre-match totals). Read from fd_board.json
+    (the VM's FanDuel.ca collector, refreshed ~every 4 min); independent of the bets feed so the
+    totals show even when nothing is flagged."""
+    f = HERE / "fd_board.json"
+    if not f.exists():
+        return ""
+    try:
+        board = json.loads(f.read_text())
+    except (ValueError, OSError):
+        return ""
+    now = now or dt.datetime.now(dt.timezone.utc)
+    games = []
+    for m in board.get("matches", []):
+        od, line = m.get("open_date"), m.get("line")
+        if not od or line is None:
+            continue
+        try:
+            start = dt.datetime.fromisoformat(od.replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if start <= now:                        # already started -> live line, exclude
+            continue
+        games.append((start, m.get("p1", "?"), m.get("p2", "?"), line))
+    if not games:
+        return ""
+    games.sort(key=lambda g: g[0])
+    rows = "".join(
+        f'<div class="ttrow tflat"><div class="ttmain"><b>{html.escape(p1)}</b> v {html.escape(p2)}'
+        f'<span class="tttot">{line:g}</span></div>'
+        f'<div class="ttsub">{start.astimezone(MT).strftime("%-I:%M %p")} MT</div></div>'
+        for start, p1, p2, line in games)
+    return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Pre-Match Totals'
+            f'<span class="ttcnt">{len(games)}</span></h3>{rows}'
+            f'<div class="ttfoot">FanDuel Total Points · upcoming games only</div></div>')
+
+
 def _tt_panel(data):
-    """Table Tennis tab — today's flagged bets, grouped by league, ordered by game time.
-    Each matchup taps open to a per-line hit-rate ladder."""
+    """Table Tennis tab — pre-match FanDuel totals for every upcoming Elite game, then today's
+    flagged bets grouped by league. Each flagged matchup taps open to a per-line hit-rate ladder."""
+    tc = _tt_totals_card()
     if not data:
-        return ('<div class="empty">Table tennis feed connecting…<br>'
+        return tc + ('<div class="empty">Table tennis feed connecting…<br>'
                 '<span>Once the tt-elite bridge is set up, today\'s TT bets show here.</span></div>')
     bets = data.get("bets", [])
     if not bets:
-        return ('<div class="empty">No TT bets flagged right now.<br>'
+        return tc + ('<div class="empty">No TT bets flagged right now.<br>'
                 '<span>Fixtures post a few hours before play — check back closer to the slate.</span></div>')
     default_line = data.get("model_line", 74.5)
     by = defaultdict(list)
@@ -780,7 +819,7 @@ def _tt_panel(data):
         <div class="ttsub">{when} MT · <span class="ttside">{side}</span> · {b['rec']} ({b['raw']}%) · {b['u']:g}u{bk}</div>
       </div>{lad}"""
         out.append(f'<div class="card"><h3 class="ttlg">{html.escape(league)}</h3>{cards}</div>')
-    return "\n".join(out)
+    return tc + "\n".join(out)
 
 
 _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
@@ -1187,6 +1226,10 @@ def build():
   .ttsub {{ color:#93a0b4; font-size:12.5px; margin-top:3px; }}
   .ttside {{ color:#5b9dff; font-weight:700; }}
   .ttbook {{ color:#8ae0b0; font-weight:700; font-variant-numeric:tabular-nums; }}
+  .tflat {{ cursor:default; }}
+  .tttot {{ margin-left:auto; color:#5b9dff; font-weight:700; font-size:15px; font-variant-numeric:tabular-nums; }}
+  .ttcnt {{ color:#5b6b82; font-weight:600; font-size:11px; margin-left:6px; }}
+  .ttfoot {{ color:#5b6b82; font-size:11px; margin-top:9px; }}
   .ttlad {{ display:none; padding:6px 0 12px; }}
   .ttlad.open {{ display:block; }}
   .ttlad:last-child {{ border-bottom:0; }}
