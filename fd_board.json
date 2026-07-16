@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T07:59:12Z",
+ "captured_at": "2026-07-16T08:03:36Z",
  "matches": [
-  {
-   "event_id": 35829489,
-   "p1": "Grzegorz Adamiak",
-   "p2": "Patrik Klos",
-   "p1_norm": "grzegorz adamiak",
-   "p2_norm": "patrik klos",
-   "open_date": "2026-07-16T07:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35829496,
    "p1": "Krzysztof Hetnar",
@@ -19,9 +8,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T07:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829500,
@@ -30,9 +19,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-16T08:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 62.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35829718,
@@ -88,6 +77,28 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35829865,
+   "p1": "Kamil Kurowski",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "kamil kurowski",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-16T08:30:00.000Z",
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35829866,
+   "p1": "Adrian Wiecek",
+   "p2": "Jakub Folwarski",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "jakub folwarski",
+   "open_date": "2026-07-16T08:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
