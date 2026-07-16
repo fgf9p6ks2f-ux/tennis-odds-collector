@@ -798,7 +798,7 @@ TT_LIVE_JS = """
     bets.sort(function(a,b){ return new Date(a.m.open_date) - new Date(b.m.open_date); });
     if (!bets.length){
       el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flagged Bets</h3>'
-        + '<div class="ttempty">No Elite bets flagged right now ' + mid + ' nothing on the current FanDuel board clears the edge threshold.</div></div>';
+        + '<div class="ttempty">No Elite bets flagged right now ' + mid + ' no pair on the current FanDuel board hits a side 70%+ at its line.</div></div>';
       return;
     }
     var rows = '';
@@ -810,8 +810,7 @@ TT_LIVE_JS = """
                   : '<span class="ttrec">no H2H history</span>';
       rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(b.m.p1) + '</b> v ' + _ttEsc(b.m.p2)
             + '<span class="ttpick">' + side.toUpperCase() + ' ' + b.line + '</span></div>'
-            + '<div class="ttsub">' + _ttTime(b.m.open_date) + ' MT ' + mid + ' ' + rec
-            + ' ' + mid + ' <span class="ttedge">+' + b.pick.edge + '% edge</span></div></div>';
+            + '<div class="ttsub">' + _ttTime(b.m.open_date) + ' MT ' + mid + ' ' + rec + '</div></div>';
     }
     el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flagged Bets'
       + '<span class="ttcnt">' + bets.length + '</span></h3>' + rows
@@ -847,10 +846,10 @@ TT_LIVE_JS = """
 
 
 def _tt_totals_card(tt_json, now=None):
-    """TT Elite FLAGGED BETS — only games where the real-line engine has a +EV edge at the FanDuel
-    line. Each row: matchup, MT tip time, the FanDuel line to bet, the OVER/UNDER side, and the
-    pair's H2H record + hit rate AT that line. Names/time/line from fd_board.json (live, VM); pick
-    + H2H totals from tt_board.json elite_h2h (Actions). No board / no edges -> a short note."""
+    """TT Elite FLAGGED BETS — only games where the pair hits a side >=70% AT the FanDuel line.
+    Each row: matchup, MT tip time, the FanDuel line to bet, the OVER/UNDER side, and the pair's
+    H2H record + hit rate AT that line. Names/time/line from fd_board.json (live, VM); pick + H2H
+    totals from tt_board.json elite_h2h (Actions). No board / nothing clears 70% -> a short note."""
     f = HERE / "fd_board.json"
     board = {}
     if f.exists():
@@ -879,8 +878,8 @@ def _tt_totals_card(tt_json, now=None):
         bets.append((start, m, line, pick, entry.get("totals") or []))
     if not bets:
         return ('<div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets</h3>'
-                '<div class="ttempty">No Elite bets flagged right now — nothing on the current '
-                'FanDuel board clears the edge threshold. Check back closer to the games.</div></div>')
+                '<div class="ttempty">No Elite bets flagged right now — no pair on the current '
+                'FanDuel board hits a side 70%+ at its line. Check back closer to the games.</div></div>')
     bets.sort(key=lambda b: b[0])
     rows = ""
     for start, m, line, pick, tots in bets:
@@ -894,7 +893,7 @@ def _tt_totals_card(tt_json, now=None):
                  f'<b>{html.escape(m.get("p1", "?"))}</b> v {html.escape(m.get("p2", "?"))}'
                  f'<span class="ttpick">{side.upper()} {line:g}</span></div>'
                  f'<div class="ttsub">{start.astimezone(MT).strftime("%a %-I:%M %p")} MT · {rec}'
-                 f' · <span class="ttedge">+{pick["edge"]}% edge</span></div></div>')
+                 f'</div></div>')
     return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets'
             f'<span class="ttcnt">{len(bets)}</span></h3>{rows}'
             f'<div class="ttfoot">bet the highlighted side at that FanDuel line · '
