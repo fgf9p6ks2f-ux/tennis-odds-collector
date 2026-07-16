@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T18:36:00Z",
+ "captured_at": "2026-07-16T18:40:33Z",
  "matches": [
-  {
-   "event_id": 35832143,
-   "p1": "Adam Staniczek",
-   "p2": "Dariusz Molenda",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "dariusz molenda",
-   "open_date": "2026-07-16T18:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35832160,
    "p1": "Kacper Glazowski",
@@ -19,20 +8,9 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-16T18:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832161,
-   "p1": "Mateusz Karpiuk",
-   "p2": "Jakub Cyndera",
-   "p1_norm": "mateusz karpiuk",
-   "p2_norm": "jakub cyndera",
-   "open_date": "2026-07-16T18:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832180,
@@ -52,9 +30,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-16T18:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35832193,
@@ -64,8 +42,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-16T18:50:00.000Z",
    "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35832204,
@@ -75,8 +53,8 @@
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-16T18:55:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
