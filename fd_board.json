@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T17:59:27Z",
+ "captured_at": "2026-07-16T18:04:05Z",
  "matches": [
-  {
-   "event_id": 35832125,
-   "p1": "Kacper Adamus",
-   "p2": "Jakub Nowak",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "jakub nowak",
-   "open_date": "2026-07-16T18:00:00.000Z",
-   "line": 82.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
   {
    "event_id": 35832128,
    "p1": "Mateusz Rutkowski",
