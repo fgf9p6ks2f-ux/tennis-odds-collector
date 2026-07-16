@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T09:41:09Z",
+ "captured_at": "2026-07-16T09:45:48Z",
  "matches": [
   {
    "event_id": 35829938,
@@ -8,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T09:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 80.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35829971,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-16T09:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35829975,
@@ -42,8 +42,8 @@
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-16T09:45:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35829982,
@@ -97,6 +97,28 @@
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-16T10:05:00.000Z",
    "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35830010,
+   "p1": "Michal Durda",
+   "p2": "Mariusz Baron",
+   "p1_norm": "michal durda",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-16T10:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35830011,
+   "p1": "Jakub Glanowski",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "jakub glanowski",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-16T10:10:00.000Z",
+   "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
   }
