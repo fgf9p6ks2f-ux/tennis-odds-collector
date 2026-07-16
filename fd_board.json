@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-16T17:31:43Z",
+ "captured_at": "2026-07-16T17:36:18Z",
  "matches": [
-  {
-   "event_id": 35832054,
-   "p1": "Kacper Glazowski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "kacper glazowski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-16T17:20:00.000Z",
-   "line": 92.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35832055,
-   "p1": "Mateusz Karpiuk",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "mateusz karpiuk",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-16T17:20:00.000Z",
-   "line": 67.5,
-   "over_odds": -155,
-   "under_odds": 110
-  },
-  {
-   "event_id": 35832056,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Kamil Klocek",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-16T17:20:00.000Z",
-   "line": 51.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35832078,
    "p1": "Pawel Chojnacki",
@@ -41,20 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T17:30:00.000Z",
-   "line": 77.5,
+   "line": 87.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35832085,
-   "p1": "Pawel Kurek",
-   "p2": "Karol Jablonski",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-16T17:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
   },
   {
    "event_id": 35832096,
@@ -87,6 +43,17 @@
    "open_date": "2026-07-16T17:45:00.000Z",
    "line": 80.5,
    "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832125,
+   "p1": "Kacper Adamus",
+   "p2": "Jakub Nowak",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-16T18:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
    "under_odds": -118
   }
  ]
