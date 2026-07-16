@@ -1,0 +1,104 @@
+{
+ "captured_at": "2026-07-16T03:00:05Z",
+ "matches": [
+  {
+   "event_id": 35828770,
+   "p1": "Lukasz Oracz",
+   "p2": "Marian Lebek",
+   "p1_norm": "lukasz oracz",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-16T02:45:00.000Z",
+   "line": 83.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35828791,
+   "p1": "Adrian Wiecek",
+   "p2": "Artur Daniel",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T03:00:00.000Z",
+   "line": 82.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35828792,
+   "p1": "Rafal Gajda",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T03:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35828793,
+   "p1": "Stapor Rafal",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-16T03:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35828802,
+   "p1": "Witold Stechly",
+   "p2": "Dawid Pyrek",
+   "p1_norm": "witold stechly",
+   "p2_norm": "dawid pyrek",
+   "open_date": "2026-07-16T03:05:00.000Z",
+   "line": 69.5,
+   "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35828806,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Adrian Burkacki",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "adrian burkacki",
+   "open_date": "2026-07-16T03:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35828813,
+   "p1": "Grzegorz Adamiak",
+   "p2": "Jakub Folwarski",
+   "p1_norm": "grzegorz adamiak",
+   "p2_norm": "jakub folwarski",
+   "open_date": "2026-07-16T03:25:00.000Z",
+   "line": 69.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35828814,
+   "p1": "Jakub Zochniak",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-16T03:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35828815,
+   "p1": "Mariusz Baron",
+   "p2": "Igor Szymanski",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-16T03:25:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  }
+ ]
+}
