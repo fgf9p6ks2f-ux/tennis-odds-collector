@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T23:00:58Z",
+ "captured_at": "2026-07-16T23:06:30Z",
  "matches": [
-  {
-   "event_id": 35832498,
-   "p1": "Jan Orszulik",
-   "p2": "Marian Lebek",
-   "p1_norm": "jan orszulik",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-16T22:50:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35832502,
    "p1": "Jakub Cyndera",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T22:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832506,
@@ -52,9 +41,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-16T23:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35832512,
@@ -66,6 +55,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35832528,
+   "p1": "Aleksander Barton",
+   "p2": "Dawid Pyrek",
+   "p1_norm": "aleksander barton",
+   "p2_norm": "dawid pyrek",
+   "open_date": "2026-07-16T23:30:00.000Z",
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
