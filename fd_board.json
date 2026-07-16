@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T20:47:43Z",
+ "captured_at": "2026-07-16T20:52:02Z",
  "matches": [
-  {
-   "event_id": 35832363,
-   "p1": "Konrad Staszczyk",
-   "p2": "Tomasz Filbrandt",
-   "p1_norm": "konrad staszczyk",
-   "p2_norm": "tomasz filbrandt",
-   "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 88.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35832364,
    "p1": "Kazimierz Rybak",
@@ -19,9 +8,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-16T20:30:00.000Z",
-   "line": 106.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 109.5,
+   "over_odds": -150,
+   "under_odds": 110
   },
   {
    "event_id": 35832381,
