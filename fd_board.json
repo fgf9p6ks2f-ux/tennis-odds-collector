@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T17:26:18Z",
+ "captured_at": "2026-07-16T17:31:43Z",
  "matches": [
   {
    "event_id": 35832054,
@@ -8,9 +8,9 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-16T17:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35832055,
@@ -19,9 +19,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-16T17:20:00.000Z",
-   "line": 52.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 67.5,
+   "over_odds": -155,
+   "under_odds": 110
   },
   {
    "event_id": 35832056,
@@ -30,9 +30,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-16T17:20:00.000Z",
-   "line": 55.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 51.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832078,
@@ -41,9 +41,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-16T17:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832085,
