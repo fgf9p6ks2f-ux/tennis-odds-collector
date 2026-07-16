@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-16T10:38:51Z",
+ "captured_at": "2026-07-16T10:43:27Z",
  "matches": [
-  {
-   "event_id": 35830042,
-   "p1": "Karol Wisniewski",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "karol wisniewski",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-16T10:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35830048,
    "p1": "Karol Sulkowski",
@@ -19,7 +8,7 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 80.5,
+   "line": 87.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +19,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-16T10:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35830058,
@@ -41,9 +30,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "piotr brozek",
    "open_date": "2026-07-16T10:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830080,
