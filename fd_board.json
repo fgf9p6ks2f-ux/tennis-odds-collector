@@ -1,50 +1,6 @@
 {
- "captured_at": "2026-07-16T14:33:15Z",
+ "captured_at": "2026-07-16T14:38:08Z",
  "matches": [
-  {
-   "event_id": 35830832,
-   "p1": "Szymon Sporek",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "szymon sporek",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-16T14:15:00.000Z",
-   "line": 96.5,
-   "over_odds": 125,
-   "under_odds": -180
-  },
-  {
-   "event_id": 35830853,
-   "p1": "Sebastian Juzek",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-16T14:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35830854,
-   "p1": "Mariusz Adamus",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-16T14:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35830855,
-   "p1": "Michal Minda",
-   "p2": "Dominik Solilo",
-   "p1_norm": "michal minda",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-16T14:20:00.000Z",
-   "line": 68.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35830862,
    "p1": "Josef Braun",
@@ -52,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-16T14:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35830863,
@@ -63,9 +19,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-16T14:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35830869,
@@ -132,6 +88,17 @@
    "line": 67.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35830917,
+   "p1": "Piotr Brozek",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "piotr brozek",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-16T15:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
