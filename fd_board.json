@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-16T03:57:52Z",
+ "captured_at": "2026-07-16T04:04:31Z",
  "matches": [
   {
    "event_id": 35828827,
@@ -8,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-16T03:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35828831,
@@ -19,9 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-16T03:50:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35828832,
@@ -30,9 +30,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "michal durda",
    "open_date": "2026-07-16T03:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 74.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35828837,
@@ -41,9 +41,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-16T03:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35828843,
@@ -52,9 +52,9 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-16T04:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35828854,
@@ -96,9 +96,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-16T04:20:00.000Z",
-   "line": 64.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 60.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35828869,
@@ -110,6 +110,50 @@
    "line": 73.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35828842,
+   "p1": "Oliver Vincenec",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-16T04:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35828874,
+   "p1": "Stapor Rafal",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-16T04:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35828875,
+   "p1": "Patrik Klos",
+   "p2": "Artur Daniel",
+   "p1_norm": "patrik klos",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-16T04:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35828876,
+   "p1": "Michal Durda",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "michal durda",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-16T04:30:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
