@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T21:18:19Z",
+ "captured_at": "2026-07-17T21:23:26Z",
  "matches": [
   {
    "event_id": 35835740,
@@ -8,9 +8,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-17T21:10:00.000Z",
-   "line": 61.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 72.5,
+   "over_odds": 100,
+   "under_odds": -135
   },
   {
    "event_id": 35835748,
@@ -19,9 +19,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-17T21:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835749,
@@ -30,9 +30,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "michal durda",
    "open_date": "2026-07-17T21:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835750,
@@ -41,9 +41,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-17T21:20:00.000Z",
-   "line": 74.5,
+   "line": 81.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35835768,
