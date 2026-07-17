@@ -1409,8 +1409,14 @@ def build():
     # raw URL every 60s and re-render #tt-totals, so the totals update on their own between the
     # ~30-min dashboard rebakes. Injected as an f-string field so its JS braces stay literal.
     tt_live_js = TT_LIVE_JS
+    import hashlib as _hl
+    bv = _hl.sha1(Path(__file__).read_bytes()).hexdigest()[:10]   # style/code version marker
     doc = f"""<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="bv" content="{bv}">
 <title>Today's Plays</title>
 <style>
   :root {{ color-scheme: dark; }}
@@ -1684,7 +1690,7 @@ def build():
   @keyframes pulse {{ 0%,100% {{ box-shadow:0 0 0 0 rgba(67,224,138,.45); }} 60% {{ box-shadow:0 0 0 5px rgba(67,224,138,0); }} }}
   .dot {{ background:var(--up); animation:pulse 2.6s var(--easesoft) infinite; }}
   /* liquid-glass floating tab bar (sticks while content scrolls beneath) */
-  .tabs {{ position:sticky; top:10px; z-index:50; position:relative; position:sticky;
+  .tabs {{ position:sticky; top:calc(10px + env(safe-area-inset-top)); z-index:50;
     background:linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04));
     backdrop-filter:blur(32px) saturate(170%); -webkit-backdrop-filter:blur(32px) saturate(170%);
     border:1px solid var(--hair2); border-radius:var(--pill); padding:4px; gap:0;
@@ -1758,6 +1764,24 @@ def build():
   .rfrsh:active {{ transform:rotate(180deg); }}
   .tv.up {{ color:var(--up); }} .tv.down {{ color:var(--dn); }}
   .foot {{ color:#3f434c; font-size:10px; }}
+  /* TT + GG tabs — same flat-card family, eyebrow headers, semantic colors */
+  .card {{ background:radial-gradient(140% 170% at 50% -20%, #15181f, #0d0f14 65%);
+    border:1px solid var(--hair); border-radius:14px; padding:14px 15px; margin-bottom:12px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.35);
+    animation:fadeUp .45s var(--easeout) both; }}
+  .ttlg {{ color:var(--t3); font-size:10.5px; text-transform:uppercase; letter-spacing:.07em;
+    font-weight:600; display:flex; align-items:center; gap:7px; }}
+  .ttcnt {{ background:linear-gradient(180deg, rgba(77,163,255,.26), rgba(77,163,255,.13));
+    color:#dbeafe; border-radius:var(--pill); padding:2px 9px; font-size:11px; font-weight:700; }}
+  .ttrow {{ border-bottom:1px solid var(--hair); transition:background .15s var(--easesoft);
+    border-radius:8px; }}
+  .ttrow:active {{ background:rgba(255,255,255,.045); }}
+  .ttmain b {{ color:var(--t1); }}
+  .ttpick {{ color:var(--up); }}
+  .ttsub, .ttfoot, .ttempty {{ color:var(--t3); }}
+  .ttodds, .ttbook {{ color:var(--sky); }}
+  .ttlad.open {{ animation:fadeIn .25s var(--easesoft); }}
+  .ttrkrow span:last-child.up {{ color:var(--up); }}
   @media (prefers-reduced-motion:reduce) {{
     *, *::before, *::after {{ animation:none !important; transition:none !important; }}
   }}
@@ -1792,15 +1816,15 @@ def build():
     {wl_html}
   </div>
   <div class="panel hidden" id="tt">
-    <h2>Table tennis · by league &amp; game time</h2>
+    <h2>Table tennis · real FD lines</h2>
     {tt_html}
   </div>
   <div class="panel hidden" id="gg">
-    <h2>GG League esports · paper flags at the FanDuel line</h2>
+    <h2>GG esports · paper flags</h2>
     {gg_html}
   </div>
   <div class="panel hidden" id="tracker">
-    <h2>Live record · settles as each event ends</h2>
+    <h2>Live record</h2>
     {tracker_html}
   </div>
   <div class="foot">auto-generated · self-refreshing · WNBA 1u ladders · TT/GG ¼-Kelly paper</div>
@@ -1861,6 +1885,8 @@ def build():
       const r = await fetch(location.pathname + '?_=' + Date.now(), {{ cache: 'no-store' }});
       if (!r.ok) return;
       const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      const nbv = doc.querySelector('meta[name="bv"]'), cbv = document.querySelector('meta[name="bv"]');
+      if (nbv && cbv && nbv.content !== cbv.content) {{ location.reload(); return; }}
       const y = window.scrollY;
       // remember which game-log drawers are open so the panel swap doesn't slam them shut mid-read
       const openK = [...document.querySelectorAll('.prop')].filter(p =>
