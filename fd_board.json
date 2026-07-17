@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T02:21:51Z",
+ "captured_at": "2026-07-17T02:27:47Z",
  "matches": [
   {
    "event_id": 35832700,
@@ -8,9 +8,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-17T02:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832701,
@@ -19,7 +19,7 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-17T02:20:00.000Z",
-   "line": 73.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
