@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T19:30:55Z",
+ "captured_at": "2026-07-17T19:36:05Z",
  "matches": [
-  {
-   "event_id": 35835490,
-   "p1": "Tomasz Filbrandt",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "tomasz filbrandt",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-17T19:15:00.000Z",
-   "line": 100.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35835495,
-   "p1": "Michal Durda",
-   "p2": "Pawel Kurek",
-   "p1_norm": "michal durda",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-17T19:20:00.000Z",
-   "line": 56.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
   {
    "event_id": 35835520,
    "p1": "Marcin Wozniczka",
@@ -30,9 +8,9 @@
    "p1_norm": "marcin wozniczka",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-17T19:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35835523,
@@ -64,6 +42,17 @@
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T19:55:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835543,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Wolny",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-17T20:00:00.000Z",
+   "line": 71.5,
    "over_odds": -112,
    "under_odds": -118
   }
