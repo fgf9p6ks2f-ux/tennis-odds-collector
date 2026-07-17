@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T19:26:02Z",
+ "captured_at": "2026-07-17T19:30:55Z",
  "matches": [
-  {
-   "event_id": 35835484,
-   "p1": "Jakub Michalski",
-   "p2": "Rafal Adach",
-   "p1_norm": "jakub michalski",
-   "p2_norm": "rafal adach",
-   "open_date": "2026-07-17T19:10:00.000Z",
-   "line": 103.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35835490,
    "p1": "Tomasz Filbrandt",
@@ -19,9 +8,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-17T19:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 100.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35835495,
@@ -30,20 +19,9 @@
    "p1_norm": "michal durda",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T19:20:00.000Z",
-   "line": 52.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35835518,
-   "p1": "Adam Ruszkiewicz",
-   "p2": "Damian Fira",
-   "p1_norm": "adam ruszkiewicz",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-17T19:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 56.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35835520,
@@ -75,6 +53,17 @@
    "p2_norm": "piotr strus",
    "open_date": "2026-07-17T19:40:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835533,
+   "p1": "Robert Szymik",
+   "p2": "Rafal Adach",
+   "p1_norm": "robert szymik",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-17T19:55:00.000Z",
+   "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
   }
