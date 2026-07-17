@@ -87,6 +87,10 @@ while true; do i=$((i+1))
       python3 dashboard.py >/dev/null 2>&1 || true
       push
     fi
+    # next-day plays must fire fast too (user: post as soon as 1 out-confirmation + FD lines):
+    # the full flagger also runs every ~40 hot ticks (~17 min) — it never ran in hot before,
+    # so a new out + fresh next-day lines could sit unflagged for a whole evening.
+    if [ $((hot_ticks % 40)) -eq 20 ]; then echo "[$(date +%H:%M)] full scan (hot)"; fullscan; fi
     sleep 25
   else
     # COLD PATH: normal 75s cycle; heavy full scan every 25 cold iterations.
@@ -95,7 +99,7 @@ while true; do i=$((i+1))
     git pull -q "$URL" main 2>/dev/null || true
     collectors
     python3 wnba_watch.py >/dev/null 2>&1 || true
-    if [ $((cold_i % 25)) -eq 1 ]; then echo "[$(date +%H:%M)] full scan (cold iter $cold_i)"; fullscan; fi
+    if [ $((cold_i % 8)) -eq 1 ]; then echo "[$(date +%H:%M)] full scan (cold iter $cold_i)"; fullscan; fi
     push; sleep 60
   fi
 done

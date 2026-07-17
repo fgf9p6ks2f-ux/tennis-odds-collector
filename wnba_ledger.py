@@ -265,6 +265,34 @@ def grade():
                                    (r[0],)).fetchone()[0] == 0]
     except Exception as e:
         print(f"grade: postponement sweep skipped: {str(e)[:80]}")
+    # PREMISE SWEEP (2026-07-16, the Rivers case): a pending bet's BASIS is the out_player(s)
+    # being out — if any of them flips to playing (feed update / manual override) before the
+    # game, the bet is mispriced and must VOID (excluded from the record like push/postponed).
+    # The next alert pass re-evaluates the team with the corrected absence set.
+    try:
+        import wnba_tonight as _T
+        _inj = _T.injuries()
+        _today_et = dt.datetime.now(_T.ET).date().isoformat()
+        swept = 0
+        for rowid, pd_, player, stat, line, opp, team in rows:
+            if pd_ < _today_et:
+                continue                                 # past slates grade normally
+            op = con.execute("SELECT out_player FROM predictions WHERE rowid=?",
+                             (rowid,)).fetchone()
+            names = [x.strip() for x in (op[0] or "").split(",") if x.strip()] if op else []
+            if names and any(_inj.get(nm) not in ("Out", "Doubtful") for nm in names):
+                con.execute("UPDATE predictions SET result='void', graded=1 "
+                            "WHERE rowid=? AND graded=0", (rowid,))
+                swept += 1
+        if swept:
+            con.commit()
+            print(f"grade: premise sweep voided {swept} spot(s) — an out-basis player "
+                  f"is no longer out")
+            rows = [r for r in rows
+                    if con.execute("SELECT graded FROM predictions WHERE rowid=?",
+                                   (r[0],)).fetchone()[0] == 0]
+    except Exception as e:
+        print(f"grade: premise sweep skipped: {str(e)[:80]}")
     # name->id from the cheap guarded roster map (NOT players()'s ~180-call rebuild, which throttles
     # and used to abort the whole pass -> final bets sat ungraded, inflating the record).
     ids = W.roster_ids()

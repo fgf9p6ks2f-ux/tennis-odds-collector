@@ -725,6 +725,25 @@ def injuries():
                 status = "Questionable"
             if nm and status in ("Out", "Doubtful", "Questionable"):
                 out[nm] = status
+    # MANUAL STATUS OVERRIDES (2026-07-16): wnba_status_overrides.json — {"Player": {"status":
+    # "Probable", "expires": "YYYY-MM-DD"}}. For when the USER knows before the feeds (7/16:
+    # Rivers upgraded to probable for 7/17 while ESPN league+game feeds AND FD's slate all still
+    # said Out). Highest precedence; Probable/Available REMOVES the player from the injury view
+    # entirely (they play); entries auto-expire. Committed so VM + Actions both honor it.
+    try:
+        ov = json.loads((Path(__file__).resolve().parent
+                         / "wnba_status_overrides.json").read_text())
+        today_iso = dt.datetime.now(ET).date().isoformat()
+        for nm, o in (ov or {}).items():
+            if (o.get("expires") or "9999") < today_iso:
+                continue
+            st = o.get("status", "")
+            if st in ("Probable", "Available", "Playing"):
+                out.pop(nm, None)
+            elif st:
+                out[nm] = st
+    except (OSError, ValueError):
+        pass
     try:                                    # RotoWire game-day outs = first-class triggers
         pl = json.loads((Path(__file__).resolve().parent
                          / "wnba_players_cache.json").read_text()).get("players", {})
