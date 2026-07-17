@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T00:02:18Z",
+ "captured_at": "2026-07-17T00:07:54Z",
  "matches": [
   {
    "event_id": 35832558,
@@ -55,6 +55,28 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832590,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Jakub Cyndera",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "jakub cyndera",
+   "open_date": "2026-07-17T00:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832591,
+   "p1": "Mikolaj Lukaszewski",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "mikolaj lukaszewski",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-17T00:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
