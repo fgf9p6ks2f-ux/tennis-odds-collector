@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T19:46:01Z",
+ "captured_at": "2026-07-17T19:51:13Z",
  "matches": [
-  {
-   "event_id": 35835520,
-   "p1": "Marcin Wozniczka",
-   "p2": "Oskar Jedrzejowski",
-   "p1_norm": "marcin wozniczka",
-   "p2_norm": "oskar jedrzejowski",
-   "open_date": "2026-07-17T19:35:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35835523,
    "p1": "Wojciech Wojtaszczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-17T19:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835533,
