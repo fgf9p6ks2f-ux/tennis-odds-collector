@@ -119,6 +119,8 @@
 2026-07-16|Breanna Stewart|pts_ast|22.5
 2026-07-16|Jonquel Jones|dd
 2026-07-16|Pauline Astier|pts_reb|11.5
+2026-07-17|Brittney Griner|points|14.5
+2026-07-17|Brittney Griner|points|19.5
 2026-07-17|Diamond Miller|points|8.5
 2026-07-17|Isabelle Harrison|pts_reb|17.5
 2026-07-17|Kamilla Cardoso|dd
