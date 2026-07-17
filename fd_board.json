@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T23:15:13Z",
+ "captured_at": "2026-07-17T23:22:24Z",
  "matches": [
-  {
-   "event_id": 35835836,
-   "p1": "Roman Wiza",
-   "p2": "Damian Fira",
-   "p1_norm": "roman wiza",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-17T23:05:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35835840,
-   "p1": "Artur Kubiak",
-   "p2": "Marcin Wozniczka",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "marcin wozniczka",
-   "open_date": "2026-07-17T23:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35835841,
    "p1": "Marcin Marchlewski",
@@ -30,9 +8,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-17T23:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835842,
@@ -41,9 +19,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T23:20:00.000Z",
-   "line": 73.5,
+   "line": 77.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35835843,
@@ -52,9 +30,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T23:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835844,
@@ -63,9 +41,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T23:30:00.000Z",
-   "line": 69.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 66.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35835845,
@@ -88,6 +66,28 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35835850,
+   "p1": "Miroslaw Piecowski",
+   "p2": "Kamil Klocek",
+   "p1_norm": "miroslaw piecowski",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-17T23:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835851,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Jakub Jesiek",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "jakub jesiek",
+   "open_date": "2026-07-17T23:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
