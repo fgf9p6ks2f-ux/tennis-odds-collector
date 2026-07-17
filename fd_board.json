@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T20:36:53Z",
+ "captured_at": "2026-07-17T20:41:55Z",
  "matches": [
   {
    "event_id": 35835654,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "michal durda",
    "open_date": "2026-07-17T20:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835661,
@@ -19,9 +19,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-17T20:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835672,
@@ -75,6 +75,17 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T21:00:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835736,
+   "p1": "Robert Szymik",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "robert szymik",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-17T21:05:00.000Z",
+   "line": 70.5,
    "over_odds": -118,
    "under_odds": -112
   }
