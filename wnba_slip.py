@@ -87,6 +87,43 @@ def ladder_stake_map(rows):
     return out
 
 
+_SEL_SCHEMA = """CREATE TABLE IF NOT EXISTS selections (
+    pred_date TEXT, team TEXT, player TEXT, stat TEXT, selected_at TEXT,
+    PRIMARY KEY (pred_date, team, player, stat))"""
+
+
+def _sel_log():
+    """{(date, team): [(player, stat), ...] in first-selected order} — the sticky-selection log."""
+    try:
+        con = sqlite3.connect(LEDGER)
+        con.execute(_SEL_SCHEMA)
+        rows = con.execute("SELECT pred_date, team, player, stat FROM selections "
+                           "ORDER BY selected_at").fetchall()
+        con.close()
+    except sqlite3.Error:
+        return {}
+    out = {}
+    for pd_, tm, pl, st in rows:
+        out.setdefault((pd_, tm), []).append((pl, st))
+    return out
+
+
+def _sel_commit(new_picks):
+    """Persist first-selections: [(pred_date, team, player, stat)]."""
+    if not new_picks:
+        return
+    try:
+        import datetime as _dt
+        con = sqlite3.connect(LEDGER)
+        con.execute(_SEL_SCHEMA)
+        con.executemany("INSERT OR IGNORE INTO selections VALUES (?,?,?,?,?)",
+                        [(*p, _dt.datetime.utcnow().isoformat()) for p in new_picks])
+        con.commit()
+        con.close()
+    except sqlite3.Error:
+        pass
+
+
 def _pid(date, key):
     """Short stable id for a parlay (shown on the dashboard; used to mark it played)."""
     return hashlib.sha1(f"{date}|{key}".encode()).hexdigest()[:4]
@@ -150,7 +187,7 @@ def ladders(overs):
     return out
 
 
-def current_selection(rows):
+def current_selection(rows, commit=False):
     """The subset of OVER rows the CURRENT model would actually pick — used to restate the tracked
     record to the new bot's selection. Three rule-based stages (returns (kept, dropped) where
     dropped is [(row, reason)]):
@@ -211,11 +248,19 @@ def current_selection(rows):
     # 69.1% vs 68.9%) and the live real-line ledger (+4.5u vs +2.9u over 16 pools) agree.
     # Strict disjointness BEAT overlap-allowed in WNBA (65.4% vs 62.9%) — so this supersedes
     # both the old one-favorite-only rule and same-player stat+combo overlap at selection.
+    # STICKY SELECTION (2026-07-17, user: "I played Ododa before she was replaced by Miller"):
+    # a play-group that ENTERS the board for a slate STAYS selected for that slate — the user
+    # bets when it's on the board, so a later re-rank (a new shorter-odds flag landing) must
+    # never retro-drop a live recommendation. Logged first-selections take the slots in order;
+    # newcomers only fill what's open. wnba_alert commits new selections (commit=True); every
+    # other caller reads the same log so board/record/slips agree.
+    slog = _sel_log()
+    new_sel = []
     bycas = defaultdict(list)
     for r in kept:
         bycas[(r.get("pred_date"), r.get("team"))].append(r)
     sel_kept = []
-    for grp in bycas.values():
+    for (pd_, tm), grp in bycas.items():
         groups = defaultdict(list)                        # (player, stat) ladder groups
         for r in grp:
             groups[(r.get("player"), r["stat"])].append(r)
@@ -225,19 +270,34 @@ def current_selection(rows):
             return (min((x.get("odds") or 99) for x in rr),
                     -max((x.get("ev") or 0.0) for x in rr))
         picks, used = [], set()
-        for k in sorted(groups, key=gkey):
+        for k in slog.get((pd_, tm), []):                 # sticky picks first, logged order
             if len(picks) == 2:
                 break
+            if k not in groups:                           # rows voided/absent -> slot reopens
+                continue
             cs = _comps(k[1])
             if cs & used:
                 continue
             picks.append(k)
             used |= cs
+        for k in sorted(groups, key=gkey):                # then fill open slots by rank
+            if len(picks) == 2:
+                break
+            if k in picks:
+                continue
+            cs = _comps(k[1])
+            if cs & used:
+                continue
+            picks.append(k)
+            used |= cs
+            new_sel.append((pd_, tm, k[0], k[1]))
         pick_set = set(picks)
         for r in grp:
             (sel_kept.append(r) if (r.get("player"), r["stat"]) in pick_set else
              dropped.append((r, "outside top-2 disjoint plays (2-per-team rule)")))
     kept = sel_kept
+    if commit:
+        _sel_commit(new_sel)
 
     # 4. LADDER RUNG SPACING — user rule 2026-07-17: no +1 rungs on points-based markets
     # (o14.5 + o15.5 = the same bet twice); reb/ast ladders may step +1. Base rung always kept.
