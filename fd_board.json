@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T00:07:54Z",
+ "captured_at": "2026-07-17T00:13:32Z",
  "matches": [
   {
    "event_id": 35832558,
@@ -8,9 +8,9 @@
    "p1_norm": "kazimierz rybak",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-17T00:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832559,
@@ -19,9 +19,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-17T00:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832568,
