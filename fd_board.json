@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T20:47:15Z",
+ "captured_at": "2026-07-17T20:52:22Z",
  "matches": [
   {
    "event_id": 35835672,
@@ -8,7 +8,7 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "damian fira",
    "open_date": "2026-07-17T20:45:00.000Z",
-   "line": 75.5,
+   "line": 88.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,9 @@
    "p1_norm": "cezary pawlik",
    "p2_norm": "marcin wozniczka",
    "open_date": "2026-07-17T20:45:00.000Z",
-   "line": 78.5,
+   "line": 86.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35835687,
@@ -52,9 +52,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T21:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35835736,
