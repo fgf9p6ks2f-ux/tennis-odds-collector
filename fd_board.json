@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-17T21:13:14Z",
+ "captured_at": "2026-07-17T21:18:19Z",
  "matches": [
-  {
-   "event_id": 35835687,
-   "p1": "Jakub Kuzmicz",
-   "p2": "Tomasz Filbrandt",
-   "p1_norm": "jakub kuzmicz",
-   "p2_norm": "tomasz filbrandt",
-   "open_date": "2026-07-17T21:00:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35835688,
-   "p1": "Dariusz Wrobel",
-   "p2": "Kacper Marchlewski",
-   "p1_norm": "dariusz wrobel",
-   "p2_norm": "kacper marchlewski",
-   "open_date": "2026-07-17T21:00:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35835736,
-   "p1": "Robert Szymik",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "robert szymik",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-17T21:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35835740,
    "p1": "Michal Wolny",
@@ -41,9 +8,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-17T21:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 61.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835748,
@@ -99,6 +66,39 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35835782,
+   "p1": "Dariusz Wrobel",
+   "p2": "Kamil Klocek",
+   "p1_norm": "dariusz wrobel",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-17T21:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835783,
+   "p1": "Jakub Jesiek",
+   "p2": "Pawel Adamus",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "pawel adamus",
+   "open_date": "2026-07-17T21:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835784,
+   "p1": "Michal Olbrycht",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "michal olbrycht",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-17T21:45:00.000Z",
+   "line": 69.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
