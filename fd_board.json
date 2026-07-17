@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T21:34:02Z",
+ "captured_at": "2026-07-17T21:38:09Z",
  "matches": [
   {
    "event_id": 35835748,
@@ -8,20 +8,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-17T21:20:00.000Z",
-   "line": 88.5,
+   "line": 90.5,
    "over_odds": -110,
    "under_odds": -125
-  },
-  {
-   "event_id": 35835749,
-   "p1": "Wojciech Wojtaszczyk",
-   "p2": "Michal Durda",
-   "p1_norm": "wojciech wojtaszczyk",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-17T21:20:00.000Z",
-   "line": 94.5,
-   "over_odds": -125,
-   "under_odds": -110
   },
   {
    "event_id": 35835750,
@@ -30,9 +19,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-17T21:20:00.000Z",
-   "line": 97.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 99.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835768,
@@ -41,9 +30,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-17T21:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 54.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835775,
@@ -52,9 +41,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "marcin wozniczka",
    "open_date": "2026-07-17T21:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35835782,
@@ -64,8 +53,8 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-17T21:45:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35835783,
@@ -107,6 +96,17 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "cezary pawlik",
    "open_date": "2026-07-17T22:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835792,
+   "p1": "Tomasz Filbrandt",
+   "p2": "Marcin Marchlewski",
+   "p1_norm": "tomasz filbrandt",
+   "p2_norm": "marcin marchlewski",
+   "open_date": "2026-07-17T22:05:00.000Z",
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
