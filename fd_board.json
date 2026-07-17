@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T22:40:03Z",
+ "captured_at": "2026-07-17T22:47:04Z",
  "matches": [
   {
    "event_id": 35835810,
@@ -8,9 +8,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-17T22:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835814,
@@ -19,9 +19,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-17T22:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835816,
@@ -31,8 +31,8 @@
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T22:40:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835823,
@@ -86,6 +86,28 @@
    "p2_norm": "damian fira",
    "open_date": "2026-07-17T23:05:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835840,
+   "p1": "Artur Kubiak",
+   "p2": "Marcin Wozniczka",
+   "p1_norm": "artur kubiak",
+   "p2_norm": "marcin wozniczka",
+   "open_date": "2026-07-17T23:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835841,
+   "p1": "Marcin Marchlewski",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "marcin marchlewski",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-17T23:15:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }
