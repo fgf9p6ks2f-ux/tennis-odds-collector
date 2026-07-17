@@ -1275,8 +1275,9 @@ def build():
         dtag = "TMRW · " if (r.get("pred_date") or today) > today else ""
         chips += (f'<span class="xchip">{dtag}<b>{html.escape(_short(r["player"]))}</b> '
                   f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}</span>')
-    extras_html = ('<div class="xtras"><div class="xt">⚡ Also flagged · pinged &amp; on the record · '
-                   'ranked below the top-3 cards</div>' + chips + '</div>') if chips else ""
+    extras_html = ('<div class="xtras"><div class="xt">⚡ Also flagged · pinged &amp; ledger-logged · '
+                   'not picked by the 2-per-team disjoint rule (not in the tracked record)</div>'
+                   + chips + '</div>') if chips else ""
 
     # soonest slate first, then strongest blended edge within a slate
     order = sorted(games.items(),
