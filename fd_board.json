@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T02:48:29Z",
+ "captured_at": "2026-07-17T02:52:48Z",
  "matches": [
-  {
-   "event_id": 35832710,
-   "p1": "Michal Guzik",
-   "p2": "Jerzy Debski",
-   "p1_norm": "michal guzik",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-17T02:35:00.000Z",
-   "line": 63.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35832720,
    "p1": "Jakub Nowak",
@@ -20,8 +9,8 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-17T02:45:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832724,
