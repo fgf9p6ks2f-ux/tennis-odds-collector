@@ -463,6 +463,12 @@ def _prop_row(r, rungs=None):
     hit-rate HEATMAP (ROLE injury-context · L5 · L10 · season · H2H, green/red), and a compact
     context line (usage driver + matchup D + the runner-up book price). Taps to expand the bars."""
     stat = STAT.get(r["stat"], r["stat"].upper())
+    # REB WATCH (2026-07-17, user call): reb-component bets are 7-10 / -3.1u live while everything
+    # else prints — he personally skips them until the ~30-bet checkpoint; the system still flags,
+    # grades and tracks them all. The tag tells him at a glance which plays are on his skip list.
+    rwatch = (' <span class="rwatch" title="rebounds-component: 7-10 (-3.1u) live — tracking to a '
+              '~30-bet verdict; user-skip until then">watch</span>'
+              if r["stat"] in ("rebounds", "reb_ast", "pts_reb") else "")
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     o = "O" if side == "over" else "U"
     ev = r.get("ev")
@@ -564,7 +570,7 @@ def _prop_row(r, rungs=None):
       <div class="prop" data-side="{side}" data-k="{dk}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind {o.lower()}">{o}</span>
-          <span class="plno{rngcls}">{line_disp}</span><span class="pstat">{stat}</span>
+          <span class="plno{rngcls}">{line_disp}</span><span class="pstat">{stat}</span>{rwatch}
           <span class="psp"></span>
           {odds_html}
           <span class="pedge {ecls}">{edge_v}</span>{contra}<span class="pchev">›</span></div>
@@ -1519,6 +1525,8 @@ def build():
   .pmark {{ color:#2c3442; font-size:15px; font-weight:800; cursor:pointer; padding:0 3px; user-select:none; }}
   .pmark.on {{ color:#39d98a; }}
   .contra {{ color:#e0a95e; font-size:12px; margin-left:0; }}
+  .rwatch {{ color:var(--warm); border:1px dashed rgba(255,138,61,.4); border-radius:var(--pill);
+            padding:1px 7px; font-size:9.5px; font-weight:700; letter-spacing:.03em; }}
   .xteam {{ color:#5b6b82; font-size:10.5px; }}
   .stag {{ color:#c9a06a; font-size:10px; font-weight:700; margin-left:6px; }}
   .tcard.diag .tbody {{ display:none; }} .tcard.diag.open .tbody {{ display:block; }}
