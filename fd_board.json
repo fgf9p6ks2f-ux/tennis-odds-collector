@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T19:01:16Z",
+ "captured_at": "2026-07-17T19:06:04Z",
  "matches": [
-  {
-   "event_id": 35835443,
-   "p1": "Michal Olbrycht",
-   "p2": "Marcin Marchlewski",
-   "p1_norm": "michal olbrycht",
-   "p2_norm": "marcin marchlewski",
-   "open_date": "2026-07-17T18:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35835484,
    "p1": "Jakub Michalski",
@@ -41,9 +30,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-17T19:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35835495,
@@ -66,6 +55,17 @@
    "line": 84.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35835518,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Damian Fira",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "damian fira",
+   "open_date": "2026-07-17T19:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -118
   }
  ]
 }
