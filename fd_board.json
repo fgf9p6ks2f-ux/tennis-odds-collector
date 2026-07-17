@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T22:00:28Z",
+ "captured_at": "2026-07-17T22:05:07Z",
  "matches": [
   {
    "event_id": 35835789,
@@ -8,9 +8,9 @@
    "p1_norm": "damian fira",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T21:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835790,
@@ -19,7 +19,7 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "cezary pawlik",
    "open_date": "2026-07-17T22:00:00.000Z",
-   "line": 76.5,
+   "line": 78.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -31,8 +31,8 @@
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-17T22:05:00.000Z",
    "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835795,
@@ -74,7 +74,18 @@
    "p1_norm": "michal wolny",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-17T22:25:00.000Z",
-   "line": 67.5,
+   "line": 63.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35835810,
+   "p1": "Michal Olbrycht",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "michal olbrycht",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-17T22:30:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }
