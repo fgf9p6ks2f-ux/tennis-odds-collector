@@ -353,7 +353,7 @@ def _bars(r):
     why = f'<div class="why">{_reasoning(r)}</div>{_regime_html(r)}'
     s = _samples(r)
     if not s:
-        return f'<div class="bars">{why}<div class="nodata">no game data</div></div>'
+        return f'<div class="bars"><div class="bwrap">{why}<div class="nodata">no game data</div></div></div>'
     s = list(reversed(s))                              # newest-first -> show oldest-left
     line = float(r["line"])
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
@@ -379,10 +379,10 @@ def _bars(r):
                  f'<div class="b {"o" if onside(v) else "u"}" style="height:{v/mx*100:.1f}%">'
                  f'<span class="bv">{v:g}</span></div></div>')
     opps = "".join(f'<span>{html.escape(str(o) or "")}</span>' for _, o, *_ in s)
-    return (f'<div class="bars">{why}<div class="chart">'
+    return (f'<div class="bars"><div class="bwrap">{why}<div class="chart">'
             f'<div class="pline" style="bottom:{line/mx*100:.1f}%"><span>{line:g}</span></div>'
             f'{cols}</div><div class="opps">{opps}</div>'
-            f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · gray bar = minutes · {note}</div></div>')
+            f'<div class="bnote">{hits}/{len(s)} {side} {line:g} · gray bar = minutes · {note}</div></div></div>')
 
 
 def _splits(r):
@@ -609,7 +609,7 @@ def _player_block(player, rows):
             f'{flag}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
 
 
-def _game_group(players, tips, today=None):
+def _game_group(players, tips, today=None, idx=0):
     """A GAME: a header (matchup + tip time / slate day) and the shared injury context (who's
     out), then the beneficiary blocks. `players` = [(player, rows)] already ordered by edge. A
     play whose slate date isn't today is labelled with its weekday+date."""
@@ -637,7 +637,7 @@ def _game_group(players, tips, today=None):
     def glogo(ab):
         return (f'<img class="glogo" src="{LOGO.format(ab.lower())}" alt="" loading="lazy" '
                 f'onerror="this.style.display=\'none\'">' if ab else "")
-    return (f'<div class="game" data-edge="{gedge:.4f}" data-tip="{gtip:.0f}">'
+    return (f'<div class="game" data-edge="{gedge:.4f}" data-tip="{gtip:.0f}" style="--i:{idx}">'
             f'<div class="ghd"><span class="gmatch">{glogo(team)}{team}'
             f'<span class="gvs">vs</span>{glogo(opp)}{opp or "—"}</span>'
             f'<span class="gtime">{when}</span></div>'
@@ -1140,8 +1140,8 @@ def _watchlist_html(firm_keys=frozenset(), tips=None):
             hd = (f'{dtag}{warn}if <b>{html.escape(star or "?")}</b> sits · '
                   f'{html.escape(status or "Q")}' + (f' · {sitpct} to sit' if sitpct else ''))
         blocks.append(f'<div class="wl-grp"><div class="wl-hd"{ttl}>{hd}</div>{legs}</div>')
-    return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist · questionable stars '
-            '<span>— provisional, not firm bets; fire when ruled out</span></div>'
+    return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist '
+            '<span>· fires if the Q star sits</span></div>'
             + "".join(blocks) + "</div>")
 
 
@@ -1169,7 +1169,7 @@ def _openers_html():
         return ""
     legs = "".join(f'<div class="op-leg">{html.escape(s.get("msg", ""))}</div>' for s in spots[:12])
     return ('<div class="openers"><div class="op-title">⚡ Openers'
-            '<span> · beatable OVER lines just posted · line-shopping, not tracked bets</span></div>'
+            '<span> · soft OVER posts · not tracked</span></div>'
             f'{legs}</div>')
 
 
@@ -1228,7 +1228,7 @@ def _slip_html(rows=None):
         if not cards:
             return ""
         return ('<div class="parlays"><div class="op-title">🎰 Parlays'
-                '<span> · .25u (.15u ≥+1000) · tap ✓ to mark played</span></div>'
+                '<span> · .25u · tap ✓ when played</span></div>'
                 f'<div class="slips">{cards}</div></div>')
     except Exception:
         return ""
@@ -1271,7 +1271,7 @@ def _ladders_html(rows):
                       f'<span class="lsp"></span><span class="ltot">{tot:g}u <span>total</span></span></div>'
                       f'<div class="lrungs">{rungs}</div></div>')
         return ('<div class="ladders"><div class="op-title">🪜 Ladders'
-                '<span> · multi-rung plays · 1u base + declining rungs</span></div>'
+                '<span> · 1u + declining rungs</span></div>'
                 f'{cards}</div>')
     except Exception:
         return ""
@@ -1368,8 +1368,9 @@ def build():
         tmtag = f'<span class="xteam">{html.escape((r.get("team") or "").upper())}</span> ' if r.get("team") else ""
         chips += (f'<span class="xchip">{dtag}{tmtag}<b>{html.escape(_short(r["player"]))}</b> '
                   f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}{pv}</span>')
-    extras_html = ('<div class="xtras"><div class="xt">⚡ Also flagged · pinged &amp; ledger-logged · '
-                   'not picked by the 2-per-team disjoint rule (not in the tracked record)</div>'
+    extras_html = ('<div class="xtras"><div class="xt" title="pinged &amp; ledger-logged — dropped by '
+                   'the 2-per-team / rung-gap rules; not in the tracked record">⚡ Also flagged '
+                   '<span>· pinged · not selected</span></div>'
                    + chips + '</div>') if chips else ""
     # honest header numbers: count the SELECTED play-groups on the cards (not every ledger rung),
     # plus a record strip so the board carries its own track record (audit item: record was a tab away)
@@ -1378,8 +1379,8 @@ def build():
     _uc = "up" if u > 0 else ("down" if u < 0 else "")
     recstrip_html = (f'<div class="recstrip" onclick="showTab(\'tracker\')">📈 <b>{w}-{l}</b> · {hitpct} hit · '
                      f'<b class="{_uc}">{u:+.1f}u</b><span>since 7/9 · Tracker →</span></div>')
-    h2_html = (f'<h2>{nsel} plays · by game · tap a bet for its log'
-               + (f' · {len(extras)} also-flagged' if extras else '') + '</h2>')
+    h2_html = (f'<span class="fmeta" title="tap any bet for its game log">{nsel} plays'
+               + (f' · {len(extras)} extra' if extras else '') + '</span>')
 
     # soonest slate first, then TIP-OFF ORDER within a slate (user 2026-07-17: board reads
     # top-to-bottom in game-time order); unknown tips sink; edge breaks ties
@@ -1394,7 +1395,7 @@ def build():
     ordered = [pl for _, pl in order]
     for pl in ordered:                                    # strongest player first within each game
         pl.sort(key=lambda pp: -_pscore(pp[1]))
-    cards = "\n".join(_game_group(pl, tips, today) for pl in ordered) if ordered else \
+    cards = "\n".join(_game_group(pl, tips, today, i) for i, pl in enumerate(ordered)) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     openers_html = _openers_html()
     ladders_html = _ladders_html(rows)
@@ -1658,14 +1659,117 @@ def build():
   .tv {{ font-size:22px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }}
   .tv.up {{ color:#37d67f; }} .tv.down {{ color:#f8716b; }}
   .tsub {{ color:#7d8696; font-size:11.5px; text-align:center; margin-top:12px; }}
+
+  /* ═══════════ DESIGN OVERHAUL (2026-07-17) — ProspectScore visual language ═══════════
+     Tokens + surfaces from web2/design-system: near-black graphite, ONE blue accent (#4DA3FF),
+     liquid-glass chrome (blur+saturate), premium radial cards with inset highlights, 200-300ms
+     ease-out motion, color = meaning (green/red money · amber provisional · blue interactive). */
+  :root {{
+    --bg:#0B0B0D; --surface:#101114; --card:rgba(18,19,24,.72);
+    --t1:#fff; --t2:#B5B8C0; --t3:#7A7D85;
+    --sky:#4DA3FF; --up:#43E08A; --dn:#F2565C; --warm:#FF8A3D;
+    --hair:rgba(255,255,255,.08); --hair2:rgba(255,255,255,.12);
+    --ease:cubic-bezier(.16,1,.3,1); --easesoft:cubic-bezier(.4,0,.2,1); --easeout:cubic-bezier(.22,1,.36,1);
+    --r:16px; --pill:999px;
+  }}
+  body {{ background:var(--bg);
+    background-image:radial-gradient(120% 55% at 50% -12%, rgba(77,163,255,.075), transparent 60%);
+    background-repeat:no-repeat; color:var(--t1); }}
+  h1 {{ font-size:22px; letter-spacing:-.02em; }}
+  h2 {{ color:var(--t3); letter-spacing:.07em; font-weight:600; }}
+  .live {{ color:var(--t3); }}
+  #rfchk {{ color:var(--t3); }}
+  @keyframes fadeUp {{ from {{ opacity:0; transform:translateY(10px); }} to {{ opacity:1; transform:none; }} }}
+  @keyframes fadeIn {{ from {{ opacity:0; }} to {{ opacity:1; }} }}
+  @keyframes pulse {{ 0%,100% {{ box-shadow:0 0 0 0 rgba(67,224,138,.45); }} 60% {{ box-shadow:0 0 0 5px rgba(67,224,138,0); }} }}
+  .dot {{ background:var(--up); animation:pulse 2.6s var(--easesoft) infinite; }}
+  /* liquid-glass floating tab bar (sticks while content scrolls beneath) */
+  .tabs {{ position:sticky; top:10px; z-index:50; position:relative; position:sticky;
+    background:linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04));
+    backdrop-filter:blur(32px) saturate(170%); -webkit-backdrop-filter:blur(32px) saturate(170%);
+    border:1px solid var(--hair2); border-radius:var(--pill); padding:4px; gap:0;
+    box-shadow:0 12px 32px rgba(0,0,0,.45); }}
+  .tab {{ position:relative; z-index:2; background:none !important; color:var(--t3); border-radius:var(--pill);
+    transition:color .25s var(--easesoft); padding:9px 0; }}
+  .tab.active {{ color:var(--t1); }}
+  .tabthumb {{ position:absolute; z-index:1; top:4px; bottom:4px; left:4px; width:0; border-radius:var(--pill);
+    background:linear-gradient(180deg, rgba(77,163,255,.28), rgba(77,163,255,.14));
+    border:1px solid rgba(77,163,255,.35); box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+    transition:left .38s var(--easeout), width .38s var(--easeout); }}
+  .panel {{ animation:fadeIn .28s var(--easesoft); }}
+  /* record strip -> glass chip row */
+  .recstrip {{ background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+    backdrop-filter:blur(16px) saturate(140%); -webkit-backdrop-filter:blur(16px) saturate(140%);
+    border:1px solid var(--hair2); border-radius:12px; animation:fadeUp .4s var(--easeout) both; }}
+  .recstrip b.up {{ color:var(--up); }}
+  /* filter pills */
+  .fbar {{ align-items:center; }}
+  .fmeta {{ margin-left:auto; color:var(--t3); font-size:11px; font-weight:600; letter-spacing:.03em; }}
+  .fgrp {{ background:rgba(255,255,255,.045); border:1px solid var(--hair); border-radius:var(--pill); padding:3px; }}
+  .pill {{ border-radius:var(--pill); transition:color .2s var(--easesoft), background .25s var(--easesoft); }}
+  .pill.on {{ background:linear-gradient(180deg, rgba(77,163,255,.26), rgba(77,163,255,.13));
+    color:#dbeafe; border:0; box-shadow:inset 0 1px 0 rgba(255,255,255,.12); }}
+  /* game sections + premium player cards */
+  .game {{ animation:fadeUp .5s var(--easeout) both; animation-delay:calc(var(--i,0)*55ms); }}
+  .ghd {{ border-bottom:1px solid var(--hair); }}
+  .gtime {{ color:var(--t3); }}
+  .pblk {{ background:radial-gradient(130% 150% at 50% -10%, #181B22, #0F1116 62%);
+    border:1px solid rgba(255,255,255,.10); border-radius:18px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 16px 40px rgba(0,0,0,.5);
+    position:relative; overflow:hidden;
+    transition:transform .22s var(--ease), box-shadow .22s var(--ease); }}
+  .pblk::before {{ content:""; position:absolute; inset:0 0 auto 0; height:1.5px;
+    background:linear-gradient(90deg, transparent, var(--sky) 30%, var(--sky) 70%, transparent);
+    opacity:.8; }}
+  @media (hover:hover) {{
+    .pblk:hover {{ transform:translateY(-2px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.08), 0 24px 54px rgba(0,0,0,.6); }}
+  }}
+  .prop {{ transition:background .15s var(--easesoft); border-radius:10px; }}
+  .prop:active {{ background:rgba(255,255,255,.045); }}
+  .pedge.hi {{ color:var(--up); }} .pind.o {{ border-color:rgba(67,224,138,.5); color:var(--up); }}
+  .podds {{ color:var(--sky); }}
+  .pmark {{ transition:transform .16s var(--ease), color .2s var(--easesoft); }}
+  .pmark:active {{ transform:scale(1.35); }}
+  .pmark.on {{ color:var(--up); }}
+  /* drawer opens like a sheet: grid-rows 0fr -> 1fr */
+  .bars {{ display:grid; grid-template-rows:0fr; opacity:0; visibility:hidden; padding:0 2px;
+    transition:grid-template-rows .32s var(--easeout), opacity .26s var(--easesoft),
+               visibility 0s .32s, padding .32s var(--easeout); }}
+  .bars.open {{ display:grid; grid-template-rows:1fr; opacity:1; visibility:visible;
+    padding:20px 2px 4px; transition:grid-template-rows .32s var(--easeout),
+               opacity .3s var(--easesoft) .06s, visibility 0s; }}
+  .bwrap {{ overflow:hidden; min-height:0; }}
+  /* sections inherit the flat-card family */
+  .xtras, .openers, .parlays .slip, .ladders .ladder, .watchlist .wl-grp, .tcard, .regime {{
+    background:radial-gradient(140% 170% at 50% -20%, #15181f, #0d0f14 65%);
+    border:1px solid var(--hair); border-radius:14px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.35); }}
+  .xtras, .openers, .ladders, .parlays, .watchlist {{ animation:fadeUp .45s var(--easeout) both; }}
+  .watchlist .wl-grp {{ border-style:dashed; border-color:rgba(255,138,61,.28); }}
+  .op-title, .wl-title, .xt {{ color:var(--t3); font-size:10.5px; text-transform:uppercase;
+    letter-spacing:.07em; font-weight:600; }}
+  .op-title span, .wl-title span, .xt span {{ text-transform:none; letter-spacing:.02em; color:var(--t3);
+    font-weight:500; }}
+  .xchip {{ background:rgba(255,255,255,.045); border:1px solid var(--hair); border-radius:var(--pill);
+    transition:background .2s var(--easesoft); }}
+  .rfrsh {{ border-radius:var(--pill); background:rgba(255,255,255,.06); border:1px solid var(--hair2);
+    color:var(--sky); transition:transform .3s var(--ease); }}
+  .rfrsh:active {{ transform:rotate(180deg); }}
+  .tv.up {{ color:var(--up); }} .tv.down {{ color:var(--dn); }}
+  .foot {{ color:#3f434c; font-size:10px; }}
+  @media (prefers-reduced-motion:reduce) {{
+    *, *::before, *::after {{ animation:none !important; transition:none !important; }}
+  }}
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>Updated {now:%-I:%M %p} MT · self-refreshing
+    <div class="live"><span class="dot"></span>{now:%-I:%M %p} MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
   <div class="tabs">
+    <div class="tabthumb" id="tabthumb"></div>
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
     <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 TT</div>
     <div class="tab" data-tab="gg" onclick="showTab('gg')">🎮 GG</div>
@@ -1673,12 +1777,12 @@ def build():
   </div>
   <div class="panel" id="wnba">
     {recstrip_html}
-    {h2_html}
     <div class="fbar">
       <div class="fgrp" data-f="sort">
         <span class="pill" data-v="edge" onclick="setF('sort','edge')">Edge</span>
         <span class="pill on" data-v="time" onclick="setF('sort','time')">Time</span>
       </div>
+      {h2_html}
     </div>
     <div id="games">{cards}</div>
     {extras_html}
@@ -1702,12 +1806,18 @@ def build():
   <div class="foot">auto-generated · self-refreshing · WNBA 1u ladders · TT/GG ¼-Kelly paper</div>
 </div>
 <script>
+  function _thumb() {{
+    const a = document.querySelector('.tab.active'), th = document.getElementById('tabthumb');
+    if (a && th) {{ th.style.left = a.offsetLeft + 'px'; th.style.width = a.offsetWidth + 'px'; }}
+  }}
   function showTab(t) {{
     document.querySelectorAll('.panel').forEach(p => p.classList.toggle('hidden', p.id !== t));
     document.querySelectorAll('.tab').forEach(b => b.classList.toggle('active', b.dataset.tab === t));
+    _thumb();
     try {{ localStorage.setItem('tab', t); }} catch (e) {{}}
   }}
   try {{ const s = localStorage.getItem('tab'); if (s) showTab(s); }} catch (e) {{}}
+  addEventListener('resize', _thumb); addEventListener('load', _thumb); _thumb();
   // PLAYED MARKS: tap ✓ on any card/slip — instant, survives refresh via localStorage (the durable
   // wnba_played.txt ✓ bakes in as .baked and always wins; local marks are the phone-side layer).
   function _marks() {{ try {{ return JSON.parse(localStorage.getItem('marks') || '{{}}'); }} catch (e) {{ return {{}}; }} }}
