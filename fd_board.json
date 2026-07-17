@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T07:40:28Z",
+ "captured_at": "2026-07-17T07:47:24Z",
  "matches": [
   {
    "event_id": 35833406,
@@ -8,20 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-17T07:20:00.000Z",
-   "line": 96.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35833431,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Marian Lebek",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-17T07:35:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35833433,
@@ -30,9 +19,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-17T07:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 93.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35833436,
@@ -41,9 +30,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-17T07:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35833437,
@@ -53,8 +42,8 @@
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-17T07:45:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35833447,
@@ -99,6 +88,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35833473,
+   "p1": "Rafal Glica",
+   "p2": "Robert Kostepski",
+   "p1_norm": "rafal glica",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-17T08:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
