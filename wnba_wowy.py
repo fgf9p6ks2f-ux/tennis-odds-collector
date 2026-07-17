@@ -27,6 +27,44 @@ import requests
 # run that in CI). Rosters + per-game logs with the fields the usage model needs.
 SITE = "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba"
 WEB = "https://site.web.api.espn.com/apis/common/v3/sports/basketball/wnba"
+
+# GAME-LOG DISK CACHE (2026-07-16, "full accuracy + speed"): logs only change when a game
+# FINISHES, so refetching ~60-100 of them serially every scan (the whole ~47-90s cost) buys
+# nothing intra-day. Entries carry fetched_at; default max_age_h=6 serves scans; GRADING
+# passes max_age_h=0 (always fresh — the Rae Burrell staleness class stays dead). Merged
+# read-modify-write so concurrent processes (alert + watch) don't clobber each other.
+import json as _json
+import datetime as _dt
+from pathlib import Path as _Path
+_GLOG_FILE = _Path(__file__).resolve().parent / "wnba_glog_cache.json"
+_GLOG = None
+
+
+def _glog_load():
+    global _GLOG
+    if _GLOG is None:
+        try:
+            _GLOG = _json.loads(_GLOG_FILE.read_text())
+        except (OSError, ValueError):
+            _GLOG = {}
+    return _GLOG
+
+
+def flush_glog_cache():
+    """Merge-write the in-memory log cache to disk (newest fetched_at wins per player)."""
+    if _GLOG is None:
+        return
+    try:
+        disk = _json.loads(_GLOG_FILE.read_text())
+    except (OSError, ValueError):
+        disk = {}
+    for k, v in _GLOG.items():
+        if k not in disk or v.get("fetched_at", "") > disk[k].get("fetched_at", ""):
+            disk[k] = v
+    try:
+        _GLOG_FILE.write_text(_json.dumps(disk))
+    except OSError:
+        pass
 H = {"User-Agent": "Mozilla/5.0", "Accept": "application/json"}
 _PLAYERS_CACHE = {}
 
@@ -54,9 +92,20 @@ def _made_att(s):
 
 
 
-def game_log(pid):
+def game_log(pid, max_age_h=6.0):
     """[{game_id, date, min, pts, reb, ast, fga, fg3a, fta, tov, poss, dd, matchup}]
-    for a player, from ESPN. fga/fta/tov feed the usage proxy; dd = double-double."""
+    for a player, from ESPN — disk-cached (max_age_h; 0 = always fresh, used by grading).
+    fga/fta/tov feed the usage proxy; dd = double-double."""
+    cache = _glog_load()
+    ent = cache.get(str(pid))
+    if ent and max_age_h > 0:
+        try:
+            age_h = (_dt.datetime.now(_dt.timezone.utc)
+                     - _dt.datetime.fromisoformat(ent["fetched_at"])).total_seconds() / 3600
+            if age_h < max_age_h:
+                return ent["log"]
+        except (KeyError, ValueError):
+            pass
     j = _get(f"{WEB}/athletes/{pid}/gamelog")
     labels = j.get("names") or []
     li = {name: k for k, name in enumerate(labels)}
@@ -98,6 +147,8 @@ def game_log(pid):
                             "dd": sum(1 for v in (p, rb, a) if v >= 10) >= 2,
                             "matchup": opp,
                             "result": m.get("gameResult", "")})   # 'W'/'L' once FINAL, '' if not
+    _glog_load()[str(pid)] = {
+        "fetched_at": _dt.datetime.now(_dt.timezone.utc).isoformat(), "log": out}
     return out
 
 

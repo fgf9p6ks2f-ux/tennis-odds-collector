@@ -15,6 +15,7 @@ import datetime
 import json
 import os
 import statistics as st
+import time
 from collections import defaultdict
 from pathlib import Path
 
@@ -123,6 +124,23 @@ def collect():
             except Exception:
                 log_cache[pid] = []
         return log_cache[pid]
+
+    # PARALLEL PREFETCH (2026-07-16, "full accuracy + speed"): the scan's whole cost was
+    # ~60-100 SERIAL game-log fetches. Warm them concurrently (6 workers — modest, ESPN
+    # throttles aggressive clients) for every out + every candidate on both slates; the
+    # disk cache (6h TTL) makes repeat scans near-free. Then the loop runs on hot caches.
+    t0 = time.time()
+    want = []
+    for (sdate, team), outs_l in outs_by_team.items():
+        want += [p["id"] for _, p in outs_l]
+        want += [v["id"] for n, v in pl.items()
+                 if v["team"] == team and n not in out_names and v["gp"] >= 5]
+    want = list(dict.fromkeys(want))
+    if want:
+        from concurrent.futures import ThreadPoolExecutor
+        with ThreadPoolExecutor(max_workers=6) as ex:
+            list(ex.map(glog, want))
+    print(f"prefetched {len(want)} game logs in {time.time()-t0:.1f}s")
 
     for (slate_date, team), outs in outs_by_team.items():
         out_logs = [glog(p["id"]) for _, p in outs]
@@ -423,6 +441,10 @@ def collect():
             f"{_short(s['player'])} {s['stat'][:3]} "
             f"{sd}{s['line']:g} {T._am(s['dec'])} | {hits}-{s['n']-hits} {s['hit']*100:.0f}% "
             f"| proj {s['elev_avg']:g} +{s['ev']*100:.0f}%EV{ltag}{ctag}"))
+    try:
+        W.flush_glog_cache()                         # persist fresh logs for the next scan/process
+    except Exception:
+        pass
     return sorted(alerts, reverse=True), preds
 
 

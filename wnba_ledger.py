@@ -309,7 +309,7 @@ def grade():
             if pid:
                 if pid not in log_cache:
                     try:
-                        log_cache[pid] = W.game_log(pid)
+                        log_cache[pid] = W.game_log(pid, max_age_h=0)   # grading = always fresh (Rae Burrell class)
                     except RuntimeError:
                         log_cache[pid] = []
                 # the game this prediction was FOR: same opponent, FINAL, on/after the slate date
