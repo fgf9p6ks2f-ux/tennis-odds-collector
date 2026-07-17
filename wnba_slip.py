@@ -94,6 +94,28 @@ def _comps(stat):
     return COMPONENTS.get(stat, frozenset())
 
 
+# LADDER RUNG SPACING (user 2026-07-17): "you can't ladder a +1 — o14.5 then o15.5 is kinda
+# dumb; points ladders should step like o14.5 -> o17.5 -> o19.5. Assist/rebound rungs can be
+# +1 each." Points-BASED markets (anything containing P) need >=2-pt gaps between kept rungs;
+# pure reb/ast markets keep +1 steps. Applied at the selection layer so the board, record,
+# stake map and slips all inherit it; the ledger still logs every flagged rung as data.
+LADDER_MIN_GAP = {"points": 2.0, "pra": 2.0, "pts_reb": 2.0, "pts_ast": 2.0,
+                  "rebounds": 1.0, "assists": 1.0, "reb_ast": 1.0, "threes": 1.0}
+
+
+def thin_rungs(rungs, stat=None):
+    """Keep the base (lowest) rung, then only rungs >= the stat's min gap above the last kept."""
+    if not rungs:
+        return []
+    st = stat or rungs[0].get("stat")
+    gap = LADDER_MIN_GAP.get(st, 2.0)
+    out = []
+    for r in sorted(rungs, key=lambda x: x["line"]):
+        if not out or r["line"] - out[-1]["line"] >= gap:
+            out.append(r)
+    return out
+
+
 def _am(dec):
     if not dec:
         return "?"
@@ -207,6 +229,19 @@ def current_selection(rows):
             (sel_kept.append(r) if (r.get("player"), r["stat"]) in pick_set else
              dropped.append((r, "outside top-2 disjoint plays (2-per-team rule)")))
     kept = sel_kept
+
+    # 4. LADDER RUNG SPACING — user rule 2026-07-17: no +1 rungs on points-based markets
+    # (o14.5 + o15.5 = the same bet twice); reb/ast ladders may step +1. Base rung always kept.
+    bygrp = defaultdict(list)
+    for r in kept:
+        bygrp[(r.get("pred_date"), r.get("player"), r["stat"])].append(r)
+    spaced = []
+    for rr in bygrp.values():
+        keep_r = thin_rungs(rr, rr[0].get("stat"))
+        keep_ids = {id(x) for x in keep_r}
+        spaced += keep_r
+        dropped += [(x, "ladder rung too close (min-gap rule)") for x in rr if id(x) not in keep_ids]
+    kept = spaced
     return kept, dropped
 
 
