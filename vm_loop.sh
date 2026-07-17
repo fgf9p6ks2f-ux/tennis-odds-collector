@@ -18,7 +18,26 @@ push(){ git add -A -f 2>/dev/null
   # push that failed during a thrash) pile up and origin/Pages/Actions all lag the VM. Always fall
   # through to pull+push so pending commits flush even on a no-change cycle.
   git commit -m "vm loop data [skip ci]" -q 2>/dev/null || true
-  git pull --rebase --autostash -X theirs -q "$URL" main 2>/dev/null || { git rebase --abort 2>/dev/null||true; git reset --hard origin/main -q 2>/dev/null||true; }
+  git pull --rebase --autostash -X theirs -q "$URL" main 2>/dev/null || {
+    # Rebase wedged (usually an OOM kill mid-rebase on this 956MB box). Unwedge WITHOUT losing
+    # data: a bare `reset --hard origin/main` rolled tracked DBs back to origin's older copies —
+    # wnba_ledger.sqlite (live bets!), wnba_notified.txt (SEEN -> duplicate-ping storm), CLV.
+    # Proven live 2026-07-17 04:00 (ate a dashboard-bake commit). So: reset to origin's tip to
+    # unwedge, then REPLAY this VM's data files from the pre-reset tip and recommit. Code
+    # (.py/.sh/.yml) is deliberately NOT replayed — fresh deploys from origin must win.
+    git rebase --abort 2>/dev/null || true
+    C=$(git rev-parse HEAD)
+    git fetch -q "$URL" main 2>/dev/null && git reset --hard FETCH_HEAD -q 2>/dev/null
+    git checkout "$C" -- "*.sqlite" 2>/dev/null || true
+    git checkout "$C" -- "*.json"   2>/dev/null || true
+    git checkout "$C" -- "*.txt"    2>/dev/null || true
+    git checkout "$C" -- "*.md"     2>/dev/null || true
+    git checkout "$C" -- docs/     2>/dev/null || true
+    git add -A -f 2>/dev/null
+    git rm --cached -q wnba_lines.sqlite wnba_glog_cache.json 2>/dev/null || true
+    git commit -qm "vm loop data (replayed after failed rebase) [skip ci]" 2>/dev/null || true
+    echo "[$(date +%H:%M)] rebase failed -> data replayed onto origin tip"
+  }
   git push -q "$URL" HEAD:main 2>/dev/null || echo "[$(date +%H:%M)] push deferred"; }
 
 collectors(){
