@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-17T03:37:50Z",
+ "captured_at": "2026-07-17T03:43:05Z",
  "matches": [
-  {
-   "event_id": 35832735,
-   "p1": "Krzysztof Wloczko",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "krzysztof wloczko",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-17T03:25:00.000Z",
-   "line": 53.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
-  {
-   "event_id": 35832736,
-   "p1": "Karol Sulkowski",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-17T03:25:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832737,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-17T03:25:00.000Z",
-   "line": 73.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35832747,
    "p1": "Aleksander Barton",
@@ -41,9 +8,20 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-17T03:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -105,
+   "under_odds": -135
+  },
+  {
+   "event_id": 35832751,
+   "p1": "Michal Paszkiewicz",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "michal paszkiewicz",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T03:35:00.000Z",
+   "line": 79.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832754,
