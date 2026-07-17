@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T05:18:34Z",
+ "captured_at": "2026-07-17T05:25:28Z",
  "matches": [
-  {
-   "event_id": 35832844,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-17T04:55:00.000Z",
-   "line": 101.5,
-   "over_odds": -220,
-   "under_odds": 150
-  },
-  {
-   "event_id": 35832857,
-   "p1": "Jerzy Pelka",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-17T05:10:00.000Z",
-   "line": 52.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35832864,
    "p1": "Schaniel Krzysztof",
@@ -30,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832865,
@@ -41,9 +19,9 @@
    "p1_norm": "krzysztof wloczko",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 69.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832867,
@@ -52,9 +30,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 49.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35832869,
@@ -63,9 +41,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35833115,
