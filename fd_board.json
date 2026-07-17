@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T08:31:00Z",
+ "captured_at": "2026-07-17T08:39:34Z",
  "matches": [
   {
    "event_id": 35833482,
@@ -9,19 +9,8 @@
    "p2_norm": "rafal skotniczny",
    "open_date": "2026-07-17T08:20:00.000Z",
    "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35833483,
-   "p1": "Jerzy Pelka",
-   "p2": "Marian Lebek",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-17T08:20:00.000Z",
-   "line": 75.5,
-   "over_odds": 110,
-   "under_odds": -150
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35833498,
@@ -30,9 +19,9 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-17T08:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 94.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35833499,
@@ -41,9 +30,9 @@
    "p1_norm": "maciej nowalinski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-17T08:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35833506,
@@ -52,9 +41,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-17T08:35:00.000Z",
-   "line": 63.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 69.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35833522,
@@ -75,6 +64,50 @@
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-17T08:45:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35833546,
+   "p1": "Mateusz Sikon",
+   "p2": "Robert Kostepski",
+   "p1_norm": "mateusz sikon",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-17T09:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35833547,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-17T09:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35833548,
+   "p1": "Bartosz Sulkowski",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "bartosz sulkowski",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-17T09:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35833563,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Rafal Skotniczny",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "rafal skotniczny",
+   "open_date": "2026-07-17T09:05:00.000Z",
+   "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
   }
