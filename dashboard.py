@@ -1273,8 +1273,9 @@ def build():
         bpr = _book_prices(r)
         dec = bpr[0][1] if bpr else float(r["odds"] or 1.87)
         dtag = "TMRW · " if (r.get("pred_date") or today) > today else ""
+        pv = ' <span class="lv">✓</span>' if r.get("played") else ""
         chips += (f'<span class="xchip">{dtag}<b>{html.escape(_short(r["player"]))}</b> '
-                  f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}</span>')
+                  f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}{pv}</span>')
     extras_html = ('<div class="xtras"><div class="xt">⚡ Also flagged · pinged &amp; ledger-logged · '
                    'not picked by the 2-per-team disjoint rule (not in the tracked record)</div>'
                    + chips + '</div>') if chips else ""
