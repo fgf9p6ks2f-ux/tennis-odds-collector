@@ -116,6 +116,7 @@ def collect():
 
     alerts, preds, proj_rows, cold_spots = [], [], [], []
     _band_shadowed = set()
+    _band_seen = {}
     log_cache = {}                                   # fetch each player's game log at most once
 
     def glog(pid):
@@ -290,12 +291,17 @@ def collect():
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm,
                                   opp=matchups_by[slate_date].get(team, ""), pos=v.get("position")):
                 if e.get("band_pilot"):
-                    # suspect d_min band (outside 3-8, not volume/cold-margin) -> shadow only:
-                    # builds the multi-player sample the band question needs, zero money/record
-                    alerts.append((e["ev"] - 1.5, f"band|{slate_date}|{n}|{e['stat']}|{e['line']:g}",
-                        f"⚡BAND {out_label} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
-                        f"{T._am(e['dec'])} | d_min {(e.get('d_min') or 0):+.1f} outside 3-8 · "
-                        f"shadow only (not in record)"))
+                    # suspect d_min band (outside 3-8) -> DASHBOARD-visible shadow, NO phone ping
+                    # (2026-07-16 user confusion: BAND pinged 5x for a non-bet that wasn't on the
+                    # board — coherence rule: if it pings it's on the board; shadows don't ping).
+                    bk = (n, e["stat"])
+                    prev = _band_seen.get(bk)
+                    if prev is None or e["ev"] > prev["ev"]:
+                        _band_seen[bk] = {"player": n, "team": team, "star": out_full,
+                                          "status": "OUT", "sit": 1.0, "lead": None,
+                                          "conf": T.starter_label(n, team, starters, proj),
+                                          "proj_min": round(proj, 1), "date": slate_date,
+                                          "band": True, **e}
                     if n not in _band_shadowed and pa:
                         _band_shadowed.add(n)
                         pn_b = T.posted_props(n)
@@ -438,6 +444,7 @@ def collect():
     except Exception as e:
         print(f"tomorrow watchlist skipped: {str(e)[:80]}")
     watch += cold_spots                                  # ⚡COLD spots -> dashboard too
+    watch += list(_band_seen.values())                   # ⚡BAND shadows -> dashboard (no ping)
     _write_watchlist(watch, today)                       # dashboard JSON (separate from the ledger)
     for s in sorted(watch, key=lambda s: -(s.get("ev") or 0)):
         if s.get("cold"):
