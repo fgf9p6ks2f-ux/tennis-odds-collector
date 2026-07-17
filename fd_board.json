@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T19:56:12Z",
+ "captured_at": "2026-07-17T20:01:10Z",
  "matches": [
-  {
-   "event_id": 35835523,
-   "p1": "Wojciech Wojtaszczyk",
-   "p2": "Sebastian Krupa",
-   "p1_norm": "wojciech wojtaszczyk",
-   "p2_norm": "sebastian krupa",
-   "open_date": "2026-07-17T19:40:00.000Z",
-   "line": 91.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35835533,
    "p1": "Robert Szymik",
@@ -19,7 +8,7 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T19:55:00.000Z",
-   "line": 74.5,
+   "line": 82.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -31,8 +20,8 @@
    "p2_norm": "michal wolny",
    "open_date": "2026-07-17T20:00:00.000Z",
    "line": 67.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835607,
