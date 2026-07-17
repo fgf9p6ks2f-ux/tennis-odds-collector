@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T03:47:32Z",
+ "captured_at": "2026-07-17T03:51:49Z",
  "matches": [
-  {
-   "event_id": 35832747,
-   "p1": "Aleksander Barton",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "aleksander barton",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-17T03:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35832751,
    "p1": "Michal Paszkiewicz",
@@ -19,7 +8,7 @@
    "p1_norm": "michal paszkiewicz",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-17T03:35:00.000Z",
-   "line": 94.5,
+   "line": 105.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-17T03:45:00.000Z",
-   "line": 70.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 58.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832758,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-17T03:50:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832759,
