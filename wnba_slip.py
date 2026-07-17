@@ -299,7 +299,10 @@ def parlays(lads, sizes=(2, 3), top=3):
             ev = 1.0
             for l in combo:
                 dec *= (l["dec"] or 1)
-                ev *= (1 + l["ev"])
+                # EV CAP (calibration 2026-07-17): claimed EV >= 0.25 delivered 50% over 10 graded
+                # bets — cap the leg EV used for parlay RANKING so a fat-EV phantom can't dominate
+                # ticket selection. Flags/record/display EV stay raw.
+                ev *= (1 + min(l["ev"] or 0, 0.25))
             out.append({"legs": list(combo), "dec": round(dec, 2), "ev": ev - 1, "n": n})
     out.sort(key=lambda p: -p["ev"])
     # DIVERSITY (2026-07-17 audit): the top-EV combos are permutations of the same legs (three

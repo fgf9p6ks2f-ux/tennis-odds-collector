@@ -1322,7 +1322,9 @@ def build():
         return 0.0
 
     def _score(r):
-        return (r.get("ev") or 0) + _arche(r)
+        # EV capped at 0.25 for RANKING (calibration 2026-07-17: fatter claims delivered 50%) —
+        # keeps a phantom edge from outranking proven plays on the cards; display stays raw
+        return min(r.get("ev") or 0, 0.25) + _arche(r)
 
     def _pscore(prs):
         return max(_score(r) for r in prs)
