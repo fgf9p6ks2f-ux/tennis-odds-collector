@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T22:47:04Z",
+ "captured_at": "2026-07-17T22:54:06Z",
  "matches": [
-  {
-   "event_id": 35835810,
-   "p1": "Michal Olbrycht",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "michal olbrycht",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-17T22:30:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35835814,
    "p1": "Dariusz Wrobel",
@@ -19,9 +8,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-17T22:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835816,
@@ -30,9 +19,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T22:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835823,
@@ -41,9 +30,9 @@
    "p1_norm": "cezary pawlik",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-17T22:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835824,
@@ -52,9 +41,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-17T22:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835826,
@@ -110,6 +99,28 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35835842,
+   "p1": "Dariusz Wrobel",
+   "p2": "Kacper Marchlewski",
+   "p1_norm": "dariusz wrobel",
+   "p2_norm": "kacper marchlewski",
+   "open_date": "2026-07-17T23:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835843,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Pawel Kurek",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "pawel kurek",
+   "open_date": "2026-07-17T23:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
