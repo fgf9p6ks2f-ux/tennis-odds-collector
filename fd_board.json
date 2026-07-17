@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T02:15:36Z",
+ "captured_at": "2026-07-17T02:21:51Z",
  "matches": [
-  {
-   "event_id": 35832690,
-   "p1": "Jakub Cyndera",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-17T02:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35832700,
    "p1": "Jerzy Pelka",
@@ -19,9 +8,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-17T02:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832701,
@@ -30,9 +19,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-17T02:20:00.000Z",
-   "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832710,
@@ -44,6 +33,17 @@
    "line": 68.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832720,
+   "p1": "Jakub Nowak",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T02:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
