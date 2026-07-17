@@ -1192,6 +1192,7 @@ def build():
     # the ET-night / MT-evening window (a bet stamped ET-tomorrow was invisible on the MT-today board).
     today = dt.datetime.now(ET).date().isoformat()        # ET slate date the scanner stamps
     rows, (w, l, u, pend) = _load(today)
+    pend_all = list(rows)          # EVERY open flag (each one pinged the phone) — coherence source
     # board shows FAVORITE-ONLY per injury cascade (matches the tracked record + ladders + parlays):
     # one beneficiary per injury, so the play cards recommend exactly what to bet. Ledger keeps all.
     try:
@@ -1249,6 +1250,33 @@ def build():
         for (pl, _st, _sd), rungs in keep:
             byp[pl].extend(rungs)
         games[gk] = sorted(byp.items(), key=lambda kv: -_pscore(kv[1]))
+
+    # ── coherence strip (2026-07-16 user: "notifications for players who aren't on the dashboard") ──
+    # The cards deliberately curate (favorite-only cascade + top-3/game), but EVERY open flag pinged
+    # the phone — so anything curated off the cards/ladders renders in a compact "also flagged" strip.
+    # Rule: if it pings, it's on the board; shadows don't ping.
+    shown = {(pd, player, r["stat"], r["line"])
+             for (pd, _tm), pl in games.items() for player, prs in pl for r in prs}
+    lad_groups = defaultdict(list)                        # keys visible in the 🪜 Ladders section
+    for r in rows:
+        if (r.get("side") or "over") == "over":
+            lad_groups[(r.get("pred_date"), r.get("player"), r.get("stat"))].append(r)
+    for (pd_, pl_, st_), rr in lad_groups.items():
+        if len(rr) > 1:
+            shown |= {(pd_, pl_, st_, x["line"]) for x in rr}
+    extras = [r for r in pend_all
+              if (r["pred_date"], r["player"], r["stat"], r["line"]) not in shown]
+    extras.sort(key=lambda r: (r["pred_date"] or "", -(r.get("ev") or 0)))
+    import wnba_slip as _S2
+    chips = ""
+    for r in extras:
+        bpr = _book_prices(r)
+        dec = bpr[0][1] if bpr else float(r["odds"] or 1.87)
+        dtag = "TMRW · " if (r.get("pred_date") or today) > today else ""
+        chips += (f'<span class="xchip">{dtag}<b>{html.escape(_short(r["player"]))}</b> '
+                  f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}</span>')
+    extras_html = ('<div class="xtras"><div class="xt">⚡ Also flagged · pinged &amp; on the record · '
+                   'ranked below the top-3 cards</div>' + chips + '</div>') if chips else ""
 
     # soonest slate first, then strongest blended edge within a slate
     order = sorted(games.items(),
@@ -1346,6 +1374,12 @@ def build():
   .sstake b {{ color:#c3c9d4; font-weight:700; }}
   .sodds {{ color:#37d67f; font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; margin-left:auto; }}
   .spay {{ color:#5b9dff; font-weight:700; font-size:12px; font-variant-numeric:tabular-nums; }}
+  /* also-flagged coherence strip (everything that pinged but sits below the top-3 cards) */
+  .xtras {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; padding:9px 12px; margin:10px 0; }}
+  .xt {{ font-size:10.5px; color:#8b93a1; letter-spacing:.02em; margin-bottom:6px; }}
+  .xchip {{ display:inline-block; font-size:12px; color:#c6cdd8; background:#10141c; border:1px solid #1e2431;
+           border-radius:8px; padding:3px 8px; margin:2px 4px 2px 0; }}
+  .xchip b {{ color:#e7ebf0; }}
   /* laddered plays */
   .ladder {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; margin-bottom:10px; overflow:hidden; }}
   .lhd {{ display:flex; align-items:baseline; gap:9px; padding:8px 12px; background:#0e131b; border-bottom:1px solid #171c26; }}
@@ -1523,6 +1557,7 @@ def build():
       </div>
     </div>
     <div id="games">{cards}</div>
+    {extras_html}
     {ladders_html}
     {slip_html}
     {openers_html}
