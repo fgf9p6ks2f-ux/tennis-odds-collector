@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T00:47:30Z",
+ "captured_at": "2026-07-17T00:53:14Z",
  "matches": [
   {
    "event_id": 35832590,
@@ -8,20 +8,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-17T00:35:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832591,
-   "p1": "Mikolaj Lukaszewski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "mikolaj lukaszewski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-17T00:35:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 93.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35832619,
@@ -30,9 +19,9 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-17T00:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 57.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832620,
@@ -41,9 +30,9 @@
    "p1_norm": "konrad staszczyk",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-17T00:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832621,
@@ -52,9 +41,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-17T00:45:00.000Z",
-   "line": 66.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 49.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832635,
@@ -107,9 +96,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-17T01:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 82.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
