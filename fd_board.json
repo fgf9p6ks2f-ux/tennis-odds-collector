@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T17:53:04Z",
+ "captured_at": "2026-07-17T17:57:46Z",
  "matches": [
-  {
-   "event_id": 35835307,
-   "p1": "Jacek Oracz",
-   "p2": "Oskar Jedrzejowski",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "oskar jedrzejowski",
-   "open_date": "2026-07-17T17:35:00.000Z",
-   "line": 98.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35835324,
    "p1": "Miroslaw Piecowski",
@@ -19,7 +8,7 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T17:45:00.000Z",
-   "line": 86.5,
+   "line": 91.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -66,6 +55,28 @@
    "line": 73.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35835395,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Jakub Michalski",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "jakub michalski",
+   "open_date": "2026-07-17T18:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835402,
+   "p1": "Michal Wolny",
+   "p2": "Marcin Wozniczka",
+   "p1_norm": "michal wolny",
+   "p2_norm": "marcin wozniczka",
+   "open_date": "2026-07-17T18:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
