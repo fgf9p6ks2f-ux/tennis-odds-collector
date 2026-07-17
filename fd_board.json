@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T20:06:23Z",
+ "captured_at": "2026-07-17T20:11:21Z",
  "matches": [
   {
    "event_id": 35835533,
@@ -8,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T19:55:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 101.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835543,
@@ -19,9 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "michal wolny",
    "open_date": "2026-07-17T20:00:00.000Z",
-   "line": 56.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 62.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835607,
@@ -30,9 +30,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-17T20:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835608,
@@ -41,9 +41,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-17T20:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835609,
@@ -52,9 +52,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T20:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835626,
@@ -63,9 +63,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-17T20:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35835627,
@@ -86,6 +86,28 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-17T20:30:00.000Z",
    "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835661,
+   "p1": "Krystian Kolodziej",
+   "p2": "Karol Strowski",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "karol strowski",
+   "open_date": "2026-07-17T20:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35835662,
+   "p1": "Miroslaw Piecowski",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "miroslaw piecowski",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-17T20:30:00.000Z",
+   "line": 82.5,
    "over_odds": -112,
    "under_odds": -118
   }
