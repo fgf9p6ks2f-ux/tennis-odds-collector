@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T18:41:26Z",
+ "captured_at": "2026-07-17T18:46:30Z",
  "matches": [
-  {
-   "event_id": 35835402,
-   "p1": "Michal Wolny",
-   "p2": "Marcin Wozniczka",
-   "p1_norm": "michal wolny",
-   "p2_norm": "marcin wozniczka",
-   "open_date": "2026-07-17T18:25:00.000Z",
-   "line": 92.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35835423,
    "p1": "Wojciech Wojtaszczyk",
@@ -19,20 +8,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-17T18:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35835424,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Kacper Marchlewski",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "kacper marchlewski",
-   "open_date": "2026-07-17T18:30:00.000Z",
-   "line": 53.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 90.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35835435,
@@ -41,9 +19,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-17T18:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835436,
@@ -52,9 +30,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-17T18:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35835443,
@@ -64,8 +42,8 @@
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-17T18:50:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35835457,
@@ -88,6 +66,28 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35835484,
+   "p1": "Jakub Michalski",
+   "p2": "Rafal Adach",
+   "p1_norm": "jakub michalski",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-17T19:10:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835485,
+   "p1": "Cezary Pawlik",
+   "p2": "Michal Wolny",
+   "p1_norm": "cezary pawlik",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-17T19:10:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -118
   }
  ]
 }
