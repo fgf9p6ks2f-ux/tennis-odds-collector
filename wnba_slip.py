@@ -121,13 +121,14 @@ def ladders(overs):
 
 def current_selection(rows):
     """The subset of OVER rows the CURRENT model would actually pick — used to restate the tracked
-    record to the new bot's selection. Drops two rule-based classes (returns (kept, dropped) where
+    record to the new bot's selection. Three rule-based stages (returns (kept, dropped) where
     dropped is [(row, reason)]):
       1. THIN-SAMPLE over-extrapolation — n_elev<7 AND d_min>10 (the shipped guard; the Ayayi 0-5 pattern).
       2. CORRELATED over-stack — per player-game, when 3+ DISTINCT stats share a production pool (P/R/A),
          keep only the highest-EV stat (its ladder rungs included) and drop the redundant ones (Copper
-         bet points+pts_reb+pra, all keyed on her scoring). 2 correlated stats (a stat + one extending
-         combo, e.g. rebounds + P+R) are the user's intentional construction and are kept."""
+         bet points+pts_reb+pra, all keyed on her scoring).
+      3. TOP-2 DISJOINT per team-game — favorite group first, plus the best group sharing no
+         P/R/A component with it (backtested 2026-07-17: WNBA/NBA/live ledger all agree)."""
     from collections import defaultdict
     overs = [r for r in rows if (r.get("side") or "over") == "over"]
     kept, dropped = [], []
@@ -169,25 +170,43 @@ def current_selection(rows):
             (kept if r["stat"] in keep_stats else dropped).append(
                 r if r["stat"] in keep_stats else (r, "correlated over-stack (3+ stats share a pool)"))
 
-    # 3. ONE PER INJURY CASCADE — shortest-ODDS beneficiary (the book's most-likely one; tie -> higher EV)
-    # per (date, team), laddered; drop the rest. Chosen by BEST WIN RATE (14-6 / 70% on the history) per the
-    # user's explicit call 2026-07-15, over the honest-edge variant (~break-even on the corrected de-bias).
-    # CAVEAT (documented, not hidden): win rate on ~20 bets is noise, and this re-admits over-projected
-    # composite phantoms (Burrell/Cloud). Kept on the user's decision to optimize win rate.
+    # 3. UP TO TWO PLAYS PER TEAM-GAME, DISJOINT COMPONENTS — user call 2026-07-17, backtested:
+    # per (date, team), rank play-groups (player x stat, rungs travel together) favorite-first
+    # (shortest odds, then EV — keeps the 2026-07-15 book's-most-likely instinct for slot 1);
+    # take the top group, then the best remaining group sharing NO P/R/A component with it
+    # (over pts + over ast fine; over pts + over P+A not — the user's exact rule). Evidence:
+    # WNBA 6-season walk-forward: 2nd disjoint play hits 65.4% vs top play 66.4%, per-game
+    # units +0.30 -> +0.55 (n=81 pools with a 2nd play); NBA 4-season (1,828 pools, slot-2
+    # 69.1% vs 68.9%) and the live real-line ledger (+4.5u vs +2.9u over 16 pools) agree.
+    # Strict disjointness BEAT overlap-allowed in WNBA (65.4% vs 62.9%) — so this supersedes
+    # both the old one-favorite-only rule and same-player stat+combo overlap at selection.
     bycas = defaultdict(list)
     for r in kept:
         bycas[(r.get("pred_date"), r.get("team"))].append(r)
-    fav_kept = []
+    sel_kept = []
     for grp in bycas.values():
-        byp = defaultdict(list)
+        groups = defaultdict(list)                        # (player, stat) ladder groups
         for r in grp:
-            byp[r.get("player")].append(r)
-        fav = min(byp, key=lambda p: (min((x.get("odds") or 99) for x in byp[p]),
-                                      -max((x.get("ev") or 0.0) for x in byp[p])))
+            groups[(r.get("player"), r["stat"])].append(r)
+
+        def gkey(k):
+            rr = groups[k]
+            return (min((x.get("odds") or 99) for x in rr),
+                    -max((x.get("ev") or 0.0) for x in rr))
+        picks, used = [], set()
+        for k in sorted(groups, key=gkey):
+            if len(picks) == 2:
+                break
+            cs = _comps(k[1])
+            if cs & used:
+                continue
+            picks.append(k)
+            used |= cs
+        pick_set = set(picks)
         for r in grp:
-            (fav_kept if r.get("player") == fav else dropped).append(
-                r if r.get("player") == fav else (r, "non-favorite beneficiary (1 per cascade)"))
-    kept = fav_kept
+            (sel_kept.append(r) if (r.get("player"), r["stat"]) in pick_set else
+             dropped.append((r, "outside top-2 disjoint plays (2-per-team rule)")))
+    kept = sel_kept
     return kept, dropped
 
 
@@ -253,9 +272,9 @@ def parlays(lads, sizes=(2, 3), top=3):
 
 def build(overs):
     """Full slip from the day's flagged overs: {'bets': {player: [ladders]}, 'parlays': [...]}.
-    Overs are reduced to current_selection FIRST (favorite-only per injury cascade + thin-sample &
-    over-stack filters), so every ladder and parlay slip only ever contains the ONE beneficiary per
-    injury the tracked record also counts — source-of-truth so sync_parlays/wnba_alert stay consistent."""
+    Overs are reduced to current_selection FIRST (top-2 disjoint plays per team-game + thin-sample &
+    over-stack filters), so every ladder and parlay slip only ever contains the plays the tracked
+    record also counts — source-of-truth so sync_parlays/wnba_alert stay consistent."""
     overs = current_selection(overs)[0]
     lads = ladders(overs)
     bets = player_bets(lads)

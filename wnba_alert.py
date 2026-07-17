@@ -521,7 +521,7 @@ def main():
             if (p.get("side") or "over") == "over":
                 byd[p["pred_date"]].append(p)
         for d, overs in byd.items():
-            overs = SLIP.current_selection(overs)[0]     # favorite-only per cascade (matches tracked record)
+            overs = SLIP.current_selection(overs)[0]     # top-2 disjoint per team-game (matches tracked record)
             SLIP.log_parlays(d, SLIP.build(overs)["parlays"])
     except Exception as e:
         print(f"parlay logging skipped: {e}")

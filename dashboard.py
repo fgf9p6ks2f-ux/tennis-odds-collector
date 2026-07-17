@@ -1150,7 +1150,7 @@ def _ladders_html(rows):
         import wnba_slip as S
         from collections import defaultdict
         overs = [r for r in rows if (r.get("side") or "over") == "over"]
-        overs = S.current_selection(overs)[0]            # favorite-only per cascade (matches tracked record)
+        overs = S.current_selection(overs)[0]            # top-2 disjoint per team-game (matches tracked record)
         sm = S.ladder_stake_map(overs)
         groups = defaultdict(list)
         for r in overs:
@@ -1193,8 +1193,8 @@ def build():
     today = dt.datetime.now(ET).date().isoformat()        # ET slate date the scanner stamps
     rows, (w, l, u, pend) = _load(today)
     pend_all = list(rows)          # EVERY open flag (each one pinged the phone) — coherence source
-    # board shows FAVORITE-ONLY per injury cascade (matches the tracked record + ladders + parlays):
-    # one beneficiary per injury, so the play cards recommend exactly what to bet. Ledger keeps all.
+    # board shows the TOP-2 DISJOINT plays per team-game (matches the tracked record + ladders +
+    # parlays): the play cards recommend exactly what to bet. Ledger keeps all. Overflow -> strip.
     try:
         import wnba_slip as _SLB
         _ov = [r for r in rows if (r.get("side") or "over") == "over"]
