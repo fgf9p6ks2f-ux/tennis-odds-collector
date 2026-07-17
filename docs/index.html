@@ -1,5 +1,9 @@
 <!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0B0B0D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="bv" content="981b172155">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -273,7 +277,7 @@
   @keyframes pulse { 0%,100% { box-shadow:0 0 0 0 rgba(67,224,138,.45); } 60% { box-shadow:0 0 0 5px rgba(67,224,138,0); } }
   .dot { background:var(--up); animation:pulse 2.6s var(--easesoft) infinite; }
   /* liquid-glass floating tab bar (sticks while content scrolls beneath) */
-  .tabs { position:sticky; top:10px; z-index:50; position:relative; position:sticky;
+  .tabs { position:sticky; top:calc(10px + env(safe-area-inset-top)); z-index:50;
     background:linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.04));
     backdrop-filter:blur(32px) saturate(170%); -webkit-backdrop-filter:blur(32px) saturate(170%);
     border:1px solid var(--hair2); border-radius:var(--pill); padding:4px; gap:0;
@@ -347,13 +351,31 @@
   .rfrsh:active { transform:rotate(180deg); }
   .tv.up { color:var(--up); } .tv.down { color:var(--dn); }
   .foot { color:#3f434c; font-size:10px; }
+  /* TT + GG tabs — same flat-card family, eyebrow headers, semantic colors */
+  .card { background:radial-gradient(140% 170% at 50% -20%, #15181f, #0d0f14 65%);
+    border:1px solid var(--hair); border-radius:14px; padding:14px 15px; margin-bottom:12px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.35);
+    animation:fadeUp .45s var(--easeout) both; }
+  .ttlg { color:var(--t3); font-size:10.5px; text-transform:uppercase; letter-spacing:.07em;
+    font-weight:600; display:flex; align-items:center; gap:7px; }
+  .ttcnt { background:linear-gradient(180deg, rgba(77,163,255,.26), rgba(77,163,255,.13));
+    color:#dbeafe; border-radius:var(--pill); padding:2px 9px; font-size:11px; font-weight:700; }
+  .ttrow { border-bottom:1px solid var(--hair); transition:background .15s var(--easesoft);
+    border-radius:8px; }
+  .ttrow:active { background:rgba(255,255,255,.045); }
+  .ttmain b { color:var(--t1); }
+  .ttpick { color:var(--up); }
+  .ttsub, .ttfoot, .ttempty { color:var(--t3); }
+  .ttodds, .ttbook { color:var(--sky); }
+  .ttlad.open { animation:fadeIn .25s var(--easesoft); }
+  .ttrkrow span:last-child.up { color:var(--up); }
   @media (prefers-reduced-motion:reduce) {
     *, *::before, *::after { animation:none !important; transition:none !important; }
   }
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>2:41 AM MT
+    <div class="live"><span class="dot"></span>3:00 AM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -450,22 +472,22 @@
           <span class="pedge mid">+14%</span><span class="pmark" onclick="event.stopPropagation(); togglePlayed(this)" title="mark played">✓</span><span class="pchev">›</span></div>
         <div class="pgrid"><div class="gc r hot"><span class="gcl">ROLE</span><span class="gcv">100%</span><span class="gcs">3/3</span></div><div class="gc hot"><span class="gcl">L5</span><span class="gcv">100%</span><span class="gcs">5/5</span></div><div class="gc"><span class="gcl">L10</span><span class="gcv">60%</span><span class="gcs">6/10</span></div><div class="gc"><span class="gcl">SZN</span><span class="gcv">54%</span><span class="gcs">7/13</span></div><div class="gc"><span class="gcl">H2H</span><span class="gcv dim">—</span><span class="gcs">&nbsp;</span></div></div><div class="pctx"><span class="cdrv">▲+2 ast</span> · proj 5.3</div>
       </div><div class="bars"><div class="bwrap"><div class="why">Model projects <b>5.3 AST</b>. Clears the 4.5 line — S. Sabally + L. Fiebich out (+5 min, +2 ast) inherits the vacated role. In 3 games without S. Sabally + L. Fiebich she finished over 4.5 <b>3/3</b> (100%). Book anchored near the season avg (4.3) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Same-lineup comps · <b>S.Sabally, L.Fiebich</b> out · <b>P.Astier, M.Johannes, J.Jones</b> in — avg <b>6</b> AST over 3 (<span class="sup">supports the over</span>)</div><div class="cmps"><span class="cmp pr">07-12 TOR <b>8</b> · 33'</span><span class="cmp pr">07-11 MIN <b>5</b> · 35'</span><span class="cmp pr">07-08 DAL <b>5</b> · 33'</span><span class="cmp">06-30 LV <b>5</b> · 31'</span><span class="cmp">06-28 GS <b>2</b> · 26'</span><span class="cmp">05-24 DAL <b>7</b> · 31'</span></div></div><div class="chart"><div class="pline" style="bottom:34.7%"><span>4.5</span></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:38.6%"><span class="bv">5</span></div></div><div class="col"><div class="m" style="height:83%"></div><div class="b o" style="height:38.6%"><span class="bv">5</span></div></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:61.7%"><span class="bv">8</span></div></div></div><div class="opps"><span>DAL</span><span>MIN</span><span>TOR</span></div><div class="bnote">3/3 over 4.5 · gray bar = minutes · games without S. Sabally, L. Fiebich</div></div></div></div></div></div>
-    <div class="xtras"><div class="xt" title="pinged &amp; ledger-logged — dropped by the 2-per-team / rung-gap rules; not in the tracked record">⚡ Also flagged <span>· pinged · not selected</span></div><span class="xchip"><span class="xteam">CON</span> <b>B. Griner</b> pts o19.5 +390 <span class="lv">✓</span></span><span class="xchip"><span class="xteam">TOR</span> <b>M. Mabrey</b> reb o3.5 +128</span><span class="xchip"><span class="xteam">CHI</span> <b>N. Cloud</b> P+R o15.5 +100</span><span class="xchip"><span class="xteam">CON</span> <b>B. Griner</b> pts o14.5 +104</span><span class="xchip">TMRW · <span class="xteam">MIN</span> <b>K. McBride</b> pts o19.5 +114</span><span class="xchip">TMRW · <span class="xteam">NY</span> <b>B. Stewart</b> P+A o22.5 -112</span></div>
+    <div class="xtras"><div class="xt" title="pinged &amp; ledger-logged — dropped by the 2-per-team / rung-gap rules; not in the tracked record">⚡ Also flagged <span>· pinged · not selected</span></div><span class="xchip"><span class="xteam">CON</span> <b>B. Griner</b> pts o19.5 +390 <span class="lv">✓</span></span><span class="xchip"><span class="xteam">TOR</span> <b>M. Mabrey</b> reb o3.5 +128</span><span class="xchip"><span class="xteam">CHI</span> <b>N. Cloud</b> P+R o15.5 +100</span><span class="xchip"><span class="xteam">CON</span> <b>B. Griner</b> pts o14.5 +104</span><span class="xchip">TMRW · <span class="xteam">MIN</span> <b>K. McBride</b> pts o19.5 +112</span><span class="xchip">TMRW · <span class="xteam">NY</span> <b>B. Stewart</b> P+A o22.5 -112</span></div>
     
     <div class="parlays"><div class="op-title">🎰 Parlays<span> · .25u · tap ✓ when played</span></div><div class="slips"><div class="slip" data-k="par|49d8"><div class="shd"><span class="sn">3-leg parlay</span><span class="ssp"></span><span class="pmark" onclick="togglePlayed(this)" title="mark played">✓</span><span class="sid">#49d8</span></div><div class="slegs"><div class="sleg"><span class="slp">Nelson-Ododa</span><span class="sls">R+A o9.5</span><span class="slo">+102</span></div><div class="sleg"><span class="slp">Harrison</span><span class="sls">P+R o17.5</span><span class="slo">-130</span></div><div class="sleg"><span class="slp">Cloud</span><span class="sls">P+R o14.5</span><span class="slo">-132</span></div></div><div class="sft"><span class="sstake">stake <b>0.25u</b></span><span class="sodds">+528</span><span class="spay">→ 1.57u</span></div></div><div class="slip" data-k="par|a84d"><div class="shd"><span class="sn">3-leg parlay</span><span class="ssp"></span><span class="pmark" onclick="togglePlayed(this)" title="mark played">✓</span><span class="sid">#a84d</span></div><div class="slegs"><div class="sleg"><span class="slp">Nelson-Ododa</span><span class="sls">R+A o9.5</span><span class="slo">+102</span></div><div class="sleg"><span class="slp">Makani</span><span class="sls">pts o10.5</span><span class="slo">-110</span></div><div class="sleg"><span class="slp">Lacan</span><span class="sls">pts o12.5</span><span class="slo">-110</span></div></div><div class="sft"><span class="sstake">stake <b>0.25u</b></span><span class="sodds">+636</span><span class="spay">→ 1.84u</span></div></div><div class="slip" data-k="par|8928"><div class="shd"><span class="sn">3-leg parlay</span><span class="ssp"></span><span class="pmark" onclick="togglePlayed(this)" title="mark played">✓</span><span class="sid">#8928</span></div><div class="slegs"><div class="sleg"><span class="slp">Harrison</span><span class="sls">P+R o17.5</span><span class="slo">-130</span></div><div class="sleg"><span class="slp">Makani</span><span class="sls">pts o10.5</span><span class="slo">-110</span></div><div class="sleg"><span class="slp">Burrell</span><span class="sls">P+R+A o20.5</span><span class="slo">-106</span></div></div><div class="sft"><span class="sstake">stake <b>0.25u</b></span><span class="sodds">+556</span><span class="spay">→ 1.64u</span></div></div><div class="slip" data-k="par|47c9"><div class="shd"><span class="sn">2-leg parlay</span><span class="stag">TMRW</span><span class="ssp"></span><span class="pmark" onclick="togglePlayed(this)" title="mark played">✓</span><span class="sid">#47c9</span></div><div class="slegs"><div class="sleg"><span class="slp">McBride</span><span class="sls">pts o18.5</span><span class="slo">-114</span></div><div class="sleg"><span class="slp">Ionescu</span><span class="sls">ast o4.5</span><span class="slo">-146</span></div></div><div class="sft"><span class="sstake">stake <b>0.25u</b></span><span class="sodds">+216</span><span class="spay">→ 0.79u</span></div></div></div></div>
     
-    <div class="watchlist"><div class="wl-title">⏳ Watchlist <span>· fires if the Q star sits</span></div><div class="wl-grp"><div class="wl-hd" title="d_min outside the validated 3-8 band — logged to build the sample, never bet">TMRW · ⚡BAND · <b>Olivia Miles, Dorka Juhasz</b> OUT — shadow, not a bet</div><div class="wl-leg"><b>N. Howard</b> reb o7.5<span class="wl-ev">+13%</span><span class="wl-meta">proj 8.6 · 14/20 in role</span></div></div></div>
+    <div class="watchlist"><div class="wl-title">⏳ Watchlist <span>· fires if the Q star sits</span></div><div class="wl-grp"><div class="wl-hd" title="d_min outside the validated 3-8 band — logged to build the sample, never bet">TMRW · ⚡BAND · <b>Olivia Miles, Dorka Juhasz</b> OUT — shadow, not a bet</div><div class="wl-leg"><b>N. Howard</b> reb o7.5<span class="wl-ev">+14%</span><span class="wl-meta">proj 8.6 · 14/20 in role</span></div></div></div>
   </div>
   <div class="panel hidden" id="tt">
-    <h2>Table tennis · by league &amp; game time</h2>
+    <h2>Table tennis · real FD lines</h2>
     <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets</h3><div class="ttempty">No Elite bets flagged right now — no pair on the current FanDuel board hits a side 70%+ at its line. Check back closer to the games.</div></div></div>
   </div>
   <div class="panel hidden" id="gg">
-    <h2>GG League esports · paper flags at the FanDuel line</h2>
+    <h2>GG esports · paper flags</h2>
     <div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets</h3><div class="ttempty">No open GG flags right now — new ones land every ~30 min as FanDuel prices upcoming matches (24/7).</div></div>
   </div>
   <div class="panel hidden" id="tracker">
-    <h2>Live record · settles as each event ends</h2>
+    <h2>Live record</h2>
     
       <div class="tcard">
         <div class="thead">🏀 WNBA injury props</div>
@@ -553,6 +575,8 @@
       const r = await fetch(location.pathname + '?_=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) return;
       const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
+      const nbv = doc.querySelector('meta[name="bv"]'), cbv = document.querySelector('meta[name="bv"]');
+      if (nbv && cbv && nbv.content !== cbv.content) { location.reload(); return; }
       const y = window.scrollY;
       // remember which game-log drawers are open so the panel swap doesn't slam them shut mid-read
       const openK = [...document.querySelectorAll('.prop')].filter(p =>
