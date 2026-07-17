@@ -1,9 +1,9 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-17T16:45:39 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-17T17:35:03 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 114-232  ·  **P&L:** -56.33u ($-5,633)  ·  **ROI:** -16.3%
-- **Avg CLV:** +7.29% over 303 closed bets  ·  **Open:** 6  ·  **Total logged:** 375
+- **Record:** 115-232  ·  **P&L:** -55.50u ($-5,550)  ·  **ROI:** -16.0%
+- **Avg CLV:** +7.25% over 304 closed bets  ·  **Open:** 5  ·  **Total logged:** 375
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
@@ -13,7 +13,7 @@ Data OK — FanDuel 2652 lines @ `2026-07-17T16:45:01`.
 
 | sport | stat | bets | settled P&L (u) | avg CLV |
 |---|---|---|---|---|
-| ebasketball | total | 28 | +6.78 | -4.94% |
+| ebasketball | total | 28 | +7.62 | -4.89% |
 | efootball | total | 2 | -0.09 | — |
 | mlb | f5_total | 15 | +6.74 | — |
 | mlb | game_total | 38 | +2.10 | — |
@@ -25,6 +25,7 @@ Data OK — FanDuel 2652 lines @ `2026-07-17T16:45:01`.
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-17 | ebasketball | ABYSS v MARKSMAN | total over 103.5 | 1.83 | W | 128 | +0.83u | -4.3% |
 | 2026-07-17 | ebasketball | CHIEF v DIMES | total over 117.5 | 1.83 | W | 127 | +0.83u | — |
 | 2026-07-17 | ebasketball | DAGGER v SILVER | total over 98.5 | 1.83 | L | 93 | -1.00u | -4.3% |
 | 2026-07-17 | ebasketball | KOBRA v SILVER | total over 92.5 | 1.83 | L | 89 | -1.00u | -4.3% |
@@ -49,5 +50,4 @@ Data OK — FanDuel 2652 lines @ `2026-07-17T16:45:01`.
 | 2026-07-12 | mlb | GAME (game_total) | game_total over 7.5 | 1.85 | W | 10 | +0.85u | — |
 | 2026-07-12 | mlb | GAME (game_total) | game_total over 9.0 | 1.85 | W | 12 | +0.85u | — |
 | 2026-07-12 | mlb | GAME (game_total) | game_total over 5.5 | 1.82 | L | 5 | -1.00u | — |
-| 2026-07-12 | mlb | GAME (game_total) | game_total under 11.5 | 2.04 | W | 10 | +1.04u | — |
 
