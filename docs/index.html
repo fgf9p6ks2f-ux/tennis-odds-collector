@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="937b5dbc27">
+<meta name="bv" content="5185a7a838">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -92,6 +92,8 @@
   .pmark { color:#2c3442; font-size:15px; font-weight:800; cursor:pointer; padding:0 3px; user-select:none; }
   .pmark.on { color:#39d98a; }
   .contra { color:#e0a95e; font-size:12px; margin-left:0; }
+  .rwatch { color:var(--warm); border:1px dashed rgba(255,138,61,.4); border-radius:var(--pill);
+            padding:1px 7px; font-size:9.5px; font-weight:700; letter-spacing:.03em; }
   .xteam { color:#5b6b82; font-size:10.5px; }
   .stag { color:#c9a06a; font-size:10px; font-weight:700; margin-left:6px; }
   .tcard.diag .tbody { display:none; } .tcard.diag.open .tbody { display:block; }
@@ -394,7 +396,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>3:27 PM MT
+    <div class="live"><span class="dot"></span>3:31 PM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -418,7 +420,7 @@
       <div class="prop" data-side="over" data-k="2026-07-17|Isabelle Harrison|pts_reb|17.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
-          <span class="plno">17.5</span><span class="pstat">P+R</span>
+          <span class="plno">17.5</span><span class="pstat">P+R</span> <span class="rwatch" title="rebounds-component: 7-10 (-3.1u) live — tracking to a ~30-bet verdict; user-skip until then">watch</span>
           <span class="psp"></span>
           <span class="podds">-130</span>
           <span class="pedge hi">+17%</span><span class="pchev">›</span></div>
@@ -428,7 +430,7 @@
       <div class="prop" data-side="over" data-k="2026-07-17|Natasha Cloud|pts_reb|14.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
-          <span class="plno">14.5</span><span class="pstat">P+R</span>
+          <span class="plno">14.5</span><span class="pstat">P+R</span> <span class="rwatch" title="rebounds-component: 7-10 (-3.1u) live — tracking to a ~30-bet verdict; user-skip until then">watch</span>
           <span class="psp"></span>
           <span class="podds">-132</span>
           <span class="pedge hi">+17%</span><span class="pchev">›</span></div>
@@ -456,7 +458,7 @@
       <div class="prop" data-side="over" data-k="2026-07-17|Olivia Nelson-Ododa|reb_ast|9.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
-          <span class="plno">9.5</span><span class="pstat">R+A</span>
+          <span class="plno">9.5</span><span class="pstat">R+A</span> <span class="rwatch" title="rebounds-component: 7-10 (-3.1u) live — tracking to a ~30-bet verdict; user-skip until then">watch</span>
           <span class="psp"></span>
           <span class="podds">+102</span>
           <span class="pedge hi">+20%</span><span class="pchev">›</span></div>
