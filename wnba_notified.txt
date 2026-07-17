@@ -1,6 +1,8 @@
 2026-07-17|Ariel Atkins|assists|2.5
 2026-07-17|Azura Stevens|assists|2.5
 2026-07-17|Diamond Miller|rebounds|2.5
+2026-07-17|Gabriela Jaquez|points|7.5
+2026-07-17|Gabriela Jaquez|points|9.5
 2026-07-17|Isabelle Harrison|pts_reb|17.5
 2026-07-17|Julie Allemand|assists|7.5
 2026-07-17|Kamilla Cardoso|dd
