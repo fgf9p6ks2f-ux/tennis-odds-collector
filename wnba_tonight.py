@@ -656,9 +656,9 @@ def tonight_teams():
     return set(tonight_matchups())
 
 
-def game_ids():
-    """{team abbrev: ESPN game id} for today's (ET) slate — to look up the lineup."""
-    et_date = dt.datetime.now(dt.timezone.utc).astimezone(ET).strftime("%Y%m%d")
+def game_ids(date=None):
+    """{team abbrev: ESPN game id} for the given ET slate date (default today)."""
+    et_date = date or dt.datetime.now(dt.timezone.utc).astimezone(ET).strftime("%Y%m%d")
     out = {}
     for e in _espn(f"scoreboard?dates={et_date}").get("events", []):
         gid = e.get("id")

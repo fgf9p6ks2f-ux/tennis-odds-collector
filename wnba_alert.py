@@ -77,36 +77,41 @@ def collect():
     prediction rows logged to the ledger so every flagged spot gets graded and fed back
     into the model."""
     pl = W.players()
-    playing = T.tonight_teams()
-    matchups = T.tonight_matchups()
-    tips = T.tip_times()                                  # {team: naive-UTC tip} for the CLV close-gate
     inj = T.injuries()
     # ET slate date, NOT UTC — else a game tipping ~02:00Z (10pm ET) gets logged under two
     # different UTC dates across midnight and the SAME bets double-count in the tracker.
     today = datetime.datetime.now(T.ET).date().isoformat()
+    # BOTH SLATES (2026-07-16, user: "there's so many WNBA games tomorrow"): next-day lines
+    # post the evening before, and a CONFIRMED out for tomorrow = the stalest-line version of
+    # the edge (9 impact outs sat unflagged on the 7/17 slate). The firm pipeline now runs
+    # per-slate; bet keys/pred_date/CLV all carry the slate date, and the ledger dedupes.
+    _tom = datetime.datetime.now(T.ET) + datetime.timedelta(days=1)
+    tom_ymd, tom_iso = _tom.strftime("%Y%m%d"), _tom.date().isoformat()
+    matchups_by = {today: T.tonight_matchups(), tom_iso: T.tonight_matchups(tom_ymd)}
+    tips_by = {today: T.tip_times(), tom_iso: T.tip_times(tom_ymd)}
+    gids_by = {today: T.game_ids(), tom_iso: T.game_ids(tom_ymd)}
+    matchups, tips, gids = matchups_by[today], tips_by[today], gids_by[today]
+    playing = set(matchups)
     lines, rates = CTX.game_lines(), CTX.team_rates()    # Vegas total + pace, fetched once
-    gids = T.game_ids()                                  # team -> game id (for lineup lookup)
-    # FIRM OUT = the feed says Out/Doubtful, they're not confirmed-starting, AND the book has PULLED
-    # their props. The props check is the ground truth the injury feed can lag: a full posted slate
-    # (esp. an active points market) = a stale/wrong 'Out' — really questionable/PLAYING — whose role
-    # must NOT be vacated to beneficiaries. This is the Griner fix: ESPN tagged her 'Out' while FanDuel
-    # carried her full 16-line slate, so the bot built 3 CON plays on a player who was actually playing.
-    # (Checked only for playing-team Out/Doubtful, not-confirmed players — a handful of net calls.)
+    # FIRM OUT = the feed (ESPN ∪ RotoWire out-list) says Out/Doubtful and they're not
+    # confirmed-starting. RotoWire GTD vetoes (the Griner case); NO book-reaction gates —
+    # ⚡ speed doctrine: race the reprice, never wait for it. Evaluated PER SLATE.
     out_names, outs_by_team = set(), defaultdict(list)
-    for name, status in inj.items():
-        p = pl.get(name)
-        if not (p and p["team"] in playing and status in ("Out", "Doubtful")
-                and not T.confirmed_playing(name, p["team"])):
-            continue
-        if not T.genuinely_out(name):                    # RotoWire says GTD -> not a firm out, skip
-            continue
-        out_names.add(name)
-        # impact out = vacates real MINUTES (>=20mpg) OR real USAGE (>=10ppg) — a depressed-minutes but
-        # high-usage scorer (Satou Sabally 17mpg / 10pts) is the 2nd star whose absence compounds a
-        # beneficiary's role; a minutes-only cutoff misses her. A beneficiary gets ONE projection off
-        # the COMBINED absence, so 2+ impact outs on a team compound the boost.
-        if p["min"] >= 20 or p["pts"] >= 10:
-            outs_by_team[p["team"]].append((name, p))
+    for sdate, mus in matchups_by.items():
+        pset = set(mus)
+        for name, status in inj.items():
+            p = pl.get(name)
+            if not (p and p["team"] in pset and status in ("Out", "Doubtful")
+                    and not T.confirmed_playing(name, p["team"])):
+                continue
+            if not T.genuinely_out(name):                # RotoWire says GTD -> not a firm out, skip
+                continue
+            out_names.add(name)
+            # impact out = vacates real MINUTES (>=20mpg) OR real USAGE (>=10ppg) — a depressed-
+            # minutes but high-usage scorer is the 2nd star whose absence compounds a beneficiary's
+            # role. A beneficiary gets ONE projection off the COMBINED absence per slate.
+            if p["min"] >= 20 or p["pts"] >= 10:
+                outs_by_team[(sdate, p["team"])].append((name, p))
 
     alerts, preds, proj_rows, cold_spots = [], [], [], []
     log_cache = {}                                   # fetch each player's game log at most once
@@ -119,7 +124,7 @@ def collect():
                 log_cache[pid] = []
         return log_cache[pid]
 
-    for team, outs in outs_by_team.items():
+    for (slate_date, team), outs in outs_by_team.items():
         out_logs = [glog(p["id"]) for _, p in outs]
         if not all(out_logs):
             continue
@@ -129,14 +134,14 @@ def collect():
         vacated = {"points": sum(p["pts"] for _, p in outs),
                    "rebounds": sum(p["reb"] for _, p in outs),
                    "assists": sum(p["ast"] for _, p in outs)}
-        ctx = CTX.matchup_context(team, matchups.get(team, ""), lines, rates)
+        ctx = CTX.matchup_context(team, matchups_by[slate_date].get(team, ""), lines, rates)
         env = []
         if ctx["total"]:
             env.append(f"O/U{ctx['total']:g}")
         if ctx["pace_vs_lg"] is not None and abs(ctx["pace_vs_lg"]) > 2:
             env.append("fast" if ctx["pace_vs_lg"] > 0 else "slow")
         env_tag = " · " + " ".join(env) if env else ""
-        starters = T.game_starters(gids.get(team))       # None until the lineup posts
+        starters = T.game_starters(gids_by[slate_date].get(team))       # None until the lineup posts
         # per-out-player date->minutes maps: which of the beneficiary's past games were played WITHOUT
         # each out star, so the chart + record show the same-injury-context games (the user's "only the
         # bars without X"). Feeds prop_edges' out_logs. (The old context-WEIGHTED projection that also
@@ -176,23 +181,23 @@ def collect():
                 proj0 = min(max(v["min"] + pw0 * vac_min * (v["min"] / rot), 22.0), 30.0)
                 pa0 = T.project_all(blog, proj0)
                 cold = [e for e in T.prop_edges(n, blog, proj0, None, vacated, ctx,
-                                                out_logs=out_dm, opp=matchups.get(team, ""),
+                                                out_logs=out_dm, opp=matchups_by[slate_date].get(team, ""),
                                                 pos=v.get("position"))
                         if e["side"] == "over"
                         and (e["elev_avg"] - e["line"]) >= T.COLD_START_MARGIN]
                 if cold:
                     pn0 = T.posted_props(n)
                     if pa0 and pn0:
-                        CLV.log_shadow(today, n, out_full,
+                        CLV.log_shadow(slate_date, n, out_full,
                                        {"points": pa0["proj_pts"], "rebounds": pa0["proj_reb"],
                                         "assists": pa0["proj_ast"]}, pn0,
-                                       tip=tips.get(team), tier="n0_cold")
+                                       tip=tips_by[slate_date].get(team), tier="n0_cold")
                     for e in cold:
                         cold_spots.append({"player": n, "team": team, "star": out_full,
                                            "status": "OUT", "sit": 1.0, "lead": None,
                                            "conf": lbl, "proj_min": round(proj0, 1),
-                                           "date": today, "cold": True, **e})
-                        alerts.append((e["ev"], f"n0|{today}|{n}|{e['stat']}|{e['line']:g}",
+                                           "date": slate_date, "cold": True, **e})
+                        alerts.append((e["ev"], f"n0|{slate_date}|{n}|{e['stat']}|{e['line']:g}",
                             f"⚡COLD {out_label} OUT -> {_short(n)} STARTS ({lbl}) "
                             f"{e['stat'][:3]} o{e['line']:g} {T._am(e['dec'])} | "
                             f"proj {e['elev_avg']:g} (+{e['elev_avg']-e['line']:.1f} over line) "
@@ -228,17 +233,17 @@ def collect():
                     continue
                 pa1 = T.project_all(blog, proj)
                 e1 = [e for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm,
-                                              opp=matchups.get(team, ""), pos=v.get("position"))
+                                              opp=matchups_by[slate_date].get(team, ""), pos=v.get("position"))
                       if e["side"] == "over" and e["stale"]]
                 if e1:
                     pn = T.posted_props(n)
                     if pa1 and pn:
-                        CLV.log_shadow(today, n, out_full,
+                        CLV.log_shadow(slate_date, n, out_full,
                                        {"points": pa1["proj_pts"], "rebounds": pa1["proj_reb"],
                                         "assists": pa1["proj_ast"]}, pn,
-                                       tip=tips.get(team), tier="n1_speed")
+                                       tip=tips_by[slate_date].get(team), tier="n1_speed")
                     for e in e1:
-                        alerts.append((e["ev"], f"n1|{today}|{n}|{e['stat']}|{e['line']:g}",
+                        alerts.append((e["ev"], f"n1|{slate_date}|{n}|{e['stat']}|{e['line']:g}",
                             f"⚡1G {out_label} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
                             f"{T._am(e['dec'])} | proj {e['elev_avg']:g} +{e['ev']*100:.0f}%EV "
                             f"· 1-game sample · STALE line — SPEED PILOT (not in record)"))
@@ -249,8 +254,8 @@ def collect():
             pa = T.project_all(blog, proj)
             prow = None
             if pa:
-                prow = {"date": today, "pid": v["id"], "player": n, "team": team,
-                        "opp": matchups.get(team, ""), "out_player": out_full,
+                prow = {"date": slate_date, "pid": v["id"], "player": n, "team": team,
+                        "opp": matchups_by[slate_date].get(team, ""), "out_player": out_full,
                         "confidence": conf, "pos": v.get("position"), "flagged": 0,
                         "d_min": round(w["without"]["min"]["mean"]
                                        - w["with"]["min"]["mean"], 1), **pa}
@@ -259,14 +264,14 @@ def collect():
                 # (INSERT-OR-IGNORE keeps the earliest flag) — the timing-edge proof loop.
                 props_now = T.posted_props(n)
                 if props_now:
-                    CLV.log_shadow(today, n, out_full,
+                    CLV.log_shadow(slate_date, n, out_full,
                                    {"points": pa["proj_pts"], "rebounds": pa["proj_reb"],
-                                    "assists": pa["proj_ast"]}, props_now, tip=tips.get(team))
+                                    "assists": pa["proj_ast"]}, props_now, tip=tips_by[slate_date].get(team))
             n_preds0 = len(preds)                            # to mark whether this player got a bet
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm,
-                                  opp=matchups.get(team, ""), pos=v.get("position")):
+                                  opp=matchups_by[slate_date].get(team, ""), pos=v.get("position")):
                 # beneficiary+stat+line, dated (re-fires next slate)
-                key = f"{today}|{n}|{e['stat']}|{e['line']}"
+                key = f"{slate_date}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
                 # 2-day backtest tell: EV >40% flags went 0-4 — implausibly-fat EV on a
                 # mainstream line = a thin-sample over-projection, not real. Warn on it.
@@ -288,8 +293,8 @@ def collect():
                     f"{out_label} OUT -> {_short(n)} {e['stat'][:3]} {sd}{e['line']:g} "
                     f"{T._am(e['dec'])}{wo} | {rec} {e['hit']*100:.0f}% "
                     f"| proj {e['elev_avg']:g} +{e['ev']*100:.0f}%EV{ctag}{tag}{env_tag}"))
-                preds.append({"pred_date": today, "out_player": out_full, "player": n,
-                              "team": team, "opp": matchups.get(team, ""),
+                preds.append({"pred_date": slate_date, "out_player": out_full, "player": n,
+                              "team": team, "opp": matchups_by[slate_date].get(team, ""),
                               "stat": e["stat"], "line": e["line"], "odds": e["dec"],
                               "odds_other": e.get("odds_other"),
                               "book": "fd", "proj_hit": round(e["hit"], 3), "side": e["side"],
@@ -319,7 +324,7 @@ def collect():
                         f"pts {dd['d_pts']:+g}" if dd["d_pts"] is not None else "",
                         f"min {dd['d_min']:+g}" if dd["d_min"] is not None else ""]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
-                alerts.append((dd["rate"] - 0.5, f"{today}|{n}|dd",
+                alerts.append((dd["rate"] - 0.5, f"{slate_date}|{n}|dd",
                     f"{out_label} OUT -> {_short(n)} DOUBLE-DOUBLE {dd['rate']*100:.0f}% in "
                     f"{dd['n']} role gms{wo} — check DD price (backup bigs lag)"))
     # CORRELATION CAP (user preference): don't recommend 2+ players' OVERS on the same team + same
@@ -352,7 +357,7 @@ def collect():
     # it in milliseconds — the sub-minute alert — WITHOUT waiting for this full ~47s scan to re-run.
     # Rewritten every scan, i.e. whenever the injury picture moves.
     try:
-        cache = {"date": today,
+        cache = {"date": slate_date,
                  "ts": datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat(),
                  "proj": {r["player"]: {"out": r["out_player"], "conf": r["confidence"],
                                         "min": r["proj_min"], "pts": r["proj_pts"],
