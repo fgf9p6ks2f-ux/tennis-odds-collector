@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T18:51:18Z",
+ "captured_at": "2026-07-17T18:56:27Z",
  "matches": [
   {
    "event_id": 35835435,
@@ -8,20 +8,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-17T18:45:00.000Z",
-   "line": 49.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35835436,
-   "p1": "Jacek Oracz",
-   "p2": "Artur Kubiak",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "artur kubiak",
-   "open_date": "2026-07-17T18:45:00.000Z",
-   "line": 56.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 58.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35835443,
@@ -30,31 +19,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-17T18:50:00.000Z",
-   "line": 77.5,
+   "line": 70.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35835457,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Piotr Strus",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "piotr strus",
-   "open_date": "2026-07-17T18:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35835458,
-   "p1": "Pawel Adamus",
-   "p2": "Sebastian Krupa",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "sebastian krupa",
-   "open_date": "2026-07-17T18:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35835484,
@@ -85,9 +52,31 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-17T19:15:00.000Z",
-   "line": 74.5,
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35835495,
+   "p1": "Michal Durda",
+   "p2": "Pawel Kurek",
+   "p1_norm": "michal durda",
+   "p2_norm": "pawel kurek",
+   "open_date": "2026-07-17T19:20:00.000Z",
+   "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835496,
+   "p1": "Stanislaw Wnek",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-17T19:20:00.000Z",
+   "line": 84.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
