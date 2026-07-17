@@ -82,7 +82,18 @@ board(){ local f=/tmp/.fd_board_last now last; now=$(date +%s); last=$(cat "$f" 
   python3 fd_tt.py --board --captured-at "$(date -u +%FT%TZ)" >/dev/null 2>&1 && echo "$now" > "$f" || true; }
 
 fullscan(){
-  python3 wnba_alert.py >/dev/null 2>&1 || true
+  if ! python3 wnba_alert.py >/dev/null 2>/tmp/.alert_err; then
+    # the flag engine crashing is a SILENT-EDGE-KILLER (2026-07-17: a missing DB column killed
+    # every pass for 2.5h while Boston was ruled out) -> page ONCE per distinct error + journal it
+    err=$(tail -2 /tmp/.alert_err | tr -d "\n" | cut -c1-160)
+    echo "[$(date +%H:%M)] ALERT PASS FAILED: $err"
+    sig=$(echo "$err" | md5sum | cut -c1-8)
+    if [ ! -f "/tmp/.alert_err_$sig" ]; then
+      touch "/tmp/.alert_err_$sig"
+      curl -s -m 10 -H "Priority: urgent" -H "Title: WNBA flag engine CRASHED" \
+        -d "$err" "https://ntfy.sh/$NTFY_TOPIC" >/dev/null 2>&1 || true
+    fi
+  fi
   python3 dashboard.py >/dev/null 2>&1 || true
   python3 wnba_ledger.py --train >/dev/null 2>&1 || true
   python3 wnba_context_report.py >/dev/null 2>&1 || true; }
@@ -119,7 +130,11 @@ while true; do i=$((i+1))
     # next-day plays must fire fast too (user: post as soon as 1 out-confirmation + FD lines):
     # the full flagger also runs every ~40 hot ticks (~17 min) — it never ran in hot before,
     # so a new out + fresh next-day lines could sit unflagged for a whole evening.
-    if [ $((hot_ticks % 40)) -eq 20 ]; then echo "[$(date +%H:%M)] full scan (hot)"; fullscan; fi
+    # FAST INJURY PROBE near tip (user 2026-07-17, the Boston ruling): a late OUT pulls the
+    # slate; the edge is catching the REPOSTED lines within minutes. Full beneficiary scan
+    # every 6 hot ticks (~2.5 min) instead of ~17 min. ~52s/pass on this box = ~35% duty,
+    # hot windows only.
+    if [ $((hot_ticks % 6)) -eq 0 ]; then echo "[$(date +%H:%M)] full scan (hot fast-probe)"; fullscan; fi
     sleep 25
   else
     # COLD PATH: normal 75s cycle; heavy full scan every 25 cold iterations.

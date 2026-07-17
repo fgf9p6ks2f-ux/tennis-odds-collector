@@ -236,7 +236,12 @@ def main():
     con = sqlite3.connect(DB)
     con.execute("""CREATE TABLE IF NOT EXISTS fd_lines (
         collected_at TEXT, sport TEXT, event TEXT, player TEXT, stat TEXT, line REAL,
-        side TEXT, odds REAL, PRIMARY KEY (collected_at, sport, player, stat, line, side))""")
+        side TEXT, odds REAL, book TEXT DEFAULT 'fd',
+        PRIMARY KEY (collected_at, sport, player, stat, line, side))""")
+    # a PRE-book DB (e.g. recreated from scratch during the 2026-07-17 disk-full recovery)
+    # crashes every posted_props() consumer with "no such column: book" — self-heal it here.
+    if "book" not in {r[1] for r in con.execute("PRAGMA table_info(fd_lines)")}:
+        con.execute("ALTER TABLE fd_lines ADD COLUMN book TEXT DEFAULT 'fd'")
     # explicit column list: dk_collect added a 'book' column (DEFAULT 'fd'), so a
     # positional 8-value insert crashes against the 9-column table
     con.executemany("INSERT OR REPLACE INTO fd_lines "
