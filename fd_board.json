@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T08:53:39Z",
+ "captured_at": "2026-07-17T09:01:16Z",
  "matches": [
   {
    "event_id": 35833522,
@@ -8,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-17T08:45:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -160,
+   "under_odds": 115
   },
   {
    "event_id": 35833523,
@@ -19,20 +19,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-17T08:45:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35833546,
-   "p1": "Mateusz Sikon",
-   "p2": "Robert Kostepski",
-   "p1_norm": "mateusz sikon",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-17T09:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35833547,
@@ -41,20 +30,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-17T09:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35833548,
-   "p1": "Bartosz Sulkowski",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "bartosz sulkowski",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-17T09:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35833563,
@@ -77,6 +55,28 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35833587,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-17T09:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35833588,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Michal Wandachowicz",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "michal wandachowicz",
+   "open_date": "2026-07-17T09:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
