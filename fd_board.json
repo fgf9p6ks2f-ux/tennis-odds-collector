@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T01:48:37Z",
+ "captured_at": "2026-07-17T01:52:42Z",
  "matches": [
-  {
-   "event_id": 35832661,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Marian Lebek",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-17T01:35:00.000Z",
-   "line": 54.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35832665,
    "p1": "Mateusz Karpiuk",
@@ -19,9 +8,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-17T01:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832675,
