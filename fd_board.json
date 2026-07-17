@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T18:07:29Z",
+ "captured_at": "2026-07-17T18:12:13Z",
  "matches": [
   {
    "event_id": 35835379,
@@ -8,9 +8,9 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "michal durda",
    "open_date": "2026-07-17T18:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 67.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835395,
@@ -41,9 +41,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-17T18:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35835423,
@@ -53,8 +53,8 @@
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-17T18:30:00.000Z",
    "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35835424,
@@ -64,8 +64,8 @@
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T18:30:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
