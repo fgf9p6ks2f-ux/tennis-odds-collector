@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T19:16:00Z",
+ "captured_at": "2026-07-17T19:20:52Z",
  "matches": [
   {
    "event_id": 35835484,
@@ -8,7 +8,7 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T19:10:00.000Z",
-   "line": 90.5,
+   "line": 93.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,9 +19,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-17T19:15:00.000Z",
-   "line": 71.5,
+   "line": 68.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35835495,
@@ -31,19 +31,8 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T19:20:00.000Z",
    "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35835496,
-   "p1": "Stanislaw Wnek",
-   "p2": "Bartlomiej Wisniewski",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "bartlomiej wisniewski",
-   "open_date": "2026-07-17T19:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835518,
