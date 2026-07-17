@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T02:58:49Z",
+ "captured_at": "2026-07-17T03:02:56Z",
  "matches": [
-  {
-   "event_id": 35832720,
-   "p1": "Jakub Nowak",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-17T02:45:00.000Z",
-   "line": 63.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832724,
-   "p1": "Maciej Nowalinski",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "maciej nowalinski",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-17T03:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
   {
    "event_id": 35832725,
    "p1": "Jakub Zochniak",
@@ -31,7 +9,7 @@
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-17T03:00:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
+   "over_odds": -118,
    "under_odds": -116
   },
   {
@@ -41,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-17T03:00:00.000Z",
-   "line": 70.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832727,
