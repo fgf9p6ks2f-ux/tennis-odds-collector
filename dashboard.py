@@ -1416,6 +1416,9 @@ def build():
 <meta name="theme-color" content="#0B0B0D">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pickz">
+<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
 <meta name="bv" content="{bv}">
 <title>Today's Plays</title>
 <style>
