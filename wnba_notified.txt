@@ -122,6 +122,7 @@
 2026-07-17|Diamond Miller|points|8.5
 2026-07-17|Isabelle Harrison|pts_reb|17.5
 2026-07-17|Kamilla Cardoso|dd
+2026-07-17|Leila Lacan|points|12.5
 2026-07-17|Marina Mabrey|rebounds|3.5
 2026-07-17|Monique Akoa Makani|points|10.5
 2026-07-17|Natasha Cloud|pts_reb|15.5
