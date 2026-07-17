@@ -488,15 +488,16 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # 1-5 set (-4.4u) -> record 18-10, ROI +9.4% -> +27.3%. Conservative (only the extreme
             # corner); volume plays are usage-confirmed so they're exempt. Small sample (~1 player) —
             # watch forward. (See flip_backtest.py-style validation in the ledger analysis.)
-            # D_MIN BAND GATE (2026-07-16): the backtest bands REPLICATED on live money —
-            # graded overs by predicted d_min: <0 = 1-2 (33%) · 0-3 = 5-5 · 3-8 = 16-5 (76%)
-            # · >8 = 1-7 (12%). Two independent samples agree: minute-jump overs win ONLY in
-            # the 3-8 band. Gate the proven-losing bands (volume-confirmed plays exempt — their
-            # edge is usage, not a minutes extrapolation).
-            if (side == "over" and not use_vol and d_min is not None
-                    and (d_min < 0 or d_min > BIG_JUMP_MIN)
-                    and st.median(vals) - line < COLD_START_MARGIN):
-                continue
+            # D_MIN BAND PILOT (2026-07-16, revised same day — user: "isn't >8 just Ayayi?
+            # we need a bigger sample"): correct — the live <0/>8 "collapse" is 1-2 PLAYERS
+            # (>8 = Ayayi x5 + 3 others; <0 = 3 Stewart bets), and the NBA big-sample found
+            # MEASURED 8+ jumps are the BEST band (65.3%). Too suspect to bet, not enough
+            # multi-player evidence to hard-kill: outside-band overs become SHADOW PILOTS
+            # (⚡BAND alert + CLV shadow, never the firm record) until the sample is big and
+            # diverse enough to promote or bury. Volume/cold-start-margin plays stay exempt.
+            band_pilot = bool(side == "over" and not use_vol and d_min is not None
+                              and (d_min < 0 or d_min > BIG_JUMP_MIN)
+                              and st.median(vals) - line < COLD_START_MARGIN)
             if (side == "over" and not use_vol and n < THIN_SAMPLE_N and d_min is not None
                     and d_min > BIG_JUMP_MIN
                     and st.median(vals) - line < COLD_START_MARGIN):
@@ -530,6 +531,7 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             ev_bar = VOL_EV_MIN if use_vol else (OVER_EV_MIN if side == "over" else UNDER_EV_MIN)
             if ev >= ev_bar:
                 spot = {"ev": ev, "stat": stat, "line": line, "dec": dec, "hit": hit,
+                        "band_pilot": band_pilot,
                         "odds_other": (under_dec if side == "over" else over_dec),
                         "side": side, "orig_line": orig_line, "pi_role": round(play_prob, 2),
                         "n": n, "fga": fga, "season_avg": round(season_avg, 1),
@@ -549,7 +551,9 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
                         "vol": ({"vp": round(vp["vol_pts"], 1), "bf": vp["base_fga"],
                                  "rf": vp["recent_fga"], "pps": vp["pps"]} if use_vol else None)}
                 out.append(spot)
-    return _select_player_bets(out)
+    firm = [s for s in out if not s.get("band_pilot")]
+    pilots = [s for s in out if s.get("band_pilot")]
+    return _select_player_bets(firm) + pilots
 
 
 def _select_player_bets(out):

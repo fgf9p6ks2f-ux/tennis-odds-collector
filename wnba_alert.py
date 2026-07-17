@@ -115,6 +115,7 @@ def collect():
                 outs_by_team[(sdate, p["team"])].append((name, p))
 
     alerts, preds, proj_rows, cold_spots = [], [], [], []
+    _band_shadowed = set()
     log_cache = {}                                   # fetch each player's game log at most once
 
     def glog(pid):
@@ -288,6 +289,22 @@ def collect():
             n_preds0 = len(preds)                            # to mark whether this player got a bet
             for e in T.prop_edges(n, blog, proj, w, vacated, ctx, out_logs=out_dm,
                                   opp=matchups_by[slate_date].get(team, ""), pos=v.get("position")):
+                if e.get("band_pilot"):
+                    # suspect d_min band (outside 3-8, not volume/cold-margin) -> shadow only:
+                    # builds the multi-player sample the band question needs, zero money/record
+                    alerts.append((e["ev"] - 1.5, f"band|{slate_date}|{n}|{e['stat']}|{e['line']:g}",
+                        f"⚡BAND {out_label} OUT -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
+                        f"{T._am(e['dec'])} | d_min {(e.get('d_min') or 0):+.1f} outside 3-8 · "
+                        f"shadow only (not in record)"))
+                    if n not in _band_shadowed and pa:
+                        _band_shadowed.add(n)
+                        pn_b = T.posted_props(n)
+                        if pn_b:
+                            CLV.log_shadow(slate_date, n, out_full,
+                                           {"points": pa["proj_pts"], "rebounds": pa["proj_reb"],
+                                            "assists": pa["proj_ast"]}, pn_b,
+                                           tip=tips_by[slate_date].get(team), tier="band_pilot")
+                    continue
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{slate_date}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
