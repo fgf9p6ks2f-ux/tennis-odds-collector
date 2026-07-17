@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T04:42:34Z",
+ "captured_at": "2026-07-17T04:49:26Z",
  "matches": [
-  {
-   "event_id": 35832810,
-   "p1": "Jakub Zochniak",
-   "p2": "Karol Sulkowski",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "karol sulkowski",
-   "open_date": "2026-07-17T04:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832811,
-   "p1": "Mateusz Sikon",
-   "p2": "Robert Kostepski",
-   "p1_norm": "mateusz sikon",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-17T04:30:00.000Z",
-   "line": 69.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35832832,
    "p1": "Adam Staniczek",
@@ -30,9 +8,9 @@
    "p1_norm": "adam staniczek",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-17T04:40:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35832836,
@@ -88,6 +66,61 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832857,
+   "p1": "Jerzy Pelka",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T05:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832864,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Robert Kostepski",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-17T05:15:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832865,
+   "p1": "Krzysztof Wloczko",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "krzysztof wloczko",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-17T05:15:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35832867,
+   "p1": "Kamil Kurowski",
+   "p2": "Michal Wandachowicz",
+   "p1_norm": "kamil kurowski",
+   "p2_norm": "michal wandachowicz",
+   "open_date": "2026-07-17T05:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832869,
+   "p1": "Jakub Zochniak",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-17T05:15:00.000Z",
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
