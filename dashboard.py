@@ -161,25 +161,28 @@ def _units(dec):
 
 
 def _tip_times():
-    """{team_abbr: tip_datetime_utc} for today's slate from ESPN, so cards can be ordered
-    by game time and show it."""
-    et = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-4))).strftime("%Y%m%d")
-    try:
-        j = requests.get(
-            f"https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard?dates={et}",
-            headers={"User-Agent": "Mozilla/5.0"}, timeout=15).json()
-    except requests.RequestException:
-        return {}
+    """{(slate_date_iso, team_abbr): tip_datetime_utc} for today's AND tomorrow's slates from
+    ESPN, so cards order by game time (board is tip-sorted) and show it. Keyed by date because
+    back-to-backs put the same team on both slates."""
+    et_now = dt.datetime.now(dt.timezone.utc).astimezone(dt.timezone(dt.timedelta(hours=-4)))
     out = {}
-    for e in j.get("events", []):
+    for day in (et_now, et_now + dt.timedelta(days=1)):
         try:
-            tip = dt.datetime.fromisoformat((e.get("date") or "").replace("Z", "+00:00"))
-        except ValueError:
+            j = requests.get(
+                "https://site.api.espn.com/apis/site/v2/sports/basketball/wnba/scoreboard"
+                f"?dates={day:%Y%m%d}",
+                headers={"User-Agent": "Mozilla/5.0"}, timeout=15).json()
+        except requests.RequestException:
             continue
-        for c in e.get("competitions", [{}])[0].get("competitors", []):
-            ab = c.get("team", {}).get("abbreviation")
-            if ab:
-                out[ab] = tip
+        for e in j.get("events", []):
+            try:
+                tip = dt.datetime.fromisoformat((e.get("date") or "").replace("Z", "+00:00"))
+            except ValueError:
+                continue
+            for c in e.get("competitions", [{}])[0].get("competitors", []):
+                ab = c.get("team", {}).get("abbreviation")
+                if ab:
+                    out[(day.strftime("%Y-%m-%d"), ab)] = tip
     return out
 
 
@@ -580,11 +583,12 @@ def _player_block(player, rows):
 def _game_group(players, tips, today=None):
     """A GAME: a header (matchup + tip time / slate day) and the shared injury context (who's
     out), then the beneficiary blocks. `players` = [(player, rows)] already ordered by edge. A
-    play whose slate date isn't today is labelled with its weekday+date (tips only covers today)."""
+    play whose slate date isn't today is labelled with its weekday+date."""
     r0 = players[0][1][0]
     team = (r0.get("team") or "").upper()
     opp = (r0.get("opp") or "").upper()
-    tip = tips.get(team)
+    pd0 = r0.get("pred_date") or (today or "")
+    tip = tips.get((pd0, team)) or tips.get((pd0, opp))
     tiptime = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
     pd = r0.get("pred_date")
     if pd and today and pd != today:                       # a next-day play: label the slate day
@@ -1280,9 +1284,16 @@ def build():
                    'not picked by the 2-per-team disjoint rule (not in the tracked record)</div>'
                    + chips + '</div>') if chips else ""
 
-    # soonest slate first, then strongest blended edge within a slate
+    # soonest slate first, then TIP-OFF ORDER within a slate (user 2026-07-17: board reads
+    # top-to-bottom in game-time order); unknown tips sink; edge breaks ties
+    def _gtip(kv):
+        (pd_, teams), _pl = kv
+        ts = [tips.get((pd_, t)) for t in teams]
+        ts = [t for t in ts if t]
+        return min(ts).timestamp() if ts else 9e15
     order = sorted(games.items(),
-                   key=lambda kv: (kv[0][0] or "9999-99-99", -max(_pscore(prs) for _, prs in kv[1])))
+                   key=lambda kv: (kv[0][0] or "9999-99-99", _gtip(kv),
+                                   -max(_pscore(prs) for _, prs in kv[1])))
     ordered = [pl for _, pl in order]
     for pl in ordered:                                    # strongest player first within each game
         pl.sort(key=lambda pp: -_pscore(pp[1]))
@@ -1554,8 +1565,8 @@ def build():
         <span class="pill" data-v="under" onclick="setF('side','under')">Unders</span>
       </div>
       <div class="fgrp" data-f="sort">
-        <span class="pill on" data-v="edge" onclick="setF('sort','edge')">Edge</span>
-        <span class="pill" data-v="time" onclick="setF('sort','time')">Time</span>
+        <span class="pill" data-v="edge" onclick="setF('sort','edge')">Edge</span>
+        <span class="pill on" data-v="time" onclick="setF('sort','time')">Time</span>
       </div>
     </div>
     <div id="games">{cards}</div>
@@ -1587,7 +1598,7 @@ def build():
   }}
   try {{ const s = localStorage.getItem('tab'); if (s) showTab(s); }} catch (e) {{}}
   // WNBA filter (over/under) + sort (edge/time) — pure client-side over the server-rendered games
-  const F = {{ side:'all', sort:'edge' }};
+  const F = {{ side:'all', sort:'time' }};
   function applyF() {{
     document.querySelectorAll('.prop').forEach(p =>
       p.style.display = (F.side==='all' || p.dataset.side===F.side) ? '' : 'none');
