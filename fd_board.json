@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T03:11:03Z",
+ "captured_at": "2026-07-17T03:16:13Z",
  "matches": [
   {
    "event_id": 35832725,
@@ -8,20 +8,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-17T03:00:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832726,
-   "p1": "Igor Szymanski",
-   "p2": "Robert Kostepski",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-17T03:00:00.000Z",
-   "line": 50.5,
-   "over_odds": 120,
-   "under_odds": -165
+   "line": 93.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35832727,
@@ -30,9 +19,20 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-17T03:05:00.000Z",
-   "line": 53.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 60.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35832731,
+   "p1": "Milosz Cesarz",
+   "p2": "Marian Lebek",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-17T03:10:00.000Z",
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832735,
