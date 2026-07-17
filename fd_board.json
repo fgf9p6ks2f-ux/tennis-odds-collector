@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T01:40:25Z",
+ "captured_at": "2026-07-17T01:44:31Z",
  "matches": [
   {
    "event_id": 35832648,
@@ -8,9 +8,9 @@
    "p1_norm": "jerzy debski",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-17T01:25:00.000Z",
-   "line": 98.5,
-   "over_odds": 110,
-   "under_odds": -155
+   "line": 101.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832661,
@@ -19,7 +19,7 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-17T01:35:00.000Z",
-   "line": 75.5,
+   "line": 64.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -55,6 +55,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35832690,
+   "p1": "Jakub Cyndera",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "jakub cyndera",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-17T02:10:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
