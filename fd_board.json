@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T19:20:52Z",
+ "captured_at": "2026-07-17T19:26:02Z",
  "matches": [
   {
    "event_id": 35835484,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T19:10:00.000Z",
-   "line": 93.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 103.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35835490,
@@ -19,9 +19,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-17T19:15:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835495,
@@ -30,7 +30,7 @@
    "p1_norm": "michal durda",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T19:20:00.000Z",
-   "line": 70.5,
+   "line": 52.5,
    "over_odds": -115,
    "under_odds": -120
   },
