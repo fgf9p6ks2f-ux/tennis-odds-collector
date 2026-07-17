@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T17:48:11Z",
+ "captured_at": "2026-07-17T17:53:04Z",
  "matches": [
   {
    "event_id": 35835307,
@@ -8,9 +8,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-17T17:35:00.000Z",
-   "line": 97.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 98.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35835324,
@@ -19,20 +19,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T17:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35835367,
-   "p1": "Robert Szymik",
-   "p2": "Damian Fira",
-   "p1_norm": "robert szymik",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-17T17:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835370,
@@ -52,9 +41,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-17T18:05:00.000Z",
-   "line": 66.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 63.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35835378,
