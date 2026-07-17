@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T18:26:47Z",
+ "captured_at": "2026-07-17T18:31:52Z",
  "matches": [
-  {
-   "event_id": 35835379,
-   "p1": "Sebastian Krupa",
-   "p2": "Michal Durda",
-   "p1_norm": "sebastian krupa",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-17T18:10:00.000Z",
-   "line": 91.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35835395,
    "p1": "Adam Ruszkiewicz",
@@ -19,9 +8,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-17T18:20:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835402,
@@ -30,9 +19,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "marcin wozniczka",
    "open_date": "2026-07-17T18:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835423,
@@ -42,8 +31,8 @@
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-17T18:30:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35835424,
@@ -52,8 +41,8 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T18:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
+   "line": 75.5,
+   "over_odds": -115,
    "under_odds": -120
   },
   {
@@ -86,6 +75,28 @@
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-17T18:50:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835457,
+   "p1": "Miroslaw Piecowski",
+   "p2": "Piotr Strus",
+   "p1_norm": "miroslaw piecowski",
+   "p2_norm": "piotr strus",
+   "open_date": "2026-07-17T18:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35835458,
+   "p1": "Pawel Adamus",
+   "p2": "Sebastian Krupa",
+   "p1_norm": "pawel adamus",
+   "p2_norm": "sebastian krupa",
+   "open_date": "2026-07-17T18:55:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
