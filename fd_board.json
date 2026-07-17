@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T01:07:35Z",
+ "captured_at": "2026-07-17T01:11:42Z",
  "matches": [
   {
    "event_id": 35832635,
@@ -8,9 +8,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-17T01:00:00.000Z",
-   "line": 62.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 64.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35832636,
@@ -20,19 +20,8 @@
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-17T01:00:00.000Z",
    "line": 72.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35832640,
-   "p1": "Jakub Nowak",
-   "p2": "Jan Orszulik",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "jan orszulik",
-   "open_date": "2026-07-17T01:10:00.000Z",
-   "line": 72.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35832641,
@@ -41,9 +30,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "dawid pyrek",
    "open_date": "2026-07-17T01:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832642,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-17T01:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832647,
