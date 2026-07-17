@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T17:57:46Z",
+ "captured_at": "2026-07-17T18:02:29Z",
  "matches": [
   {
    "event_id": 35835324,
@@ -8,31 +8,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T17:45:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35835370,
-   "p1": "Cezary Pawlik",
-   "p2": "Artur Kubiak",
-   "p1_norm": "cezary pawlik",
-   "p2_norm": "artur kubiak",
-   "open_date": "2026-07-17T18:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35835374,
-   "p1": "Marcin Marchlewski",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "marcin marchlewski",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-17T18:05:00.000Z",
-   "line": 63.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 96.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35835378,
