@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T02:44:28Z",
+ "captured_at": "2026-07-17T02:48:29Z",
  "matches": [
   {
    "event_id": 35832710,
@@ -8,9 +8,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-17T02:35:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 63.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832720,
