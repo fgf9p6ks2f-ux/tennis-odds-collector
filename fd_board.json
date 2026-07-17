@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T00:41:50Z",
+ "captured_at": "2026-07-17T00:47:30Z",
  "matches": [
   {
    "event_id": 35832590,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-17T00:35:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832591,
@@ -19,9 +19,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-17T00:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832619,
@@ -30,9 +30,9 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-17T00:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832620,
@@ -42,8 +42,8 @@
    "p2_norm": "tomasz filbrandt",
    "open_date": "2026-07-17T00:45:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832621,
@@ -52,9 +52,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-17T00:45:00.000Z",
-   "line": 69.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 66.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832635,
@@ -77,6 +77,39 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832640,
+   "p1": "Jakub Nowak",
+   "p2": "Jan Orszulik",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "jan orszulik",
+   "open_date": "2026-07-17T01:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832641,
+   "p1": "Pawel Chojnacki",
+   "p2": "Dawid Pyrek",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "dawid pyrek",
+   "open_date": "2026-07-17T01:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832642,
+   "p1": "Jakub Kuzmicz",
+   "p2": "Patryk Jendrzejewski",
+   "p1_norm": "jakub kuzmicz",
+   "p2_norm": "patryk jendrzejewski",
+   "open_date": "2026-07-17T01:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
