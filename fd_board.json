@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T23:22:24Z",
+ "captured_at": "2026-07-17T23:29:45Z",
  "matches": [
   {
    "event_id": 35835841,
@@ -8,9 +8,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-17T23:15:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835842,
@@ -19,9 +19,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T23:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835843,
@@ -30,9 +30,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-17T23:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835844,
@@ -88,6 +88,28 @@
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35835860,
+   "p1": "Robert Szymik",
+   "p2": "Damian Fira",
+   "p1_norm": "robert szymik",
+   "p2_norm": "damian fira",
+   "open_date": "2026-07-17T23:55:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835861,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Marcin Marchlewski",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "marcin marchlewski",
+   "open_date": "2026-07-17T23:55:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
