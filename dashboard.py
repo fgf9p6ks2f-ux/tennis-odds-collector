@@ -276,7 +276,7 @@ def _reasoning(r):
     pm, dmin, drv = r.get("proj_min"), r.get("d_min"), r.get("driver")
     _on = [_short(nm.strip()) for nm in (r.get("out_player") or "").split(",") if nm.strip()]
     out = " + ".join(_on) if _on else None      # full out-set, not a mangled single name
-    dl = {"points": "usage", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "")
+    dl = {"points": "usage", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
     role = ""
     if out:
         rb = []
@@ -375,7 +375,7 @@ def _bars(r):
         v = x[0]
         mn = x[2] if len(x) > 2 else 0                  # minutes that game (overlay, own 0-40 scale)
         cols += (f'<div class="col">'
-                 f'<div class="m" style="height:{min(mn/42*100, 97):.0f}%"><span class="mv">{mn:g}\'</span></div>'
+                 f'<div class="m" style="height:{min(mn/42*100, 97):.0f}%"></div>'
                  f'<div class="b {"o" if onside(v) else "u"}" style="height:{v/mx*100:.1f}%">'
                  f'<span class="bv">{v:g}</span></div></div>')
     opps = "".join(f'<span>{html.escape(str(o) or "")}</span>' for _, o, *_ in s)
@@ -476,7 +476,8 @@ def _prop_row(r, rungs=None):
     if r.get("basis") == "volume" and r.get("proj_hit"):
         ph = r["proj_hit"]
         role_cell = (f'<div class="gc r{" hot" if ph >= 0.6 else ""}"><span class="gcl">ROLE</span>'
-                     f'<span class="gcv">{ph*100:.0f}%</span><span class="gcs">vol</span></div>')
+                     f'<span class="gcv">{ph*100:.0f}%</span>'
+                     f'<span class="gcs" title="volume-model probability, not a raw count">model</span></div>')
     else:
         rec = _raw_record(r)
         role_cell = _hrcell("ROLE", (rec[0], rec[1]) if rec else None, role=True)
@@ -510,14 +511,42 @@ def _prop_row(r, rungs=None):
         best_dec = float(r["odds"])
         odds_html = f'<span class="podds">{_am(best_dec)}</span>'
     ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
-    juice = ' <span class="juice">juice</span>' if best_dec < 1.80 else ""
-    played = ' <span class="pv">✓</span>' if r.get("played") else ""
+    juice = (' <span class="juice" title="price worse than -125 — shop before betting">juice</span>'
+             if best_dec < 1.80 else "")
+    dk = html.escape(f"{r.get('pred_date') or ''}|{r['player']}|{r['stat']}|{r['line']:g}")
+    pmark = (f'<span class="pmark{" on baked" if r.get("played") else ""}" '
+             f'onclick="event.stopPropagation(); togglePlayed(this)" title="mark played">✓</span>')
+    # CONTRA tag: when most recent-form windows and/or the same-lineup comps lean AGAINST the
+    # bet, say so ON the card face (2026-07-17 audit: green EV over red chips read as a bug —
+    # the drawer's honest warning was invisible until tapped).
+    pcts = []
+    rr_ = None if r.get("basis") == "volume" else _raw_record(r)
+    if rr_ and rr_[1]:
+        pcts.append(rr_[0] / rr_[1] * 100)
+    for kk_ in ("l5", "l10", "szn", "h2h"):
+        hh_ = sp.get(kk_)
+        if hh_ and hh_[1]:
+            pcts.append(hh_[0] / hh_[1] * 100)
+    rg_against = False
+    try:
+        rg_ = json.loads(r["regime"]) if r.get("regime") else {}
+        if rg_.get("comps") and rg_.get("comp_avg") is not None:
+            rg_against = ((rg_["comp_avg"] <= float(r["line"])) if side == "over"
+                          else (rg_["comp_avg"] >= float(r["line"])))
+    except (ValueError, TypeError):
+        pass
+    ncold = sum(1 for p_ in pcts if p_ <= 35)
+    contra = ('<span class="contra" title="most form windows / same-lineup comps lean against '
+              'this bet — open the drawer">⚠</span>'
+              if (pcts and ncold >= max(2, len(pcts) / 2)) or (rg_against and ncold >= 1) else "")
     # GROUP same-stat/same-side rungs (an under whose anchor line moved across scans, or an overs
     # ladder): ONE card showing the line RANGE + a strip of every rung's line@odds — declutters
     # without dropping any flag (each rung stays its own ledger row / placed bet).
+    rngcls = ""
     if rungs and len(rungs) > 1:
         lns = sorted(x["line"] for x in rungs)
         line_disp = f"{lns[0]:g}–{lns[-1]:g}"
+        rngcls = " rng"                                    # smaller font so the range never wraps
         chips = []
         for rr in sorted(rungs, key=lambda x: x["line"]):
             bpr = _book_prices(rr)
@@ -527,13 +556,13 @@ def _prop_row(r, rungs=None):
     else:
         line_disp, rungs_html = f"{r['line']:g}", ""
     return f"""
-      <div class="prop" data-side="{side}" onclick="this.nextElementSibling.classList.toggle('open')">
+      <div class="prop" data-side="{side}" data-k="{dk}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind {o.lower()}">{o}</span>
-          <span class="plno">{line_disp}</span><span class="pstat">{stat}</span>
+          <span class="plno{rngcls}">{line_disp}</span><span class="pstat">{stat}</span>
           <span class="psp"></span>
           {odds_html}{juice}
-          <span class="pedge {ecls}">{edge_v}</span>{played}<span class="pchev">›</span></div>
+          <span class="pedge {ecls}">{edge_v}</span>{contra}{pmark}<span class="pchev">›</span></div>
         <div class="pgrid">{grid}</div>{ctxline}{rungs_html}
       </div>{_bars(r)}"""
 
@@ -554,7 +583,7 @@ def _player_block(player, rows):
     pm, dm = r0.get("proj_min"), r0.get("d_min")
     mins = ""
     if pm:
-        trend = f" ▲{dm:+.0f}" if dm is not None else ""
+        trend = ("" if dm is None else (f" ▲+{dm:.0f}" if dm >= 0 else f" ▼{dm:.0f}"))
         mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
     sp = r0.get("spread")
     dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
@@ -662,7 +691,8 @@ def _tracker_panel(wnba_rec, tt_json):
                     f'<div class="tbox"><div class="tk">Record</div><div class="tv">{pr["w"]}-{pr["l"]}</div></div>'
                     f'<div class="tbox"><div class="tk">Hit rate</div><div class="tv">{hit}</div></div>'
                     f'<div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{pr["units"]:+.2f}u</div></div>'
-                    f'</div><div class="tsub">{html.escape(sub)} · ROI {roi}</div></div>')
+                    f'</div><div class="tsub">{html.escape(sub)}'
+                    + (f' · ROI {roi}' if (pr["w"] + pr["l"]) >= 10 else '') + '</div></div>')
     except Exception:
         pass
     try:                                                  # calibration monitor — the expand/edge-size green light
@@ -670,11 +700,13 @@ def _tracker_panel(wnba_rec, tt_json):
         c = CAL.calibration()
         if c:
             dcls = "up" if c["disc"] > 0 else ("down" if c["disc"] < 0 else "")
-            out += (f'<div class="tcard"><div class="thead">📐 Calibration</div><div class="trow">'
+            out += (f'<div class="tcard diag"><div class="thead" style="cursor:pointer" '
+                    f'onclick="this.parentElement.classList.toggle(\'open\')">📐 Calibration '
+                    f'<span class="tsh">diagnostics · tap</span></div><div class="tbody"><div class="trow">'
                     f'<div class="tbox"><div class="tk">Sample</div><div class="tv">{c["n"]}/{CAL.MIN_N}</div></div>'
                     f'<div class="tbox"><div class="tk">Optimism</div><div class="tv">{c["optimism"] * 100:+.0f}%</div></div>'
                     f'<div class="tbox"><div class="tk">Ranking</div><div class="tv {dcls}">{c["disc"] * 100:+.0f}%</div></div>'
-                    f'</div><div class="tsub">{html.escape(c["verdict"])}</div></div>')
+                    f'</div><div class="tsub">{html.escape(c["verdict"])}</div></div></div>')
     except Exception:
         pass
     tt = (tt_json or {}).get("tracker")
@@ -837,7 +869,8 @@ TT_LIVE_JS = """
     var el = document.getElementById('rfchk');
     if (!el) return;
     var d = new Date(), p = function(n){ return (n<10?'0':'') + n; };
-    el.textContent = '\\u00B7 checked ' + p(d.getHours()) + ':' + p(d.getMinutes()) + ':' + p(d.getSeconds());
+    var h12 = (d.getHours() % 12) || 12, ap = d.getHours() < 12 ? ' AM' : ' PM';
+    el.textContent = '\\u00B7 checked ' + h12 + ':' + p(d.getMinutes()) + ap;
   }
   window.manualRefresh = async function(btn){
     if (btn){ btn.classList.add('spin'); btn.disabled = true; }
@@ -1035,10 +1068,14 @@ _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
             "pts_reb": "P+R", "pts_ast": "P+A", "reb_ast": "R+A"}
 
 
-def _watchlist_html():
+def _watchlist_html(firm_keys=frozenset(), tips=None):
     """Questionable-tier watchlist: provisional spots that open up IF a game-time-decision star
     sits. Rendered distinctly (amber, dashed) so it never reads as a firm bet. Read from the JSON
-    wnba_alert writes each cycle; missing / stale (not today) / empty -> no section."""
+    wnba_alert writes each cycle; missing / stale (not today) / empty -> no section.
+    COHERENCE (2026-07-17 audit): a spot that duplicates a FIRM board play (same date+player+stat)
+    is dropped — one bet, one place, one status; a spot stamped a date its team doesn't play is
+    REMAPPED to the team's real game date (killed the double Hull group with conflicting sit%);
+    spots then dedupe on (star, player, stat, line)."""
     f = HERE / "wnba_watchlist.json"
     if not f.exists():
         return ""
@@ -1050,15 +1087,39 @@ def _watchlist_html():
     spots = d.get("spots") or []
     if d.get("date") != today or not spots:
         return ""
-    by_star = defaultdict(list)
+    team_dates = defaultdict(list)                    # team -> [dates it actually plays]
+    for (d_, t_) in (tips or {}):
+        team_dates[t_].append(d_)
+    fixed, seen_k = [], set()
     for s in sorted(spots, key=lambda s: -(s.get("ev") or 0)):
+        sdate = s.get("date") or today
+        tm = (s.get("team") or "").upper()
+        gd = sorted(team_dates.get(tm, []))
+        if gd and sdate not in gd:                    # wrong slate date -> remap to the real game
+            sdate = gd[0]
+            s = {**s, "date": sdate}
+        if (sdate, s.get("player"), s.get("stat")) in firm_keys:
+            continue                                  # already a firm play card — don't re-list
+        # dedupe includes the (remapped) DATE: a back-to-back means the same contingency can be
+        # real on BOTH slates (Clark+Boston Q for IND 7/17 AND 7/18) — those are different games
+        k = (sdate, s.get("star"), s.get("player"), s.get("stat"), s.get("line"))
+        if k in seen_k:
+            continue
+        seen_k.add(k)
+        fixed.append(s)
+    spots = fixed
+    if not spots:
+        return ""
+    by_star = defaultdict(list)
+    for s in spots:
         by_star[(s.get("star"), s.get("status"), s.get("sit"), s.get("lead"),
                  s.get("date"), bool(s.get("cold")), bool(s.get("band")))].append(s)
     blocks = []
     for (star, status, sit, lead, sdate, cold, band), ss in by_star.items():
-        sitpct = f"~{sit * 100:.0f}% to sit" if sit is not None else ""
-        # lead time is the tell: a late-breaking Q usually sits (and is the widest timing edge)
-        ltag = (f" · {'⚠ ' if lead < 6 else ''}tagged {lead:.0f}h pre-tip" if lead is not None else "")
+        sitpct = f"~{sit * 100:.0f}%" if sit is not None else ""
+        # lead time is the tell (late-breaking Q usually sits) — tucked into a tooltip, ⚠ stays
+        warn = "⚠ " if (lead is not None and lead < 6) else ""
+        ttl = f' title="tagged {lead:.0f}h pre-tip"' if lead is not None else ""
         dtag = ""
         if sdate and sdate != today:
             dtag = "TMRW · "                                  # tomorrow's contingent play
@@ -1070,15 +1131,15 @@ def _watchlist_html():
             f'{round((s.get("hit") or 0) * (s.get("n") or 0))}/{s.get("n") or 0} in role</span></div>'
             for s in ss)
         if any(s.get("band") for s in ss):                    # ⚡BAND: research shadow, NOT a bet
-            hd = (f'{dtag}<b>{html.escape(star or "?")}</b> OUT → ⚡BAND shadow '
-                  f'(d_min outside 3-8 · building sample · NOT a bet)')
+            hd = (f'{dtag}⚡BAND · <b>{html.escape(star or "?")}</b> OUT — shadow, not a bet')
+            ttl = ' title="d_min outside the validated 3-8 band — logged to build the sample, never bet"'
         elif cold:                                            # ⚡COLD: star IS out, RW names the starter
-            hd = (f'{dtag}<b>{html.escape(star or "?")}</b> OUT → ⚡COLD start '
-                  f'(no prior sample · RotoWire-named)')
+            hd = (f'{dtag}⚡COLD · <b>{html.escape(star or "?")}</b> OUT — RotoWire-named starter')
+            ttl = ' title="no prior WOWY sample — cold-start projection (validated at margin >=5)"'
         else:
-            hd = (f'{dtag}if <b>{html.escape(star or "?")}</b> '
-                  f'({html.escape(status or "Q")} · {sitpct}{ltag}) sits')
-        blocks.append(f'<div class="wl-grp"><div class="wl-hd">{hd}</div>{legs}</div>')
+            hd = (f'{dtag}{warn}if <b>{html.escape(star or "?")}</b> sits · '
+                  f'{html.escape(status or "Q")}' + (f' · {sitpct} to sit' if sitpct else ''))
+        blocks.append(f'<div class="wl-grp"><div class="wl-hd"{ttl}>{hd}</div>{legs}</div>')
     return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist · questionable stars '
             '<span>— provisional, not firm bets; fire when ruled out</span></div>'
             + "".join(blocks) + "</div>")
@@ -1100,48 +1161,74 @@ def _openers_html():
     spots = d.get("spots") or []
     if d.get("date") != today or not spots:
         return ""
+    import re as _re
+    # OVERS ONLY (2026-07-17 audit): the model dropped unders at -11.5% live ROI — the board
+    # must never recommend one, even as untracked line-shopping.
+    spots = [s for s in spots if not _re.search(r"\su\d", s.get("msg", ""))]
+    if not spots:
+        return ""
     legs = "".join(f'<div class="op-leg">{html.escape(s.get("msg", ""))}</div>' for s in spots[:12])
     return ('<div class="openers"><div class="op-title">⚡ Openers'
-            '<span> · beatable lines just posted · line-shopping, not tracked bets</span></div>'
+            '<span> · beatable OVER lines just posted · line-shopping, not tracked bets</span></div>'
             f'{legs}</div>')
 
 
-def _slip_html():
-    """🎰 Parlays as BET-SLIP cards from the persisted (tracked) parlays table: stacked legs, combined
-    odds, stake (.25u / .15u ≥+1000), payout, a #id to mark played (`wnba_slip.py --played <id>`), and a
-    ✓ once played. 2-3 legs, max 2 players/team, same-team legs use disjoint production pools."""
+def _slip_html(rows=None):
+    """🎰 Parlays rendered LIVE from the current board selection (wnba_slip.build), so they can
+    never contradict the play cards after a selection-rule change (2026-07-17 audit: the logged
+    table kept 3 stale Griner parlays after the 2-per-team rule dropped her). The logged table
+    still tracks the record; it's consulted only for the #id + ✓ played mark. Built per slate
+    date (parlays never mix slates). Tap ✓ to mark played on the phone."""
     try:
         import wnba_slip as S
-        con = sqlite3.connect(LEDGER)
-        con.row_factory = sqlite3.Row
-        con.execute(S._SCHEMA)
-        S._apply_parlay_marks(con)
-        today = dt.datetime.now(ET).date().isoformat()
-        pars = [dict(r) for r in con.execute(
-            "SELECT pred_date,key,legs,n,dec,played FROM parlays WHERE pred_date>=? AND graded=0 "
-            "ORDER BY ev DESC LIMIT 8", (today,))]
-        con.close()
-        if not pars:
+        overs = [r for r in (rows or []) if (r.get("side") or "over") == "over"]
+        if not overs:
             return ""
+        byd = defaultdict(list)
+        for r in overs:
+            byd[r.get("pred_date") or ""].append(r)
+        marks = {}
+        try:
+            con = sqlite3.connect(LEDGER)
+            con.row_factory = sqlite3.Row
+            con.execute(S._SCHEMA)
+            S._apply_parlay_marks(con)
+            today = dt.datetime.now(ET).date().isoformat()
+            marks = {m["key"]: m["played"] for m in con.execute(
+                "SELECT key, played FROM parlays WHERE pred_date>=?", (today,))}
+            con.close()
+        except Exception:
+            pass
+        today = dt.datetime.now(ET).date().isoformat()
         cards = ""
-        for p in pars:
-            legs = json.loads(p["legs"])
-            stake = S._stake(p["dec"])
-            payout = stake * (p["dec"] or 1)
-            chk = '<span class="sv">✓ played</span>' if p["played"] else ""
-            leg_html = "".join(
-                f'<div class="sleg"><span class="slp">{html.escape((l["player"] or "").split()[-1])}</span>'
-                f'<span class="sls">{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}</span>'
-                f'<span class="slo">{S._am(l.get("odds") or 0)}</span></div>' for l in legs)
-            cards += (f'<div class="slip{" splayed" if p["played"] else ""}">'
-                      f'<div class="shd"><span class="sn">{p["n"]}-leg parlay</span>{chk}'
-                      f'<span class="ssp"></span><span class="sid">#{S._pid(p["pred_date"], p["key"])}</span></div>'
-                      f'<div class="slegs">{leg_html}</div>'
-                      f'<div class="sft"><span class="sstake">stake <b>{stake:g}u</b></span>'
-                      f'<span class="sodds">{S._am(p["dec"])}</span>'
-                      f'<span class="spay">→ {payout:.2f}u</span></div></div>')
+        for pd_ in sorted(k for k in byd):
+            for p in S.build(byd[pd_])["parlays"]:
+                legs = p["legs"]
+                key = S._key(legs)
+                pid = S._pid(pd_, key)
+                played = bool(marks.get(key))
+                stake = S._stake(p["dec"])
+                payout = stake * (p["dec"] or 1)
+                dtag = '<span class="stag">TMRW</span>' if (pd_ and pd_ > today) else ""
+                chk = '<span class="sv">✓ played</span>' if played else ""
+                leg_html = "".join(
+                    f'<div class="sleg"><span class="slp">{html.escape((l["player"] or "").split()[-1])}</span>'
+                    f'<span class="sls">{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}</span>'
+                    f'<span class="slo">{S._am(l.get("dec") or l.get("odds") or 0)}</span></div>' for l in legs)
+                cards += (f'<div class="slip{" splayed" if played else ""}" data-k="par|{pid}">'
+                          f'<div class="shd"><span class="sn">{p["n"]}-leg parlay</span>{dtag}{chk}'
+                          f'<span class="ssp"></span>'
+                          f'<span class="pmark{" on baked" if played else ""}" '
+                          f'onclick="togglePlayed(this)" title="mark played">✓</span>'
+                          f'<span class="sid">#{pid}</span></div>'
+                          f'<div class="slegs">{leg_html}</div>'
+                          f'<div class="sft"><span class="sstake">stake <b>{stake:g}u</b></span>'
+                          f'<span class="sodds">{S._am(p["dec"])}</span>'
+                          f'<span class="spay">→ {payout:.2f}u</span></div></div>')
+        if not cards:
+            return ""
         return ('<div class="parlays"><div class="op-title">🎰 Parlays'
-                '<span> · .25u (.15u ≥+1000) · mark played: --played #id</span></div>'
+                '<span> · .25u (.15u ≥+1000) · tap ✓ to mark played</span></div>'
                 f'<div class="slips">{cards}</div></div>')
     except Exception:
         return ""
@@ -1278,11 +1365,21 @@ def build():
         dec = bpr[0][1] if bpr else float(r["odds"] or 1.87)
         dtag = "TMRW · " if (r.get("pred_date") or today) > today else ""
         pv = ' <span class="lv">✓</span>' if r.get("played") else ""
-        chips += (f'<span class="xchip">{dtag}<b>{html.escape(_short(r["player"]))}</b> '
+        tmtag = f'<span class="xteam">{html.escape((r.get("team") or "").upper())}</span> ' if r.get("team") else ""
+        chips += (f'<span class="xchip">{dtag}{tmtag}<b>{html.escape(_short(r["player"]))}</b> '
                   f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}{pv}</span>')
     extras_html = ('<div class="xtras"><div class="xt">⚡ Also flagged · pinged &amp; ledger-logged · '
                    'not picked by the 2-per-team disjoint rule (not in the tracked record)</div>'
                    + chips + '</div>') if chips else ""
+    # honest header numbers: count the SELECTED play-groups on the cards (not every ledger rung),
+    # plus a record strip so the board carries its own track record (audit item: record was a tab away)
+    nsel = len({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows})
+    hitpct = f"{w / (w + l) * 100:.0f}%" if (w + l) else "—"
+    _uc = "up" if u > 0 else ("down" if u < 0 else "")
+    recstrip_html = (f'<div class="recstrip" onclick="showTab(\'tracker\')">📈 <b>{w}-{l}</b> · {hitpct} hit · '
+                     f'<b class="{_uc}">{u:+.1f}u</b><span>since 7/9 · Tracker →</span></div>')
+    h2_html = (f'<h2>{nsel} plays · by game · tap a bet for its log'
+               + (f' · {len(extras)} also-flagged' if extras else '') + '</h2>')
 
     # soonest slate first, then TIP-OFF ORDER within a slate (user 2026-07-17: board reads
     # top-to-bottom in game-time order); unknown tips sink; edge breaks ties
@@ -1301,8 +1398,8 @@ def build():
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     openers_html = _openers_html()
     ladders_html = _ladders_html(rows)
-    slip_html = _slip_html()
-    wl_html = _watchlist_html()
+    slip_html = _slip_html(rows)
+    wl_html = _watchlist_html({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows}, tips)
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
     gg_html = _gg_panel()
@@ -1321,7 +1418,7 @@ def build():
     font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; -webkit-font-smoothing:antialiased; }}
   .wrap {{ max-width:600px; margin:0 auto; padding:22px 16px 48px; }}
   h1 {{ font-size:21px; font-weight:800; margin:0; letter-spacing:-.02em; }}
-  .live {{ display:flex; align-items:center; gap:6px; color:#78818f; font-size:12px; margin-top:5px; }}
+  .live {{ display:flex; align-items:center; flex-wrap:wrap; gap:6px; color:#78818f; font-size:12px; margin-top:5px; }}
   .rfrsh {{ background:#161d28; color:#8ab4ff; border:1px solid #24304a; border-radius:7px; width:24px; height:24px; font-size:14px; line-height:1; cursor:pointer; padding:0; display:inline-flex; align-items:center; justify-content:center; }}
   .rfrsh:active {{ background:#1d2740; }} .rfrsh:disabled {{ opacity:.6; }}
   .rfrsh.spin {{ animation:rfspin .6s linear infinite; }}
@@ -1340,11 +1437,11 @@ def build():
   .pill {{ padding:6px 13px; font-size:12.5px; font-weight:700; color:#78818f; border-radius:8px; cursor:pointer; user-select:none; }}
   .pill.on {{ background:#232c3d; color:#f2f5f9; }}
   /* GAME group — the top of the hierarchy: logos + matchup, hairline rule, generous separation */
-  .game {{ margin-bottom:32px; }}
+  .game {{ margin-bottom:22px; }}
   .ghd {{ display:flex; justify-content:space-between; align-items:center; padding:0 2px 9px;
     margin-bottom:11px; border-bottom:1px solid #14181f; }}
   .gmatch {{ font-size:17px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:7px; }}
-  .glogo {{ width:20px; height:20px; object-fit:contain; filter:drop-shadow(0 0 1.5px rgba(255,255,255,.3)); }}
+  .glogo {{ width:22px; height:22px; object-fit:contain; background:#dbe1ea; border-radius:50%; padding:2.5px; }}
   .gvs {{ color:#4d5560; font-weight:600; font-size:11px; margin:0 1px; }}
   .gtime {{ color:#6b7484; font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; }}
   .gout {{ display:flex; align-items:center; gap:6px; color:#c08a4d; font-size:12px; font-weight:600;
@@ -1352,10 +1449,11 @@ def build():
   .sdot {{ width:6px; height:6px; border-radius:50%; display:inline-block; flex:none; }}
   .sdot.ok {{ background:#37d67f; }} .sdot.warn {{ background:#eaa15a; }} .sdot.mid {{ background:#5b9dff; }}
   /* PLAYER block — logo + name lead; status is a quiet dot-chip; minutes right-aligned meta */
-  .pblk {{ background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:15px 16px 9px; margin-bottom:11px; }}
+  .pblk {{ background:#0f1116; border:1px solid #191d26; border-radius:14px; padding:13px 14px 8px; margin-bottom:9px; }}
   .phd {{ display:flex; align-items:center; gap:9px; }}
-  .plogo {{ width:27px; height:27px; object-fit:contain; filter:drop-shadow(0 0 1.5px rgba(255,255,255,.3)); }}
-  .pname {{ font-size:22px; font-weight:800; letter-spacing:-.015em; }}
+  .plogo {{ width:28px; height:28px; object-fit:contain; background:#dbe1ea; border-radius:50%; padding:3px; }}
+  .pname {{ font-size:22px; font-weight:800; letter-spacing:-.015em; white-space:nowrap;
+           overflow:hidden; text-overflow:ellipsis; min-width:0; flex:0 1 auto; }}
   .pflag {{ display:flex; align-items:center; gap:5px; color:#8a93a3; font-size:13px; font-weight:600; white-space:nowrap; }}
   .psp2 {{ flex:1; }}
   .pmin {{ color:#78818f; font-size:13.5px; font-weight:600; white-space:nowrap; font-variant-numeric:tabular-nums; }}
@@ -1387,6 +1485,19 @@ def build():
   .sstake b {{ color:#c3c9d4; font-weight:700; }}
   .sodds {{ color:#37d67f; font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; margin-left:auto; }}
   .spay {{ color:#5b9dff; font-weight:700; font-size:12px; font-variant-numeric:tabular-nums; }}
+  /* record strip on the board (audit: the record lived a tab away) */
+  .recstrip {{ display:flex; align-items:baseline; gap:7px; background:#0f1116; border:1px solid #191d26;
+              border-radius:10px; padding:8px 12px; margin:2px 0 10px; font-size:13.5px; color:#c6cdd8;
+              cursor:pointer; }}
+  .recstrip b {{ color:#e7ebf0; }} .recstrip b.up {{ color:#39d98a; }} .recstrip b.down {{ color:#f87171; }}
+  .recstrip span {{ color:#5b6b82; font-size:11px; margin-left:auto; }}
+  /* tappable played mark + contra warning on the card face */
+  .pmark {{ color:#2c3442; font-size:15px; font-weight:800; cursor:pointer; padding:0 3px; user-select:none; }}
+  .pmark.on {{ color:#39d98a; }}
+  .contra {{ color:#e0a95e; font-size:12px; margin-left:0; }}
+  .xteam {{ color:#5b6b82; font-size:10.5px; }}
+  .stag {{ color:#c9a06a; font-size:10px; font-weight:700; margin-left:6px; }}
+  .tcard.diag .tbody {{ display:none; }} .tcard.diag.open .tbody {{ display:block; }}
   /* also-flagged coherence strip (everything that pinged but sits below the top-3 cards) */
   .xtras {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; padding:9px 12px; margin:10px 0; }}
   .xt {{ font-size:10.5px; color:#8b93a1; letter-spacing:.02em; margin-bottom:6px; }}
@@ -1420,20 +1531,24 @@ def build():
   /* PROP row — the read order is bet -> price -> EDGE (the one saturated-green number) */
   .prop {{ padding:13px 0 5px; cursor:pointer; border-top:1px solid #14181f; margin-top:9px; }}
   .pblk .prop:first-of-type {{ border-top:0; margin-top:8px; }}
-  .prow {{ display:flex; align-items:center; gap:9px; }}
+  .prow {{ display:flex; align-items:center; gap:7px; }}
   .pind {{ width:27px; height:27px; border-radius:50%; display:grid; place-items:center;
     font-size:13px; font-weight:800; border:1.5px solid; flex:none; }}
   .pind.o {{ color:#57b389; border-color:#57b38944; }}
   .pind.u {{ color:#6a9fe8; border-color:#6a9fe844; }}
-  .plno {{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em; }}
+  .plno {{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
+          white-space:nowrap; }}
+  .plno.rng {{ font-size:16px; }}
   .pstat {{ color:#78818f; font-weight:700; font-size:13px; letter-spacing:.04em; }}
   .psp {{ flex:1; }}
   .podds {{ color:#6ba3f5; font-weight:700; font-size:16px; font-variant-numeric:tabular-nums; }}
   .pbk {{ color:#78818f; font-size:9.5px; font-weight:800; letter-spacing:.04em; margin-left:3px;
     background:#161b24; border:1px solid #1d232e; border-radius:4px; padding:1px 4px; position:relative; top:-1px; }}
   .pedge {{ font-weight:800; font-size:20px; font-variant-numeric:tabular-nums; letter-spacing:-.015em; }}
+  .prop:has(.plno.rng) .pedge {{ font-size:18px; }}
+  .prop:has(.plno.rng) .podds {{ font-size:15px; }}
   .pedge.hi {{ color:#37d67f; }} .pedge.mid {{ color:#c3cdda; }} .pedge.lo {{ color:#6b7484; }}
-  .pchev {{ color:#3b4452; font-size:20px; transition:transform .15s; }}
+  .pchev {{ color:#3b4452; font-size:18px; transition:transform .15s; margin-left:-2px; }}
   .prop:has(+ .bars.open) .pchev {{ transform:rotate(90deg); }}
   .pv {{ color:#78818f; font-weight:800; font-size:13px; }}
   .juice {{ color:#c08a4d; font-size:10px; font-weight:700; white-space:nowrap; }}
@@ -1557,13 +1672,9 @@ def build():
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
   </div>
   <div class="panel" id="wnba">
-    <h2>{pend} plays · grouped by game · tap any bet for the game log</h2>
+    {recstrip_html}
+    {h2_html}
     <div class="fbar">
-      <div class="fgrp" data-f="side">
-        <span class="pill on" data-v="all" onclick="setF('side','all')">All</span>
-        <span class="pill" data-v="over" onclick="setF('side','over')">Overs</span>
-        <span class="pill" data-v="under" onclick="setF('side','under')">Unders</span>
-      </div>
       <div class="fgrp" data-f="sort">
         <span class="pill" data-v="edge" onclick="setF('sort','edge')">Edge</span>
         <span class="pill on" data-v="time" onclick="setF('sort','time')">Time</span>
@@ -1588,7 +1699,7 @@ def build():
     <h2>Live record · settles as each event ends</h2>
     {tracker_html}
   </div>
-  <div class="foot">Auto-generated on GitHub · self-refreshing · quarter-Kelly unit sizing</div>
+  <div class="foot">auto-generated · self-refreshing · WNBA 1u ladders · TT/GG ¼-Kelly paper</div>
 </div>
 <script>
   function showTab(t) {{
@@ -1597,7 +1708,24 @@ def build():
     try {{ localStorage.setItem('tab', t); }} catch (e) {{}}
   }}
   try {{ const s = localStorage.getItem('tab'); if (s) showTab(s); }} catch (e) {{}}
-  // WNBA filter (over/under) + sort (edge/time) — pure client-side over the server-rendered games
+  // PLAYED MARKS: tap ✓ on any card/slip — instant, survives refresh via localStorage (the durable
+  // wnba_played.txt ✓ bakes in as .baked and always wins; local marks are the phone-side layer).
+  function _marks() {{ try {{ return JSON.parse(localStorage.getItem('marks') || '{{}}'); }} catch (e) {{ return {{}}; }} }}
+  function togglePlayed(el) {{
+    if (event) event.stopPropagation();
+    const host = el.closest('[data-k]'); if (!host) return;
+    const m = _marks(); m[host.dataset.k] = !m[host.dataset.k];
+    localStorage.setItem('marks', JSON.stringify(m));
+    el.classList.toggle('on', !!m[host.dataset.k] || el.classList.contains('baked'));
+  }}
+  function applyMarks() {{
+    const m = _marks();
+    document.querySelectorAll('[data-k] .pmark').forEach(el => {{
+      if (el.classList.contains('baked')) {{ el.classList.add('on'); return; }}
+      el.classList.toggle('on', !!m[el.closest('[data-k]').dataset.k]);
+    }});
+  }}
+  // WNBA sort (edge/time) — pure client-side over the server-rendered games
   const F = {{ side:'all', sort:'time' }};
   function applyF() {{
     document.querySelectorAll('.prop').forEach(p =>
@@ -1624,6 +1752,9 @@ def build():
       if (!r.ok) return;
       const doc = new DOMParser().parseFromString(await r.text(), 'text/html');
       const y = window.scrollY;
+      // remember which game-log drawers are open so the panel swap doesn't slam them shut mid-read
+      const openK = [...document.querySelectorAll('.prop')].filter(p =>
+        p.nextElementSibling && p.nextElementSibling.classList.contains('open')).map(p => p.dataset.k);
       let touched = false, wnba = false;
       ['wnba','tt','gg','tracker'].forEach(id => {{
         const nw = doc.getElementById(id), cur = document.getElementById(id);
@@ -1631,18 +1762,24 @@ def build():
           cur.innerHTML = nw.innerHTML; touched = true; if (id === 'wnba') wnba = true;
         }}
       }});
-      if (wnba) {{   // fresh cards come in server-default order/visibility — restore the user's filter
+      if (wnba) {{   // fresh cards come in server-default order/visibility — restore the user's state
         document.querySelectorAll('[data-f] .pill').forEach(p => {{
           const g = p.closest('[data-f]').dataset.f;
           p.classList.toggle('on', p.dataset.v === F[g]);
         }});
         applyF();
+        document.querySelectorAll('.prop').forEach(p => {{     // re-open the drawers the user had open
+          if (openK.includes(p.dataset.k) && p.nextElementSibling)
+            p.nextElementSibling.classList.add('open');
+        }});
       }}
+      if (touched) applyMarks();
       if (touched) window.scrollTo(0, y);
       if (window._applyTTTotals) window._applyTTTotals();   // keep live TT totals over the swapped-in bake
     }} catch (e) {{}}
   }}
   setInterval(bgRefresh, 90000);
+  applyMarks();
 {tt_live_js}
 </script></body></html>"""
     OUT.parent.mkdir(exist_ok=True)

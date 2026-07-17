@@ -267,7 +267,17 @@ def parlays(lads, sizes=(2, 3), top=3):
                 ev *= (1 + l["ev"])
             out.append({"legs": list(combo), "dec": round(dec, 2), "ev": ev - 1, "n": n})
     out.sort(key=lambda p: -p["ev"])
-    return out[:top]
+    # DIVERSITY (2026-07-17 audit): the top-EV combos are permutations of the same legs (three
+    # tickets sharing Griner+Cloud read as one bet x3). Greedily keep tickets that share at most
+    # ONE leg with anything already kept — genuinely different parlays, not reshuffles.
+    kept = []
+    for p in out:
+        ls = {(l["player"], l["stat"]) for l in p["legs"]}
+        if all(len(ls & {(l["player"], l["stat"]) for l in k["legs"]}) <= 1 for k in kept):
+            kept.append(p)
+        if len(kept) == top:
+            break
+    return kept
 
 
 def build(overs):
