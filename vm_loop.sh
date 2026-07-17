@@ -5,7 +5,13 @@ GHREPO="github.com/fgf9p6ks2f-ux/tennis-odds-collector.git"
 git config user.name "odds-bot" 2>/dev/null; git config user.email "odds-bot@users.noreply.github.com" 2>/dev/null
 URL="https://x-access-token:${GIT_PAT}@${GHREPO}"
 
-push(){ git add -A -f 2>/dev/null
+push(){
+  # disk guard (same postmortem): if the root FS dips under 2GB free, repack immediately —
+  # bounded by pack.threads=1 / windowMemory=32m so it can't swap-storm the 956MB box.
+  if [ "$(df --output=avail / | tail -1 | tr -d ' ')" -lt 2000000 ]; then
+    echo "[$(date +%H:%M)] low disk -> git gc"; git gc --prune=now -q 2>/dev/null || true
+  fi
+  git add -A -f 2>/dev/null
   # NEVER commit wnba_lines.sqlite: it's the VM-local WNBA lines DB, gitignored, and was
   # ballooning to 100MB (the 2-day prune lived in the now-disabled wnba-watch.yml and was
   # dropped on the VM migration). `git add -A -f` force-re-adds it every cycle despite the
@@ -33,6 +39,10 @@ push(){ git add -A -f 2>/dev/null
     git checkout "$C" -- "*.txt"    2>/dev/null || true
     git checkout "$C" -- "*.md"     2>/dev/null || true
     git checkout "$C" -- docs/     2>/dev/null || true
+    # NEVER replay Actions-owned snapshots backwards (2026-07-17 disk-full postmortem: replaying
+    # the 45MB fanduel_props over origin every cycle ping-ponged with Actions' fresh commits ->
+    # a new 45MB blob per cycle with gc off -> 39GB of loose objects -> disk 100% -> loop dead).
+    git checkout FETCH_HEAD -- fanduel_props.sqlite 2>/dev/null || true
     git add -A -f 2>/dev/null
     git rm --cached -q wnba_lines.sqlite wnba_glog_cache.json 2>/dev/null || true
     git commit -qm "vm loop data (replayed after failed rebase) [skip ci]" 2>/dev/null || true
