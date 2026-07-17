@@ -220,6 +220,11 @@ def grade():
     against the 1st. So we match the game whose opponent == the prediction's opp, that is
     FINAL (has a W/L result), and is on/after the slate date. Reads the actual stat + records
     over/under."""
+    try:                                             # projection-tracker grading (calibration
+        import wnba_proj_log as _PL                  # feed) — was never called anywhere, so the
+        _PL.grade()                                  # learner silently stalled after 7/14
+    except Exception:
+        pass
     con = _con()
     rows = con.execute(
         "SELECT rowid, pred_date, player, stat, line, opp, team FROM predictions WHERE graded=0"
