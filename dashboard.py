@@ -594,9 +594,9 @@ def _player_block(player, rows):
         mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
     sp = r0.get("spread")
     dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
-    # DOUBLE VACUUM badge (frontier backtest 2026-07-17): beneficiary cell with 2+ qualifying
-    # stars out hit 88% (22/25) vs 57% single-out over 6 seasons — the multi-out bump is the
-    # most certain version of the edge, so say it on the card.
+    # '2★ out' badge — INFORMATION ONLY (which plays ride a double vacuum). The proxy-line 88%
+    # claim was refuted at real lines same-day (2026-07-17): our graded bets show no separation
+    # (2+ out 56% vs 1 out 60%). No ranking/staking weight attaches to this.
     n_out = len([x for x in (r0.get("out_player") or "").split(",") if x.strip()])
     vchip = '<span class="vac2">2★ out</span>' if n_out >= 2 else ""
     # group same-stat/same-side rungs into ONE card (the anchor line can move across scans and the
@@ -1336,10 +1336,10 @@ def build():
     def _score(r):
         # EV capped at 0.25 for RANKING (calibration 2026-07-17: fatter claims delivered 50%) —
         # keeps a phantom edge from outranking proven plays on the cards; display stays raw.
-        # +0.10 when 2+ stars are out (frontier backtest: 88% vs 57% single-out, n=25 — the
-        # most certain form of the edge ranks first).
-        vac = 0.10 if len([x for x in (r.get("out_player") or "").split(",") if x.strip()]) >= 2 else 0
-        return min(r.get("ev") or 0, 0.25) + _arche(r) + vac
+        # NOTE: a +0.10 multi-out boost lived here for ~2h and was REMOVED same day — the 88%
+        # proxy-line cell did NOT survive real lines (our graded bets: 2+ out 56% vs 1 out 60%;
+        # fd_lines replay: one qualifying slate). The '2★ out' badge stays as pure information.
+        return min(r.get("ev") or 0, 0.25) + _arche(r)
 
     def _pscore(prs):
         return max(_score(r) for r in prs)
