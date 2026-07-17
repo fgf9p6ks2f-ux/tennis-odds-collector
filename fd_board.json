@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T00:58:58Z",
+ "captured_at": "2026-07-17T01:03:30Z",
  "matches": [
   {
    "event_id": 35832635,
@@ -8,9 +8,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-17T01:00:00.000Z",
-   "line": 71.5,
+   "line": 61.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35832636,
@@ -19,9 +19,9 @@
    "p1_norm": "michal skorski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-17T01:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832640,
