@@ -127,6 +127,7 @@
 2026-07-17|Leila Lacan|points|12.5
 2026-07-17|Marina Mabrey|rebounds|3.5
 2026-07-17|Monique Akoa Makani|points|10.5
+2026-07-17|Natasha Cloud|pts_reb|14.5
 2026-07-17|Natasha Cloud|pts_reb|15.5
 2026-07-17|Olivia Nelson-Ododa|reb_ast|9.5
 2026-07-17|Rae Burrell|pra|20.5
@@ -196,3 +197,7 @@ watch|2026-07-12|Pauline Astier|pts_ast|11.5
 watch|2026-07-12|Rebekah Gardner|points|4.5
 watch|2026-07-12|Sabrina Ionescu|points|10.5
 watch|2026-07-12|Sabrina Ionescu|points|14.5
+watch|2026-07-17|Olivia Nelson-Ododa|pra|20.5
+watch|2026-07-17|Olivia Nelson-Ododa|pts_reb|18.5
+watch|2026-07-17|Olivia Nelson-Ododa|reb_ast|9.5
+watch|2026-07-17|Olivia Nelson-Ododa|rebounds|7.5
