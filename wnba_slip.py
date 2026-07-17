@@ -46,10 +46,10 @@ COMPONENT_CAP_U = 2.5
 
 
 def ladder_stake_map(rows):
-    """Map each OVER row to its stake: {(pred_date, player, stat, line): stake}. TWO caps: (1) per
-    player-STAT ladder — lowest line is the 1u anchor, higher rungs decline (0.5/0.25/0.25...), total
-    capped at LADDER_CAP_U; (2) per player-GAME — exposure to any one component (P/R/A) capped at
-    COMPONENT_CAP_U, scaling correlated stacking down (a lone over is just the 1u anchor)."""
+    """Map each OVER row to its stake: {(pred_date, player, stat, line): stake}. Shape (real-line
+    sim 2026-07-17): 1u anchor + at most ONE 0.25u rung on d_min 3-8 plays only — rung 2 hit 27%
+    at real alt odds (-18% EV), rung 3+ dead, so depth bleeds the base edge. TWO caps unchanged:
+    per-ladder LADDER_CAP_U and per-player-game component cap COMPONENT_CAP_U."""
     from collections import defaultdict
     groups = defaultdict(list)
     for r in rows:
@@ -59,9 +59,18 @@ def ladder_stake_map(rows):
     out = {}
     for rungs in groups.values():
         total = 0.0
-        for i, r in enumerate(sorted(rungs, key=lambda x: (x.get("line") or 0))):
-            base = LADDER_ANCHOR_U if i == 0 else (
-                LADDER_RUNG_US[i - 1] if i - 1 < len(LADDER_RUNG_US) else LADDER_RUNG_DEFAULT_U)
+        # REAL-LINE LADDER FINDING (2026-07-17, wnba_ladder_sim.py, 21 selected plays with the
+        # full posted alt ladders): base rungs 76% (+41.6% ROI) but rung-2 hit only 27% at avg
+        # +202 (-18% EV) and rung 3+ is dead — blanket rungs cut ROI from +41.6% to +10.5%.
+        # New shape: 1u anchor + at most ONE 0.25u rung, and only on d_min 3-8 band plays (the
+        # twice-validated cell); everything else rides the anchor alone. Re-widen only if the
+        # rung-2 sample (n=15) flips at ~40 graded ladders.
+        srt = sorted(rungs, key=lambda x: (x.get("line") or 0))
+        dm = srt[0].get("d_min")
+        inband = dm is not None and 3 <= dm <= 8
+        for i, r in enumerate(srt):
+            base = (LADDER_ANCHOR_U if i == 0
+                    else (0.25 if (i == 1 and inband) else 0.0))
             s = min(base, max(0.0, LADDER_CAP_U - total))
             total += s
             out[(r.get("pred_date"), r.get("player"), r.get("stat"), r.get("line"))] = s
