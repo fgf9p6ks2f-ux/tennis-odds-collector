@@ -488,6 +488,15 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # 1-5 set (-4.4u) -> record 18-10, ROI +9.4% -> +27.3%. Conservative (only the extreme
             # corner); volume plays are usage-confirmed so they're exempt. Small sample (~1 player) —
             # watch forward. (See flip_backtest.py-style validation in the ledger analysis.)
+            # D_MIN BAND GATE (2026-07-16): the backtest bands REPLICATED on live money —
+            # graded overs by predicted d_min: <0 = 1-2 (33%) · 0-3 = 5-5 · 3-8 = 16-5 (76%)
+            # · >8 = 1-7 (12%). Two independent samples agree: minute-jump overs win ONLY in
+            # the 3-8 band. Gate the proven-losing bands (volume-confirmed plays exempt — their
+            # edge is usage, not a minutes extrapolation).
+            if (side == "over" and not use_vol and d_min is not None
+                    and (d_min < 0 or d_min > BIG_JUMP_MIN)
+                    and st.median(vals) - line < COLD_START_MARGIN):
+                continue
             if (side == "over" and not use_vol and n < THIN_SAMPLE_N and d_min is not None
                     and d_min > BIG_JUMP_MIN
                     and st.median(vals) - line < COLD_START_MARGIN):
