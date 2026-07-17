@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T04:27:18Z",
+ "captured_at": "2026-07-17T04:34:13Z",
  "matches": [
-  {
-   "event_id": 35832787,
-   "p1": "Igor Szymanski",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-17T04:10:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35832798,
-   "p1": "Jacek Zelezik",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "jacek zelezik",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-17T04:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35832802,
    "p1": "Milosz Cesarz",
@@ -30,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-17T04:25:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 50.5,
+   "over_odds": -135,
+   "under_odds": 100
   },
   {
    "event_id": 35832810,
@@ -41,9 +19,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "karol sulkowski",
    "open_date": "2026-07-17T04:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 63.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832811,
@@ -53,19 +31,8 @@
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-17T04:30:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35832812,
-   "p1": "Grzegorz Poliniewicz",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "grzegorz poliniewicz",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-17T04:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832832,
