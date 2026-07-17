@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T02:52:48Z",
+ "captured_at": "2026-07-17T02:58:49Z",
  "matches": [
   {
    "event_id": 35832720,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub nowak",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-17T02:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 63.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832724,
@@ -66,6 +66,39 @@
    "line": 70.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35832735,
+   "p1": "Krzysztof Wloczko",
+   "p2": "Grzegorz Adamiak",
+   "p1_norm": "krzysztof wloczko",
+   "p2_norm": "grzegorz adamiak",
+   "open_date": "2026-07-17T03:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832736,
+   "p1": "Karol Sulkowski",
+   "p2": "Krzysztof Kotyl",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "krzysztof kotyl",
+   "open_date": "2026-07-17T03:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832737,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-17T03:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
