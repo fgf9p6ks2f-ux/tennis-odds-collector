@@ -9,12 +9,14 @@
 2026-07-17|Natasha Cloud|pts_reb|14.5
 2026-07-17|Olivia Nelson-Ododa|points|11.5
 2026-07-17|Rae Burrell|points|15.5
+2026-07-17|Tyasha Harris|points|4.5
 2026-07-18|Breanna Stewart|rebounds|7.5
 2026-07-18|Jonquel Jones|dd
 2026-07-18|Kayla McBride|points|17.5
 2026-07-18|Kayla McBride|points|19.5
 2026-07-18|Pauline Astier|pts_reb|11.5
 2026-07-18|Sabrina Ionescu|assists|4.5
+2026-07-18|Tyasha Harris|points|4.5
 watch|2026-07-17|Olivia Nelson-Ododa|pra|20.5
 watch|2026-07-17|Olivia Nelson-Ododa|pts_reb|18.5
 watch|2026-07-17|Olivia Nelson-Ododa|reb_ast|9.5
