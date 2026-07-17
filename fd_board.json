@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T03:56:02Z",
+ "captured_at": "2026-07-17T04:01:19Z",
  "matches": [
-  {
-   "event_id": 35832751,
-   "p1": "Michal Paszkiewicz",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "michal paszkiewicz",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-17T03:35:00.000Z",
-   "line": 106.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35832754,
    "p1": "Martin Olejnik",
@@ -19,9 +8,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-17T03:45:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832758,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-17T03:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 50.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35832759,
@@ -44,17 +33,6 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
-  },
-  {
-   "event_id": 35832767,
-   "p1": "Jerzy Pelka",
-   "p2": "Jan Orszulik",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "jan orszulik",
-   "open_date": "2026-07-17T04:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35832785,
@@ -96,6 +74,17 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-17T04:20:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832802,
+   "p1": "Milosz Cesarz",
+   "p2": "Michal Paszkiewicz",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "michal paszkiewicz",
+   "open_date": "2026-07-17T04:25:00.000Z",
    "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
