@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T19:06:04Z",
+ "captured_at": "2026-07-17T19:11:11Z",
  "matches": [
   {
    "event_id": 35835484,
@@ -8,20 +8,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-17T19:10:00.000Z",
-   "line": 69.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35835485,
-   "p1": "Cezary Pawlik",
-   "p2": "Michal Wolny",
-   "p1_norm": "cezary pawlik",
-   "p2_norm": "michal wolny",
-   "open_date": "2026-07-17T19:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835490,
@@ -63,9 +52,20 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "damian fira",
    "open_date": "2026-07-17T19:30:00.000Z",
+   "line": 82.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835520,
+   "p1": "Marcin Wozniczka",
+   "p2": "Oskar Jedrzejowski",
+   "p1_norm": "marcin wozniczka",
+   "p2_norm": "oskar jedrzejowski",
+   "open_date": "2026-07-17T19:35:00.000Z",
    "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
