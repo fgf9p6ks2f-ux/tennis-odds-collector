@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T04:01:19Z",
+ "captured_at": "2026-07-17T04:05:28Z",
  "matches": [
-  {
-   "event_id": 35832754,
-   "p1": "Martin Olejnik",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "martin olejnik",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-17T03:45:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832758,
-   "p1": "Jakub Zochniak",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-17T03:50:00.000Z",
-   "line": 50.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35832759,
    "p1": "Rafal Glica",
@@ -31,8 +9,19 @@
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-17T03:50:00.000Z",
    "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35832767,
+   "p1": "Jerzy Pelka",
+   "p2": "Jan Orszulik",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "jan orszulik",
+   "open_date": "2026-07-17T04:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832785,
@@ -86,6 +75,39 @@
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-17T04:25:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832810,
+   "p1": "Jakub Zochniak",
+   "p2": "Karol Sulkowski",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "karol sulkowski",
+   "open_date": "2026-07-17T04:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832811,
+   "p1": "Mateusz Sikon",
+   "p2": "Robert Kostepski",
+   "p1_norm": "mateusz sikon",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-17T04:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35832812,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-17T04:30:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
