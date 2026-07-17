@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-17T05:55:23Z",
+ "captured_at": "2026-07-17T06:02:45Z",
  "matches": [
-  {
-   "event_id": 35833204,
-   "p1": "Maciej Nowalinski",
-   "p2": "Martin Olejnik",
-   "p1_norm": "maciej nowalinski",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-17T05:40:00.000Z",
-   "line": 64.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35833205,
-   "p1": "Igor Szymanski",
-   "p2": "Rafal Glica",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "rafal glica",
-   "open_date": "2026-07-17T05:40:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35833206,
-   "p1": "Karol Sulkowski",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-17T05:40:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35833248,
    "p1": "Jakub Pruszkowski",
@@ -41,9 +8,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-17T05:55:00.000Z",
-   "line": 78.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35833256,
@@ -52,9 +19,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-17T06:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35833257,
@@ -64,8 +31,8 @@
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-17T06:00:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35833263,
@@ -110,6 +77,28 @@
    "line": 77.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35833335,
+   "p1": "Jan Orszulik",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "jan orszulik",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T06:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35833336,
+   "p1": "Michal Minda",
+   "p2": "Kamil Kurowski",
+   "p1_norm": "michal minda",
+   "p2_norm": "kamil kurowski",
+   "open_date": "2026-07-17T06:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
