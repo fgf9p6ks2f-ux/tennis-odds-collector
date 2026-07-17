@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-16T23:56:43Z",
+ "captured_at": "2026-07-17T00:02:18Z",
  "matches": [
-  {
-   "event_id": 35832532,
-   "p1": "Tomasz Filbrandt",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "tomasz filbrandt",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-16T23:35:00.000Z",
-   "line": 97.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35832537,
-   "p1": "Jaroslaw Rolak",
-   "p2": "Kamil Klocek",
-   "p1_norm": "jaroslaw rolak",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-16T23:45:00.000Z",
-   "line": 54.5,
-   "over_odds": 110,
-   "under_odds": -155
-  },
-  {
-   "event_id": 35832552,
-   "p1": "Jakub Nowak",
-   "p2": "Jerzy Pelka",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "jerzy pelka",
-   "open_date": "2026-07-17T00:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
   {
    "event_id": 35832558,
    "p1": "Kazimierz Rybak",
@@ -75,6 +42,17 @@
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-17T00:20:00.000Z",
    "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832574,
+   "p1": "Jan Orszulik",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "jan orszulik",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T00:25:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
