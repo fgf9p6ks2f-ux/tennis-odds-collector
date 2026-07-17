@@ -272,7 +272,7 @@ def grade():
     try:
         import wnba_tonight as _T
         _inj = _T.injuries()
-        _today_et = dt.datetime.now(_T.ET).date().isoformat()
+        _today_et = _T.dt.datetime.now(_T.ET).date().isoformat()
         swept = 0
         for rowid, pd_, player, stat, line, opp, team in rows:
             if pd_ < _today_et:
