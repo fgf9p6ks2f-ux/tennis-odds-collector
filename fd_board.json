@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T06:55:31Z",
+ "captured_at": "2026-07-17T07:02:37Z",
  "matches": [
   {
    "event_id": 35833341,
@@ -8,20 +8,9 @@
    "p1_norm": "krzysztof wloczko",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-17T06:30:00.000Z",
-   "line": 95.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35833361,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Jakub Pruszkowski",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "jakub pruszkowski",
-   "open_date": "2026-07-17T06:45:00.000Z",
-   "line": 60.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 98.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35833362,
@@ -30,9 +19,9 @@
    "p1_norm": "michal paszkiewicz",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-17T06:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 101.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35833371,
@@ -41,9 +30,9 @@
    "p1_norm": "michal wandachowicz",
    "p2_norm": "jacek mitas",
    "open_date": "2026-07-17T06:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35833380,
@@ -52,9 +41,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-17T06:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35833381,
@@ -63,9 +52,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "karol sulkowski",
    "open_date": "2026-07-17T06:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35833389,
