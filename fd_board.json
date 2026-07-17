@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-17T02:36:27Z",
+ "captured_at": "2026-07-17T02:40:27Z",
  "matches": [
+  {
+   "event_id": 35832710,
+   "p1": "Michal Guzik",
+   "p2": "Jerzy Debski",
+   "p1_norm": "michal guzik",
+   "p2_norm": "jerzy debski",
+   "open_date": "2026-07-17T02:35:00.000Z",
+   "line": 56.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
   {
    "event_id": 35832720,
    "p1": "Jakub Nowak",
@@ -44,6 +55,17 @@
    "line": 70.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35832727,
+   "p1": "Jacek Zelezik",
+   "p2": "Adam Staniczek",
+   "p1_norm": "jacek zelezik",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-17T03:05:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
