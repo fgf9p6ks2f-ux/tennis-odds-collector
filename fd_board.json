@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T05:11:38Z",
+ "captured_at": "2026-07-17T05:18:34Z",
  "matches": [
   {
    "event_id": 35832844,
@@ -8,9 +8,20 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-17T04:55:00.000Z",
-   "line": 95.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 101.5,
+   "over_odds": -220,
+   "under_odds": 150
+  },
+  {
+   "event_id": 35832857,
+   "p1": "Jerzy Pelka",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T05:10:00.000Z",
+   "line": 52.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832864,
@@ -19,9 +30,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832865,
@@ -30,9 +41,9 @@
    "p1_norm": "krzysztof wloczko",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35832867,
@@ -41,9 +52,9 @@
    "p1_norm": "kamil kurowski",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-17T05:15:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35832869,
@@ -53,8 +64,8 @@
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-17T05:15:00.000Z",
    "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35833115,
@@ -88,6 +99,39 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35833204,
+   "p1": "Maciej Nowalinski",
+   "p2": "Martin Olejnik",
+   "p1_norm": "maciej nowalinski",
+   "p2_norm": "martin olejnik",
+   "open_date": "2026-07-17T05:40:00.000Z",
+   "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35833205,
+   "p1": "Igor Szymanski",
+   "p2": "Rafal Glica",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "rafal glica",
+   "open_date": "2026-07-17T05:40:00.000Z",
+   "line": 68.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35833206,
+   "p1": "Karol Sulkowski",
+   "p2": "Krzysztof Kotyl",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "krzysztof kotyl",
+   "open_date": "2026-07-17T05:40:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
