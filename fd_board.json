@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T08:09:54Z",
+ "captured_at": "2026-07-17T08:16:56Z",
  "matches": [
   {
    "event_id": 35833462,
@@ -8,9 +8,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-17T08:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35833463,
@@ -19,7 +19,7 @@
    "p1_norm": "michal minda",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-17T08:05:00.000Z",
-   "line": 77.5,
+   "line": 61.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +30,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-17T08:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35833482,
