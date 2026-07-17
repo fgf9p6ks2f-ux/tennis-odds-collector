@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T21:47:34Z",
+ "captured_at": "2026-07-17T21:51:55Z",
  "matches": [
   {
    "event_id": 35835782,
@@ -8,7 +8,7 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-17T21:45:00.000Z",
-   "line": 78.5,
+   "line": 76.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,20 +19,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-17T21:45:00.000Z",
-   "line": 76.5,
+   "line": 82.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35835784,
-   "p1": "Michal Olbrycht",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "michal olbrycht",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-17T21:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
   },
   {
    "event_id": 35835789,
