@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T18:31:52Z",
+ "captured_at": "2026-07-17T18:36:40Z",
  "matches": [
-  {
-   "event_id": 35835395,
-   "p1": "Adam Ruszkiewicz",
-   "p2": "Jakub Michalski",
-   "p1_norm": "adam ruszkiewicz",
-   "p2_norm": "jakub michalski",
-   "open_date": "2026-07-17T18:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35835402,
    "p1": "Michal Wolny",
@@ -19,9 +8,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "marcin wozniczka",
    "open_date": "2026-07-17T18:25:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 90.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835423,
@@ -30,9 +19,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-17T18:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835424,
@@ -41,7 +30,7 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-17T18:30:00.000Z",
-   "line": 75.5,
+   "line": 73.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +41,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-17T18:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35835436,
@@ -64,8 +53,8 @@
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-17T18:45:00.000Z",
    "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35835443,
@@ -86,8 +75,8 @@
    "p2_norm": "piotr strus",
    "open_date": "2026-07-17T18:55:00.000Z",
    "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35835458,
