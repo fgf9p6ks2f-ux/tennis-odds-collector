@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T03:06:59Z",
+ "captured_at": "2026-07-17T03:11:03Z",
  "matches": [
   {
    "event_id": 35832725,
@@ -8,7 +8,7 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-17T03:00:00.000Z",
-   "line": 80.5,
+   "line": 92.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -20,8 +20,8 @@
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-17T03:00:00.000Z",
    "line": 50.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": 120,
+   "under_odds": -165
   },
   {
    "event_id": 35832727,
@@ -30,20 +30,9 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-17T03:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35832731,
-   "p1": "Milosz Cesarz",
-   "p2": "Marian Lebek",
-   "p1_norm": "milosz cesarz",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-17T03:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 53.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832735,
@@ -86,8 +75,19 @@
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-17T03:30:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832751,
+   "p1": "Michal Paszkiewicz",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "michal paszkiewicz",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-17T03:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
