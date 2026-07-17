@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T23:51:50Z",
+ "captured_at": "2026-07-17T23:59:01Z",
  "matches": [
-  {
-   "event_id": 35835850,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Kamil Klocek",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-17T23:45:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35835851,
    "p1": "Grzegorz Sawicki",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-17T23:45:00.000Z",
-   "line": 82.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35835860,
@@ -30,9 +19,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "damian fira",
    "open_date": "2026-07-17T23:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835861,
@@ -41,9 +30,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-17T23:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835864,
@@ -77,6 +66,39 @@
    "line": 71.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35835867,
+   "p1": "Tomasz Filbrandt",
+   "p2": "Marcin Marchlewski",
+   "p1_norm": "tomasz filbrandt",
+   "p2_norm": "marcin marchlewski",
+   "open_date": "2026-07-18T00:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835868,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Roman Wiza",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "roman wiza",
+   "open_date": "2026-07-18T00:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835873,
+   "p1": "Cezary Pawlik",
+   "p2": "Marcin Wozniczka",
+   "p1_norm": "cezary pawlik",
+   "p2_norm": "marcin wozniczka",
+   "open_date": "2026-07-18T00:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
