@@ -71,30 +71,38 @@ def regime_note(blog, out_logs, out_names, stat, in_logs=None, in_names=None):
     inn = [in_names[j] for j in sig_in if j < len(in_names)]
     tw = (sum(wt_out[i] for i in sig_out) + sum(wt_in[j] for j in sig_in)) or 1.0
 
-    def match(d):     # role-weighted share of tonight's config (outs absent + ins present) on date d
-        s = 0.0
-        for i in sig_out:
-            if d not in out_played[i] and _active_around(out_played[i], d):
-                s += wt_out[i]
-        for j in sig_in:
-            if d in in_played[j]:
-                s += wt_in[j]
-        return s / tw
+    # ── HONESTY FIX 2026-07-17 (user caught it on McBride): the old match() BLENDED outs-absent
+    # and ins-present, so heavy in-lineup weight let games where the "out" player actually PLAYED
+    # score as comps while the header claimed them out. A comp now REQUIRES every significant out
+    # genuinely absent (absent + active around that date); the in-lineup only RANKS those games. ──
+    def outs_absent(d):
+        return all(d not in out_played[i] and _active_around(out_played[i], d) for i in sig_out)
 
-    rows = [(g, match(g["date"][:10])) for g in games]
-    close = [r for r in sorted(rows, key=lambda r: r[1], reverse=True) if r[1] >= 0.55][:6]
-    if len(close) < 2 or st.median([r[0]["min"] for r in close]) < 15:
+    tw_in = sum(wt_in[j] for j in sig_in) or 1.0
+
+    def in_score(d):
+        return sum(wt_in[j] for j in sig_in if d in in_played[j]) / tw_in
+
+    cand = [g for g in games if outs_absent(g["date"][:10])]
+    if len(cand) < 2:
+        # FIRST (or nearly first) game without this out-set — no true comps exist. Say exactly
+        # that: for the injury method this IS the signal (the news edge), not a data gap to paper
+        # over with lookalike games.
+        return {"v2": True, "no_comps": True, "sig_names": sig_names,
+                "n_out_games": len(cand)}
+    rows = [(g, in_score(g["date"][:10])) for g in cand]
+    close = sorted(rows, key=lambda r: r[1], reverse=True)[:6]
+    if st.median([r[0]["min"] for r in close]) < 15:
         return None
-    # comp_avg over the games matching tonight BEST (within 0.12 of the top match) so the Ionescu-IN
-    # games drive the number tonight, not the Ionescu-OUT blowouts that inflate the raw split.
     best = close[0][1]
-    primary = [r for r in close if r[1] >= best - 0.08]        # near-exact config matches only
+    primary = [r for r in close if r[1] >= best - 0.08] or close[:2]
     disp = sorted(close, key=lambda r: r[0]["date"], reverse=True)
     comps = [{"date": r[0]["date"][:10], "opp": (r[0].get("matchup") or ""),
               "min": round(r[0]["min"]), "val": round(r[0].get(key, 0)), "match": round(r[1], 2)}
              for r in disp]
-    recent_match = st.mean(r[1] for r in rows[-3:])
-    return {"divergent": recent_match < 0.55,                 # recent games miss tonight's config
+    all_dates = [g["date"][:10] for g in games]
+    recent_match = st.mean(1.0 if outs_absent(x) else 0.0 for x in all_dates[-3:])
+    return {"v2": True, "divergent": recent_match < 0.5,      # recent games had them PLAYING
             "recent_match": round(recent_match, 2), "sig_names": sig_names, "in_names": inn,
             "comps": comps, "comp_avg": round(st.mean(r[0].get(key, 0) for r in primary), 1),
             "n_comps": len(comps), "n_primary": len(primary)}

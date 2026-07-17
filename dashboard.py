@@ -267,11 +267,8 @@ def _reasoning(r):
     except (ValueError, TypeError):
         vol = {}
     if r.get("basis") == "volume" and vol:
-        return (f"<b>Volume play.</b> Projecting <b>{vol['vp']:g} pts</b> off shot VOLUME, not recent "
-                f"scoring — her FGA jumped <b>{vol['bf']:g}→{vol['rf']:g}</b> in the elevated role, and "
-                f"volume is sticky while shooting is variance. At her {vol['pps']:g} pts-per-shot that's "
-                f"a sustainable {vol['vp']:g}, so a cold night can hide it but the <b>over is the value</b> "
-                f"— ladder the alt lines the book anchored low.")
+        return (f"<b>Volume play.</b> FGA jumped <b>{vol['bf']:g}→{vol['rf']:g}</b> in the role — "
+                f"projects <b>{vol['vp']:g} pts</b> off volume (sticky), not recent shooting (variance).")
     savg, ph, n = r.get("season_avg"), r.get("proj_hit"), r.get("n_elev")
     pm, dmin, drv = r.get("proj_min"), r.get("d_min"), r.get("driver")
     _on = [_short(nm.strip()) for nm in (r.get("out_player") or "").split(",") if nm.strip()]
@@ -285,22 +282,13 @@ def _reasoning(r):
         if drv is not None and drv >= 1:
             rb.append(f"+{drv:.0f} {dl}")
         role = f"{out} out" + (f" ({', '.join(rb)})" if rb else "")
-    b = [f"Model projects <b>{proj:g} {stat}</b>."]
     if side == "under":
-        b.append(f"Under the {line:g} line — " + (
-            f"{role} lifts the role, but scaled honestly to a ~{pm:.0f}-min night the number lands "
-            f"at {proj:g} and the line runs ahead of it." if role
-            else f"the projected role doesn't reach {line:g}."))
+        b = [f"Projects <b>{proj:g} {stat}</b> under the {line:g} line" + (f" — {role}." if role else ".")]
     else:
-        b.append(f"Clears the {line:g} line" + (f" — {role} inherits the vacated role." if role else "."))
+        b = [f"Projects <b>{proj:g} {stat}</b> vs the {line:g} line" + (f" — {role}." if role else ".")]
     rec = _raw_record(r)
-    if rec:
-        h, tot, sd, ro = rec
-        ctxg = f"games without {out}" if out else "comparable role games"
-        b.append(f"In {tot} {ctxg} she finished {sd} {line:g} <b>{h}/{tot}</b> ({h/tot*100:.0f}%).")
-        if sd == "under" and ro >= 2:
-            b.append(f"⚠ But she's gone OVER in {ro} of her last 3 — the role may be climbing "
-                     f"faster than the flat average shows, so treat this under with caution.")
+    if rec and rec[2] == "under" and rec[3] >= 2:
+        b.append(f"⚠ she's gone OVER in {rec[3]} of her last 3 — treat this under with caution.")
     if r.get("stale") and savg is not None:
         b.append(f"Book anchored near the season avg ({savg:g}) — it hasn't repriced the role.")
     if r.get("confidence") == "bench":
@@ -317,7 +305,14 @@ def _regime_html(r):
         rg = json.loads(r["regime"]) if r.get("regime") else {}
     except (ValueError, TypeError):
         rg = {}
-    if not rg or not rg.get("comps"):
+    if not rg or not rg.get("v2"):
+        return ""                                     # pre-fix rows could claim outs who played
+    if rg.get("no_comps"):
+        nm = ", ".join(rg.get("sig_names") or [])
+        return (f'<div class="regime"><div class="rgnone">⚡ First game without '
+                f'<b>{html.escape(nm)}</b> — no history yet. That IS the edge: the book is '
+                f'guessing too.</div></div>')
+    if not rg.get("comps"):
         return ""
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     line = float(r["line"])
@@ -331,7 +326,7 @@ def _regime_html(r):
     incfg = f' · <b>{html.escape(inn)}</b> in' if inn else ""
     np = rg.get("n_primary", rg.get("n_comps", 0))
     supports = (avg < line) if side == "under" else (avg > line)
-    verdict = "supports the " + side if supports else "⚠ leans against the " + side
+    verdict = ("✓ " + side + " friendly") if supports else ("⚠ against the " + side)
     vcls = "sup" if supports else "warn"
     # mark the chips that match tonight's lineup BEST (the ones the avg is over) so it's obvious
     # which games are true same-lineup comps vs looser ones (a blowout where a starter also sat).
@@ -341,9 +336,10 @@ def _regime_html(r):
                     f'{html.escape(str(c["opp"]))} <b>{c["val"]:g}</b> · {c["min"]:g}\'</span>'
                     for c in rg["comps"])
     div = ' · <span class="warn">tonight differs from her recent games</span>' if rg.get("divergent") else ""
-    return (f'<div class="regime"><div class="rgh">Same-lineup comps · <b>{html.escape(names)}</b> out'
-            f'{incfg} — avg <b>{avg:g}</b> {stat} over {np} (<span class="{vcls}">{verdict}</span>){div}</div>'
-            f'<div class="cmps">{chips}</div></div>')
+    return (f'<div class="regime"><div class="rgh">Games with <b>{html.escape(names)}</b> actually out'
+            f' — avg <b>{avg:g}</b> {stat} <span class="{vcls}">{verdict}</span>{div}</div>'
+            + (f'<div class="rgsub">lineup match ranked by: {html.escape(inn)} playing</div>' if inn else '')
+            + f'<div class="cmps">{chips}</div></div>')
 
 
 def _bars(r):
@@ -472,18 +468,29 @@ def _prop_row(r, rungs=None):
     ev = r.get("ev")
     edge_v = f"{ev*100:+.0f}%" if ev is not None else ""
     ecls = "hi" if (ev or 0) >= 0.15 else ("mid" if (ev or 0) >= 0.07 else "lo")
-    # ROLE cell = the injury-context record (our edge); a volume play shows the volume probability
+    # PLAIN-LANGUAGE METERS (2026-07-17 user: the ROLE/L5/L10/SZN/H2H boxes "make no sense at
+    # first glance") — two labeled bars anyone can read: how often she clears THIS line when the
+    # star sits, and over her last 10. Full splits still live in the drawer chart.
+    def _meter(label, pct, valtext, title=""):
+        cls = " good" if pct >= 60 else (" bad" if pct <= 40 else "")
+        return (f'<div class="meter{cls}" title="{html.escape(title)}"><span class="mlab">{label}</span>'
+                f'<span class="mbar"><i style="width:{min(pct, 100):.0f}%"></i></span>'
+                f'<span class="mval">{valtext}</span></div>')
+    sp = _splits(r) or {}
+    ms = []
     if r.get("basis") == "volume" and r.get("proj_hit"):
-        ph = r["proj_hit"]
-        role_cell = (f'<div class="gc r{" hot" if ph >= 0.6 else ""}"><span class="gcl">ROLE</span>'
-                     f'<span class="gcv">{ph*100:.0f}%</span>'
-                     f'<span class="gcs" title="volume-model probability, not a raw count">model</span></div>')
+        ms.append(_meter("volume model", r["proj_hit"] * 100, f'{r["proj_hit"]*100:.0f}%',
+                         "model probability off shot volume (volume is sticky, shooting is variance)"))
     else:
         rec = _raw_record(r)
-        role_cell = _hrcell("ROLE", (rec[0], rec[1]) if rec else None, role=True)
-    sp = _splits(r) or {}
-    grid = (role_cell + _hrcell("L5", sp.get("l5")) + _hrcell("L10", sp.get("l10"))
-            + _hrcell("SZN", sp.get("szn")) + _hrcell("H2H", sp.get("h2h")))
+        if rec and rec[1]:
+            ms.append(_meter("when they sit", rec[0] / rec[1] * 100, f"{rec[0]}/{rec[1]} over",
+                             "her games with tonight's ruled-out players actually out — over this line"))
+    l10 = sp.get("l10")
+    if l10 and l10[1]:
+        ms.append(_meter("last 10 games", l10[0] / l10[1] * 100, f"{l10[0]}/{l10[1]} over",
+                         "all recent games, any lineup — over this line"))
+    grid = "".join(ms)
     # context line — our injury driver + the DvP matchup note (qualitative signals, not hit rates)
     ctx, drv, dm = [], r.get("driver"), r.get("d_min")
     dlbl = {"points": "usg", "rebounds": "reb", "assists": "ast"}.get(r["stat"], "usg")
@@ -504,18 +511,16 @@ def _prop_row(r, rungs=None):
     bp = _book_prices(r)
     if bp:
         best_bk, best_dec = bp[0]
-        odds_html = f'<span class="podds">{_am(best_dec)}</span><span class="pbk">{best_bk.upper()}</span>'
+        blogo = (f'<img class="bklogo" src="book-{best_bk}.png" alt="{best_bk.upper()}">'
+                 if best_bk in ("fd", "dk") else f'<span class="pbk">{best_bk.upper()}</span>')
+        odds_html = f'<span class="podds">{_am(best_dec)}</span>{blogo}'
         if len(bp) > 1:
             ctx.append(f'{bp[1][0].upper()} {_am(bp[1][1])}')
     else:
         best_dec = float(r["odds"])
         odds_html = f'<span class="podds">{_am(best_dec)}</span>'
     ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
-    juice = (' <span class="juice" title="price worse than -125 — shop before betting">juice</span>'
-             if best_dec < 1.80 else "")
     dk = html.escape(f"{r.get('pred_date') or ''}|{r['player']}|{r['stat']}|{r['line']:g}")
-    pmark = (f'<span class="pmark{" on baked" if r.get("played") else ""}" '
-             f'onclick="event.stopPropagation(); togglePlayed(this)" title="mark played">✓</span>')
     # CONTRA tag: when most recent-form windows and/or the same-lineup comps lean AGAINST the
     # bet, say so ON the card face (2026-07-17 audit: green EV over red chips read as a bug —
     # the drawer's honest warning was invisible until tapped).
@@ -561,9 +566,9 @@ def _prop_row(r, rungs=None):
           <span class="pind {o.lower()}">{o}</span>
           <span class="plno{rngcls}">{line_disp}</span><span class="pstat">{stat}</span>
           <span class="psp"></span>
-          {odds_html}{juice}
-          <span class="pedge {ecls}">{edge_v}</span>{contra}{pmark}<span class="pchev">›</span></div>
-        <div class="pgrid">{grid}</div>{ctxline}{rungs_html}
+          {odds_html}
+          <span class="pedge {ecls}">{edge_v}</span>{contra}<span class="pchev">›</span></div>
+        <div class="meters">{grid}</div>{ctxline}{rungs_html}
       </div>{_bars(r)}"""
 
 
@@ -583,7 +588,9 @@ def _player_block(player, rows):
     pm, dm = r0.get("proj_min"), r0.get("d_min")
     mins = ""
     if pm:
-        trend = ("" if dm is None else (f" ▲+{dm:.0f}" if dm >= 0 else f" ▼{dm:.0f}"))
+        trend = ("" if dm is None else
+                 (f' <span class="tup">▲+{dm:.0f}</span>' if dm >= 0
+                  else f' <span class="tdn">▼{dm:.0f}</span>'))
         mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
     sp = r0.get("spread")
     dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
@@ -1510,6 +1517,22 @@ def build():
   .xteam {{ color:#5b6b82; font-size:10.5px; }}
   .stag {{ color:#c9a06a; font-size:10px; font-weight:700; margin-left:6px; }}
   .tcard.diag .tbody {{ display:none; }} .tcard.diag.open .tbody {{ display:block; }}
+  /* plain-language hit meters (replaced the ROLE/L5/L10/SZN/H2H chip grid) */
+  .meters {{ display:flex; flex-direction:column; gap:7px; margin-top:12px; }}
+  .meter {{ display:flex; align-items:center; gap:10px; }}
+  .mlab {{ flex:0 0 92px; color:var(--t3); font-weight:600; font-size:11px; }}
+  .mbar {{ flex:1; height:6px; border-radius:999px; background:rgba(255,255,255,.07); overflow:hidden; }}
+  .mbar i {{ display:block; height:100%; border-radius:999px; background:#8b94a3;
+            transition:width .5s var(--easeout); }}
+  .meter.good .mbar i {{ background:var(--up); }} .meter.bad .mbar i {{ background:var(--dn); }}
+  .mval {{ flex:0 0 auto; font-variant-numeric:tabular-nums; font-weight:700; font-size:11.5px;
+          color:var(--t2); }}
+  .meter.good .mval {{ color:var(--up); }} .meter.bad .mval {{ color:var(--dn); }}
+  .tup {{ color:var(--up); }} .tdn {{ color:var(--dn); }}
+  .bklogo {{ width:17px; height:17px; border-radius:5px; vertical-align:-3.5px; margin-left:5px; }}
+  .rgsub {{ color:var(--t3); font-size:10.5px; margin:3px 0 7px; }}
+  .rgnone {{ color:var(--warm); font-size:12.5px; line-height:1.45; }}
+  .rgnone b {{ color:#f4ddc2; }}
   /* also-flagged coherence strip (everything that pinged but sits below the top-3 cards) */
   .xtras {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; padding:9px 12px; margin:10px 0; }}
   .xt {{ font-size:10.5px; color:#8b93a1; letter-spacing:.02em; margin-bottom:6px; }}
