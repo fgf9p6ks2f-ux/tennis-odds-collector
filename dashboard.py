@@ -594,11 +594,8 @@ def _player_block(player, rows):
         mins = f'<span class="pmin">~{pm:.0f}\'{trend}</span>'
     sp = r0.get("spread")
     dogchip = (f'<span class="dog">+{sp:.0f} dog</span>' if sp is not None and sp >= 8 else "")
-    # '2★ out' badge — INFORMATION ONLY (which plays ride a double vacuum). The proxy-line 88%
-    # claim was refuted at real lines same-day (2026-07-17): our graded bets show no separation
-    # (2+ out 56% vs 1 out 60%). No ranking/staking weight attaches to this.
-    n_out = len([x for x in (r0.get("out_player") or "").split(",") if x.strip()])
-    vchip = '<span class="vac2">2★ out</span>' if n_out >= 2 else ""
+    # ('2★ out' badge removed 2026-07-17 — the multi-out cell carried no real-line signal
+    # (our bets: 2+ out 56% vs 1 out 60%); the game header's outs line already shows who's out.)
     # group same-stat/same-side rungs into ONE card (the anchor line can move across scans and the
     # keep-every-flag rule preserves each rung — so show them as one play with its line range, no flag
     # dropped). Order groups by best rung EV; a single-rung group renders exactly as before.
@@ -618,7 +615,7 @@ def _player_block(player, rows):
     props = "".join(_render(g) for g in ordered)
     return (f'<div class="pblk">'
             f'<div class="phd">{logo}<span class="pname">{html.escape(_short(player))}</span>'
-            f'{flag}{vchip}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
+            f'{flag}{dogchip}<span class="psp2"></span>{mins}</div>{props}</div>')
 
 
 def _game_group(players, tips, today=None, idx=0):
@@ -1537,9 +1534,6 @@ def build():
           color:var(--t2); }}
   .meter.good .mval {{ color:var(--up); }} .meter.bad .mval {{ color:var(--dn); }}
   .tup {{ color:var(--up); }} .tdn {{ color:var(--dn); }}
-  .vac2 {{ background:linear-gradient(180deg, rgba(77,163,255,.26), rgba(77,163,255,.13));
-          color:#dbeafe; border-radius:var(--pill); padding:2px 8px; font-size:10px; font-weight:800;
-          letter-spacing:.02em; }}
   .bklogo {{ width:17px; height:17px; border-radius:5px; vertical-align:-3.5px; margin-left:5px; }}
   .rgsub {{ color:var(--t3); font-size:10.5px; margin:3px 0 7px; }}
   .rgnone {{ color:var(--warm); font-size:12.5px; line-height:1.45; }}
