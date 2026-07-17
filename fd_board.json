@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T03:16:13Z",
+ "captured_at": "2026-07-17T03:20:15Z",
  "matches": [
-  {
-   "event_id": 35832725,
-   "p1": "Jakub Zochniak",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-17T03:00:00.000Z",
-   "line": 93.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35832727,
    "p1": "Jacek Zelezik",
@@ -19,9 +8,9 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-17T03:05:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 92.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832731,
@@ -30,9 +19,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-17T03:10:00.000Z",
-   "line": 57.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 52.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35832735,
@@ -86,6 +75,17 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-17T03:35:00.000Z",
    "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35832754,
+   "p1": "Martin Olejnik",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "martin olejnik",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-17T03:45:00.000Z",
+   "line": 72.5,
    "over_odds": -118,
    "under_odds": -112
   }
