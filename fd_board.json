@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-17T18:02:29Z",
+ "captured_at": "2026-07-17T18:07:29Z",
  "matches": [
-  {
-   "event_id": 35835324,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Kacper Marchlewski",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "kacper marchlewski",
-   "open_date": "2026-07-17T17:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35835378,
-   "p1": "Piotr Strus",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "piotr strus",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-17T18:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
   {
    "event_id": 35835379,
    "p1": "Sebastian Krupa",
@@ -30,9 +8,9 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "michal durda",
    "open_date": "2026-07-17T18:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35835395,
@@ -55,6 +33,39 @@
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35835422,
+   "p1": "Jakub Kuzmicz",
+   "p2": "Karol Strowski",
+   "p1_norm": "jakub kuzmicz",
+   "p2_norm": "karol strowski",
+   "open_date": "2026-07-17T18:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835423,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Jakub Jesiek",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "jakub jesiek",
+   "open_date": "2026-07-17T18:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35835424,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Kacper Marchlewski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "kacper marchlewski",
+   "open_date": "2026-07-17T18:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
