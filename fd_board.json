@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T08:23:57Z",
+ "captured_at": "2026-07-17T08:31:00Z",
  "matches": [
-  {
-   "event_id": 35833473,
-   "p1": "Rafal Glica",
-   "p2": "Robert Kostepski",
-   "p1_norm": "rafal glica",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-17T08:10:00.000Z",
-   "line": 95.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35833482,
    "p1": "Grzegorz Wichowski",
@@ -19,7 +8,7 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "rafal skotniczny",
    "open_date": "2026-07-17T08:20:00.000Z",
-   "line": 76.5,
+   "line": 95.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +19,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-17T08:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": 110,
+   "under_odds": -150
   },
   {
    "event_id": 35833498,
@@ -41,8 +30,8 @@
    "p1_norm": "jacek mitas",
    "p2_norm": "kamil kurowski",
    "open_date": "2026-07-17T08:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
+   "line": 74.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
