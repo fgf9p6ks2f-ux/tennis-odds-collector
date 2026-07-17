@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-17T03:51:49Z",
+ "captured_at": "2026-07-17T03:56:02Z",
  "matches": [
   {
    "event_id": 35832751,
@@ -8,9 +8,9 @@
    "p1_norm": "michal paszkiewicz",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-17T03:35:00.000Z",
-   "line": 105.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 106.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35832754,
@@ -19,9 +19,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-17T03:45:00.000Z",
-   "line": 58.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35832758,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-17T03:50:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35832759,
@@ -88,6 +88,17 @@
    "line": 72.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35832798,
+   "p1": "Jacek Zelezik",
+   "p2": "Pawel Chojnacki",
+   "p1_norm": "jacek zelezik",
+   "p2_norm": "pawel chojnacki",
+   "open_date": "2026-07-17T04:20:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
