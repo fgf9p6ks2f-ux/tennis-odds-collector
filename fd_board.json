@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T10:27:45Z",
+ "captured_at": "2026-07-18T10:33:19Z",
  "matches": [
   {
    "event_id": 35837085,
@@ -19,9 +19,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-18T10:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837099,
@@ -30,9 +30,9 @@
    "p1_norm": "michal wandachowicz",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-18T10:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837101,
