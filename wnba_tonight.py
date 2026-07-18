@@ -736,7 +736,8 @@ def injuries():
     abbreviated names ('M. Gustafson') resolve to full ESPN names via the roster cache,
     TEAM-SCOPED, skipping ambiguous initial+lastname collisions (the RotoWire lesson)."""
     out = {}
-    _rw_conf, _ovr_out = set(), set()
+    _rw_conf, _ovr_out, _ret_conf = set(), set(), set()
+    _today_ret = dt.datetime.now(ET).date().isoformat()
     for t in _espn("injuries").get("injuries", []):
         for p in t.get("injuries") or []:
             nm = p.get("athlete", {}).get("displayName")
@@ -746,6 +747,13 @@ def injuries():
             # Map it to Questionable so the watchlist/sit-prob machinery just works.
             if status == "Day-To-Day":
                 status = "Questionable"
+            # ESPN returnDate = a game-specific signal hiding in the feed (2026-07-18 audit):
+            # return AFTER today -> officially expected out THROUGH tonight (Sabally 7/28,
+            # Collier 7/20, season-enders 2027) = CONFIRMED for today; return == today
+            # (Boston) -> expected BACK, never confirm. Out-status only, not Doubtful.
+            _ret = ((p.get("details") or {}).get("returnDate") or "")[:10]
+            if nm and status == "Out" and _ret and _ret > _today_ret:
+                _ret_conf.add(nm)
             if nm and status in ("Out", "Doubtful", "Questionable"):
                 out[nm] = status
     # MANUAL STATUS OVERRIDES (2026-07-16): wnba_status_overrides.json — {"Player": {"status":
@@ -813,10 +821,10 @@ def injuries():
         for n in cur:
             fs.setdefault(n, today_iso)
         fsp.write_text(json.dumps(fs, indent=0))
-        CONFIRMED_OUT_TODAY = (set(_rw_conf) | _ovr_out
+        CONFIRMED_OUT_TODAY = (set(_rw_conf) | _ovr_out | _ret_conf
                                | {n for n in cur if fs.get(n) == today_iso})
     except Exception:
-        CONFIRMED_OUT_TODAY = set(_rw_conf) | _ovr_out
+        CONFIRMED_OUT_TODAY = set(_rw_conf) | _ovr_out | _ret_conf
     return out
 
 
