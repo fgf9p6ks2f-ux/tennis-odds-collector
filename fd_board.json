@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T00:42:03Z",
+ "captured_at": "2026-07-18T00:49:11Z",
  "matches": [
-  {
-   "event_id": 35835868,
-   "p1": "Adam Ruszkiewicz",
-   "p2": "Roman Wiza",
-   "p1_norm": "adam ruszkiewicz",
-   "p2_norm": "roman wiza",
-   "open_date": "2026-07-18T00:20:00.000Z",
-   "line": 94.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35835917,
-   "p1": "Wojciech Wojtaszczyk",
-   "p2": "Jakub Jesiek",
-   "p1_norm": "wojciech wojtaszczyk",
-   "p2_norm": "jakub jesiek",
-   "open_date": "2026-07-18T00:35:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35835918,
    "p1": "Kacper Marchlewski",
@@ -30,7 +8,7 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-18T00:35:00.000Z",
-   "line": 79.5,
+   "line": 77.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-18T00:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35835924,
@@ -52,9 +30,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T00:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835925,
@@ -63,9 +41,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-18T00:45:00.000Z",
-   "line": 62.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 57.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835943,
@@ -88,6 +66,39 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35835952,
+   "p1": "Tomasz Filbrandt",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "tomasz filbrandt",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-18T01:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835953,
+   "p1": "Michal Wolny",
+   "p2": "Cezary Pawlik",
+   "p1_norm": "michal wolny",
+   "p2_norm": "cezary pawlik",
+   "open_date": "2026-07-18T01:10:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35835954,
+   "p1": "Roman Wiza",
+   "p2": "Rafal Adach",
+   "p1_norm": "roman wiza",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-18T01:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
