@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T19:52:55Z",
+ "captured_at": "2026-07-18T19:58:52Z",
  "matches": [
   {
    "event_id": 35839804,
@@ -8,20 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35839805,
-   "p1": "Piotr Gesiarz",
-   "p2": "Janus Slawomir",
-   "p1_norm": "piotr gesiarz",
-   "p2_norm": "janus slawomir",
-   "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839806,
@@ -30,9 +19,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 92.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 94.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35839830,
@@ -41,9 +30,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T19:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 67.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839832,
@@ -86,6 +75,28 @@
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T20:05:00.000Z",
    "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35839865,
+   "p1": "Roman Wiza",
+   "p2": "Mariusz Adamus",
+   "p1_norm": "roman wiza",
+   "p2_norm": "mariusz adamus",
+   "open_date": "2026-07-18T20:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35839866,
+   "p1": "Artur Kubiak",
+   "p2": "Oskar Jedrzejowski",
+   "p1_norm": "artur kubiak",
+   "p2_norm": "oskar jedrzejowski",
+   "open_date": "2026-07-18T20:20:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
