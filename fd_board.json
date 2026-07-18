@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T22:56:34Z",
+ "captured_at": "2026-07-18T23:01:10Z",
  "matches": [
   {
    "event_id": 35840266,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T22:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840267,
@@ -19,9 +19,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "filip mlynarski",
    "open_date": "2026-07-18T22:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840268,
@@ -30,7 +30,7 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-18T22:55:00.000Z",
-   "line": 76.5,
+   "line": 82.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +41,9 @@
    "p1_norm": "artur szoltysek",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-18T22:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840270,
