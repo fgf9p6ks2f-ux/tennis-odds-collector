@@ -577,8 +577,19 @@ def push_plays(fresh, preds, topic):
     bykey = {}
     for p in preds:
         bykey[f"{p['pred_date']}|{p['player']}|{p['stat']}|{p['line']}"] = p
-    try:                       # CANONICAL tiers (selected scope — same letters as the board)
-        tmap = SLIP.tier_map(preds)
+    try:                       # CANONICAL tiers over the BOARD's universe (open ledger rows ∪
+        # this scan) — scan-only preds omit permanent open bets the cap no longer re-emits
+        # (Cloud after the keep-rule flip), which flips favorite/sticky context and lets a ping
+        # letter disagree with the board chip. One universe, one letter.
+        import sqlite3 as _sq
+        con = _sq.connect(str(HERE / "wnba_ledger.sqlite")); con.row_factory = _sq.Row
+        open_rows = [dict(r) for r in con.execute(
+            "SELECT * FROM predictions WHERE result IS NULL AND (side IS NULL OR side='over')")]
+        con.close()
+        seen_k = {(p["pred_date"], p["player"], p["stat"], p["line"]) for p in preds}
+        uni = list(preds) + [r for r in open_rows
+                             if (r["pred_date"], r["player"], r["stat"], r["line"]) not in seen_k]
+        tmap = SLIP.tier_map(uni)
     except Exception:
         tmap = {}
 
