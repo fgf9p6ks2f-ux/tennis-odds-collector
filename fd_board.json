@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T04:04:21Z",
+ "captured_at": "2026-07-18T04:08:26Z",
  "matches": [
   {
    "event_id": 35836122,
@@ -8,9 +8,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T03:50:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -155,
+   "under_odds": 110
   },
   {
    "event_id": 35836133,
@@ -19,9 +19,9 @@
    "p1_norm": "damian fira",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T03:55:00.000Z",
-   "line": 90.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 70.5,
+   "over_odds": -150,
+   "under_odds": 110
   },
   {
    "event_id": 35836135,
@@ -30,9 +30,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T04:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836139,
@@ -97,6 +97,39 @@
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T04:25:00.000Z",
    "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836169,
+   "p1": "Tibor Spanik",
+   "p2": "Maciej Domin",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "maciej domin",
+   "open_date": "2026-07-18T04:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836170,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Dariusz Wrobel",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "dariusz wrobel",
+   "open_date": "2026-07-18T04:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35836171,
+   "p1": "Jacek Wieczerzak",
+   "p2": "Wojciech Urban",
+   "p1_norm": "jacek wieczerzak",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-18T04:30:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }
