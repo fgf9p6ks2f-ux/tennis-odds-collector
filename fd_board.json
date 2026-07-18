@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T19:40:03Z",
+ "captured_at": "2026-07-18T19:47:04Z",
  "matches": [
-  {
-   "event_id": 35839797,
-   "p1": "Mariusz Adamus",
-   "p2": "Damian Fira",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-18T19:30:00.000Z",
-   "line": 58.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35839801,
    "p1": "Jakub Skorupa",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T19:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839804,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839805,
@@ -41,9 +30,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839806,
@@ -52,9 +41,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839830,
