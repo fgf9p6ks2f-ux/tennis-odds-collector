@@ -201,6 +201,18 @@ def current_selection(rows, commit=False):
     overs = [r for r in rows if (r.get("side") or "over") == "over"]
     kept, dropped = [], []
 
+    # 0. OUT-OF-BAND GATE at the selection layer too (2026-07-18): the flag-time gate stops NEW
+    # d_min <0 / >8 bets, but pre-gate rows (and any future leak) must not ride the board or the
+    # record either — the record's universe IS the flag universe. Cold tier (d_min None) passes.
+    banded = []
+    for r in overs:
+        dm = r.get("d_min")
+        if dm is not None and (dm < 0 or dm > 8):
+            dropped.append((r, "out-of-band d_min (gate)"))
+        else:
+            banded.append(r)
+    overs = banded
+
     def thin(r):
         n, dm = r.get("n_elev"), r.get("d_min")
         return n is not None and dm is not None and n < 7 and dm > 10
