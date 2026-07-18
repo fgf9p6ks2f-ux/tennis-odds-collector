@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T04:12:33Z",
+ "captured_at": "2026-07-18T04:16:40Z",
  "matches": [
   {
    "event_id": 35836139,
@@ -8,9 +8,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836140,
@@ -19,9 +19,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "grzegorz sawicki",
    "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 51.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35836141,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub wozniak",
    "p2_norm": "dariusz wrobel",
    "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836147,
@@ -99,6 +99,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35836173,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Rafal Adach",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-18T04:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
