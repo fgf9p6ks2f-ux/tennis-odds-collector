@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T14:23:18Z",
+ "captured_at": "2026-07-18T14:28:31Z",
  "matches": [
-  {
-   "event_id": 35837886,
-   "p1": "Grzegorz Felkel",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "grzegorz felkel",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-18T14:10:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35837902,
    "p1": "Stapor Rafal",
@@ -19,9 +8,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T14:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837903,
@@ -30,7 +19,7 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T14:20:00.000Z",
-   "line": 76.5,
+   "line": 85.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +30,7 @@
    "p1_norm": "patryk gamrot",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-18T14:20:00.000Z",
-   "line": 77.5,
+   "line": 94.5,
    "over_odds": -115,
    "under_odds": -120
   },
