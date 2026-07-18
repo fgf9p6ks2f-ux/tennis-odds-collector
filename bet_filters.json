@@ -1,0 +1,12 @@
+{
+  "generated": "2026-07-18 16:14 UTC",
+  "min_n": 40,
+  "bench_clv": -1.0,
+  "benched": [
+    [
+      "mlb",
+      "total_bases",
+      "model"
+    ]
+  ]
+}
