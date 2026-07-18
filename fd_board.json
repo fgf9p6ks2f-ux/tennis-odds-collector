@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T12:37:43Z",
+ "captured_at": "2026-07-18T12:42:41Z",
  "matches": [
-  {
-   "event_id": 35837253,
-   "p1": "Rafal Wojcik",
-   "p2": "Daniel Morawiec",
-   "p1_norm": "rafal wojcik",
-   "p2_norm": "daniel morawiec",
-   "open_date": "2026-07-18T12:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35837284,
    "p1": "Maciej Domin",
@@ -19,9 +8,9 @@
    "p1_norm": "maciej domin",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-18T12:30:00.000Z",
-   "line": 50.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 47.5,
+   "over_odds": -160,
+   "under_odds": 115
   },
   {
    "event_id": 35837287,
@@ -30,9 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-18T12:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35837291,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-18T12:40:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837292,
@@ -52,9 +41,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-18T12:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837295,
