@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T02:49:15Z",
+ "captured_at": "2026-07-18T02:55:03Z",
  "matches": [
-  {
-   "event_id": 35836071,
-   "p1": "Michal Wolny",
-   "p2": "Marcin Wozniczka",
-   "p1_norm": "michal wolny",
-   "p2_norm": "marcin wozniczka",
-   "open_date": "2026-07-18T02:45:00.000Z",
-   "line": 67.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35836072,
    "p1": "Roman Wiza",
@@ -19,9 +8,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T02:45:00.000Z",
-   "line": 62.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836082,
