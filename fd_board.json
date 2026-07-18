@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T12:31:58Z",
+ "captured_at": "2026-07-18T12:37:43Z",
  "matches": [
-  {
-   "event_id": 35837238,
-   "p1": "Stanislaw Wnek",
-   "p2": "Jakub Michalczyk",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "jakub michalczyk",
-   "open_date": "2026-07-18T12:15:00.000Z",
-   "line": 98.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35837253,
    "p1": "Rafal Wojcik",
@@ -19,9 +8,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "daniel morawiec",
    "open_date": "2026-07-18T12:20:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35837284,
@@ -30,9 +19,9 @@
    "p1_norm": "maciej domin",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-18T12:30:00.000Z",
-   "line": 70.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 50.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35837287,
@@ -42,8 +31,8 @@
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-18T12:35:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837291,
@@ -74,9 +63,9 @@
    "p1_norm": "patryk gamrot",
    "p2_norm": "filip witczak",
    "open_date": "2026-07-18T12:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35837626,
@@ -86,8 +75,41 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-18T12:55:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35837690,
+   "p1": "Adam Linek",
+   "p2": "Michal Wandachowicz",
+   "p1_norm": "adam linek",
+   "p2_norm": "michal wandachowicz",
+   "open_date": "2026-07-18T13:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35837691,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-18T13:05:00.000Z",
+   "line": 84.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35837692,
+   "p1": "Jacek Wieczerzak",
+   "p2": "Rafal Glica",
+   "p1_norm": "jacek wieczerzak",
+   "p2_norm": "rafal glica",
+   "open_date": "2026-07-18T13:05:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
