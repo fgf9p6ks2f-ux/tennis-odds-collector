@@ -495,9 +495,15 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # multi-player evidence to hard-kill: outside-band overs become SHADOW PILOTS
             # (⚡BAND alert + CLV shadow, never the firm record) until the sample is big and
             # diverse enough to promote or bury. Volume/cold-start-margin plays stay exempt.
+            # OUT-OF-BAND GATE (2026-07-18, real-line backtest): firm flags at d_min <0 or >8
+            # went 3-13 (-10.96u) at real odds — every Ayayi phantom, Stewart's negative-band
+            # night, Makani's -4.1 scoreless o10.5, Ododa 8.1/10.7. The 0-3 zone stays FIRM
+            # (7-7 all / 4-2 selection at real lines — the EV+role filters carry it) and the
+            # cold-margin exemption is REMOVED (its two live exemptions, Makani + Ododa, both
+            # lost; it was NBA-proxy-validated only). Cutoff 8 not BIG_JUMP_MIN=10: Allemand
+            # 8.2/8.3 and Ododa 8.1 all lost — the band's own edge (3-8) defines the gate.
             band_pilot = bool(side == "over" and not use_vol and d_min is not None
-                              and (d_min < 0 or d_min > BIG_JUMP_MIN)
-                              and st.median(vals) - line < COLD_START_MARGIN)
+                              and (d_min < 0 or d_min > 8))
             if (side == "over" and not use_vol and n < THIN_SAMPLE_N and d_min is not None
                     and d_min > BIG_JUMP_MIN
                     and st.median(vals) - line < COLD_START_MARGIN):
