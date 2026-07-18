@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="9c8d624310">
+<meta name="bv" content="9a4fa7ed2a">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -58,7 +58,6 @@
   .watchlist { margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }
   .wl-title { color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }
   .wl-title span { color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }
-  .openers { margin-top:22px; }
   .op-title { color:#5b9dff; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }
   .op-title span { color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }
   .parlays, .ladders { margin-top:22px; }
@@ -71,17 +70,29 @@
   .sv { color:#37d67f; font-size:10px; font-weight:800; }
   .ssp { flex:1; }
   .sid { color:#59606d; font-size:10px; font-variant-numeric:tabular-nums; letter-spacing:.03em; }
-  .slegs { padding:2px 12px; }
-  .sleg { display:flex; align-items:baseline; gap:9px; padding:7px 0; border-bottom:1px solid #12161e; }
-  .sleg:last-child { border-bottom:none; }
-  .slp { color:#e7ebf0; font-weight:700; font-size:12.5px; min-width:78px; }
-  .sls { color:#9aa3b2; font-size:12px; flex:1; }
-  .slo { color:#7d8696; font-size:11.5px; font-variant-numeric:tabular-nums; }
+  .slegs { padding:4px 14px 6px; }
+  .sleg { display:flex; align-items:center; gap:10px; padding:9px 0 9px 24px; position:relative; }
+  .sleg::before { content:""; position:absolute; left:7px; top:0; bottom:0; width:2px;
+                  background:#26314a; }
+  .sleg:first-child::before { top:50%; }
+  .sleg:last-child::before { bottom:50%; }
+  .sleg:only-child::before { display:none; }
+  .sleg::after { content:""; position:absolute; left:2.5px; top:50%; transform:translateY(-50%);
+                 width:11px; height:11px; border-radius:50%; border:2.5px solid var(--sky, #4DA3FF);
+                 background:#0b0e13; box-sizing:border-box; }
+  .sllogo { width:27px; height:27px; object-fit:contain; background:#dbe1ea; border-radius:50%;
+            padding:2.5px; flex:0 0 auto; }
+  .slbody { flex:1; min-width:0; }
+  .slp { color:#e7ebf0; font-weight:700; font-size:13.5px; white-space:nowrap; overflow:hidden;
+         text-overflow:ellipsis; }
+  .slm { color:#8b94a3; font-size:11.5px; margin-top:1.5px; }
+  .slo { color:#c3c9d4; font-weight:700; font-size:12.5px; font-variant-numeric:tabular-nums; }
   .sft { display:flex; align-items:center; gap:10px; padding:8px 12px; background:#0e131b; border-top:1px solid #171c26; }
   .sstake { color:#9aa3b2; font-size:11.5px; font-variant-numeric:tabular-nums; }
   .sstake b { color:#c3c9d4; font-weight:700; }
-  .sodds { color:#37d67f; font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; margin-left:auto; }
+  .sodds { color:#37d67f; font-weight:800; font-size:15px; font-variant-numeric:tabular-nums; }
   .spay { color:#5b9dff; font-weight:700; font-size:12px; font-variant-numeric:tabular-nums; }
+  .sft .sid { margin-left:auto; }
   /* record strip on the board (audit: the record lived a tab away) */
   .recstrip { display:flex; align-items:baseline; gap:7px; background:#0f1116; border:1px solid #191d26;
               border-radius:10px; padding:8px 12px; margin:2px 0 10px; font-size:13.5px; color:#c6cdd8;
@@ -147,15 +158,24 @@
   .lro { color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }
   .lst { color:#5b9dff; font-size:11px; font-weight:800; }
   .lv { color:#37d67f; font-size:10px; }
-  .op-leg { background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:11px 13px; margin-bottom:8px; font-size:14px; color:#cdd4de; font-variant-numeric:tabular-nums; }
-  .wl-grp { border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
-    border-radius:10px; padding:10px 13px; margin-bottom:9px; }
-  .wl-hd { color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:6px; }
-  .wl-hd b { color:#e8ecf2; }
-  .wl-leg { font-size:13.5px; padding:3px 0; }
-  .wl-leg b { color:#e8ecf2; font-weight:800; }
-  .wl-ev { color:#e8ecf2; font-weight:800; margin-left:7px; }
-  .wl-meta { color:#7d8696; font-size:11px; margin-left:7px; }
+  .wlg { border-radius:14px; padding:11px 14px 6px; margin-bottom:10px; }
+  .wlg-hd { display:flex; justify-content:space-between; align-items:center; padding-bottom:8px;
+            border-bottom:1px solid var(--hair, #171c25); }
+  .wlg-hd .gmatch { display:flex; align-items:center; gap:7px; color:#c3c9d4; font-weight:800;
+                    font-size:12.5px; letter-spacing:.02em; }
+  .wlg-hd .gtime { color:#7d8696; font-size:11.5px; font-variant-numeric:tabular-nums; }
+  .wlrow { padding:9px 0 10px; border-top:1px solid #12161e; }
+  .wlrow:first-of-type { border-top:none; }
+  .wlcond { color:#c9a06a; font-size:11.5px; font-weight:600; }
+  .wlcond b { color:#f4ddc2; font-weight:800; }
+  .wlin { color:#7d8696; font-weight:600; }
+  .wlplay { display:flex; align-items:center; flex-wrap:wrap; gap:4px 7px; margin-top:4px;
+            color:#cdd4de; font-size:13.5px; }
+  .wlplay b { white-space:nowrap; }
+  .wlplay b { color:#e8ecf2; font-weight:800; }
+  .wlright { margin-left:auto; display:flex; align-items:center; gap:7px; white-space:nowrap; }
+  .wlodds { color:#9aa3b2; font-variant-numeric:tabular-nums; font-weight:700; font-size:12.5px; }
+  .wlrow.wlshadow { opacity:.55; }
   /* PROP row — the read order is bet -> price -> EDGE (the one saturated-green number) */
   .prop { padding:13px 0 5px; cursor:pointer; border-top:1px solid #14181f; margin-top:9px; }
   .pblk .prop:first-of-type { border-top:0; margin-top:8px; }
@@ -368,12 +388,12 @@
                opacity .3s var(--easesoft) .06s, visibility 0s; }
   .bwrap { overflow:hidden; min-height:0; }
   /* sections inherit the flat-card family */
-  .xtras, .openers, .parlays .slip, .ladders .ladder, .watchlist .wl-grp, .tcard, .regime {
+  .xtras, .parlays .slip, .ladders .ladder, .watchlist .wlg, .tcard, .regime {
     background:radial-gradient(140% 170% at 50% -20%, #15181f, #0d0f14 65%);
     border:1px solid var(--hair); border-radius:14px;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.35); }
-  .xtras, .openers, .ladders, .parlays, .watchlist { animation:fadeUp .45s var(--easeout) both; }
-  .watchlist .wl-grp { border-style:dashed; border-color:rgba(255,138,61,.28); }
+  .xtras, .ladders, .parlays, .watchlist { animation:fadeUp .45s var(--easeout) both; }
+  .watchlist .wlg { border-style:dashed; border-color:rgba(255,138,61,.28); }
   .op-title, .wl-title, .xt { color:var(--t3); font-size:10.5px; text-transform:uppercase;
     letter-spacing:.07em; font-weight:600; }
   .op-title span, .wl-title span, .xt span { text-transform:none; letter-spacing:.02em; color:var(--t3);
@@ -409,7 +429,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>3:31 AM MT
+    <div class="live"><span class="dot"></span>3:46 AM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -429,7 +449,7 @@
       </div>
       <span class="fmeta" title="tap any bet for its game log">2 plays</span>
     </div>
-    <div id="games"><div class="game" data-edge="0.1300" data-tip="1784419200" style="--i:0"><div class="ghd"><span class="gmatch"><img class="glogo" src="https://a.espncdn.com/i/teamlogos/wnba/500/ny.png" alt="" loading="lazy" onerror="this.style.display='none'">NY<span class="gvs">vs</span><img class="glogo" src="https://a.espncdn.com/i/teamlogos/wnba/500/ind.png" alt="" loading="lazy" onerror="this.style.display='none'">IND</span><span class="gtime">6:00 PM</span></div><div class="gout"><i class="sdot warn"></i>L. Fiebich + S. Sabally out</div><div class="pblk"><div class="phd"><img class="plogo" src="https://a.espncdn.com/i/teamlogos/wnba/500/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">S. Ionescu</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~33' <span class="tup">▲+5</span></span></div>
+    <div id="games"><div class="game" data-edge="0.1300" data-tip="1784419200" style="--i:0"><div class="ghd"><span class="gmatch"><img class="glogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'">NY<span class="gvs">vs</span><img class="glogo" src="logos/ind.png" alt="" loading="lazy" onerror="this.style.display='none'">IND</span><span class="gtime">6:00 PM</span></div><div class="gout"><i class="sdot warn"></i>L. Fiebich + S. Sabally out</div><div class="pblk"><div class="phd"><img class="plogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">S. Ionescu</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~33' <span class="tup">▲+5</span></span></div>
       <div class="prop" data-side="over" data-k="2026-07-18|Sabrina Ionescu|points|16.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
@@ -438,7 +458,7 @@
           <span class="podds">-114</span><img class="bklogo" src="book-fd.png" alt="FD">
           <span class="pedge mid">+8%</span><span class="pchev">›</span></div>
         <div class="meters"><div class="meter good" title="model probability off shot volume (volume is sticky, shooting is variance)"><span class="mlab">volume model</span><span class="mbar"><i style="width:62%"></i></span><span class="mval">62%</span></div><div class="meter bad" title="all recent games, any lineup — over this line"><span class="mlab">last 10 games</span><span class="mbar"><i style="width:40%"></i></span><span class="mval">4/10 over</span></div></div><div class="pctx"><span class="cdrv">▲+7 usg</span> · proj 18.5</div>
-      </div><div class="bars"><div class="bwrap"><div class="why"><b>Volume play.</b> FGA jumped <b>10.9→17.7</b> in the role — projects <b>18.5 pts</b> off volume (sticky), not recent shooting (variance).</div><div class="regime"><div class="rgh">Games with <b>S.Sabally, L.Fiebich</b> actually out — avg <b>22.3</b> PTS <span class="sup">✓ over friendly</span></div><div class="rgsub">lineup match ranked by: P.Astier, M.Johannes, J.Jones playing</div><div class="cmps"><span class="cmp pr">07-12 TOR <b>28</b> · 33'</span><span class="cmp pr">07-11 MIN <b>25</b> · 35'</span><span class="cmp pr">07-08 DAL <b>14</b> · 33'</span></div></div><div class="chart"><div class="pline" style="bottom:36.4%"><span>16.5</span></div><div class="col"><div class="m" style="height:79%"></div><div class="b u" style="height:30.9%"><span class="bv">14</span></div></div><div class="col"><div class="m" style="height:83%"></div><div class="b o" style="height:55.1%"><span class="bv">25</span></div></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:61.7%"><span class="bv">28</span></div></div></div><div class="opps"><span>DAL</span><span>MIN</span><span>TOR</span></div><div class="bnote">2/3 over 16.5 · gray bar = minutes · volume-confirmed role · bars = actual pts (shooting varies, volume doesn't)</div></div></div></div><div class="pblk"><div class="phd"><img class="plogo" src="https://a.espncdn.com/i/teamlogos/wnba/500/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">B. Stewart</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~35' <span class="tup">▲+1</span></span></div>
+      </div><div class="bars"><div class="bwrap"><div class="why"><b>Volume play.</b> FGA jumped <b>10.9→17.7</b> in the role — projects <b>18.5 pts</b> off volume (sticky), not recent shooting (variance).</div><div class="regime"><div class="rgh">Games with <b>S.Sabally, L.Fiebich</b> actually out — avg <b>22.3</b> PTS <span class="sup">✓ over friendly</span></div><div class="rgsub">lineup match ranked by: P.Astier, M.Johannes, J.Jones playing</div><div class="cmps"><span class="cmp pr">07-12 TOR <b>28</b> · 33'</span><span class="cmp pr">07-11 MIN <b>25</b> · 35'</span><span class="cmp pr">07-08 DAL <b>14</b> · 33'</span></div></div><div class="chart"><div class="pline" style="bottom:36.4%"><span>16.5</span></div><div class="col"><div class="m" style="height:79%"></div><div class="b u" style="height:30.9%"><span class="bv">14</span></div></div><div class="col"><div class="m" style="height:83%"></div><div class="b o" style="height:55.1%"><span class="bv">25</span></div></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:61.7%"><span class="bv">28</span></div></div></div><div class="opps"><span>DAL</span><span>MIN</span><span>TOR</span></div><div class="bnote">2/3 over 16.5 · gray bar = minutes · volume-confirmed role · bars = actual pts (shooting varies, volume doesn't)</div></div></div></div><div class="pblk"><div class="phd"><img class="plogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">B. Stewart</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~35' <span class="tup">▲+1</span></span></div>
       <div class="prop" data-side="over" data-k="2026-07-18|Breanna Stewart|rebounds|7.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
@@ -450,9 +470,9 @@
       </div><div class="bars"><div class="bwrap"><div class="why">Projects <b>8.2 REB</b> vs the 7.5 line — S. Sabally + L. Fiebich out (+1 min).</div><div class="regime"><div class="rgh">Games with <b>S.Sabally, L.Fiebich</b> actually out — avg <b>8</b> REB <span class="sup">✓ over friendly</span></div><div class="rgsub">lineup match ranked by: P.Astier, S.Ionescu, M.Johannes playing</div><div class="cmps"><span class="cmp pr">07-12 TOR <b>8</b> · 34'</span><span class="cmp pr">07-11 MIN <b>7</b> · 37'</span><span class="cmp pr">07-08 DAL <b>9</b> · 33'</span><span class="cmp">05-13 POR <b>10</b> · 38'</span><span class="cmp">05-10 WSH <b>9</b> · 39'</span><span class="cmp">05-08 CON <b>10</b> · 28'</span></div></div><div class="chart"><div class="pline" style="bottom:46.3%"><span>7.5</span></div><div class="col"><div class="m" style="height:67%"></div><div class="b o" style="height:61.7%"><span class="bv">10</span></div></div><div class="col"><div class="m" style="height:93%"></div><div class="b o" style="height:55.6%"><span class="bv">9</span></div></div><div class="col"><div class="m" style="height:90%"></div><div class="b o" style="height:61.7%"><span class="bv">10</span></div></div><div class="col"><div class="m" style="height:67%"></div><div class="b u" style="height:43.2%"><span class="bv">7</span></div></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:55.6%"><span class="bv">9</span></div></div><div class="col"><div class="m" style="height:88%"></div><div class="b u" style="height:43.2%"><span class="bv">7</span></div></div><div class="col"><div class="m" style="height:81%"></div><div class="b o" style="height:49.4%"><span class="bv">8</span></div></div></div><div class="opps"><span>CON</span><span>WSH</span><span>POR</span><span>POR</span><span>DAL</span><span>MIN</span><span>TOR</span></div><div class="bnote">5/7 over 7.5 · gray bar = minutes · games without S. Sabally, L. Fiebich</div></div></div></div></div></div>
     
     
-    <div class="parlays"><div class="op-title">🎰 Parlays<span> · .25u · tap ✓ when played</span></div><div class="slips"><div class="slip" data-k="par|91ac"><div class="shd"><span class="sn">2-leg parlay</span><span class="ssp"></span><span class="pmark" onclick="togglePlayed(this)" title="mark played">✓</span><span class="sid">#91ac</span></div><div class="slegs"><div class="sleg"><span class="slp">Stewart</span><span class="sls">reb o7.5</span><span class="slo">-114</span></div><div class="sleg"><span class="slp">Ionescu</span><span class="sls">pts o16.5</span><span class="slo">-114</span></div></div><div class="sft"><span class="sstake">stake <b>0.25u</b></span><span class="sodds">+252</span><span class="spay">→ 0.88u</span></div></div></div></div>
-    <div class="openers"><div class="op-title">⚡ Openers<span> · soft OVER posts · not tracked</span></div><div class="op-leg">V.Ayayi pts o9.5 +158 → proj 13.5 (+4.0) · off N.Mack</div><div class="op-leg">T.Harris pts o4.5 -108 → proj 8.4 (+3.9) · off A.Boston</div><div class="op-leg">A.Edwards pts o9.5 -118 → proj 12.9 (+3.4) · off A.Morrow</div><div class="op-leg">J.Jones PRA o25.5 -118 → proj 28.8 (+3.3) · off S.Sabally</div></div>
-    <div class="watchlist"><div class="wl-title">⏳ Watchlist <span>· fires if the Q star sits</span></div><div class="wl-grp"><div class="wl-hd" title="next-day safeguard: a rolling-feed Out is LAST game's status. These fire as firm plays only when the game-day pass confirms the ruling.">TMRW · ⏳ if <b>Skylar Diggins, Rickea Jackson</b> confirmed out — out last game, no ruling for this one yet</div><div class="wl-leg"><b>N. Cloud</b> P+R o14.5<span class="wl-ev">+24%</span><span class="wl-meta">proj 17.1 · 10/13 in role</span></div><div class="wl-leg"><b>A. Stevens</b> ast o2.5<span class="wl-ev">+23%</span><span class="wl-meta">proj 3.5 · 8/12 in role</span></div><div class="wl-leg"><b>S. Taylor</b> pts o14.5<span class="wl-ev">+14%</span><span class="wl-meta">proj 18.1 · 8/11 in role</span></div></div><div class="wl-grp"><div class="wl-hd" title="d_min outside the validated 3-8 band — logged to build the sample, never bet">TMRW · ⚡BAND · <b>Aneesah Morrow</b> OUT — shadow, not a bet</div><div class="wl-leg"><b>O. Nelson-Ododa</b> R+A o9.5<span class="wl-ev">+21%</span><span class="wl-meta">proj 10.6 · 7/10 in role</span></div><div class="wl-leg"><b>O. Nelson-Ododa</b> PRA o20.5<span class="wl-ev">+20%</span><span class="wl-meta">proj 22.9 · 8/10 in role</span></div><div class="wl-leg"><b>O. Nelson-Ododa</b> reb o7.5<span class="wl-ev">+14%</span><span class="wl-meta">proj 8.4 · 6/10 in role</span></div><div class="wl-leg"><b>O. Nelson-Ododa</b> P+R o18.5<span class="wl-ev">+12%</span><span class="wl-meta">proj 20.7 · 7/10 in role</span></div></div><div class="wl-grp"><div class="wl-hd" title="next-day safeguard: a rolling-feed Out is LAST game's status. These fire as firm plays only when the game-day pass confirms the ruling.">TMRW · ⏳ if <b>Natasha Mack, Jovana Nogic</b> confirmed out — out last game, no ruling for this one yet</div><div class="wl-leg"><b>D. Bonner</b> reb o6.5<span class="wl-ev">+21%</span><span class="wl-meta">proj 6.5 · 10/16 in role</span></div></div><div class="wl-grp"><div class="wl-hd" title="next-day safeguard: a rolling-feed Out is LAST game's status. These fire as firm plays only when the game-day pass confirms the ruling.">TMRW · ⏳ if <b>Aneesah Morrow</b> confirmed out — out last game, no ruling for this one yet</div><div class="wl-leg"><b>D. Miller</b> pts o8.5<span class="wl-ev">+15%</span><span class="wl-meta">proj 9.9 · 10/15 in role</span></div><div class="wl-leg"><b>O. Nelson-Ododa</b> pts o11.5<span class="wl-ev">+13%</span><span class="wl-meta">proj 13.4 · 7/10 in role</span></div><div class="wl-leg"><b>B. Griner</b> P+R o19.5<span class="wl-ev">+12%</span><span class="wl-meta">proj 20.1 · 8/13 in role</span></div></div><div class="wl-grp"><div class="wl-hd" title="d_min outside the validated 3-8 band — logged to build the sample, never bet">TMRW · ⚡BAND · <b>Kelsey Plum</b> OUT — shadow, not a bet</div><div class="wl-leg"><b>D. Hamby</b> R+A o9.5<span class="wl-ev">+12%</span><span class="wl-meta">proj 10.5 · 12/18 in role</span></div></div><div class="wl-grp"><div class="wl-hd" title="next-day safeguard: a rolling-feed Out is LAST game's status. These fire as firm plays only when the game-day pass confirms the ruling.">TMRW · ⏳ if <b>Kelsey Plum</b> confirmed out — out last game, no ruling for this one yet</div><div class="wl-leg"><b>E. Wheeler</b> pts o9.5<span class="wl-ev">+9%</span><span class="wl-meta">proj 11.6 · 12/18 in role</span></div></div></div>
+    <div class="parlays"><div class="op-title">🎰 Parlays<span> · .25u · tap ✓ when played</span></div><div class="slips"><div class="slip" data-k="par|91ac"><div class="shd"><span class="sn">2 Leg Parlay</span><span class="ssp"></span><span class="sodds">+252</span><span class="pmark" onclick="togglePlayed(this)" title="mark played">✓</span></div><div class="slegs"><div class="sleg"><img class="sllogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><div class="slbody"><div class="slp">Breanna Stewart</div><div class="slm">Over 7.5 Rebounds</div></div><span class="slo">-114</span></div><div class="sleg"><img class="sllogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><div class="slbody"><div class="slp">Sabrina Ionescu</div><div class="slm">Over 16.5 Points</div></div><span class="slo">-114</span></div></div><div class="sft"><span class="sstake">stake <b>0.25u</b></span><span class="spay">→ 0.88u</span><span class="sid">#91ac</span></div></div></div></div>
+    
+    <div class="watchlist"><div class="wl-title">⏳ Watchlist <span>· if they sit, play this</span></div><div class="wlg"><div class="wlg-hd"><span class="gmatch"><img class="glogo" src="logos/la.png" alt="" loading="lazy" onerror="this.style.display='none'">LA<span class="gvs">vs</span><img class="glogo" src="logos/dal.png" alt="" loading="lazy" onerror="this.style.display='none'">DAL</span><span class="gtime">Sun 7/19 · 11:00 AM</span></div><div class="wlrow" title="~100% to sit · +9%EV"><div class="wlcond">⏳ if <b>Plum</b> confirmed out</div><div class="wlplay"><b>Erica Wheeler</b> Over 9.5 Points<span class="wlright"><span class="wlodds">-128</span><span class="tchip tB">B</span></span></div></div><div class="wlrow wlshadow" title="~100% to sit · +12%EV"><div class="wlcond">⚡ <b>Plum</b> out <span class="wlin">· out of band · shadow, not a bet</span></div><div class="wlplay"><b>Dearica Hamby</b> Over 9.5 Reb + Ast<span class="wlright"><span class="wlodds">-125</span><span class="tchip tC">C</span></span></div></div></div><div class="wlg"><div class="wlg-hd"><span class="gmatch"><img class="glogo" src="logos/chi.png" alt="" loading="lazy" onerror="this.style.display='none'">CHI<span class="gvs">vs</span><img class="glogo" src="logos/atl.png" alt="" loading="lazy" onerror="this.style.display='none'">ATL</span><span class="gtime">Sun 7/19 · 2:00 PM</span></div><div class="wlrow" title="~100% to sit · +14%EV"><div class="wlcond">⏳ if <b>Diggins + Jackson</b> confirmed out</div><div class="wlplay"><b>Sydney Taylor</b> Over 14.5 Points<span class="wlright"><span class="wlodds">-128</span><span class="tchip tA">A</span></span></div></div></div><div class="wlg"><div class="wlg-hd"><span class="gmatch"><img class="glogo" src="logos/con.png" alt="" loading="lazy" onerror="this.style.display='none'">CON<span class="gvs">vs</span><img class="glogo" src="logos/phx.png" alt="" loading="lazy" onerror="this.style.display='none'">PHX</span><span class="gtime">Sun 7/19 · 5:00 PM</span></div><div class="wlrow" title="~100% to sit · +15%EV"><div class="wlcond">⏳ if <b>Morrow</b> confirmed out</div><div class="wlplay"><b>Diamond Miller</b> Over 8.5 Points<span class="wlright"><span class="wlodds">-114</span><span class="tchip tA">A</span></span></div></div><div class="wlrow" title="~100% to sit · +21%EV"><div class="wlcond">⏳ if <b>Mack + Nogic</b> confirmed out</div><div class="wlplay"><b>DeWanna Bonner</b> Over 6.5 Rebounds<span class="wlright"><span class="wlodds">+116</span><span class="tchip tA">A</span></span></div></div><div class="wlrow wlshadow" title="~100% to sit · +20%EV"><div class="wlcond">⚡ <b>Morrow</b> out <span class="wlin">· out of band · shadow, not a bet</span></div><div class="wlplay"><b>Olivia Nelson-Ododa</b> Over 20.5 Pts + Reb + Ast<span class="wlright"><span class="wlodds">-128</span><span class="tchip tC">C</span></span></div></div></div></div>
     <div class="tierleg"><div class="xt">confidence tiers · live record at real lines</div><div class="tlrow"><span class="tchip tA">A</span><span class="tld">3-8 bump · favorite · single stat</span><span class="tlr">10-0 · 100% · +9.8u</span></div><div class="tlrow"><span class="tchip tB">B</span><span class="tld">3-8 others · cold-vetted · supported 0-3</span><span class="tlr">12-7 · 63% · +4.3u</span></div><div class="tlrow"><span class="tchip tC">C</span><span class="tld">combos · marginal</span><span class="tlr">1-1 · 50% · -0.1u</span></div></div>
   </div>
   <div class="panel hidden" id="tt">
