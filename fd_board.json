@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T10:43:01Z",
+ "captured_at": "2026-07-18T10:47:50Z",
  "matches": [
-  {
-   "event_id": 35837085,
-   "p1": "Filip Witczak",
-   "p2": "Patryk Gamrot",
-   "p1_norm": "filip witczak",
-   "p2_norm": "patryk gamrot",
-   "open_date": "2026-07-18T10:20:00.000Z",
-   "line": 99.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35837099,
    "p1": "Michal Wandachowicz",
@@ -19,9 +8,9 @@
    "p1_norm": "michal wandachowicz",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-18T10:30:00.000Z",
-   "line": 100.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 102.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35837101,
@@ -30,9 +19,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T10:35:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 71.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35837103,
@@ -41,9 +30,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T10:35:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837109,
@@ -52,9 +41,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T10:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837119,
@@ -110,6 +99,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35837147,
+   "p1": "Maciej Domin",
+   "p2": "Maksymilian Miastowski",
+   "p1_norm": "maciej domin",
+   "p2_norm": "maksymilian miastowski",
+   "open_date": "2026-07-18T11:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
