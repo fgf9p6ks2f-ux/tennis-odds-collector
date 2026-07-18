@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T12:47:39Z",
+ "captured_at": "2026-07-18T12:52:38Z",
  "matches": [
-  {
-   "event_id": 35837291,
-   "p1": "Rafal Idaczyk",
-   "p2": "Oskar Jadach",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-18T12:40:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35837292,
-   "p1": "Jaroslaw Rolak",
-   "p2": "Stapor Rafal",
-   "p1_norm": "jaroslaw rolak",
-   "p2_norm": "stapor rafal",
-   "open_date": "2026-07-18T12:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35837295,
    "p1": "Patryk Gamrot",
@@ -30,7 +8,7 @@
    "p1_norm": "patryk gamrot",
    "p2_norm": "filip witczak",
    "open_date": "2026-07-18T12:45:00.000Z",
-   "line": 65.5,
+   "line": 52.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -74,9 +52,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "rafal glica",
    "open_date": "2026-07-18T13:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35837699,
