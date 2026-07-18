@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T08:25:45Z",
+ "captured_at": "2026-07-18T08:30:19Z",
  "matches": [
   {
    "event_id": 35836879,
@@ -8,9 +8,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T08:10:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35836892,
@@ -19,9 +19,9 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-18T08:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 109.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836893,
@@ -30,9 +30,9 @@
    "p1_norm": "piotr zemla",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T08:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 78.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836911,
@@ -42,8 +42,8 @@
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-18T08:30:00.000Z",
    "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35836912,
@@ -53,8 +53,8 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T08:30:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35836915,
