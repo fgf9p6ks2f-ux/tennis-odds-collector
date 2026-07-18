@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T19:34:14Z",
+ "captured_at": "2026-07-18T19:40:03Z",
  "matches": [
-  {
-   "event_id": 35839779,
-   "p1": "Milosz Piecowski",
-   "p2": "Artur Szoltysek",
-   "p1_norm": "milosz piecowski",
-   "p2_norm": "artur szoltysek",
-   "open_date": "2026-07-18T19:20:00.000Z",
-   "line": 90.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35839780,
-   "p1": "Mateusz Baran",
-   "p2": "Krzysztof Malcher",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "krzysztof malcher",
-   "open_date": "2026-07-18T19:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35839797,
    "p1": "Mariusz Adamus",
@@ -30,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T19:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 58.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35839801,
@@ -41,9 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T19:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35839804,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T19:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35839805,
@@ -99,6 +77,39 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35839850,
+   "p1": "Filip Mlynarski",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "filip mlynarski",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-18T20:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35839851,
+   "p1": "Jakub Michalczyk",
+   "p2": "Artur Szoltysek",
+   "p1_norm": "jakub michalczyk",
+   "p2_norm": "artur szoltysek",
+   "open_date": "2026-07-18T20:05:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35839852,
+   "p1": "Dariusz Maszczynski",
+   "p2": "Krzysztof Malcher",
+   "p1_norm": "dariusz maszczynski",
+   "p2_norm": "krzysztof malcher",
+   "open_date": "2026-07-18T20:05:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
