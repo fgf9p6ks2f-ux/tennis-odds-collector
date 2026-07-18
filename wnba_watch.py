@@ -294,18 +294,10 @@ def main():
         }))
     except Exception as _e:
         print("openers json write skipped:", str(_e)[:50])
-    if opener and topic:
-        body = (f"⚡ Opening line{'s' if len(opener) != 1 else ''} — bet EARLY (before the book moves)\n\n"
-                + "\n".join("• " + m for _, m in opener))
-        try:
-            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                                 headers={"Title": "WNBA opening line", "Priority": "high", "Tags": "zap"},
-                                 timeout=15)
-            resp.raise_for_status()
-            A.SEEN.write_text("\n".join(sorted(seen_op | {k for k, _ in opener})[-2000:]))
-            print(f"⚡ sub-minute opener alert: {len(opener)} spot(s) pushed pre-scan")
-        except requests.RequestException as e:
-            print("opener push failed (will retry next poll):", str(e)[:60])
+    if opener:
+        # opener pings SILENCED (user 2026-07-18: not tracked bets -> no push). Board-only via
+        # wnba_openers.json above; console keeps the trace. Keys not SEEN-marked (nothing sent).
+        print(f"⚡ openers (board-only, no push): {len(opener)} spot(s)")
 
     inj = T.injuries()
     # merge RotoWire's ruled-OUT list (mapped to full roster names via first-initial+lastname)
@@ -518,14 +510,16 @@ def main():
     # A pure removal/downgrade pushes the change feed but needs no re-scan.
     fresh = []
     if new or new_q or lines_new or fresh_timing:
+        scan_ok = False
         try:                                            # a transient scan failure must NOT kill the
             alerts, preds = A.collect()                 # timing push below (it reads already-captured
             logged = L.log_predictions(preds)           # shadows) — else priced_state blocks any retry
+            scan_ok = True
             if lines_new:                               # advance the high-water ONLY on scan success,
                 PRICED_STATE.write_text(json.dumps({"date": today_et, "count": cur_priced}))
         except Exception as e:
             print("scan (A.collect) failed — keeping timing spots alive:", str(e)[:90])
-            alerts, logged = [], 0
+            alerts, preds, logged = [], [], 0
         seen0 = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
         this_run = set()
         for ev, k, msg in alerts:                       # +EV bets, sorted by EV desc
@@ -548,44 +542,35 @@ def main():
         for _k, m in fresh_timing:
             print("  ⚡ " + m)
 
-    # ---- ONE push: injury feed -> EARLY opener spots -> +EV plays -> void warnings ----
-    push_ok = False                                     # only mark spots SEEN once we CONFIRM delivery
-    if topic and (feed_txt or fresh_timing or fresh or back or back_q):
-        parts, timing_lead = [], bool(fresh_timing and not feed_txt)
-        if feed_txt:
-            parts += ["📋 WNBA injury update", feed_txt]
-        elif fresh_timing:
-            parts.append(f"⚡ Opening lines — {len(fresh_timing)} injury spot"
-                         f"{'s' if len(fresh_timing) != 1 else ''} to bet EARLY (before the book moves)")
-        elif fresh:
-            parts.append(f"📋 {len(fresh)} +EV play{'s' if len(fresh) != 1 else ''}")
-        if repl:
-            parts.append("\n".join(repl))
-        if fresh_timing:
-            parts.append("\n".join("• " + m for _, m in fresh_timing))
-        if fresh:
-            parts.append(A._notif_body(fresh))
-        if back or back_q:
-            voids = ", ".join(A._short(n) for n in back + back_q)
-            parts.append(f"⚠ VOID any plays built on: {voids} (now active/cleared)")
-        body = "\n\n".join(parts)
-        prio = "urgent" if new else ("high" if (new_q or lines_new or back or back_q) else "default")
-        title = "WNBA opening lines" if timing_lead else "WNBA injury update"
-        tags = "rotating_light" if new else "zap" if timing_lead else "hourglass_flowing_sand"
+    # ---- pushes (user spec 2026-07-18): firm plays (concise per-play, shared format) + VOIDs.
+    # Injury feeds / replacement reads / opener-timing bullets are console+board only now — once an
+    # injury produces a firm play, THAT alert is the signal; a status change alone isn't actionable.
+    if feed_txt:
+        print("injury feed (console-only):\n" + feed_txt)
+    delivered = []
+    if topic and fresh:
+        delivered = A.push_plays(fresh, preds, topic)    # same 🚨 format as the fullscan sender
+    if topic and (back or back_q):
+        # VOID = money already down on a dead premise -> the one status change that still pings.
+        voids = ", ".join(A._short(n) for n in back + back_q)
         try:
-            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                                 headers={"Title": title, "Priority": prio, "Tags": tags}, timeout=15)
-            resp.raise_for_status()                     # a 5xx/timeout must NOT count as delivered
-            push_ok = True
-            print(f"pushed ({prio})")
+            resp = requests.post(f"https://ntfy.sh/{topic}",
+                                 data=f"VOID any plays built on: {voids} (now active/cleared)".encode("utf-8"),
+                                 params={"title": "⚠ WNBA VOID", "priority": "urgent",
+                                         "tags": "warning"}, timeout=15)
+            resp.raise_for_status()
+            print("pushed VOID warning")
         except requests.RequestException as e:
-            print("push failed — leaving spots unSEEN to retry next cycle:", str(e)[:80])
-    if push_ok and (fresh or fresh_timing):             # remember ONLY spots we actually delivered
+            print("VOID push failed:", str(e)[:80])
+    # SEEN: delivered plays + (scan-succeeded) timing keys. Timing spots no longer push, but they
+    # must still be retired once the scan they triggered has refreshed the board — else they'd
+    # re-trigger the heavy inline scan every poll. On scan failure they stay live and retry.
+    retire = list(delivered)
+    if fresh_timing and locals().get("scan_ok"):
+        retire += [k for k, _m in fresh_timing]
+    if retire:
         seen = set(A.SEEN.read_text().splitlines()) if A.SEEN.exists() else set()
-        for _e, k, _m in fresh:
-            seen.add(k)
-        for k, _m in fresh_timing:
-            seen.add(k)
+        seen.update(retire)
         A.SEEN.write_text("\n".join(sorted(seen)[-2000:]))
 
 

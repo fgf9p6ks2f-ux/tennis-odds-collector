@@ -221,15 +221,11 @@ def collect():
                                         "assists": pa0["proj_ast"]}, pn0,
                                        tip=tips_by[slate_date].get(team), tier="n0_cold")
                     for e in cold:
+                        # ⚡COLD = BOARD-ONLY shadow (user 2026-07-18: shadow tiers never ping)
                         cold_spots.append({"player": n, "team": team, "star": out_full,
                                            "status": "OUT", "sit": 1.0, "lead": None,
                                            "conf": lbl, "proj_min": round(proj0, 1),
                                            "date": slate_date, "cold": True, **e})
-                        alerts.append((e["ev"], f"n0|{slate_date}|{n}|{e['stat']}|{e['line']:g}",
-                            f"⚡COLD {out_label} OUT -> {_short(n)} STARTS ({lbl}) "
-                            f"{e['stat'][:3]} o{e['line']:g} {T._am(e['dec'])} | "
-                            f"proj {e['elev_avg']:g} (+{e['elev_avg']-e['line']:.1f} over line) "
-                            f"· no prior sample — COLD tier (not in record)"))
                 continue
             if n1 and not N1_PILOT:
                 continue                                   # pilot off -> drop 1-game samples
@@ -335,13 +331,7 @@ def collect():
                                            "pend_confirm": True, "sit": 1.0, "lead": None,
                                            "conf": conf, "proj_min": round(proj, 1),
                                            "date": slate_date, **e}
-                    kc = f"tmrwc|{slate_date}|{n}|{e['stat']}"
-                    why_c = ("TMRW" if slate_date != today
-                             else f"{'+'.join(_short(u) for u in unconfirmed)} unconfirmed")
-                    alerts.append((e["ev"] * 0.5, kc,
-                        f"CONTINGENT ({why_c}): {out_label} out last game, no official ruling "
-                        f"for {slate_date[5:]} -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
-                        f"{T._am(e['dec'])} +{e['ev']*100:.0f}%EV — fires only when confirmed"))
+                    # contingent = BOARD-ONLY (user 2026-07-18: ping only when it turns firm)
                     continue
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{slate_date}|{n}|{e['stat']}|{e['line']}"
@@ -397,9 +387,8 @@ def collect():
                         f"pts {dd['d_pts']:+g}" if dd["d_pts"] is not None else "",
                         f"min {dd['d_min']:+g}" if dd["d_min"] is not None else ""]
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
-                alerts.append((dd["rate"] - 0.5, f"{slate_date}|{n}|dd",
-                    f"{out_label} OUT -> {_short(n)} DOUBLE-DOUBLE {dd['rate']*100:.0f}% in "
-                    f"{dd['n']} role gms{wo} — check DD price (backup bigs lag)"))
+                print(f"DD note (no ping): {out_label} OUT -> {_short(n)} "
+                      f"{dd['rate']*100:.0f}% in {dd['n']} role gms")
     # CORRELATION CAP (user preference): don't recommend 2+ players' OVERS on the same team + same
     # prop FAMILY in one game — they're correlated, so one blowout / team-cold-shooting night sinks
     # them together (PHX went 0-6 on its overs 2026-07-11; 5 were points-family across Copper+Ayayi).
@@ -541,6 +530,65 @@ def _notif_body(fresh, limit=20):
     return "\n\n".join(blocks)
 
 
+# ── CONCISE PER-PLAY PUSHES (user spec 2026-07-18): one push per play so each iPhone banner
+# is a complete bet: "🚨 {Full Name} {ABBREV} o{line} {odds} {tier}". Tier = the dashboard's
+# validated-split letters (A = 3-8 band + cascade favorite + single stat; B = solid middle;
+# C = combos/marginal). Watch-tier keys never push (board-only). Body = the premise, one line.
+# Shared by wnba_alert (fullscan) and wnba_watch (inline scan) so the format can't drift.
+NOTIF_AB = {"points": "PTS", "rebounds": "REB", "assists": "AST", "pts_ast": "PA",
+            "pra": "PRA", "pts_reb": "PR", "reb_ast": "RA"}
+
+
+def push_plays(fresh, preds, topic):
+    """Send one concise push per fresh play; return the keys actually delivered."""
+    singles = ("points", "rebounds", "assists")
+    bykey, fav_by_cas = {}, {}
+    for p in preds:
+        bykey[f"{p['pred_date']}|{p['player']}|{p['stat']}|{p['line']}"] = p
+        ck = (p["pred_date"], p.get("team"))
+        if ck not in fav_by_cas or float(p["odds"]) < fav_by_cas[ck][1]:
+            fav_by_cas[ck] = (p["player"], float(p["odds"]))
+
+    def _tier_of(p):
+        dm = p.get("d_min")
+        fav = fav_by_cas.get((p["pred_date"], p.get("team")), ("", 0))[0] == p["player"]
+        inband = dm is not None and 3 <= dm <= 8
+        if inband and fav and p["stat"] in singles:
+            return "A"
+        if inband or dm is None or (0 <= (dm if dm is not None else -1) < 3
+                                    and p["stat"] in singles):
+            return "B"
+        return "C"
+
+    delivered = []
+    for _ev, k, msg in fresh:
+        if k.startswith("watch|"):                    # Q-tier: board-only, never a push
+            delivered.append(k)                       # mark seen so it doesn't re-surface
+            continue
+        p = bykey.get(k)
+        if p is not None:
+            title = (f"🚨 {p['player']} {NOTIF_AB.get(p['stat'], p['stat'].upper())} "
+                     f"o{p['line']:g} {T._am(float(p['odds']))} {_tier_of(p)}")
+            outs = ", ".join(_short(x.strip()) for x in (p.get("out_player") or "").split(",")
+                             if x.strip())
+            body = f"{outs} out · proj {p.get('elev_avg'):g} · {p['pred_date'][5:]}"
+        else:                                         # non-pred alert (rare) — send as-is
+            title = "WNBA alert"
+            body = msg[:160]
+        try:
+            # title via query param, NOT header: HTTP headers are latin-1 — the 🚨 emoji would
+            # mojibake. ntfy's documented UTF-8 path is ?title= (requests URL-encodes it).
+            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
+                                 params={"title": title, "priority": "high",
+                                         "tags": "basketball"}, timeout=15)
+            resp.raise_for_status()
+            delivered.append(k)
+            print(f"pushed: {title}")
+        except requests.RequestException as e:
+            print("push failed — not marking SEEN, will retry:", str(e)[:80])
+    return delivered
+
+
 def main():
     alerts, preds = collect()
     logged = L.log_predictions(preds)                    # feed the learning loop
@@ -571,16 +619,9 @@ def main():
     topic = os.environ.get("NTFY_TOPIC")
     push_ok = False
     if topic and fresh:
-        body = _notif_body(fresh)
-        try:
-            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                                 headers={"Title": "WNBA prop spots (injury-driven)",
-                                          "Priority": "high", "Tags": "basketball"}, timeout=15)
-            resp.raise_for_status()                      # 5xx/timeout != delivered
-            push_ok = True
-            print("pushed")
-        except requests.RequestException as e:
-            print("push failed — not marking SEEN, will retry:", str(e)[:80])
+        delivered = push_plays(fresh, preds, topic)
+        push_ok = bool(delivered)
+        fresh = [(e2, k2, m2) for e2, k2, m2 in fresh if k2 in delivered]
     if push_ok:                                          # only remember spots we ACTUALLY delivered
         for _e, k, _m in fresh:
             seen.add(k)
