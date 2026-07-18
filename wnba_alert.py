@@ -315,14 +315,17 @@ def collect():
                                             "assists": pa["proj_ast"]}, pn_b,
                                            tip=tips_by[slate_date].get(team), tier="band_pilot")
                     continue
-                if slate_date != today or unconfirmed:
-                    # NEXT-DAY SAFEGUARD (2026-07-18, user: McBride was flagged off Juhasz/Miles'
-                    # LAST-GAME status and both played the next night; Boston 'out' yesterday may
-                    # play tomorrow while Clark sits). A rolling-feed 'Out' is last game's status,
-                    # NOT an official ruling for tomorrow — and RotoWire only covers today. So
-                    # next-day edges are CONTINGENT watchlist spots (lines scouted tonight, one
-                    # info ping) and only become firm bets when the GAME-DAY pass confirms the
-                    # ruling — the stale-line race runs at confirmation with lines pre-scouted.
+                if unconfirmed:
+                    # CONFIRMED-OUT SAFEGUARD (2026-07-18, user: McBride was flagged off Juhasz/
+                    # Miles' LAST-GAME status and both played the next night). A rolling-feed
+                    # 'Out' is last game's status, NOT a ruling for this game — edges stay
+                    # CONTINGENT (lines scouted, no bet) until every out in the cascade is
+                    # confirmed FOR THIS SLATE. Next-day confirmation exists now (official
+                    # night-before report; ESPN returnDate past the slate = season/long-term
+                    # outs — the user's 7/18 catch: Plum/Diggins/R.Jackson/Nogic sat in ⏳ limbo
+                    # forever), so a fully-confirmed next-day cascade goes FIRM tonight at
+                    # tonight's stalest lines. Partially confirmed keeps the whole cascade
+                    # contingent (the combined-vacancy premise isn't fully ruled).
                     bkt = (n, e["stat"])
                     prevs = _tmrw_seen.get(bkt)
                     if prevs is None or e["ev"] > prevs["ev"]:

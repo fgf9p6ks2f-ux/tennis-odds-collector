@@ -179,10 +179,16 @@ def log_predictions(rows):
         for pl, s, sd in con.execute("SELECT player, stat, side FROM predictions WHERE pred_date=? "
                                      "AND graded=0 AND result IS NULL", (d,)).fetchall():
             locked.setdefault((d, pl), set()).add((s, sd or "over"))
+    resurrected = []
     for r in rows:
         lk = locked.get((r.get("pred_date"), r.get("player")))
         if lk and (r.get("stat"), r.get("side") or "over") not in lk:
             continue                                     # already flagged a different play — locked
+        ex = con.execute("SELECT result, graded FROM predictions WHERE pred_date=? AND player=? "
+                         "AND stat=? AND line=?", (r.get("pred_date"), r.get("player"),
+                                                   r.get("stat"), r.get("line"))).fetchone()
+        if ex and ex[0] == "void" and not ex[1]:
+            resurrected.append(f"{r.get('pred_date')}|{r.get('player')}|{r.get('stat')}|{r.get('line')}")
         # insert new spots idempotently, and REFRESH on re-log so the row tracks live info through
         # the day: the confidence label (projected -> likely -> confirmed/bench as RotoWire locks),
         # AND the out-set + projection when a SECOND star is ruled out later (the timing edge — the
@@ -197,7 +203,19 @@ def log_predictions(rows):
             f"proj_hit=excluded.proj_hit, proj_min=excluded.proj_min, n_elev=excluded.n_elev, "
             f"d_fga=excluded.d_fga, d_min=excluded.d_min, d_fta=excluded.d_fta, "
             f"d_3pa=excluded.d_3pa, driver=excluded.driver, stale=excluded.stale, vac=excluded.vac, "
-            f"spread=excluded.spread, pi_role=excluded.pi_role",
+            f"spread=excluded.spread, pi_role=excluded.pi_role, "
+            # VOID RESURRECTION (2026-07-18): a safeguard-voided row keeps its key, which blocked
+            # the SAME bet from re-flagging once its premise became GENUINELY confirmed (Plum/
+            # Diggins long-term outs -> 7/19 beneficiaries stayed dead). The flagger only emits
+            # confirmed premises, so an ungraded 'void' it re-emits is alive again — at TODAY'S
+            # odds (the original flag was premature; this is the real flag time). Graded rows
+            # never resurrect.
+            f"odds=CASE WHEN predictions.result='void' AND predictions.graded=0 "
+            f"THEN excluded.odds ELSE predictions.odds END, "
+            f"odds_other=CASE WHEN predictions.result='void' AND predictions.graded=0 "
+            f"THEN excluded.odds_other ELSE predictions.odds_other END, "
+            f"result=CASE WHEN predictions.result='void' AND predictions.graded=0 "
+            f"THEN NULL ELSE predictions.result END",
             tuple((r.get(c) or "over") if c == "side" else r.get(c) for c in cols))
         n += cur.rowcount
     # A FLAG IS A PLACED BET — kept FOREVER (2026-07-13, user's rule). He bets the soft opener early
@@ -209,6 +227,18 @@ def log_predictions(rows):
     # so the same (date, player, stat, line) never double-counts and its opening odds are preserved.
     con.commit()
     con.close()
+    # a resurrected void is a NEW actionable flag — clear its ntfy-SEEN key (set when the
+    # premature original pinged) so the sender re-pings it (ping↔board coherence).
+    if resurrected:
+        try:
+            seen_f = Path(__file__).resolve().parent / "wnba_notified.txt"
+            seen = seen_f.read_text().splitlines() if seen_f.exists() else []
+            keep = [k for k in seen if k not in set(resurrected)]
+            if len(keep) != len(seen):
+                seen_f.write_text("\n".join(keep))
+            print(f"resurrected {len(resurrected)} voided flag(s) — re-ping armed")
+        except OSError:
+            pass
     return n
 
 

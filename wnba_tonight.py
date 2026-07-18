@@ -725,13 +725,16 @@ def starter_label(name, team, starters, proj_min):
 
 
 CONFIRMED_OUT_TODAY = set()          # populated by injuries() each call
+RET_OUT_BY = {}
 CONFIRMED_OUT_BY_DATE = {}           # {game_date: set(names)} — official report + overrides
 
 
 def confirmed_for(date_iso):
-    """Names with an OFFICIAL same-game Out ruling (or user override) for that date. Today's
-    set also unions the fast sources (RW flip-guarded, fresh rulings, returnDate)."""
-    return CONFIRMED_OUT_BY_DATE.get(date_iso, set())
+    """Names confirmed out for that date: an OFFICIAL same-game Out ruling / user override
+    (today also unions the fast sources: RW flip-guarded, fresh rulings) PLUS every long-term
+    out whose ESPN returnDate is beyond the slate date (season-enders, multi-week injuries)."""
+    return (CONFIRMED_OUT_BY_DATE.get(date_iso, set())
+            | {n for n, r in RET_OUT_BY.items() if r > date_iso})
 
 
 def injuries():
@@ -743,7 +746,7 @@ def injuries():
     abbreviated names ('M. Gustafson') resolve to full ESPN names via the roster cache,
     TEAM-SCOPED, skipping ambiguous initial+lastname collisions (the RotoWire lesson)."""
     out = {}
-    _rw_conf, _ovr_out, _ret_conf = set(), set(), set()
+    _rw_conf, _ovr_out, _ret_conf, _ret_by = set(), set(), set(), {}
     _today_ret = dt.datetime.now(ET).date().isoformat()
     for t in _espn("injuries").get("injuries", []):
         for p in t.get("injuries") or []:
@@ -761,6 +764,8 @@ def injuries():
             _ret = ((p.get("details") or {}).get("returnDate") or "")[:10]
             if nm and status == "Out" and _ret and _ret > _today_ret:
                 _ret_conf.add(nm)
+            if nm and status == "Out" and _ret:
+                _ret_by[nm] = _ret          # long-term outs: confirmed for every date < return
             if nm and status in ("Out", "Doubtful", "Questionable"):
                 out[nm] = status
     try:                                    # RotoWire game-day outs = first-class triggers
@@ -834,6 +839,15 @@ def injuries():
     # manual override OR a ruling whose Out status FIRST APPEARED today (fresh news — preserves
     # the speed doctrine for breaking rulings). Carryover Outs stay UNCONFIRMED until RW posts
     # or the status re-breaks; wnba_alert routes their edges to the ⏳ contingent tier.
+    # ── LONG-TERM OUTS (2026-07-18, user: "the bot lacks the ability to rule out players who
+    # are out for the season or long term"): ESPN returnDate covers the whole class — season-
+    # enders carry a next-May sentinel (R.Jackson/Nogic 2027-05-01), timetabled outs the actual
+    # window (Plum 07-28, Diggins 07-22). returnDate STRICTLY AFTER a slate date = officially
+    # expected out through that date -> confirmed for it (return == slate date means "next
+    # chance to play IS that game" — Morrow/Mack — and correctly stays unconfirmed). Filtered
+    # by post-override status so a user override or an official-report downgrade always wins.
+    global RET_OUT_BY
+    RET_OUT_BY = {n: r for n, r in _ret_by.items() if out.get(n) == "Out"}
     global CONFIRMED_OUT_TODAY
     try:
         fsp = Path(__file__).resolve().parent / "wnba_out_first_seen.json"
