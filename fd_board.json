@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T04:46:47Z",
+ "captured_at": "2026-07-18T04:50:56Z",
  "matches": [
   {
    "event_id": 35836173,
@@ -8,9 +8,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T04:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 68.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836177,
@@ -19,9 +19,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T04:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836178,
@@ -31,8 +31,8 @@
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T04:50:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35836198,
@@ -88,6 +88,50 @@
    "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35836233,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Wojciech Urban",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-18T05:15:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836234,
+   "p1": "Maksymilian Miastowski",
+   "p2": "Maciej Domin",
+   "p1_norm": "maksymilian miastowski",
+   "p2_norm": "maciej domin",
+   "open_date": "2026-07-18T05:15:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836235,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Jakub Wozniak",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "jakub wozniak",
+   "open_date": "2026-07-18T05:15:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836236,
+   "p1": "Maciej Kolek",
+   "p2": "Adam Linek",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "adam linek",
+   "open_date": "2026-07-18T05:15:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
