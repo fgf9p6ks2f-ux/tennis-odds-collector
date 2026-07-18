@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T22:41:05Z",
+ "captured_at": "2026-07-18T22:46:34Z",
  "matches": [
-  {
-   "event_id": 35840258,
-   "p1": "Marcin Marchlewski",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "marcin marchlewski",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-18T22:30:00.000Z",
-   "line": 69.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35840259,
    "p1": "Kacper Marchlewski",
@@ -19,9 +8,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-18T22:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35840262,
@@ -30,9 +19,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T22:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 89.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840266,
@@ -88,6 +77,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35840272,
+   "p1": "Artur Kubiak",
+   "p2": "Jakub Skorupa",
+   "p1_norm": "artur kubiak",
+   "p2_norm": "jakub skorupa",
+   "open_date": "2026-07-18T23:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
