@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T10:18:09Z",
+ "captured_at": "2026-07-18T10:23:00Z",
  "matches": [
-  {
-   "event_id": 35837071,
-   "p1": "Tibor Spanik",
-   "p2": "Maciej Domin",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "maciej domin",
-   "open_date": "2026-07-18T10:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35837074,
-   "p1": "Adam Linek",
-   "p2": "Maciej Kolek",
-   "p1_norm": "adam linek",
-   "p2_norm": "maciej kolek",
-   "open_date": "2026-07-18T10:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35837076,
    "p1": "Bartlomiej Wisniewski",
@@ -30,9 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T10:10:00.000Z",
-   "line": 85.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35837077,
@@ -41,9 +19,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "rafal idaczyk",
    "open_date": "2026-07-18T10:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837085,
@@ -52,9 +30,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "patryk gamrot",
    "open_date": "2026-07-18T10:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837095,
