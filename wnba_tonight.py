@@ -726,6 +726,7 @@ def starter_label(name, team, starters, proj_min):
 
 CONFIRMED_OUT_TODAY = set()          # populated by injuries() each call
 RET_OUT_BY = {}
+OFFICIAL_BY_DATE = {}
 CONFIRMED_OUT_BY_DATE = {}           # {game_date: set(names)} — official report + overrides
 
 
@@ -839,6 +840,8 @@ def injuries():
     # manual override OR a ruling whose Out status FIRST APPEARED today (fresh news — preserves
     # the speed doctrine for breaking rulings). Carryover Outs stay UNCONFIRMED until RW posts
     # or the status re-breaks; wnba_alert routes their edges to the ⏳ contingent tier.
+    global OFFICIAL_BY_DATE
+    OFFICIAL_BY_DATE = _official or {}
     # ── LONG-TERM OUTS (2026-07-18, user: "the bot lacks the ability to rule out players who
     # are out for the season or long term"): ESPN returnDate covers the whole class — season-
     # enders carry a next-May sentinel (R.Jackson/Nogic 2027-05-01), timetabled outs the actual
@@ -1011,7 +1014,13 @@ def questionable_stars(pl, playing, inj, firm_out, date=None, tips=None, first_s
         if full and norm_ct.get(nnm) == 1 and full not in cand and full not in firm_out:
             cand[full] = tag                                  # RotoWire game-time decision (unambiguous)
     by_team = defaultdict(list)
+    off = OFFICIAL_BY_DATE.get(date, {})
     for n, status in cand.items():
+        # OFFICIAL REPORT OUTRANKS the RW-GTD union (2026-07-18, user: "since clark is probable
+        # she should be taken off the watchlist"): injuries() pops officially-Probable players,
+        # but RotoWire's GTD tag re-added Clark here. Official Probable/Available = playing.
+        if off.get(n) in ("Probable", "Available"):
+            continue
         p = pl.get(n)
         if not p or p["team"] not in playing or n in firm_out:
             continue
