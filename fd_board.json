@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T09:04:30Z",
+ "captured_at": "2026-07-18T09:09:05Z",
  "matches": [
   {
    "event_id": 35836946,
@@ -8,9 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836947,
@@ -19,7 +19,7 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 75.5,
+   "line": 81.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +30,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 57.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35836949,
@@ -41,7 +41,7 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 76.5,
+   "line": 66.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +52,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-18T09:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836983,
