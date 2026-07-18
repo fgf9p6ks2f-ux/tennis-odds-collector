@@ -186,6 +186,63 @@ def _tip_times():
     return out
 
 
+SINGLES = ("points", "rebounds", "assists")
+
+
+def _tier(r, is_fav):
+    """Confidence tier from ALREADY-VALIDATED splits (2026-07-18) — no fitted model at n~31:
+    A = 3-8 band + market favorite + single stat (every ingredient real-line validated);
+    B = the solid middle (3-8 others, vetted cold tier, supported 0-3 singles);
+    C = combos and marginal 0-3 (positive but thinnest). Calibration = each tier's LIVE
+    record in the legend, recomputed from the ledger every bake — the tier says what its
+    record says, nothing more."""
+    dm = r.get("d_min")
+    single = r.get("stat") in SINGLES
+    inband = dm is not None and 3 <= dm <= 8
+    if inband and is_fav and single:
+        return "A"
+    if inband or dm is None or (0 <= (dm if dm is not None else -1) < 3 and single):
+        return "B"
+    return "C"
+
+
+def _fav_keys(rows):
+    """{(date, player, stat)} of each team-cascade's shortest-odds selected group."""
+    from collections import defaultdict
+    bycas = defaultdict(lambda: defaultdict(list))
+    for r in rows:
+        bycas[(r.get("pred_date"), r.get("team"))][(r.get("player"), r.get("stat"))].append(r)
+    out = set()
+    for (pd_, tm), groups in bycas.items():
+        fav = min(groups, key=lambda k: min(float(x.get("odds") or 99) for x in groups[k]))
+        out.add((pd_, fav[0], fav[1]))
+    return out
+
+
+def _tier_records():
+    """Live per-tier record over the graded go-forward universe — the legend's calibration."""
+    try:
+        import wnba_slip as S
+        con = sqlite3.connect(LEDGER)
+        con.row_factory = sqlite3.Row
+        g = [dict(r) for r in con.execute(
+            "SELECT * FROM predictions WHERE result IN ('over','under') "
+            "AND (side IS NULL OR side='over')")]
+        con.close()
+        sel, _ = S.current_selection(g)
+        favs = _fav_keys(sel)
+        rec = {"A": [0, 0, 0.0], "B": [0, 0, 0.0], "C": [0, 0, 0.0]}
+        for r in sel:
+            t = _tier(r, (r["pred_date"], r["player"], r["stat"]) in favs)
+            w = r["result"] == "over"
+            rec[t][0] += w
+            rec[t][1] += 1
+            rec[t][2] += (float(r["odds"]) - 1) if w else -1.0
+        return rec
+    except Exception:
+        return None
+
+
 def _load(mt_date):
     if not LEDGER.exists():
         return [], (0, 0, 0.0, 0)
@@ -470,6 +527,9 @@ def _prop_row(r, rungs=None):
     # (incl. the cold-margin exemption: Makani -4.1 scoreless, Ododa 10.7) via the real-line
     # replay before any gate ships.
     rwatch = ""
+    tval = r.get("_tier")
+    tierchip = (f'<span class="tchip t{tval}" title="confidence tier — live record in the legend '
+                f'below">{tval}</span>' if tval else "")
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     o = "O" if side == "over" else "U"
     ev = r.get("ev")
@@ -571,7 +631,7 @@ def _prop_row(r, rungs=None):
       <div class="prop" data-side="{side}" data-k="{dk}" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind {o.lower()}">{o}</span>
-          <span class="plno{rngcls}">{line_disp}</span><span class="pstat">{stat}</span>{rwatch}
+          <span class="plno{rngcls}">{line_disp}</span><span class="pstat">{stat}</span>{tierchip}{rwatch}
           <span class="psp"></span>
           {odds_html}
           <span class="pedge {ecls}">{edge_v}</span>{contra}<span class="pchev">›</span></div>
@@ -1311,6 +1371,9 @@ def build():
     except Exception:
         pass
     tips = _tip_times()
+    favs = _fav_keys(rows)
+    for r in rows:
+        r["_tier"] = _tier(r, (r.get("pred_date"), r.get("player"), r.get("stat")) in favs)
     # GROUP BY DAY > GAME > player — the board shows tonight's plays AND any already-posted
     # next-day plays (keyed by date so the same matchup on back-to-back days stays separate).
     by_player = defaultdict(list)
@@ -1429,6 +1492,19 @@ def build():
     # Client-side LIVE pre-match totals: refetch fd_board.json (the VM's FanDuel.ca board) from the
     # raw URL every 60s and re-render #tt-totals, so the totals update on their own between the
     # ~30-min dashboard rebakes. Injected as an f-string field so its JS braces stay literal.
+    tr = _tier_records()
+    if tr:
+        def _leg(t, desc):
+            w, n, u = tr[t]
+            recs = f"{w}-{n-w} · {w/max(1,n)*100:.0f}% · {u:+.1f}u" if n else "no graded bets yet"
+            return (f'<div class="tlrow"><span class="tchip t{t}">{t}</span>'
+                    f'<span class="tld">{desc}</span><span class="tlr">{recs}</span></div>')
+        tier_legend = ('<div class="tierleg"><div class="xt">confidence tiers · live record at real lines</div>'
+                       + _leg("A", "3-8 bump · favorite · single stat")
+                       + _leg("B", "3-8 others · cold-vetted · supported 0-3")
+                       + _leg("C", "combos · marginal") + '</div>')
+    else:
+        tier_legend = ""
     tt_live_js = TT_LIVE_JS
     import hashlib as _hl
     bv = _hl.sha1(Path(__file__).read_bytes()).hexdigest()[:10]   # style/code version marker
@@ -1528,6 +1604,19 @@ def build():
   .contra {{ color:#e0a95e; font-size:12px; margin-left:0; }}
   .rwatch {{ color:var(--warm); border:1px dashed rgba(255,138,61,.4); border-radius:var(--pill);
             padding:1px 7px; font-size:9.5px; font-weight:700; letter-spacing:.03em; }}
+  .tchip {{ display:inline-grid; place-items:center; width:18px; height:18px; border-radius:6px;
+           font-size:10.5px; font-weight:800; margin-left:2px; }}
+  .tchip.tA {{ background:linear-gradient(180deg, rgba(77,163,255,.32), rgba(77,163,255,.16));
+              color:#dbeafe; border:1px solid rgba(77,163,255,.4); }}
+  .tchip.tB {{ background:rgba(255,255,255,.07); color:var(--t2); border:1px solid var(--hair2); }}
+  .tchip.tC {{ background:rgba(255,255,255,.03); color:var(--t3); border:1px solid var(--hair); }}
+  .tierleg {{ background:radial-gradient(140% 170% at 50% -20%, #15181f, #0d0f14 65%);
+             border:1px solid var(--hair); border-radius:14px; padding:11px 13px; margin-top:12px;
+             box-shadow:inset 0 1px 0 rgba(255,255,255,.05); }}
+  .tlrow {{ display:flex; align-items:center; gap:9px; padding:4px 0; }}
+  .tld {{ color:var(--t3); font-size:11.5px; }}
+  .tlr {{ margin-left:auto; color:var(--t2); font-size:11.5px; font-weight:700;
+         font-variant-numeric:tabular-nums; }}
   .xteam {{ color:#5b6b82; font-size:10.5px; }}
   .stag {{ color:#c9a06a; font-size:10px; font-weight:700; margin-left:6px; }}
   .tcard.diag .tbody {{ display:none; }} .tcard.diag.open .tbody {{ display:block; }}
@@ -1856,6 +1945,7 @@ def build():
     {slip_html}
     {openers_html}
     {wl_html}
+    {tier_legend}
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>
