@@ -14,6 +14,7 @@
 2026-07-17|Rae Burrell|points|15.5
 2026-07-17|Rae Burrell|pra|21.5
 2026-07-17|Tyasha Harris|points|4.5
+2026-07-18|Breanna Stewart|pra|31.5
 2026-07-18|Breanna Stewart|rebounds|7.5
 2026-07-18|Jonquel Jones|dd
 2026-07-18|Kayla McBride|points|17.5
