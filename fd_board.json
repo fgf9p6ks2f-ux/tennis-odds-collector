@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T10:02:20Z",
+ "captured_at": "2026-07-18T10:07:06Z",
  "matches": [
   {
    "event_id": 35837035,
@@ -8,7 +8,7 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-18T09:50:00.000Z",
-   "line": 87.5,
+   "line": 71.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T09:55:00.000Z",
-   "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35837071,
@@ -30,9 +30,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-18T10:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837074,
@@ -41,9 +41,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T10:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837076,
@@ -88,6 +88,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35837099,
+   "p1": "Michal Wandachowicz",
+   "p2": "Dominik Solilo",
+   "p1_norm": "michal wandachowicz",
+   "p2_norm": "dominik solilo",
+   "open_date": "2026-07-18T10:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
