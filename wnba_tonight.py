@@ -756,27 +756,6 @@ def injuries():
                 _ret_conf.add(nm)
             if nm and status in ("Out", "Doubtful", "Questionable"):
                 out[nm] = status
-    # MANUAL STATUS OVERRIDES (2026-07-16): wnba_status_overrides.json — {"Player": {"status":
-    # "Probable", "expires": "YYYY-MM-DD"}}. For when the USER knows before the feeds (7/16:
-    # Rivers upgraded to probable for 7/17 while ESPN league+game feeds AND FD's slate all still
-    # said Out). Highest precedence; Probable/Available REMOVES the player from the injury view
-    # entirely (they play); entries auto-expire. Committed so VM + Actions both honor it.
-    try:
-        ov = json.loads((Path(__file__).resolve().parent
-                         / "wnba_status_overrides.json").read_text())
-        today_iso = dt.datetime.now(ET).date().isoformat()
-        for nm, o in (ov or {}).items():
-            if (o.get("expires") or "9999") < today_iso:
-                continue
-            st = o.get("status", "")
-            if st in ("Probable", "Available", "Playing"):
-                out.pop(nm, None)
-            elif st:
-                out[nm] = st
-                if st in ("Out", "Doubtful"):
-                    _ovr_out.add(nm)         # user-declared -> confirmed
-    except (OSError, ValueError):
-        pass
     try:                                    # RotoWire game-day outs = first-class triggers
         pl = json.loads((Path(__file__).resolve().parent
                          / "wnba_players_cache.json").read_text()).get("players", {})
@@ -802,6 +781,29 @@ def injuries():
                         _rw_conf.add(full[0])
     except Exception:
         pass
+    # MANUAL STATUS OVERRIDES — applied LAST (2026-07-18 fix: the RW merge ran after this
+    # block and re-marked Boston Out, silently demoting the user's override; highest
+    # precedence means highest, so overrides now run after every feed source): wnba_status_overrides.json — {"Player": {"status":
+    # "Probable", "expires": "YYYY-MM-DD"}}. For when the USER knows before the feeds (7/16:
+    # Rivers upgraded to probable for 7/17 while ESPN league+game feeds AND FD's slate all still
+    # said Out). Highest precedence; Probable/Available REMOVES the player from the injury view
+    # entirely (they play); entries auto-expire. Committed so VM + Actions both honor it.
+    try:
+        ov = json.loads((Path(__file__).resolve().parent
+                         / "wnba_status_overrides.json").read_text())
+        today_iso = dt.datetime.now(ET).date().isoformat()
+        for nm, o in (ov or {}).items():
+            if (o.get("expires") or "9999") < today_iso:
+                continue
+            st = o.get("status", "")
+            if st in ("Probable", "Available", "Playing"):
+                out.pop(nm, None)
+            elif st:
+                out[nm] = st
+                if st in ("Out", "Doubtful"):
+                    _ovr_out.add(nm)         # user-declared -> confirmed
+    except (OSError, ValueError):
+        pass
     # ── CONFIRMED-FOR-TODAY (2026-07-18, user: "only flag bets whose out players are CONFIRMED
     # out"): a rolling-feed 'Out' can be LAST game's status well into game day (McBride/Juhasz-
     # Miles; Boston may play tonight). Confirmed = RW's game-day out-list (game-specific) OR a
@@ -821,10 +823,11 @@ def injuries():
         for n in cur:
             fs.setdefault(n, today_iso)
         fsp.write_text(json.dumps(fs, indent=0))
-        CONFIRMED_OUT_TODAY = (set(_rw_conf) | _ovr_out | _ret_conf
-                               | {n for n in cur if fs.get(n) == today_iso})
+        CONFIRMED_OUT_TODAY = ((set(_rw_conf) | _ovr_out | _ret_conf
+                                | {n for n in cur if fs.get(n) == today_iso}) & cur) | _ovr_out
     except Exception:
-        CONFIRMED_OUT_TODAY = set(_rw_conf) | _ovr_out | _ret_conf
+        CONFIRMED_OUT_TODAY = ((set(_rw_conf) | _ret_conf)
+                               & {n for n, s in out.items() if s in ("Out", "Doubtful")}) | _ovr_out
     return out
 
 
