@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T05:04:15Z",
+ "captured_at": "2026-07-18T05:08:29Z",
  "matches": [
-  {
-   "event_id": 35836177,
-   "p1": "Patryk Mecik",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "patryk mecik",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-18T04:50:00.000Z",
-   "line": 91.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35836178,
    "p1": "Aleksander Lilien",
@@ -19,9 +8,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T04:50:00.000Z",
-   "line": 90.5,
-   "over_odds": -135,
-   "under_odds": -105
+   "line": 93.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35836199,
@@ -30,9 +19,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T04:55:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836200,
@@ -41,9 +30,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T04:55:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836230,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T05:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836231,
@@ -119,6 +108,28 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T05:30:00.000Z",
    "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836579,
+   "p1": "Rafal Idaczyk",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-18T05:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836580,
+   "p1": "Aleksander Lilien",
+   "p2": "Adam Linek",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "adam linek",
+   "open_date": "2026-07-18T05:35:00.000Z",
+   "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
   }
