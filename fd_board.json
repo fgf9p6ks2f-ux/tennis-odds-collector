@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T02:43:29Z",
+ "captured_at": "2026-07-18T02:49:15Z",
  "matches": [
-  {
-   "event_id": 35836069,
-   "p1": "Grzegorz Sawicki",
-   "p2": "Michal Durda",
-   "p1_norm": "grzegorz sawicki",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-18T02:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35836071,
    "p1": "Michal Wolny",
@@ -19,8 +8,8 @@
    "p1_norm": "michal wolny",
    "p2_norm": "marcin wozniczka",
    "open_date": "2026-07-18T02:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
+   "line": 67.5,
+   "over_odds": -115,
    "under_odds": -120
   },
   {
@@ -30,9 +19,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T02:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 62.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836082,
