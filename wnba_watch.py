@@ -382,6 +382,24 @@ def main():
                 obs.append((full, pl[full]["team"], "GTD", pl[full]["min"], _tip(pl[full]["team"])))
         if obs:
             QL.record(today_et, obs)
+        # OFFICIAL-report designations (2026-07-18, user: "does Doubtful mean out 90-100%?"):
+        # log every official Doubtful/Questionable/Probable as its own class so the WNBA-specific
+        # sit rates answer themselves. PRE-COMMITTED: if the first ~10-15 DOUBTFUL-OFFICIAL rows
+        # sit >=90%, official Doubtful promotes to a CONFIRMING status in the bet gate. Works for
+        # tomorrow's rows too (game_date-keyed; the resolver settles them after that date).
+        try:
+            import wnba_injury_report as IR
+            from collections import defaultdict as _dd
+            byd = _dd(list)
+            for r in IR.report().get("rows", []):
+                if r["status"] in ("Doubtful", "Questionable", "Probable") and r["player"] in pl:
+                    byd[r["game_date"]].append(
+                        (r["player"], r["team"], r["status"].upper() + "-OFFICIAL",
+                         pl[r["player"]]["min"], None))
+            for d_, obs2 in byd.items():
+                QL.record(d_, obs2)
+        except Exception as e:
+            print("official-designation log skipped:", str(e)[:60])
     except Exception as e:
         print("question-log record skipped:", str(e)[:60])
     if first_run:
