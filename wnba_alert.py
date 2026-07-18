@@ -542,7 +542,8 @@ def push_plays(fresh, preds, topic):
             continue
         p = bykey.get(k)
         if p is not None:
-            title = (f"🚨 {p['player']} {NOTIF_AB.get(p['stat'], p['stat'].upper())} "
+            tm = f"{p['team']} · " if p.get("team") else ""
+            title = (f"🚨 {tm}{p['player']} {NOTIF_AB.get(p['stat'], p['stat'].upper())} "
                      f"o{p['line']:g} {T._am(float(p['odds']))} {_tier_of(p)}")
             outs = ", ".join(_short(x.strip()) for x in (p.get("out_player") or "").split(",")
                              if x.strip())
