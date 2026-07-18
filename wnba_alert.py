@@ -542,24 +542,21 @@ def push_plays(fresh, preds, topic):
             continue
         p = bykey.get(k)
         if p is not None:
-            tm = f"{p['team']} · " if p.get("team") else ""
-            title = (f"🚨 {tm}{p['player']} {NOTIF_AB.get(p['stat'], p['stat'].upper())} "
-                     f"o{p['line']:g} {T._am(float(p['odds']))} {_tier_of(p)}")
-            # title-only (user 2026-07-18): no premise line. ntfy swaps a truly empty body for
-            # the word "triggered", so send a zero-width space to keep the banner to one line.
-            body = "\u200b"
+            # BODY-only, no title (user 2026-07-18 v2): iOS bolds titles and truncates them
+            # sooner; body text is unbold and fits the whole play on one banner. No ntfy tags
+            # either — known tags render as an extra leading emoji (🏀). Team joins with a
+            # plain space, no separator.
+            tm = f"{p['team']} " if p.get("team") else ""
+            text = (f"🚨 {tm}{p['player']} {NOTIF_AB.get(p['stat'], p['stat'].upper())} "
+                    f"o{p['line']:g} {T._am(float(p['odds']))} {_tier_of(p)}")
         else:                                         # non-pred alert (rare) — send as-is
-            title = "WNBA alert"
-            body = msg[:160]
+            text = msg[:160]
         try:
-            # title via query param, NOT header: HTTP headers are latin-1 — the 🚨 emoji would
-            # mojibake. ntfy's documented UTF-8 path is ?title= (requests URL-encodes it).
-            resp = requests.post(f"https://ntfy.sh/{topic}", data=body.encode("utf-8"),
-                                 params={"title": title, "priority": "high",
-                                         "tags": "basketball"}, timeout=15)
+            resp = requests.post(f"https://ntfy.sh/{topic}", data=text.encode("utf-8"),
+                                 params={"priority": "high"}, timeout=15)
             resp.raise_for_status()
             delivered.append(k)
-            print(f"pushed: {title}")
+            print(f"pushed: {text}")
         except requests.RequestException as e:
             print("push failed — not marking SEEN, will retry:", str(e)[:80])
     return delivered
