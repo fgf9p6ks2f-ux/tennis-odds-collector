@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T02:26:06Z",
+ "captured_at": "2026-07-18T02:31:56Z",
  "matches": [
   {
    "event_id": 35836058,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-18T02:15:00.000Z",
-   "line": 92.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 100.5,
+   "over_odds": 120,
+   "under_odds": -165
   },
   {
    "event_id": 35836060,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-18T02:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 58.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35836069,
