@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T03:59:21Z",
+ "captured_at": "2026-07-18T04:04:21Z",
  "matches": [
   {
    "event_id": 35836122,
@@ -8,20 +8,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T03:50:00.000Z",
-   "line": 85.5,
+   "line": 88.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35836123,
-   "p1": "Oskar Jadach",
-   "p2": "Jacek Wieczerzak",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "jacek wieczerzak",
-   "open_date": "2026-07-18T03:50:00.000Z",
-   "line": 50.5,
-   "over_odds": 105,
-   "under_odds": -145
   },
   {
    "event_id": 35836133,
@@ -30,7 +19,7 @@
    "p1_norm": "damian fira",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T03:55:00.000Z",
-   "line": 75.5,
+   "line": 90.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -41,9 +30,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T04:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836139,

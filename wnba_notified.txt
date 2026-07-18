@@ -21,6 +21,13 @@
 2026-07-18|Pauline Astier|pts_reb|11.5
 2026-07-18|Sabrina Ionescu|assists|4.5
 2026-07-18|Tyasha Harris|points|4.5
+2026-07-19|DeWanna Bonner|rebounds|6.5
+2026-07-19|Gabriela Jaquez|points|7.5
+2026-07-19|Gabriela Jaquez|points|9.5
+2026-07-19|Kamilla Cardoso|dd
+2026-07-19|Monique Akoa Makani|points|10.5
+2026-07-19|Olivia Nelson-Ododa|points|11.5
+2026-07-19|Rae Burrell|pra|21.5
 timing|2026-07-18|Aaliyah Edwards|points|9.5
 timing|2026-07-18|DeWanna Bonner|pra|20.5
 timing|2026-07-18|Jonquel Jones|pra|25.5
@@ -36,3 +43,7 @@ watch|2026-07-17|Olivia Nelson-Ododa|rebounds|7.5
 watch|2026-07-18|Natasha Howard|assists|1.5
 watch|2026-07-18|Natasha Howard|reb_ast|10.5
 watch|2026-07-18|Natasha Howard|rebounds|7.5
+watch|2026-07-19|Olivia Nelson-Ododa|pra|20.5
+watch|2026-07-19|Olivia Nelson-Ododa|pts_reb|18.5
+watch|2026-07-19|Olivia Nelson-Ododa|reb_ast|9.5
+watch|2026-07-19|Olivia Nelson-Ododa|rebounds|7.5
