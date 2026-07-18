@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T06:55:20Z",
+ "captured_at": "2026-07-18T06:59:48Z",
  "matches": [
-  {
-   "event_id": 35836739,
-   "p1": "Rafal Idaczyk",
-   "p2": "Piotr Zemla",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "piotr zemla",
-   "open_date": "2026-07-18T06:45:00.000Z",
-   "line": 68.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35836740,
    "p1": "Daniel Morawiec",
@@ -19,9 +8,9 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "filip witczak",
    "open_date": "2026-07-18T06:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 96.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836749,
@@ -30,9 +19,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T06:50:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836755,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "jacek wieczerzak",
    "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836756,
@@ -52,9 +41,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "tibor spanik",
    "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836757,
@@ -63,9 +52,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "dariusz wrobel",
    "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836794,
