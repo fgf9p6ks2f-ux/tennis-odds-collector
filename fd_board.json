@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-18T01:44:51Z",
+ "captured_at": "2026-07-18T01:50:52Z",
  "matches": [
-  {
-   "event_id": 35835963,
-   "p1": "Adam Ruszkiewicz",
-   "p2": "Damian Fira",
-   "p1_norm": "adam ruszkiewicz",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-18T01:30:00.000Z",
-   "line": 81.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
-  {
-   "event_id": 35835964,
-   "p1": "Marcin Marchlewski",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "marcin marchlewski",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-18T01:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35835975,
-   "p1": "Marcin Wozniczka",
-   "p2": "Oskar Jedrzejowski",
-   "p1_norm": "marcin wozniczka",
-   "p2_norm": "oskar jedrzejowski",
-   "open_date": "2026-07-18T01:35:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35835984,
    "p1": "Wojciech Wojtaszczyk",
@@ -41,9 +8,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-18T01:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835990,
@@ -88,6 +55,17 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35836058,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Marcin Marchlewski",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "marcin marchlewski",
+   "open_date": "2026-07-18T02:15:00.000Z",
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
