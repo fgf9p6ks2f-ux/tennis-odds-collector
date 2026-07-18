@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T18:45:24Z",
+ "captured_at": "2026-07-18T18:51:12Z",
  "matches": [
   {
    "event_id": 35839706,
@@ -8,20 +8,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-18T18:30:00.000Z",
-   "line": 85.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35839712,
-   "p1": "Piotr Gesiarz",
-   "p2": "Dariusz Maszczynski",
-   "p1_norm": "piotr gesiarz",
-   "p2_norm": "dariusz maszczynski",
-   "open_date": "2026-07-18T18:30:00.000Z",
-   "line": 97.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 86.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35839720,
@@ -30,9 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-18T18:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839721,
@@ -41,9 +30,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-18T18:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 51.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35839734,
@@ -53,8 +42,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T18:50:00.000Z",
    "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839738,
@@ -99,6 +88,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35839762,
+   "p1": "Michal Olbrycht",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "michal olbrycht",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-18T19:15:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
