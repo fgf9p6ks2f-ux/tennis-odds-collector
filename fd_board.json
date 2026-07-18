@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T16:18:10Z",
+ "captured_at": "2026-07-18T16:23:31Z",
  "matches": [
-  {
-   "event_id": 35838409,
-   "p1": "Artur Kubiak",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-18T16:00:00.000Z",
-   "line": 110.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35838412,
    "p1": "Marcin Marchlewski",
@@ -19,9 +8,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-18T16:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 52.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35838438,
@@ -30,7 +19,7 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-18T16:15:00.000Z",
-   "line": 80.5,
+   "line": 85.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "piotr gesiarz",
    "open_date": "2026-07-18T16:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 57.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35838452,
@@ -52,9 +41,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "daniel morawiec",
    "open_date": "2026-07-18T16:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35838590,
@@ -108,6 +97,17 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T16:40:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35838932,
+   "p1": "Henryk Tkaczyk",
+   "p2": "Oskar Jedrzejowski",
+   "p1_norm": "henryk tkaczyk",
+   "p2_norm": "oskar jedrzejowski",
+   "open_date": "2026-07-18T16:50:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
