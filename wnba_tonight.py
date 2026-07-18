@@ -1113,6 +1113,19 @@ def top_play(spots, band_gate=True):
         k = (s["player"], s["stat"])
         if k not in anchors or s["line"] < anchors[k]["line"]:
             anchors[k] = s
+    # SAME-FAMILY CAP, mirroring the firm pipeline (2026-07-18, the Sydney Taylor case): the
+    # firm pass keeps ONE leg per production family per team (best EV — Cloud's PR out-EV'd
+    # Taylor's points, so Taylor never flagged), but the scenario top play skipped the cap and
+    # advertised her [A] as "the play". The watchlist must never promise a leg the firm engine
+    # will cap out. Family map identical to wnba_alert's.
+    FAM = {"points": "PTS", "pra": "PTS", "pts_reb": "PTS", "pts_ast": "PTS",
+           "rebounds": "REB", "reb_ast": "REB", "assists": "AST"}
+    best_fam = {}
+    for k, s in anchors.items():
+        f = FAM.get(s["stat"], s["stat"])
+        if f not in best_fam or (s.get("ev") or 0) > (best_fam[f].get("ev") or 0):
+            best_fam[f] = s
+    anchors = {(s["player"], s["stat"]): s for s in best_fam.values()}
     if not anchors:
         return None
     s = min(anchors.values(), key=lambda x: (x.get("dec") or 99, -(x.get("ev") or 0)))
