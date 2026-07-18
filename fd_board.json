@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T04:21:23Z",
+ "captured_at": "2026-07-18T04:25:31Z",
  "matches": [
   {
    "event_id": 35836141,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub wozniak",
    "p2_norm": "dariusz wrobel",
    "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836147,
@@ -19,9 +19,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "roman wiza",
    "open_date": "2026-07-18T04:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836148,
@@ -31,8 +31,8 @@
    "p2_norm": "rafal idaczyk",
    "open_date": "2026-07-18T04:25:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836149,
@@ -54,7 +54,7 @@
    "open_date": "2026-07-18T04:30:00.000Z",
    "line": 76.5,
    "over_odds": -118,
-   "under_odds": -112
+   "under_odds": -116
   },
   {
    "event_id": 35836170,
@@ -64,8 +64,8 @@
    "p2_norm": "dariusz wrobel",
    "open_date": "2026-07-18T04:30:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35836171,
@@ -88,6 +88,28 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35836177,
+   "p1": "Patryk Mecik",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "patryk mecik",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-18T04:50:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836178,
+   "p1": "Aleksander Lilien",
+   "p2": "Michal Minda",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-18T04:50:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
