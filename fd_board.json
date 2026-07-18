@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T17:08:43Z",
+ "captured_at": "2026-07-18T17:14:21Z",
  "matches": [
   {
    "event_id": 35839226,
@@ -8,9 +8,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-18T16:55:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839533,
@@ -19,9 +19,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-18T17:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35839552,
@@ -77,6 +77,17 @@
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35839605,
+   "p1": "Marcin Marchlewski",
+   "p2": "Filip Mlynarski",
+   "p1_norm": "marcin marchlewski",
+   "p2_norm": "filip mlynarski",
+   "open_date": "2026-07-18T17:40:00.000Z",
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
