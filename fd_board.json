@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T08:10:26Z",
+ "captured_at": "2026-07-18T08:16:42Z",
  "matches": [
   {
    "event_id": 35836870,
@@ -8,9 +8,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "adam linek",
    "open_date": "2026-07-18T08:05:00.000Z",
-   "line": 83.5,
+   "line": 87.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35836871,
@@ -19,9 +19,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-18T08:05:00.000Z",
-   "line": 57.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35836879,
@@ -30,9 +30,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T08:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836892,
@@ -75,6 +75,17 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T08:30:00.000Z",
    "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836915,
+   "p1": "Rafal Glica",
+   "p2": "Marcin Lach",
+   "p1_norm": "rafal glica",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-18T08:35:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
