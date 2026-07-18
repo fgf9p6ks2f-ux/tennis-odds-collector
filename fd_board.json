@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T17:20:58Z",
+ "captured_at": "2026-07-18T17:26:35Z",
  "matches": [
-  {
-   "event_id": 35839533,
-   "p1": "Artur Kubiak",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-18T17:10:00.000Z",
-   "line": 90.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35839552,
    "p1": "Gracjan Kesik",
@@ -19,9 +8,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T17:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839553,
@@ -29,6 +18,17 @@
    "p2": "Krzysztof Wloczko",
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-18T17:20:00.000Z",
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35839554,
+   "p1": "Piotr Gesiarz",
+   "p2": "Krzysztof Malcher",
+   "p1_norm": "piotr gesiarz",
+   "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T17:20:00.000Z",
    "line": 79.5,
    "over_odds": -120,
