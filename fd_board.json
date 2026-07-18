@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T20:54:56Z",
+ "captured_at": "2026-07-18T21:02:06Z",
  "matches": [
   {
    "event_id": 35839929,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-18T20:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35839930,
@@ -19,9 +19,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T20:45:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -160,
+   "under_odds": 115
   },
   {
    "event_id": 35839936,
@@ -30,9 +30,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-18T21:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35839937,
@@ -41,9 +41,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T21:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839938,
@@ -52,9 +52,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "filip mlynarski",
    "open_date": "2026-07-18T21:00:00.000Z",
-   "line": 71.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35839942,
