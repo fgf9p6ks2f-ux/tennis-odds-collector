@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T22:10:08Z",
+ "captured_at": "2026-07-18T22:16:43Z",
  "matches": [
   {
    "event_id": 35840236,
@@ -9,19 +9,8 @@
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-18T22:00:00.000Z",
    "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35840252,
-   "p1": "Filip Mlynarski",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "filip mlynarski",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-18T22:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840253,
@@ -30,9 +19,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-18T22:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35840255,
@@ -88,6 +77,17 @@
    "line": 72.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35840262,
+   "p1": "Mariusz Adamus",
+   "p2": "Rafal Adach",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-18T22:40:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
