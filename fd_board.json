@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T16:12:48Z",
+ "captured_at": "2026-07-18T16:18:10Z",
  "matches": [
-  {
-   "event_id": 35838215,
-   "p1": "Dariusz Maszczynski",
-   "p2": "Janus Slawomir",
-   "p1_norm": "dariusz maszczynski",
-   "p2_norm": "janus slawomir",
-   "open_date": "2026-07-18T15:50:00.000Z",
-   "line": 101.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
-  {
-   "event_id": 35838337,
-   "p1": "Lukasz Oracz",
-   "p2": "Mariusz Baron",
-   "p1_norm": "lukasz oracz",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-18T15:55:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35838409,
    "p1": "Artur Kubiak",
@@ -30,9 +8,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-18T16:00:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 110.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35838412,
@@ -41,8 +19,8 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-18T16:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
+   "line": 73.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
@@ -52,9 +30,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-18T16:15:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35838439,
@@ -63,9 +41,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "piotr gesiarz",
    "open_date": "2026-07-18T16:15:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35838452,
@@ -119,6 +97,17 @@
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T16:35:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35838776,
+   "p1": "Rafal Wojcik",
+   "p2": "Mariusz Baron",
+   "p1_norm": "rafal wojcik",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-18T16:40:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
