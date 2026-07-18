@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T08:30:19Z",
+ "captured_at": "2026-07-18T08:35:32Z",
  "matches": [
-  {
-   "event_id": 35836879,
-   "p1": "Oskar Jadach",
-   "p2": "Wojciech Urban",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-18T08:10:00.000Z",
-   "line": 94.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35836892,
    "p1": "Daniel Morawiec",
@@ -19,7 +8,7 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-18T08:20:00.000Z",
-   "line": 109.5,
+   "line": 131.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,7 +19,7 @@
    "p1_norm": "piotr zemla",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T08:20:00.000Z",
-   "line": 78.5,
+   "line": 79.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -41,9 +30,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-18T08:30:00.000Z",
-   "line": 74.5,
+   "line": 64.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35836912,
@@ -52,9 +41,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T08:30:00.000Z",
-   "line": 79.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 81.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836915,
@@ -63,9 +52,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T08:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836927,
@@ -88,6 +77,50 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35836946,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Jakub Wozniak",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "jakub wozniak",
+   "open_date": "2026-07-18T09:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836947,
+   "p1": "Jacek Wieczerzak",
+   "p2": "Wojciech Urban",
+   "p1_norm": "jacek wieczerzak",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-18T09:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836948,
+   "p1": "Adam Linek",
+   "p2": "Dominik Solilo",
+   "p1_norm": "adam linek",
+   "p2_norm": "dominik solilo",
+   "open_date": "2026-07-18T09:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836949,
+   "p1": "Tibor Spanik",
+   "p2": "Maksymilian Miastowski",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "maksymilian miastowski",
+   "open_date": "2026-07-18T09:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
