@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T08:21:12Z",
+ "captured_at": "2026-07-18T08:25:45Z",
  "matches": [
-  {
-   "event_id": 35836871,
-   "p1": "Damian Wederlich",
-   "p2": "Maciej Domin",
-   "p1_norm": "damian wederlich",
-   "p2_norm": "maciej domin",
-   "open_date": "2026-07-18T08:05:00.000Z",
-   "line": 86.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35836879,
    "p1": "Oskar Jadach",
@@ -19,9 +8,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T08:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 95.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836892,
@@ -30,9 +19,9 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-18T08:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836893,
@@ -41,9 +30,9 @@
    "p1_norm": "piotr zemla",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T08:20:00.000Z",
-   "line": 67.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836911,
