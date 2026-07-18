@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T04:42:39Z",
+ "captured_at": "2026-07-18T04:46:47Z",
  "matches": [
-  {
-   "event_id": 35836149,
-   "p1": "Adam Linek",
-   "p2": "Michal Minda",
-   "p1_norm": "adam linek",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-18T04:25:00.000Z",
-   "line": 80.5,
-   "over_odds": -160,
-   "under_odds": 115
-  },
-  {
-   "event_id": 35836171,
-   "p1": "Jacek Wieczerzak",
-   "p2": "Wojciech Urban",
-   "p1_norm": "jacek wieczerzak",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-18T04:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35836173,
    "p1": "Adam Ruszkiewicz",
@@ -30,9 +8,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T04:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836177,
@@ -99,6 +77,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35836231,
+   "p1": "Piotr Zemla",
+   "p2": "Kacper Adamus",
+   "p1_norm": "piotr zemla",
+   "p2_norm": "kacper adamus",
+   "open_date": "2026-07-18T05:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
