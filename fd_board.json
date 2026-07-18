@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T01:25:07Z",
+ "captured_at": "2026-07-18T01:32:17Z",
  "matches": [
   {
    "event_id": 35835955,
@@ -8,9 +8,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "kacper marchlewski",
    "open_date": "2026-07-18T01:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35835956,
@@ -20,8 +20,8 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-18T01:25:00.000Z",
    "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835963,
@@ -30,9 +30,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T01:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835964,
@@ -41,9 +41,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T01:30:00.000Z",
-   "line": 76.5,
+   "line": 79.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35835975,
@@ -64,6 +64,28 @@
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-18T01:45:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835990,
+   "p1": "Robert Szymik",
+   "p2": "Rafal Adach",
+   "p1_norm": "robert szymik",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-18T01:55:00.000Z",
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835991,
+   "p1": "Tomasz Filbrandt",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "tomasz filbrandt",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-18T01:55:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }
