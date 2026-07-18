@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T16:28:53Z",
+ "captured_at": "2026-07-18T16:35:10Z",
  "matches": [
-  {
-   "event_id": 35838438,
-   "p1": "Kacper Marchlewski",
-   "p2": "Gracjan Kesik",
-   "p1_norm": "kacper marchlewski",
-   "p2_norm": "gracjan kesik",
-   "open_date": "2026-07-18T16:15:00.000Z",
-   "line": 69.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35838439,
-   "p1": "Andriej Fomin",
-   "p2": "Piotr Gesiarz",
-   "p1_norm": "andriej fomin",
-   "p2_norm": "piotr gesiarz",
-   "open_date": "2026-07-18T16:15:00.000Z",
-   "line": 87.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35838452,
    "p1": "Filip Witczak",
@@ -30,9 +8,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "daniel morawiec",
    "open_date": "2026-07-18T16:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35838590,
@@ -41,9 +19,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-18T16:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35838657,
@@ -52,9 +30,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-18T16:30:00.000Z",
-   "line": 74.5,
+   "line": 70.5,
    "over_odds": -120,
-   "under_odds": -110
+   "under_odds": -115
   },
   {
    "event_id": 35838689,
@@ -64,8 +42,8 @@
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T16:35:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35838690,
@@ -74,9 +52,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T16:35:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35838776,
@@ -107,9 +85,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T16:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35839226,
