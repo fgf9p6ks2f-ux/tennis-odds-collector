@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-17T23:59:01Z",
+ "captured_at": "2026-07-18T00:06:23Z",
  "matches": [
-  {
-   "event_id": 35835851,
-   "p1": "Grzegorz Sawicki",
-   "p2": "Jakub Jesiek",
-   "p1_norm": "grzegorz sawicki",
-   "p2_norm": "jakub jesiek",
-   "open_date": "2026-07-17T23:45:00.000Z",
-   "line": 86.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35835860,
    "p1": "Robert Szymik",
@@ -19,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "damian fira",
    "open_date": "2026-07-17T23:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 67.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35835861,
@@ -30,9 +19,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-17T23:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 97.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835864,
@@ -41,9 +30,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-18T00:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835865,
