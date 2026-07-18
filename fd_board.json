@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T04:16:40Z",
+ "captured_at": "2026-07-18T04:21:23Z",
  "matches": [
-  {
-   "event_id": 35836139,
-   "p1": "Adrian Spychala",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35836140,
-   "p1": "Rafal Glica",
-   "p2": "Grzegorz Sawicki",
-   "p1_norm": "rafal glica",
-   "p2_norm": "grzegorz sawicki",
-   "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 51.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35836141,
    "p1": "Jakub Wozniak",
@@ -30,7 +8,7 @@
    "p1_norm": "jakub wozniak",
    "p2_norm": "dariusz wrobel",
    "open_date": "2026-07-18T04:10:00.000Z",
-   "line": 81.5,
+   "line": 91.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -42,8 +20,8 @@
    "p2_norm": "roman wiza",
    "open_date": "2026-07-18T04:20:00.000Z",
    "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35836148,
