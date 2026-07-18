@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T05:26:10Z",
+ "captured_at": "2026-07-18T05:31:05Z",
  "matches": [
   {
    "event_id": 35836233,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35836235,
@@ -19,9 +19,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 96.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836236,
@@ -30,9 +30,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "adam linek",
    "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 101.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 103.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35836524,
@@ -41,9 +41,9 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T05:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836579,
@@ -99,6 +99,17 @@
    "line": 72.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35836675,
+   "p1": "Filip Witczak",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "filip witczak",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-18T05:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
