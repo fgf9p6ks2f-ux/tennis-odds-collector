@@ -552,8 +552,11 @@ def push_plays(fresh, preds, topic):
         else:                                         # non-pred alert (rare) — send as-is
             text = msg[:160]
         try:
+            # short static title: with NO title ntfy shows the raw topic URL as the header
+            # line (user: "the header line is now ntfy.sh/ttelite..."). "Pickz" = his
+            # home-screen app name; the play line below stays unbold and full-length.
             resp = requests.post(f"https://ntfy.sh/{topic}", data=text.encode("utf-8"),
-                                 params={"priority": "high"}, timeout=15)
+                                 params={"title": "Pickz", "priority": "high"}, timeout=15)
             resp.raise_for_status()
             delivered.append(k)
             print(f"pushed: {text}")
