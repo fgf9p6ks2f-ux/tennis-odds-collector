@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T02:02:46Z",
+ "captured_at": "2026-07-18T02:08:31Z",
  "matches": [
   {
    "event_id": 35835990,
@@ -8,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T01:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35835991,
@@ -19,20 +19,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T01:55:00.000Z",
-   "line": 85.5,
+   "line": 88.5,
    "over_odds": -110,
    "under_odds": -125
-  },
-  {
-   "event_id": 35835992,
-   "p1": "Jacek Oracz",
-   "p2": "Cezary Pawlik",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "cezary pawlik",
-   "open_date": "2026-07-18T02:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
   },
   {
    "event_id": 35836011,
@@ -42,8 +31,8 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-18T02:10:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35836058,
@@ -75,6 +64,17 @@
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T02:20:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836069,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Michal Durda",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-18T02:35:00.000Z",
+   "line": 70.5,
    "over_odds": -118,
    "under_odds": -112
   }
