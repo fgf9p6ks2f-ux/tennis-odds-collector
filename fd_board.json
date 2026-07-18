@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T21:14:07Z",
+ "captured_at": "2026-07-18T21:20:28Z",
  "matches": [
-  {
-   "event_id": 35839936,
-   "p1": "Kacper Marchlewski",
-   "p2": "Gracjan Kesik",
-   "p1_norm": "kacper marchlewski",
-   "p2_norm": "gracjan kesik",
-   "open_date": "2026-07-18T21:00:00.000Z",
-   "line": 88.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35839937,
    "p1": "Janus Slawomir",
@@ -19,18 +8,7 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T21:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35839942,
-   "p1": "Robert Szymik",
-   "p2": "Mariusz Adamus",
-   "p1_norm": "robert szymik",
-   "p2_norm": "mariusz adamus",
-   "open_date": "2026-07-18T21:05:00.000Z",
-   "line": 54.5,
+   "line": 104.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -41,9 +19,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T21:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35839949,
@@ -63,9 +41,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-18T21:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35839951,
@@ -99,6 +77,39 @@
    "line": 73.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35840057,
+   "p1": "Marcin Marchlewski",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "marcin marchlewski",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-18T21:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840058,
+   "p1": "Dariusz Maszczynski",
+   "p2": "Andriej Fomin",
+   "p1_norm": "dariusz maszczynski",
+   "p2_norm": "andriej fomin",
+   "open_date": "2026-07-18T21:45:00.000Z",
+   "line": 65.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840059,
+   "p1": "Kacper Marchlewski",
+   "p2": "Artur Szoltysek",
+   "p1_norm": "kacper marchlewski",
+   "p2_norm": "artur szoltysek",
+   "open_date": "2026-07-18T21:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
