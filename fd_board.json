@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T19:15:40Z",
+ "captured_at": "2026-07-18T19:22:33Z",
  "matches": [
   {
    "event_id": 35839758,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-18T19:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 81.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839759,
@@ -19,9 +19,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T19:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35839762,
@@ -30,7 +30,7 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-18T19:15:00.000Z",
-   "line": 73.5,
+   "line": 80.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -41,9 +41,9 @@
    "p1_norm": "milosz piecowski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T19:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35839780,
@@ -52,9 +52,9 @@
    "p1_norm": "mateusz baran",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T19:20:00.000Z",
-   "line": 82.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839797,
