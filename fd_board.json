@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T03:12:45Z",
+ "captured_at": "2026-07-18T03:18:32Z",
  "matches": [
   {
    "event_id": 35836082,
@@ -8,31 +8,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T03:00:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35836083,
-   "p1": "Adrian Spychala",
-   "p2": "Maciej Domin",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "maciej domin",
-   "open_date": "2026-07-18T03:00:00.000Z",
-   "line": 64.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
-  {
-   "event_id": 35836084,
-   "p1": "Rafal Glica",
-   "p2": "Wojciech Urban",
-   "p1_norm": "rafal glica",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-18T03:00:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 94.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836085,
@@ -41,9 +19,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-18T03:05:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 61.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836088,
@@ -52,9 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T03:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836099,
@@ -108,6 +86,17 @@
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-18T03:35:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836116,
+   "p1": "Damian Wederlich",
+   "p2": "Tibor Spanik",
+   "p1_norm": "damian wederlich",
+   "p2_norm": "tibor spanik",
+   "open_date": "2026-07-18T03:45:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
