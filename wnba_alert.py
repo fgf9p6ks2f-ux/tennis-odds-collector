@@ -400,17 +400,40 @@ def collect():
     # correlation — and a single player's ladder rungs are kept (that's intentional laddering).
     FAM = {"points": "PTS", "pra": "PTS", "pts_reb": "PTS", "pts_ast": "PTS",
            "rebounds": "REB", "reb_ast": "REB", "assists": "AST"}
-    top = {}                                            # (team, family) -> (player, best_ev)
+    # KEEP-RULE = FAVORITE FIRST, EV tie-break (2026-07-18, the Sydney Taylor case — user:
+    # "the flags is going against the data we have so far"). The cap used to keep the highest-
+    # EV leg, i.e. the ONE spot where the weakest signal outranked every validated one: ledger
+    # says singles 17-4 (81%) vs combos 6-4 (60%), EV>=.20 hits WORSE than EV<.20 (67% vs 79%,
+    # the known fat-EV inversion), and favorite-first is the triple-backtested slot order. Taylor
+    # (favorite single, in-band, 5 straight overs) lost the CHI pool to a .24-EV combo under the
+    # old rule. Same (odds, -ev) order as selection's gkey. Key now carries pred_date (the old
+    # date-less key let today's and tomorrow's cascades contest one pool on back-to-backs).
+    top = {}                                # (date, team, family) -> ((odds, -ev), player)
     for p in preds:
         if p.get("side") != "over" or not p.get("team"):
             continue
-        k = (p["team"], FAM.get(p["stat"], p["stat"]))
-        if k not in top or (p.get("ev") or 0) > top[k][1]:
-            top[k] = (p["player"], p.get("ev") or 0)
+        k = (p.get("pred_date"), p["team"], FAM.get(p["stat"], p["stat"]))
+        cand = (float(p.get("odds") or 99), -(p.get("ev") or 0))
+        if k not in top or cand < top[k][0]:
+            top[k] = (cand, p["player"])
     drop = {(p["player"], p["stat"]) for p in preds                     # (player, stat) legs to cut
             if p.get("side") == "over" and p.get("team")
-            and top[(p["team"], FAM.get(p["stat"], p["stat"]))][0] != p["player"]}
+            and top[(p.get("pred_date"), p["team"], FAM.get(p["stat"], p["stat"]))][1] != p["player"]}
     if drop:
+        # breadcrumb every capped leg (line/odds/ev) so the checkpoint can grade BOTH sides of
+        # each pool contest at real lines — the ledger alone can't (capped legs never log).
+        try:
+            import csv
+            with open(HERE / "wnba_capped_legs.csv", "a", newline="") as f:
+                wcsv = csv.writer(f)
+                for p in preds:
+                    if p.get("side") == "over" and (p["player"], p["stat"]) in drop:
+                        kk = (p.get("pred_date"), p["team"], FAM.get(p["stat"], p["stat"]))
+                        wcsv.writerow([p.get("pred_date"), p["team"], top[kk][1],
+                                       p["player"], p["stat"], p["line"], p.get("odds"),
+                                       p.get("ev"), p.get("d_min")])
+        except OSError:
+            pass
         preds = [p for p in preds
                  if not (p.get("side") == "over" and (p["player"], p["stat"]) in drop)]
         alerts = [a for a in alerts                                     # key = today|player|stat|line

@@ -1123,9 +1123,10 @@ def top_play(spots, band_gate=True):
     best_fam = {}
     for k, s in anchors.items():
         f = FAM.get(s["stat"], s["stat"])
-        if f not in best_fam or (s.get("ev") or 0) > (best_fam[f].get("ev") or 0):
-            best_fam[f] = s
-    anchors = {(s["player"], s["stat"]): s for s in best_fam.values()}
+        cand = (s.get("dec") or 99, -(s.get("ev") or 0))    # favorite first, EV tie-break —
+        if f not in best_fam or cand < best_fam[f][0]:      # identical to the firm cap's keep-rule
+            best_fam[f] = (cand, s)
+    anchors = {(s["player"], s["stat"]): s for _, s in best_fam.values()}
     if not anchors:
         return None
     s = min(anchors.values(), key=lambda x: (x.get("dec") or 99, -(x.get("ev") or 0)))
