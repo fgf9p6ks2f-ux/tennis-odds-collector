@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T03:47:41Z",
+ "captured_at": "2026-07-18T03:53:30Z",
  "matches": [
-  {
-   "event_id": 35836105,
-   "p1": "Rafal Idaczyk",
-   "p2": "Kacper Adamus",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-18T03:35:00.000Z",
-   "line": 90.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35836116,
    "p1": "Damian Wederlich",
@@ -19,9 +8,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "tibor spanik",
    "open_date": "2026-07-18T03:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 56.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35836122,
@@ -30,9 +19,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T03:50:00.000Z",
-   "line": 83.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836123,
@@ -41,9 +30,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "jacek wieczerzak",
    "open_date": "2026-07-18T03:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836133,
@@ -99,6 +88,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35836147,
+   "p1": "Robert Szymik",
+   "p2": "Roman Wiza",
+   "p1_norm": "robert szymik",
+   "p2_norm": "roman wiza",
+   "open_date": "2026-07-18T04:20:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
