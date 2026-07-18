@@ -724,6 +724,9 @@ def starter_label(name, team, starters, proj_min):
     return "likely" if proj_min >= 26 else "projected"
 
 
+CONFIRMED_OUT_TODAY = set()          # populated by injuries() each call
+
+
 def injuries():
     """{player_name: status} — ESPN's league feed UNION RotoWire's game-day lineup out-list.
     RotoWire is FASTER and more reliable on game day (7/14 Griner: RW right, ESPN wrong;
@@ -733,6 +736,7 @@ def injuries():
     abbreviated names ('M. Gustafson') resolve to full ESPN names via the roster cache,
     TEAM-SCOPED, skipping ambiguous initial+lastname collisions (the RotoWire lesson)."""
     out = {}
+    _rw_conf, _ovr_out = set(), set()
     for t in _espn("injuries").get("injuries", []):
         for p in t.get("injuries") or []:
             nm = p.get("athlete", {}).get("displayName")
@@ -761,6 +765,8 @@ def injuries():
                 out.pop(nm, None)
             elif st:
                 out[nm] = st
+                if st in ("Out", "Doubtful"):
+                    _ovr_out.add(nm)         # user-declared -> confirmed
     except (OSError, ValueError):
         pass
     try:                                    # RotoWire game-day outs = first-class triggers
@@ -774,8 +780,32 @@ def injuries():
                         if v.get("team") == team and RW.norm(n) == key]
                 if len(full) == 1:          # team-scoped; ambiguous collision -> skip
                     out[full[0]] = "Out"    # RW lineup OUT is firm — beats ESPN's softer tag
+                    _rw_conf.add(full[0])
     except Exception:
         pass
+    # ── CONFIRMED-FOR-TODAY (2026-07-18, user: "only flag bets whose out players are CONFIRMED
+    # out"): a rolling-feed 'Out' can be LAST game's status well into game day (McBride/Juhasz-
+    # Miles; Boston may play tonight). Confirmed = RW's game-day out-list (game-specific) OR a
+    # manual override OR a ruling whose Out status FIRST APPEARED today (fresh news — preserves
+    # the speed doctrine for breaking rulings). Carryover Outs stay UNCONFIRMED until RW posts
+    # or the status re-breaks; wnba_alert routes their edges to the ⏳ contingent tier.
+    global CONFIRMED_OUT_TODAY
+    try:
+        fsp = Path(__file__).resolve().parent / "wnba_out_first_seen.json"
+        today_iso = dt.datetime.now(ET).date().isoformat()
+        try:
+            fs = json.loads(fsp.read_text())
+        except (OSError, ValueError):
+            fs = {}
+        cur = {n for n, s in out.items() if s in ("Out", "Doubtful")}
+        fs = {n: dt_ for n, dt_ in fs.items() if n in cur}   # cleared status -> re-stamps fresh later
+        for n in cur:
+            fs.setdefault(n, today_iso)
+        fsp.write_text(json.dumps(fs, indent=0))
+        CONFIRMED_OUT_TODAY = (set(_rw_conf) | _ovr_out
+                               | {n for n in cur if fs.get(n) == today_iso})
+    except Exception:
+        CONFIRMED_OUT_TODAY = set(_rw_conf) | _ovr_out
     return out
 
 

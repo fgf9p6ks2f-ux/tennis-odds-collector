@@ -146,6 +146,11 @@ def collect():
     print(f"prefetched {len(want)} game logs in {time.time()-t0:.1f}s")
 
     for (slate_date, team), outs in outs_by_team.items():
+        # CONFIRMED-OUT gate (2026-07-18): any out in this cascade not confirmed for its game
+        # (RW game-day list / override / fresh-today ruling; next-day never confirmed the night
+        # before) routes the WHOLE cascade's edges to the ⏳ contingent tier instead of firm bets.
+        unconfirmed = [nm for nm, _ in outs
+                       if slate_date != today or nm not in T.CONFIRMED_OUT_TODAY]
         out_logs = [glog(p["id"]) for _, p in outs]
         if not all(out_logs):
             continue
@@ -312,7 +317,7 @@ def collect():
                                             "assists": pa["proj_ast"]}, pn_b,
                                            tip=tips_by[slate_date].get(team), tier="band_pilot")
                     continue
-                if slate_date != today:
+                if slate_date != today or unconfirmed:
                     # NEXT-DAY SAFEGUARD (2026-07-18, user: McBride was flagged off Juhasz/Miles'
                     # LAST-GAME status and both played the next night; Boston 'out' yesterday may
                     # play tomorrow while Clark sits). A rolling-feed 'Out' is last game's status,
@@ -329,10 +334,12 @@ def collect():
                                            "conf": conf, "proj_min": round(proj, 1),
                                            "date": slate_date, **e}
                     kc = f"tmrwc|{slate_date}|{n}|{e['stat']}"
+                    why_c = ("TMRW" if slate_date != today
+                             else f"{'+'.join(_short(u) for u in unconfirmed)} unconfirmed")
                     alerts.append((e["ev"] * 0.5, kc,
-                        f"TMRW CONTINGENT: {out_label} out LAST game, not yet ruled out for "
-                        f"{slate_date[5:]} -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
-                        f"{T._am(e['dec'])} +{e['ev']*100:.0f}%EV — fires only if confirmed"))
+                        f"CONTINGENT ({why_c}): {out_label} out last game, no official ruling "
+                        f"for {slate_date[5:]} -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
+                        f"{T._am(e['dec'])} +{e['ev']*100:.0f}%EV — fires only when confirmed"))
                     continue
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{slate_date}|{n}|{e['stat']}|{e['line']}"
