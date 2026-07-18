@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T06:16:56Z",
+ "captured_at": "2026-07-18T06:21:18Z",
  "matches": [
-  {
-   "event_id": 35836688,
-   "p1": "Michal Minda",
-   "p2": "Maciej Kolek",
-   "p1_norm": "michal minda",
-   "p2_norm": "maciej kolek",
-   "open_date": "2026-07-18T06:00:00.000Z",
-   "line": 94.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35836689,
-   "p1": "Mariusz Adamus",
-   "p2": "Piotr Zemla",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "piotr zemla",
-   "open_date": "2026-07-18T06:00:00.000Z",
-   "line": 89.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35836710,
    "p1": "Rafal Wojcik",
@@ -30,9 +8,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "patryk gamrot",
    "open_date": "2026-07-18T06:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836712,
@@ -88,6 +66,28 @@
    "line": 73.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35836739,
+   "p1": "Rafal Idaczyk",
+   "p2": "Piotr Zemla",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "piotr zemla",
+   "open_date": "2026-07-18T06:45:00.000Z",
+   "line": 70.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35836740,
+   "p1": "Daniel Morawiec",
+   "p2": "Filip Witczak",
+   "p1_norm": "daniel morawiec",
+   "p2_norm": "filip witczak",
+   "open_date": "2026-07-18T06:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
