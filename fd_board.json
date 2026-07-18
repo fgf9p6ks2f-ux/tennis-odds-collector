@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T00:13:32Z",
+ "captured_at": "2026-07-18T00:20:40Z",
  "matches": [
-  {
-   "event_id": 35835864,
-   "p1": "Michal Wolny",
-   "p2": "Artur Kubiak",
-   "p1_norm": "michal wolny",
-   "p2_norm": "artur kubiak",
-   "open_date": "2026-07-18T00:00:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35835865,
    "p1": "Dariusz Wrobel",
@@ -19,9 +8,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-18T00:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 68.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835866,
@@ -30,9 +19,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "michal durda",
    "open_date": "2026-07-18T00:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35835867,
@@ -88,6 +77,39 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35835923,
+   "p1": "Jacek Oracz",
+   "p2": "Artur Kubiak",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "artur kubiak",
+   "open_date": "2026-07-18T00:45:00.000Z",
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35835924,
+   "p1": "Michal Olbrycht",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "michal olbrycht",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-18T00:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35835925,
+   "p1": "Jakub Michalski",
+   "p2": "Robert Szymik",
+   "p1_norm": "jakub michalski",
+   "p2_norm": "robert szymik",
+   "open_date": "2026-07-18T00:45:00.000Z",
+   "line": 66.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
