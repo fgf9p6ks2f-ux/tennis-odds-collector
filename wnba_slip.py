@@ -216,7 +216,12 @@ def fav_keys(rows):
         bycas[(r.get("pred_date"), r.get("team"))][(r.get("player"), r.get("stat"))].append(r)
     out = set()
     for (pd_, tm), groups in bycas.items():
-        fav = min(groups, key=lambda k: min(float(x.get("odds") or 99) for x in groups[k]))
+        # tie-break matters: equal odds (Ionescu/Stewart both -114, 2026-07-18) made the
+        # favorite dict-order-dependent — board and pings could disagree. Same order as
+        # selection's gkey: shortest odds, then highest EV, then name (fully deterministic).
+        fav = min(groups, key=lambda k: (min(float(x.get("odds") or 99) for x in groups[k]),
+                                         -max((x.get("ev") or 0.0) for x in groups[k]),
+                                         k[0]))
         out.add((pd_, fav[0], fav[1]))
     return out
 
