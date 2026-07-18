@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T15:55:52Z",
+ "captured_at": "2026-07-18T16:01:13Z",
  "matches": [
   {
    "event_id": 35838206,
@@ -8,9 +8,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T15:45:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35838214,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T15:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35838215,
@@ -30,9 +30,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-18T15:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35838337,
@@ -41,9 +41,9 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T15:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35838409,
@@ -52,9 +52,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-18T16:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35838412,
@@ -63,9 +63,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-18T16:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35838438,
@@ -99,6 +99,17 @@
    "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35838590,
+   "p1": "Miroslaw Warzecha",
+   "p2": "Jacek Oracz",
+   "p1_norm": "miroslaw warzecha",
+   "p2_norm": "jacek oracz",
+   "open_date": "2026-07-18T16:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
