@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T16:45:56Z",
+ "captured_at": "2026-07-18T16:51:19Z",
  "matches": [
-  {
-   "event_id": 35838657,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-18T16:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35838689,
-   "p1": "Jakub Glanowski",
-   "p2": "Artur Szoltysek",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "artur szoltysek",
-   "open_date": "2026-07-18T16:35:00.000Z",
-   "line": 69.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35838690,
    "p1": "Janus Slawomir",
@@ -30,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T16:35:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 106.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35838776,
@@ -41,20 +19,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T16:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35838932,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Oskar Jedrzejowski",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "oskar jedrzejowski",
-   "open_date": "2026-07-18T16:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 91.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35839224,
