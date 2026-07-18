@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T15:50:32Z",
+ "captured_at": "2026-07-18T15:55:52Z",
  "matches": [
-  {
-   "event_id": 35838190,
-   "p1": "Jacek Oracz",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-18T15:35:00.000Z",
-   "line": 101.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35838206,
    "p1": "Filip Mlynarski",
@@ -19,9 +8,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T15:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35838214,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T15:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35838215,
@@ -41,9 +30,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-18T15:50:00.000Z",
-   "line": 69.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35838337,
@@ -53,8 +42,8 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T15:55:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35838409,
@@ -99,6 +88,17 @@
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35838452,
+   "p1": "Filip Witczak",
+   "p2": "Daniel Morawiec",
+   "p1_norm": "filip witczak",
+   "p2_norm": "daniel morawiec",
+   "open_date": "2026-07-18T16:20:00.000Z",
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
