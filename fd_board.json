@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T02:14:22Z",
+ "captured_at": "2026-07-18T02:20:16Z",
  "matches": [
-  {
-   "event_id": 35835990,
-   "p1": "Robert Szymik",
-   "p2": "Rafal Adach",
-   "p1_norm": "robert szymik",
-   "p2_norm": "rafal adach",
-   "open_date": "2026-07-18T01:55:00.000Z",
-   "line": 83.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35836011,
-   "p1": "Jakub Jesiek",
-   "p2": "Pawel Kurek",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-18T02:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35836058,
    "p1": "Mateusz Rutkowski",
@@ -30,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-18T02:15:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836069,
@@ -42,6 +20,28 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-18T02:35:00.000Z",
    "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836071,
+   "p1": "Michal Wolny",
+   "p2": "Marcin Wozniczka",
+   "p1_norm": "michal wolny",
+   "p2_norm": "marcin wozniczka",
+   "open_date": "2026-07-18T02:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35836072,
+   "p1": "Roman Wiza",
+   "p2": "Damian Fira",
+   "p1_norm": "roman wiza",
+   "p2_norm": "damian fira",
+   "open_date": "2026-07-18T02:45:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
