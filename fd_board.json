@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T06:08:07Z",
+ "captured_at": "2026-07-18T06:12:29Z",
  "matches": [
-  {
-   "event_id": 35836675,
-   "p1": "Filip Witczak",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "filip witczak",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-18T05:55:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35836688,
    "p1": "Michal Minda",
@@ -19,9 +8,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T06:00:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836689,
@@ -30,9 +19,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "piotr zemla",
    "open_date": "2026-07-18T06:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35836693,
@@ -41,9 +30,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T06:05:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35836694,
@@ -52,9 +41,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T06:05:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836710,
