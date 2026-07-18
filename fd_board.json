@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T21:28:20Z",
+ "captured_at": "2026-07-18T21:34:35Z",
  "matches": [
   {
    "event_id": 35839949,
@@ -9,8 +9,19 @@
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T21:20:00.000Z",
    "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": -125,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35839950,
+   "p1": "Piotr Gesiarz",
+   "p2": "Mateusz Baran",
+   "p1_norm": "piotr gesiarz",
+   "p2_norm": "mateusz baran",
+   "open_date": "2026-07-18T21:20:00.000Z",
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839951,
@@ -19,19 +30,8 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T21:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35839980,
-   "p1": "Roman Wiza",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "roman wiza",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-18T21:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
+   "line": 86.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -88,6 +88,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35840236,
+   "p1": "Artur Kubiak",
+   "p2": "Miroslaw Warzecha",
+   "p1_norm": "artur kubiak",
+   "p2_norm": "miroslaw warzecha",
+   "open_date": "2026-07-18T22:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
