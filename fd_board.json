@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T08:40:06Z",
+ "captured_at": "2026-07-18T08:44:39Z",
  "matches": [
   {
    "event_id": 35836912,
@@ -8,9 +8,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T08:30:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 88.5,
+   "over_odds": 120,
+   "under_odds": -165
   },
   {
    "event_id": 35836915,
@@ -19,8 +19,8 @@
    "p1_norm": "rafal glica",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T08:35:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
+   "line": 79.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
