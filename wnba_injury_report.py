@@ -128,6 +128,7 @@ def _parse(pdf_bytes):
 def report(max_age_min=14):
     """Latest parsed report, cached per 15-min mark."""
     now = dt.datetime.now(ET)
+    c = None
     try:
         c = json.loads(CACHE.read_text())
         age = (now - dt.datetime.fromisoformat(c["fetched"])).total_seconds() / 60
@@ -135,7 +136,7 @@ def report(max_age_min=14):
         if c.get("mark") == cur_mark or age < 3:
             return c
     except (OSError, ValueError, KeyError):
-        pass
+        c = None
     for d, h12, m, ap, t in _marks(now):
         url = BASE.format(d=d, h=h12, m=m, ap=ap)
         try:
@@ -150,6 +151,13 @@ def report(max_age_min=14):
                 return out
         except requests.RequestException:
             continue
+    # every mark failed (transient network under scan load, or the new PDF not posted yet):
+    # serve the LAST-GOOD cache instead of an empty report. An empty return silently deletes
+    # the official layer for that scan — 2026-07-18: one hiccup kept Clark 'Questionable'
+    # from ESPN's stale feed while the official report said Probable, so the watchlist
+    # advertised a scenario for a near-certain starter.
+    if c and c.get("rows"):
+        return c
     return {"fetched": now.isoformat(), "stamp": None, "rows": [], "submitted": {}}
 
 
