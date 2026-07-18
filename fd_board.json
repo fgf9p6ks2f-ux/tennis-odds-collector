@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T21:46:06Z",
+ "captured_at": "2026-07-18T21:52:57Z",
  "matches": [
-  {
-   "event_id": 35839984,
-   "p1": "Jacek Oracz",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-18T21:35:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35840057,
    "p1": "Marcin Marchlewski",
@@ -19,9 +8,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T21:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35840058,
@@ -30,9 +19,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "andriej fomin",
    "open_date": "2026-07-18T21:45:00.000Z",
-   "line": 66.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840059,
@@ -41,9 +30,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T21:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840177,
