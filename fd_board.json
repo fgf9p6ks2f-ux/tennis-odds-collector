@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T09:52:53Z",
+ "captured_at": "2026-07-18T09:57:37Z",
  "matches": [
-  {
-   "event_id": 35836997,
-   "p1": "Jaroslaw Rolak",
-   "p2": "Jakub Michalczyk",
-   "p1_norm": "jaroslaw rolak",
-   "p2_norm": "jakub michalczyk",
-   "open_date": "2026-07-18T09:25:00.000Z",
-   "line": 101.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35837017,
    "p1": "Grzegorz Felkel",
@@ -19,7 +8,7 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-18T09:40:00.000Z",
-   "line": 72.5,
+   "line": 71.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +19,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-18T09:45:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35837034,
@@ -41,7 +30,7 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "rafal glica",
    "open_date": "2026-07-18T09:50:00.000Z",
-   "line": 81.5,
+   "line": 71.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +41,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-18T09:50:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837065,
@@ -63,9 +52,9 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T09:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837071,
@@ -110,6 +99,28 @@
    "line": 74.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35837085,
+   "p1": "Filip Witczak",
+   "p2": "Patryk Gamrot",
+   "p1_norm": "filip witczak",
+   "p2_norm": "patryk gamrot",
+   "open_date": "2026-07-18T10:20:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35837095,
+   "p1": "Adrian Spychala",
+   "p2": "Maksymilian Miastowski",
+   "p1_norm": "adrian spychala",
+   "p2_norm": "maksymilian miastowski",
+   "open_date": "2026-07-18T10:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
