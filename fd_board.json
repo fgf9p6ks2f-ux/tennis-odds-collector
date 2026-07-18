@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T01:03:32Z",
+ "captured_at": "2026-07-18T01:10:45Z",
  "matches": [
   {
    "event_id": 35835943,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-18T01:00:00.000Z",
-   "line": 65.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 93.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835944,
@@ -19,9 +19,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-18T01:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35835952,
@@ -42,8 +42,8 @@
    "p2_norm": "cezary pawlik",
    "open_date": "2026-07-18T01:10:00.000Z",
    "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35835954,
@@ -99,6 +99,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35835975,
+   "p1": "Marcin Wozniczka",
+   "p2": "Oskar Jedrzejowski",
+   "p1_norm": "marcin wozniczka",
+   "p2_norm": "oskar jedrzejowski",
+   "open_date": "2026-07-18T01:35:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
