@@ -149,8 +149,10 @@ def collect():
         # CONFIRMED-OUT gate (2026-07-18): any out in this cascade not confirmed for its game
         # (RW game-day list / override / fresh-today ruling; next-day never confirmed the night
         # before) routes the WHOLE cascade's edges to the ⏳ contingent tier instead of firm bets.
-        unconfirmed = [nm for nm, _ in outs
-                       if slate_date != today or nm not in T.CONFIRMED_OUT_TODAY]
+        # per-date confirmation: today = official report + fast sources; NEXT-day = the
+        # OFFICIAL report's night-before ruling (or user override) — an official tomorrow-Out
+        # now promotes the contingent play to a firm bet the evening before, officially.
+        unconfirmed = [nm for nm, _ in outs if nm not in T.confirmed_for(slate_date)]
         out_logs = [glog(p["id"]) for _, p in outs]
         if not all(out_logs):
             continue

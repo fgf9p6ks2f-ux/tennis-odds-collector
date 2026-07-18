@@ -725,6 +725,13 @@ def starter_label(name, team, starters, proj_min):
 
 
 CONFIRMED_OUT_TODAY = set()          # populated by injuries() each call
+CONFIRMED_OUT_BY_DATE = {}           # {game_date: set(names)} — official report + overrides
+
+
+def confirmed_for(date_iso):
+    """Names with an OFFICIAL same-game Out ruling (or user override) for that date. Today's
+    set also unions the fast sources (RW flip-guarded, fresh rulings, returnDate)."""
+    return CONFIRMED_OUT_BY_DATE.get(date_iso, set())
 
 
 def injuries():
@@ -781,6 +788,23 @@ def injuries():
                         _rw_conf.add(full[0])
     except Exception:
         pass
+    # ── OFFICIAL LEAGUE INJURY REPORT (2026-07-18, user-sourced — the #1 source) ──
+    # Game-dated PDF, 15-min refresh, explicit NOT-YET-SUBMITTED state. Official statuses
+    # override the aggregator feeds (below only the user's manual overrides). Official OUT
+    # for a game = CONFIRMED for that game — INCLUDING tomorrow (night-before submissions =
+    # the official night-before window). Probable/Available for TODAY clears the premise.
+    _official = {}
+    try:
+        import wnba_injury_report as IR
+        _official = IR.confirmed_by_date()               # {date: {player: status}}
+        today_off = _official.get(dt.datetime.now(ET).date().isoformat(), {})
+        for nm, stt in today_off.items():
+            if stt in ("Out", "Doubtful", "Questionable"):
+                out[nm] = stt
+            elif stt in ("Probable", "Available"):
+                out.pop(nm, None)
+    except Exception:
+        pass
     # MANUAL STATUS OVERRIDES — applied LAST (2026-07-18 fix: the RW merge ran after this
     # block and re-marked Boston Out, silently demoting the user's override; highest
     # precedence means highest, so overrides now run after every feed source): wnba_status_overrides.json — {"Player": {"status":
@@ -823,8 +847,13 @@ def injuries():
         for n in cur:
             fs.setdefault(n, today_iso)
         fsp.write_text(json.dumps(fs, indent=0))
-        CONFIRMED_OUT_TODAY = ((set(_rw_conf) | _ovr_out | _ret_conf
+        _off_today = {n for n, s in _official.get(today_iso, {}).items() if s == "Out"}
+        CONFIRMED_OUT_TODAY = ((set(_rw_conf) | _ovr_out | _ret_conf | _off_today
                                 | {n for n in cur if fs.get(n) == today_iso}) & cur) | _ovr_out
+        global CONFIRMED_OUT_BY_DATE
+        CONFIRMED_OUT_BY_DATE = {dte: ({n for n, s in mp.items() if s == "Out"} | _ovr_out)
+                                 for dte, mp in _official.items()}
+        CONFIRMED_OUT_BY_DATE[today_iso] = CONFIRMED_OUT_TODAY
     except Exception:
         CONFIRMED_OUT_TODAY = ((set(_rw_conf) | _ret_conf)
                                & {n for n, s in out.items() if s in ("Out", "Doubtful")}) | _ovr_out
