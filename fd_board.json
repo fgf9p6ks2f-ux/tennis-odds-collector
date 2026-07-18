@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T17:14:21Z",
+ "captured_at": "2026-07-18T17:20:58Z",
  "matches": [
-  {
-   "event_id": 35839226,
-   "p1": "Dariusz Maszczynski",
-   "p2": "Mateusz Baran",
-   "p1_norm": "dariusz maszczynski",
-   "p2_norm": "mateusz baran",
-   "open_date": "2026-07-18T16:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35839533,
    "p1": "Artur Kubiak",
@@ -19,9 +8,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-18T17:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839552,
@@ -31,8 +20,8 @@
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T17:20:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35839553,
@@ -41,20 +30,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-18T17:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35839554,
-   "p1": "Piotr Gesiarz",
-   "p2": "Krzysztof Malcher",
-   "p1_norm": "piotr gesiarz",
-   "p2_norm": "krzysztof malcher",
-   "open_date": "2026-07-18T17:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839592,
@@ -85,9 +63,31 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "filip mlynarski",
    "open_date": "2026-07-18T17:40:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 67.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35839654,
+   "p1": "Andriej Fomin",
+   "p2": "Dariusz Maszczynski",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "dariusz maszczynski",
+   "open_date": "2026-07-18T17:45:00.000Z",
+   "line": 69.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35839655,
+   "p1": "Kacper Marchlewski",
+   "p2": "Jakub Michalczyk",
+   "p1_norm": "kacper marchlewski",
+   "p2_norm": "jakub michalczyk",
+   "open_date": "2026-07-18T17:45:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
