@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T08:54:31Z",
+ "captured_at": "2026-07-18T08:59:48Z",
  "matches": [
   {
    "event_id": 35836927,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-18T08:45:00.000Z",
-   "line": 69.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 108.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836928,
@@ -19,9 +19,9 @@
    "p1_norm": "patryk gamrot",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-18T08:45:00.000Z",
-   "line": 92.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836946,
@@ -99,6 +99,28 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35836997,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Jakub Michalczyk",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "jakub michalczyk",
+   "open_date": "2026-07-18T09:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35836998,
+   "p1": "Rafal Idaczyk",
+   "p2": "Marcin Lach",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-18T09:25:00.000Z",
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
