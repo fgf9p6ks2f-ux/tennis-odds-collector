@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T00:27:47Z",
+ "captured_at": "2026-07-18T00:34:56Z",
  "matches": [
-  {
-   "event_id": 35835866,
-   "p1": "Pawel Adamus",
-   "p2": "Michal Durda",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-18T00:10:00.000Z",
-   "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35835867,
    "p1": "Tomasz Filbrandt",
@@ -19,9 +8,9 @@
    "p1_norm": "tomasz filbrandt",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-18T00:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 95.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35835868,
@@ -30,7 +19,7 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "roman wiza",
    "open_date": "2026-07-18T00:20:00.000Z",
-   "line": 76.5,
+   "line": 94.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -41,9 +30,9 @@
    "p1_norm": "cezary pawlik",
    "p2_norm": "marcin wozniczka",
    "open_date": "2026-07-18T00:25:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35835917,
@@ -63,9 +52,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-18T00:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35835923,
@@ -97,6 +86,28 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-18T00:45:00.000Z",
    "line": 62.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35835943,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Pawel Adamus",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "pawel adamus",
+   "open_date": "2026-07-18T01:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35835944,
+   "p1": "Dariusz Wrobel",
+   "p2": "Miroslaw Piecowski",
+   "p1_norm": "dariusz wrobel",
+   "p2_norm": "miroslaw piecowski",
+   "open_date": "2026-07-18T01:00:00.000Z",
+   "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
   }
