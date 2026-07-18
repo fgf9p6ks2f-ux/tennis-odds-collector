@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T09:23:35Z",
+ "captured_at": "2026-07-18T09:28:11Z",
  "matches": [
   {
    "event_id": 35836983,
@@ -8,7 +8,7 @@
    "p1_norm": "maciej domin",
    "p2_norm": "damian wederlich",
    "open_date": "2026-07-18T09:20:00.000Z",
-   "line": 69.5,
+   "line": 88.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T09:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836997,
@@ -31,8 +31,8 @@
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-18T09:25:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836998,
@@ -41,9 +41,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T09:25:00.000Z",
-   "line": 74.5,
+   "line": 76.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35837007,
@@ -99,6 +99,17 @@
    "line": 81.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35837065,
+   "p1": "Lukasz Oracz",
+   "p2": "Mariusz Baron",
+   "p1_norm": "lukasz oracz",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-18T09:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
