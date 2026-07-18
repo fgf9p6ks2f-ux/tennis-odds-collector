@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-18T07:09:22Z",
+ "captured_at": "2026-07-18T07:13:51Z",
  "matches": [
-  {
-   "event_id": 35836749,
-   "p1": "Adam Linek",
-   "p2": "Michal Minda",
-   "p1_norm": "adam linek",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-18T06:50:00.000Z",
-   "line": 99.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35836755,
-   "p1": "Rafal Glica",
-   "p2": "Jacek Wieczerzak",
-   "p1_norm": "rafal glica",
-   "p2_norm": "jacek wieczerzak",
-   "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35836756,
-   "p1": "Adrian Spychala",
-   "p2": "Tibor Spanik",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "tibor spanik",
-   "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 95.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35836794,
    "p1": "Mariusz Adamus",
@@ -41,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-18T07:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836795,
@@ -52,9 +19,9 @@
    "p1_norm": "patryk gamrot",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T07:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836803,
@@ -85,9 +52,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T07:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35836810,
@@ -119,6 +86,17 @@
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T07:35:00.000Z",
    "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836847,
+   "p1": "Maciej Kolek",
+   "p2": "Adam Linek",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "adam linek",
+   "open_date": "2026-07-18T07:40:00.000Z",
+   "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
   }
