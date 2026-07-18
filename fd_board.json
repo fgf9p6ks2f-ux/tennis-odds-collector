@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T10:53:24Z",
+ "captured_at": "2026-07-18T10:58:15Z",
  "matches": [
   {
    "event_id": 35837103,
@@ -8,9 +8,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T10:35:00.000Z",
-   "line": 103.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 105.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35837109,
@@ -19,9 +19,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T10:40:00.000Z",
-   "line": 100.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 104.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837119,
@@ -30,7 +30,7 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "damian wederlich",
    "open_date": "2026-07-18T10:50:00.000Z",
-   "line": 77.5,
+   "line": 69.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +41,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T10:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837134,
@@ -64,8 +64,8 @@
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-18T11:00:00.000Z",
    "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35837139,
@@ -97,6 +97,28 @@
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-18T11:20:00.000Z",
    "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35837161,
+   "p1": "Rafal Idaczyk",
+   "p2": "Wojciech Urban",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-18T11:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35837162,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Jakub Wozniak",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "jakub wozniak",
+   "open_date": "2026-07-18T11:25:00.000Z",
+   "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
   }
