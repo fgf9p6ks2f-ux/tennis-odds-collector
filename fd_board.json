@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T23:47:36Z",
+ "captured_at": "2026-07-18T23:52:16Z",
  "matches": [
   {
    "event_id": 35840314,
@@ -8,9 +8,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T23:35:00.000Z",
-   "line": 90.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840315,
@@ -19,9 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T23:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35840318,
@@ -30,9 +30,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-18T23:45:00.000Z",
-   "line": 70.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840319,
@@ -41,9 +41,9 @@
    "p1_norm": "milosz piecowski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T23:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840320,
