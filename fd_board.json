@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T03:24:21Z",
+ "captured_at": "2026-07-18T03:30:10Z",
  "matches": [
-  {
-   "event_id": 35836088,
-   "p1": "Mariusz Adamus",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-18T03:10:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35836099,
    "p1": "Grzegorz Sawicki",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T03:25:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 67.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836100,
@@ -31,8 +20,8 @@
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T03:25:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836101,
@@ -41,9 +30,9 @@
    "p1_norm": "maksymilian miastowski",
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-18T03:25:00.000Z",
-   "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 56.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836104,
@@ -99,6 +88,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35836133,
+   "p1": "Damian Fira",
+   "p2": "Rafal Adach",
+   "p1_norm": "damian fira",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-18T03:55:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
