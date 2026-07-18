@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T13:13:29Z",
+ "captured_at": "2026-07-18T13:19:20Z",
  "matches": [
   {
    "event_id": 35837691,
@@ -8,9 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-18T13:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35837692,
@@ -19,9 +19,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "rafal glica",
    "open_date": "2026-07-18T13:05:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 78.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35837699,
@@ -30,7 +30,7 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T13:10:00.000Z",
-   "line": 76.5,
+   "line": 91.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -88,6 +88,17 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35837833,
+   "p1": "Maciej Domin",
+   "p2": "Adrian Spychala",
+   "p1_norm": "maciej domin",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-18T13:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
