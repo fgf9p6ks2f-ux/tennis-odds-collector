@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T15:44:23Z",
+ "captured_at": "2026-07-18T15:50:32Z",
  "matches": [
-  {
-   "event_id": 35838079,
-   "p1": "Gracjan Kesik",
-   "p2": "Milosz Piecowski",
-   "p1_norm": "gracjan kesik",
-   "p2_norm": "milosz piecowski",
-   "open_date": "2026-07-18T15:25:00.000Z",
-   "line": 85.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35838180,
-   "p1": "Patryk Gamrot",
-   "p2": "Daniel Morawiec",
-   "p1_norm": "patryk gamrot",
-   "p2_norm": "daniel morawiec",
-   "open_date": "2026-07-18T15:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35838190,
    "p1": "Jacek Oracz",
@@ -30,9 +8,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-18T15:35:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 101.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35838206,
@@ -42,8 +20,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T15:45:00.000Z",
    "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35838214,
@@ -53,8 +31,8 @@
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T15:50:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35838215,
@@ -63,8 +41,8 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-18T15:50:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
+   "line": 69.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -97,6 +75,28 @@
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-18T16:05:00.000Z",
    "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35838438,
+   "p1": "Kacper Marchlewski",
+   "p2": "Gracjan Kesik",
+   "p1_norm": "kacper marchlewski",
+   "p2_norm": "gracjan kesik",
+   "open_date": "2026-07-18T16:15:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35838439,
+   "p1": "Andriej Fomin",
+   "p2": "Piotr Gesiarz",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "piotr gesiarz",
+   "open_date": "2026-07-18T16:15:00.000Z",
+   "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
   }
