@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T22:04:31Z",
+ "captured_at": "2026-07-18T22:10:08Z",
  "matches": [
   {
    "event_id": 35840236,
@@ -8,7 +8,7 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-18T22:00:00.000Z",
-   "line": 74.5,
+   "line": 85.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,9 +19,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T22:05:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840253,
@@ -53,8 +53,8 @@
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-18T22:25:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35840258,
@@ -63,9 +63,31 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T22:30:00.000Z",
-   "line": 78.5,
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35840259,
+   "p1": "Kacper Marchlewski",
+   "p2": "Milosz Piecowski",
+   "p1_norm": "kacper marchlewski",
+   "p2_norm": "milosz piecowski",
+   "open_date": "2026-07-18T22:35:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35840260,
+   "p1": "Andriej Fomin",
+   "p2": "Krzysztof Malcher",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "krzysztof malcher",
+   "open_date": "2026-07-18T22:35:00.000Z",
+   "line": 72.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
