@@ -772,6 +772,16 @@ def injuries():
     try:                                    # RotoWire game-day outs = first-class triggers
         pl = json.loads((Path(__file__).resolve().parent
                          / "wnba_players_cache.json").read_text()).get("players", {})
+        # PAGE-FLIP GUARD (2026-07-18): overnight, RW still serves YESTERDAY'S slate — on a
+        # back-to-back (IND tonight) yesterday's outs (Boston) would falsely count as game-day
+        # confirmations for today. RW outs only CONFIRM when its board matches today's games;
+        # they always still TRIGGER (merge into the injury view -> contingent scouting).
+        try:
+            _today_teams = set(tonight_matchups())
+        except Exception:
+            _today_teams = set()
+        _rw_teams = {t.get("team") for t in rw_lineups() or []}
+        _board_is_today = bool(_today_teams) and             len(_rw_teams & _today_teams) >= max(2, len(_rw_teams) // 2)
         for t in rw_lineups() or []:
             team = t.get("team")
             for abbr in t.get("out") or []:
@@ -780,7 +790,8 @@ def injuries():
                         if v.get("team") == team and RW.norm(n) == key]
                 if len(full) == 1:          # team-scoped; ambiguous collision -> skip
                     out[full[0]] = "Out"    # RW lineup OUT is firm — beats ESPN's softer tag
-                    _rw_conf.add(full[0])
+                    if _board_is_today:
+                        _rw_conf.add(full[0])
     except Exception:
         pass
     # ── CONFIRMED-FOR-TODAY (2026-07-18, user: "only flag bets whose out players are CONFIRMED
