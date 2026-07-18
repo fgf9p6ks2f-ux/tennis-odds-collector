@@ -849,7 +849,8 @@ def injuries():
         fsp.write_text(json.dumps(fs, indent=0))
         _off_today = {n for n, s in _official.get(today_iso, {}).items() if s == "Out"}
         CONFIRMED_OUT_TODAY = ((set(_rw_conf) | _ovr_out | _ret_conf | _off_today
-                                | {n for n in cur if fs.get(n) == today_iso}) & cur) | _ovr_out
+                                | {n for n in cur if fs.get(n) == today_iso
+                                   and out.get(n) == "Out"}) & cur) | _ovr_out
         global CONFIRMED_OUT_BY_DATE
         CONFIRMED_OUT_BY_DATE = {dte: ({n for n, s in mp.items() if s == "Out"} | _ovr_out)
                                  for dte, mp in _official.items()}
