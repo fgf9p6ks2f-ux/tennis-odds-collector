@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T02:55:03Z",
+ "captured_at": "2026-07-18T03:00:51Z",
  "matches": [
-  {
-   "event_id": 35836072,
-   "p1": "Roman Wiza",
-   "p2": "Damian Fira",
-   "p1_norm": "roman wiza",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-18T02:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35836082,
    "p1": "Krzysztof Kotyl",
@@ -19,9 +8,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T03:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35836083,
@@ -30,9 +19,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-18T03:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35836084,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T03:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35836085,
@@ -66,6 +55,39 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35836099,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Marcin Lach",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-18T03:25:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836100,
+   "p1": "Dariusz Wrobel",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "dariusz wrobel",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-18T03:25:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836101,
+   "p1": "Maksymilian Miastowski",
+   "p2": "Michal Wandachowicz",
+   "p1_norm": "maksymilian miastowski",
+   "p2_norm": "michal wandachowicz",
+   "open_date": "2026-07-18T03:25:00.000Z",
+   "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
