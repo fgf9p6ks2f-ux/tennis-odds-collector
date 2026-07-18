@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T06:21:18Z",
+ "captured_at": "2026-07-18T06:26:27Z",
  "matches": [
   {
    "event_id": 35836710,
@@ -8,7 +8,7 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "patryk gamrot",
    "open_date": "2026-07-18T06:20:00.000Z",
-   "line": 81.5,
+   "line": 67.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -20,8 +20,8 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T06:25:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35836713,
@@ -30,9 +30,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-18T06:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836730,
@@ -88,6 +88,17 @@
    "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35836749,
+   "p1": "Adam Linek",
+   "p2": "Michal Minda",
+   "p1_norm": "adam linek",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-18T06:50:00.000Z",
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
