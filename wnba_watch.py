@@ -476,6 +476,17 @@ def main():
     if feed_txt:                                 # empty on a timing-only fall-through — don't print a stub
         print("REPORT CHANGES:\n" + feed_txt)
 
+    # EVENT-DRIVEN FULLSCAN TRIGGER (2026-07-18, notification-latency audit): a fresh OUT or a
+    # batch of newly-posted lines used to wait for the next scheduled fullscan (up to ~10 min in
+    # a cold window) before the PLAY ping fired — the status ping was instant but the bet lagged.
+    # Touching this file makes vm_loop run the full beneficiary scan on its next cycle (<=75s
+    # cold / <=25s hot), so ruling -> play ping is ~2 min worst case, any hour of the day.
+    if new or lines_new:
+        try:
+            Path("/tmp/.force_fullscan").touch()
+            print(f"fullscan trigger: new_outs={list(new)[:3]} lines_new={lines_new}")
+        except OSError:
+            pass
     # FAST REPLACEMENT READ for newly-firm outs: who inherits the vacated shots/role, before the
     # line moves. Only for `new` (fresh OUT/DOUBTFUL); a questionable/removal-only change no-ops it.
     repl = []
