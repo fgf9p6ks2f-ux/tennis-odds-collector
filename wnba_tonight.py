@@ -1116,14 +1116,9 @@ def top_play(spots, band_gate=True):
     if not anchors:
         return None
     s = min(anchors.values(), key=lambda x: (x.get("dec") or 99, -(x.get("ev") or 0)))
+    import wnba_slip as SLIP                 # canonical rule; scenario winner = cascade favorite
+    tier = SLIP.tier_of(s, True)
     dm = s.get("d_min")
-    if dm is not None and 3 <= dm <= 8 and s["stat"] in _TIER_SINGLES:
-        tier = "A"
-    elif dm is None or (dm is not None and 3 <= dm <= 8) or (0 <= (dm or -1) < 3
-                                                             and s["stat"] in _TIER_SINGLES):
-        tier = "B"
-    else:
-        tier = "C"
     return {"player": s["player"], "stat": s["stat"], "line": s["line"],
             "dec": s.get("dec"), "am": _am(s.get("dec") or 0), "tier": tier,
             "ev": s.get("ev"), "d_min": dm, "conf": s.get("conf")}

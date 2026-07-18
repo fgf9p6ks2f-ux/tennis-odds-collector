@@ -550,24 +550,20 @@ NOTIF_AB = {"points": "PTS", "rebounds": "REB", "assists": "AST", "pts_ast": "PA
 
 def push_plays(fresh, preds, topic):
     """Send one concise push per fresh play; return the keys actually delivered."""
-    singles = ("points", "rebounds", "assists")
-    bykey, fav_by_cas = {}, {}
+    import wnba_slip as SLIP
+    bykey = {}
     for p in preds:
         bykey[f"{p['pred_date']}|{p['player']}|{p['stat']}|{p['line']}"] = p
-        ck = (p["pred_date"], p.get("team"))
-        if ck not in fav_by_cas or float(p["odds"]) < fav_by_cas[ck][1]:
-            fav_by_cas[ck] = (p["player"], float(p["odds"]))
+    try:                       # CANONICAL tiers (selected scope — same letters as the board)
+        tmap = SLIP.tier_map(preds)
+    except Exception:
+        tmap = {}
 
     def _tier_of(p):
-        dm = p.get("d_min")
-        fav = fav_by_cas.get((p["pred_date"], p.get("team")), ("", 0))[0] == p["player"]
-        inband = dm is not None and 3 <= dm <= 8
-        if inband and fav and p["stat"] in singles:
-            return "A"
-        if inband or dm is None or (0 <= (dm if dm is not None else -1) < 3
-                                    and p["stat"] in singles):
-            return "B"
-        return "C"
+        k = (p["pred_date"], p["player"], p["stat"])
+        # non-selected overflow plays ping too — favorite is a selected-universe property,
+        # so anything outside it tiers as non-favorite (matches the board's chips)
+        return tmap.get(k) or SLIP.tier_of(p, False)
 
     delivered = []
     for _ev, k, msg in fresh:

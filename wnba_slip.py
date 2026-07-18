@@ -15,6 +15,7 @@ RULES (2026-07-13, user):
       teammate's pts_reb share R, or two bigs' rebounds);
     * cross-team legs are unconstrained (his call).
 """
+from collections import defaultdict
 import hashlib
 import json
 import sqlite3
@@ -185,6 +186,47 @@ def ladders(overs):
         out.append({"player": player, "team": rungs[0].get("team"), "stat": stat, "rungs": rungs,
                     "ev": max((r.get("ev") or 0) for r in rungs), "comps": _comps(stat)})
     return out
+
+
+TIER_SINGLES = ("points", "rebounds", "assists")
+
+
+def tier_of(r, is_fav):
+    """CANONICAL confidence tier — the ONLY implementation (dashboard chips, notification
+    titles and watchlist scenarios all call this; 2026-07-18 audit: two parallel copies
+    disagreed on 3/31 graded plays via different favorite scopes). Rule, from already-
+    validated real-line splits: A = 3-8 band + cascade favorite + single stat; B = the solid
+    middle (3-8 others, cold tier, supported 0-3 singles); C = combos and marginal 0-3."""
+    dm = r.get("d_min")
+    single = r.get("stat") in TIER_SINGLES
+    inband = dm is not None and 3 <= dm <= 8
+    if inband and is_fav and single:
+        return "A"
+    if inband or dm is None or (0 <= (dm if dm is not None else -1) < 3 and single):
+        return "B"
+    return "C"
+
+
+def fav_keys(rows):
+    """{(date, player, stat)} of each team-cascade's shortest-odds group. CANONICAL SCOPE:
+    pass the SELECTED universe (current_selection output), never raw preds — favorite status
+    is defined among the plays actually on the board."""
+    bycas = defaultdict(lambda: defaultdict(list))
+    for r in rows:
+        bycas[(r.get("pred_date"), r.get("team"))][(r.get("player"), r.get("stat"))].append(r)
+    out = set()
+    for (pd_, tm), groups in bycas.items():
+        fav = min(groups, key=lambda k: min(float(x.get("odds") or 99) for x in groups[k]))
+        out.add((pd_, fav[0], fav[1]))
+    return out
+
+
+def tier_map(rows):
+    """{(pred_date, player, stat): tier} over the canonical (selected) universe."""
+    sel, _ = current_selection(rows)
+    favs = fav_keys(sel)
+    return {(r["pred_date"], r["player"], r["stat"]):
+            tier_of(r, (r["pred_date"], r["player"], r["stat"]) in favs) for r in sel}
 
 
 def current_selection(rows, commit=False):

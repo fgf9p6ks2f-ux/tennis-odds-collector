@@ -192,33 +192,15 @@ SINGLES = ("points", "rebounds", "assists")
 
 
 def _tier(r, is_fav):
-    """Confidence tier from ALREADY-VALIDATED splits (2026-07-18) — no fitted model at n~31:
-    A = 3-8 band + market favorite + single stat (every ingredient real-line validated);
-    B = the solid middle (3-8 others, vetted cold tier, supported 0-3 singles);
-    C = combos and marginal 0-3 (positive but thinnest). Calibration = each tier's LIVE
-    record in the legend, recomputed from the ledger every bake — the tier says what its
-    record says, nothing more."""
-    dm = r.get("d_min")
-    single = r.get("stat") in SINGLES
-    inband = dm is not None and 3 <= dm <= 8
-    if inband and is_fav and single:
-        return "A"
-    if inband or dm is None or (0 <= (dm if dm is not None else -1) < 3 and single):
-        return "B"
-    return "C"
+    """Delegates to the CANONICAL tier rule in wnba_slip (single implementation across
+    dashboard chips, notification titles and watchlist scenarios — drift audit 2026-07-18)."""
+    import wnba_slip as _S
+    return _S.tier_of(r, is_fav)
 
 
 def _fav_keys(rows):
-    """{(date, player, stat)} of each team-cascade's shortest-odds selected group."""
-    from collections import defaultdict
-    bycas = defaultdict(lambda: defaultdict(list))
-    for r in rows:
-        bycas[(r.get("pred_date"), r.get("team"))][(r.get("player"), r.get("stat"))].append(r)
-    out = set()
-    for (pd_, tm), groups in bycas.items():
-        fav = min(groups, key=lambda k: min(float(x.get("odds") or 99) for x in groups[k]))
-        out.add((pd_, fav[0], fav[1]))
-    return out
+    import wnba_slip as _S
+    return _S.fav_keys(rows)
 
 
 def _tier_records():
