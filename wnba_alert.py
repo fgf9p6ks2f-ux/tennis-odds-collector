@@ -117,6 +117,7 @@ def collect():
     alerts, preds, proj_rows, cold_spots = [], [], [], []
     _band_shadowed = set()
     _band_seen = {}
+    _tmrw_seen = {}                                      # next-day CONTINGENT spots (not bets)
     log_cache = {}                                   # fetch each player's game log at most once
 
     def glog(pid):
@@ -311,6 +312,28 @@ def collect():
                                             "assists": pa["proj_ast"]}, pn_b,
                                            tip=tips_by[slate_date].get(team), tier="band_pilot")
                     continue
+                if slate_date != today:
+                    # NEXT-DAY SAFEGUARD (2026-07-18, user: McBride was flagged off Juhasz/Miles'
+                    # LAST-GAME status and both played the next night; Boston 'out' yesterday may
+                    # play tomorrow while Clark sits). A rolling-feed 'Out' is last game's status,
+                    # NOT an official ruling for tomorrow — and RotoWire only covers today. So
+                    # next-day edges are CONTINGENT watchlist spots (lines scouted tonight, one
+                    # info ping) and only become firm bets when the GAME-DAY pass confirms the
+                    # ruling — the stale-line race runs at confirmation with lines pre-scouted.
+                    bkt = (n, e["stat"])
+                    prevs = _tmrw_seen.get(bkt)
+                    if prevs is None or e["ev"] > prevs["ev"]:
+                        _tmrw_seen[bkt] = {"player": n, "team": team, "star": out_full,
+                                           "status": "awaiting official ruling",
+                                           "pend_confirm": True, "sit": 1.0, "lead": None,
+                                           "conf": conf, "proj_min": round(proj, 1),
+                                           "date": slate_date, **e}
+                    kc = f"tmrwc|{slate_date}|{n}|{e['stat']}"
+                    alerts.append((e["ev"] * 0.5, kc,
+                        f"TMRW CONTINGENT: {out_label} out LAST game, not yet ruled out for "
+                        f"{slate_date[5:]} -> {_short(n)} {e['stat'][:3]} o{e['line']:g} "
+                        f"{T._am(e['dec'])} +{e['ev']*100:.0f}%EV — fires only if confirmed"))
+                    continue
                 # beneficiary+stat+line, dated (re-fires next slate)
                 key = f"{slate_date}|{n}|{e['stat']}|{e['line']}"
                 tag = " [stale line]" if e["stale"] else ""
@@ -445,6 +468,7 @@ def collect():
         print(f"tomorrow watchlist skipped: {str(e)[:80]}")
     watch += cold_spots                                  # ⚡COLD spots -> dashboard too
     watch += list(_band_seen.values())                   # ⚡BAND shadows -> dashboard (no ping)
+    watch += list(_tmrw_seen.values())                   # next-day CONTINGENT spots -> dashboard
     _write_watchlist(watch, today)                       # dashboard JSON (separate from the ledger)
     for s in sorted(watch, key=lambda s: -(s.get("ev") or 0)):
         if s.get("cold"):

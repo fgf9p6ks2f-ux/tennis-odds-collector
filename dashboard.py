@@ -1206,7 +1206,12 @@ def _watchlist_html(firm_keys=frozenset(), tips=None):
             f'<span class="wl-meta">proj {s.get("elev_avg", 0):g} · '
             f'{round((s.get("hit") or 0) * (s.get("n") or 0))}/{s.get("n") or 0} in role</span></div>'
             for s in ss)
-        if any(s.get("band") for s in ss):                    # ⚡BAND: research shadow, NOT a bet
+        if any(s.get("pend_confirm") for s in ss):            # next-day: no official ruling yet
+            hd = (f'{dtag}⏳ if <b>{html.escape(star or "?")}</b> confirmed out — '
+                  f'out last game, no ruling for this one yet')
+            ttl = (' title="next-day safeguard: a rolling-feed Out is LAST game\'s status. These'
+                   ' fire as firm plays only when the game-day pass confirms the ruling."')
+        elif any(s.get("band") for s in ss):                  # ⚡BAND: research shadow, NOT a bet
             hd = (f'{dtag}⚡BAND · <b>{html.escape(star or "?")}</b> OUT — shadow, not a bet')
             ttl = ' title="d_min outside the validated 3-8 band — logged to build the sample, never bet"'
         elif cold:                                            # ⚡COLD: star IS out, RW names the starter
