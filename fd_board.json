@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T12:00:52Z",
+ "captured_at": "2026-07-18T12:05:51Z",
  "matches": [
   {
    "event_id": 35837200,
@@ -8,20 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-18T11:50:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35837201,
-   "p1": "Jacek Wieczerzak",
-   "p2": "Oskar Jadach",
-   "p1_norm": "jacek wieczerzak",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-18T11:50:00.000Z",
-   "line": 53.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 94.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35837213,
@@ -30,20 +19,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-18T11:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35837228,
-   "p1": "Adrian Spychala",
-   "p2": "Damian Wederlich",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "damian wederlich",
-   "open_date": "2026-07-18T12:05:00.000Z",
-   "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 68.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837233,
@@ -88,6 +66,17 @@
    "line": 78.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35837284,
+   "p1": "Maciej Domin",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "maciej domin",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-18T12:30:00.000Z",
+   "line": 70.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
