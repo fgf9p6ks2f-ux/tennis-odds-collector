@@ -463,12 +463,13 @@ def _prop_row(r, rungs=None):
     hit-rate HEATMAP (ROLE injury-context · L5 · L10 · season · H2H, green/red), and a compact
     context line (usage driver + matchup D + the runner-up book price). Taps to expand the bars."""
     stat = STAT.get(r["stat"], r["stat"].upper())
-    # REB WATCH (2026-07-17, user call): reb-component bets are 7-10 / -3.1u live while everything
-    # else prints — he personally skips them until the ~30-bet checkpoint; the system still flags,
-    # grades and tracks them all. The tag tells him at a glance which plays are on his skip list.
-    rwatch = (' <span class="rwatch" title="rebounds-component: 7-10 (-3.1u) live — tracking to a '
-              '~30-bet verdict; user-skip until then">watch</span>'
-              if r["stat"] in ("rebounds", "reb_ast", "pts_reb") else "")
+    # REB VERDICT EXECUTED (2026-07-18, pre-committed at ~33 graded): the current-rules reb
+    # subset finished NET-POSITIVE (+0.36u, 7-6; in-band reb 10-5 +4.8u) — the historical bleed
+    # was entirely OUT-OF-BAND flags (1-8, -6.8u), which is a band problem, not a rebounds
+    # problem. Watch tag removed per the rule; next validation target = out-of-band firm flags
+    # (incl. the cold-margin exemption: Makani -4.1 scoreless, Ododa 10.7) via the real-line
+    # replay before any gate ships.
+    rwatch = ""
     side = (r.get("side") if hasattr(r, "get") else r["side"]) or "over"
     o = "O" if side == "over" else "U"
     ev = r.get("ev")
