@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T10:33:19Z",
+ "captured_at": "2026-07-18T10:38:12Z",
  "matches": [
   {
    "event_id": 35837085,
@@ -8,9 +8,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "patryk gamrot",
    "open_date": "2026-07-18T10:20:00.000Z",
-   "line": 93.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 97.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35837095,
@@ -19,9 +19,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-18T10:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837099,
@@ -30,7 +30,7 @@
    "p1_norm": "michal wandachowicz",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-18T10:30:00.000Z",
-   "line": 79.5,
+   "line": 94.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +41,9 @@
    "p1_norm": "rafal glica",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T10:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837103,
@@ -52,9 +52,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T10:35:00.000Z",
-   "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35837109,
@@ -63,9 +63,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T10:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -116
   },
   {
    "event_id": 35837119,
@@ -86,6 +86,28 @@
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T10:55:00.000Z",
    "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35837134,
+   "p1": "Oskar Jadach",
+   "p2": "Marcin Lach",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-18T11:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35837135,
+   "p1": "Stapor Rafal",
+   "p2": "Jakub Michalczyk",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "jakub michalczyk",
+   "open_date": "2026-07-18T11:00:00.000Z",
+   "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
   }
