@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T07:47:10Z",
+ "captured_at": "2026-07-18T07:51:39Z",
  "matches": [
-  {
-   "event_id": 35836842,
-   "p1": "Kacper Adamus",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-18T07:35:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35836847,
    "p1": "Maciej Kolek",
@@ -19,9 +8,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "adam linek",
    "open_date": "2026-07-18T07:40:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836850,
@@ -30,8 +19,8 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "jacek wieczerzak",
    "open_date": "2026-07-18T07:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
+   "line": 77.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -41,8 +30,8 @@
    "p1_norm": "maksymilian miastowski",
    "p2_norm": "tibor spanik",
    "open_date": "2026-07-18T07:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
+   "line": 79.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
