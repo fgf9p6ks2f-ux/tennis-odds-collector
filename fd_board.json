@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T08:05:56Z",
+ "captured_at": "2026-07-18T08:10:26Z",
  "matches": [
-  {
-   "event_id": 35836864,
-   "p1": "Filip Witczak",
-   "p2": "Mariusz Baron",
-   "p1_norm": "filip witczak",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-18T07:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35836868,
-   "p1": "Rafal Idaczyk",
-   "p2": "Patryk Mecik",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "patryk mecik",
-   "open_date": "2026-07-18T08:00:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35836870,
    "p1": "Aleksander Lilien",
@@ -30,7 +8,7 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "adam linek",
    "open_date": "2026-07-18T08:05:00.000Z",
-   "line": 80.5,
+   "line": 83.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +19,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-18T08:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 57.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836879,
@@ -64,8 +42,8 @@
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-18T08:20:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35836893,
@@ -86,8 +64,8 @@
    "p2_norm": "michal wandachowicz",
    "open_date": "2026-07-18T08:30:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35836912,
@@ -96,7 +74,7 @@
    "p1_norm": "michal minda",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-18T08:30:00.000Z",
-   "line": 78.5,
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
