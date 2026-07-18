@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T06:59:48Z",
+ "captured_at": "2026-07-18T07:04:55Z",
  "matches": [
-  {
-   "event_id": 35836740,
-   "p1": "Daniel Morawiec",
-   "p2": "Filip Witczak",
-   "p1_norm": "daniel morawiec",
-   "p2_norm": "filip witczak",
-   "open_date": "2026-07-18T06:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35836749,
    "p1": "Adam Linek",
@@ -19,9 +8,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T06:50:00.000Z",
-   "line": 90.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 97.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836755,
@@ -30,7 +19,7 @@
    "p1_norm": "rafal glica",
    "p2_norm": "jacek wieczerzak",
    "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 84.5,
+   "line": 79.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,20 +30,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "tibor spanik",
    "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35836757,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Dariusz Wrobel",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "dariusz wrobel",
-   "open_date": "2026-07-18T06:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836794,
