@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T09:28:11Z",
+ "captured_at": "2026-07-18T09:33:29Z",
  "matches": [
   {
    "event_id": 35836983,
@@ -8,20 +8,9 @@
    "p1_norm": "maciej domin",
    "p2_norm": "damian wederlich",
    "open_date": "2026-07-18T09:20:00.000Z",
-   "line": 88.5,
+   "line": 103.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35836984,
-   "p1": "Maciej Kolek",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-18T09:20:00.000Z",
-   "line": 90.5,
-   "over_odds": -115,
-   "under_odds": -120
   },
   {
    "event_id": 35836997,
@@ -30,7 +19,7 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-18T09:25:00.000Z",
-   "line": 78.5,
+   "line": 91.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +30,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T09:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 54.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35837007,
@@ -52,9 +41,9 @@
    "p1_norm": "daniel morawiec",
    "p2_norm": "patryk gamrot",
    "open_date": "2026-07-18T09:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837017,
@@ -108,6 +97,17 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T09:55:00.000Z",
    "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35837071,
+   "p1": "Tibor Spanik",
+   "p2": "Maciej Domin",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "maciej domin",
+   "open_date": "2026-07-18T10:00:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
