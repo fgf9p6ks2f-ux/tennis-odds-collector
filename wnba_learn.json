@@ -1,0 +1,21 @@
+{
+ "n": 92,
+ "w": 49,
+ "l": 43,
+ "separations": {
+  "d_stat": -0.609,
+  "driver": -0.538,
+  "d_fga": -0.375,
+  "elev_avg": -0.19,
+  "d_min": -0.137,
+  "proj_hit": -0.134,
+  "opp_def": -0.134,
+  "season_avg": -0.122,
+  "total": -0.116,
+  "proj_min": 0.105,
+  "n_elev": 0.044,
+  "ev": -0.023,
+  "vac": 0.022,
+  "pace": 0.004
+ }
+}
