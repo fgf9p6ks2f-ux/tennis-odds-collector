@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T21:58:47Z",
+ "captured_at": "2026-07-18T22:04:31Z",
  "matches": [
-  {
-   "event_id": 35840057,
-   "p1": "Marcin Marchlewski",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "marcin marchlewski",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-18T21:45:00.000Z",
-   "line": 86.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
-  {
-   "event_id": 35840059,
-   "p1": "Kacper Marchlewski",
-   "p2": "Artur Szoltysek",
-   "p1_norm": "kacper marchlewski",
-   "p2_norm": "artur szoltysek",
-   "open_date": "2026-07-18T21:45:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35840236,
    "p1": "Artur Kubiak",
@@ -30,9 +8,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-18T22:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840252,
@@ -41,7 +19,7 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T22:05:00.000Z",
-   "line": 75.5,
+   "line": 71.5,
    "over_odds": -116,
    "under_odds": -116
   },
@@ -77,6 +55,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35840258,
+   "p1": "Marcin Marchlewski",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "marcin marchlewski",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-18T22:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
