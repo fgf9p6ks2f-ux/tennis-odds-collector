@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T16:35:10Z",
+ "captured_at": "2026-07-18T16:40:31Z",
  "matches": [
-  {
-   "event_id": 35838452,
-   "p1": "Filip Witczak",
-   "p2": "Daniel Morawiec",
-   "p1_norm": "filip witczak",
-   "p2_norm": "daniel morawiec",
-   "open_date": "2026-07-18T16:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35838590,
    "p1": "Miroslaw Warzecha",
@@ -19,9 +8,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-18T16:25:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35838657,
@@ -30,7 +19,7 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-18T16:30:00.000Z",
-   "line": 70.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T16:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35838690,
@@ -52,8 +41,8 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T16:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
+   "line": 83.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -75,8 +64,8 @@
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T16:50:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35839224,
@@ -108,6 +97,17 @@
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-18T16:55:00.000Z",
    "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35839527,
+   "p1": "Patryk Gamrot",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "patryk gamrot",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-18T17:05:00.000Z",
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
