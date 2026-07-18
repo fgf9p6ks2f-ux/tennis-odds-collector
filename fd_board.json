@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T15:17:16Z",
+ "captured_at": "2026-07-18T15:22:27Z",
  "matches": [
-  {
-   "event_id": 35838010,
-   "p1": "Filip Witczak",
-   "p2": "Rafal Wojcik",
-   "p1_norm": "filip witczak",
-   "p2_norm": "rafal wojcik",
-   "open_date": "2026-07-18T15:05:00.000Z",
-   "line": 92.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35838019,
    "p1": "Miroslaw Warzecha",
@@ -19,7 +8,7 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-18T15:10:00.000Z",
-   "line": 72.5,
+   "line": 73.5,
    "over_odds": -120,
    "under_odds": -115
   },
