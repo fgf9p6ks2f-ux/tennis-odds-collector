@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T11:43:51Z",
+ "captured_at": "2026-07-18T11:48:45Z",
  "matches": [
-  {
-   "event_id": 35837161,
-   "p1": "Rafal Idaczyk",
-   "p2": "Wojciech Urban",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-18T11:25:00.000Z",
-   "line": 90.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35837179,
-   "p1": "Patryk Gamrot",
-   "p2": "Mariusz Baron",
-   "p1_norm": "patryk gamrot",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-18T11:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35837186,
    "p1": "Tibor Spanik",
@@ -30,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-18T11:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837192,
@@ -41,9 +19,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-18T11:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837200,
@@ -97,6 +75,28 @@
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T12:10:00.000Z",
    "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35837238,
+   "p1": "Stanislaw Wnek",
+   "p2": "Jakub Michalczyk",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "jakub michalczyk",
+   "open_date": "2026-07-18T12:15:00.000Z",
+   "line": 83.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35837239,
+   "p1": "Rafal Glica",
+   "p2": "Marcin Lach",
+   "p1_norm": "rafal glica",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-18T12:15:00.000Z",
+   "line": 72.5,
    "over_odds": -116,
    "under_odds": -116
   }
