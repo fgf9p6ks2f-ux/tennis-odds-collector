@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T18:03:06Z",
+ "captured_at": "2026-07-18T18:09:53Z",
  "matches": [
   {
    "event_id": 35839683,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-18T18:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839691,
@@ -19,9 +19,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-18T18:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839692,
@@ -31,8 +31,8 @@
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-18T18:10:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35839696,
@@ -53,6 +53,39 @@
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-18T18:25:00.000Z",
    "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35839706,
+   "p1": "Gracjan Kesik",
+   "p2": "Jakub Michalczyk",
+   "p1_norm": "gracjan kesik",
+   "p2_norm": "jakub michalczyk",
+   "open_date": "2026-07-18T18:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35839707,
+   "p1": "Jakub Kuzmicz",
+   "p2": "Filip Mlynarski",
+   "p1_norm": "jakub kuzmicz",
+   "p2_norm": "filip mlynarski",
+   "open_date": "2026-07-18T18:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35839712,
+   "p1": "Piotr Gesiarz",
+   "p2": "Dariusz Maszczynski",
+   "p1_norm": "piotr gesiarz",
+   "p2_norm": "dariusz maszczynski",
+   "open_date": "2026-07-18T18:30:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
