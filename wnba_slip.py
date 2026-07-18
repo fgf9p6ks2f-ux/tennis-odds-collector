@@ -214,14 +214,21 @@ def fav_keys(rows):
     bycas = defaultdict(lambda: defaultdict(list))
     for r in rows:
         bycas[(r.get("pred_date"), r.get("team"))][(r.get("player"), r.get("stat"))].append(r)
+    def _grank(rr):
+        """(odds, out-of-band, -ev, ...) — at an EXACT odds tie (both -114, Ionescu/Stewart
+        2026-07-18) the book calls the plays equally likely, so the tag falls to the STRONGEST
+        validated signal: core-band membership (twice real-line validated), never model EV
+        (the fat-EV inversion — EV>=.20 hits WORSE than EV<.20). EV then name close it out.
+        Odds leads the tuple, so nothing changes except exact ties (none exist in the graded
+        ledger — legend untouched)."""
+        dm = rr[0].get("d_min")
+        return (min(float(x.get("odds") or 99) for x in rr),
+                0 if (dm is not None and 3 <= dm <= 8) else 1,
+                -max((x.get("ev") or 0.0) for x in rr))
+
     out = set()
     for (pd_, tm), groups in bycas.items():
-        # tie-break matters: equal odds (Ionescu/Stewart both -114, 2026-07-18) made the
-        # favorite dict-order-dependent — board and pings could disagree. Same order as
-        # selection's gkey: shortest odds, then highest EV, then name (fully deterministic).
-        fav = min(groups, key=lambda k: (min(float(x.get("odds") or 99) for x in groups[k]),
-                                         -max((x.get("ev") or 0.0) for x in groups[k]),
-                                         k[0]))
+        fav = min(groups, key=lambda k: _grank(groups[k]) + (k[0],))
         out.add((pd_, fav[0], fav[1]))
     return out
 
@@ -326,7 +333,10 @@ def current_selection(rows, commit=False):
 
         def gkey(k):
             rr = groups[k]
+            dm = rr[0].get("d_min")
+            # identical tuple to fav_keys._grank — favorite and slot-1 must agree at ties
             return (min((x.get("odds") or 99) for x in rr),
+                    0 if (dm is not None and 3 <= dm <= 8) else 1,
                     -max((x.get("ev") or 0.0) for x in rr))
         picks, used = [], set()
         for k in slog.get((pd_, tm), []):                 # sticky picks first, logged order
