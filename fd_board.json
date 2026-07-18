@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T18:33:55Z",
+ "captured_at": "2026-07-18T18:39:41Z",
  "matches": [
-  {
-   "event_id": 35839696,
-   "p1": "Mariusz Adamus",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-18T18:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35839700,
    "p1": "Henryk Tkaczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-18T18:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839706,
@@ -30,9 +19,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-18T18:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35839707,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "filip mlynarski",
    "open_date": "2026-07-18T18:30:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 55.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35839712,
@@ -52,9 +41,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-18T18:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839720,
@@ -64,7 +53,7 @@
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-18T18:45:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
+   "over_odds": -118,
    "under_odds": -116
   },
   {
@@ -75,8 +64,8 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-18T18:45:00.000Z",
    "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35839734,
@@ -86,8 +75,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T18:50:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35839738,
@@ -107,9 +96,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-18T18:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
