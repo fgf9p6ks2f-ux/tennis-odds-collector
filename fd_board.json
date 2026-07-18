@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T13:40:27Z",
+ "captured_at": "2026-07-18T13:45:30Z",
  "matches": [
-  {
-   "event_id": 35837735,
-   "p1": "Jakub Glanowski",
-   "p2": "Dominik Solilo",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-18T13:25:00.000Z",
-   "line": 84.5,
-   "over_odds": 110,
-   "under_odds": -155
-  },
   {
    "event_id": 35837750,
    "p1": "Jakub Michalczyk",
@@ -19,7 +8,7 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T13:30:00.000Z",
-   "line": 96.5,
+   "line": 85.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "maciej domin",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-18T13:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35837844,
@@ -77,6 +66,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35837886,
+   "p1": "Grzegorz Felkel",
+   "p2": "Maksymilian Miastowski",
+   "p1_norm": "grzegorz felkel",
+   "p2_norm": "maksymilian miastowski",
+   "open_date": "2026-07-18T14:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
