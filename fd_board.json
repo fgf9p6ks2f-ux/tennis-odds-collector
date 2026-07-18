@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T05:00:01Z",
+ "captured_at": "2026-07-18T05:04:15Z",
  "matches": [
   {
    "event_id": 35836177,
@@ -8,9 +8,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-18T04:50:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35836178,
@@ -20,8 +20,8 @@
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T04:50:00.000Z",
    "line": 90.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35836199,
@@ -30,7 +30,7 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-18T04:55:00.000Z",
-   "line": 75.5,
+   "line": 89.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +41,7 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T04:55:00.000Z",
-   "line": 83.5,
+   "line": 87.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -108,6 +108,17 @@
    "p2_norm": "adam linek",
    "open_date": "2026-07-18T05:15:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836524,
+   "p1": "Daniel Morawiec",
+   "p2": "Mariusz Baron",
+   "p1_norm": "daniel morawiec",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-18T05:30:00.000Z",
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
