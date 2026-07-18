@@ -1,9 +1,9 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-18T14:44:15 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-18T16:34:07 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 118-234  ·  **P&L:** -54.75u ($-5,475)  ·  **ROI:** -15.6%
-- **Avg CLV:** +7.14% over 307 closed bets  ·  **Open:** 11  ·  **Total logged:** 386
+- **Record:** 119-234  ·  **P&L:** -53.92u ($-5,392)  ·  **ROI:** -15.3%
+- **Avg CLV:** +7.14% over 307 closed bets  ·  **Open:** 10  ·  **Total logged:** 386
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
@@ -14,7 +14,7 @@ Data OK — FanDuel 2538 lines @ `2026-07-18T14:43:35`.
 | sport | stat | bets | settled P&L (u) | avg CLV |
 |---|---|---|---|---|
 | ebasketball | total | 31 | +5.62 | -4.77% |
-| efootball | total | 3 | -0.09 | — |
+| efootball | total | 3 | +0.74 | — |
 | mlb | f5_total | 18 | +8.55 | — |
 | mlb | game_total | 42 | +3.04 | — |
 | mlb | strikeouts | 29 | -5.91 | +3.87% |
@@ -25,6 +25,7 @@ Data OK — FanDuel 2538 lines @ `2026-07-18T14:43:35`.
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-18 | efootball | KILLJOY v MERLIN | total over 30.5 | 1.83 | W | 49 | +0.83u | — |
 | 2026-07-18 | ebasketball | MARKSMAN v ORDER | total over 107.5 | 1.83 | L | 103 | -1.00u | -4.3% |
 | 2026-07-18 | mlb | GAME (f5_total) | f5_total over 5.5 | 2.08 | W | 10 | +1.08u | — |
 | 2026-07-18 | ebasketball | JUGGERNAUT v AIRFORCE | total over 111.5 | 1.83 | L | 92 | -1.00u | -4.3% |
@@ -49,5 +50,4 @@ Data OK — FanDuel 2538 lines @ `2026-07-18T14:43:35`.
 | 2026-07-16 | ebasketball | HYPER v JD | total over 101.5 | 1.83 | W | 103 | +0.83u | -4.3% |
 | 2026-07-15 | mlb | GAME (f5_total) | f5_total over 3.5 | 1.69 | L | 3 | -1.00u | — |
 | 2026-07-13 | mlb | GAME (game_total) | game_total over 9.5 | 1.85 | L | 9 | -1.00u | — |
-| 2026-07-12 | mlb | GAME (game_total) | game_total under 9.5 | 1.88 | L | 10 | -1.00u | — |
 
