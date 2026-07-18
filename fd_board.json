@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T03:36:01Z",
+ "captured_at": "2026-07-18T03:41:51Z",
  "matches": [
   {
    "event_id": 35836100,
@@ -8,20 +8,9 @@
    "p1_norm": "dariusz wrobel",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-18T03:25:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35836101,
-   "p1": "Maksymilian Miastowski",
-   "p2": "Michal Wandachowicz",
-   "p1_norm": "maksymilian miastowski",
-   "p2_norm": "michal wandachowicz",
-   "open_date": "2026-07-18T03:25:00.000Z",
-   "line": 52.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35836104,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub michalski",
    "p2_norm": "roman wiza",
    "open_date": "2026-07-18T03:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 67.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836105,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-18T03:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836116,
