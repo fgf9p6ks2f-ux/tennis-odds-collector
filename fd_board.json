@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T07:23:51Z",
+ "captured_at": "2026-07-18T07:28:25Z",
  "matches": [
   {
    "event_id": 35836794,
@@ -8,20 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-18T07:10:00.000Z",
-   "line": 92.5,
+   "line": 95.5,
    "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35836795,
-   "p1": "Patryk Gamrot",
-   "p2": "Mariusz Baron",
-   "p1_norm": "patryk gamrot",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-18T07:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -135
   },
   {
    "event_id": 35836803,
@@ -30,9 +19,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "michal minda",
    "open_date": "2026-07-18T07:15:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836808,
@@ -41,7 +30,7 @@
    "p1_norm": "marcin lach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T07:20:00.000Z",
-   "line": 73.5,
+   "line": 67.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +41,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T07:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836810,
@@ -63,7 +52,7 @@
    "p1_norm": "michal wandachowicz",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-18T07:20:00.000Z",
-   "line": 71.5,
+   "line": 54.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -121,6 +110,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35836864,
+   "p1": "Filip Witczak",
+   "p2": "Mariusz Baron",
+   "p1_norm": "filip witczak",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-18T07:55:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
