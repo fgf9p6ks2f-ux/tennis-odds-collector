@@ -545,9 +545,9 @@ def push_plays(fresh, preds, topic):
             tm = f"{p['team']} · " if p.get("team") else ""
             title = (f"🚨 {tm}{p['player']} {NOTIF_AB.get(p['stat'], p['stat'].upper())} "
                      f"o{p['line']:g} {T._am(float(p['odds']))} {_tier_of(p)}")
-            outs = ", ".join(_short(x.strip()) for x in (p.get("out_player") or "").split(",")
-                             if x.strip())
-            body = f"{outs} out · proj {p.get('elev_avg'):g} · {p['pred_date'][5:]}"
+            # title-only (user 2026-07-18): no premise line. ntfy swaps a truly empty body for
+            # the word "triggered", so send a zero-width space to keep the banner to one line.
+            body = "\u200b"
         else:                                         # non-pred alert (rare) — send as-is
             title = "WNBA alert"
             body = msg[:160]
