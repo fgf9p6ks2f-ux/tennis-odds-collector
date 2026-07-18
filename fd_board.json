@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T14:06:48Z",
+ "captured_at": "2026-07-18T14:11:57Z",
  "matches": [
   {
    "event_id": 35837862,
@@ -8,7 +8,7 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-18T13:55:00.000Z",
-   "line": 68.5,
+   "line": 101.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -19,9 +19,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T13:55:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 97.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35837886,
@@ -30,9 +30,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-18T14:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35837900,
@@ -77,6 +77,28 @@
    "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35837941,
+   "p1": "Tibor Spanik",
+   "p2": "Damian Wederlich",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "damian wederlich",
+   "open_date": "2026-07-18T14:35:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35837942,
+   "p1": "Adam Linek",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "adam linek",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-18T14:35:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
