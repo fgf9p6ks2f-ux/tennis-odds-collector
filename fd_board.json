@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T02:31:56Z",
+ "captured_at": "2026-07-18T02:37:41Z",
  "matches": [
-  {
-   "event_id": 35836058,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Marcin Marchlewski",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "marcin marchlewski",
-   "open_date": "2026-07-18T02:15:00.000Z",
-   "line": 100.5,
-   "over_odds": 120,
-   "under_odds": -165
-  },
-  {
-   "event_id": 35836060,
-   "p1": "Jakub Michalski",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "jakub michalski",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-18T02:20:00.000Z",
-   "line": 58.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35836069,
    "p1": "Grzegorz Sawicki",
@@ -31,8 +9,8 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-18T02:35:00.000Z",
    "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836071,
@@ -55,6 +33,50 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35836082,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Jakub Wozniak",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "jakub wozniak",
+   "open_date": "2026-07-18T03:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35836083,
+   "p1": "Adrian Spychala",
+   "p2": "Maciej Domin",
+   "p1_norm": "adrian spychala",
+   "p2_norm": "maciej domin",
+   "open_date": "2026-07-18T03:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35836084,
+   "p1": "Rafal Glica",
+   "p2": "Wojciech Urban",
+   "p1_norm": "rafal glica",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-18T03:00:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35836085,
+   "p1": "Robert Szymik",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "robert szymik",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-18T03:05:00.000Z",
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
