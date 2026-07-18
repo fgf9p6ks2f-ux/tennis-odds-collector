@@ -434,10 +434,21 @@ def collect():
     # keep them OUT of the graded ledger (preds) so the track record only counts resolved bets.
     # They graduate into the firm pipeline the moment the star is ruled OUT. Appended to `alerts`
     # so both push paths (wnba_alert.main + wnba_watch) surface them via the same dedup.
+    firm_today = {tm: o for (sd, tm), o in outs_by_team.items() if sd == today}
     watch = T.questionable_beneficiaries(pl, playing, matchups, lines, rates, inj,
-                                         out_names, outs_by_team, glog=glog)
+                                         out_names, firm_today, glog=glog)
     for s in watch:
         s["date"] = today
+    # WATCHLIST v2 SCENARIOS (user 2026-07-18): per-game "if X sits -> play THIS" variant
+    # rows — each Q star solo AND the combo — one top play + tier per scenario. Display-only.
+    scen = []
+    try:
+        for s in T.scenario_matrix(pl, playing, matchups, lines, rates, inj, out_names,
+                                   firm_today, glog=glog, tips=tips):
+            s["date"] = today
+            scen.append(s)
+    except Exception as e:
+        print("scenario matrix (today) skipped:", str(e)[:70])
     # TOMORROW'S CONTINGENT PLAYS (2026-07-16, user): next-day lines post the evening before,
     # while tomorrow's stars are still Questionable — the widest version of the timing edge.
     # Same machinery on tomorrow's slate; spots carry date + the actual posted line.
@@ -462,12 +473,31 @@ def collect():
             for s in watch2:
                 s["date"] = tom_iso
             watch += watch2
+            for s in T.scenario_matrix(pl, playing2, matchups2, lines, rates, inj, out_names2,
+                                       outs_by_team2, glog=glog, date=tom_iso, tips=tips2):
+                s["date"] = tom_iso
+                scen.append(s)
     except Exception as e:
         print(f"tomorrow watchlist skipped: {str(e)[:80]}")
     watch += cold_spots                                  # ⚡COLD spots -> dashboard too
     watch += list(_band_seen.values())                   # ⚡BAND shadows -> dashboard (no ping)
     watch += list(_tmrw_seen.values())                   # next-day CONTINGENT spots -> dashboard
-    _write_watchlist(watch, today)                       # dashboard JSON (separate from the ledger)
+
+    def _fold(vals, kind, band_gate=True):
+        grp = defaultdict(list)
+        for s in vals:
+            grp[(s.get("date") or today, s.get("team"), s.get("star"))].append(s)
+        for (dte, team, star), ss in grp.items():
+            play = T.top_play(ss, band_gate=band_gate)
+            if play:
+                scen.append({"team": team, "opp": matchups_by.get(dte, {}).get(team, ""),
+                             "date": dte, "kind": kind, "stars": [star or "?"], "also_in": [],
+                             "status": ss[0].get("status") or "", "sit": ss[0].get("sit"),
+                             "firm_outs": [], "play": play})
+    _fold(_tmrw_seen.values(), "contingent")
+    _fold(cold_spots, "cold")
+    _fold(_band_seen.values(), "band", band_gate=False)  # band = out-of-band by definition
+    _write_watchlist(watch, today, scen)                 # dashboard JSON (separate from the ledger)
     for s in sorted(watch, key=lambda s: -(s.get("ev") or 0)):
         if s.get("cold"):
             continue                                     # already ntfy'd by the n0 branch
@@ -494,12 +524,13 @@ def collect():
     return sorted(alerts, reverse=True), preds
 
 
-def _write_watchlist(watch, today):
+def _write_watchlist(watch, today, scenarios=None):
     """Dump the questionable-tier watchlist to JSON for the dashboard. Intra-job only (read by
     dashboard.py in the same loop step), so it's never committed — no churn, no conflicts."""
     try:
         (HERE / "wnba_watchlist.json").write_text(
-            json.dumps({"date": today, "spots": watch}, default=str))
+            json.dumps({"date": today, "spots": watch,
+                        "scenarios": scenarios or []}, default=str))
     except OSError:
         pass
 

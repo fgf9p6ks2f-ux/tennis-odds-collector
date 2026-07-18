@@ -13,6 +13,7 @@ from __future__ import annotations
 import datetime as dt
 import html
 import json
+import re
 import sqlite3
 from collections import defaultdict
 from pathlib import Path
@@ -36,7 +37,8 @@ STAT = {"points": "PTS", "rebounds": "REB", "assists": "AST",
 STATKEY = {"points": "pts", "rebounds": "reb", "assists": "ast",
            "pra": "pra", "pts_reb": "pts_reb", "pts_ast": "pts_ast", "reb_ast": "reb_ast"}
 THIN_EV = 0.35
-LOGO = "https://a.espncdn.com/i/teamlogos/wnba/500/{}.png"
+# local 96px copies (docs/logos/, fetched from ESPN once) — no hotlinking 100KB+ originals
+LOGO = "logos/{}.png"
 
 # ---- LIVE bar recompute ----------------------------------------------------------------------
 # The dropdown bars are recomputed FRESH on every dashboard build from current game logs + the
@@ -1145,13 +1147,11 @@ _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
 
 
 def _watchlist_html(firm_keys=frozenset(), tips=None):
-    """Questionable-tier watchlist: provisional spots that open up IF a game-time-decision star
-    sits. Rendered distinctly (amber, dashed) so it never reads as a firm bet. Read from the JSON
-    wnba_alert writes each cycle; missing / stale (not today) / empty -> no section.
-    COHERENCE (2026-07-17 audit): a spot that duplicates a FIRM board play (same date+player+stat)
-    is dropped — one bet, one place, one status; a spot stamped a date its team doesn't play is
-    REMAPPED to the team's real game date (killed the double Hull group with conflicting sit%);
-    spots then dedupe on (star, player, stat, line)."""
+    """Watchlist v2 (user 2026-07-18): per-GAME groups in tip order, one row per scenario —
+    "if X sits → play THIS" — showing only the TOP play (what selection would actually flag)
+    with its tier letter. Variants for multi-Q teams: each star solo AND the combo. Contingent
+    (unconfirmed-out), cold and band shadows fold in as their own row kinds. Minimal reading:
+    condition line + play line; detail lives in tooltips."""
     f = HERE / "wnba_watchlist.json"
     if not f.exists():
         return ""
@@ -1159,99 +1159,100 @@ def _watchlist_html(firm_keys=frozenset(), tips=None):
         d = json.loads(f.read_text())
     except (ValueError, OSError):
         return ""
-    today = dt.datetime.now(ET).date().isoformat()   # match the ET slate date the writer stamps
-    spots = d.get("spots") or []
-    if d.get("date") != today or not spots:
-        return ""
-    team_dates = defaultdict(list)                    # team -> [dates it actually plays]
-    for (d_, t_) in (tips or {}):
-        team_dates[t_].append(d_)
-    fixed, seen_k = [], set()
-    for s in sorted(spots, key=lambda s: -(s.get("ev") or 0)):
-        sdate = s.get("date") or today
-        tm = (s.get("team") or "").upper()
-        gd = sorted(team_dates.get(tm, []))
-        if gd and sdate not in gd:                    # wrong slate date -> remap to the real game
-            sdate = gd[0]
-            s = {**s, "date": sdate}
-        if (sdate, s.get("player"), s.get("stat")) in firm_keys:
-            continue                                  # already a firm play card — don't re-list
-        # dedupe includes the (remapped) DATE: a back-to-back means the same contingency can be
-        # real on BOTH slates (Clark+Boston Q for IND 7/17 AND 7/18) — those are different games
-        k = (sdate, s.get("star"), s.get("player"), s.get("stat"), s.get("line"))
-        if k in seen_k:
-            continue
-        seen_k.add(k)
-        fixed.append(s)
-    spots = fixed
-    if not spots:
-        return ""
-    by_star = defaultdict(list)
-    for s in spots:
-        by_star[(s.get("star"), s.get("status"), s.get("sit"), s.get("lead"),
-                 s.get("date"), bool(s.get("cold")), bool(s.get("band")))].append(s)
-    blocks = []
-    for (star, status, sit, lead, sdate, cold, band), ss in by_star.items():
-        sitpct = f"~{sit * 100:.0f}%" if sit is not None else ""
-        # lead time is the tell (late-breaking Q usually sits) — tucked into a tooltip, ⚠ stays
-        warn = "⚠ " if (lead is not None and lead < 6) else ""
-        ttl = f' title="tagged {lead:.0f}h pre-tip"' if lead is not None else ""
-        dtag = ""
-        if sdate and sdate != today:
-            dtag = "TMRW · "                                  # tomorrow's contingent play
-        legs = "".join(
-            f'<div class="wl-leg"><b>{html.escape(_short(s["player"]))}</b> '
-            f'{_WL_STAT.get(s.get("stat"), s.get("stat"))} o{s["line"]:g}'
-            f'<span class="wl-ev">+{(s.get("ev") or 0) * 100:.0f}%</span>'
-            f'<span class="wl-meta">proj {s.get("elev_avg", 0):g} · '
-            f'{round((s.get("hit") or 0) * (s.get("n") or 0))}/{s.get("n") or 0} in role</span></div>'
-            for s in ss)
-        if any(s.get("pend_confirm") for s in ss):            # next-day: no official ruling yet
-            hd = (f'{dtag}⏳ if <b>{html.escape(star or "?")}</b> confirmed out — '
-                  f'out last game, no ruling for this one yet')
-            ttl = (' title="next-day safeguard: a rolling-feed Out is LAST game\'s status. These'
-                   ' fire as firm plays only when the game-day pass confirms the ruling."')
-        elif any(s.get("band") for s in ss):                  # ⚡BAND: research shadow, NOT a bet
-            hd = (f'{dtag}⚡BAND · <b>{html.escape(star or "?")}</b> OUT — shadow, not a bet')
-            ttl = ' title="d_min outside the validated 3-8 band — logged to build the sample, never bet"'
-        elif cold:                                            # ⚡COLD: star IS out, RW names the starter
-            hd = (f'{dtag}⚡COLD · <b>{html.escape(star or "?")}</b> OUT — RotoWire-named starter')
-            ttl = ' title="no prior WOWY sample — cold-start projection (validated at margin >=5)"'
-        else:
-            hd = (f'{dtag}{warn}if <b>{html.escape(star or "?")}</b> sits · '
-                  f'{html.escape(status or "Q")}' + (f' · {sitpct} to sit' if sitpct else ''))
-        blocks.append(f'<div class="wl-grp"><div class="wl-hd"{ttl}>{hd}</div>{legs}</div>')
-    return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist '
-            '<span>· fires if the Q star sits</span></div>'
-            + "".join(blocks) + "</div>")
-
-
-def _openers_html():
-    """⚡ Openers: beatable opening lines just posted — line-shopping heads-ups (bet the soft number
-    before the book moves). DISTINCT from the tracked-bet cards above: these are NOT flagged injury
-    bets and they don't hit the record. Recomputed each ~60s poll by wnba_watch -> wnba_openers.json;
-    stale / other-day / empty -> no section."""
-    f = HERE / "wnba_openers.json"
-    if not f.exists():
-        return ""
-    try:
-        d = json.loads(f.read_text())
-    except (ValueError, OSError):
-        return ""
     today = dt.datetime.now(ET).date().isoformat()
-    spots = d.get("spots") or []
-    if d.get("date") != today or not spots:
+    if d.get("date") != today:
         return ""
-    import re as _re
-    # OVERS ONLY (2026-07-17 audit): the model dropped unders at -11.5% live ROI — the board
-    # must never recommend one, even as untracked line-shopping.
-    spots = [s for s in spots if not _re.search(r"\su\d", s.get("msg", ""))]
-    if not spots:
+    scen = d.get("scenarios") or []
+    scen = [s for s in scen if s.get("play")]
+    # one bet, one place: a scenario whose play is already a FIRM card never re-lists
+    scen = [s for s in scen if (s.get("date"), s["play"].get("player"),
+                                s["play"].get("stat")) not in firm_keys]
+    if not scen:
         return ""
-    legs = "".join(f'<div class="op-leg">{html.escape(s.get("msg", ""))}</div>' for s in spots[:12])
-    return ('<div class="openers"><div class="op-title">⚡ Openers'
-            '<span> · soft OVER posts · not tracked</span></div>'
-            f'{legs}</div>')
+
+    def _logo(ab):
+        return (f'<img class="glogo" src="{LOGO.format(ab.lower())}" alt="" loading="lazy" '
+                f'onerror="this.style.display=\'none\'">' if ab else "")
+
+    KIND_ORD = {"q": 0, "contingent": 1, "cold": 2, "band": 3}
+    games = defaultdict(list)                        # (date, frozenset(pair)) -> rows
+    for s in scen:
+        tm, op = (s.get("team") or "").upper(), (s.get("opp") or "").upper()
+        games[(s.get("date") or today, frozenset((tm, op)) if op else frozenset((tm,)))].append(s)
+    blocks = []
+    for (gd, pair), ss in games.items():
+        ss.sort(key=lambda s: (KIND_ORD.get(s.get("kind"), 9), len(s.get("stars") or []),
+                               -(s.get("sit") or 0)))
+        tm = (ss[0].get("team") or "").upper()
+        op = (ss[0].get("opp") or "").upper()
+        tip = (tips or {}).get((gd, tm)) or (tips or {}).get((gd, op))
+        when = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
+        if gd != today:
+            try:
+                when = dt.date.fromisoformat(gd).strftime("%a %-m/%-d") + (f" · {when}" if when else "")
+            except ValueError:
+                when = gd
+        rows = ""
+        for s in ss:
+            p = s["play"]
+            # star entries may be pre-joined multi-name strings ("A B, C D" / "A+B") — shorten EACH
+            stars = [" + ".join(x.strip().split()[-1] for x in re.split(r"[+,]", n) if x.strip())
+                     for n in (s.get("stars") or ["?"])]
+            also = [n.split()[-1] for n in (s.get("also_in") or [])]
+            kind = s.get("kind")
+            sit = s.get("sit")
+            ttl_bits = []
+            if sit is not None:
+                ttl_bits.append(f"~{sit*100:.0f}% to sit")
+            if s.get("firm_outs"):
+                ttl_bits.append("on top of " + ", ".join(_short(n) for n in s["firm_outs"]) + " out")
+            if p.get("ev") is not None:
+                ttl_bits.append(f"+{p['ev']*100:.0f}%EV")
+            ttl = f' title="{html.escape(" · ".join(ttl_bits))}"' if ttl_bits else ""
+            if kind == "q":
+                if len(stars) > 1:
+                    cond = f'if <b>{html.escape(" + ".join(stars))}</b> both out'
+                else:
+                    cond = f'if <b>{html.escape(stars[0])}</b> out'
+                    if also:
+                        cond += f'<span class="wlin"> · {html.escape(", ".join(also))} in</span>'
+            elif kind == "contingent":
+                cond = f'⏳ if <b>{html.escape("+".join(stars))}</b> confirmed out'
+            elif kind == "cold":
+                cond = (f'⚡ <b>{html.escape("+".join(stars))}</b> out · cold '
+                        f'<span class="wlin">· no sample · shadow</span>')
+            else:
+                cond = (f'⚡ <b>{html.escape("+".join(stars))}</b> out '
+                        f'<span class="wlin">· out of band · shadow, not a bet</span>')
+            shadow = " wlshadow" if kind in ("cold", "band") else ""
+            rows += (f'<div class="wlrow{shadow}"{ttl}>'
+                     f'<div class="wlcond">{cond}</div>'
+                     f'<div class="wlplay"><b>{html.escape(p.get("player") or "")}</b> '
+                     f'Over {p["line"]:g} {STAT_FULL.get(p.get("stat"), p.get("stat"))}'
+                     f'<span class="wlright"><span class="wlodds">{html.escape(p.get("am") or "")}</span>'
+                     f'<span class="tchip t{p.get("tier", "C")}">{p.get("tier", "C")}</span></span>'
+                     f'</div></div>')
+        tsort = tip.timestamp() if tip else 9e15
+        blocks.append((tsort, gd,
+                       f'<div class="wlg"><div class="wlg-hd"><span class="gmatch">'
+                       f'{_logo(tm)}{tm}<span class="gvs">vs</span>{_logo(op)}{op or "—"}</span>'
+                       f'<span class="gtime">{when}</span></div>{rows}</div>'))
+    blocks.sort(key=lambda b: (b[1], b[0]))
+    return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist '
+            '<span>· if they sit, play this</span></div>'
+            + "".join(b[2] for b in blocks) + "</div>")
+
+
+
+STAT_FULL = {"points": "Points", "rebounds": "Rebounds", "assists": "Assists",
+             "pts_ast": "Pts + Ast", "pts_reb": "Pts + Reb", "reb_ast": "Reb + Ast",
+             "pra": "Pts + Reb + Ast"}
+
+
+def _leg_logo(team):
+    ab = (team or "").lower()
+    return (f'<img class="sllogo" src="{LOGO.format(ab)}" alt="" loading="lazy" '
+            f'onerror="this.style.display=\'none\'">' if ab else "")
 
 
 def _slip_html(rows=None):
@@ -1293,19 +1294,21 @@ def _slip_html(rows=None):
                 dtag = '<span class="stag">TMRW</span>' if (pd_ and pd_ > today) else ""
                 chk = '<span class="sv">✓ played</span>' if played else ""
                 leg_html = "".join(
-                    f'<div class="sleg"><span class="slp">{html.escape((l["player"] or "").split()[-1])}</span>'
-                    f'<span class="sls">{S.STAT_LABEL.get(l["stat"], l["stat"])} o{l["line"]:g}</span>'
+                    f'<div class="sleg">'
+                    f'{_leg_logo(l.get("team"))}'
+                    f'<div class="slbody"><div class="slp">{html.escape(l["player"] or "")}</div>'
+                    f'<div class="slm">Over {l["line"]:g} {STAT_FULL.get(l["stat"], l["stat"])}</div></div>'
                     f'<span class="slo">{S._am(l.get("dec") or l.get("odds") or 0)}</span></div>' for l in legs)
                 cards += (f'<div class="slip{" splayed" if played else ""}" data-k="par|{pid}">'
-                          f'<div class="shd"><span class="sn">{p["n"]}-leg parlay</span>{dtag}{chk}'
+                          f'<div class="shd"><span class="sn">{p["n"]} Leg Parlay</span>{dtag}{chk}'
                           f'<span class="ssp"></span>'
+                          f'<span class="sodds">{S._am(p["dec"])}</span>'
                           f'<span class="pmark{" on baked" if played else ""}" '
-                          f'onclick="togglePlayed(this)" title="mark played">✓</span>'
-                          f'<span class="sid">#{pid}</span></div>'
+                          f'onclick="togglePlayed(this)" title="mark played">✓</span></div>'
                           f'<div class="slegs">{leg_html}</div>'
                           f'<div class="sft"><span class="sstake">stake <b>{stake:g}u</b></span>'
-                          f'<span class="sodds">{S._am(p["dec"])}</span>'
-                          f'<span class="spay">→ {payout:.2f}u</span></div></div>')
+                          f'<span class="spay">→ {payout:.2f}u</span>'
+                          f'<span class="sid">#{pid}</span></div></div>')
         if not cards:
             return ""
         return ('<div class="parlays"><div class="op-title">🎰 Parlays'
@@ -1486,7 +1489,6 @@ def build():
         pl.sort(key=lambda pp: -_pscore(pp[1]))
     cards = "\n".join(_game_group(pl, tips, today, i) for i, pl in enumerate(ordered)) if ordered else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
-    openers_html = _openers_html()
     ladders_html = _ladders_html(rows)
     slip_html = _slip_html(rows)
     wl_html = _watchlist_html({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows}, tips)
@@ -1573,7 +1575,6 @@ def build():
   .watchlist {{ margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }}
   .wl-title {{ color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .wl-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
-  .openers {{ margin-top:22px; }}
   .op-title {{ color:#5b9dff; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .op-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
   .parlays, .ladders {{ margin-top:22px; }}
@@ -1586,17 +1587,29 @@ def build():
   .sv {{ color:#37d67f; font-size:10px; font-weight:800; }}
   .ssp {{ flex:1; }}
   .sid {{ color:#59606d; font-size:10px; font-variant-numeric:tabular-nums; letter-spacing:.03em; }}
-  .slegs {{ padding:2px 12px; }}
-  .sleg {{ display:flex; align-items:baseline; gap:9px; padding:7px 0; border-bottom:1px solid #12161e; }}
-  .sleg:last-child {{ border-bottom:none; }}
-  .slp {{ color:#e7ebf0; font-weight:700; font-size:12.5px; min-width:78px; }}
-  .sls {{ color:#9aa3b2; font-size:12px; flex:1; }}
-  .slo {{ color:#7d8696; font-size:11.5px; font-variant-numeric:tabular-nums; }}
+  .slegs {{ padding:4px 14px 6px; }}
+  .sleg {{ display:flex; align-items:center; gap:10px; padding:9px 0 9px 24px; position:relative; }}
+  .sleg::before {{ content:""; position:absolute; left:7px; top:0; bottom:0; width:2px;
+                  background:#26314a; }}
+  .sleg:first-child::before {{ top:50%; }}
+  .sleg:last-child::before {{ bottom:50%; }}
+  .sleg:only-child::before {{ display:none; }}
+  .sleg::after {{ content:""; position:absolute; left:2.5px; top:50%; transform:translateY(-50%);
+                 width:11px; height:11px; border-radius:50%; border:2.5px solid var(--sky, #4DA3FF);
+                 background:#0b0e13; box-sizing:border-box; }}
+  .sllogo {{ width:27px; height:27px; object-fit:contain; background:#dbe1ea; border-radius:50%;
+            padding:2.5px; flex:0 0 auto; }}
+  .slbody {{ flex:1; min-width:0; }}
+  .slp {{ color:#e7ebf0; font-weight:700; font-size:13.5px; white-space:nowrap; overflow:hidden;
+         text-overflow:ellipsis; }}
+  .slm {{ color:#8b94a3; font-size:11.5px; margin-top:1.5px; }}
+  .slo {{ color:#c3c9d4; font-weight:700; font-size:12.5px; font-variant-numeric:tabular-nums; }}
   .sft {{ display:flex; align-items:center; gap:10px; padding:8px 12px; background:#0e131b; border-top:1px solid #171c26; }}
   .sstake {{ color:#9aa3b2; font-size:11.5px; font-variant-numeric:tabular-nums; }}
   .sstake b {{ color:#c3c9d4; font-weight:700; }}
-  .sodds {{ color:#37d67f; font-weight:800; font-size:14px; font-variant-numeric:tabular-nums; margin-left:auto; }}
+  .sodds {{ color:#37d67f; font-weight:800; font-size:15px; font-variant-numeric:tabular-nums; }}
   .spay {{ color:#5b9dff; font-weight:700; font-size:12px; font-variant-numeric:tabular-nums; }}
+  .sft .sid {{ margin-left:auto; }}
   /* record strip on the board (audit: the record lived a tab away) */
   .recstrip {{ display:flex; align-items:baseline; gap:7px; background:#0f1116; border:1px solid #191d26;
               border-radius:10px; padding:8px 12px; margin:2px 0 10px; font-size:13.5px; color:#c6cdd8;
@@ -1662,15 +1675,24 @@ def build():
   .lro {{ color:#7d8696; font-size:11px; font-variant-numeric:tabular-nums; }}
   .lst {{ color:#5b9dff; font-size:11px; font-weight:800; }}
   .lv {{ color:#37d67f; font-size:10px; }}
-  .op-leg {{ background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:11px 13px; margin-bottom:8px; font-size:14px; color:#cdd4de; font-variant-numeric:tabular-nums; }}
-  .wl-grp {{ border-left:3px solid #eaa15a; background:#0f1116; border:1px solid #191d26; border-left-width:3px;
-    border-radius:10px; padding:10px 13px; margin-bottom:9px; }}
-  .wl-hd {{ color:#c9a06a; font-size:12px; font-weight:700; margin-bottom:6px; }}
-  .wl-hd b {{ color:#e8ecf2; }}
-  .wl-leg {{ font-size:13.5px; padding:3px 0; }}
-  .wl-leg b {{ color:#e8ecf2; font-weight:800; }}
-  .wl-ev {{ color:#e8ecf2; font-weight:800; margin-left:7px; }}
-  .wl-meta {{ color:#7d8696; font-size:11px; margin-left:7px; }}
+  .wlg {{ border-radius:14px; padding:11px 14px 6px; margin-bottom:10px; }}
+  .wlg-hd {{ display:flex; justify-content:space-between; align-items:center; padding-bottom:8px;
+            border-bottom:1px solid var(--hair, #171c25); }}
+  .wlg-hd .gmatch {{ display:flex; align-items:center; gap:7px; color:#c3c9d4; font-weight:800;
+                    font-size:12.5px; letter-spacing:.02em; }}
+  .wlg-hd .gtime {{ color:#7d8696; font-size:11.5px; font-variant-numeric:tabular-nums; }}
+  .wlrow {{ padding:9px 0 10px; border-top:1px solid #12161e; }}
+  .wlrow:first-of-type {{ border-top:none; }}
+  .wlcond {{ color:#c9a06a; font-size:11.5px; font-weight:600; }}
+  .wlcond b {{ color:#f4ddc2; font-weight:800; }}
+  .wlin {{ color:#7d8696; font-weight:600; }}
+  .wlplay {{ display:flex; align-items:center; flex-wrap:wrap; gap:4px 7px; margin-top:4px;
+            color:#cdd4de; font-size:13.5px; }}
+  .wlplay b {{ white-space:nowrap; }}
+  .wlplay b {{ color:#e8ecf2; font-weight:800; }}
+  .wlright {{ margin-left:auto; display:flex; align-items:center; gap:7px; white-space:nowrap; }}
+  .wlodds {{ color:#9aa3b2; font-variant-numeric:tabular-nums; font-weight:700; font-size:12.5px; }}
+  .wlrow.wlshadow {{ opacity:.55; }}
   /* PROP row — the read order is bet -> price -> EDGE (the one saturated-green number) */
   .prop {{ padding:13px 0 5px; cursor:pointer; border-top:1px solid #14181f; margin-top:9px; }}
   .pblk .prop:first-of-type {{ border-top:0; margin-top:8px; }}
@@ -1883,12 +1905,12 @@ def build():
                opacity .3s var(--easesoft) .06s, visibility 0s; }}
   .bwrap {{ overflow:hidden; min-height:0; }}
   /* sections inherit the flat-card family */
-  .xtras, .openers, .parlays .slip, .ladders .ladder, .watchlist .wl-grp, .tcard, .regime {{
+  .xtras, .parlays .slip, .ladders .ladder, .watchlist .wlg, .tcard, .regime {{
     background:radial-gradient(140% 170% at 50% -20%, #15181f, #0d0f14 65%);
     border:1px solid var(--hair); border-radius:14px;
     box-shadow:inset 0 1px 0 rgba(255,255,255,.05), 0 10px 28px rgba(0,0,0,.35); }}
-  .xtras, .openers, .ladders, .parlays, .watchlist {{ animation:fadeUp .45s var(--easeout) both; }}
-  .watchlist .wl-grp {{ border-style:dashed; border-color:rgba(255,138,61,.28); }}
+  .xtras, .ladders, .parlays, .watchlist {{ animation:fadeUp .45s var(--easeout) both; }}
+  .watchlist .wlg {{ border-style:dashed; border-color:rgba(255,138,61,.28); }}
   .op-title, .wl-title, .xt {{ color:var(--t3); font-size:10.5px; text-transform:uppercase;
     letter-spacing:.07em; font-weight:600; }}
   .op-title span, .wl-title span, .xt span {{ text-transform:none; letter-spacing:.02em; color:var(--t3);
@@ -1948,7 +1970,7 @@ def build():
     {extras_html}
     {ladders_html}
     {slip_html}
-    {openers_html}
+    
     {wl_html}
     {tier_legend}
   </div>

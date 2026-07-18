@@ -1019,16 +1019,6 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
     spots = []
     for team, qs in questionable_stars(pl, playing, inj, firm_out, date=date, tips=tips).items():
         outs = list(firm_by_team.get(team, [])) + [(n, p) for n, _, p, _, _ in qs]
-        try:
-            out_logs = [glog(p["id"]) for _, p in outs]
-        except Exception:
-            continue
-        if not all(out_logs):
-            continue
-        vacated = {"points": sum(p["pts"] for _, p in outs),
-                   "rebounds": sum(p["reb"] for _, p in outs),
-                   "assists": sum(p["ast"] for _, p in outs)}
-        ctx = CTX.matchup_context(team, matchups.get(team, ""), lines, rates)
         star = "+".join(n.split()[-1] for n, _, _, _, _ in qs)
         status = qs[0][1] if len(qs) == 1 else "Questionable"
         sit = min(t[3] for t in qs)                           # conservative: scenario needs all to sit
@@ -1037,40 +1027,119 @@ def questionable_beneficiaries(pl, playing, matchups, lines, rates, inj, firm_ou
         # the questionable player being out is how we beat the books" (position while lines are
         # stale). Phone pings stay gated at SIT_GATE in wnba_alert so unlikely sits don't spam.
         lead = min((t[4] for t in qs if t[4] is not None), default=None)   # most late-breaking tag
-        out_here = {n for n, _ in outs}
-        team_pl = {n: v for n, v in pl.items()
-                   if v["team"] == team and n not in firm_out and n not in out_here
-                   and v["gp"] >= 5}
-        for n, v in team_pl.items():
-            try:
-                blog = glog(v["id"])
-            except Exception:
-                continue
-            if not blog:
-                continue
-            w = W.wowy_multi(blog, out_logs)
-            if w["n_without"] < 2 and len(out_logs) > 1:
-                # combo (Clark+Boston) rarely has 2+ games with ALL out — best single-out
-                # split as the proxy, same fallback the firm pipeline uses
-                cands = [W.wowy(blog, ol) for ol in out_logs]
-                w = max(cands, key=lambda x: x["n_without"])
-            if w["n_without"] < 1:
-                continue
-            proj = w["without"]["min"]["mean"]
-            recent5 = [g["min"] for g in blog[:5] if g["min"] > 8]   # newest-first; only lifts
-            if recent5:
-                proj = max(proj, st.median(recent5))
-            if proj - w["with"]["min"]["mean"] <= 0.3:              # no real minutes bump
-                continue
-            conf = starter_label(n, team, None, proj)
-            for e in prop_edges(n, blog, proj, w, vacated, ctx,
-                                opp=matchups.get(team, ""), pos=v.get("position")):
-                if e["side"] != "over":                             # watchlist thesis = role UP
-                    continue
-                spots.append({"player": n, "team": team, "star": star, "status": status,
-                              "sit": sit, "lead": round(lead, 1) if lead is not None else None,
-                              "conf": conf, "proj_min": round(proj, 1), **e})
+        for s in outset_beneficiaries(team, outs, pl, firm_out, matchups, lines, rates, glog):
+            spots.append({**s, "star": star, "status": status, "sit": sit,
+                          "lead": round(lead, 1) if lead is not None else None})
     return spots
+
+
+def outset_beneficiaries(team, outs, pl, skip_names, matchups, lines, rates, glog=None):
+    """Over-edges for TEAM under a hypothetical out-set `outs` [(name, p), ...] — the shared
+    core of the Q-tier watchlist and the scenario matrix. Deliberately lighter than the firm
+    projection (no mate/context weighting): a heads-up that graduates into the fully modelled
+    firm pipeline the instant a ruling lands."""
+    glog = glog or W.game_log
+    try:
+        out_logs = [glog(p["id"]) for _, p in outs]
+    except Exception:
+        return []
+    if not out_logs or not all(out_logs):
+        return []
+    vacated = {"points": sum(p["pts"] for _, p in outs),
+               "rebounds": sum(p["reb"] for _, p in outs),
+               "assists": sum(p["ast"] for _, p in outs)}
+    ctx = CTX.matchup_context(team, matchups.get(team, ""), lines, rates)
+    out_here = {n for n, _ in outs}
+    spots = []
+    for n, v in pl.items():
+        if v["team"] != team or n in skip_names or n in out_here or v["gp"] < 5:
+            continue
+        try:
+            blog = glog(v["id"])
+        except Exception:
+            continue
+        if not blog:
+            continue
+        w = W.wowy_multi(blog, out_logs)
+        if w["n_without"] < 2 and len(out_logs) > 1:
+            # combo (Clark+Boston) rarely has 2+ games with ALL out — best single-out
+            # split as the proxy, same fallback the firm pipeline uses
+            cands = [W.wowy(blog, ol) for ol in out_logs]
+            w = max(cands, key=lambda x: x["n_without"])
+        if w["n_without"] < 1:
+            continue
+        proj = w["without"]["min"]["mean"]
+        recent5 = [g["min"] for g in blog[:5] if g["min"] > 8]   # newest-first; only lifts
+        if recent5:
+            proj = max(proj, st.median(recent5))
+        if proj - w["with"]["min"]["mean"] <= 0.3:              # no real minutes bump
+            continue
+        conf = starter_label(n, team, None, proj)
+        for e in prop_edges(n, blog, proj, w, vacated, ctx,
+                            opp=matchups.get(team, ""), pos=v.get("position")):
+            if e["side"] != "over":                             # watchlist thesis = role UP
+                continue
+            spots.append({"player": n, "team": team, "conf": conf,
+                          "proj_min": round(proj, 1), **e})
+    return spots
+
+
+_TIER_SINGLES = ("points", "rebounds", "assists")
+
+
+def top_play(spots, band_gate=True):
+    """The single play the firm pipeline would flag FIRST for an out-set: band-gated (d_min
+    0-8 or no-sample), anchor line per (player, stat) (lowest posted rung = the main market),
+    then the MARKET FAVORITE (lowest odds; EV breaks ties) — mirroring selection stage 3's
+    favorite-first slot. Tier letter matches the board legend (favorite by construction)."""
+    ok = [s for s in spots
+          if not band_gate or s.get("d_min") is None or 0 <= s["d_min"] <= 8]
+    anchors = {}
+    for s in ok:
+        k = (s["player"], s["stat"])
+        if k not in anchors or s["line"] < anchors[k]["line"]:
+            anchors[k] = s
+    if not anchors:
+        return None
+    s = min(anchors.values(), key=lambda x: (x.get("dec") or 99, -(x.get("ev") or 0)))
+    dm = s.get("d_min")
+    if dm is not None and 3 <= dm <= 8 and s["stat"] in _TIER_SINGLES:
+        tier = "A"
+    elif dm is None or (dm is not None and 3 <= dm <= 8) or (0 <= (dm or -1) < 3
+                                                             and s["stat"] in _TIER_SINGLES):
+        tier = "B"
+    else:
+        tier = "C"
+    return {"player": s["player"], "stat": s["stat"], "line": s["line"],
+            "dec": s.get("dec"), "am": _am(s.get("dec") or 0), "tier": tier,
+            "ev": s.get("ev"), "d_min": dm, "conf": s.get("conf")}
+
+
+def scenario_matrix(pl, playing, matchups, lines, rates, inj, firm_out, firm_by_team,
+                    glog=None, date=None, tips=None):
+    """Dashboard watchlist v2: per-team 'if X sits → play THIS' variants. For each team with
+    questionable star(s), every subset of the top-2 (by minutes) Q stars — each solo AND the
+    combo — computed on top of the team's firm outs, reduced to the ONE top play per scenario.
+    Display-only: never bets, never pings ([[feedback_ping_board_coherence]])."""
+    out = []
+    for team, qs in questionable_stars(pl, playing, inj, firm_out, date=date, tips=tips).items():
+        qs = sorted(qs, key=lambda t: -(t[2]["min"] or 0))[:2]
+        subs = [[q] for q in qs] + ([list(qs)] if len(qs) > 1 else [])
+        for sub in subs:
+            outs = list(firm_by_team.get(team, [])) + [(n, p) for n, _, p, _, _ in sub]
+            play = top_play(outset_beneficiaries(team, outs, pl, firm_out,
+                                                 matchups, lines, rates, glog))
+            if not play:
+                continue
+            in_names = [n for n, _, _, _, _ in qs if n not in {m for m, _, _, _, _ in sub}]
+            out.append({"team": team, "opp": matchups.get(team, ""), "date": date,
+                        "kind": "q", "stars": [n for n, _, _, _, _ in sub],
+                        "also_in": in_names,
+                        "status": sub[0][1] if len(sub) == 1 else "Questionable",
+                        "sit": min(t[3] for t in sub),
+                        "firm_outs": [n for n, _ in firm_by_team.get(team, [])],
+                        "play": play})
+    return out
 
 
 def main():
