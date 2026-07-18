@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T11:28:24Z",
+ "captured_at": "2026-07-18T11:34:06Z",
  "matches": [
-  {
-   "event_id": 35837147,
-   "p1": "Maciej Domin",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "maciej domin",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-18T11:15:00.000Z",
-   "line": 94.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35837155,
-   "p1": "Maciej Kolek",
-   "p2": "Dominik Solilo",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-18T11:20:00.000Z",
-   "line": 50.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35837161,
    "p1": "Rafal Idaczyk",
@@ -30,7 +8,7 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T11:25:00.000Z",
-   "line": 77.5,
+   "line": 86.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +19,7 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T11:25:00.000Z",
-   "line": 79.5,
+   "line": 57.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +30,9 @@
    "p1_norm": "patryk gamrot",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-18T11:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35837186,
