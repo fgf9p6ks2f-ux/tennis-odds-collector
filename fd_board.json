@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T17:03:07Z",
+ "captured_at": "2026-07-18T17:08:43Z",
  "matches": [
-  {
-   "event_id": 35839224,
-   "p1": "Filip Mlynarski",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "filip mlynarski",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-18T16:55:00.000Z",
-   "line": 55.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35839226,
    "p1": "Dariusz Maszczynski",
@@ -19,20 +8,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-18T16:55:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35839243,
-   "p1": "Jakub Michalczyk",
-   "p2": "Milosz Piecowski",
-   "p1_norm": "jakub michalczyk",
-   "p2_norm": "milosz piecowski",
-   "open_date": "2026-07-18T16:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35839533,
@@ -64,8 +42,8 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-18T17:20:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35839554,
@@ -74,6 +52,28 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T17:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35839592,
+   "p1": "Roman Wiza",
+   "p2": "Rafal Adach",
+   "p1_norm": "roman wiza",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-18T17:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35839598,
+   "p1": "Jacek Oracz",
+   "p2": "Oskar Jedrzejowski",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "oskar jedrzejowski",
+   "open_date": "2026-07-18T17:35:00.000Z",
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
