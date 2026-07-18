@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T19:28:22Z",
+ "captured_at": "2026-07-18T19:34:14Z",
  "matches": [
   {
    "event_id": 35839779,
@@ -8,7 +8,7 @@
    "p1_norm": "milosz piecowski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-18T19:20:00.000Z",
-   "line": 88.5,
+   "line": 90.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,9 @@
    "p1_norm": "mateusz baran",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-18T19:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35839797,
@@ -30,8 +30,8 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "damian fira",
    "open_date": "2026-07-18T19:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
+   "line": 73.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -86,6 +86,17 @@
    "p2_norm": "rafal adach",
    "open_date": "2026-07-18T19:55:00.000Z",
    "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35839832,
+   "p1": "Jacek Oracz",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-18T20:00:00.000Z",
+   "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
   }
