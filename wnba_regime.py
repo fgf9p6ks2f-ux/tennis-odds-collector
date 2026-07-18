@@ -33,6 +33,21 @@ def _active_around(dates, d, win=24):
     return any(lo <= x <= hi and x != d for x in dates)
 
 
+def _absent_ok(dates, d, win=24):
+    """Is the out player's absence in game d GENUINE? Two valid shapes: (a) they played within
+    ±win days (a mid-season scratch — _active_around); (b) d is AFTER their latest appearance =
+    the CURRENT absence streak. (b) is the 2026-07-18 fix (user: "the sky played a game
+    yesterday without jackson and diggins so its not the first game without them"): a long-term
+    out (R.Jackson, last game 5/17) failed the ±24d window for every recent game, so beneficiaries
+    of season-enders showed no_comps/n_out_games=0 forever AND wnba_redist lost its gate sample —
+    the games most like tonight (the live absence streak) were the ones being rejected."""
+    if not dates:
+        return False
+    if d > max(dates):
+        return True
+    return _active_around(dates, d, win)
+
+
 def _role(log):
     m = [g["min"] for g in log if (g.get("min") or 0) > 0]
     return st.mean(m) if m else 0.0
@@ -76,7 +91,7 @@ def regime_note(blog, out_logs, out_names, stat, in_logs=None, in_names=None):
     # score as comps while the header claimed them out. A comp now REQUIRES every significant out
     # genuinely absent (absent + active around that date); the in-lineup only RANKS those games. ──
     def outs_absent(d):
-        return all(d not in out_played[i] and _active_around(out_played[i], d) for i in sig_out)
+        return all(d not in out_played[i] and _absent_ok(out_played[i], d) for i in sig_out)
 
     tw_in = sum(wt_in[j] for j in sig_in) or 1.0
 
