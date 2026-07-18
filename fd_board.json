@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-18T08:59:48Z",
+ "captured_at": "2026-07-18T09:04:30Z",
  "matches": [
-  {
-   "event_id": 35836927,
-   "p1": "Mariusz Adamus",
-   "p2": "Kacper Adamus",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-18T08:45:00.000Z",
-   "line": 108.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35836928,
-   "p1": "Patryk Gamrot",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "patryk gamrot",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-18T08:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35836946,
    "p1": "Bartlomiej Wisniewski",
@@ -30,9 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35836947,
@@ -41,9 +19,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836948,
@@ -52,9 +30,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35836949,
@@ -63,9 +41,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-18T09:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836955,
@@ -121,6 +99,17 @@
    "line": 73.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35837007,
+   "p1": "Daniel Morawiec",
+   "p2": "Patryk Gamrot",
+   "p1_norm": "daniel morawiec",
+   "p2_norm": "patryk gamrot",
+   "open_date": "2026-07-18T09:30:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
