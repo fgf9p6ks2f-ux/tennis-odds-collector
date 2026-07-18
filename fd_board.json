@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T05:21:55Z",
+ "captured_at": "2026-07-18T05:26:10Z",
  "matches": [
   {
    "event_id": 35836233,
@@ -8,20 +8,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35836234,
-   "p1": "Maksymilian Miastowski",
-   "p2": "Maciej Domin",
-   "p1_norm": "maksymilian miastowski",
-   "p2_norm": "maciej domin",
-   "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 51.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35836235,
@@ -30,9 +19,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "jakub wozniak",
    "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35836236,
@@ -41,7 +30,7 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "adam linek",
    "open_date": "2026-07-18T05:15:00.000Z",
-   "line": 88.5,
+   "line": 101.5,
    "over_odds": -115,
    "under_odds": -120
   },
