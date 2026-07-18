@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-18T18:15:42Z",
+ "captured_at": "2026-07-18T18:21:25Z",
  "matches": [
-  {
-   "event_id": 35839683,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-18T18:05:00.000Z",
-   "line": 53.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35839691,
    "p1": "Janus Slawomir",
@@ -19,20 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-18T18:10:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35839692,
-   "p1": "Jakub Glanowski",
-   "p2": "Milosz Piecowski",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "milosz piecowski",
-   "open_date": "2026-07-18T18:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35839696,
@@ -86,8 +64,30 @@
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-18T18:30:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35839720,
+   "p1": "Jacek Oracz",
+   "p2": "Artur Kubiak",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "artur kubiak",
+   "open_date": "2026-07-18T18:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35839721,
+   "p1": "Roman Wiza",
+   "p2": "Robert Szymik",
+   "p1_norm": "roman wiza",
+   "p2_norm": "robert szymik",
+   "open_date": "2026-07-18T18:45:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
