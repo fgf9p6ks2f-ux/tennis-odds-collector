@@ -214,7 +214,7 @@ def _tier_records():
             "AND (side IS NULL OR side='over')")]
         con.close()
         sel, _ = S.current_selection(g)
-        favs = _fav_keys(sel)
+        favs = _fav_keys(g)                              # market pecking order over ALL flagged
         rec = {"A": [0, 0, 0.0], "B": [0, 0, 0.0], "C": [0, 0, 0.0]}
         for r in sel:
             t = _tier(r, (r["pred_date"], r["player"], r["stat"]) in favs)
@@ -1352,16 +1352,17 @@ def build():
     pend_all = list(rows)          # EVERY open flag (each one pinged the phone) — coherence source
     # board shows the TOP-2 DISJOINT plays per team-game (matches the tracked record + ladders +
     # parlays): the play cards recommend exactly what to bet. Ledger keeps all. Overflow -> strip.
+    favs = set()
     try:
         import wnba_slip as _SLB
         _ov = [r for r in rows if (r.get("side") or "over") == "over"]
+        favs = _fav_keys(_ov)                            # favorite over ALL flagged overs (market order)
         _keep = {(r["pred_date"], r["player"], r["stat"], r["line"]) for r in _SLB.current_selection(_ov)[0]}
         rows = [r for r in rows if (r.get("side") or "over") != "over"
                 or (r["pred_date"], r["player"], r["stat"], r["line"]) in _keep]
     except Exception:
         pass
     tips = _tip_times()
-    favs = _fav_keys(rows)
     for r in rows:
         r["_tier"] = _tier(r, (r.get("pred_date"), r.get("player"), r.get("stat")) in favs)
     # GROUP BY DAY > GAME > player — the board shows tonight's plays AND any already-posted

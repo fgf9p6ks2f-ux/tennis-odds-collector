@@ -234,11 +234,14 @@ def fav_keys(rows):
 
 
 def tier_map(rows):
-    """{(pred_date, player, stat): tier} over the canonical (selected) universe."""
-    sel, _ = current_selection(rows)
-    favs = fav_keys(sel)
+    """{(pred_date, player, stat): tier} for every flagged row. FAVORITE = shortest odds among
+    ALL flagged plays in the (date,team) cascade — the MARKET's pecking order, NOT 'shortest among
+    the 1-2 we carded'. 2026-07-19 Burrell/Wheeler inversion: sticky benched the -128 market
+    favorite (Wheeler) to the strip, leaving the +102 dog (Burrell) 'favorite among selected' and
+    mis-crowned A. A market dog can never be the favorite while a shorter-odds sibling is flagged."""
+    favs = fav_keys(rows)
     return {(r["pred_date"], r["player"], r["stat"]):
-            tier_of(r, (r["pred_date"], r["player"], r["stat"]) in favs) for r in sel}
+            tier_of(r, (r["pred_date"], r["player"], r["stat"]) in favs) for r in rows}
 
 
 def current_selection(rows, commit=False):
