@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T12:49:52Z",
+ "captured_at": "2026-07-19T12:55:50Z",
  "matches": [
-  {
-   "event_id": 35842420,
-   "p1": "Mateusz Misiak",
-   "p2": "Arkadiusz Mugowski",
-   "p1_norm": "mateusz misiak",
-   "p2_norm": "arkadiusz mugowski",
-   "open_date": "2026-07-19T12:40:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35842421,
    "p1": "Oskar Jadach",
@@ -19,9 +8,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-19T12:40:00.000Z",
-   "line": 67.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842438,
@@ -42,7 +31,7 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T13:00:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
+   "over_odds": -116,
    "under_odds": -118
   },
   {
@@ -75,6 +64,17 @@
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-19T13:10:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842472,
+   "p1": "Grzegorz Felkel",
+   "p2": "Maksymilian Miastowski",
+   "p1_norm": "grzegorz felkel",
+   "p2_norm": "maksymilian miastowski",
+   "open_date": "2026-07-19T13:20:00.000Z",
+   "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
   }
