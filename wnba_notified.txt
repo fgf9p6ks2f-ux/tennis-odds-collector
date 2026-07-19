@@ -26,6 +26,7 @@
 2026-07-19|Azura Stevens|assists|2.5
 2026-07-19|Azura Stevens|pra|21.5
 2026-07-19|Azura Stevens|reb_ast|9.5
+2026-07-19|Charlisse Leger-Walker|points|7.5
 2026-07-19|DeWanna Bonner|pts_reb|15.5
 2026-07-19|DeWanna Bonner|pts_reb|16.5
 2026-07-19|DeWanna Bonner|rebounds|5.5
@@ -77,6 +78,8 @@ watch|2026-07-18|Natasha Howard|rebounds|7.5
 watch|2026-07-18|Sabrina Ionescu|points|16.5
 watch|2026-07-19|Azura Stevens|assists|2.5
 watch|2026-07-19|Brittney Griner|pts_reb|19.5
+watch|2026-07-19|Charlisse Leger-Walker|assists|4.5
+watch|2026-07-19|Charlisse Leger-Walker|rebounds|3.5
 watch|2026-07-19|DeWanna Bonner|rebounds|6.5
 watch|2026-07-19|Dearica Hamby|reb_ast|9.5
 watch|2026-07-19|Diamond Miller|points|8.5
