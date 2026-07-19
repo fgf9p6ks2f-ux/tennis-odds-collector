@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T20:24:16Z",
+ "captured_at": "2026-07-19T20:29:05Z",
  "matches": [
   {
    "event_id": 35843517,
@@ -8,9 +8,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T20:05:00.000Z",
-   "line": 106.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 109.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843526,
@@ -19,7 +19,7 @@
    "p1_norm": "andrzej krezel",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-19T20:20:00.000Z",
-   "line": 83.5,
+   "line": 100.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +30,9 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T20:20:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 59.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35843545,
