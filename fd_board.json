@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T07:42:35Z",
+ "captured_at": "2026-07-19T07:48:38Z",
  "matches": [
-  {
-   "event_id": 35841541,
-   "p1": "Rafal Wojcik",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "rafal wojcik",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-19T07:30:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35841547,
    "p1": "Kaczynski Piotr",
@@ -19,9 +8,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-19T07:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35841557,
@@ -30,9 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "jacek przewlocki",
    "open_date": "2026-07-19T07:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841560,
@@ -41,9 +30,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-19T07:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841561,
@@ -52,9 +41,9 @@
    "p1_norm": "maksymilian miastowski",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T07:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841570,
@@ -99,6 +88,17 @@
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35841581,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Marian Lebek",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T08:10:00.000Z",
+   "line": 71.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
