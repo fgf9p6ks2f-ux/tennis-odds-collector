@@ -124,6 +124,7 @@ while true; do i=$((i+1))
     if [ "$was_hot" != "1" ]; then echo "[$(date +%H:%M)] >>> HOT window (25s scratch polling)"; hot_ticks=0; fi
     was_hot=1; hot_ticks=$((hot_ticks+1))
     python3 wnba_watch.py >/dev/null 2>&1 || true
+    python3 wnba_news_watch.py 2>&1 | grep -i "NEWS\|trigger" || true
     if [ -f /tmp/.force_fullscan ]; then
       rm -f /tmp/.force_fullscan
       echo "[$(date +%H:%M)] TRIGGERED full scan (fresh out / new lines)"; fullscan
@@ -150,6 +151,7 @@ while true; do i=$((i+1))
     git pull -q "$URL" main 2>/dev/null || true
     collectors
     python3 wnba_watch.py >/dev/null 2>&1 || true
+    python3 wnba_news_watch.py 2>&1 | grep -i "NEWS\|trigger" || true
         if [ -f /tmp/.force_fullscan ]; then
       rm -f /tmp/.force_fullscan
       echo "[$(date +%H:%M)] TRIGGERED full scan (fresh out / new lines)"; fullscan
