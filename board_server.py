@@ -20,6 +20,11 @@ PORT = 8899
 
 
 class Handler(SimpleHTTPRequestHandler):
+    # HTTP/1.1 so responses stream through cloudflared in real time — under HTTP/1.0 the tunnel
+    # buffers the whole body until connection close, which never happens on an SSE stream (the
+    # localhost server streamed fine; only the tunnel buffered).
+    protocol_version = "HTTP/1.1"
+
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(DOCS), **kw)
 
