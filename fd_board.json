@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T16:20:44Z",
+ "captured_at": "2026-07-19T16:26:16Z",
  "matches": [
   {
    "event_id": 35842767,
@@ -8,9 +8,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-19T16:15:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842768,
@@ -19,9 +19,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-19T16:15:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 63.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35842778,
@@ -30,9 +30,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "jacek wieczerzak",
    "open_date": "2026-07-19T16:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842804,
@@ -41,9 +41,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-19T16:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842841,
@@ -77,6 +77,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35842854,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Rafal Ogon",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "rafal ogon",
+   "open_date": "2026-07-19T16:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
