@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T06:03:26Z",
+ "captured_at": "2026-07-19T06:09:21Z",
  "matches": [
-  {
-   "event_id": 35841231,
-   "p1": "Filip Witczak",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "filip witczak",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-19T05:55:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35841285,
    "p1": "Pawel Adamus",
@@ -19,9 +8,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "grzegorz sawicki",
    "open_date": "2026-07-19T06:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841286,
@@ -30,9 +19,9 @@
    "p1_norm": "tadeusz piotrowski",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T06:00:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 93.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841319,
@@ -41,9 +30,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T06:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 67.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841320,
@@ -52,9 +41,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T06:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841321,
@@ -63,9 +52,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "adrian eliasz",
    "open_date": "2026-07-19T06:05:00.000Z",
-   "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841454,
