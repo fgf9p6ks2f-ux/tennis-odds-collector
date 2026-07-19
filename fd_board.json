@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T12:25:15Z",
+ "captured_at": "2026-07-19T12:31:18Z",
  "matches": [
   {
    "event_id": 35842020,
@@ -8,9 +8,9 @@
    "p1_norm": "marcin lach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T12:15:00.000Z",
-   "line": 59.5,
-   "over_odds": -135,
-   "under_odds": 100
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842021,
@@ -19,20 +19,9 @@
    "p1_norm": "tadeusz piotrowski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-19T12:15:00.000Z",
-   "line": 64.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35842360,
-   "p1": "Rafal Wojcik",
-   "p2": "Jacek Wieczerzak",
-   "p1_norm": "rafal wojcik",
-   "p2_norm": "jacek wieczerzak",
-   "open_date": "2026-07-19T12:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": 110,
+   "under_odds": -150
   },
   {
    "event_id": 35842395,
@@ -75,6 +64,17 @@
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-19T12:40:00.000Z",
    "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35842438,
+   "p1": "Tibor Spanik",
+   "p2": "Maciej Domin",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "maciej domin",
+   "open_date": "2026-07-19T12:55:00.000Z",
+   "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
   }
