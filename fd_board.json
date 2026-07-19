@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T17:58:50Z",
+ "captured_at": "2026-07-19T18:04:28Z",
  "matches": [
-  {
-   "event_id": 35843266,
-   "p1": "Adam Linek",
-   "p2": "Stapor Rafal",
-   "p1_norm": "adam linek",
-   "p2_norm": "stapor rafal",
-   "open_date": "2026-07-19T17:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35843286,
    "p1": "Mariusz Baron",
@@ -19,7 +8,7 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T17:55:00.000Z",
-   "line": 82.5,
+   "line": 91.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-19T18:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 68.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843307,
@@ -86,6 +75,39 @@
    "p2_norm": "jaroslaw badura",
    "open_date": "2026-07-19T18:25:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843379,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Jakub Skorupa",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "jakub skorupa",
+   "open_date": "2026-07-19T18:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843380,
+   "p1": "Karol Wisniewski",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-19T18:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843381,
+   "p1": "Jakub Zochniak",
+   "p2": "Stapor Rafal",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "stapor rafal",
+   "open_date": "2026-07-19T18:30:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
