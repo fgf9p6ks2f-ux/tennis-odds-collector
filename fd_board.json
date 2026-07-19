@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T00:12:21Z",
+ "captured_at": "2026-07-19T00:16:57Z",
  "matches": [
   {
    "event_id": 35840326,
@@ -8,7 +8,7 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-19T00:10:00.000Z",
-   "line": 75.5,
+   "line": 55.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +30,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-19T00:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35840347,
