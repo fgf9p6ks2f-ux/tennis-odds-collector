@@ -24,6 +24,7 @@
 2026-07-18|Sabrina Ionescu|points|16.5
 2026-07-18|Tyasha Harris|points|4.5
 2026-07-19|Azura Stevens|assists|2.5
+2026-07-19|Azura Stevens|pra|21.5
 2026-07-19|Azura Stevens|reb_ast|9.5
 2026-07-19|DeWanna Bonner|pts_reb|15.5
 2026-07-19|DeWanna Bonner|pts_reb|16.5
