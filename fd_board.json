@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T08:43:26Z",
+ "captured_at": "2026-07-19T08:49:43Z",
  "matches": [
-  {
-   "event_id": 35841612,
-   "p1": "Damian Wederlich",
-   "p2": "Maciej Domin",
-   "p1_norm": "damian wederlich",
-   "p2_norm": "maciej domin",
-   "open_date": "2026-07-19T08:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35841616,
    "p1": "Marcin Lach",
@@ -19,9 +8,9 @@
    "p1_norm": "marcin lach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T08:35:00.000Z",
-   "line": 55.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35841629,
@@ -30,9 +19,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-19T08:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841646,
