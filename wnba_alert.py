@@ -426,12 +426,21 @@ def collect():
     # (favorite single, in-band, 5 straight overs) lost the CHI pool to a .24-EV combo under the
     # old rule. Same (odds, -ev) order as selection's gkey. Key now carries pred_date (the old
     # date-less key let today's and tomorrow's cascades contest one pool on back-to-backs).
-    top = {}                                # (date, team, family) -> ((odds, -ev), player)
+    top = {}                                # (date, team, family) -> ((oob, odds, -ev), player)
     for p in preds:
         if p.get("side") != "over" or not p.get("team"):
             continue
         k = (p.get("pred_date"), p["team"], FAM.get(p["stat"], p["stat"]))
-        cand = (float(p.get("odds") or 99), -(p.get("ev") or 0))
+        # BAND BEFORE ODDS (2026-07-19, the Nelson-Ododa/Leger-Walker case, user: "why didn't the
+        # board update when Rivers and Morrow were ruled out?"). The cap runs BEFORE the selection
+        # band gate, so an out-of-band shorter-odds play could win the pool and DELETE the in-band
+        # play — then selection gates the survivor and the pool is empty. Leger-Walker d_min 8.3
+        # (out) at -130 was capping out Nelson-Ododa d_min 7.6 (in-band) +23% at -102, and the
+        # starting center with both bigs out vanished. In-band/cold ALWAYS beats out-of-band; only
+        # then favorite (odds) then EV — matching the validated gate-then-favorite hierarchy.
+        dm = p.get("d_min")
+        oob = 1 if (dm is not None and (dm < 0 or dm > 8)) else 0
+        cand = (oob, float(p.get("odds") or 99), -(p.get("ev") or 0))
         if k not in top or cand < top[k][0]:
             top[k] = (cand, p["player"])
     drop = {(p["player"], p["stat"]) for p in preds                     # (player, stat) legs to cut
