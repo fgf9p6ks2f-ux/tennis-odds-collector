@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T15:50:04Z",
+ "captured_at": "2026-07-19T15:55:34Z",
  "matches": [
-  {
-   "event_id": 35842699,
-   "p1": "Jakub Jesiek",
-   "p2": "Jaroslaw Badura",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "jaroslaw badura",
-   "open_date": "2026-07-19T15:35:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35842731,
    "p1": "Jakub Glanowski",
@@ -19,7 +8,7 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-19T15:45:00.000Z",
-   "line": 84.5,
+   "line": 88.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-19T15:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842736,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-19T15:50:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842739,
@@ -53,8 +42,8 @@
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-19T15:55:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35842745,
@@ -99,6 +88,17 @@
    "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35842778,
+   "p1": "Filip Witczak",
+   "p2": "Jacek Wieczerzak",
+   "p1_norm": "filip witczak",
+   "p2_norm": "jacek wieczerzak",
+   "open_date": "2026-07-19T16:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
