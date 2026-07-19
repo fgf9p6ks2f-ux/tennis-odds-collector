@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T02:37:46Z",
+ "captured_at": "2026-07-19T02:41:55Z",
  "matches": [
-  {
-   "event_id": 35840636,
-   "p1": "Artur Kubiak",
-   "p2": "Oskar Jedrzejowski",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "oskar jedrzejowski",
-   "open_date": "2026-07-19T02:20:00.000Z",
-   "line": 95.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35840647,
    "p1": "Janus Slawomir",
@@ -20,8 +9,8 @@
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-19T02:35:00.000Z",
    "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840651,
