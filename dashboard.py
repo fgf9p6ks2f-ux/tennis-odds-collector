@@ -1433,6 +1433,12 @@ def build():
               if (r["pred_date"], r["player"], r["stat"], r["line"]) not in shown]
     extras.sort(key=lambda r: (r["pred_date"] or "", -(r.get("ev") or 0)))
     import wnba_slip as _S2
+    # tier chips on the strip too (user 2026-07-19): canonical letters over the full open
+    # universe — an overflow play tiers as non-favorite (favorite is a selected-slot property)
+    try:
+        _xt_map = _S2.tier_map(pend_all)
+    except Exception:
+        _xt_map = {}
     chips = ""
     for r in extras:
         bpr = _book_prices(r)
@@ -1440,8 +1446,10 @@ def build():
         dtag = "TMRW · " if (r.get("pred_date") or today) > today else ""
         pv = ' <span class="lv">✓</span>' if r.get("played") else ""
         tmtag = f'<span class="xteam">{html.escape((r.get("team") or "").upper())}</span> ' if r.get("team") else ""
+        _xt = _xt_map.get((r.get("pred_date"), r.get("player"), r.get("stat"))) or _S2.tier_of(r, False)
         chips += (f'<span class="xchip">{dtag}{tmtag}<b>{html.escape(_short(r["player"]))}</b> '
-                  f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}{pv}</span>')
+                  f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}'
+                  f'<span class="tchip t{_xt}">{_xt}</span>{pv}</span>')
     extras_html = ('<div class="xtras"><div class="xt" title="pinged &amp; ledger-logged — dropped by '
                    'the 2-per-team / rung-gap rules; not in the tracked record">⚡ Also flagged '
                    '<span>· pinged · not selected</span></div>'
@@ -1641,6 +1649,7 @@ def build():
   .xt {{ font-size:10.5px; color:#8b93a1; letter-spacing:.02em; margin-bottom:6px; }}
   .xchip {{ display:inline-block; font-size:12px; color:#c6cdd8; background:#10141c; border:1px solid #1e2431;
            border-radius:8px; padding:3px 8px; margin:2px 4px 2px 0; }}
+  .xchip .tchip {{ vertical-align:-4px; margin-left:5px; }}
   .xchip b {{ color:#e7ebf0; }}
   /* laddered plays */
   .ladder {{ background:#0b0e13; border:1px solid #1b2130; border-radius:11px; margin-bottom:10px; overflow:hidden; }}
