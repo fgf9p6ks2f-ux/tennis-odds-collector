@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T23:20:11Z",
+ "captured_at": "2026-07-19T23:24:41Z",
  "matches": [
   {
    "event_id": 35843722,
@@ -8,7 +8,7 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-19T23:15:00.000Z",
-   "line": 76.5,
+   "line": 82.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,20 @@
    "p1_norm": "adam linek",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T23:20:00.000Z",
-   "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35843741,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Michal Guzik",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-19T23:20:00.000Z",
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843725,
@@ -52,9 +63,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-19T23:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 68.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35843740,
