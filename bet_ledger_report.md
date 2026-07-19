@@ -1,19 +1,19 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-19T11:00:15 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-19T11:25:38 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 125-244-2  ·  **P&L:** -58.69u ($-5,869)  ·  **ROI:** -15.8%
-- **Avg CLV:** +7.06% over 309 closed bets  ·  **Open:** 6  ·  **Total logged:** 401
+- **Record:** 126-244-2  ·  **P&L:** -57.86u ($-5,786)  ·  **ROI:** -15.6%
+- **Avg CLV:** +7.06% over 309 closed bets  ·  **Open:** 7  ·  **Total logged:** 402
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
-⚠️ FanDuel snapshot is 4.2h old (1388 lines) — collection may be stalled; check the `FD_AK` token.
+Data OK — FanDuel 2544 lines @ `2026-07-19T11:24:57`.
 
 ### by sport / stat
 
 | sport | stat | bets | settled P&L (u) | avg CLV |
 |---|---|---|---|---|
-| ebasketball | total | 33 | +5.45 | -4.71% |
+| ebasketball | total | 34 | +6.28 | -4.71% |
 | efootball | total | 3 | +0.74 | — |
 | mlb | f5_total | 20 | +7.49 | — |
 | mlb | game_total | 53 | -0.51 | — |
@@ -25,6 +25,7 @@ _2026-07-19T11:00:15 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-19 | ebasketball | DEFIANT v OUTLAW | total over 109.5 | 1.83 | W | 135 | +0.83u | -4.3% |
 | 2026-07-19 | mlb | GAME (game_total) | game_total under 9.5 | 1.91 | L | 13 | -1.00u | — |
 | 2026-07-19 | mlb | GAME (game_total) | game_total under 9.0 | 1.91 | L | 13 | -1.00u | — |
 | 2026-07-19 | mlb | GAME (f5_total) | f5_total under 4.5 | 2.14 | L | 8 | -1.00u | — |
@@ -49,5 +50,4 @@ _2026-07-19T11:00:15 UTC_ · 1 unit = $100 · flag threshold +2% EV
 | 2026-07-18 | ebasketball | JUGGERNAUT v AIRFORCE | total over 111.5 | 1.83 | L | 92 | -1.00u | -4.3% |
 | 2026-07-18 | ebasketball | AIRFORCE v FURY | total over 110.5 | 1.83 | W | 117 | +0.83u | -4.3% |
 | 2026-07-18 | ebasketball | AIRFORCE v NIGHTHAWK | total over 112.5 | 1.83 | W | 117 | +0.83u | -4.3% |
-| 2026-07-18 | mlb | GAME (game_total) | game_total over 7.5 | 1.94 | W | 16 | +0.94u | — |
 
