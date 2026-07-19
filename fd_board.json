@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T03:55:11Z",
+ "captured_at": "2026-07-19T04:00:01Z",
  "matches": [
-  {
-   "event_id": 35840748,
-   "p1": "Tibor Spanik",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-19T03:45:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35840750,
    "p1": "Bartlomiej Wisniewski",
@@ -19,9 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "adrian eliasz",
    "open_date": "2026-07-19T03:50:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35840751,
@@ -30,20 +19,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-19T03:50:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35840754,
-   "p1": "Damian Fira",
-   "p2": "Rafal Adach",
-   "p1_norm": "damian fira",
-   "p2_norm": "rafal adach",
-   "open_date": "2026-07-19T03:55:00.000Z",
    "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840755,
@@ -53,8 +31,8 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T04:00:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840756,
@@ -64,8 +42,8 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-19T04:00:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35840762,
@@ -110,6 +88,28 @@
    "line": 73.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35840770,
+   "p1": "Pawel Adamus",
+   "p2": "Rafal Idaczyk",
+   "p1_norm": "pawel adamus",
+   "p2_norm": "rafal idaczyk",
+   "open_date": "2026-07-19T04:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35840771,
+   "p1": "Jacek Przewlocki",
+   "p2": "Tadeusz Piotrowski",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "tadeusz piotrowski",
+   "open_date": "2026-07-19T04:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
