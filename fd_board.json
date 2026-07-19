@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T12:31:18Z",
+ "captured_at": "2026-07-19T12:37:12Z",
  "matches": [
   {
    "event_id": 35842020,
@@ -8,20 +8,9 @@
    "p1_norm": "marcin lach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T12:15:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35842021,
-   "p1": "Tadeusz Piotrowski",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "tadeusz piotrowski",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-19T12:15:00.000Z",
-   "line": 80.5,
-   "over_odds": 110,
-   "under_odds": -150
+   "line": 108.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842395,
@@ -30,9 +19,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-19T12:30:00.000Z",
-   "line": 74.5,
+   "line": 72.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35842397,
@@ -41,9 +30,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-19T12:35:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35842420,
@@ -53,8 +42,8 @@
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-19T12:40:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35842421,
@@ -64,8 +53,8 @@
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-19T12:40:00.000Z",
    "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35842438,
@@ -75,6 +64,17 @@
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T12:55:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35842445,
+   "p1": "Jakub Michalczyk",
+   "p2": "Maciej Kolek",
+   "p1_norm": "jakub michalczyk",
+   "p2_norm": "maciej kolek",
+   "open_date": "2026-07-19T13:00:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }
