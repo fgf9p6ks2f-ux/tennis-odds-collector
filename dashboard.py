@@ -1518,9 +1518,11 @@ def build():
         ".then(function(){location.replace(d.url)}).catch(function(){});"          # verify then redirect
         "}).catch(function(){});}catch(e){}})();</script>")
     _live_sse = ("<script>(function(){if(location.hostname.endsWith('github.io'))return;"
-        "try{var es=new EventSource('/events');es.onmessage=function(e){"
-        "if(e.data==='reload'){var y=scrollY;sessionStorage.setItem('_sy',y);location.reload();}};"
-        "}catch(e){}"
+        "var last=null;setInterval(function(){"                       # 2s version poll on the tunnel
+        "fetch('/bump',{cache:'no-store'}).then(function(r){return r.text()}).then(function(v){"
+        "if(last===null){last=v;return;}"
+        "if(v!==last){sessionStorage.setItem('_sy',scrollY);location.reload();}"
+        "}).catch(function(){});},2000);"
         "var y=sessionStorage.getItem('_sy');if(y){scrollTo(0,+y);sessionStorage.removeItem('_sy');}"
         "})();</script>")
     doc = f"""<!doctype html><html lang="en"><head>

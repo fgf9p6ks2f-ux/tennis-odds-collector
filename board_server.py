@@ -37,9 +37,23 @@ class Handler(SimpleHTTPRequestHandler):
         super().end_headers()
 
     def do_GET(self):
-        if self.path.split("?")[0] == "/events":
+        p = self.path.split("?")[0]
+        if p == "/bump":                                      # tiny version poll (robust vs SSE)
+            return self._bump()
+        if p == "/events":
             return self._sse()
         return super().do_GET()
+
+    def _bump(self):
+        """index.html mtime as plain text — the client polls this every ~2s and reloads on change.
+        A plain GET with Content-Length streams through cloudflared cleanly (SSE gets buffered)."""
+        body = str(INDEX.stat().st_mtime if INDEX.exists() else 0).encode()
+        self.send_response(200)
+        self.send_header("Content-Type", "text/plain")
+        self.send_header("Content-Length", str(len(body)))
+        self._cors()
+        self.end_headers()
+        self.wfile.write(body)
 
     def _sse(self):
         """Long-lived Server-Sent-Events stream: push 'reload' whenever index.html changes."""
