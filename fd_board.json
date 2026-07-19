@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T07:04:14Z",
+ "captured_at": "2026-07-19T07:11:18Z",
  "matches": [
-  {
-   "event_id": 35841495,
-   "p1": "Rafal Idaczyk",
-   "p2": "Grzegorz Sawicki",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "grzegorz sawicki",
-   "open_date": "2026-07-19T06:45:00.000Z",
-   "line": 91.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35841499,
-   "p1": "Jacek Przewlocki",
-   "p2": "Tadeusz Piotrowski",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "tadeusz piotrowski",
-   "open_date": "2026-07-19T06:50:00.000Z",
-   "line": 77.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35841507,
    "p1": "Bartlomiej Wisniewski",
@@ -30,31 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-19T06:55:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35841508,
-   "p1": "Damian Wederlich",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "damian wederlich",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-19T06:55:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35841509,
-   "p1": "Marcin Lach",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "marcin lach",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-19T06:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 84.5,
+   "over_odds": 110,
+   "under_odds": -150
   },
   {
    "event_id": 35841519,
@@ -64,8 +20,8 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-19T07:10:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841523,
@@ -120,6 +76,17 @@
    "open_date": "2026-07-19T07:30:00.000Z",
    "line": 74.5,
    "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35841547,
+   "p1": "Kaczynski Piotr",
+   "p2": "Michal Paszkiewicz",
+   "p1_norm": "kaczynski piotr",
+   "p2_norm": "michal paszkiewicz",
+   "open_date": "2026-07-19T07:35:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
    "under_odds": -116
   }
  ]
