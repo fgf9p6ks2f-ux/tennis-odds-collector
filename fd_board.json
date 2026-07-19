@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T18:39:15Z",
+ "captured_at": "2026-07-19T18:45:16Z",
  "matches": [
-  {
-   "event_id": 35843375,
-   "p1": "Grzegorz Marud",
-   "p2": "Rafal Adach",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "rafal adach",
-   "open_date": "2026-07-19T18:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35843379,
    "p1": "Mateusz Karpiuk",
@@ -19,20 +8,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-19T18:30:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35843380,
-   "p1": "Karol Wisniewski",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "karol wisniewski",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-19T18:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 86.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843381,
@@ -41,9 +19,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-19T18:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 66.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35843389,
@@ -53,8 +31,8 @@
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-19T18:45:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843390,
@@ -63,8 +41,8 @@
    "p1_norm": "andrzej krezel",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-19T18:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
+   "line": 77.5,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -97,6 +75,28 @@
    "p2_norm": "jakub michalczyk",
    "open_date": "2026-07-19T18:55:00.000Z",
    "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843444,
+   "p1": "Sebastian Juzek",
+   "p2": "Grzegorz Sawicki",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "grzegorz sawicki",
+   "open_date": "2026-07-19T19:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35843446,
+   "p1": "Rafal Adach",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "rafal adach",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-19T19:10:00.000Z",
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   }
