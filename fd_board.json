@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T04:04:39Z",
+ "captured_at": "2026-07-19T04:09:17Z",
  "matches": [
   {
    "event_id": 35840750,
@@ -8,20 +8,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "adrian eliasz",
    "open_date": "2026-07-19T03:50:00.000Z",
-   "line": 92.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35840751,
-   "p1": "Adam Ruszkiewicz",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "adam ruszkiewicz",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-19T03:50:00.000Z",
-   "line": 62.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 97.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840756,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-19T04:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840762,
@@ -118,9 +107,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-19T04:30:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 65.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35840781,
