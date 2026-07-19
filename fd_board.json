@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T13:26:41Z",
+ "captured_at": "2026-07-19T13:32:43Z",
  "matches": [
-  {
-   "event_id": 35842462,
-   "p1": "Jacek Wieczerzak",
-   "p2": "Karol Jablonski",
-   "p1_norm": "jacek wieczerzak",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-19T13:10:00.000Z",
-   "line": 101.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35842472,
    "p1": "Grzegorz Felkel",
@@ -19,20 +8,20 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-19T13:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 60.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
-   "event_id": 35842485,
-   "p1": "Witold Buczynski",
-   "p2": "Marian Lebek",
-   "p1_norm": "witold buczynski",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-19T13:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "event_id": 35842480,
+   "p1": "Stapor Rafal",
+   "p2": "Igor Dabrowski",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "igor dabrowski",
+   "open_date": "2026-07-19T13:25:00.000Z",
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842486,
@@ -42,8 +31,8 @@
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-19T13:30:00.000Z",
    "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842487,
@@ -52,9 +41,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-19T13:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842514,
@@ -77,6 +66,39 @@
    "line": 72.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35842525,
+   "p1": "Oskar Jadach",
+   "p2": "Marcin Lach",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-19T13:55:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35842526,
+   "p1": "Filip Witczak",
+   "p2": "Karol Jablonski",
+   "p1_norm": "filip witczak",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-19T13:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35842527,
+   "p1": "Mateusz Misiak",
+   "p2": "Tadeusz Piotrowski",
+   "p1_norm": "mateusz misiak",
+   "p2_norm": "tadeusz piotrowski",
+   "open_date": "2026-07-19T13:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
