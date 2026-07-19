@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T13:01:47Z",
+ "captured_at": "2026-07-19T13:07:52Z",
  "matches": [
   {
    "event_id": 35842438,
@@ -8,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T12:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35842445,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T13:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 95.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842448,
@@ -30,9 +30,9 @@
    "p1_norm": "adrian eliasz",
    "p2_norm": "tadeusz piotrowski",
    "open_date": "2026-07-19T13:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842449,
@@ -41,9 +41,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-19T13:05:00.000Z",
-   "line": 65.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842462,
@@ -77,6 +77,39 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35842485,
+   "p1": "Witold Buczynski",
+   "p2": "Marian Lebek",
+   "p1_norm": "witold buczynski",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T13:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35842486,
+   "p1": "Mikolaj Lukaszewski",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "mikolaj lukaszewski",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-19T13:30:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35842487,
+   "p1": "Rafal Wojcik",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "rafal wojcik",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-19T13:30:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
