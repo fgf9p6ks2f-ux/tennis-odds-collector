@@ -1,25 +1,14 @@
 {
- "captured_at": "2026-07-19T14:22:44Z",
+ "captured_at": "2026-07-19T14:29:38Z",
  "matches": [
   {
-   "event_id": 35842565,
-   "p1": "Adrian Spychala",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-19T14:10:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35842567,
-   "p1": "Stanislaw Wnek",
-   "p2": "Igor Dabrowski",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "igor dabrowski",
-   "open_date": "2026-07-19T14:15:00.000Z",
-   "line": 88.5,
+   "event_id": 35842570,
+   "p1": "Arkadiusz Mugowski",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "arkadiusz mugowski",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-19T14:20:00.000Z",
+   "line": 87.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +19,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T14:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842595,
