@@ -42,7 +42,10 @@
 2026-07-19|Rae Burrell|pra|21.5
 2026-07-19|Sydney Taylor|points|14.5
 2026-07-19|Sydney Taylor|points|15.5
+2026-07-20|Breanna Stewart|rebounds|7.5
 2026-07-20|Marina Mabrey|reb_ast|6.5
+2026-07-20|Marine Johannes|points|8.5
+2026-07-20|Sabrina Ionescu|assists|4.5
 timing|2026-07-18|Aaliyah Edwards|points|9.5
 timing|2026-07-18|DeWanna Bonner|pra|20.5
 timing|2026-07-18|Jonquel Jones|pra|25.5
