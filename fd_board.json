@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T07:23:22Z",
+ "captured_at": "2026-07-19T07:29:25Z",
  "matches": [
-  {
-   "event_id": 35841519,
-   "p1": "Pawel Adamus",
-   "p2": "Mariusz Baron",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-19T07:10:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35841523,
    "p1": "Igor Dabrowski",
@@ -19,9 +8,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "tadeusz piotrowski",
    "open_date": "2026-07-19T07:15:00.000Z",
-   "line": 67.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841525,
@@ -30,9 +19,9 @@
    "p1_norm": "maciej domin",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-19T07:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 93.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35841526,
@@ -41,9 +30,9 @@
    "p1_norm": "witold buczynski",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T07:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841527,
@@ -52,7 +41,7 @@
    "p1_norm": "adrian eliasz",
    "p2_norm": "mateusz misiak",
    "open_date": "2026-07-19T07:20:00.000Z",
-   "line": 82.5,
+   "line": 89.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -108,6 +97,17 @@
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T07:45:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841570,
+   "p1": "Filip Witczak",
+   "p2": "Karol Jablonski",
+   "p1_norm": "filip witczak",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-19T07:55:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
