@@ -77,6 +77,7 @@ watch|2026-07-19|Olivia Nelson-Ododa|points|10.5
 watch|2026-07-19|Olivia Nelson-Ododa|points|11.5
 watch|2026-07-19|Olivia Nelson-Ododa|pra|20.5
 watch|2026-07-19|Olivia Nelson-Ododa|pts_reb|16.5
+watch|2026-07-19|Olivia Nelson-Ododa|pts_reb|17.5
 watch|2026-07-19|Olivia Nelson-Ododa|pts_reb|18.5
 watch|2026-07-19|Olivia Nelson-Ododa|reb_ast|9.5
 watch|2026-07-19|Olivia Nelson-Ododa|rebounds|7.5
