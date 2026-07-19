@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T15:45:22Z",
+ "captured_at": "2026-07-19T15:50:04Z",
  "matches": [
-  {
-   "event_id": 35842686,
-   "p1": "Jakub Zochniak",
-   "p2": "Gracjan Kesik",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "gracjan kesik",
-   "open_date": "2026-07-19T15:25:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35842699,
    "p1": "Jakub Jesiek",
@@ -19,7 +8,7 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "jaroslaw badura",
    "open_date": "2026-07-19T15:35:00.000Z",
-   "line": 84.5,
+   "line": 88.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-19T15:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842735,
@@ -43,7 +32,7 @@
    "open_date": "2026-07-19T15:50:00.000Z",
    "line": 79.5,
    "over_odds": -118,
-   "under_odds": -116
+   "under_odds": -112
   },
   {
    "event_id": 35842736,
@@ -86,6 +75,28 @@
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-19T16:05:00.000Z",
    "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35842767,
+   "p1": "Andriej Fomin",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-19T16:15:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842768,
+   "p1": "Adam Linek",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "adam linek",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-19T16:15:00.000Z",
+   "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
   }
