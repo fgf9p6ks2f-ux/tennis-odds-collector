@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T09:41:53Z",
+ "captured_at": "2026-07-19T09:47:31Z",
  "matches": [
-  {
-   "event_id": 35841762,
-   "p1": "Jacek Wieczerzak",
-   "p2": "Kamil Kowalski",
-   "p1_norm": "jacek wieczerzak",
-   "p2_norm": "kamil kowalski",
-   "open_date": "2026-07-19T09:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35841740,
    "p1": "Adrian Spychala",
@@ -19,9 +8,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T09:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841744,
@@ -30,9 +19,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T09:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841746,
@@ -88,6 +77,28 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35841778,
+   "p1": "Adrian Eliasz",
+   "p2": "Mateusz Misiak",
+   "p1_norm": "adrian eliasz",
+   "p2_norm": "mateusz misiak",
+   "open_date": "2026-07-19T10:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841779,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Oskar Jadach",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-19T10:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
