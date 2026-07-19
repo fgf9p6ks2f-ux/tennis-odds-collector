@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T09:12:52Z",
+ "captured_at": "2026-07-19T09:18:28Z",
  "matches": [
-  {
-   "event_id": 35841646,
-   "p1": "Adrian Eliasz",
-   "p2": "Bartlomiej Wisniewski",
-   "p1_norm": "adrian eliasz",
-   "p2_norm": "bartlomiej wisniewski",
-   "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35841647,
    "p1": "Tibor Spanik",
@@ -19,7 +8,7 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 91.5,
+   "line": 95.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,20 +19,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 92.5,
+   "line": 100.5,
    "over_odds": -110,
    "under_odds": -125
-  },
-  {
-   "event_id": 35841649,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Marian Lebek",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
   },
   {
    "event_id": 35841654,
@@ -52,9 +30,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-19T09:05:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35841690,
@@ -110,6 +88,17 @@
    "line": 76.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35841744,
+   "p1": "Stanislaw Wnek",
+   "p2": "Maciej Kolek",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "maciej kolek",
+   "open_date": "2026-07-19T09:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
