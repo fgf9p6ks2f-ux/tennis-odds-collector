@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T12:55:50Z",
+ "captured_at": "2026-07-19T13:01:47Z",
  "matches": [
-  {
-   "event_id": 35842421,
-   "p1": "Oskar Jadach",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-19T12:40:00.000Z",
-   "line": 92.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35842438,
    "p1": "Tibor Spanik",
@@ -19,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T12:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842445,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T13:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842448,
@@ -52,9 +41,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-19T13:05:00.000Z",
-   "line": 67.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 65.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35842462,
@@ -75,6 +64,17 @@
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-19T13:20:00.000Z",
    "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842480,
+   "p1": "Stapor Rafal",
+   "p2": "Igor Dabrowski",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "igor dabrowski",
+   "open_date": "2026-07-19T13:25:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
