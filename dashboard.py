@@ -1506,7 +1506,25 @@ def build():
     tt_live_js = TT_LIVE_JS
     import hashlib as _hl
     bv = _hl.sha1(Path(__file__).read_bytes()).hexdigest()[:10]   # style/code version marker
+    # LIVE BOARD (2026-07-19): on Pages, redirect to the VM tunnel when it's fresh+reachable so
+    # the board is served straight off the box (no Pages-rebuild lag); on the tunnel, an SSE stream
+    # reloads the instant a new bake lands — same moment as the ntfy ping. Falls back to static Pages
+    # if the tunnel is down. Plain strings (not f-interpolated) to avoid brace escaping.
+    _live_head = ("<script>(function(){try{"
+        "if(!location.hostname.endsWith('github.io'))return;"          # already on the live tunnel
+        "fetch('live_board.json',{cache:'no-store'}).then(function(r){return r.json()}).then(function(d){"
+        "if(!d||!d.url)return;if((Date.now()-Date.parse(d.ts))/1000>600)return;"   # tunnel stale >10min
+        "fetch(d.url+'/live_board.json',{cache:'no-store',signal:AbortSignal.timeout(2500)})"
+        ".then(function(){location.replace(d.url)}).catch(function(){});"          # verify then redirect
+        "}).catch(function(){});}catch(e){}})();</script>")
+    _live_sse = ("<script>(function(){if(location.hostname.endsWith('github.io'))return;"
+        "try{var es=new EventSource('/events');es.onmessage=function(e){"
+        "if(e.data==='reload'){var y=scrollY;sessionStorage.setItem('_sy',y);location.reload();}};"
+        "}catch(e){}"
+        "var y=sessionStorage.getItem('_sy');if(y){scrollTo(0,+y);sessionStorage.removeItem('_sy');}"
+        "})();</script>")
     doc = f"""<!doctype html><html lang="en"><head>
+{_live_head}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0B0B0D">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2065,10 +2083,12 @@ def build():
       if (window._applyTTTotals) window._applyTTTotals();   // keep live TT totals over the swapped-in bake
     }} catch (e) {{}}
   }}
-  setInterval(bgRefresh, 90000);
+  if (location.hostname.endsWith('github.io')) setInterval(bgRefresh, 90000);
   applyMarks();
 {tt_live_js}
-</script></body></html>"""
+</script>
+{_live_sse}
+</body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
     print(f"dashboard: {len(ordered)} games / {sum(len(g) for g in ordered)} beneficiaries / "
