@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T16:57:11Z",
+ "captured_at": "2026-07-19T17:01:52Z",
  "matches": [
-  {
-   "event_id": 35842854,
-   "p1": "Grzegorz Sawicki",
-   "p2": "Rafal Ogon",
-   "p1_norm": "grzegorz sawicki",
-   "p2_norm": "rafal ogon",
-   "open_date": "2026-07-19T16:50:00.000Z",
-   "line": 55.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35842863,
    "p1": "Jakub Glanowski",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-19T16:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842864,
@@ -30,7 +19,7 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-19T16:55:00.000Z",
-   "line": 73.5,
+   "line": 79.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +30,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T16:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842900,
