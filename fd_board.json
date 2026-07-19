@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T17:01:52Z",
+ "captured_at": "2026-07-19T17:07:20Z",
  "matches": [
-  {
-   "event_id": 35842863,
-   "p1": "Jakub Glanowski",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-19T16:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35842864,
-   "p1": "Jakub Skorupa",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-19T16:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35842865,
    "p1": "Stapor Rafal",
@@ -30,9 +8,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T16:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842900,
@@ -66,6 +44,28 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843185,
+   "p1": "Andrzej Krezel",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "andrzej krezel",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-19T17:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843218,
+   "p1": "Jakub Jesiek",
+   "p2": "Rafal Ogon",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "rafal ogon",
+   "open_date": "2026-07-19T17:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
