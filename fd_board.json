@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T20:50:19Z",
+ "captured_at": "2026-07-19T20:56:14Z",
  "matches": [
-  {
-   "event_id": 35843547,
-   "p1": "Andriej Fomin",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "andriej fomin",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-19T20:30:00.000Z",
-   "line": 101.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35843552,
    "p1": "Sebastian Juzek",
@@ -19,9 +8,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "jaroslaw badura",
    "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843553,
@@ -30,8 +19,8 @@
    "p1_norm": "rafal adach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
+   "line": 54.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -75,6 +64,28 @@
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T21:10:00.000Z",
    "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35843596,
+   "p1": "Lukasz Pietraszko",
+   "p2": "Gracjan Kesik",
+   "p1_norm": "lukasz pietraszko",
+   "p2_norm": "gracjan kesik",
+   "open_date": "2026-07-19T21:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843597,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-19T21:20:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
