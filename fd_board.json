@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T17:52:54Z",
+ "captured_at": "2026-07-19T17:58:50Z",
  "matches": [
-  {
-   "event_id": 35843218,
-   "p1": "Jakub Jesiek",
-   "p2": "Rafal Ogon",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "rafal ogon",
-   "open_date": "2026-07-19T17:35:00.000Z",
-   "line": 106.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35843265,
-   "p1": "Andriej Fomin",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "andriej fomin",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-19T17:45:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35843266,
    "p1": "Adam Linek",
@@ -30,9 +8,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-19T17:45:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843286,
@@ -41,9 +19,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T17:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843289,
@@ -87,6 +65,28 @@
    "open_date": "2026-07-19T18:10:00.000Z",
    "line": 80.5,
    "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843375,
+   "p1": "Grzegorz Marud",
+   "p2": "Rafal Adach",
+   "p1_norm": "grzegorz marud",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-19T18:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843377,
+   "p1": "Grzegorz Sawicki",
+   "p2": "Jaroslaw Badura",
+   "p1_norm": "grzegorz sawicki",
+   "p2_norm": "jaroslaw badura",
+   "open_date": "2026-07-19T18:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
    "under_odds": -118
   }
  ]
