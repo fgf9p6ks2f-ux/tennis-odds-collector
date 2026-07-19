@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T03:25:19Z",
+ "captured_at": "2026-07-19T03:29:28Z",
  "matches": [
-  {
-   "event_id": 35840732,
-   "p1": "Arkadiusz Mugowski",
-   "p2": "Adrian Eliasz",
-   "p1_norm": "arkadiusz mugowski",
-   "p2_norm": "adrian eliasz",
-   "open_date": "2026-07-19T03:25:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35840733,
    "p1": "Maksymilian Miastowski",
@@ -19,9 +8,9 @@
    "p1_norm": "maksymilian miastowski",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T03:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840734,
@@ -30,9 +19,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T03:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840740,
@@ -85,6 +74,17 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-19T03:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840754,
+   "p1": "Damian Fira",
+   "p2": "Rafal Adach",
+   "p1_norm": "damian fira",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-19T03:55:00.000Z",
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
