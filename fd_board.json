@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T19:40:30Z",
+ "captured_at": "2026-07-19T19:45:30Z",
  "matches": [
   {
    "event_id": 35843450,
@@ -8,20 +8,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T19:20:00.000Z",
-   "line": 98.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35843461,
-   "p1": "Grzegorz Marud",
-   "p2": "Wojciech Urban",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-19T19:30:00.000Z",
-   "line": 64.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 101.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843462,
@@ -30,9 +19,9 @@
    "p1_norm": "jaroslaw badura",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T19:35:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 56.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35843465,
@@ -41,9 +30,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-19T19:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843466,
@@ -55,6 +44,17 @@
    "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35843467,
+   "p1": "Karol Wisniewski",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-19T19:40:00.000Z",
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843483,
