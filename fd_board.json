@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T05:37:33Z",
+ "captured_at": "2026-07-19T05:43:24Z",
  "matches": [
   {
    "event_id": 35840866,
@@ -8,9 +8,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "jacek przewlocki",
    "open_date": "2026-07-19T05:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840867,
@@ -19,9 +19,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-19T05:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840983,
@@ -30,9 +30,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "tibor spanik",
    "open_date": "2026-07-19T05:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840984,
@@ -41,9 +41,9 @@
    "p1_norm": "arkadiusz mugowski",
    "p2_norm": "adrian eliasz",
    "open_date": "2026-07-19T05:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840985,
@@ -52,9 +52,9 @@
    "p1_norm": "marcin lach",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-19T05:40:00.000Z",
-   "line": 69.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35841231,
