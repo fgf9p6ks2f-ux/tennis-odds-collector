@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T13:51:33Z",
+ "captured_at": "2026-07-19T13:57:38Z",
  "matches": [
   {
    "event_id": 35842514,
@@ -9,8 +9,19 @@
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T13:45:00.000Z",
    "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35842519,
+   "p1": "Jacek Przewlocki",
+   "p2": "Maciej Kolek",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "maciej kolek",
+   "open_date": "2026-07-19T13:50:00.000Z",
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842525,
@@ -19,9 +30,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-19T13:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35842526,
@@ -30,9 +41,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-19T13:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35842527,
@@ -42,8 +53,8 @@
    "p2_norm": "tadeusz piotrowski",
    "open_date": "2026-07-19T13:55:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842565,
@@ -66,6 +77,28 @@
    "line": 81.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35842570,
+   "p1": "Arkadiusz Mugowski",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "arkadiusz mugowski",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-19T14:20:00.000Z",
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35842571,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Marian Lebek",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T14:20:00.000Z",
+   "line": 71.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
