@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T15:20:23Z",
+ "captured_at": "2026-07-19T15:26:34Z",
  "matches": [
-  {
-   "event_id": 35842685,
-   "p1": "Karol Wisniewski",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "karol wisniewski",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-19T15:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
   {
    "event_id": 35842686,
    "p1": "Jakub Zochniak",
@@ -19,20 +8,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T15:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35842687,
-   "p1": "Mateusz Karpiuk",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "mateusz karpiuk",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-19T15:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842699,
@@ -55,6 +33,28 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35842735,
+   "p1": "Stapor Rafal",
+   "p2": "Jakub Michalczyk",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "jakub michalczyk",
+   "open_date": "2026-07-19T15:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35842736,
+   "p1": "Jakub Skorupa",
+   "p2": "Pawel Chojnacki",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "pawel chojnacki",
+   "open_date": "2026-07-19T15:50:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
