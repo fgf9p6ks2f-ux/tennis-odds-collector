@@ -341,22 +341,15 @@ def current_selection(rows, commit=False):
             return (min((x.get("odds") or 99) for x in rr),
                     0 if (dm is not None and 3 <= dm <= 8) else 1,
                     -max((x.get("ev") or 0.0) for x in rr))
+        # BEST-FIRST, NO STICKY (2026-07-19, user: "if a better play comes up you can replace the
+        # current card play with the better one — the lines dont move really so i place them just
+        # before game time"). The Ododa sticky rule protected an EARLY-placed bet from a retro-swap;
+        # the user actually places at GAME TIME, so the card should always show the current best-2
+        # (favorite-first, band, EV), and a better play that appears later simply takes the slot.
         picks, used = [], set()
-        for k in slog.get((pd_, tm), []):                 # sticky picks first, logged order
+        for k in sorted(groups, key=gkey):
             if len(picks) == 2:
                 break
-            if k not in groups:                           # rows voided/absent -> slot reopens
-                continue
-            cs = _comps(k[1])
-            if cs & used:
-                continue
-            picks.append(k)
-            used |= cs
-        for k in sorted(groups, key=gkey):                # then fill open slots by rank
-            if len(picks) == 2:
-                break
-            if k in picks:
-                continue
             cs = _comps(k[1])
             if cs & used:
                 continue
