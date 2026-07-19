@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T04:43:28Z",
+ "captured_at": "2026-07-19T04:49:17Z",
  "matches": [
   {
    "event_id": 35840767,
@@ -13,37 +13,15 @@
    "under_odds": -125
   },
   {
-   "event_id": 35840771,
-   "p1": "Jacek Przewlocki",
-   "p2": "Tadeusz Piotrowski",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "tadeusz piotrowski",
-   "open_date": "2026-07-19T04:25:00.000Z",
-   "line": 93.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
    "event_id": 35840779,
    "p1": "Schaniel Krzysztof",
    "p2": "Marian Lebek",
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T04:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35840780,
-   "p1": "Grzegorz Felkel",
-   "p2": "Adrian Spychala",
-   "p1_norm": "grzegorz felkel",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-19T04:30:00.000Z",
-   "line": 51.5,
-   "over_odds": -155,
-   "under_odds": 110
+   "line": 94.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35840782,
@@ -52,9 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T04:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840788,
@@ -74,9 +52,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-19T04:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35840797,
@@ -129,6 +107,50 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-19T05:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840815,
+   "p1": "Maciej Kolek",
+   "p2": "Jacek Przewlocki",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "jacek przewlocki",
+   "open_date": "2026-07-19T05:15:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840816,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Mateusz Misiak",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "mateusz misiak",
+   "open_date": "2026-07-19T05:15:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35840817,
+   "p1": "Maksymilian Miastowski",
+   "p2": "Adrian Spychala",
+   "p1_norm": "maksymilian miastowski",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-19T05:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35840818,
+   "p1": "Oskar Jadach",
+   "p2": "Marian Lebek",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T05:15:00.000Z",
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
