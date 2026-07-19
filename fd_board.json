@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T19:29:27Z",
+ "captured_at": "2026-07-19T19:34:30Z",
  "matches": [
-  {
-   "event_id": 35843447,
-   "p1": "Jakub Kuzmicz",
-   "p2": "Maciej Nowalinski",
-   "p1_norm": "jakub kuzmicz",
-   "p2_norm": "maciej nowalinski",
-   "open_date": "2026-07-19T19:15:00.000Z",
-   "line": 79.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35843450,
    "p1": "Gracjan Kesik",
@@ -19,9 +8,9 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T19:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35843477,
@@ -30,9 +19,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-19T19:20:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843461,
@@ -41,9 +30,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T19:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 56.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843462,
@@ -97,6 +86,17 @@
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-19T19:55:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843485,
+   "p1": "Jakub Jesiek",
+   "p2": "Grzegorz Sawicki",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "grzegorz sawicki",
+   "open_date": "2026-07-19T20:00:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
