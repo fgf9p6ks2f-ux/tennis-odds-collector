@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T02:28:51Z",
+ "captured_at": "2026-07-19T02:33:39Z",
  "matches": [
-  {
-   "event_id": 35840634,
-   "p1": "Dariusz Maszczynski",
-   "p2": "Krzysztof Malcher",
-   "p1_norm": "dariusz maszczynski",
-   "p2_norm": "krzysztof malcher",
-   "open_date": "2026-07-19T02:10:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35840636,
    "p1": "Artur Kubiak",
@@ -19,9 +8,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-19T02:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840647,
@@ -53,6 +42,39 @@
    "p2_norm": "damian fira",
    "open_date": "2026-07-19T02:45:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35840715,
+   "p1": "Marcin Lach",
+   "p2": "Marian Lebek",
+   "p1_norm": "marcin lach",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T03:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35840716,
+   "p1": "Damian Wederlich",
+   "p2": "Adrian Spychala",
+   "p1_norm": "damian wederlich",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-19T03:00:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35840717,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Mateusz Misiak",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "mateusz misiak",
+   "open_date": "2026-07-19T03:00:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
