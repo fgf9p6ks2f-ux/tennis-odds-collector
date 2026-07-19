@@ -1,27 +1,16 @@
 {
- "captured_at": "2026-07-19T13:32:43Z",
+ "captured_at": "2026-07-19T13:39:33Z",
  "matches": [
   {
-   "event_id": 35842472,
-   "p1": "Grzegorz Felkel",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "grzegorz felkel",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-19T13:20:00.000Z",
-   "line": 60.5,
+   "event_id": 35842485,
+   "p1": "Witold Buczynski",
+   "p2": "Marian Lebek",
+   "p1_norm": "witold buczynski",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T13:30:00.000Z",
+   "line": 55.5,
    "over_odds": -110,
    "under_odds": -125
-  },
-  {
-   "event_id": 35842480,
-   "p1": "Stapor Rafal",
-   "p2": "Igor Dabrowski",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "igor dabrowski",
-   "open_date": "2026-07-19T13:25:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
   },
   {
    "event_id": 35842486,
@@ -30,9 +19,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-19T13:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842487,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-19T13:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 65.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35842514,
@@ -64,8 +53,8 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T13:50:00.000Z",
    "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35842525,
@@ -75,8 +64,8 @@
    "p2_norm": "marcin lach",
    "open_date": "2026-07-19T13:55:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35842526,
@@ -85,9 +74,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-19T13:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35842527,
