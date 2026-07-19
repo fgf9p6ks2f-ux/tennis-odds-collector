@@ -1,15 +1,35 @@
-rw|shayciezki|Ciezki (coach's decision) has been ruled
-rw|quionchecarter|Carter (coach's decision) has been ruled
-rw|haileyvanlith|Van Lith (coach's decision) has been rul
-rw|ashlonjackson|Jackson (coach's decision) will remain o
-rw|natashamack|Mack (foot) has been ruled out for Frida
-rw|courtneyvandersloot|Vandersloot (illness) is questionable to
-rw|justejocyte|Jocyte is out for Saturday's game agains
-rw|indyanivar|Nivar (coach's decision) has been ruled 
-gn|“Figure That Out Now”: WNBA Legend Raises Concern Over Fever
 gn|Lynx’s Olivia Miles off injury report as Napheesa Collier re
-rw|samiwhitcomb|Whitcomb (knee) is probable for Sunday's
-rw|natashamack|Mack (foot) is listed as probable for Su
+gn|“Figure That Out Now”: WNBA Legend Raises Concern Over Fever
+rw|1043|Not listed on injury report
+rw|1055|Records double-double in win
+rw|1067|Not listed on injury report
+rw|1093|Fades injury report
+rw|354|Very efficient in home victory
+rw|413|Leads Lynx with 24 points
+rw|432|Probable for Sunday
+rw|440|Drops 26 points in Saturday's loss
+rw|539|Another 30-point performance
+rw|581|On fire from perimeter
+rw|615|Doesn't return Saturday
+rw|615|Goes to locker room
+rw|641|Chips in 12 points in loss
+rw|735|On track to return Sunday
+rw|852|Logs 15 points vs. New York
+rw|860|Back with 12 points off bench
+rw|911|Dishes seven dimes Saturday
+rw|927|Leads team with seven assists
+rw|982|Rolls up 21 points in road loss
+rw|998|Could return Sunday
 rw|aneesahmorrow|Morrow (reconditioning) is listed as que
+rw|ashlonjackson|Jackson (coach's decision) will remain o
 rw|brittneygriner|Griner is probable for Sunday's game in 
+rw|courtneyvandersloot|Vandersloot (illness) is questionable to
+rw|haileyvanlith|Van Lith (coach's decision) has been rul
+rw|indyanivar|Nivar (coach's decision) has been ruled 
+rw|justejocyte|Jocyte is out for Saturday's game agains
+rw|natashamack|Mack (foot) has been ruled out for Frida
+rw|natashamack|Mack (foot) is listed as probable for Su
+rw|quionchecarter|Carter (coach's decision) has been ruled
+rw|samiwhitcomb|Whitcomb (knee) is probable for Sunday's
 rw|saniyarivers|Rivers (ankle) is probable for Sunday's 
+rw|shayciezki|Ciezki (coach's decision) has been ruled
