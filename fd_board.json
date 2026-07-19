@@ -1,50 +1,6 @@
 {
- "captured_at": "2026-07-19T09:36:09Z",
+ "captured_at": "2026-07-19T09:41:53Z",
  "matches": [
-  {
-   "event_id": 35841690,
-   "p1": "Damian Wederlich",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "damian wederlich",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-19T09:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35841691,
-   "p1": "Jacek Przewlocki",
-   "p2": "Stapor Rafal",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "stapor rafal",
-   "open_date": "2026-07-19T09:20:00.000Z",
-   "line": 56.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35841695,
-   "p1": "Mateusz Misiak",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "mateusz misiak",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-19T09:25:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35841696,
-   "p1": "Oskar Jadach",
-   "p2": "Witold Buczynski",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "witold buczynski",
-   "open_date": "2026-07-19T09:25:00.000Z",
-   "line": 52.5,
-   "over_odds": 110,
-   "under_odds": -150
-  },
   {
    "event_id": 35841762,
    "p1": "Jacek Wieczerzak",
@@ -52,9 +8,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "kamil kowalski",
    "open_date": "2026-07-19T09:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841740,
@@ -63,9 +19,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T09:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35841744,
@@ -119,8 +75,19 @@
    "p2_norm": "damian wederlich",
    "open_date": "2026-07-19T10:00:00.000Z",
    "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841769,
+   "p1": "Jakub Michalczyk",
+   "p2": "Jacek Przewlocki",
+   "p1_norm": "jakub michalczyk",
+   "p2_norm": "jacek przewlocki",
+   "open_date": "2026-07-19T10:05:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
