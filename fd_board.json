@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T12:18:30Z",
+ "captured_at": "2026-07-19T12:25:15Z",
  "matches": [
-  {
-   "event_id": 35841996,
-   "p1": "Maciej Domin",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "maciej domin",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-19T12:05:00.000Z",
-   "line": 58.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
-  {
-   "event_id": 35842010,
-   "p1": "Maciej Kolek",
-   "p2": "Stapor Rafal",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "stapor rafal",
-   "open_date": "2026-07-19T12:10:00.000Z",
-   "line": 52.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35842020,
    "p1": "Marcin Lach",
@@ -30,9 +8,9 @@
    "p1_norm": "marcin lach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T12:15:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 59.5,
+   "over_odds": -135,
+   "under_odds": 100
   },
   {
    "event_id": 35842021,
@@ -41,9 +19,9 @@
    "p1_norm": "tadeusz piotrowski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-19T12:15:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 64.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35842360,
@@ -52,9 +30,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "jacek wieczerzak",
    "open_date": "2026-07-19T12:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842395,
@@ -63,9 +41,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-19T12:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35842397,
