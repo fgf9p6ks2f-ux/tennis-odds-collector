@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T21:01:01Z",
+ "captured_at": "2026-07-19T21:06:47Z",
  "matches": [
-  {
-   "event_id": 35843553,
-   "p1": "Rafal Adach",
-   "p2": "Wojciech Urban",
-   "p1_norm": "rafal adach",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35843591,
    "p1": "Adam Linek",
@@ -19,9 +8,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T21:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843592,
@@ -31,8 +20,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-19T21:00:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843593,
@@ -41,9 +30,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-19T21:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843594,
@@ -77,6 +66,17 @@
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843632,
+   "p1": "Andrzej Krezel",
+   "p2": "Rafal Adach",
+   "p1_norm": "andrzej krezel",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-19T21:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
