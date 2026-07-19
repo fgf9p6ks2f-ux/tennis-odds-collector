@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T01:39:44Z",
+ "captured_at": "2026-07-19T01:48:09Z",
  "matches": [
-  {
-   "event_id": 35840428,
-   "p1": "Artur Szoltysek",
-   "p2": "Gracjan Kesik",
-   "p1_norm": "artur szoltysek",
-   "p2_norm": "gracjan kesik",
-   "open_date": "2026-07-19T01:25:00.000Z",
-   "line": 70.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35840516,
    "p1": "Jakub Skorupa",
@@ -19,20 +8,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-19T01:35:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35840590,
-   "p1": "Piotr Gesiarz",
-   "p2": "Andriej Fomin",
-   "p1_norm": "piotr gesiarz",
-   "p2_norm": "andriej fomin",
-   "open_date": "2026-07-19T01:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 66.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840626,
@@ -55,6 +33,17 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35840634,
+   "p1": "Dariusz Maszczynski",
+   "p2": "Krzysztof Malcher",
+   "p1_norm": "dariusz maszczynski",
+   "p2_norm": "krzysztof malcher",
+   "open_date": "2026-07-19T02:10:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
