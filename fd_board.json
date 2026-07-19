@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T18:10:17Z",
+ "captured_at": "2026-07-19T18:15:12Z",
  "matches": [
   {
    "event_id": 35843307,
@@ -8,9 +8,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-19T18:05:00.000Z",
-   "line": 65.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 67.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843311,
@@ -19,9 +19,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-19T18:10:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843312,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T18:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843375,
