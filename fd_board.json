@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T22:48:40Z",
+ "captured_at": "2026-07-19T22:53:28Z",
  "matches": [
   {
    "event_id": 35843700,
@@ -8,20 +8,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-19T22:35:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35843702,
-   "p1": "Grzegorz Marud",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-19T22:40:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 95.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843714,
@@ -30,9 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T22:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843717,
@@ -88,6 +77,17 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843723,
+   "p1": "Adam Linek",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "adam linek",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-19T23:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
