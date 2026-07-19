@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T23:40:24Z",
+ "captured_at": "2026-07-19T23:44:59Z",
  "matches": [
   {
    "event_id": 35843736,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T23:35:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35843739,
@@ -53,6 +53,28 @@
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-20T00:00:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843748,
+   "p1": "Andriej Fomin",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-20T00:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35843749,
+   "p1": "Adam Linek",
+   "p2": "Gracjan Kesik",
+   "p1_norm": "adam linek",
+   "p2_norm": "gracjan kesik",
+   "open_date": "2026-07-20T00:10:00.000Z",
+   "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
   }
