@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T03:42:35Z",
+ "captured_at": "2026-07-19T03:46:46Z",
  "matches": [
-  {
-   "event_id": 35840734,
-   "p1": "Oskar Jadach",
-   "p2": "Witold Buczynski",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "witold buczynski",
-   "open_date": "2026-07-19T03:25:00.000Z",
-   "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35840743,
    "p1": "Rafal Idaczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-19T03:35:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 75.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35840748,
@@ -31,8 +20,8 @@
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T03:45:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35840750,
@@ -88,6 +77,39 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35840762,
+   "p1": "Mateusz Misiak",
+   "p2": "Arkadiusz Mugowski",
+   "p1_norm": "mateusz misiak",
+   "p2_norm": "arkadiusz mugowski",
+   "open_date": "2026-07-19T04:10:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35840763,
+   "p1": "Damian Wederlich",
+   "p2": "Maksymilian Miastowski",
+   "p1_norm": "damian wederlich",
+   "p2_norm": "maksymilian miastowski",
+   "open_date": "2026-07-19T04:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840764,
+   "p1": "Marcin Lach",
+   "p2": "Oskar Jadach",
+   "p1_norm": "marcin lach",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-19T04:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
