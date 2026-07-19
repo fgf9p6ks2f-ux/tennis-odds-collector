@@ -1,22 +1,22 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-18T21:13:47 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-19T06:51:13 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 121-236  ·  **P&L:** -54.43u ($-5,443)  ·  **ROI:** -15.2%
-- **Avg CLV:** +7.14% over 307 closed bets  ·  **Open:** 19  ·  **Total logged:** 398
+- **Record:** 125-244-2  ·  **P&L:** -58.69u ($-5,869)  ·  **ROI:** -15.8%
+- **Avg CLV:** +7.14% over 307 closed bets  ·  **Open:** 8  ·  **Total logged:** 401
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
-Data OK — FanDuel 980 lines @ `2026-07-18T21:13:05`.
+Data OK — FanDuel 1388 lines @ `2026-07-19T06:50:42`.
 
 ### by sport / stat
 
 | sport | stat | bets | settled P&L (u) | avg CLV |
 |---|---|---|---|---|
-| ebasketball | total | 31 | +5.45 | -4.77% |
+| ebasketball | total | 33 | +5.45 | -4.77% |
 | efootball | total | 3 | +0.74 | — |
-| mlb | f5_total | 19 | +7.55 | — |
-| mlb | game_total | 53 | +3.69 | — |
+| mlb | f5_total | 20 | +7.49 | — |
+| mlb | game_total | 53 | -0.51 | — |
 | mlb | strikeouts | 29 | -5.91 | +3.87% |
 | mlb | total_bases | 253 | -61.42 | +8.10% |
 | tennis | player_games | 10 | -4.54 | +11.06% |
@@ -25,6 +25,20 @@ Data OK — FanDuel 980 lines @ `2026-07-18T21:13:05`.
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-19 | mlb | GAME (game_total) | game_total under 9.5 | 1.91 | L | 13 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total under 9.0 | 1.91 | L | 13 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (f5_total) | f5_total under 4.5 | 2.14 | L | 8 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total over 7.0 | 1.95 | push | 7 | +0.00u | — |
+| 2026-07-19 | mlb | GAME (f5_total) | f5_total over 3.5 | 1.91 | L | 1 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (f5_total) | f5_total over 4.5 | 1.80 | W | 6 | +0.80u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total over 10.5 | 1.91 | W | 16 | +0.91u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total under 8.0 | 1.96 | push | 8 | +0.00u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total over 15.5 | 2.18 | L | 13 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total over 4.5 | 2.04 | L | 1 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total over 10.5 | 1.98 | L | 7 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total over 8.5 | 1.89 | L | 8 | -1.00u | — |
+| 2026-07-19 | mlb | GAME (f5_total) | f5_total under 9.5 | 2.14 | W | 8 | +1.14u | — |
+| 2026-07-19 | mlb | GAME (game_total) | game_total under 14.5 | 1.89 | W | 13 | +0.89u | — |
 | 2026-07-18 | mlb | GAME (f5_total) | f5_total over 3.5 | 1.78 | L | 3 | -1.00u | — |
 | 2026-07-18 | ebasketball | DOC v OUTLAW | total over 100.5 | 1.83 | L | 88 | -1.00u | — |
 | 2026-07-18 | mlb | GAME (game_total) | game_total over 6.5 | 1.65 | W | 8 | +0.65u | — |
@@ -36,18 +50,4 @@ Data OK — FanDuel 980 lines @ `2026-07-18T21:13:05`.
 | 2026-07-18 | ebasketball | AIRFORCE v FURY | total over 110.5 | 1.83 | W | 117 | +0.83u | -4.3% |
 | 2026-07-18 | ebasketball | AIRFORCE v NIGHTHAWK | total over 112.5 | 1.83 | W | 117 | +0.83u | -4.3% |
 | 2026-07-18 | mlb | GAME (game_total) | game_total over 7.5 | 1.94 | W | 16 | +0.94u | — |
-| 2026-07-18 | mlb | GAME (f5_total) | f5_total over 3.5 | 1.72 | W | 11 | +0.72u | — |
-| 2026-07-17 | ebasketball | DAGGER v SILVER | total over 98.5 | 1.83 | L | 93 | -1.00u | -4.3% |
-| 2026-07-17 | ebasketball | KOBRA v SILVER | total over 92.5 | 1.83 | L | 89 | -1.00u | -4.3% |
-| 2026-07-17 | ebasketball | TAAPZ v LANES | total over 106.5 | 1.83 | W | 112 | +0.83u | -4.3% |
-| 2026-07-17 | ebasketball | HUNCHO v TAAPZ | total over 99.5 | 1.83 | L | 89 | -1.00u | — |
-| 2026-07-17 | ebasketball | HUNCHO v TAAPZ | total over 95.5 | 1.83 | L | 89 | -1.00u | — |
-| 2026-07-17 | ebasketball | KOBRA v SILVER | total over 91.5 | 1.80 | L | 89 | -1.00u | — |
-| 2026-07-17 | ebasketball | TAAPZ v LANES | total over 103.5 | 1.77 | W | 112 | +0.77u | — |
-| 2026-07-17 | ebasketball | KOBRA v SILVER | total over 84.5 | 1.77 | W | 89 | +0.77u | — |
-| 2026-07-17 | ebasketball | TAAPZ v LANES | total over 107.5 | 1.83 | W | 112 | +0.83u | — |
-| 2026-07-17 | ebasketball | LANES v TAAPZ | total over 106.5 | 1.83 | W | 108 | +0.83u | -4.3% |
-| 2026-07-17 | ebasketball | SILVER v KOBRA | total over 93.5 | 1.83 | W | 95 | +0.83u | -4.3% |
-| 2026-07-17 | ebasketball | MYTH v DAGGER | total over 93.5 | 1.83 | L | 89 | -1.00u | -4.3% |
-| 2026-07-16 | ebasketball | CHIEF v VISIONARY | total over 110.5 | 1.87 | W | 112 | +0.87u | — |
 
