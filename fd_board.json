@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T14:10:35Z",
+ "captured_at": "2026-07-19T14:16:41Z",
  "matches": [
-  {
-   "event_id": 35842525,
-   "p1": "Oskar Jadach",
-   "p2": "Marcin Lach",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "marcin lach",
-   "open_date": "2026-07-19T13:55:00.000Z",
-   "line": 90.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35842526,
-   "p1": "Filip Witczak",
-   "p2": "Karol Jablonski",
-   "p1_norm": "filip witczak",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-19T13:55:00.000Z",
-   "line": 83.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35842565,
    "p1": "Adrian Spychala",
@@ -30,9 +8,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "maksymilian miastowski",
    "open_date": "2026-07-19T14:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842567,
@@ -41,9 +19,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-19T14:15:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842570,
@@ -86,6 +64,28 @@
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-19T14:35:00.000Z",
    "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842613,
+   "p1": "Adrian Eliasz",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "adrian eliasz",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-19T14:40:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842614,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Witold Buczynski",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-19T14:40:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
