@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T06:51:53Z",
+ "captured_at": "2026-07-19T06:58:16Z",
  "matches": [
-  {
-   "event_id": 35841459,
-   "p1": "Oskar Jadach",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-19T06:30:00.000Z",
-   "line": 97.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35841494,
    "p1": "Jacek Wieczerzak",
@@ -19,9 +8,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "filip witczak",
    "open_date": "2026-07-19T06:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35841495,
@@ -30,7 +19,7 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "grzegorz sawicki",
    "open_date": "2026-07-19T06:45:00.000Z",
-   "line": 82.5,
+   "line": 84.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +30,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "tadeusz piotrowski",
    "open_date": "2026-07-19T06:50:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841507,
@@ -52,9 +41,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-19T06:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841508,
@@ -63,9 +52,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T06:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35841509,
@@ -75,8 +64,8 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-19T06:55:00.000Z",
    "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841519,
@@ -97,6 +86,39 @@
    "p2_norm": "tadeusz piotrowski",
    "open_date": "2026-07-19T07:15:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841525,
+   "p1": "Maciej Domin",
+   "p2": "Adrian Spychala",
+   "p1_norm": "maciej domin",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-19T07:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841526,
+   "p1": "Witold Buczynski",
+   "p2": "Marian Lebek",
+   "p1_norm": "witold buczynski",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-19T07:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841527,
+   "p1": "Adrian Eliasz",
+   "p2": "Mateusz Misiak",
+   "p1_norm": "adrian eliasz",
+   "p2_norm": "mateusz misiak",
+   "open_date": "2026-07-19T07:20:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
