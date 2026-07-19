@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T08:37:50Z",
+ "captured_at": "2026-07-19T08:43:26Z",
  "matches": [
   {
    "event_id": 35841612,
@@ -8,20 +8,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T08:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35841613,
-   "p1": "Tadeusz Piotrowski",
-   "p2": "Maciej Kolek",
-   "p1_norm": "tadeusz piotrowski",
-   "p2_norm": "maciej kolek",
-   "open_date": "2026-07-19T08:30:00.000Z",
-   "line": 52.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841616,
@@ -30,9 +19,9 @@
    "p1_norm": "marcin lach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T08:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 55.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841629,
