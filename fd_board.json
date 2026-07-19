@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T08:49:43Z",
+ "captured_at": "2026-07-19T08:55:22Z",
  "matches": [
-  {
-   "event_id": 35841616,
-   "p1": "Marcin Lach",
-   "p2": "Witold Buczynski",
-   "p1_norm": "marcin lach",
-   "p2_norm": "witold buczynski",
-   "open_date": "2026-07-19T08:35:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35841629,
    "p1": "Pawel Adamus",
@@ -19,9 +8,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-19T08:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841646,
@@ -77,6 +66,28 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35841690,
+   "p1": "Damian Wederlich",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "damian wederlich",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-19T09:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841691,
+   "p1": "Jacek Przewlocki",
+   "p2": "Stapor Rafal",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "stapor rafal",
+   "open_date": "2026-07-19T09:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
