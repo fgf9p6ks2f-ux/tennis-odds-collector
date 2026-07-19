@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T03:51:00Z",
+ "captured_at": "2026-07-19T03:55:11Z",
  "matches": [
   {
    "event_id": 35840748,
@@ -8,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T03:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 58.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840750,
@@ -20,8 +20,8 @@
    "p2_norm": "adrian eliasz",
    "open_date": "2026-07-19T03:50:00.000Z",
    "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840751,
@@ -30,9 +30,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-19T03:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840754,
@@ -42,8 +42,8 @@
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T03:55:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840755,
@@ -99,6 +99,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35840767,
+   "p1": "Robert Szymik",
+   "p2": "Roman Wiza",
+   "p1_norm": "robert szymik",
+   "p2_norm": "roman wiza",
+   "open_date": "2026-07-19T04:20:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
