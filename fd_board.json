@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T02:22:58Z",
+ "captured_at": "2026-07-19T02:28:51Z",
  "matches": [
-  {
-   "event_id": 35840626,
-   "p1": "Robert Szymik",
-   "p2": "Rafal Adach",
-   "p1_norm": "robert szymik",
-   "p2_norm": "rafal adach",
-   "open_date": "2026-07-19T01:55:00.000Z",
-   "line": 103.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35840634,
    "p1": "Dariusz Maszczynski",
@@ -19,9 +8,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-19T02:10:00.000Z",
-   "line": 85.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840636,
@@ -30,7 +19,7 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-19T02:20:00.000Z",
-   "line": 78.5,
+   "line": 68.5,
    "over_odds": -120,
    "under_odds": -115
   },
