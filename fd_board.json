@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T03:46:46Z",
+ "captured_at": "2026-07-19T03:51:00Z",
  "matches": [
-  {
-   "event_id": 35840743,
-   "p1": "Rafal Idaczyk",
-   "p2": "Kaczynski Piotr",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "kaczynski piotr",
-   "open_date": "2026-07-19T03:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35840748,
    "p1": "Tibor Spanik",
@@ -19,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T03:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840750,
@@ -41,9 +30,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-19T03:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35840754,
