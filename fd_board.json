@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T17:48:06Z",
+ "captured_at": "2026-07-19T17:52:54Z",
  "matches": [
   {
    "event_id": 35843218,
@@ -8,20 +8,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T17:35:00.000Z",
-   "line": 97.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35843260,
-   "p1": "Filip Mlynarski",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "filip mlynarski",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-19T17:40:00.000Z",
-   "line": 56.5,
-   "over_odds": 105,
-   "under_odds": -145
+   "line": 106.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35843265,
@@ -30,9 +19,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-19T17:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 68.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843266,
@@ -41,7 +30,7 @@
    "p1_norm": "adam linek",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-19T17:45:00.000Z",
-   "line": 79.5,
+   "line": 83.5,
    "over_odds": -120,
    "under_odds": -115
   },
