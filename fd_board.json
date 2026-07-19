@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T12:00:00Z",
+ "captured_at": "2026-07-19T12:06:41Z",
  "matches": [
-  {
-   "event_id": 35841960,
-   "p1": "Jakub Michalczyk",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "jakub michalczyk",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-19T11:45:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35841965,
-   "p1": "Adrian Eliasz",
-   "p2": "Arkadiusz Mugowski",
-   "p1_norm": "adrian eliasz",
-   "p2_norm": "arkadiusz mugowski",
-   "open_date": "2026-07-19T11:50:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35841966,
    "p1": "Schaniel Krzysztof",
@@ -30,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-19T11:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841968,
@@ -41,20 +19,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-19T11:55:00.000Z",
-   "line": 74.5,
+   "line": 76.5,
    "over_odds": -125,
    "under_odds": -110
-  },
-  {
-   "event_id": 35841996,
-   "p1": "Maciej Domin",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "maciej domin",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-19T12:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35842010,
