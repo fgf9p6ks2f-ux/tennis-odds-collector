@@ -24,6 +24,7 @@
 2026-07-18|Sabrina Ionescu|points|16.5
 2026-07-18|Tyasha Harris|points|4.5
 2026-07-19|Azura Stevens|assists|2.5
+2026-07-19|DeWanna Bonner|pts_reb|16.5
 2026-07-19|DeWanna Bonner|rebounds|6.5
 2026-07-19|Diamond Miller|points|8.5
 2026-07-19|Erica Wheeler|points|10.5
@@ -37,6 +38,7 @@
 2026-07-19|Rae Burrell|points|15.5
 2026-07-19|Rae Burrell|pra|21.5
 2026-07-19|Sydney Taylor|points|14.5
+2026-07-20|Marina Mabrey|reb_ast|6.5
 timing|2026-07-18|Aaliyah Edwards|points|9.5
 timing|2026-07-18|DeWanna Bonner|pra|20.5
 timing|2026-07-18|Jonquel Jones|pra|25.5
@@ -82,3 +84,5 @@ watch|2026-07-19|Olivia Nelson-Ododa|pts_reb|18.5
 watch|2026-07-19|Olivia Nelson-Ododa|reb_ast|9.5
 watch|2026-07-19|Olivia Nelson-Ododa|rebounds|7.5
 watch|2026-07-19|Sydney Taylor|points|14.5
+watch|2026-07-20|Breanna Stewart|pra|31.5
+watch|2026-07-20|Pauline Astier|assists|3.5
