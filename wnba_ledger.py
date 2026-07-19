@@ -184,11 +184,20 @@ def log_predictions(rows):
         lk = locked.get((r.get("pred_date"), r.get("player")))
         if lk and (r.get("stat"), r.get("side") or "over") not in lk:
             continue                                     # already flagged a different play — locked
-        ex = con.execute("SELECT result, graded FROM predictions WHERE pred_date=? AND player=? "
-                         "AND stat=? AND line=?", (r.get("pred_date"), r.get("player"),
-                                                   r.get("stat"), r.get("line"))).fetchone()
+        ex = con.execute("SELECT result, graded, out_player FROM predictions WHERE pred_date=? "
+                         "AND player=? AND stat=? AND line=?", (r.get("pred_date"), r.get("player"),
+                                                               r.get("stat"), r.get("line"))).fetchone()
         if ex and ex[0] == "void" and not ex[1]:
             resurrected.append(f"{r.get('pred_date')}|{r.get('player')}|{r.get('stat')}|{r.get('line')}")
+        if ex and ex[0] is None and ex[2]:
+            # NEVER-SHRINK PREMISE (2026-07-19, Bonner/Mack): refresh may ADD outs (multi-out
+            # compounding) but a strictly SMALLER out-set means a premise member RETURNED —
+            # rewriting out_player then hides the return from the premise sweep. Skip the
+            # re-log entirely; the sweep judges the original basis.
+            old_set = {x.strip() for x in ex[2].split(",") if x.strip()}
+            new_set = {x.strip() for x in (r.get("out_player") or "").split(",") if x.strip()}
+            if new_set and new_set < old_set:
+                continue
         # insert new spots idempotently, and REFRESH on re-log so the row tracks live info through
         # the day: the confidence label (projected -> likely -> confirmed/bench as RotoWire locks),
         # AND the out-set + projection when a SECOND star is ruled out later (the timing edge — the

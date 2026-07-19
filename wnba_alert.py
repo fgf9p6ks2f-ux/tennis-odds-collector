@@ -156,6 +156,24 @@ def collect():
         out_logs = [glog(p["id"]) for _, p in outs]
         if not all(out_logs):
             continue
+        # STALE-VACANCY GATE (2026-07-19, the Bonner/Nogic case — user: "why is it a play
+        # when mack is back?"): when Mack returned, the PHX cascade collapsed to Nogic-only —
+        # last played June 18, a month-priced vacancy. Model-vs-book "EV" at equilibrium is
+        # exactly where our EV calibration is weakest (the fat-EV inversion); the validated
+        # edge is REACTING TO NEWS. A cascade emits flags only if >=1 out's absence is fresh
+        # (last appearance within 21 days of the slate). Stale outs still shape the
+        # projection when combined with a fresh one.
+        try:
+            _sd = datetime.date.fromisoformat(slate_date)
+            all_stale = all(
+                (not lg) or (_sd - datetime.date.fromisoformat(lg[0]["date"][:10])).days > 21
+                for lg in out_logs)
+        except (ValueError, KeyError, IndexError):
+            all_stale = False
+        if all_stale:
+            print(f"stale-vacancy cascade skipped: {team} {slate_date} "
+                  f"({', '.join(nm for nm, _ in outs)})")
+            continue
         out_label = "+".join(_short(nm) for nm, _ in outs)      # "C.Clark+A.Boston"
         out_full = ", ".join(nm for nm, _ in outs)
         # combined vacated pool = all the out players' production is up for grabs tonight
@@ -600,9 +618,21 @@ def push_plays(fresh, preds, topic):
         return tmap.get(k) or SLIP.tier_of(p, False)
 
     delivered = []
+    try:                                              # pings must match the LEDGER's truth: the
+        import sqlite3 as _sq3                        # play-lock can refuse a flag collect()
+        _lcon = _sq3.connect(str(HERE / "wnba_ledger.sqlite"))   # alerted (orphan-ping guard,
+        _open_keys = {f"{a}|{b}|{c}|{e}" for a, b, c, e in _lcon.execute(   # Bonner 2026-07-19)
+            "SELECT pred_date, player, stat, line FROM predictions WHERE result IS NULL")}
+        _lcon.close()
+    except Exception:
+        _open_keys = None
     for _ev, k, msg in fresh:
         if k.startswith("watch|"):                    # Q-tier: board-only, never a push
             delivered.append(k)                       # mark seen so it doesn't re-surface
+            continue
+        if _open_keys is not None and k in bykey and k not in _open_keys:
+            delivered.append(k)                       # lock-refused: retire silently, no ping
+            print(f"orphan-ping suppressed (not in ledger): {k}")
             continue
         p = bykey.get(k)
         if p is not None:
