@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-19T01:23:03Z",
+ "captured_at": "2026-07-19T01:31:24Z",
  "matches": [
-  {
-   "event_id": 35840406,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Filip Mlynarski",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "filip mlynarski",
-   "open_date": "2026-07-19T01:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35840407,
-   "p1": "Roman Wiza",
-   "p2": "Rafal Adach",
-   "p1_norm": "roman wiza",
-   "p2_norm": "rafal adach",
-   "open_date": "2026-07-19T01:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35840408,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Miroslaw Warzecha",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "miroslaw warzecha",
-   "open_date": "2026-07-19T01:10:00.000Z",
-   "line": 96.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35840427,
    "p1": "Mateusz Baran",
@@ -41,9 +8,9 @@
    "p1_norm": "mateusz baran",
    "p2_norm": "krzysztof malcher",
    "open_date": "2026-07-19T01:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840428,
@@ -52,20 +19,9 @@
    "p1_norm": "artur szoltysek",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T01:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35840497,
-   "p1": "Mariusz Adamus",
-   "p2": "Damian Fira",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-19T01:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 63.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840516,
@@ -87,6 +43,17 @@
    "open_date": "2026-07-19T01:45:00.000Z",
    "line": 71.5,
    "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35840626,
+   "p1": "Robert Szymik",
+   "p2": "Rafal Adach",
+   "p1_norm": "robert szymik",
+   "p2_norm": "rafal adach",
+   "open_date": "2026-07-19T01:55:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
    "under_odds": -118
   }
  ]
