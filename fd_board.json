@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T03:12:12Z",
+ "captured_at": "2026-07-19T03:16:22Z",
  "matches": [
   {
    "event_id": 35840715,
@@ -9,19 +9,8 @@
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T03:00:00.000Z",
    "line": 89.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35840717,
-   "p1": "Bartlomiej Wisniewski",
-   "p2": "Mateusz Misiak",
-   "p1_norm": "bartlomiej wisniewski",
-   "p2_norm": "mateusz misiak",
-   "open_date": "2026-07-19T03:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840726,
@@ -30,7 +19,7 @@
    "p1_norm": "robert szymik",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-19T03:05:00.000Z",
-   "line": 79.5,
+   "line": 88.5,
    "over_odds": -115,
    "under_odds": -120
   },
