@@ -98,6 +98,7 @@ fullscan(){
     fi
   fi
   python3 dashboard.py >/dev/null 2>&1 || true
+  python3 wnba_oppbig_shadow.py >/dev/null 2>&1 || true
   python3 wnba_ledger.py --train >/dev/null 2>&1 || true
   python3 wnba_context_report.py >/dev/null 2>&1 || true; }
 
