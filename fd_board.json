@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T08:20:23Z",
+ "captured_at": "2026-07-19T08:26:43Z",
  "matches": [
   {
    "event_id": 35841581,
@@ -8,9 +8,20 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T08:10:00.000Z",
-   "line": 77.5,
+   "line": 88.5,
    "over_odds": -115,
    "under_odds": -120
+  },
+  {
+   "event_id": 35841598,
+   "p1": "Jacek Wieczerzak",
+   "p2": "Rafal Wojcik",
+   "p1_norm": "jacek wieczerzak",
+   "p2_norm": "rafal wojcik",
+   "open_date": "2026-07-19T08:20:00.000Z",
+   "line": 56.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841599,
@@ -19,9 +30,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-19T08:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 94.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841612,
