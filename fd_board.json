@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-19T15:26:34Z",
+ "captured_at": "2026-07-19T15:35:17Z",
  "matches": [
+  {
+   "event_id": 35842685,
+   "p1": "Karol Wisniewski",
+   "p2": "Jakub Kuzmicz",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "jakub kuzmicz",
+   "open_date": "2026-07-19T15:25:00.000Z",
+   "line": 86.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
   {
    "event_id": 35842686,
    "p1": "Jakub Zochniak",
@@ -8,9 +19,31 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T15:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35842687,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-19T15:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35842748,
+   "p1": "Kamil Kowalski",
+   "p2": "Jacek Wieczerzak",
+   "p1_norm": "kamil kowalski",
+   "p2_norm": "jacek wieczerzak",
+   "open_date": "2026-07-19T15:30:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842699,
@@ -53,6 +86,28 @@
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-19T15:50:00.000Z",
    "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842739,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Karol Jablonski",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-19T15:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35842745,
+   "p1": "Sebastian Krupa",
+   "p2": "Grzegorz Sawicki",
+   "p1_norm": "sebastian krupa",
+   "p2_norm": "grzegorz sawicki",
+   "open_date": "2026-07-19T16:00:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
