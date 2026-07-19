@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T22:59:34Z",
+ "captured_at": "2026-07-19T23:04:27Z",
  "matches": [
   {
    "event_id": 35843714,
@@ -8,9 +8,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T22:50:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843717,
@@ -19,7 +19,7 @@
    "p1_norm": "gracjan kesik",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T22:55:00.000Z",
-   "line": 79.5,
+   "line": 57.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,7 +30,7 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-19T22:55:00.000Z",
-   "line": 68.5,
+   "line": 73.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -77,6 +77,17 @@
    "line": 74.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35843725,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-19T23:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
