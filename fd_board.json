@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T13:07:52Z",
+ "captured_at": "2026-07-19T13:14:41Z",
  "matches": [
-  {
-   "event_id": 35842438,
-   "p1": "Tibor Spanik",
-   "p2": "Maciej Domin",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "maciej domin",
-   "open_date": "2026-07-19T12:55:00.000Z",
-   "line": 85.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35842445,
    "p1": "Jakub Michalczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T13:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35842448,
@@ -30,7 +19,7 @@
    "p1_norm": "adrian eliasz",
    "p2_norm": "tadeusz piotrowski",
    "open_date": "2026-07-19T13:05:00.000Z",
-   "line": 76.5,
+   "line": 86.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-19T13:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842462,
@@ -52,9 +41,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-19T13:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842472,
@@ -75,8 +64,8 @@
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-19T13:25:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35842485,
@@ -86,8 +75,8 @@
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T13:30:00.000Z",
    "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35842486,
