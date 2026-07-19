@@ -52,6 +52,9 @@ push(){
 
 collectors(){
   python3 fd_collect.py --wnba >/dev/null 2>&1 || true
+  # DK lines arrive via the Mac's residential IP (dk_publish.py -> dk_board.json, git-pulled
+  # each cycle); ingest lights up book-aware prices everywhere. Local-only, cheap, idempotent.
+  python3 dk_ingest.py >/dev/null 2>&1 || true
   # dk_collect DISABLED on the VM (2026-07-16): DraftKings Akamai-blocks the Oracle datacenter
   # IP -> it 403s EVERY cycle (never once landed a row from here), but still spawns a curl_cffi
   # chrome-impersonation process each time = pure memory pressure on the 956MB box for nothing.
