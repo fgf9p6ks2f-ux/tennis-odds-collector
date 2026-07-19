@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T01:48:09Z",
+ "captured_at": "2026-07-19T01:56:36Z",
  "matches": [
-  {
-   "event_id": 35840516,
-   "p1": "Jakub Skorupa",
-   "p2": "Oskar Jedrzejowski",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "oskar jedrzejowski",
-   "open_date": "2026-07-19T01:35:00.000Z",
-   "line": 66.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35840626,
    "p1": "Robert Szymik",
@@ -19,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T01:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840628,
@@ -44,6 +33,28 @@
    "line": 73.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35840635,
+   "p1": "Oliver Vincenec",
+   "p2": "Mariusz Adamus",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "mariusz adamus",
+   "open_date": "2026-07-19T02:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35840636,
+   "p1": "Artur Kubiak",
+   "p2": "Oskar Jedrzejowski",
+   "p1_norm": "artur kubiak",
+   "p2_norm": "oskar jedrzejowski",
+   "open_date": "2026-07-19T02:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
