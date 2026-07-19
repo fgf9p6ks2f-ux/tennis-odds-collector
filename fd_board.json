@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T06:21:24Z",
+ "captured_at": "2026-07-19T06:27:21Z",
  "matches": [
-  {
-   "event_id": 35841320,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Witold Buczynski",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "witold buczynski",
-   "open_date": "2026-07-19T06:05:00.000Z",
-   "line": 84.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35841321,
-   "p1": "Bartlomiej Wisniewski",
-   "p2": "Adrian Eliasz",
-   "p1_norm": "bartlomiej wisniewski",
-   "p2_norm": "adrian eliasz",
-   "open_date": "2026-07-19T06:05:00.000Z",
-   "line": 93.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35841454,
    "p1": "Mariusz Baron",
@@ -30,9 +8,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-19T06:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35841455,
@@ -41,9 +19,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T06:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841457,
@@ -99,6 +77,50 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35841499,
+   "p1": "Jacek Przewlocki",
+   "p2": "Tadeusz Piotrowski",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "tadeusz piotrowski",
+   "open_date": "2026-07-19T06:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841507,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Arkadiusz Mugowski",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "arkadiusz mugowski",
+   "open_date": "2026-07-19T06:55:00.000Z",
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841508,
+   "p1": "Damian Wederlich",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "damian wederlich",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-19T06:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841509,
+   "p1": "Marcin Lach",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "marcin lach",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-19T06:55:00.000Z",
+   "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
