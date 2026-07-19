@@ -557,7 +557,14 @@ def grade_parlays():
                 "AND ABS(line-?)<1e-6 AND graded=1",
                 (row["pred_date"], l["player"], l["stat"], l["line"])).fetchone()
             if not r:
-                st.append("pending")
+                # leg row gone/ungraded: if the SLATE is fully settled (no open rows left for
+                # the date), the leg can never grade — a re-keyed line or wiped flag. Void-drop
+                # it (reprice on survivors) instead of pinning the parlay 'pending' forever
+                # (2026-07-19: 4 stuck suggestions were silently missing from the record).
+                openrow = con.execute(
+                    "SELECT 1 FROM predictions WHERE pred_date=? AND result IS NULL LIMIT 1",
+                    (row["pred_date"],)).fetchone()
+                st.append("pending" if openrow else "void")
             elif r["result"] in (None, "push", "void"):
                 st.append("void")
             elif r["result"] == (l.get("side") or "over"):
@@ -612,10 +619,11 @@ def sync_parlays():
     return grade_parlays()
 
 
-def parlay_record(epoch=PARLAY_EPOCH, played_only=True):
-    """Record of the PLAYED parlays since epoch (the user's actual bets), staked .25u / .15u by odds.
-    Returns a dict: w, l, void, units, staked, roi (units/staked), pending (played, unsettled),
-    suggested (un-played still-pending suggestions). played_only=False gives the model-suggested record."""
+def parlay_record(epoch=PARLAY_EPOCH, played_only=False):
+    """Record of ALL recommended parlays since epoch, staked .25u / .15u by odds — every
+    suggestion counts as played (user 2026-07-19: "track them all as if they are all played").
+    Returns a dict: w, l, void, units, staked, roi (units/staked), pending, suggested.
+    played_only=True gives the marked-played subset (his actual tickets)."""
     con = _pcon()
     con.row_factory = sqlite3.Row
     _apply_parlay_marks(con)
@@ -714,7 +722,7 @@ if __name__ == "__main__":
             print(f"  #{p['pid']}  {_am(p['dec'])} · {p['stake']:g}u · {st}{mk}   {p['legs']}")
     elif a.report:
         r = parlay_record()
-        print(f"PLAYED parlays: {r['w']}-{r['l']} (void {r['void']}), {r['units']:+.2f}u on "
+        print(f"ALL suggested parlays: {r['w']}-{r['l']} (void {r['void']}), {r['units']:+.2f}u on "
               f"{r['staked']:.2f}u staked -> ROI {r['roi']:+.0%}; "
               f"{r['pending']} pending, {r['suggested']} un-played suggestions")
     else:

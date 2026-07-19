@@ -735,14 +735,14 @@ def _tracker_panel(wnba_rec, tt_json):
       </div>"""
     w, l, u = wnba_rec
     out = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9")
-    try:                                                  # parlay ROI (played parlays, staked .25/.15u)
+    try:                                                  # parlay ROI (ALL suggested, staked .25/.15u)
         import wnba_slip as SLIP
         pr = SLIP.parlay_record()
         if pr["w"] + pr["l"] + pr["void"] + pr["pending"] + pr["suggested"] > 0:
             hit = f"{pr['w'] / (pr['w'] + pr['l']) * 100:.0f}%" if (pr["w"] + pr["l"]) else "—"
             roi = f"{pr['roi'] * 100:+.0f}%" if pr["staked"] else "—"
             ucls = "up" if pr["units"] > 0 else ("down" if pr["units"] < 0 else "")
-            sub = ".25u · .15u ≥+1000 · played parlays"
+            sub = "every suggested parlay counts · .25u · .15u ≥+1000"
             extra = [f"{pr['pending']} pending"] if pr["pending"] else []
             extra += [f"{pr['void']} void"] if pr["void"] else []
             extra += [f"{pr['suggested']} suggested"] if pr["suggested"] else []
