@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T11:10:52Z",
+ "captured_at": "2026-07-19T11:16:41Z",
  "matches": [
-  {
-   "event_id": 35841832,
-   "p1": "Stanislaw Wnek",
-   "p2": "Stapor Rafal",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "stapor rafal",
-   "open_date": "2026-07-19T10:55:00.000Z",
-   "line": 94.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35841838,
    "p1": "Adam Ruszkiewicz",
@@ -19,20 +8,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T11:00:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35841839,
-   "p1": "Arkadiusz Mugowski",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "arkadiusz mugowski",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-19T11:00:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35841842,
@@ -41,9 +19,9 @@
    "p1_norm": "jacek wieczerzak",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-19T11:05:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 78.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35841911,
@@ -86,6 +64,17 @@
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T11:25:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841957,
+   "p1": "Tibor Spanik",
+   "p2": "Adrian Spychala",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-19T11:40:00.000Z",
+   "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
   }
