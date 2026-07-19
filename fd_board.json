@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T11:28:25Z",
+ "captured_at": "2026-07-19T11:35:05Z",
  "matches": [
   {
    "event_id": 35841924,
@@ -8,7 +8,7 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-19T11:20:00.000Z",
-   "line": 72.5,
+   "line": 73.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,9 +19,9 @@
    "p1_norm": "mateusz misiak",
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-19T11:25:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 68.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35841936,
@@ -30,7 +30,18 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T11:25:00.000Z",
-   "line": 77.5,
+   "line": 82.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35841970,
+   "p1": "Kamil Kowalski",
+   "p2": "Karol Jablonski",
+   "p1_norm": "kamil kowalski",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-19T11:30:00.000Z",
+   "line": 55.5,
    "over_odds": -115,
    "under_odds": -120
   },
