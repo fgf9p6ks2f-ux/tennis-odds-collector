@@ -85,6 +85,7 @@ watch|2026-07-19|Olivia Nelson-Ododa|reb_ast|9.5
 watch|2026-07-19|Olivia Nelson-Ododa|rebounds|7.5
 watch|2026-07-19|Sydney Taylor|points|14.5
 watch|2026-07-20|Breanna Stewart|pra|31.5
+watch|2026-07-20|Breanna Stewart|rebounds|7.5
 watch|2026-07-20|Pauline Astier|assists|3.5
 watch|2026-07-20|Pauline Astier|reb_ast|5.5
 watch|2026-07-20|Sabrina Ionescu|assists|4.5
