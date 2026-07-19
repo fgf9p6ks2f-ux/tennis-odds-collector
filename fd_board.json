@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T21:06:47Z",
+ "captured_at": "2026-07-19T21:11:43Z",
  "matches": [
   {
    "event_id": 35843591,
@@ -8,7 +8,7 @@
    "p1_norm": "adam linek",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T21:00:00.000Z",
-   "line": 73.5,
+   "line": 71.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-19T21:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35843593,
@@ -30,20 +30,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-19T21:05:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35843594,
-   "p1": "Pawel Kurek",
-   "p2": "Rafal Ogon",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "rafal ogon",
-   "open_date": "2026-07-19T21:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843596,
@@ -77,6 +66,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35843634,
+   "p1": "Jakub Jesiek",
+   "p2": "Jaroslaw Badura",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "jaroslaw badura",
+   "open_date": "2026-07-19T21:35:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
