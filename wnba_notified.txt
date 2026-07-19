@@ -69,6 +69,7 @@ watch|2026-07-19|Brittney Griner|pts_reb|19.5
 watch|2026-07-19|DeWanna Bonner|rebounds|6.5
 watch|2026-07-19|Dearica Hamby|reb_ast|9.5
 watch|2026-07-19|Diamond Miller|points|8.5
+watch|2026-07-19|Diamond Miller|rebounds|2.5
 watch|2026-07-19|Erica Wheeler|points|9.5
 watch|2026-07-19|Natasha Cloud|pts_reb|14.5
 watch|2026-07-19|Olivia Nelson-Ododa|points|11.5

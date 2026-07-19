@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T01:31:24Z",
+ "captured_at": "2026-07-19T01:39:44Z",
  "matches": [
-  {
-   "event_id": 35840427,
-   "p1": "Mateusz Baran",
-   "p2": "Krzysztof Malcher",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "krzysztof malcher",
-   "open_date": "2026-07-19T01:25:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35840428,
    "p1": "Artur Szoltysek",
@@ -19,9 +8,9 @@
    "p1_norm": "artur szoltysek",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T01:25:00.000Z",
-   "line": 63.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35840516,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "oskar jedrzejowski",
    "open_date": "2026-07-19T01:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840590,
@@ -52,7 +41,18 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T01:55:00.000Z",
-   "line": 74.5,
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35840628,
+   "p1": "Jacek Oracz",
+   "p2": "Miroslaw Warzecha",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "miroslaw warzecha",
+   "open_date": "2026-07-19T02:00:00.000Z",
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   }
