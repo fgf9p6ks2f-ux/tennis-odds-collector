@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T20:56:14Z",
+ "captured_at": "2026-07-19T21:01:01Z",
  "matches": [
-  {
-   "event_id": 35843552,
-   "p1": "Sebastian Juzek",
-   "p2": "Jaroslaw Badura",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "jaroslaw badura",
-   "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35843553,
    "p1": "Rafal Adach",
@@ -19,9 +8,9 @@
    "p1_norm": "rafal adach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 54.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843591,
@@ -31,8 +20,8 @@
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T21:00:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35843592,
@@ -42,8 +31,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-19T21:00:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35843593,
