@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T02:46:01Z",
+ "captured_at": "2026-07-19T02:50:47Z",
  "matches": [
   {
    "event_id": 35840647,
@@ -8,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-19T02:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35840651,
@@ -19,9 +19,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-19T02:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 59.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840715,
