@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T09:24:06Z",
+ "captured_at": "2026-07-19T09:29:46Z",
  "matches": [
   {
    "event_id": 35841690,
@@ -8,9 +8,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T09:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -120
   },
   {
    "event_id": 35841691,
@@ -19,9 +19,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-19T09:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841695,
@@ -30,9 +30,9 @@
    "p1_norm": "mateusz misiak",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-19T09:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841696,
@@ -41,9 +41,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-19T09:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 67.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841740,
@@ -74,9 +74,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "marcin lach",
    "open_date": "2026-07-19T09:50:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 69.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35841747,
@@ -88,6 +88,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35841759,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Karol Jablonski",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-19T09:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
