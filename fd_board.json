@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T11:40:59Z",
+ "captured_at": "2026-07-19T11:46:51Z",
  "matches": [
-  {
-   "event_id": 35841936,
-   "p1": "Oskar Jadach",
-   "p2": "Marian Lebek",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-19T11:25:00.000Z",
-   "line": 65.5,
-   "over_odds": -150,
-   "under_odds": 110
-  },
-  {
-   "event_id": 35841970,
-   "p1": "Kamil Kowalski",
-   "p2": "Karol Jablonski",
-   "p1_norm": "kamil kowalski",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-19T11:30:00.000Z",
-   "line": 69.5,
-   "over_odds": 120,
-   "under_odds": -165
-  },
   {
    "event_id": 35841957,
    "p1": "Tibor Spanik",
@@ -31,8 +9,8 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-19T11:40:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35841960,
@@ -42,8 +20,8 @@
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-19T11:45:00.000Z",
    "line": 84.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35841965,
@@ -88,6 +66,17 @@
    "line": 70.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35842010,
+   "p1": "Maciej Kolek",
+   "p2": "Stapor Rafal",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "stapor rafal",
+   "open_date": "2026-07-19T12:10:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
