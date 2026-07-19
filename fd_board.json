@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T20:02:42Z",
+ "captured_at": "2026-07-19T20:07:36Z",
  "matches": [
   {
    "event_id": 35843483,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-19T19:55:00.000Z",
-   "line": 55.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843485,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "grzegorz sawicki",
    "open_date": "2026-07-19T20:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843516,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-19T20:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843517,
@@ -41,9 +41,20 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T20:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35843544,
+   "p1": "Jakub Skorupa",
+   "p2": "Michal Guzik",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-19T20:05:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843526,
@@ -64,8 +75,41 @@
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T20:20:00.000Z",
    "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843545,
+   "p1": "Adam Linek",
+   "p2": "Gracjan Kesik",
+   "p1_norm": "adam linek",
+   "p2_norm": "gracjan kesik",
+   "open_date": "2026-07-19T20:30:00.000Z",
+   "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35843546,
+   "p1": "Filip Mlynarski",
+   "p2": "Jakub Kuzmicz",
+   "p1_norm": "filip mlynarski",
+   "p2_norm": "jakub kuzmicz",
+   "open_date": "2026-07-19T20:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35843547,
+   "p1": "Andriej Fomin",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-19T20:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
