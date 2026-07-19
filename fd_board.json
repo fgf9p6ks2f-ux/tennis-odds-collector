@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-18T23:58:36Z",
+ "captured_at": "2026-07-19T00:03:17Z",
  "matches": [
   {
    "event_id": 35840318,
@@ -8,18 +8,7 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-18T23:45:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35840319,
-   "p1": "Milosz Piecowski",
-   "p2": "Artur Szoltysek",
-   "p1_norm": "milosz piecowski",
-   "p2_norm": "artur szoltysek",
-   "open_date": "2026-07-18T23:45:00.000Z",
-   "line": 81.5,
+   "line": 99.5,
    "over_odds": null,
    "under_odds": null
   },
@@ -30,7 +19,7 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-18T23:55:00.000Z",
-   "line": 65.5,
+   "line": 80.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +30,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "artur kubiak",
    "open_date": "2026-07-19T00:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35840326,
