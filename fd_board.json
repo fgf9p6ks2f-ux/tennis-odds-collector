@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T02:59:05Z",
+ "captured_at": "2026-07-19T03:03:13Z",
  "matches": [
   {
    "event_id": 35840715,
@@ -8,19 +8,8 @@
    "p1_norm": "marcin lach",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T03:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35840716,
-   "p1": "Damian Wederlich",
-   "p2": "Adrian Spychala",
-   "p1_norm": "damian wederlich",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-19T03:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
+   "line": 74.5,
+   "over_odds": -115,
    "under_odds": -120
   },
   {
@@ -31,8 +20,8 @@
    "p2_norm": "mateusz misiak",
    "open_date": "2026-07-19T03:00:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35840726,
@@ -88,6 +77,17 @@
    "line": 74.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35840740,
+   "p1": "Oliver Vincenec",
+   "p2": "Roman Wiza",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "roman wiza",
+   "open_date": "2026-07-19T03:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
