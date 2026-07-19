@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T16:30:59Z",
+ "captured_at": "2026-07-19T16:36:34Z",
  "matches": [
-  {
-   "event_id": 35842767,
-   "p1": "Andriej Fomin",
-   "p2": "Mateusz Karpiuk",
-   "p1_norm": "andriej fomin",
-   "p2_norm": "mateusz karpiuk",
-   "open_date": "2026-07-19T16:15:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35842778,
-   "p1": "Filip Witczak",
-   "p2": "Jacek Wieczerzak",
-   "p1_norm": "filip witczak",
-   "p2_norm": "jacek wieczerzak",
-   "open_date": "2026-07-19T16:20:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35842804,
    "p1": "Sebastian Juzek",
@@ -30,9 +8,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-19T16:25:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842841,
@@ -41,9 +19,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-19T16:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 79.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842843,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T16:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842846,
@@ -75,8 +53,8 @@
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T16:50:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35842863,
@@ -108,8 +86,8 @@
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T16:55:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
