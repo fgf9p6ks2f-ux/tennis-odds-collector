@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T16:36:34Z",
+ "captured_at": "2026-07-19T16:41:21Z",
  "matches": [
-  {
-   "event_id": 35842804,
-   "p1": "Sebastian Juzek",
-   "p2": "Jakub Jesiek",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "jakub jesiek",
-   "open_date": "2026-07-19T16:25:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35842841,
    "p1": "Lukasz Pietraszko",
@@ -19,9 +8,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-19T16:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 87.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842843,
@@ -30,9 +19,20 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T16:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35842895,
+   "p1": "Pawel Chojnacki",
+   "p2": "Michal Guzik",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-19T16:35:00.000Z",
+   "line": 52.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35842846,
@@ -41,9 +41,9 @@
    "p1_norm": "rafal wojcik",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-19T16:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35842854,
@@ -86,8 +86,8 @@
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T16:55:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
