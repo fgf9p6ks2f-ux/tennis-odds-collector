@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T18:04:28Z",
+ "captured_at": "2026-07-19T18:10:17Z",
  "matches": [
-  {
-   "event_id": 35843286,
-   "p1": "Mariusz Baron",
-   "p2": "Wojciech Urban",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-19T17:55:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35843289,
-   "p1": "Sebastian Juzek",
-   "p2": "Sebastian Krupa",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "sebastian krupa",
-   "open_date": "2026-07-19T18:00:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35843307,
    "p1": "Lukasz Pietraszko",
@@ -30,9 +8,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-19T18:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 65.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843311,
@@ -41,9 +19,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-19T18:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 68.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843312,
@@ -53,7 +31,7 @@
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T18:10:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
+   "over_odds": -112,
    "under_odds": -118
   },
   {
