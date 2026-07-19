@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T20:29:05Z",
+ "captured_at": "2026-07-19T20:34:53Z",
  "matches": [
-  {
-   "event_id": 35843517,
-   "p1": "Stapor Rafal",
-   "p2": "Aleksander Lilien",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "aleksander lilien",
-   "open_date": "2026-07-19T20:05:00.000Z",
-   "line": 109.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35843526,
    "p1": "Andrzej Krezel",
@@ -19,20 +8,9 @@
    "p1_norm": "andrzej krezel",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-19T20:20:00.000Z",
-   "line": 100.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35843527,
-   "p1": "Sebastian Krupa",
-   "p2": "Rafal Ogon",
-   "p1_norm": "sebastian krupa",
-   "p2_norm": "rafal ogon",
-   "open_date": "2026-07-19T20:20:00.000Z",
-   "line": 59.5,
-   "over_odds": -140,
-   "under_odds": 100
+   "line": 88.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843545,
@@ -41,9 +19,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T20:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843546,
@@ -53,8 +31,8 @@
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-19T20:30:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843547,
@@ -63,9 +41,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-19T20:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35843552,
@@ -88,6 +66,28 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35843591,
+   "p1": "Adam Linek",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "adam linek",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-19T21:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35843592,
+   "p1": "Filip Mlynarski",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "filip mlynarski",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-19T21:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
