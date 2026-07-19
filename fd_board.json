@@ -1,6 +1,39 @@
 {
- "captured_at": "2026-07-19T15:01:06Z",
+ "captured_at": "2026-07-19T15:07:12Z",
  "matches": [
+  {
+   "event_id": 35842649,
+   "p1": "Adam Linek",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "adam linek",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-19T15:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35842650,
+   "p1": "Filip Mlynarski",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "filip mlynarski",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-19T15:00:00.000Z",
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35842683,
+   "p1": "Andriej Fomin",
+   "p2": "Michal Guzik",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-19T15:00:00.000Z",
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
   {
    "event_id": 35842659,
    "p1": "Filip Witczak",
@@ -8,9 +41,9 @@
    "p1_norm": "filip witczak",
    "p2_norm": "rafal wojcik",
    "open_date": "2026-07-19T15:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35842672,
