@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T03:03:13Z",
+ "captured_at": "2026-07-19T03:08:02Z",
  "matches": [
   {
    "event_id": 35840715,
@@ -8,7 +8,7 @@
    "p1_norm": "marcin lach",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T03:00:00.000Z",
-   "line": 74.5,
+   "line": 85.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "mateusz misiak",
    "open_date": "2026-07-19T03:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 63.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35840726,
@@ -32,7 +32,7 @@
    "open_date": "2026-07-19T03:05:00.000Z",
    "line": 77.5,
    "over_odds": -118,
-   "under_odds": -116
+   "under_odds": -112
   },
   {
    "event_id": 35840728,
@@ -88,6 +88,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35840743,
+   "p1": "Rafal Idaczyk",
+   "p2": "Kaczynski Piotr",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "kaczynski piotr",
+   "open_date": "2026-07-19T03:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
