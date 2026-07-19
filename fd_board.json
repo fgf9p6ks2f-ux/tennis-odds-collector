@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T18:21:10Z",
+ "captured_at": "2026-07-19T18:26:13Z",
  "matches": [
-  {
-   "event_id": 35843307,
-   "p1": "Lukasz Pietraszko",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "lukasz pietraszko",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-19T18:05:00.000Z",
-   "line": 73.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
-  {
-   "event_id": 35843311,
-   "p1": "Pawel Chojnacki",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-19T18:10:00.000Z",
-   "line": 71.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35843312,
    "p1": "Jakub Michalczyk",
@@ -30,7 +8,7 @@
    "p1_norm": "jakub michalczyk",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T18:10:00.000Z",
-   "line": 76.5,
+   "line": 74.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -41,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T18:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843377,
@@ -52,9 +30,9 @@
    "p1_norm": "grzegorz sawicki",
    "p2_norm": "jaroslaw badura",
    "open_date": "2026-07-19T18:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843379,
@@ -110,6 +88,17 @@
    "line": 76.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35843426,
+   "p1": "Filip Mlynarski",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "filip mlynarski",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-19T18:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
