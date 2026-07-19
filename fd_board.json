@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T22:26:47Z",
+ "captured_at": "2026-07-19T22:31:54Z",
  "matches": [
   {
    "event_id": 35843693,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T22:20:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35843697,
@@ -19,7 +19,7 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "jakub jesiek",
    "open_date": "2026-07-19T22:25:00.000Z",
-   "line": 76.5,
+   "line": 65.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +30,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-19T22:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 64.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843700,
