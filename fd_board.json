@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T20:45:29Z",
+ "captured_at": "2026-07-19T20:50:19Z",
  "matches": [
-  {
-   "event_id": 35843545,
-   "p1": "Adam Linek",
-   "p2": "Gracjan Kesik",
-   "p1_norm": "adam linek",
-   "p2_norm": "gracjan kesik",
-   "open_date": "2026-07-19T20:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35843547,
    "p1": "Andriej Fomin",
@@ -30,9 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "jaroslaw badura",
    "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843553,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal adach",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T20:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843591,
@@ -64,8 +53,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-19T21:00:00.000Z",
    "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35843593,
