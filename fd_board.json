@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T21:18:06Z",
+ "captured_at": "2026-07-19T21:24:46Z",
  "matches": [
-  {
-   "event_id": 35843592,
-   "p1": "Filip Mlynarski",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "filip mlynarski",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-19T21:00:00.000Z",
-   "line": 90.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35843593,
-   "p1": "Mariusz Baron",
-   "p2": "Grzegorz Marud",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "grzegorz marud",
-   "open_date": "2026-07-19T21:05:00.000Z",
-   "line": 93.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35843594,
    "p1": "Pawel Kurek",
@@ -30,9 +8,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-19T21:10:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35843596,
@@ -41,9 +19,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-19T21:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843597,
@@ -52,9 +30,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-19T21:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 57.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843632,
