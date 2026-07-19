@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-19T22:14:38Z",
+ "captured_at": "2026-07-19T22:20:26Z",
  "matches": [
   {
    "event_id": 35843681,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-19T22:05:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 74.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35843686,
@@ -19,9 +19,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-19T22:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 56.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35843693,
@@ -31,8 +31,8 @@
    "p2_norm": "rafal adach",
    "open_date": "2026-07-19T22:20:00.000Z",
    "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35843697,
