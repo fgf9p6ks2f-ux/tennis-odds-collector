@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-19T09:18:28Z",
+ "captured_at": "2026-07-19T09:24:06Z",
  "matches": [
-  {
-   "event_id": 35841647,
-   "p1": "Tibor Spanik",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35841648,
-   "p1": "Jakub Michalczyk",
-   "p2": "Igor Dabrowski",
-   "p1_norm": "jakub michalczyk",
-   "p2_norm": "igor dabrowski",
-   "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 100.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35841654,
-   "p1": "Filip Witczak",
-   "p2": "Rafal Wojcik",
-   "p1_norm": "filip witczak",
-   "p2_norm": "rafal wojcik",
-   "open_date": "2026-07-19T09:05:00.000Z",
-   "line": 91.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35841690,
    "p1": "Damian Wederlich",
@@ -41,9 +8,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T09:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35841691,
@@ -86,8 +53,8 @@
    "p2_norm": "maciej domin",
    "open_date": "2026-07-19T09:40:00.000Z",
    "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35841744,
@@ -97,6 +64,28 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-19T09:45:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841746,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Marcin Lach",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "marcin lach",
+   "open_date": "2026-07-19T09:50:00.000Z",
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35841747,
+   "p1": "Arkadiusz Mugowski",
+   "p2": "Tadeusz Piotrowski",
+   "p1_norm": "arkadiusz mugowski",
+   "p2_norm": "tadeusz piotrowski",
+   "open_date": "2026-07-19T09:50:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
