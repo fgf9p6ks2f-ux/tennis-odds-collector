@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T23:10:00Z",
+ "captured_at": "2026-07-19T23:14:31Z",
  "matches": [
-  {
-   "event_id": 35843714,
-   "p1": "Sebastian Juzek",
-   "p2": "Rafal Ogon",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "rafal ogon",
-   "open_date": "2026-07-19T22:50:00.000Z",
-   "line": 97.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35843717,
    "p1": "Gracjan Kesik",
@@ -20,19 +9,8 @@
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T22:55:00.000Z",
    "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35843721,
-   "p1": "Sebastian Krupa",
-   "p2": "Jaroslaw Badura",
-   "p1_norm": "sebastian krupa",
-   "p2_norm": "jaroslaw badura",
-   "open_date": "2026-07-19T23:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843722,
