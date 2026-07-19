@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T08:55:22Z",
+ "captured_at": "2026-07-19T09:00:59Z",
  "matches": [
-  {
-   "event_id": 35841629,
-   "p1": "Pawel Adamus",
-   "p2": "Kaczynski Piotr",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "kaczynski piotr",
-   "open_date": "2026-07-19T08:45:00.000Z",
-   "line": 57.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35841646,
    "p1": "Adrian Eliasz",
@@ -20,18 +9,7 @@
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-19T09:00:00.000Z",
    "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35841647,
-   "p1": "Tibor Spanik",
-   "p2": "Maksymilian Miastowski",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "maksymilian miastowski",
-   "open_date": "2026-07-19T09:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
+   "over_odds": -116,
    "under_odds": -116
   },
   {
@@ -42,8 +20,8 @@
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-19T09:00:00.000Z",
    "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35841649,
@@ -53,8 +31,8 @@
    "p2_norm": "marian lebek",
    "open_date": "2026-07-19T09:00:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35841654,
@@ -74,9 +52,9 @@
    "p1_norm": "damian wederlich",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-19T09:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35841691,
@@ -86,6 +64,28 @@
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-19T09:20:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35841695,
+   "p1": "Mateusz Misiak",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "mateusz misiak",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-19T09:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35841696,
+   "p1": "Oskar Jadach",
+   "p2": "Witold Buczynski",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-19T09:25:00.000Z",
+   "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
   }
