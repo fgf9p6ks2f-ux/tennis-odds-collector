@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-19T19:23:27Z",
+ "captured_at": "2026-07-19T19:29:27Z",
  "matches": [
-  {
-   "event_id": 35843446,
-   "p1": "Rafal Adach",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "rafal adach",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-19T19:10:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
   {
    "event_id": 35843447,
    "p1": "Jakub Kuzmicz",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-19T19:15:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 79.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843450,
@@ -31,8 +20,19 @@
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-19T19:20:00.000Z",
    "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35843477,
+   "p1": "Zbigniew Nocun",
+   "p2": "Michal Guzik",
+   "p1_norm": "zbigniew nocun",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-19T19:20:00.000Z",
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843461,
@@ -86,6 +86,17 @@
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-19T19:40:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843483,
+   "p1": "Mariusz Baron",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-19T19:55:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
