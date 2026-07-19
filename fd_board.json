@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-19T00:07:47Z",
+ "captured_at": "2026-07-19T00:12:21Z",
  "matches": [
-  {
-   "event_id": 35840320,
-   "p1": "Marcin Marchlewski",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "marcin marchlewski",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-18T23:55:00.000Z",
-   "line": 70.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35840324,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Artur Kubiak",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "artur kubiak",
-   "open_date": "2026-07-19T00:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35840326,
    "p1": "Kacper Marchlewski",
@@ -30,20 +8,9 @@
    "p1_norm": "kacper marchlewski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-19T00:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35840327,
-   "p1": "Andriej Fomin",
-   "p2": "Mateusz Baran",
-   "p1_norm": "andriej fomin",
-   "p2_norm": "mateusz baran",
-   "open_date": "2026-07-19T00:10:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35840332,
