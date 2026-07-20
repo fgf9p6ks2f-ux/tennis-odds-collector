@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T18:56:48Z",
+ "captured_at": "2026-07-20T19:01:04Z",
  "matches": [
   {
    "event_id": 35846490,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "piotr gesiarz",
    "open_date": "2026-07-20T18:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846527,
@@ -19,20 +19,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-20T18:50:00.000Z",
-   "line": 81.5,
+   "line": 60.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35846505,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Bartlomiej Wisniewski",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "bartlomiej wisniewski",
-   "open_date": "2026-07-20T18:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35846506,
@@ -41,9 +30,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "michal krutak",
    "open_date": "2026-07-20T18:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846520,
