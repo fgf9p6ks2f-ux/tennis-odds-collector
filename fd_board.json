@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T01:04:12Z",
+ "captured_at": "2026-07-20T01:09:13Z",
  "matches": [
-  {
-   "event_id": 35843794,
-   "p1": "Filip Mlynarski",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "filip mlynarski",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-20T00:45:00.000Z",
-   "line": 93.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35843808,
    "p1": "Pawel Chojnacki",
@@ -19,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "andriej fomin",
    "open_date": "2026-07-20T01:00:00.000Z",
-   "line": 71.5,
+   "line": 78.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35843810,
@@ -77,6 +66,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35843840,
+   "p1": "Jaroslaw Badura",
+   "p2": "Rafal Ogon",
+   "p1_norm": "jaroslaw badura",
+   "p2_norm": "rafal ogon",
+   "open_date": "2026-07-20T01:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
