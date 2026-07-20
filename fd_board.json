@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T15:12:26Z",
+ "captured_at": "2026-07-20T15:19:02Z",
  "matches": [
   {
    "event_id": 35845565,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-20T15:05:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 55.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35845680,
