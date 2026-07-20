@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T03:00:51Z",
+ "captured_at": "2026-07-20T03:04:59Z",
  "matches": [
   {
    "event_id": 35843905,
@@ -9,8 +9,8 @@
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T03:00:00.000Z",
    "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843906,
@@ -19,9 +19,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T03:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843907,
@@ -30,9 +30,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T03:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843908,
@@ -42,8 +42,8 @@
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-20T03:05:00.000Z",
    "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35843911,
@@ -63,9 +63,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T03:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35843947,
@@ -86,6 +86,17 @@
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T03:25:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843949,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Andrzej Krezel",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "andrzej krezel",
+   "open_date": "2026-07-20T03:30:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
