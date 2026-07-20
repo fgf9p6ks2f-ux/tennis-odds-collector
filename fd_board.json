@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T08:02:49Z",
+ "captured_at": "2026-07-20T08:07:59Z",
  "matches": [
   {
    "event_id": 35844492,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T07:55:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 89.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35844498,
@@ -19,9 +19,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T08:00:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 51.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35844502,
@@ -30,9 +30,9 @@
    "p1_norm": "dominik solilo",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-20T08:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35844503,
@@ -41,9 +41,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T08:05:00.000Z",
-   "line": 68.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844520,
@@ -77,6 +77,39 @@
    "line": 72.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844579,
+   "p1": "Jakub Chmielowski",
+   "p2": "Michal Minda",
+   "p1_norm": "jakub chmielowski",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-20T08:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35844580,
+   "p1": "Tibor Spanik",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-20T08:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844583,
+   "p1": "Krzysztof Hetnar",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "krzysztof hetnar",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-20T08:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
