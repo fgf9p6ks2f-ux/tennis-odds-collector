@@ -575,13 +575,15 @@ def collect():
             out_here = {n for n, s in inj.items() if s in ("Out", "Doubtful")
                         and pl.get(n) and pl[n]["team"] == p["team"]}
             opts = [n for _, n in mates[1:] if n not in out_here][:3]
-            # honest status: an ESPN/rolling-feed 'Out' tag that ISN'T in confirmed_for (the same gate
-            # the firm engine bets on — official injury report / long-term return date) is UNCONFIRMED,
-            # a stale tag not a ruling (Bueckers 7/20: ESPN Out, but off the official report + still on
-            # the board). Relabel those to GTD so the display stops contradicting the board; a genuine
-            # confirmed out (Satou Sabally, on the official report) keeps 'Out'. Questionable stays as-is.
-            eff_status = "GTD" if (stt in ("Out", "Doubtful")
-                                   and nm not in T.confirmed_for(sdate)) else stt
+            # honest status: an 'Out' tag absent from the OFFICIAL injury report (source #1) is a stale
+            # rolling-feed/RotoWire tag, not a league ruling (Bueckers 7/20: ESPN Out + returnDate TODAY,
+            # but Dallas's official report lists only Alanna Smith — i.e. Bueckers is NOT ruled out, and
+            # the book still prices her). Relabel those to GTD so the display stops contradicting the
+            # board; a genuine official out (Satou Sabally, on the report) keeps 'Out'. Guard: only
+            # override when the official report is populated for that date — else trust the feed.
+            official = T.OFFICIAL_BY_DATE.get(sdate) or {}
+            eff_status = ("GTD" if (stt in ("Out", "Doubtful") and official and nm not in official)
+                          else stt)
             star_watch.append({"player": nm, "team": p["team"], "status": eff_status, "date": sdate,
                                "opp": mus.get(p["team"], ""), "mpg": round(p["min"]),
                                "ppg": round(p["pts"], 1), "ast": round(p.get("ast") or 0, 1),

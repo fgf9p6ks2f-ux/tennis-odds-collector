@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T08:30:18Z",
+ "captured_at": "2026-07-20T08:35:46Z",
  "matches": [
-  {
-   "event_id": 35844520,
-   "p1": "Pawel Adamus",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-20T08:10:00.000Z",
-   "line": 90.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
-  {
-   "event_id": 35844550,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Oskar Jadach",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-20T08:20:00.000Z",
-   "line": 56.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35844551,
    "p1": "Witold Stechly",
@@ -30,9 +8,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T08:20:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 98.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844579,
@@ -41,7 +19,7 @@
    "p1_norm": "jakub chmielowski",
    "p2_norm": "michal minda",
    "open_date": "2026-07-20T08:30:00.000Z",
-   "line": 77.5,
+   "line": 85.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +30,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T08:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844583,
@@ -64,8 +42,8 @@
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T08:35:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35844589,
@@ -88,6 +66,50 @@
    "line": 76.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35844621,
+   "p1": "Kamil Rudomina",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "kamil rudomina",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-20T09:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844622,
+   "p1": "Patrik Klos",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "patrik klos",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-20T09:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35844623,
+   "p1": "Karol Strowski",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "karol strowski",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-20T09:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844624,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-20T09:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
