@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T01:22:14Z",
+ "captured_at": "2026-07-20T01:26:17Z",
  "matches": [
   {
    "event_id": 35843810,
@@ -8,20 +8,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-20T01:10:00.000Z",
-   "line": 59.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35843824,
-   "p1": "Gracjan Kesik",
-   "p2": "Aleksander Lilien",
-   "p1_norm": "gracjan kesik",
-   "p2_norm": "aleksander lilien",
-   "open_date": "2026-07-20T01:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 95.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35843825,
@@ -31,8 +20,8 @@
    "p2_norm": "michal guzik",
    "open_date": "2026-07-20T01:25:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843826,
