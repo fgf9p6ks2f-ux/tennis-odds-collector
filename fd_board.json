@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T07:04:30Z",
+ "captured_at": "2026-07-20T07:09:47Z",
  "matches": [
-  {
-   "event_id": 35844446,
-   "p1": "Dariusz Maszczynski",
-   "p2": "Witold Stechly",
-   "p1_norm": "dariusz maszczynski",
-   "p2_norm": "witold stechly",
-   "open_date": "2026-07-20T06:45:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844447,
    "p1": "Kacper Szurlej",
@@ -19,9 +8,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-20T06:50:00.000Z",
-   "line": 90.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 94.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35844449,
@@ -30,9 +19,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35844450,
@@ -41,9 +30,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35844451,
@@ -52,9 +41,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844456,
@@ -63,9 +52,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T07:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35844457,
@@ -107,9 +96,9 @@
    "p1_norm": "maciej nowalinski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T07:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 83.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35844466,
@@ -132,6 +121,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35844478,
+   "p1": "Michal Machelski",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "michal machelski",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-20T07:35:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
