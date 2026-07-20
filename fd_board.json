@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T20:44:24Z",
+ "captured_at": "2026-07-20T20:50:16Z",
  "matches": [
   {
    "event_id": 35846625,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T20:30:00.000Z",
-   "line": 59.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35846629,
@@ -19,9 +19,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-20T20:45:00.000Z",
-   "line": 75.5,
+   "line": 78.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35846630,
@@ -30,9 +30,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-20T20:45:00.000Z",
-   "line": 68.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846638,
