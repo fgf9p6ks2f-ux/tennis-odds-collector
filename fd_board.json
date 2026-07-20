@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-20T16:29:06Z",
+ "captured_at": "2026-07-20T16:34:41Z",
  "matches": [
-  {
-   "event_id": 35845785,
-   "p1": "Miroslav Sklensky",
-   "p2": "Karol Strowski",
-   "p1_norm": "miroslav sklensky",
-   "p2_norm": "karol strowski",
-   "open_date": "2026-07-20T16:05:00.000Z",
-   "line": 53.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
-  {
-   "event_id": 35845799,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Marcin Kowalczyk",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "marcin kowalczyk",
-   "open_date": "2026-07-20T16:15:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35845856,
-   "p1": "Grzegorz Jurowicz",
-   "p2": "Grzegorz Wichowski",
-   "p1_norm": "grzegorz jurowicz",
-   "p2_norm": "grzegorz wichowski",
-   "open_date": "2026-07-20T16:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35845951,
    "p1": "Miroslaw Warzecha",
@@ -41,8 +8,8 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-20T16:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
+   "line": 68.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
