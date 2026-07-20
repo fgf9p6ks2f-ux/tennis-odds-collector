@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-20T20:13:04Z",
+ "captured_at": "2026-07-20T20:20:02Z",
  "matches": [
-  {
-   "event_id": 35846575,
-   "p1": "Jakub Cyndera",
-   "p2": "Dariusz Maszczynski",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "dariusz maszczynski",
-   "open_date": "2026-07-20T20:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35846579,
-   "p1": "Mateusz Baran",
-   "p2": "Mateusz Karpiuk",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "mateusz karpiuk",
-   "open_date": "2026-07-20T20:05:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35846580,
-   "p1": "Wojciech Gluszek",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "wojciech gluszek",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-20T20:05:00.000Z",
-   "line": 63.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35846607,
    "p1": "Piotr Gesiarz",
@@ -75,8 +42,30 @@
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-20T20:30:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35846629,
+   "p1": "Robert Kostepski",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-20T20:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35846630,
+   "p1": "Miroslaw Warzecha",
+   "p2": "Adam Staniczek",
+   "p1_norm": "miroslaw warzecha",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-20T20:45:00.000Z",
+   "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
