@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T12:55:43Z",
+ "captured_at": "2026-07-20T13:00:55Z",
  "matches": [
   {
    "event_id": 35844961,
@@ -8,18 +8,7 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-20T12:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35844965,
-   "p1": "Jerzy Pelka",
-   "p2": "Grzegorz Jurowicz",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "grzegorz jurowicz",
-   "open_date": "2026-07-20T12:45:00.000Z",
-   "line": 53.5,
+   "line": 99.5,
    "over_odds": -105,
    "under_odds": -130
   },
@@ -30,9 +19,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T12:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35845336,
@@ -41,9 +30,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-20T13:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35845353,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-20T13:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35845354,
@@ -88,6 +77,17 @@
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35845399,
+   "p1": "Karol Wisniewski",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-20T13:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
