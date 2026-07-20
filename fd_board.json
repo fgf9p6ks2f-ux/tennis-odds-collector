@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T16:34:41Z",
+ "captured_at": "2026-07-20T16:40:24Z",
  "matches": [
-  {
-   "event_id": 35845951,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Jakub Cyndera",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "jakub cyndera",
-   "open_date": "2026-07-20T16:25:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35846124,
    "p1": "Michal Krutak",
@@ -19,9 +8,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-20T16:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35846126,
@@ -30,9 +19,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-20T16:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846133,
@@ -77,6 +66,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35846233,
+   "p1": "Jerzy Pelka",
+   "p2": "Wiktor Ptak",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "wiktor ptak",
+   "open_date": "2026-07-20T17:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
