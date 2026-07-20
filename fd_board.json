@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T15:01:26Z",
+ "captured_at": "2026-07-20T15:06:56Z",
  "matches": [
-  {
-   "event_id": 35845516,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Wiktor Ptak",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "wiktor ptak",
-   "open_date": "2026-07-20T14:45:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35845551,
    "p1": "Artur Kubiak",
@@ -19,9 +8,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-20T15:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35845552,
@@ -42,7 +31,7 @@
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-20T15:05:00.000Z",
    "line": 75.5,
-   "over_odds": -120,
+   "over_odds": -125,
    "under_odds": -110
   },
   {
@@ -88,6 +77,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35845693,
+   "p1": "Jerzy Pelka",
+   "p2": "Grzegorz Wichowski",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "grzegorz wichowski",
+   "open_date": "2026-07-20T15:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
