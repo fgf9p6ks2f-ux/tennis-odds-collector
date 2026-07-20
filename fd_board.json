@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T06:45:05Z",
+ "captured_at": "2026-07-20T06:50:25Z",
  "matches": [
-  {
-   "event_id": 35844432,
-   "p1": "Janus Slawomir",
-   "p2": "Michal Machelski",
-   "p1_norm": "janus slawomir",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-20T06:25:00.000Z",
-   "line": 97.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844433,
    "p1": "Dominik Solilo",
@@ -19,31 +8,9 @@
    "p1_norm": "dominik solilo",
    "p2_norm": "michal minda",
    "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35844437,
-   "p1": "Rafal Idaczyk",
-   "p2": "Pawel Adamus",
-   "p1_norm": "rafal idaczyk",
-   "p2_norm": "pawel adamus",
-   "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 86.5,
+   "line": 91.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35844439,
-   "p1": "Grzegorz Poliniewicz",
-   "p2": "Jakub Kosowski",
-   "p1_norm": "grzegorz poliniewicz",
-   "p2_norm": "jakub kosowski",
-   "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -105,
-   "under_odds": -135
   },
   {
    "event_id": 35844445,
@@ -52,9 +19,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-20T06:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844446,
@@ -64,8 +31,8 @@
    "p2_norm": "witold stechly",
    "open_date": "2026-07-20T06:45:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844447,
@@ -130,6 +97,17 @@
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T07:10:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35844462,
+   "p1": "Dominik Solilo",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "dominik solilo",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-20T07:15:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
