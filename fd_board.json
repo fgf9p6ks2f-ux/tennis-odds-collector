@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T07:23:34Z",
+ "captured_at": "2026-07-20T07:28:52Z",
  "matches": [
   {
    "event_id": 35844456,
@@ -8,9 +8,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T07:10:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844462,
@@ -19,9 +19,9 @@
    "p1_norm": "dominik solilo",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-20T07:15:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844464,
@@ -30,7 +30,7 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T07:20:00.000Z",
-   "line": 77.5,
+   "line": 75.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +41,9 @@
    "p1_norm": "maciej nowalinski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T07:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844466,
@@ -52,9 +52,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T07:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844474,
@@ -110,6 +110,17 @@
    "line": 73.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844492,
+   "p1": "Grzegorz Jurowicz",
+   "p2": "Patryk Mecik",
+   "p1_norm": "grzegorz jurowicz",
+   "p2_norm": "patryk mecik",
+   "open_date": "2026-07-20T07:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
