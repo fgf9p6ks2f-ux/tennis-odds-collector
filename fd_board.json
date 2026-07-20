@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T02:38:37Z",
+ "captured_at": "2026-07-20T02:43:22Z",
  "matches": [
   {
    "event_id": 35843896,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-20T02:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843900,
@@ -77,6 +77,17 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35843911,
+   "p1": "Michal Wolny",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "michal wolny",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-20T03:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
