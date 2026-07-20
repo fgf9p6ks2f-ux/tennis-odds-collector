@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T14:03:52Z",
+ "captured_at": "2026-07-20T14:10:25Z",
  "matches": [
-  {
-   "event_id": 35845453,
-   "p1": "Jakub Kuzmicz",
-   "p2": "Jakub Chmielowski",
-   "p1_norm": "jakub kuzmicz",
-   "p2_norm": "jakub chmielowski",
-   "open_date": "2026-07-20T13:50:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35845458,
    "p1": "Grzegorz Jurowicz",
@@ -19,20 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T13:55:00.000Z",
-   "line": 86.5,
+   "line": 77.5,
    "over_odds": -125,
    "under_odds": -110
-  },
-  {
-   "event_id": 35845464,
-   "p1": "Maciej Nowalinski",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "maciej nowalinski",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-20T14:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
   },
   {
    "event_id": 35845472,
@@ -66,6 +44,28 @@
    "line": 77.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35845500,
+   "p1": "Patrik Klos",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "patrik klos",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-20T14:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35845501,
+   "p1": "Karol Strowski",
+   "p2": "Jakub Kosowski",
+   "p1_norm": "karol strowski",
+   "p2_norm": "jakub kosowski",
+   "open_date": "2026-07-20T14:35:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
