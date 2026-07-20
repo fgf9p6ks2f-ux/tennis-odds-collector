@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T03:31:11Z",
+ "captured_at": "2026-07-20T03:36:00Z",
  "matches": [
   {
    "event_id": 35843947,
@@ -8,7 +8,7 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-20T03:25:00.000Z",
-   "line": 82.5,
+   "line": 67.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,20 +19,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T03:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35843950,
-   "p1": "Dariusz Maszczynski",
-   "p2": "Michal Machelski",
-   "p1_norm": "dariusz maszczynski",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-20T03:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843955,
@@ -77,6 +66,28 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844151,
+   "p1": "Dominik Solilo",
+   "p2": "Michal Minda",
+   "p1_norm": "dominik solilo",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-20T04:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35844153,
+   "p1": "Witold Stechly",
+   "p2": "Janus Slawomir",
+   "p1_norm": "witold stechly",
+   "p2_norm": "janus slawomir",
+   "open_date": "2026-07-20T04:00:00.000Z",
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
