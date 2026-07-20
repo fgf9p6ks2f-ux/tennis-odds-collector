@@ -1,36 +1,37 @@
-"""POINTS-PROJECTION HAIRCUT — shadow test (2026-07-20, user).
+"""POINTS-OVER SELECTION AUDIT + haircut shadow (2026-07-19, user).
 
-Per-stat accuracy audit (82 graded flags): the model's POINTS projection runs OPTIMISTIC —
-mean projected 15.4 vs actual 12.8 (+2.6), and the player finished UNDER the projection 81%
-of the time. Assists (+0.3) and rebounds (+1.3) are far better calibrated. So points-overs are
-where the fat-EV traps live.
+Question that started this: points overs looked like a money-loser (13-18, -5.31u). Is a
+projection HAIRCUT the fix? Audit answer: NO — the loss is almost entirely LEGACY out-of-band
+plays the current model already refuses to bet. Split the same 31 graded points overs by what
+TODAY's model does with them:
 
-This module is a SHADOW TEST — it changes NO live flag, EV, or bet. It defines candidate haircut
-functions and, run against the graded ledger, reports what each haircut WOULD have done: which
-points plays it drops (projection no longer clears the line) and whether those dropped plays were
-mostly LOSERS (haircut helps) or winners (haircut hurts). Re-run anytime; it accumulates as new
-points plays grade. Promote a level to live only if it beats the no-haircut record over a real
-forward sample (~30+ points plays).
+    current model BETS (d_min in [0,8] or cold None):  ~12-9 (57%)  +2.8u   <- profitable
+    current model SHADOWS (out-of-band <0 or >8):      ~1-9  (10%)  -8.1u   <- the whole loss
 
-    python3 wnba_points_haircut.py        # shadow report on the current ledger
+So the 7/18 band gate already plugged the leak. A blanket haircut would just shave the plays
+that are already winning. What DOES separate winners from losers inside the bet set is the size
+of the projected role jump (elevation over season avg): a MODERATE +3-5 bump lands ~88%, while
+both a marginal (<3) and a "model-dreaming" (>=5) bump underperform — but those buckets are n=2-8,
+so it's a forward hypothesis, not a gate.
+
+This module changes NO live flag/EV/bet. Re-run at the checkpoint; it reads the live ledger.
+
+    python3 wnba_points_haircut.py
 """
 from __future__ import annotations
 
 import sqlite3
 from pathlib import Path
+from collections import defaultdict
 
 HERE = Path(__file__).resolve().parent
 LEDGER = HERE / "wnba_ledger.sqlite"
 
-# the haircut menu below was FIT to points plays graded on/before this date, so their improvement is
-# in-sample (circular). Plays graded AFTER the epoch are the honest out-of-sample forward test — the
-# only record that should decide a live promotion.
+# the haircut menu was FIT to points plays graded on/before this date -> in-sample/circular. Plays
+# graded AFTER are the honest out-of-sample test.
 EPOCH = "2026-07-19"
 
-# candidate haircuts (proportional shrink dominates — bigger projections over-shoot more; a couple
-# of constants for comparison). NONE is applied to live projections; this is the shadow menu.
 HAIRCUTS = {
-    "none":  lambda p: p,
     "x0.90": lambda p: p * 0.90,
     "x0.87": lambda p: p * 0.87,
     "x0.84": lambda p: p * 0.84,
@@ -40,61 +41,93 @@ HAIRCUTS = {
 
 
 def points_haircut(proj, level="x0.87"):
-    """The candidate live haircut (default x0.87 ≈ splitting the measured +2.6 bias, conservative
-    vs the in-sample 0.83). NOT wired into projections yet — exported for a future promotion."""
-    return HAIRCUTS.get(level, HAIRCUTS["none"])(proj)
+    """Candidate live haircut — NOT wired into projections. The audit found the band gate already
+    handles the points leak, so this stays parked unless the forward sample says otherwise."""
+    return HAIRCUTS.get(level, lambda p: p)(proj)
 
 
-def _points_rows():
+def _rec(rs):
+    w = sum(1 for r in rs if r["result"] == "over")
+    n = len(rs)
+    u = sum((r["odds"] - 1) if r["result"] == "over" else -1 for r in rs)
+    return f"{w}-{n-w} ({w/n*100:.0f}%) {u:+.2f}u" if n else "n=0"
+
+
+def _overs(where="1=1"):
     con = sqlite3.connect(LEDGER)
     con.row_factory = sqlite3.Row
     rows = [dict(r) for r in con.execute(
-        "SELECT pred_date, player, line, odds, elev_avg, actual, result FROM predictions "
-        "WHERE stat='points' AND (side IS NULL OR side='over') AND result IN ('over','under') "
-        "AND elev_avg IS NOT NULL")]
+        "SELECT pred_date,player,stat,line,odds,elev_avg,season_avg,d_min,d_fga,result "
+        "FROM predictions WHERE (side IS NULL OR side='over') AND result IN ('over','under') "
+        f"AND ({where})")]
     con.close()
     return rows
 
 
-def _table(rows, label):
-    """Print the keep/drop table for one slice of points plays."""
-    n = len(rows)
-    if not n:
-        print(f"  {label}: no graded points plays yet")
-        return
-    base_w = sum(1 for r in rows if r["result"] == "over")
-    print(f"  {label}: {n} plays · no-haircut {base_w}-{n-base_w} ({base_w/n*100:.0f}%)")
-    print(f"  {'haircut':>7} {'drops':>6} {'DROPPED W-L':>12} {'KEPT W-L':>10} {'KEPT hit%':>9} {'net Δ':>7}")
-    for name, fn in HAIRCUTS.items():
-        if name == "none":
+def per_prop():
+    rows = _overs()
+    byp = defaultdict(list)
+    for r in rows:
+        byp[r["stat"]].append(r)
+    print("PER-PROP RECORD (overs, graded)")
+    for s in ["points", "rebounds", "assists", "pts_reb", "pts_ast", "reb_ast", "pra"]:
+        print(f"  {s:10} {_rec(byp.get(s, []))}")
+    print(f"  {'ALL':10} {_rec(rows)}")
+
+
+def points_regime():
+    pts = _overs("stat='points' AND elev_avg IS NOT NULL")
+    inband = [r for r in pts if r["d_min"] is not None and 0 <= r["d_min"] <= 8]
+    cold = [r for r in pts if r["d_min"] is None]
+    oob = [r for r in pts if r["d_min"] is not None and (r["d_min"] < 0 or r["d_min"] > 8)]
+    print("POINTS overs by what the CURRENT model does with them")
+    print(f"  full historical sample:            {_rec(pts)}")
+    print(f"  CURRENT MODEL BETS (in-band+cold): {_rec(inband + cold)}")
+    print(f"    in-band d_min [0,8]:             {_rec(inband)}")
+    print(f"    cold d_min=None:                 {_rec(cold)}")
+    print(f"  SHADOWED, not bet (out-of-band):   {_rec(oob)}   <- the whole loss lives here")
+
+
+def elevation():
+    # residual signal INSIDE the bet set: how big a jump over season avg does the projection demand?
+    pts = [r for r in _overs("stat='points' AND elev_avg IS NOT NULL")
+           if r["d_min"] is not None and 0 <= r["d_min"] <= 8 and r["season_avg"] is not None]
+    print("ELEVATION (proj - season_avg) inside the bet set  [small n — forward hypothesis]")
+    for lo, hi, lbl in [(-99, 3, "elev <3  (marginal)"),
+                        (3, 5, "elev 3-5 (believable)"),
+                        (5, 99, "elev >=5 (model dreaming)")]:
+        g = [r for r in pts if lo <= (r["elev_avg"] - r["season_avg"]) < hi]
+        print(f"  {lbl:26} {_rec(g)}")
+
+
+def haircut_menu():
+    pts = _overs("stat='points' AND elev_avg IS NOT NULL")
+    fwd = [r for r in pts if (r["pred_date"] or "") >= EPOCH]
+    print(f"HAIRCUT SHADOW MENU (parked — kept for the forward test; drop = haircut proj <= line)")
+    for slc, lbl in [(pts, "full (in-sample-heavy)"), (fwd, f"forward >= {EPOCH}")]:
+        if not slc:
+            print(f"  {lbl}: n=0")
             continue
-        # DROPPED when the haircut projection no longer clears the line (model would no longer
-        # project an over -> the marginal edge evaporates). KEPT plays are the survivors.
-        dropped = [r for r in rows if fn(r["elev_avg"]) <= r["line"]]
-        kept = [r for r in rows if fn(r["elev_avg"]) > r["line"]]
-        dw = sum(1 for r in dropped if r["result"] == "over")
-        kw = sum(1 for r in kept if r["result"] == "over")
-        kept_pct = f"{kw/len(kept)*100:.0f}%" if kept else "—"
-        net = (kw/len(kept) - base_w/n) * 100 if kept else 0
-        print(f"  {name:>7} {len(dropped):>6} {dw}-{len(dropped)-dw:>9} "
-              f"{kw}-{len(kept)-kw:>7} {kept_pct:>9} {net:>+6.0f}pt")
+        print(f"  {lbl}: no-haircut {_rec(slc)}")
+        for name, fn in HAIRCUTS.items():
+            kept = [r for r in slc if fn(r["elev_avg"]) > r["line"]]
+            print(f"    {name:>6} kept {_rec(kept)}")
 
 
-def shadow_report():
-    rows = _points_rows()
-    if not rows:
-        print("no graded points plays yet")
-        return
-    insample = [r for r in rows if (r["pred_date"] or "") < EPOCH]
-    forward = [r for r in rows if (r["pred_date"] or "") >= EPOCH]
-    print("POINTS-PROJECTION HAIRCUT · shadow test (changes no live flag)\n")
-    print(f"IN-SAMPLE (graded < {EPOCH} — the fitted set; improvement here is expected/circular)")
-    _table(insample, "in-sample")
-    print(f"\nFORWARD (graded >= {EPOCH} — the honest out-of-sample test; THIS decides promotion)")
-    _table(forward, "forward")
-    print("\ngood haircut = DROPPED mostly losers + KEPT hit% ABOVE the base.")
-    print("promote a level to live only if it beats no-haircut over the FORWARD sample (~30+ plays).")
+def report():
+    print("=" * 68)
+    per_prop()
+    print("-" * 68)
+    points_regime()
+    print("-" * 68)
+    elevation()
+    print("-" * 68)
+    haircut_menu()
+    print("=" * 68)
+    print("VERDICT: band gate already handles the points leak; haircut is parked.")
+    print("WATCH forward: the moderate-elevation sweet spot (established scorer + real")
+    print("usage jump + believable +3-5 bump) = the user's own winning archetype.")
 
 
 if __name__ == "__main__":
-    shadow_report()
+    report()
