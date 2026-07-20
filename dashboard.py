@@ -872,42 +872,67 @@ def _tt_ladder(lad, play_to, zone):
 TT_LIVE_JS = """
   const TT_BOARD_URL = 'https://raw.githubusercontent.com/fgf9p6ks2f-ux/tennis-odds-collector/main/fd_board.json';
   const TT_H2H_URL = 'https://raw.githubusercontent.com/fgf9p6ks2f-ux/tennis-odds-collector/main/tt_board.json';
-  let _ttBoard = null, _ttH2H = null;
+  let _ttBoard = null, _ttH2H = null, _ttUpcoming = null;
   function _ttEsc(s){ return String(s == null ? '' : s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
   function _ttTime(iso){ try { return new Date(iso).toLocaleTimeString('en-US', {timeZone:'America/Denver', hour:'numeric', minute:'2-digit'}); } catch(e){ return ''; } }
   function _ttAm(o){ return (o != null && o > 0) ? '+' + o : '' + o; }
   function _ttKey(a, b){ return [a, b].sort().join('|'); }
   window._applyTTTotals = function(){
     var el = document.getElementById('tt-totals');
-    if (!el || !_ttBoard) return;
+    if (!el) return;
     var now = Date.now(), mid = '\\u00B7';
-    var bets = [];
+    var entries = [], boardPairs = {};
+    // real FanDuel-priced games (fresh board) — a +EV side = BET, else the line for reference
     (_ttBoard || []).forEach(function(m){
       if (!m || m.line == null || !m.open_date || new Date(m.open_date).getTime() <= now) return;
-      var entry = _ttH2H ? _ttH2H[_ttKey(m.p1_norm, m.p2_norm)] : null;
-      if (!entry || !entry.pick) return;                 // ONLY flagged bets (a +EV side at the FanDuel line)
-      bets.push({m: m, line: +m.line, pick: entry.pick, tots: entry.totals || []});
+      var key = _ttKey(m.p1_norm, m.p2_norm);
+      boardPairs[key] = 1;
+      var entry = _ttH2H ? _ttH2H[key] : null;
+      entries.push({start: new Date(m.open_date).getTime(), p1: m.p1, p2: m.p2, line: +m.line,
+                    real: true, pick: entry ? entry.pick : null, tots: (entry && entry.totals) || []});
     });
-    bets.sort(function(a,b){ return new Date(a.m.open_date) - new Date(b.m.open_date); });
-    if (!bets.length){
-      el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flagged Bets</h3>'
-        + '<div class="ttempty">No Elite bets flagged right now ' + mid + ' no pair on the current FanDuel board hits a side 70%+ at its line.</div></div>';
+    // projected upcoming (24live) — drop any pair the FRESH board now prices (shown above with real line)
+    (_ttUpcoming || []).forEach(function(e){
+      if (boardPairs[_ttKey(e.p1n, e.p2n)]) return;
+      var st = e.ts * 1000; if (st <= now) return;
+      entries.push({start: st, p1: e.p1, p2: e.p2, line: e.proj, real: false,
+                    side: e.side, over: e.over || 0, n: e.n || 0});
+    });
+    if (!entries.length){
+      el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Upcoming</h3>'
+        + '<div class="ttempty">No upcoming TT Elite games yet ' + mid + ' check back closer to the games.</div></div>';
       return;
     }
-    var rows = '';
-    for (var i=0; i<bets.length; i++){
-      var b = bets[i], side = b.pick.side, tots = b.tots, n = tots.length;
-      var ov = 0; for (var j=0; j<n; j++){ if (tots[j] > b.line) ov++; }
-      var wins = side === 'over' ? ov : n - ov;
-      var rec = n ? '<span class="ttrec">' + wins + '-' + (n - wins) + '</span> ' + mid + ' ' + Math.round(wins/n*100) + '% ' + side
-                  : '<span class="ttrec">no H2H history</span>';
-      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(b.m.p1) + '</b> v ' + _ttEsc(b.m.p2)
-            + '<span class="ttpick">' + side.toUpperCase() + ' ' + b.line + '</span></div>'
-            + '<div class="ttsub">' + _ttTime(b.m.open_date) + ' MT ' + mid + ' ' + rec + '</div></div>';
+    entries.sort(function(a,b){ var af=(a.real&&a.pick)?0:1, bf=(b.real&&b.pick)?0:1; return af-bf || a.start-b.start; });
+    entries = entries.slice(0, 18);
+    var nflag = 0, rows = '';
+    for (var i=0; i<entries.length; i++){
+      var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), line = x.line, tag, sub, j, ov=0, n;
+      if (x.real && x.pick){                             // firm bet at the real FanDuel line
+        nflag++; var side = x.pick.side; n = x.tots.length;
+        for (j=0; j<n; j++){ if (x.tots[j] > line) ov++; }
+        var wins = side === 'over' ? ov : n - ov;
+        var rec = n ? '<span class="ttrec">' + wins + '-' + (n-wins) + '</span> ' + mid + ' ' + Math.round(wins/n*100) + '% ' + side : '<span class="ttrec">no H2H history</span>';
+        tag = '<span class="ttpick">' + side.toUpperCase() + ' ' + line + '</span>';
+        sub = tip + ' MT ' + mid + ' <b>BET</b> ' + mid + ' ' + rec;
+      } else if (x.real){                                // real line, no edge
+        n = x.tots.length; for (j=0; j<n; j++){ if (x.tots[j] > line) ov++; }
+        var rec2 = n ? '<span class="ttrec">' + ov + '-' + (n-ov) + '</span> o' + line + ' ' + mid + ' ' + n + ' H2H' : '<span class="ttrec">no H2H history</span>';
+        tag = '<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U ' + line + '</span>';
+        sub = tip + ' MT ' + mid + ' no edge ' + mid + ' ' + rec2;
+      } else {                                           // projected line — FanDuel hasn't priced it yet
+        var sd = x.side; n = x.n || 0; ov = x.over || 0;
+        var lean = sd ? ('lean <b>' + sd + '</b> ' + mid + ' ' + ov + '/' + n + ' H2H') : (n ? ('toss-up ' + mid + ' ' + ov + '/' + n + ' H2H') : 'no H2H history');
+        tag = '<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~' + line + (sd ? (' ' + sd.toUpperCase()) : '') + '</span>';
+        sub = tip + ' MT ' + mid + ' projected line ' + mid + ' <span class="ttrec">' + lean + '</span>';
+      }
+      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(x.p1) + '</b> v ' + _ttEsc(x.p2) + tag + '</div><div class="ttsub">' + sub + '</div></div>';
     }
-    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flagged Bets'
-      + '<span class="ttcnt">' + bets.length + '</span></h3>' + rows
-      + '<div class="ttfoot">bet the highlighted side at that FanDuel line ' + mid + ' record & hit% = the pair H2H at that line ' + mid + ' live</div></div>';
+    var foot = nflag ? ('bet the highlighted side at that FanDuel line ' + mid + ' PROJ ~ = our projected line before FanDuel posts')
+                     : ('PROJ ~ = our projected line before FanDuel posts (info, not bet) ' + mid + ' games flip to the real line when priced');
+    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Upcoming'
+      + '<span class="ttcnt">' + entries.length + '</span></h3>' + rows
+      + '<div class="ttfoot">' + foot + '</div></div>';
   };
   window._fetchTTTotals = async function(){
     try {
@@ -916,7 +941,7 @@ TT_LIVE_JS = """
     } catch(e){}
     try {
       var r2 = await fetch(TT_H2H_URL + '?_=' + Date.now(), { cache: 'no-store' });
-      if (r2.ok){ var d2 = await r2.json(); var mp = {}; (d2.elite_h2h || []).forEach(function(e){ mp[_ttKey(e.p1n, e.p2n)] = e; }); _ttH2H = mp; }
+      if (r2.ok){ var d2 = await r2.json(); var mp = {}; (d2.elite_h2h || []).forEach(function(e){ mp[_ttKey(e.p1n, e.p2n)] = e; }); _ttH2H = mp; _ttUpcoming = Array.isArray(d2.elite_upcoming) ? d2.elite_upcoming : []; }
     } catch(e){}
     window._applyTTTotals();
     _ttStamp();
