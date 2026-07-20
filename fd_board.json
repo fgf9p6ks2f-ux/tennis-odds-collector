@@ -1,27 +1,16 @@
 {
- "captured_at": "2026-07-20T20:31:40Z",
+ "captured_at": "2026-07-20T20:37:25Z",
  "matches": [
   {
-   "event_id": 35846607,
-   "p1": "Piotr Gesiarz",
-   "p2": "Kazimierz Rybak",
-   "p1_norm": "piotr gesiarz",
-   "p2_norm": "kazimierz rybak",
-   "open_date": "2026-07-20T20:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35846608,
-   "p1": "Kacper Adamus",
-   "p2": "Grzegorz Marud",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "grzegorz marud",
-   "open_date": "2026-07-20T20:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "event_id": 35846623,
+   "p1": "Artur Kubiak",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "artur kubiak",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-20T20:30:00.000Z",
+   "line": 61.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35846625,
@@ -30,9 +19,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T20:30:00.000Z",
-   "line": 72.5,
+   "line": 75.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35846629,
@@ -53,6 +42,50 @@
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-20T20:45:00.000Z",
    "line": 69.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35846638,
+   "p1": "Jakub Kuzmicz",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "jakub kuzmicz",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-20T21:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35846639,
+   "p1": "Kuba Golaszewski",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "kuba golaszewski",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-20T21:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35846640,
+   "p1": "Michal Krutak",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "michal krutak",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-20T21:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35846645,
+   "p1": "Rafal Niemiec",
+   "p2": "Grzegorz Marud",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "grzegorz marud",
+   "open_date": "2026-07-20T21:05:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
