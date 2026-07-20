@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T08:47:48Z",
+ "captured_at": "2026-07-20T08:53:00Z",
  "matches": [
-  {
-   "event_id": 35844580,
-   "p1": "Tibor Spanik",
-   "p2": "Maciej Nowalinski",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "maciej nowalinski",
-   "open_date": "2026-07-20T08:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -155,
-   "under_odds": 110
-  },
-  {
-   "event_id": 35844583,
-   "p1": "Krzysztof Hetnar",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "krzysztof hetnar",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-20T08:35:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844589,
    "p1": "Jerzy Pelka",
@@ -30,7 +8,7 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-20T08:45:00.000Z",
-   "line": 81.5,
+   "line": 77.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +19,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-20T08:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844621,
