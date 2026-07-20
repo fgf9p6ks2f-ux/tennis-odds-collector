@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T22:35:24Z",
+ "captured_at": "2026-07-20T22:39:46Z",
  "matches": [
-  {
-   "event_id": 35846954,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Lukasz Pietraszko",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "lukasz pietraszko",
-   "open_date": "2026-07-20T22:05:00.000Z",
-   "line": 99.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35846961,
    "p1": "Rafal Niemiec",
@@ -19,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-20T22:20:00.000Z",
-   "line": 89.5,
-   "over_odds": -135,
-   "under_odds": -105
+   "line": 87.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35846964,
@@ -30,9 +19,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-20T22:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35846966,
@@ -52,9 +41,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-20T22:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 64.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846969,
@@ -63,9 +52,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-20T22:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846971,
@@ -75,8 +64,8 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T22:40:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35846972,
@@ -97,8 +86,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-20T22:50:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35846974,
@@ -108,8 +97,8 @@
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-20T22:55:00.000Z",
    "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35846975,
@@ -118,9 +107,20 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-20T22:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35846978,
+   "p1": "Kacper Adamus",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-20T23:05:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
