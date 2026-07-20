@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T03:27:03Z",
+ "captured_at": "2026-07-20T03:31:11Z",
  "matches": [
   {
    "event_id": 35843947,
@@ -8,9 +8,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-20T03:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843948,
@@ -20,19 +20,8 @@
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T03:25:00.000Z",
    "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35843949,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Andrzej Krezel",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "andrzej krezel",
-   "open_date": "2026-07-20T03:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843950,
@@ -77,6 +66,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35844022,
+   "p1": "Wojciech Urban",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-20T03:55:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
