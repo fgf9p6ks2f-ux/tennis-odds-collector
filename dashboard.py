@@ -959,6 +959,7 @@ def _tt_totals_card(tt_json, now=None):
     # + the pair's H2H lean (2026-07-20, user "post it as far in advance as we can — real or projected
     # line, over/under"). elite_upcoming (tt_board.json, Actions) carries the projections.
     entries = []
+    board_pairs = set()                         # pairs FanDuel prices NOW (fresh VM board) -> dedup proj
     for m in board.get("matches", []):
         od, line = m.get("open_date"), m.get("line")
         if not od or line is None:
@@ -969,11 +970,18 @@ def _tt_totals_card(tt_json, now=None):
             continue
         if start <= now:                        # started -> live, exclude
             continue
+        board_pairs.add(frozenset((m.get("p1_norm"), m.get("p2_norm"))))
         entry = h2h.get(frozenset((m.get("p1_norm"), m.get("p2_norm")))) or {}
         entries.append({"start": start, "p1": m.get("p1", "?"), "p2": m.get("p2", "?"),
                         "line": line, "real": True, "pick": entry.get("pick"),
                         "tots": entry.get("totals") or []})
+    # projected games (24live via Actions) — but if the FRESH board now prices a pair, it's already
+    # shown above with its REAL line, so drop the projected dupe. This dedup + the start<=now filter
+    # run at VM render cadence, so games flip projected->real and drop off at VM speed even though the
+    # projection LIST is refreshed on the slower Actions cadence (the VM can't reach 24live directly).
     for e in (tt_json or {}).get("elite_upcoming", []):
+        if frozenset((e.get("p1n"), e.get("p2n"))) in board_pairs:
+            continue
         try:
             start = dt.datetime.fromtimestamp(int(e["ts"]), dt.timezone.utc)
         except (KeyError, TypeError, ValueError, OSError):
