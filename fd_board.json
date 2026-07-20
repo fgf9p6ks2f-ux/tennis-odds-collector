@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T04:44:53Z",
+ "captured_at": "2026-07-20T04:50:06Z",
  "matches": [
   {
    "event_id": 35844330,
@@ -8,9 +8,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-20T04:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 97.5,
+   "over_odds": -190,
+   "under_odds": 135
   },
   {
    "event_id": 35844336,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-20T04:40:00.000Z",
-   "line": 59.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844342,
@@ -31,8 +31,8 @@
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T04:50:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35844344,
@@ -88,6 +88,39 @@
    "line": 71.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35844372,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Szymon Sporek",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "szymon sporek",
+   "open_date": "2026-07-20T05:15:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844373,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Blazej Warpas",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "blazej warpas",
+   "open_date": "2026-07-20T05:15:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35844374,
+   "p1": "Rafal Idaczyk",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "rafal idaczyk",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-20T05:15:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
