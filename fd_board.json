@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T23:48:40Z",
+ "captured_at": "2026-07-20T23:54:06Z",
  "matches": [
   {
    "event_id": 35847070,
@@ -8,20 +8,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T23:30:00.000Z",
-   "line": 97.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35847073,
-   "p1": "Lukasz Pietraszko",
-   "p2": "Artur Gromek",
-   "p1_norm": "lukasz pietraszko",
-   "p2_norm": "artur gromek",
-   "open_date": "2026-07-20T23:35:00.000Z",
-   "line": 50.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 101.5,
+   "over_odds": -190,
+   "under_odds": 130
   },
   {
    "event_id": 35847074,
@@ -30,20 +19,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-20T23:45:00.000Z",
-   "line": 78.5,
+   "line": 85.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35847075,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Miroslaw Piecowski",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "miroslaw piecowski",
-   "open_date": "2026-07-20T23:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
   },
   {
    "event_id": 35847081,
@@ -110,6 +88,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35847223,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-21T00:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
