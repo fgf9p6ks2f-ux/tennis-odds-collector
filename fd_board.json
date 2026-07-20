@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T16:22:26Z",
+ "captured_at": "2026-07-20T16:29:06Z",
  "matches": [
   {
    "event_id": 35845785,
@@ -8,20 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-20T16:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35845798,
-   "p1": "Artur Kubiak",
-   "p2": "Jacek Zelezik",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "jacek zelezik",
-   "open_date": "2026-07-20T16:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 53.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35845799,
@@ -30,9 +19,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "marcin kowalczyk",
    "open_date": "2026-07-20T16:15:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35845856,
@@ -41,7 +30,7 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-20T16:20:00.000Z",
-   "line": 73.5,
+   "line": 68.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +41,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-20T16:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35846124,
@@ -85,6 +74,39 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T16:40:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35846177,
+   "p1": "Dariusz Maszczynski",
+   "p2": "Kazimierz Rybak",
+   "p1_norm": "dariusz maszczynski",
+   "p2_norm": "kazimierz rybak",
+   "open_date": "2026-07-20T16:50:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35846182,
+   "p1": "Wojciech Gluszek",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "wojciech gluszek",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-20T16:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35846183,
+   "p1": "Artur Gromek",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "artur gromek",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-20T16:55:00.000Z",
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
