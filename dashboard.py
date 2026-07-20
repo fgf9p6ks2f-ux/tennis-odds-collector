@@ -679,14 +679,7 @@ def _game_group(players, tips, today=None, idx=0):
     pd0 = r0.get("pred_date") or (today or "")
     tip = tips.get((pd0, team)) or tips.get((pd0, opp))
     tiptime = tip.astimezone(MT).strftime("%-I:%M %p") if tip else ""
-    pd = r0.get("pred_date")
-    if pd and today and pd != today:                       # a next-day play: label the slate day
-        try:
-            when = dt.date.fromisoformat(pd).strftime("%a %-m/%-d") + (f" · {tiptime}" if tiptime else "")
-        except ValueError:
-            when = pd
-    else:
-        when = tiptime
+    when = tiptime                                         # the day is shown once, in the .dayhdr divider
     outset = {_short(nm.strip()) for _, prs in players for r in prs
               for nm in (r.get("out_player") or "").split(",") if nm.strip()}
     outs = " + ".join(sorted(outset))
@@ -1475,10 +1468,26 @@ def build():
     order = sorted(games.items(),
                    key=lambda kv: (kv[0][0] or "9999-99-99", _gtip(kv),
                                    -max(_pscore(prs) for _, prs in kv[1])))
-    ordered = [pl for _, pl in order]
-    for pl in ordered:                                    # strongest player first within each game
+    for _k, pl in order:                                  # strongest player first within each game
         pl.sort(key=lambda pp: -_pscore(pp[1]))
-    cards = "\n".join(_game_group(pl, tips, today, i) for i, pl in enumerate(ordered)) if ordered else \
+
+    def _daydiv(pd_):
+        try:
+            dd = dt.date.fromisoformat(pd_)
+        except (ValueError, TypeError):
+            return ""
+        tod = dt.date.fromisoformat(today) if today else None
+        lab = ("Today" if tod and dd == tod else
+               "Tomorrow" if tod and dd == tod + dt.timedelta(days=1) else dd.strftime("%A"))
+        return f'<div class="dayhdr">{lab}<span>{dd.strftime("%a · %b %-d")}</span></div>'
+
+    _parts, _lastday = [], None
+    for i, ((pd_, _tm), pl) in enumerate(order):          # order is already sorted by date+tip
+        if pd_ != _lastday:
+            _parts.append(_daydiv(pd_))
+            _lastday = pd_
+        _parts.append(_game_group(pl, tips, today, i))
+    cards = "\n".join(p for p in _parts if p) if order else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
     ladders_html = _ladders_html(rows)
     slip_html = _slip_html(rows)
@@ -1557,10 +1566,15 @@ def build():
   .stat .v {{ font-size:21px; font-weight:700; line-height:1; }}
   .stat .sv {{ color:#7d8696; font-size:12px; font-weight:500; }}
   h2 {{ font-size:10.5px; color:#5c6572; text-transform:uppercase; letter-spacing:.08em; margin:0 0 10px; font-weight:700; }}
-  .fbar {{ display:flex; gap:8px; margin:0 0 20px; flex-wrap:wrap; }}
+  .fbar {{ display:flex; justify-content:flex-end; gap:8px; margin:0 0 6px; flex-wrap:wrap; }}
   .fgrp {{ display:flex; gap:3px; background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:3px; }}
   .pill {{ padding:6px 13px; font-size:12.5px; font-weight:700; color:#78818f; border-radius:8px; cursor:pointer; user-select:none; }}
   .pill.on {{ background:#232c3d; color:#f2f5f9; }}
+  /* DAY divider — clear break between slates (Today / Tomorrow / weekday) */
+  .dayhdr {{ display:flex; align-items:baseline; gap:10px; margin:30px 2px 14px; padding-top:17px;
+    border-top:1px solid #232a35; color:#eef1f6; font-size:16.5px; font-weight:800; letter-spacing:-.01em; }}
+  .dayhdr:first-of-type {{ border-top:none; padding-top:2px; margin-top:2px; }}
+  .dayhdr span {{ color:#6b7484; font-size:12px; font-weight:600; letter-spacing:0; }}
   /* GAME group — the top of the hierarchy: logos + matchup, hairline rule, generous separation */
   .game {{ margin-bottom:22px; }}
   .ghd {{ display:flex; justify-content:space-between; align-items:center; padding:0 2px 9px;
@@ -1568,7 +1582,7 @@ def build():
   .gmatch {{ font-size:17px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:7px; }}
   .glogo {{ width:22px; height:22px; object-fit:contain; background:#dbe1ea; border-radius:50%; padding:2.5px; }}
   .gvs {{ color:#4d5560; font-weight:600; font-size:11px; margin:0 1px; }}
-  .gtime {{ color:#6b7484; font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; }}
+  .gtime {{ color:#c3c9d4; font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; }}
   .gout {{ display:flex; align-items:center; gap:6px; color:#c08a4d; font-size:12px; font-weight:600;
     margin:-3px 2px 12px; }}
   .sdot {{ width:6px; height:6px; border-radius:50%; display:inline-block; flex:none; }}
@@ -1971,13 +1985,7 @@ def build():
   </div>
   <div class="panel" id="wnba">
     {recstrip_html}
-    <div class="fbar">
-      <div class="fgrp" data-f="sort">
-        <span class="pill" data-v="edge" onclick="setF('sort','edge')">Edge</span>
-        <span class="pill on" data-v="time" onclick="setF('sort','time')">Time</span>
-      </div>
-      {h2_html}
-    </div>
+    <div class="fbar">{h2_html}</div>
     <div id="games">{cards}</div>
     {ladders_html}
     {slip_html}
@@ -2038,9 +2046,6 @@ def build():
       b.style.display = [...b.querySelectorAll('.prop')].some(p => p.style.display!=='none') ? '' : 'none');
     document.querySelectorAll('.game').forEach(g =>
       g.style.display = [...g.querySelectorAll('.pblk')].some(b => b.style.display!=='none') ? '' : 'none');
-    const wrap = document.getElementById('games');
-    if (wrap) [...wrap.children].sort((a,b) => F.sort==='time'
-        ? (a.dataset.tip-b.dataset.tip) : (b.dataset.edge-a.dataset.edge)).forEach(g => wrap.appendChild(g));
   }}
   function setF(k,v) {{
     F[k]=v;
@@ -2092,7 +2097,7 @@ def build():
 </body></html>"""
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(doc)
-    print(f"dashboard: {len(ordered)} games / {sum(len(g) for g in ordered)} beneficiaries / "
+    print(f"dashboard: {len(order)} games / {sum(len(pl) for _, pl in order)} beneficiaries / "
           f"{len(rows)} spots, record {w}-{l} ({u:+.1f}u), {pend} pending -> {OUT}")
 
 
