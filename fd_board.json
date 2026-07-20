@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T04:59:13Z",
+ "captured_at": "2026-07-20T05:03:47Z",
  "matches": [
   {
    "event_id": 35844342,
@@ -9,8 +9,8 @@
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T04:50:00.000Z",
    "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35844344,
@@ -19,9 +19,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T04:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844345,
@@ -30,9 +30,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T04:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844346,
@@ -41,9 +41,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T04:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844366,
@@ -97,6 +97,17 @@
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T05:15:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35844389,
+   "p1": "Grzegorz Wichowski",
+   "p2": "Patryk Mecik",
+   "p1_norm": "grzegorz wichowski",
+   "p2_norm": "patryk mecik",
+   "open_date": "2026-07-20T05:30:00.000Z",
+   "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
   }
