@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T00:09:26Z",
+ "captured_at": "2026-07-20T00:17:08Z",
  "matches": [
   {
    "event_id": 35843745,
@@ -8,20 +8,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-19T23:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35843746,
-   "p1": "Pawel Kurek",
-   "p2": "Sebastian Krupa",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "sebastian krupa",
-   "open_date": "2026-07-20T00:00:00.000Z",
-   "line": 50.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843748,
@@ -30,9 +19,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-20T00:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843749,
@@ -41,9 +30,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-20T00:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843750,
@@ -99,6 +88,39 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843792,
+   "p1": "Jakub Jesiek",
+   "p2": "Sebastian Krupa",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "sebastian krupa",
+   "open_date": "2026-07-20T00:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35843793,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Mariusz Baron",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-20T00:45:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843794,
+   "p1": "Filip Mlynarski",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "filip mlynarski",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-20T00:45:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
