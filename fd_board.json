@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T07:48:09Z",
+ "captured_at": "2026-07-20T07:52:44Z",
  "matches": [
   {
    "event_id": 35844474,
@@ -8,9 +8,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-20T07:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 96.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35844481,
@@ -19,9 +19,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-20T07:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844483,
@@ -30,9 +30,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-20T07:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 64.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844484,
@@ -41,9 +41,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-20T07:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 68.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35844492,

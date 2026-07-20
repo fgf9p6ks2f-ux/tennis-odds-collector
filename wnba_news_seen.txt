@@ -1,26 +1,50 @@
+gn|"It’s those brick shoes", "Took her out cuz she suck" - WNBA
 gn|Lynx’s Olivia Miles off injury report as Napheesa Collier re
 gn|“Figure That Out Now”: WNBA Legend Raises Concern Over Fever
 rw|1043|Not listed on injury report
+rw|1048|Goes for 11 points in victory
 rw|1055|Records double-double in win
+rw|1056|Produces 14 points in 11 minutes
 rw|1067|Not listed on injury report
+rw|1071|Totals 18 points in road loss
 rw|1093|Fades injury report
+rw|233|Chips in with season-high 12 points
+rw|254|Produces 18 points in win
+rw|297|Rolls up 29 points against Sky
+rw|309|Just misses double-double
+rw|326|Another double-double in loss
 rw|354|Very efficient in home victory
+rw|394|Shines in return to Phoenix
 rw|413|Leads Lynx with 24 points
+rw|415|Totals 16 points in loss in Dallas
 rw|432|Probable for Sunday
 rw|440|Drops 26 points in Saturday's loss
+rw|462|Drops 21 points against former team
+rw|483|Paces Sky with 20 points
+rw|485|Hits game-winning shot at buzzer
 rw|539|Another 30-point performance
+rw|580|Racks up 20 points in Sunday's win
 rw|581|On fire from perimeter
+rw|586|Posts double-double in victory
 rw|615|Doesn't return Saturday
 rw|615|Goes to locker room
 rw|641|Chips in 12 points in loss
+rw|735|Limited production in return
 rw|735|On track to return Sunday
+rw|807|Posts double-double in road loss
 rw|852|Logs 15 points vs. New York
 rw|860|Back with 12 points off bench
 rw|911|Dishes seven dimes Saturday
+rw|912|Logs 21 minutes Sunday
+rw|916|Posts 15 points despite restriction
 rw|927|Leads team with seven assists
+rw|935|Commits nine turnovers in loss
 rw|982|Rolls up 21 points in road loss
 rw|998|Could return Sunday
+rw|aaliyahedwards|Edwards (knee) won't return to Sunday's 
 rw|aneesahmorrow|Morrow (reconditioning) is listed as que
+rw|angelreese|Reese won't return to Sunday's game agai
+rw|ashlonjackson|Jackson (coach's decision) is out for Su
 rw|ashlonjackson|Jackson (coach's decision) will remain o
 rw|brittneygriner|Griner is probable for Sunday's game in 
 rw|courtneyvandersloot|Vandersloot (illness) is questionable to
@@ -31,12 +55,8 @@ rw|natashamack|Mack (foot) has been ruled out for Frida
 rw|natashamack|Mack (foot) is listed as probable for Su
 rw|quionchecarter|Carter (coach's decision) has been ruled
 rw|samiwhitcomb|Whitcomb (knee) is probable for Sunday's
-rw|saniyarivers|Rivers (ankle) is probable for Sunday's 
-rw|shayciezki|Ciezki (coach's decision) has been ruledrw|tainamair|Mai (coach's decision) is out for Monday
-rw|aaliyahedwards|Edwards (knee) won't return to Sunday's 
-rw|ashlonjackson|Jackson (coach's decision) is out for Su
-rw|angelreese|Reese won't return to Sunday's game agai
 rw|samiwhitcomb|Whitcomb is out for Sunday's game agains
-gn|"It’s those brick shoes", "Took her out cuz she suck" - WNBA
-rw|tainamair|Mai (coach's decision) is out for Monday
+rw|saniyarivers|Rivers (ankle) is probable for Sunday's 
 rw|shayciezki|Ciezki (coach's decision) has been ruled
+rw|shayciezki|Ciezki (coach's decision) has been ruledrw|tainamair|Mai (coach's decision) is out for Monday
+rw|tainamair|Mai (coach's decision) is out for Monday
