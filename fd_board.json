@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T01:47:17Z",
+ "captured_at": "2026-07-20T01:51:57Z",
  "matches": [
-  {
-   "event_id": 35843826,
-   "p1": "Grzegorz Marud",
-   "p2": "Wojciech Urban",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-20T01:30:00.000Z",
-   "line": 96.5,
-   "over_odds": -160,
-   "under_odds": 115
-  },
-  {
-   "event_id": 35843840,
-   "p1": "Jaroslaw Badura",
-   "p2": "Rafal Ogon",
-   "p1_norm": "jaroslaw badura",
-   "p2_norm": "rafal ogon",
-   "open_date": "2026-07-20T01:35:00.000Z",
-   "line": 55.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35843854,
    "p1": "Mateusz Karpiuk",
@@ -30,9 +8,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "andriej fomin",
    "open_date": "2026-07-20T01:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843871,
