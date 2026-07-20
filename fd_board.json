@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T01:56:09Z",
+ "captured_at": "2026-07-20T02:00:15Z",
  "matches": [
   {
    "event_id": 35843854,
@@ -8,7 +8,18 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "andriej fomin",
    "open_date": "2026-07-20T01:45:00.000Z",
-   "line": 88.5,
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35843871,
+   "p1": "Mariusz Baron",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-20T01:55:00.000Z",
+   "line": 72.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -20,8 +31,8 @@
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-20T02:00:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843878,
