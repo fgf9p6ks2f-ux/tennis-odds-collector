@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="739577f6b5">
+<meta name="bv" content="5eadc99d4c">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -30,10 +30,15 @@
   .stat .v { font-size:21px; font-weight:700; line-height:1; }
   .stat .sv { color:#7d8696; font-size:12px; font-weight:500; }
   h2 { font-size:10.5px; color:#5c6572; text-transform:uppercase; letter-spacing:.08em; margin:0 0 10px; font-weight:700; }
-  .fbar { display:flex; gap:8px; margin:0 0 20px; flex-wrap:wrap; }
+  .fbar { display:flex; justify-content:flex-end; gap:8px; margin:0 0 6px; flex-wrap:wrap; }
   .fgrp { display:flex; gap:3px; background:#0f1116; border:1px solid #191d26; border-radius:11px; padding:3px; }
   .pill { padding:6px 13px; font-size:12.5px; font-weight:700; color:#78818f; border-radius:8px; cursor:pointer; user-select:none; }
   .pill.on { background:#232c3d; color:#f2f5f9; }
+  /* DAY divider — clear break between slates (Today / Tomorrow / weekday) */
+  .dayhdr { display:flex; align-items:baseline; gap:10px; margin:30px 2px 14px; padding-top:17px;
+    border-top:1px solid #232a35; color:#eef1f6; font-size:16.5px; font-weight:800; letter-spacing:-.01em; }
+  .dayhdr:first-of-type { border-top:none; padding-top:2px; margin-top:2px; }
+  .dayhdr span { color:#6b7484; font-size:12px; font-weight:600; letter-spacing:0; }
   /* GAME group — the top of the hierarchy: logos + matchup, hairline rule, generous separation */
   .game { margin-bottom:22px; }
   .ghd { display:flex; justify-content:space-between; align-items:center; padding:0 2px 9px;
@@ -41,7 +46,7 @@
   .gmatch { font-size:17px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:7px; }
   .glogo { width:22px; height:22px; object-fit:contain; background:#dbe1ea; border-radius:50%; padding:2.5px; }
   .gvs { color:#4d5560; font-weight:600; font-size:11px; margin:0 1px; }
-  .gtime { color:#6b7484; font-size:12px; font-weight:600; font-variant-numeric:tabular-nums; }
+  .gtime { color:#c3c9d4; font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; }
   .gout { display:flex; align-items:center; gap:6px; color:#c08a4d; font-size:12px; font-weight:600;
     margin:-3px 2px 12px; }
   .sdot { width:6px; height:6px; border-radius:50%; display:inline-block; flex:none; }
@@ -431,7 +436,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>7:13 PM MT
+    <div class="live"><span class="dot"></span>7:20 PM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -444,14 +449,9 @@
   </div>
   <div class="panel" id="wnba">
     <div class="recstrip" onclick="showTab('tracker')">📈 <b>26-12</b> · 68% hit · <b class="up">+10.9u</b><span>since 7/9 · Tracker →</span></div>
-    <div class="fbar">
-      <div class="fgrp" data-f="sort">
-        <span class="pill" data-v="edge" onclick="setF('sort','edge')">Edge</span>
-        <span class="pill on" data-v="time" onclick="setF('sort','time')">Time</span>
-      </div>
-      <span class="fmeta" title="tap any bet for its game log">4 plays · 3 extra</span>
-    </div>
-    <div id="games"><div class="game" data-edge="0.2950" data-tip="1784592000" style="--i:0"><div class="ghd"><span class="gmatch"><img class="glogo" src="logos/tor.png" alt="" loading="lazy" onerror="this.style.display='none'">TOR<span class="gvs">vs</span><img class="glogo" src="logos/lv.png" alt="" loading="lazy" onerror="this.style.display='none'">LV</span><span class="gtime">Mon 7/20 · 6:00 PM</span></div><div class="gout"><i class="sdot warn"></i>B. Sykes + K. Rice + N. Sabally out</div><div class="pblk"><div class="phd"><img class="plogo" src="logos/tor.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">I. Harrison</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~28' <span class="tup">▲+4</span></span></div>
+    <div class="fbar"><span class="fmeta" title="tap any bet for its game log">4 plays · 3 extra</span></div>
+    <div id="games"><div class="dayhdr">Tomorrow<span>Mon · Jul 20</span></div>
+<div class="game" data-edge="0.2950" data-tip="1784592000" style="--i:0"><div class="ghd"><span class="gmatch"><img class="glogo" src="logos/tor.png" alt="" loading="lazy" onerror="this.style.display='none'">TOR<span class="gvs">vs</span><img class="glogo" src="logos/lv.png" alt="" loading="lazy" onerror="this.style.display='none'">LV</span><span class="gtime">6:00 PM</span></div><div class="gout"><i class="sdot warn"></i>B. Sykes + K. Rice + N. Sabally out</div><div class="pblk"><div class="phd"><img class="plogo" src="logos/tor.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">I. Harrison</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~28' <span class="tup">▲+4</span></span></div>
       <div class="prop" data-side="over" data-k="2026-07-20|Isabelle Harrison|rebounds|5.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
@@ -470,7 +470,7 @@
           <span class="pedge hi">+24%</span><span class="pchev">›</span></div>
         <div class="meters"><div class="meter good" title="her games with tonight&#x27;s ruled-out players actually out — over this line"><span class="mlab">when they sit</span><span class="mbar"><i style="width:100%"></i></span><span class="mval">2/2 over</span></div><div class="meter good" title="all recent games, any lineup — over this line"><span class="mlab">last 10 games</span><span class="mbar"><i style="width:60%"></i></span><span class="mval">6/10 over</span></div></div><div class="pctx"><span class="cdrv">▲+2 usg</span> · proj 14.9</div><div class="prungs"><span class="rlbl">rungs</span><span class="rung"><b>10.5</b> <span class="ro">-128</span></span><span class="rung"><b>14.5</b> <span class="ro">+235</span></span></div>
       </div><div class="bars"><div class="bwrap"><div class="why">Projects <b>14.9 PTS</b> vs the 10.5 line — N. Sabally + B. Sykes + K. Rice out (+4 min, +2 usage). Book anchored near the season avg (12.9) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Games with <b>N.Sabally, B.Sykes, K.Rice</b> actually out — avg <b>16.5</b> PTS <span class="sup">✓ over friendly</span> · <span class="warn">tonight differs from her recent games</span></div><div class="rgsub">lineup match ranked by: J.Allemand, M.Conde, L.Juskaite playing</div><div class="cmps"><span class="cmp pr">07-10 DAL <b>18</b> · 26'</span><span class="cmp pr">06-19 CON <b>15</b> · 30'</span></div></div><div class="chart"><div class="pline" style="bottom:36.0%"><span>10.5</span></div><div class="col"><div class="m" style="height:71%"></div><div class="b o" style="height:51.4%"><span class="bv">15</span></div></div><div class="col"><div class="m" style="height:62%"></div><div class="b o" style="height:61.7%"><span class="bv">18</span></div></div></div><div class="opps"><span>CON</span><span>DAL</span></div><div class="bnote">2/2 over 10.5 · gray bar = minutes · games without N. Sabally, B. Sykes, K. Rice</div></div></div></div></div>
-<div class="game" data-edge="0.1520" data-tip="1784592000" style="--i:1"><div class="ghd"><span class="gmatch"><img class="glogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'">NY<span class="gvs">vs</span><img class="glogo" src="logos/dal.png" alt="" loading="lazy" onerror="this.style.display='none'">DAL</span><span class="gtime">Mon 7/20 · 6:00 PM</span></div><div class="gout"><i class="sdot warn"></i>L. Fiebich + S. Sabally out</div><div class="pblk"><div class="phd"><img class="plogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">B. Stewart</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~34' <span class="tup">▲+1</span></span></div>
+<div class="game" data-edge="0.1520" data-tip="1784592000" style="--i:1"><div class="ghd"><span class="gmatch"><img class="glogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'">NY<span class="gvs">vs</span><img class="glogo" src="logos/dal.png" alt="" loading="lazy" onerror="this.style.display='none'">DAL</span><span class="gtime">6:00 PM</span></div><div class="gout"><i class="sdot warn"></i>L. Fiebich + S. Sabally out</div><div class="pblk"><div class="phd"><img class="plogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">B. Stewart</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~34' <span class="tup">▲+1</span></span></div>
       <div class="prop" data-side="over" data-k="2026-07-20|Breanna Stewart|rebounds|7.5" onclick="this.nextElementSibling.classList.toggle('open')">
         <div class="prow">
           <span class="pind o">O</span>
@@ -575,9 +575,6 @@
       b.style.display = [...b.querySelectorAll('.prop')].some(p => p.style.display!=='none') ? '' : 'none');
     document.querySelectorAll('.game').forEach(g =>
       g.style.display = [...g.querySelectorAll('.pblk')].some(b => b.style.display!=='none') ? '' : 'none');
-    const wrap = document.getElementById('games');
-    if (wrap) [...wrap.children].sort((a,b) => F.sort==='time'
-        ? (a.dataset.tip-b.dataset.tip) : (b.dataset.edge-a.dataset.edge)).forEach(g => wrap.appendChild(g));
   }
   function setF(k,v) {
     F[k]=v;

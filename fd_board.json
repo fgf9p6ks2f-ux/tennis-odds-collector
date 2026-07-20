@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T01:18:10Z",
+ "captured_at": "2026-07-20T01:22:14Z",
  "matches": [
-  {
-   "event_id": 35843808,
-   "p1": "Pawel Chojnacki",
-   "p2": "Andriej Fomin",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "andriej fomin",
-   "open_date": "2026-07-20T01:00:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35843810,
    "p1": "Pawel Kurek",
@@ -19,20 +8,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-20T01:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35843811,
-   "p1": "Andrzej Krezel",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "andrzej krezel",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-20T01:10:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 59.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843824,
