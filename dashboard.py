@@ -1453,7 +1453,7 @@ def build():
                   f'<span class="tchip t{_xt}">{_xt}</span>{pv}</span>')
     extras_html = ('<div class="xtras"><div class="xt" title="pinged &amp; ledger-logged — dropped by '
                    'the 2-per-team / rung-gap rules; not in the tracked record">⚡ Also flagged '
-                   '<span>· pinged · not selected</span></div>'
+                   '<span>· benched by the selection rules · not picks</span></div>'
                    + chips + '</div>') if chips else ""
     # honest header numbers: count the SELECTED play-groups on the cards (not every ledger rung),
     # plus a record strip so the board carries its own track record (audit item: record was a tab away)
@@ -1979,12 +1979,11 @@ def build():
       {h2_html}
     </div>
     <div id="games">{cards}</div>
-    {extras_html}
     {ladders_html}
     {slip_html}
-    
     {wl_html}
     {tier_legend}
+    {extras_html}
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>

@@ -517,9 +517,17 @@ def _key(legs):
 
 def log_parlays(date, pars):
     """Persist the day's recommended parlays for grading. Each scan REPLACES the still-pending set
-    for the date (parlays are live suggestions built from the current ladders, not locked like a
-    placed straight) — graded parlays are never touched. Flat 1u stake per parlay."""
+    for the date (live suggestions), EXCEPT: (a) once the slate starts settling (any leg graded),
+    the pre-tip set is FROZEN — post-tip scans have a shrinking pred set and must not churn/erase
+    it; (b) a transient EMPTY build never wipes the day's parlays. 2026-07-19: the selection
+    churned through same-day fixes, a scan built 0, and the day's parlays were erased then froze
+    at zero once games tipped. Graded/played parlays are never touched."""
     con = _pcon()
+    settling = con.execute("SELECT 1 FROM predictions WHERE pred_date=? AND graded=1 LIMIT 1",
+                           (date,)).fetchone()
+    if settling or not pars:                      # frozen post-tip, or nothing to log -> leave as-is
+        con.close()
+        return
     # drop only the still-pending, NOT-yet-played suggestions; a played parlay is a placed bet and
     # survives the rebuild (like a flagged straight) until it grades.
     con.execute("DELETE FROM parlays WHERE pred_date=? AND graded=0 AND played=0", (date,))
