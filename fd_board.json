@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T15:19:02Z",
+ "captured_at": "2026-07-20T15:24:36Z",
  "matches": [
-  {
-   "event_id": 35845565,
-   "p1": "Grzegorz Jurowicz",
-   "p2": "Oskar Jadach",
-   "p1_norm": "grzegorz jurowicz",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-20T15:05:00.000Z",
-   "line": 55.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35845680,
    "p1": "Jacek Zelezik",
@@ -66,6 +55,28 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35845755,
+   "p1": "Mateusz Baran",
+   "p2": "Michal Krutak",
+   "p1_norm": "mateusz baran",
+   "p2_norm": "michal krutak",
+   "open_date": "2026-07-20T15:50:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35845756,
+   "p1": "Wojciech Gluszek",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "wojciech gluszek",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-20T15:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
