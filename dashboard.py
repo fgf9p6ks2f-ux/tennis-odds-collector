@@ -1103,6 +1103,50 @@ def _watchlist_html(firm_keys=frozenset(), tips=None):
             + "".join(b[2] for b in blocks) + "</div>")
 
 
+def _starwatch_html():
+    """STAR WATCH (2026-07-19, user): Q/Out #1-option scorers the WOWY can't project (a star who's
+    barely missed a game has no without-sample), surfaced for MANUAL review with the likely
+    inheritors. Purely informational — the model says 'here's a big name I can't model, go look.'"""
+    f = HERE / "wnba_watchlist.json"
+    if not f.exists():
+        return ""
+    try:
+        d = json.loads(f.read_text())
+    except (ValueError, OSError):
+        return ""
+    today = dt.datetime.now(ET).date().isoformat()
+    if d.get("date") != today:
+        return ""
+    stars = d.get("stars") or []
+    if not stars:
+        return ""
+
+    def _logo(ab):
+        return (f'<img class="glogo" src="{LOGO.format(ab.lower())}" alt="" loading="lazy" '
+                f'onerror="this.style.display=\'none\'">' if ab else "")
+    rows = ""
+    for s in sorted(stars, key=lambda x: (x.get("date") or today, x.get("player") or "")):
+        stt = s.get("status") or ""
+        scls = "out" if stt in ("Out", "Doubtful") else "q"
+        opts = ", ".join(_short(o) for o in (s.get("options") or [])) or "—"
+        dtag = ""
+        if s.get("date") and s["date"] != today:
+            try:
+                dtag = f'<span class="swday">{dt.date.fromisoformat(s["date"]).strftime("%a %-m/%-d")}</span>'
+            except ValueError:
+                pass
+        opp = (s.get("opp") or "").upper()
+        vs = f'<span class="swvs">vs {opp}</span>' if opp else ""
+        rows += (f'<div class="swrow">'
+                 f'<div class="swhd">{_logo(s.get("team"))}<b>{html.escape(_short(s.get("player") or ""))}</b>'
+                 f'<span class="swstat {scls}">{html.escape(stt)}</span>{vs}{dtag}'
+                 f'<span class="swusg">{s.get("mpg")}\' · {s.get("ppg")}p'
+                 + (f" · {s.get('ast')}a" if s.get("ast") else "") + '</span></div>'
+                 f'<div class="swo">likely to inherit the role: <b>{html.escape(opts)}</b></div></div>')
+    return ('<div class="starwatch"><div class="sw-title">Star Watch '
+            '<span>· big names out that the model can\'t project — your call</span></div>'
+            + rows + '</div>')
+
 
 STAT_FULL = {"points": "Points", "rebounds": "Rebounds", "assists": "Assists",
              "pts_ast": "Pts + Ast", "pts_reb": "Pts + Reb", "reb_ast": "Reb + Ast",
@@ -1377,6 +1421,7 @@ def build():
     ladders_html = _ladders_html(rows)
     slip_html = _slip_html(rows)
     wl_html = _watchlist_html({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows}, tips)
+    starwatch_html = _starwatch_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
     tracker_html = _tracker_panel((w, l, u), tt_json)
@@ -1491,6 +1536,23 @@ def build():
   .dog {{ color:#d9985c; font-size:12.5px; font-weight:700; }}
   .watchlist {{ margin-top:24px; padding-top:2px; border-top:1px solid #171c25; }}
   .wl-title {{ color:#eaa15a; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
+  /* STAR WATCH — Q/Out #1 scorers the model can't project; manual-review card (not a bet) */
+  .starwatch {{ margin:16px 0 4px; border:1px solid #262d38; border-radius:14px; padding:12px 14px 6px;
+    background:radial-gradient(140% 170% at 50% -20%, #16130c, #0d0f14 66%); }}
+  .sw-title {{ color:#d0a45e; font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; font-weight:700; }}
+  .sw-title span {{ color:#7d8696; text-transform:none; letter-spacing:.02em; font-weight:600; }}
+  .swrow {{ padding:10px 0; border-top:1px solid #1a1f28; }}
+  .swrow:nth-of-type(2) {{ border-top:none; }}
+  .swhd {{ display:flex; align-items:center; gap:7px; color:#e8ecf2; font-size:13.5px; }}
+  .swhd b {{ font-weight:800; }}
+  .swstat {{ font-size:9px; font-weight:800; letter-spacing:.04em; padding:1.5px 5px; border-radius:4px; }}
+  .swstat.out {{ color:#ef8f6a; background:rgba(239,143,106,.13); }}
+  .swstat.q {{ color:#d7ad63; background:rgba(215,173,99,.13); }}
+  .swvs {{ color:#6b7484; font-size:11.5px; }}
+  .swday {{ color:#6b7484; font-size:10.5px; }}
+  .swusg {{ margin-left:auto; color:#8b94a3; font-size:11.5px; font-variant-numeric:tabular-nums; white-space:nowrap; }}
+  .swo {{ color:#7d8696; font-size:12px; margin-top:4px; }}
+  .swo b {{ color:#c3c9d4; font-weight:700; }}
   .wl-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
   .op-title {{ color:#5b9dff; font-size:12px; font-weight:800; letter-spacing:.04em; text-transform:uppercase; margin:16px 2px 11px; }}
   .op-title span {{ color:#7d8696; font-weight:600; text-transform:none; letter-spacing:0; }}
@@ -1890,6 +1952,7 @@ def build():
     {recstrip_html}
     <div class="fbar">{h2_html}</div>
     <div id="games">{cards}</div>
+    {starwatch_html}
     {ladders_html}
     {slip_html}
     {wl_html}

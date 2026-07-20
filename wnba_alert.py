@@ -550,7 +550,36 @@ def collect():
     _fold(_tmrw_seen.values(), "contingent")
     _fold(cold_spots, "cold")
     _fold(_band_seen.values(), "band", band_gate=False)  # band = out-of-band by definition
-    _write_watchlist(watch, today, scen)                 # dashboard JSON (separate from the ledger)
+
+    # STAR WATCH (2026-07-19, user): Q/Out top-scorers the WOWY CAN'T project (a star who's barely
+    # missed a game has no without-sample) — the model would go silent on the juiciest spot. Surface
+    # them for MANUAL review with the likely #2/#3 inheritors. Purely informational: not a bet, not
+    # graded; the backtest says the #2's boost is real but modest + the book reprices, so it's a
+    # human call. Star = team's #1 season scorer, >=14 ppg & >=26 mpg, whom the model flagged
+    # NO beneficiary off (so it's genuinely a blind spot, not double-listing a modelled team).
+    star_watch, seen_star = [], set()
+    flagged_outs = {nm.strip() for p in preds for nm in (p.get("out_player") or "").split(",")}
+    for sdate, mus in matchups_by.items():
+        pset = set(mus)
+        for nm, stt in inj.items():
+            if stt not in ("Out", "Doubtful", "Questionable"):
+                continue
+            p = pl.get(nm)
+            if not p or p["team"] not in pset or p["min"] < 26 or p["pts"] < 14:
+                continue
+            mates = sorted(((v["pts"], n) for n, v in pl.items()
+                            if v["team"] == p["team"] and v["gp"] >= 5), reverse=True)
+            if not mates or mates[0][1] != nm or nm in flagged_outs or (sdate, nm) in seen_star:
+                continue                                  # not the #1 option, or model already has it
+            seen_star.add((sdate, nm))
+            out_here = {n for n, s in inj.items() if s in ("Out", "Doubtful")
+                        and pl.get(n) and pl[n]["team"] == p["team"]}
+            opts = [n for _, n in mates[1:] if n not in out_here][:3]
+            star_watch.append({"player": nm, "team": p["team"], "status": stt, "date": sdate,
+                               "opp": mus.get(p["team"], ""), "mpg": round(p["min"]),
+                               "ppg": round(p["pts"], 1), "ast": round(p.get("ast") or 0, 1),
+                               "options": opts})
+    _write_watchlist(watch, today, scen, star_watch)     # dashboard JSON (separate from the ledger)
     for s in sorted(watch, key=lambda s: -(s.get("ev") or 0)):
         if s.get("cold"):
             continue                                     # already ntfy'd by the n0 branch
@@ -577,13 +606,13 @@ def collect():
     return sorted(alerts, reverse=True), preds
 
 
-def _write_watchlist(watch, today, scenarios=None):
+def _write_watchlist(watch, today, scenarios=None, stars=None):
     """Dump the questionable-tier watchlist to JSON for the dashboard. Intra-job only (read by
     dashboard.py in the same loop step), so it's never committed — no churn, no conflicts."""
     try:
         (HERE / "wnba_watchlist.json").write_text(
             json.dumps({"date": today, "spots": watch,
-                        "scenarios": scenarios or []}, default=str))
+                        "scenarios": scenarios or [], "stars": stars or []}, default=str))
     except OSError:
         pass
 
