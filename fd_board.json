@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T19:55:29Z",
+ "captured_at": "2026-07-20T20:01:25Z",
  "matches": [
-  {
-   "event_id": 35846554,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Bartlomiej Wisniewski",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "bartlomiej wisniewski",
-   "open_date": "2026-07-20T19:40:00.000Z",
-   "line": 95.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35846555,
-   "p1": "Karol Strowski",
-   "p2": "Lukasz Pietraszko",
-   "p1_norm": "karol strowski",
-   "p2_norm": "lukasz pietraszko",
-   "open_date": "2026-07-20T19:40:00.000Z",
-   "line": 95.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35846572,
    "p1": "Rafal Niemiec",
@@ -30,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T19:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846575,
@@ -42,8 +20,8 @@
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-20T20:00:00.000Z",
    "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35846580,
