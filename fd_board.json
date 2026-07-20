@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T18:18:07Z",
+ "captured_at": "2026-07-20T18:23:48Z",
  "matches": [
-  {
-   "event_id": 35846346,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Piotr Gesiarz",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "piotr gesiarz",
-   "open_date": "2026-07-20T18:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35846350,
    "p1": "Lukasz Pietraszko",
@@ -19,9 +8,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T18:05:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 61.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846356,
@@ -30,9 +19,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-20T18:10:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35846357,
@@ -41,9 +30,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-20T18:10:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846379,
@@ -52,9 +41,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-20T18:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846380,
