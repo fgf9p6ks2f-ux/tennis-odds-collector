@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="a0e261b19d">
+<meta name="bv" content="d327be2247">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -189,10 +189,12 @@
   .prop { padding:13px 0 5px; cursor:pointer; border-top:1px solid #14181f; margin-top:9px; }
   .pblk .prop:first-of-type { border-top:0; margin-top:8px; }
   .prow { display:flex; align-items:center; gap:7px; }
-  .pind { width:27px; height:27px; border-radius:50%; display:grid; place-items:center;
-    font-size:13px; font-weight:800; border:1.5px solid; flex:none; }
-  .pind.o { color:#57b389; border-color:#57b38944; }
-  .pind.u { color:#6a9fe8; border-color:#6a9fe844; }
+  /* Over/Under marker — filled tint + bold bright letter (was a thin ring around the letter, which
+     read as a confusing double-O) */
+  .pind { width:26px; height:26px; border-radius:8px; display:grid; place-items:center;
+    font-size:15px; font-weight:900; flex:none; }
+  .pind.o { color:#5ad98a; background:rgba(90,217,138,.16); }
+  .pind.u { color:#74a8ef; background:rgba(116,168,239,.16); }
   .plno { font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
           white-space:nowrap; }
   .plno.rng { font-size:16px; }
@@ -392,7 +394,7 @@
   }
   .prop { transition:background .15s var(--easesoft); border-radius:10px; }
   .prop:active { background:rgba(255,255,255,.045); }
-  .pedge.hi { color:var(--up); } .pind.o { border-color:rgba(67,224,138,.5); color:var(--up); }
+  .pedge.hi { color:var(--up); }
   .pmark { transition:transform .16s var(--ease), color .2s var(--easesoft); }
   .pmark:active { transform:scale(1.35); }
   .pmark.on { color:var(--up); }
@@ -446,7 +448,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>7:47 PM MT
+    <div class="live"><span class="dot"></span>7:52 PM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -454,7 +456,6 @@
     <div class="tabthumb" id="tabthumb"></div>
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')"><svg class="tabic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 2.8v18.4"/><path d="M2.8 12h18.4"/><path d="M5.2 5.2C8 8 9 12 9 12s-1 4-3.8 6.8"/><path d="M18.8 5.2C16 8 15 12 15 12s1 4 3.8 6.8"/></svg><span>WNBA</span></div>
     <div class="tab" data-tab="tt" onclick="showTab('tt')"><svg class="tabic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.6" cy="9.6" r="5.6"/><path d="M13.6 13.6l4.6 5"/><circle cx="16.4" cy="6.6" r="1.35" fill="currentColor" stroke="none"/></svg><span>TT</span></div>
-    <div class="tab" data-tab="gg" onclick="showTab('gg')"><svg class="tabic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 9h9a4 4 0 0 1 3.95 3.35l.55 3.3a1.9 1.9 0 0 1-3.3 1.6L16 15.5H8l-1.7 1.75a1.9 1.9 0 0 1-3.3-1.6l.55-3.3A4 4 0 0 1 7.5 9Z"/><path d="M7 11.5v2.2M5.9 12.6h2.2M15.6 12h.01M17.2 13.4h.01"/></svg><span>GG</span></div>
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')"><svg class="tabic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg><span>Tracker</span></div>
   </div>
   <div class="panel" id="wnba">
@@ -467,7 +468,7 @@
           <span class="pind o">O</span>
           <span class="plno">5.5</span><span class="pstat">REB</span><span class="tchip tB" title="confidence tier — live record in the legend below">B</span>
           <span class="psp"></span>
-          <span class="podds fd">-106</span><span class="pbk fd">FD</span>
+          <span class="podds fd">-106</span><img class="bklogo" src="book-fd.png" alt="FD">
           <span class="pedge hi">+30%</span><span class="pchev">›</span></div>
         <div class="pctx"><span class="cdrv">▲+1 reb</span> · proj 7.4</div>
       </div><div class="bars"><div class="bwrap"><div class="meters"><div class="meter good" title="her games with tonight&#x27;s ruled-out players actually out — over this line"><span class="mlab">when they sit</span><span class="mbar"><i style="width:100%"></i></span><span class="mval">2/2 over</span></div><div class="meter good" title="all recent games, any lineup — over this line"><span class="mlab">last 10 games</span><span class="mbar"><i style="width:70%"></i></span><span class="mval">7/10 over</span></div></div><div class="why">Projects <b>7.4 REB</b> vs the 5.5 line — N. Sabally + B. Sykes + K. Rice out (+4 min, +1 reb). Book anchored near the season avg (6.1) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Games with <b>N.Sabally, B.Sykes, K.Rice</b> actually out — avg <b>7</b> REB <span class="sup">✓ over friendly</span> · <span class="warn">tonight differs from her recent games</span></div><div class="rgsub">lineup match ranked by: J.Allemand, M.Conde, L.Juskaite playing</div><div class="cmps"><span class="cmp pr">07-10 DAL <b>8</b> · 26'</span><span class="cmp pr">06-19 CON <b>6</b> · 30'</span></div></div><div class="chart"><div class="pline" style="bottom:42.4%"><span>5.5</span></div><div class="col"><div class="m" style="height:71%"></div><div class="b o" style="height:46.3%"><span class="bv">6</span></div></div><div class="col"><div class="m" style="height:62%"></div><div class="b o" style="height:61.7%"><span class="bv">8</span></div></div></div><div class="opps"><span>CON</span><span>DAL</span></div><div class="bnote">2/2 over 5.5 · gray bar = minutes · games without N. Sabally, B. Sykes, K. Rice</div></div></div>
@@ -476,7 +477,7 @@
           <span class="pind o">O</span>
           <span class="plno rng">10.5–14.5</span><span class="pstat">PTS</span><span class="tchip tA" title="confidence tier — live record in the legend below">A</span>
           <span class="psp"></span>
-          <span class="podds fd">-128</span><span class="pbk fd">FD</span>
+          <span class="podds fd">-128</span><img class="bklogo" src="book-fd.png" alt="FD">
           <span class="pedge hi">+24%</span><span class="pchev">›</span></div>
         <div class="pctx"><span class="cdrv">▲+2 usg</span> · proj 14.9</div><div class="prungs"><span class="rlbl">rungs</span><span class="rung"><b>10.5</b> <span class="ro">-128</span></span><span class="rung"><b>14.5</b> <span class="ro">+235</span></span></div>
       </div><div class="bars"><div class="bwrap"><div class="meters"><div class="meter good" title="her games with tonight&#x27;s ruled-out players actually out — over this line"><span class="mlab">when they sit</span><span class="mbar"><i style="width:100%"></i></span><span class="mval">2/2 over</span></div><div class="meter good" title="all recent games, any lineup — over this line"><span class="mlab">last 10 games</span><span class="mbar"><i style="width:60%"></i></span><span class="mval">6/10 over</span></div></div><div class="why">Projects <b>14.9 PTS</b> vs the 10.5 line — N. Sabally + B. Sykes + K. Rice out (+4 min, +2 usage). Book anchored near the season avg (12.9) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Games with <b>N.Sabally, B.Sykes, K.Rice</b> actually out — avg <b>16.5</b> PTS <span class="sup">✓ over friendly</span> · <span class="warn">tonight differs from her recent games</span></div><div class="rgsub">lineup match ranked by: J.Allemand, M.Conde, L.Juskaite playing</div><div class="cmps"><span class="cmp pr">07-10 DAL <b>18</b> · 26'</span><span class="cmp pr">06-19 CON <b>15</b> · 30'</span></div></div><div class="chart"><div class="pline" style="bottom:36.0%"><span>10.5</span></div><div class="col"><div class="m" style="height:71%"></div><div class="b o" style="height:51.4%"><span class="bv">15</span></div></div><div class="col"><div class="m" style="height:62%"></div><div class="b o" style="height:61.7%"><span class="bv">18</span></div></div></div><div class="opps"><span>CON</span><span>DAL</span></div><div class="bnote">2/2 over 10.5 · gray bar = minutes · games without N. Sabally, B. Sykes, K. Rice</div></div></div></div></div>
@@ -486,7 +487,7 @@
           <span class="pind o">O</span>
           <span class="plno">7.5</span><span class="pstat">REB</span><span class="tchip tB" title="confidence tier — live record in the legend below">B</span>
           <span class="psp"></span>
-          <span class="podds fd">-138</span><span class="pbk fd">FD</span>
+          <span class="podds fd">-138</span><img class="bklogo" src="book-fd.png" alt="FD">
           <span class="pedge hi">+15%</span><span class="pchev">›</span></div>
         <div class="pctx">proj 8.6</div>
       </div><div class="bars"><div class="bwrap"><div class="meters"><div class="meter good" title="her games with tonight&#x27;s ruled-out players actually out — over this line"><span class="mlab">when they sit</span><span class="mbar"><i style="width:75%"></i></span><span class="mval">6/8 over</span></div><div class="meter good" title="all recent games, any lineup — over this line"><span class="mlab">last 10 games</span><span class="mbar"><i style="width:60%"></i></span><span class="mval">6/10 over</span></div></div><div class="why">Projects <b>8.6 REB</b> vs the 7.5 line — S. Sabally + L. Fiebich out.</div><div class="regime"><div class="rgh">Games with <b>S.Sabally, L.Fiebich</b> actually out — avg <b>8</b> REB <span class="sup">✓ over friendly</span></div><div class="rgsub">lineup match ranked by: P.Astier, S.Ionescu, M.Johannes playing</div><div class="cmps"><span class="cmp pr">07-19 IND <b>8</b> · 32'</span><span class="cmp pr">07-12 TOR <b>8</b> · 34'</span><span class="cmp pr">07-11 MIN <b>7</b> · 37'</span><span class="cmp pr">07-08 DAL <b>9</b> · 33'</span><span class="cmp">05-10 WSH <b>9</b> · 39'</span><span class="cmp">05-08 CON <b>10</b> · 28'</span></div></div><div class="chart"><div class="pline" style="bottom:46.3%"><span>7.5</span></div><div class="col"><div class="m" style="height:67%"></div><div class="b o" style="height:61.7%"><span class="bv">10</span></div></div><div class="col"><div class="m" style="height:93%"></div><div class="b o" style="height:55.6%"><span class="bv">9</span></div></div><div class="col"><div class="m" style="height:90%"></div><div class="b o" style="height:61.7%"><span class="bv">10</span></div></div><div class="col"><div class="m" style="height:67%"></div><div class="b u" style="height:43.2%"><span class="bv">7</span></div></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:55.6%"><span class="bv">9</span></div></div><div class="col"><div class="m" style="height:88%"></div><div class="b u" style="height:43.2%"><span class="bv">7</span></div></div><div class="col"><div class="m" style="height:81%"></div><div class="b o" style="height:49.4%"><span class="bv">8</span></div></div><div class="col"><div class="m" style="height:76%"></div><div class="b o" style="height:49.4%"><span class="bv">8</span></div></div></div><div class="opps"><span>CON</span><span>WSH</span><span>POR</span><span>POR</span><span>DAL</span><span>MIN</span><span>TOR</span><span>IND</span></div><div class="bnote">6/8 over 7.5 · gray bar = minutes · games without S. Sabally, L. Fiebich</div></div></div></div><div class="pblk"><div class="phd"><img class="plogo" src="logos/ny.png" alt="" loading="lazy" onerror="this.style.display='none'"><span class="pname">S. Ionescu</span><span class="pflag"><i class="sdot mid"></i>likely</span><span class="psp2"></span><span class="pmin">~34' <span class="tup">▲+5</span></span></div>
@@ -495,7 +496,7 @@
           <span class="pind o">O</span>
           <span class="plno">4.5</span><span class="pstat">AST</span><span class="tchip tA" title="confidence tier — live record in the legend below">A</span>
           <span class="psp"></span>
-          <span class="podds fd">-154</span><span class="pbk fd">FD</span>
+          <span class="podds fd">-154</span><img class="bklogo" src="book-fd.png" alt="FD">
           <span class="pedge mid">+13%</span><span class="pchev">›</span></div>
         <div class="pctx"><span class="cdrv">▲+2 ast</span> · proj 5.3</div>
       </div><div class="bars"><div class="bwrap"><div class="meters"><div class="meter good" title="her games with tonight&#x27;s ruled-out players actually out — over this line"><span class="mlab">when they sit</span><span class="mbar"><i style="width:75%"></i></span><span class="mval">3/4 over</span></div><div class="meter good" title="all recent games, any lineup — over this line"><span class="mlab">last 10 games</span><span class="mbar"><i style="width:60%"></i></span><span class="mval">6/10 over</span></div></div><div class="why">Projects <b>5.3 AST</b> vs the 4.5 line — S. Sabally + L. Fiebich out (+5 min, +2 ast). Book anchored near the season avg (4.3) — it hasn't repriced the role.</div><div class="regime"><div class="rgh">Games with <b>S.Sabally, L.Fiebich</b> actually out — avg <b>5.5</b> AST <span class="sup">✓ over friendly</span></div><div class="rgsub">lineup match ranked by: P.Astier, M.Johannes, J.Jones playing</div><div class="cmps"><span class="cmp pr">07-19 IND <b>4</b> · 34'</span><span class="cmp pr">07-12 TOR <b>8</b> · 33'</span><span class="cmp pr">07-11 MIN <b>5</b> · 35'</span><span class="cmp pr">07-08 DAL <b>5</b> · 33'</span></div></div><div class="chart"><div class="pline" style="bottom:34.7%"><span>4.5</span></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:38.6%"><span class="bv">5</span></div></div><div class="col"><div class="m" style="height:83%"></div><div class="b o" style="height:38.6%"><span class="bv">5</span></div></div><div class="col"><div class="m" style="height:79%"></div><div class="b o" style="height:61.7%"><span class="bv">8</span></div></div><div class="col"><div class="m" style="height:81%"></div><div class="b u" style="height:30.9%"><span class="bv">4</span></div></div></div><div class="opps"><span>DAL</span><span>MIN</span><span>TOR</span><span>IND</span></div><div class="bnote">3/4 over 4.5 · gray bar = minutes · games without S. Sabally, L. Fiebich</div></div></div></div></div></div>
@@ -508,10 +509,6 @@
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>
     <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flagged Bets</h3><div class="ttempty">No Elite bets flagged right now — no pair on the current FanDuel board hits a side 70%+ at its line. Check back closer to the games.</div></div></div>
-  </div>
-  <div class="panel hidden" id="gg">
-    <h2>GG esports · paper flags</h2>
-    <div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets</h3><div class="ttempty">No open GG flags right now — new ones land every ~30 min as FanDuel prices upcoming matches (24/7).</div></div>
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record</h2>
@@ -533,7 +530,7 @@
           <div class="tbox"><div class="tk">Units</div><div class="tv up">+15.9u</div></div>
         </div>
         <div class="tsub">graded at the actual FanDuel line + odds · 2 pending · ROI +35%</div>
-      </div><div class="tcard"><div class="thead">🏓 Other TT leagues <span class="tsh">shadow · not bet</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>Setka Cup</span><span>18-7</span><span>72%</span><span class="up">+8.0u</span></div><div class="ttrkrow"><span>Liga Pro</span><span>15-11</span><span>58%</span><span class="up">+1.5u</span></div><div class="ttrkrow"><span>TT Cup</span><span>23-18</span><span>56%</span><span class="up">+1.2u</span></div><div class="ttrkrow"><span>Setka W</span><span>5-6</span><span>45%</span><span class="down">-1.8u</span></div></div><div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div><div class="tcard"><div class="thead">🎮 GG esports <span class="tsh">paper · since 7/16</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>sport</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>eBasketball</span><span>14-11</span><span>56%</span><span class="up">+0.6u</span></div><div class="ttrkrow"><span>eNFL</span><span>1-0</span><span>100%</span><span class="up">+0.8u</span></div></div><div class="tsub">graded at real FD odds · 1 pending · nba/nfl over-only 70% · fifa 75% · alerts off until validated</div></div>
+      </div><div class="tcard"><div class="thead">🏓 Other TT leagues <span class="tsh">shadow · not bet</span></div><div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span><span>hit</span><span>units</span></div><div class="ttrkrow"><span>Setka Cup</span><span>18-7</span><span>72%</span><span class="up">+8.0u</span></div><div class="ttrkrow"><span>Liga Pro</span><span>15-11</span><span>58%</span><span class="up">+1.5u</span></div><div class="ttrkrow"><span>TT Cup</span><span>23-18</span><span>56%</span><span class="up">+1.2u</span></div><div class="ttrkrow"><span>Setka W</span><span>5-6</span><span>45%</span><span class="down">-1.8u</span></div></div><div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div>
       <div class="tcard">
         <div class="thead">🎯 Injury-timing CLV</div>
         <div class="trow">
@@ -606,7 +603,7 @@
       const openK = [...document.querySelectorAll('.prop')].filter(p =>
         p.nextElementSibling && p.nextElementSibling.classList.contains('open')).map(p => p.dataset.k);
       let touched = false, wnba = false;
-      ['wnba','tt','gg','tracker'].forEach(id => {
+      ['wnba','tt','tracker'].forEach(id => {
         const nw = doc.getElementById(id), cur = document.getElementById(id);
         if (nw && cur && nw.innerHTML !== cur.innerHTML) {
           cur.innerHTML = nw.innerHTML; touched = true; if (id === 'wnba') wnba = true;
