@@ -350,7 +350,7 @@ def _regime_html(r):
         return ""                                     # pre-fix rows could claim outs who played
     if rg.get("no_comps"):
         nm = ", ".join(rg.get("sig_names") or [])
-        return (f'<div class="regime"><div class="rgnone">⚡ First game without '
+        return (f'<div class="regime"><div class="rgnone">First game without '
                 f'<b>{html.escape(nm)}</b> — no history yet. That IS the edge: the book is '
                 f'guessing too.</div></div>')
     if not rg.get("comps"):
@@ -383,11 +383,12 @@ def _regime_html(r):
             + f'<div class="cmps">{chips}</div></div>')
 
 
-def _bars(r):
-    """Dropdown: generated reasoning + a PropsCash-style game log. Each game's ACTUAL stat is a
-    bar (green if it cashed our side, red if not) with the line drawn across, and a gray MINUTES
-    bar behind it (own 0-40 scale) so the role context is visible. Opponent under each bar."""
-    why = f'<div class="why">{_reasoning(r)}</div>{_regime_html(r)}'
+def _bars(r, meters=""):
+    """Dropdown: hit-rate meters (moved off the front card 2026-07-19) + generated reasoning + a
+    PropsCash-style game log. Each game's ACTUAL stat is a bar (green if it cashed our side, red if
+    not) with the line drawn across, and a gray MINUTES bar behind it (own 0-40 scale). Opp below."""
+    mhtml = f'<div class="meters">{meters}</div>' if meters else ""
+    why = f'{mhtml}<div class="why">{_reasoning(r)}</div>{_regime_html(r)}'
     s = _samples(r)
     if not s:
         return f'<div class="bars"><div class="bwrap">{why}<div class="nodata">no game data</div></div></div>'
@@ -562,14 +563,17 @@ def _prop_row(r, rungs=None):
     bp = _book_prices(r)
     if bp:
         best_bk, best_dec = bp[0]
-        blogo = (f'<img class="bklogo" src="book-{best_bk}.png" alt="{best_bk.upper()}">'
-                 if best_bk in ("fd", "dk") else f'<span class="pbk">{best_bk.upper()}</span>')
-        odds_html = f'<span class="podds">{_am(best_dec)}</span>{blogo}'
+        # BOOK-COLORED ODDS (2026-07-19): FanDuel blue, DraftKings green — the color is the book
+        # tag, reinforced by a small monochrome wordmark. No logo image (cleaner, no emoji-adjacent
+        # branding).
+        bcls = best_bk if best_bk in ("fd", "dk") else "oth"
+        btag = f'<span class="pbk {bcls}">{best_bk.upper()}</span>'
+        odds_html = f'<span class="podds {bcls}">{_am(best_dec)}</span>{btag}'
         if len(bp) > 1:
             ctx.append(f'{bp[1][0].upper()} {_am(bp[1][1])}')
     else:
         best_dec = float(r["odds"])
-        odds_html = f'<span class="podds">{_am(best_dec)}</span>'
+        odds_html = f'<span class="podds fd">{_am(best_dec)}</span><span class="pbk fd">FD</span>'
     ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
     dk = html.escape(f"{r.get('pred_date') or ''}|{r['player']}|{r['stat']}|{r['line']:g}")
     # CONTRA tag: when most recent-form windows and/or the same-lineup comps lean AGAINST the
@@ -619,8 +623,8 @@ def _prop_row(r, rungs=None):
           <span class="psp"></span>
           {odds_html}
           <span class="pedge {ecls}">{edge_v}</span>{contra}<span class="pchev">›</span></div>
-        <div class="meters">{grid}</div>{ctxline}{rungs_html}
-      </div>{_bars(r)}"""
+        {ctxline}{rungs_html}
+      </div>{_bars(r, grid)}"""
 
 
 def _player_block(player, rows):
@@ -1192,12 +1196,12 @@ def _watchlist_html(firm_keys=frozenset(), tips=None):
                     if also:
                         cond += f'<span class="wlin"> · {html.escape(", ".join(also))} in</span>'
             elif kind == "contingent":
-                cond = f'⏳ if <b>{html.escape("+".join(stars))}</b> confirmed out'
+                cond = f'if <b>{html.escape("+".join(stars))}</b> confirmed out'
             elif kind == "cold":
-                cond = (f'⚡ <b>{html.escape("+".join(stars))}</b> out · cold '
+                cond = (f'<b>{html.escape("+".join(stars))}</b> out · cold '
                         f'<span class="wlin">· no sample · shadow</span>')
             else:
-                cond = (f'⚡ <b>{html.escape("+".join(stars))}</b> out '
+                cond = (f'<b>{html.escape("+".join(stars))}</b> out '
                         f'<span class="wlin">· out of band · shadow, not a bet</span>')
             shadow = " wlshadow" if kind in ("cold", "band") else ""
             rows += (f'<div class="wlrow{shadow}"{ttl}>'
@@ -1213,7 +1217,7 @@ def _watchlist_html(firm_keys=frozenset(), tips=None):
                        f'{_logo(tm)}{tm}<span class="gvs">vs</span>{_logo(op)}{op or "—"}</span>'
                        f'<span class="gtime">{when}</span></div>{rows}</div>'))
     blocks.sort(key=lambda b: (b[1], b[0]))
-    return ('<div class="watchlist"><div class="wl-title">⏳ Watchlist '
+    return ('<div class="watchlist"><div class="wl-title">Watchlist '
             '<span>· if they sit, play this</span></div>'
             + "".join(b[2] for b in blocks) + "</div>")
 
@@ -1286,7 +1290,7 @@ def _slip_html(rows=None):
                           f'<span class="sid">#{pid}</span></div></div>')
         if not cards:
             return ""
-        return ('<div class="parlays"><div class="op-title">🎰 Parlays'
+        return ('<div class="parlays"><div class="op-title">Parlays'
                 '<span> · .25u · tap ✓ when played</span></div>'
                 f'<div class="slips">{cards}</div></div>')
     except Exception:
@@ -1329,7 +1333,7 @@ def _ladders_html(rows):
                       f'<span class="lrange">o{lns[0]:g}–{lns[-1]:g}</span>'
                       f'<span class="lsp"></span><span class="ltot">{tot:g}u <span>total</span></span></div>'
                       f'<div class="lrungs">{rungs}</div></div>')
-        return ('<div class="ladders"><div class="op-title">🪜 Ladders'
+        return ('<div class="ladders"><div class="op-title">Ladders'
                 '<span> · 1u + declining rungs</span></div>'
                 f'{cards}</div>')
     except Exception:
@@ -1445,7 +1449,7 @@ def build():
                   f'{_S2.STAT_LABEL.get(r["stat"], r["stat"])} o{r["line"]:g} {_am(dec)}'
                   f'<span class="tchip t{_xt}">{_xt}</span>{pv}</span>')
     extras_html = ('<div class="xtras"><div class="xt" title="pinged &amp; ledger-logged — dropped by '
-                   'the 2-per-team / rung-gap rules; not in the tracked record">⚡ Also flagged '
+                   'the 2-per-team / rung-gap rules; not in the tracked record">Also flagged '
                    '<span>· benched by the selection rules · not picks</span></div>'
                    + chips + '</div>') if chips else ""
     # honest header numbers: count the SELECTED play-groups on the cards (not every ledger rung),
@@ -1453,7 +1457,7 @@ def build():
     nsel = len({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows})
     hitpct = f"{w / (w + l) * 100:.0f}%" if (w + l) else "—"
     _uc = "up" if u > 0 else ("down" if u < 0 else "")
-    recstrip_html = (f'<div class="recstrip" onclick="showTab(\'tracker\')">📈 <b>{w}-{l}</b> · {hitpct} hit · '
+    recstrip_html = (f'<div class="recstrip" onclick="showTab(\'tracker\')"><b>{w}-{l}</b> · {hitpct} hit · '
                      f'<b class="{_uc}">{u:+.1f}u</b><span>since 7/9 · Tracker →</span></div>')
     h2_html = (f'<span class="fmeta" title="tap any bet for its game log">{nsel} plays'
                + (f' · {len(extras)} extra' if extras else '') + '</span>')
@@ -1534,6 +1538,17 @@ def build():
         "}).catch(function(){});},2000);"
         "var y=sessionStorage.getItem('_sy');if(y){scrollTo(0,+y);sessionStorage.removeItem('_sy');}"
         "})();</script>")
+    # monochrome line-icon tab set (no emoji) — stroke=currentColor so each inherits the tab color
+    _ic = 'class="tabic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"'
+    ICON_WNBA = (f'<svg {_ic}><circle cx="12" cy="12" r="9.2"/><path d="M12 2.8v18.4"/>'
+                 '<path d="M2.8 12h18.4"/><path d="M5.2 5.2C8 8 9 12 9 12s-1 4-3.8 6.8"/>'
+                 '<path d="M18.8 5.2C16 8 15 12 15 12s1 4 3.8 6.8"/></svg>')
+    ICON_TT = (f'<svg {_ic}><circle cx="9.6" cy="9.6" r="5.6"/><path d="M13.6 13.6l4.6 5"/>'
+               '<circle cx="16.4" cy="6.6" r="1.35" fill="currentColor" stroke="none"/></svg>')
+    ICON_GG = (f'<svg {_ic}><path d="M7.5 9h9a4 4 0 0 1 3.95 3.35l.55 3.3a1.9 1.9 0 0 1-3.3 1.6L16 15.5H8'
+               'l-1.7 1.75a1.9 1.9 0 0 1-3.3-1.6l.55-3.3A4 4 0 0 1 7.5 9Z"/>'
+               '<path d="M7 11.5v2.2M5.9 12.6h2.2M15.6 12h.01M17.2 13.4h.01"/></svg>')
+    ICON_TRK = f'<svg {_ic}><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>'
     doc = f"""<!doctype html><html lang="en"><head>
 {_live_head}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1665,6 +1680,8 @@ def build():
   .tcard.diag .tbody {{ display:none; }} .tcard.diag.open .tbody {{ display:block; }}
   /* plain-language hit meters (replaced the ROLE/L5/L10/SZN/H2H chip grid) */
   .meters {{ display:flex; flex-direction:column; gap:7px; margin-top:12px; }}
+  /* meters moved into the drawer (2026-07-19): separate them from the reasoning below */
+  .bwrap .meters {{ margin:2px 0 14px; padding-bottom:14px; border-bottom:1px solid #14181f; }}
   .meter {{ display:flex; align-items:center; gap:10px; }}
   .mlab {{ flex:0 0 92px; color:var(--t3); font-weight:600; font-size:11px; }}
   .mbar {{ flex:1; height:6px; border-radius:999px; background:rgba(255,255,255,.07); overflow:hidden; }}
@@ -1732,9 +1749,16 @@ def build():
   .plno.rng {{ font-size:16px; }}
   .pstat {{ color:#78818f; font-weight:700; font-size:13px; letter-spacing:.04em; }}
   .psp {{ flex:1; }}
-  .podds {{ color:#6ba3f5; font-weight:700; font-size:16px; font-variant-numeric:tabular-nums; }}
-  .pbk {{ color:#78818f; font-size:9.5px; font-weight:800; letter-spacing:.04em; margin-left:3px;
-    background:#161b24; border:1px solid #1d232e; border-radius:4px; padding:1px 4px; position:relative; top:-1px; }}
+  /* BOOK-COLORED ODDS: FanDuel blue, DraftKings green — the color is the book tag */
+  .podds {{ font-weight:700; font-size:15.5px; font-variant-numeric:tabular-nums; letter-spacing:-.01em; }}
+  .podds.fd {{ color:#4da3ff; }}
+  .podds.dk {{ color:#54cc4a; }}
+  .podds.oth {{ color:#9aa3b2; }}
+  .pbk {{ font-size:9px; font-weight:800; letter-spacing:.05em; margin-left:4px; padding:1.5px 4px;
+    border-radius:4px; position:relative; top:-1px; }}
+  .pbk.fd {{ color:#4da3ff; background:rgba(77,163,255,.12); }}
+  .pbk.dk {{ color:#54cc4a; background:rgba(84,204,74,.15); }}
+  .pbk.oth {{ color:#78818f; background:#161b24; border:1px solid #1d232e; }}
   .pedge {{ font-weight:800; font-size:20px; font-variant-numeric:tabular-nums; letter-spacing:-.015em; }}
   .prop:has(.plno.rng) .pedge {{ font-size:18px; }}
   .prop:has(.plno.rng) .podds {{ font-size:15px; }}
@@ -1792,9 +1816,11 @@ def build():
   .foot {{ color:#525b6a; font-size:11px; text-align:center; margin-top:26px; line-height:1.6; }}
   .tabs {{ display:flex; gap:6px; margin:16px 0 20px; background:#101520; border:1px solid #1f2836;
     border-radius:12px; padding:4px; }}
-  .tab {{ flex:1; text-align:center; padding:9px 0; font-size:14px; font-weight:600; color:#8b94a3;
-    border-radius:9px; cursor:pointer; }}
+  .tab {{ flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:9px 0;
+    font-size:13.5px; font-weight:600; color:#8b94a3; border-radius:9px; cursor:pointer; }}
   .tab.active {{ background:#1c2534; color:#e8ecf2; }}
+  .tabic {{ width:15px; height:15px; flex:none; opacity:.85; }}
+  .tab.active .tabic {{ opacity:1; }}
   .panel {{ display:block; }}
   .panel.hidden {{ display:none; }}
   .ttlg {{ font-size:13px; font-weight:700; color:#cdd5e0; margin:0 0 10px; }}
@@ -1918,7 +1944,6 @@ def build():
   .prop {{ transition:background .15s var(--easesoft); border-radius:10px; }}
   .prop:active {{ background:rgba(255,255,255,.045); }}
   .pedge.hi {{ color:var(--up); }} .pind.o {{ border-color:rgba(67,224,138,.5); color:var(--up); }}
-  .podds {{ color:var(--sky); }}
   .pmark {{ transition:transform .16s var(--ease), color .2s var(--easesoft); }}
   .pmark:active {{ transform:scale(1.35); }}
   .pmark.on {{ color:var(--up); }}
@@ -1978,10 +2003,10 @@ def build():
   </header>
   <div class="tabs">
     <div class="tabthumb" id="tabthumb"></div>
-    <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">🏀 WNBA</div>
-    <div class="tab" data-tab="tt" onclick="showTab('tt')">🏓 TT</div>
-    <div class="tab" data-tab="gg" onclick="showTab('gg')">🎮 GG</div>
-    <div class="tab" data-tab="tracker" onclick="showTab('tracker')">📊 Tracker</div>
+    <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">{ICON_WNBA}<span>WNBA</span></div>
+    <div class="tab" data-tab="tt" onclick="showTab('tt')">{ICON_TT}<span>TT</span></div>
+    <div class="tab" data-tab="gg" onclick="showTab('gg')">{ICON_GG}<span>GG</span></div>
+    <div class="tab" data-tab="tracker" onclick="showTab('tracker')">{ICON_TRK}<span>Tracker</span></div>
   </div>
   <div class="panel" id="wnba">
     {recstrip_html}
