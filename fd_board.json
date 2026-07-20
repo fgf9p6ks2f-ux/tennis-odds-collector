@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T22:49:35Z",
+ "captured_at": "2026-07-20T22:55:12Z",
  "matches": [
   {
    "event_id": 35846966,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-20T22:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 93.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846969,
@@ -20,8 +20,8 @@
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-20T22:35:00.000Z",
    "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35846971,
@@ -30,20 +30,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T22:40:00.000Z",
-   "line": 72.5,
+   "line": 56.5,
    "over_odds": -110,
    "under_odds": -125
-  },
-  {
-   "event_id": 35846972,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Kazimierz Rybak",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "kazimierz rybak",
-   "open_date": "2026-07-20T22:50:00.000Z",
-   "line": 66.5,
-   "over_odds": -112,
-   "under_odds": -118
   },
   {
    "event_id": 35846973,
@@ -53,8 +42,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-20T22:50:00.000Z",
    "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35846974,
@@ -74,9 +63,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-20T22:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35846978,
@@ -109,6 +98,28 @@
    "open_date": "2026-07-20T23:15:00.000Z",
    "line": 77.5,
    "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35847063,
+   "p1": "Jerzy Michalik",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-20T23:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35847064,
+   "p1": "Kuba Golaszewski",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "kuba golaszewski",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-20T23:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
    "under_odds": -116
   }
  ]
