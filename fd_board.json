@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T20:25:50Z",
+ "captured_at": "2026-07-20T20:31:40Z",
  "matches": [
   {
    "event_id": 35846607,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-20T20:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35846608,
@@ -19,31 +19,20 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-20T20:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
-   "event_id": 35846622,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Kuba Golaszewski",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "kuba golaszewski",
+   "event_id": 35846625,
+   "p1": "Miroslav Sklensky",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T20:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35846623,
-   "p1": "Artur Kubiak",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-20T20:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35846629,
@@ -63,9 +52,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-20T20:45:00.000Z",
-   "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
