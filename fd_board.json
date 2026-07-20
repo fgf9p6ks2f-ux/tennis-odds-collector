@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T17:09:42Z",
+ "captured_at": "2026-07-20T17:16:24Z",
  "matches": [
   {
    "event_id": 35846236,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-20T17:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846264,
@@ -53,8 +53,19 @@
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-20T17:35:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35846311,
+   "p1": "Miroslav Sklensky",
+   "p2": "Artur Gromek",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "artur gromek",
+   "open_date": "2026-07-20T17:40:00.000Z",
+   "line": 71.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
