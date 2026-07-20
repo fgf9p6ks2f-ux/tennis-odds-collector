@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T15:06:56Z",
+ "captured_at": "2026-07-20T15:12:26Z",
  "matches": [
-  {
-   "event_id": 35845551,
-   "p1": "Artur Kubiak",
-   "p2": "Mateusz Karpiuk",
-   "p1_norm": "artur kubiak",
-   "p2_norm": "mateusz karpiuk",
-   "open_date": "2026-07-20T15:00:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35845552,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-20T15:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35845565,
    "p1": "Grzegorz Jurowicz",
@@ -30,20 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-20T15:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35845571,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Kazimierz Rybak",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "kazimierz rybak",
-   "open_date": "2026-07-20T15:10:00.000Z",
-   "line": 66.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35845680,
@@ -86,6 +53,17 @@
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-20T15:30:00.000Z",
    "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35845704,
+   "p1": "Jakub Cyndera",
+   "p2": "Adam Staniczek",
+   "p1_norm": "jakub cyndera",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-20T15:35:00.000Z",
+   "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
   }
