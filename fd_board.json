@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T04:54:41Z",
+ "captured_at": "2026-07-20T04:59:13Z",
  "matches": [
   {
    "event_id": 35844342,
@@ -8,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T04:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844344,
@@ -19,9 +19,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T04:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844345,
@@ -31,8 +31,8 @@
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T04:55:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844346,
@@ -41,9 +41,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T04:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844366,
