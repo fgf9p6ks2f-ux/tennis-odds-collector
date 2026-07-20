@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T02:47:38Z",
+ "captured_at": "2026-07-20T02:51:48Z",
  "matches": [
-  {
-   "event_id": 35843896,
-   "p1": "Pawel Chojnacki",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-20T02:35:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35843900,
    "p1": "Pawel Kurek",
@@ -19,9 +8,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "jaroslaw badura",
    "open_date": "2026-07-20T02:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 51.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843901,
@@ -30,7 +19,7 @@
    "p1_norm": "andrzej krezel",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-20T02:45:00.000Z",
-   "line": 73.5,
+   "line": 56.5,
    "over_odds": -115,
    "under_odds": -120
   },
