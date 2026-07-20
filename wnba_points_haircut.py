@@ -57,7 +57,7 @@ def _overs(where="1=1"):
     con = sqlite3.connect(LEDGER)
     con.row_factory = sqlite3.Row
     rows = [dict(r) for r in con.execute(
-        "SELECT pred_date,player,stat,line,odds,elev_avg,season_avg,d_min,d_fga,result "
+        "SELECT pred_date,player,stat,line,odds,elev_avg,season_avg,d_min,d_fga,result,actual "
         "FROM predictions WHERE (side IS NULL OR side='over') AND result IN ('over','under') "
         f"AND ({where})")]
     con.close()
@@ -88,16 +88,47 @@ def points_regime():
     print(f"  SHADOWED, not bet (out-of-band):   {_rec(oob)}   <- the whole loss lives here")
 
 
-def elevation():
-    # residual signal INSIDE the bet set: how big a jump over season avg does the projection demand?
-    pts = [r for r in _overs("stat='points' AND elev_avg IS NOT NULL")
-           if r["d_min"] is not None and 0 <= r["d_min"] <= 8 and r["season_avg"] is not None]
-    print("ELEVATION (proj - season_avg) inside the bet set  [small n — forward hypothesis]")
-    for lo, hi, lbl in [(-99, 3, "elev <3  (marginal)"),
-                        (3, 5, "elev 3-5 (believable)"),
-                        (5, 99, "elev >=5 (model dreaming)")]:
-        g = [r for r in pts if lo <= (r["elev_avg"] - r["season_avg"]) < hi]
-        print(f"  {lbl:26} {_rec(g)}")
+def _player_games(rows):
+    """Collapse laddered rungs to distinct (date,player) games — laddered lines on the same game
+    are ~perfectly correlated, so counting bets (not games) inflates a signal's apparent strength
+    (the '7-1 elevation' was really 4 games, 2 of them one player each). Grade the base rung."""
+    from collections import defaultdict
+    pg = defaultdict(list)
+    for r in rows:
+        pg[(r["pred_date"], r["player"])].append(r)
+    games = []
+    for rs in pg.values():
+        r0 = min(rs, key=lambda r: r["line"])
+        games.append({**r0, "won": (r0["actual"] or 0) > r0["line"]})
+    return games
+
+
+def _grec(gs):
+    w = sum(1 for g in gs if g["won"])
+    return f"{w}-{len(gs)-w} ({w/len(gs)*100:.0f}%)" if gs else "n=0"
+
+
+def hypotheses():
+    # the two competing selection-refinement stories, at DISTINCT PLAYER-GAME level (dedup ladders).
+    rows = [r for r in _overs("stat='points' AND elev_avg IS NOT NULL")
+            if r["d_min"] is not None and 0 <= r["d_min"] <= 8 and r["season_avg"] is not None]
+    games = _player_games(rows)
+    print(f"SELECTION HYPOTHESES [distinct player-games, n={len(games)} — dedup ladders; small!]")
+    print(f"  in-band overall: {_grec(games)}")
+    # H1 (user): role-player dream-jump = low season + big elevation should LOSE
+    dream = [g for g in games if g["season_avg"] < 12 and (g["elev_avg"] - g["season_avg"]) >= 3]
+    estab = [g for g in games if g["season_avg"] >= 12]
+    print(f"  H1 role-player dream (sea<12 & elev>=3): {_grec(dream)}   <- if this WINS, H1 is refuted")
+    print(f"     established (sea>=12):                {_grec(estab)}")
+    # H2 (alt): weak minutes bump = player barely plays more should LOSE
+    weak = [g for g in games if g["d_min"] < 2]
+    strong = [g for g in games if g["d_min"] >= 2]
+    print(f"  H2 weak minutes bump (d_min<2):          {_grec(weak)}   <- if this LOSES, H2 holds")
+    print(f"     real minutes bump (d_min>=2):         {_grec(strong)}")
+    # elevation sweet spot, deduped
+    print("  elevation buckets:  " + "  ".join(
+        f"{lbl} {_grec([g for g in games if lo <= (g['elev_avg']-g['season_avg']) < hi])}"
+        for lo, hi, lbl in [(-99, 3, '<3'), (3, 5, '3-5'), (5, 99, '>=5')]))
 
 
 def haircut_menu():
@@ -120,13 +151,15 @@ def report():
     print("-" * 68)
     points_regime()
     print("-" * 68)
-    elevation()
+    hypotheses()
     print("-" * 68)
     haircut_menu()
     print("=" * 68)
     print("VERDICT: band gate already handles the points leak; haircut is parked.")
-    print("WATCH forward: the moderate-elevation sweet spot (established scorer + real")
-    print("usage jump + believable +3-5 bump) = the user's own winning archetype.")
+    print("H1 (role-player dream-jump loses) is CONTRADICTED so far — role players with")
+    print("big elevations won (2-0). H2 (weak minutes bump loses, 1-2 vs 7-4) is the")
+    print("cleaner watch: a usage bump WITHOUT a minutes bump = coin flip. Both n<15,")
+    print("no live change until the checkpoint confirms one.")
 
 
 if __name__ == "__main__":
