@@ -563,17 +563,17 @@ def _prop_row(r, rungs=None):
     bp = _book_prices(r)
     if bp:
         best_bk, best_dec = bp[0]
-        # BOOK-COLORED ODDS (2026-07-19): FanDuel blue, DraftKings green — the color is the book
-        # tag, reinforced by a small monochrome wordmark. No logo image (cleaner, no emoji-adjacent
-        # branding).
+        # BOOK-COLORED ODDS + LOGO (2026-07-19): FanDuel blue, DraftKings green, with the book's
+        # logo alongside so the source is unmistakable.
         bcls = best_bk if best_bk in ("fd", "dk") else "oth"
-        btag = f'<span class="pbk {bcls}">{best_bk.upper()}</span>'
+        btag = (f'<img class="bklogo" src="book-{best_bk}.png" alt="{best_bk.upper()}">'
+                if best_bk in ("fd", "dk") else f'<span class="pbk oth">{best_bk.upper()}</span>')
         odds_html = f'<span class="podds {bcls}">{_am(best_dec)}</span>{btag}'
         if len(bp) > 1:
             ctx.append(f'{bp[1][0].upper()} {_am(bp[1][1])}')
     else:
         best_dec = float(r["odds"])
-        odds_html = f'<span class="podds fd">{_am(best_dec)}</span><span class="pbk fd">FD</span>'
+        odds_html = f'<span class="podds fd">{_am(best_dec)}</span><img class="bklogo" src="book-fd.png" alt="FD">'
     ctxline = f'<div class="pctx">{" · ".join(ctx)}</div>' if ctx else ""
     dk = html.escape(f"{r.get('pred_date') or ''}|{r['player']}|{r['stat']}|{r['line']:g}")
     # CONTRA tag: when most recent-form windows and/or the same-lineup comps lean AGAINST the
@@ -797,7 +797,6 @@ def _tracker_panel(wnba_rec, tt_json):
     else:
         out += ('<div class="tcard"><div class="thead">🏓 Table tennis</div>'
                 '<div class="tsub">connecting… (needs the tt-elite bridge)</div></div>')
-    out += _gg_tracker_html()                              # GG esports paper record (per sport)
     # INJURY-TIMING CLV — the real proof-of-edge: does the line move toward our read from the moment
     # we flag the injury (open) to the close? Accumulates as slates settle; the verdict is the green
     # light to scale real money.
@@ -1001,124 +1000,6 @@ def _tt_panel(data):
     leagues are HIDDEN from the board per the user — they still get flagged + logged in the
     background (paper ledger + the per-league tracker), just not shown as bet cards here."""
     return '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
-
-
-# GG record epoch = the validated-rule go-live (nba OVER-only 0.70/n10, fifa both 0.75/n15,
-# nfl OVER-only 0.70/n15; un-benched paper-first 2026-07-16). Bets before this ran the old
-# symmetric rule and are excluded from the tracker — same treatment as the TT Elite reset.
-GG_EPOCH = "2026-07-16T08:30:00"
-_GG_SPORTS = {"esoccer": ("fifa", "Esoc"), "ebasketball": ("nba", "Ebb"),
-              "efootball": ("nfl", "Efb")}
-
-
-def _gg_open_bets():
-    """Open GG paper flags with a future start: [(start_dt, sport, p1, p2, side, line, odds)].
-    From bet_ledger (flags land there at FD's real price)."""
-    f = HERE / "bet_ledger.sqlite"
-    if not f.exists():
-        return []
-    now = dt.datetime.now(dt.timezone.utc)
-    out = []
-    try:
-        con = sqlite3.connect(f"file:{f}?mode=ro", uri=True)
-        rows = con.execute(
-            "SELECT sport, player, side, line, odds_taken, start_time FROM bets "
-            "WHERE sport IN ('esoccer','ebasketball','efootball') AND status='open'").fetchall()
-        con.close()
-    except sqlite3.Error:
-        return []
-    for sport, player, side, line, odds, start in rows:
-        try:
-            st = dt.datetime.fromisoformat(str(start).replace(".000Z", "Z").replace("Z", "+00:00"))
-        except ValueError:
-            continue
-        if st <= now or " v " not in (player or ""):
-            continue
-        p1, p2 = player.split(" v ", 1)
-        out.append((st, sport, p1, p2, side, line, odds))
-    return sorted(out, key=lambda r: r[0])
-
-
-def _gg_h2h(code, p1, p2, line, side):
-    """Pair record + hit% oriented to the flagged side at the flagged line, from gg.sqlite."""
-    try:
-        con = sqlite3.connect(f"file:{HERE / 'gg.sqlite'}?mode=ro", uri=True)
-        tots = [r[0] for r in con.execute(
-            "SELECT total FROM gg_matches WHERE sport=? AND total IS NOT NULL "
-            "AND ((p1=? AND p2=?) OR (p1=? AND p2=?))", (code, p1, p2, p2, p1))]
-        con.close()
-    except sqlite3.Error:
-        return ""
-    n = len(tots)
-    if not n:
-        return ""
-    ov = sum(1 for t in tots if t > line)
-    wins = ov if side == "over" else n - ov
-    return f'<span class="ttrec">{wins}-{n - wins}</span> · {round(wins / n * 100)}% {side}'
-
-
-def _gg_panel():
-    """GG esports tab — open paper flags (validated rule: nba/nfl OVER-only 70%, fifa both 75%),
-    each with the FanDuel line + the pair's H2H record at that line. Paper-first: flags log to
-    the ledger and grade automatically; no phone alerts until the record validates."""
-    bets = _gg_open_bets()
-    if not bets:
-        return ('<div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets</h3>'
-                '<div class="ttempty">No open GG flags right now — new ones land every '
-                '~30 min as FanDuel prices upcoming matches (24/7).</div></div>')
-    rows = ""
-    for st, sport, p1, p2, side, line, odds in bets:
-        code, tag = _GG_SPORTS.get(sport, (None, sport))
-        rec = _gg_h2h(code, p1, p2, line, side) if code else ""
-        am = round((odds - 1) * 100) if odds >= 2 else round(-100 / (odds - 1))
-        rows += (f'<div class="ttrow tflat"><div class="ttmain">'
-                 f'<b>{html.escape(p1)}</b> v {html.escape(p2)}'
-                 f'<span class="ttpick">{side.upper()} {line:g}</span></div>'
-                 f'<div class="ttsub">{tag} · {st.astimezone(MT).strftime("%-I:%M %p")} MT'
-                 f'{(" · " + rec) if rec else ""} · {am:+d}</div></div>')
-    return (f'<div class="card"><h3 class="ttlg">🎮 GG League · Flagged Bets'
-            f'<span class="ttcnt">{len(bets)}</span></h3>{rows}'
-            f'<div class="ttfoot">bet the highlighted side at that FanDuel line · '
-            f'record &amp; hit% = the pair\'s H2H at that line · paper</div></div>')
-
-
-def _gg_tracker_html():
-    """Tracker card: per-sport GG record since the rule go-live, graded at real FD odds."""
-    f = HERE / "bet_ledger.sqlite"
-    if not f.exists():
-        return ""
-    try:
-        con = sqlite3.connect(f"file:{f}?mode=ro", uri=True)
-        rows = con.execute(
-            "SELECT sport, COALESCE(SUM(result='W'),0), COALESCE(SUM(result='L'),0), "
-            "COALESCE(SUM(CASE WHEN result IN ('W','L') THEN pnl_units ELSE 0 END),0), "
-            "COALESCE(SUM(status='open'),0) FROM bets "
-            "WHERE sport IN ('esoccer','ebasketball','efootball') AND placed_at >= ? "
-            "GROUP BY sport ORDER BY sport", (GG_EPOCH,)).fetchall()
-        con.close()
-    except sqlite3.Error:
-        return ""
-    if not rows:
-        return ('<div class="tcard"><div class="thead">🎮 GG esports '
-                '<span class="tsh">paper · since 7/16</span></div>'
-                '<div class="tsub">record starts as the first flags settle (validated rule: '
-                'nba/nfl over-only 70% · fifa 75%)</div></div>')
-    NAME = {"esoccer": "eSoccer", "ebasketball": "eBasketball", "efootball": "eNFL"}
-    trows, pend = "", 0
-    for sport, w, l, u, op in rows:
-        pend += op
-        n = w + l
-        hit = f"{w / n * 100:.0f}%" if n else "—"
-        ucls = "up" if u > 0 else ("down" if u < 0 else "")
-        trows += (f'<div class="ttrkrow"><span>{NAME.get(sport, sport)}</span>'
-                  f'<span>{w}-{l}</span><span>{hit}</span>'
-                  f'<span class="{ucls}">{u:+.1f}u</span></div>')
-    return (f'<div class="tcard"><div class="thead">🎮 GG esports '
-            f'<span class="tsh">paper · since 7/16</span></div>'
-            f'<div class="ttrk"><div class="ttrkrow ttrkhd"><span>sport</span><span>W-L</span>'
-            f'<span>hit</span><span>units</span></div>{trows}</div>'
-            f'<div class="tsub">graded at real FD odds · {pend} pending · '
-            f'nba/nfl over-only 70% · fifa 75% · alerts off until validated</div></div>')
 
 
 _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
@@ -1498,7 +1379,6 @@ def build():
     wl_html = _watchlist_html({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows}, tips)
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
-    gg_html = _gg_panel()
     tracker_html = _tracker_panel((w, l, u), tt_json)
     # Client-side LIVE pre-match totals: refetch fd_board.json (the VM's FanDuel.ca board) from the
     # raw URL every 60s and re-render #tt-totals, so the totals update on their own between the
@@ -1545,9 +1425,6 @@ def build():
                  '<path d="M18.8 5.2C16 8 15 12 15 12s1 4 3.8 6.8"/></svg>')
     ICON_TT = (f'<svg {_ic}><circle cx="9.6" cy="9.6" r="5.6"/><path d="M13.6 13.6l4.6 5"/>'
                '<circle cx="16.4" cy="6.6" r="1.35" fill="currentColor" stroke="none"/></svg>')
-    ICON_GG = (f'<svg {_ic}><path d="M7.5 9h9a4 4 0 0 1 3.95 3.35l.55 3.3a1.9 1.9 0 0 1-3.3 1.6L16 15.5H8'
-               'l-1.7 1.75a1.9 1.9 0 0 1-3.3-1.6l.55-3.3A4 4 0 0 1 7.5 9Z"/>'
-               '<path d="M7 11.5v2.2M5.9 12.6h2.2M15.6 12h.01M17.2 13.4h.01"/></svg>')
     ICON_TRK = f'<svg {_ic}><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>'
     doc = f"""<!doctype html><html lang="en"><head>
 {_live_head}
@@ -1740,10 +1617,12 @@ def build():
   .prop {{ padding:13px 0 5px; cursor:pointer; border-top:1px solid #14181f; margin-top:9px; }}
   .pblk .prop:first-of-type {{ border-top:0; margin-top:8px; }}
   .prow {{ display:flex; align-items:center; gap:7px; }}
-  .pind {{ width:27px; height:27px; border-radius:50%; display:grid; place-items:center;
-    font-size:13px; font-weight:800; border:1.5px solid; flex:none; }}
-  .pind.o {{ color:#57b389; border-color:#57b38944; }}
-  .pind.u {{ color:#6a9fe8; border-color:#6a9fe844; }}
+  /* Over/Under marker — filled tint + bold bright letter (was a thin ring around the letter, which
+     read as a confusing double-O) */
+  .pind {{ width:26px; height:26px; border-radius:8px; display:grid; place-items:center;
+    font-size:15px; font-weight:900; flex:none; }}
+  .pind.o {{ color:#5ad98a; background:rgba(90,217,138,.16); }}
+  .pind.u {{ color:#74a8ef; background:rgba(116,168,239,.16); }}
   .plno {{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
           white-space:nowrap; }}
   .plno.rng {{ font-size:16px; }}
@@ -1943,7 +1822,7 @@ def build():
   }}
   .prop {{ transition:background .15s var(--easesoft); border-radius:10px; }}
   .prop:active {{ background:rgba(255,255,255,.045); }}
-  .pedge.hi {{ color:var(--up); }} .pind.o {{ border-color:rgba(67,224,138,.5); color:var(--up); }}
+  .pedge.hi {{ color:var(--up); }}
   .pmark {{ transition:transform .16s var(--ease), color .2s var(--easesoft); }}
   .pmark:active {{ transform:scale(1.35); }}
   .pmark.on {{ color:var(--up); }}
@@ -2005,7 +1884,6 @@ def build():
     <div class="tabthumb" id="tabthumb"></div>
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">{ICON_WNBA}<span>WNBA</span></div>
     <div class="tab" data-tab="tt" onclick="showTab('tt')">{ICON_TT}<span>TT</span></div>
-    <div class="tab" data-tab="gg" onclick="showTab('gg')">{ICON_GG}<span>GG</span></div>
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">{ICON_TRK}<span>Tracker</span></div>
   </div>
   <div class="panel" id="wnba">
@@ -2021,10 +1899,6 @@ def build():
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>
     {tt_html}
-  </div>
-  <div class="panel hidden" id="gg">
-    <h2>GG esports · paper flags</h2>
-    {gg_html}
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record</h2>
@@ -2092,7 +1966,7 @@ def build():
       const openK = [...document.querySelectorAll('.prop')].filter(p =>
         p.nextElementSibling && p.nextElementSibling.classList.contains('open')).map(p => p.dataset.k);
       let touched = false, wnba = false;
-      ['wnba','tt','gg','tracker'].forEach(id => {{
+      ['wnba','tt','tracker'].forEach(id => {{
         const nw = doc.getElementById(id), cur = document.getElementById(id);
         if (nw && cur && nw.innerHTML !== cur.innerHTML) {{
           cur.innerHTML = nw.innerHTML; touched = true; if (id === 'wnba') wnba = true;
