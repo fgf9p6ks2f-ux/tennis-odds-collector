@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T16:52:38Z",
+ "captured_at": "2026-07-20T16:58:24Z",
  "matches": [
-  {
-   "event_id": 35846133,
-   "p1": "Oskar Jadach",
-   "p2": "Patryk Mecik",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "patryk mecik",
-   "open_date": "2026-07-20T16:40:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35846177,
    "p1": "Dariusz Maszczynski",
@@ -19,9 +8,20 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-20T16:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 50.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35846181,
+   "p1": "Mateusz Baran",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "mateusz baran",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-20T16:55:00.000Z",
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846182,
@@ -30,20 +30,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-20T16:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35846183,
-   "p1": "Artur Gromek",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "artur gromek",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-20T16:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846233,
@@ -63,9 +52,31 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-20T17:10:00.000Z",
-   "line": 75.5,
+   "line": 71.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35846264,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-20T17:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35846265,
+   "p1": "Jacek Zelezik",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "jacek zelezik",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-20T17:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
