@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T03:09:07Z",
+ "captured_at": "2026-07-20T03:13:39Z",
  "matches": [
   {
    "event_id": 35843905,
@@ -8,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T03:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843906,
@@ -19,9 +19,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T03:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843907,
@@ -30,9 +30,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T03:00:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843908,
@@ -41,8 +41,8 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-20T03:05:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
+   "line": 80.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -52,9 +52,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T03:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843946,
