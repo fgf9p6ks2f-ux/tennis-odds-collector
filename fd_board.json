@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T17:52:57Z",
+ "captured_at": "2026-07-20T17:58:43Z",
  "matches": [
   {
    "event_id": 35846311,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "artur gromek",
    "open_date": "2026-07-20T17:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35846316,
@@ -19,9 +19,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "wojciech gluszek",
    "open_date": "2026-07-20T17:45:00.000Z",
-   "line": 85.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 69.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35846334,
@@ -30,9 +30,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-20T17:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846346,
@@ -77,6 +77,28 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35846379,
+   "p1": "Grzegorz Marud",
+   "p2": "Robert Kostepski",
+   "p1_norm": "grzegorz marud",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-20T18:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35846380,
+   "p1": "Dariusz Maszczynski",
+   "p2": "Adam Staniczek",
+   "p1_norm": "dariusz maszczynski",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-20T18:25:00.000Z",
+   "line": 69.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
