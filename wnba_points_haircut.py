@@ -57,7 +57,7 @@ def _overs(where="1=1"):
     con = sqlite3.connect(LEDGER)
     con.row_factory = sqlite3.Row
     rows = [dict(r) for r in con.execute(
-        "SELECT pred_date,player,stat,line,odds,elev_avg,season_avg,d_min,d_fga,result,actual "
+        "SELECT pred_date,player,stat,line,odds,elev_avg,season_avg,d_min,d_fga,proj_min,result,actual "
         "FROM predictions WHERE (side IS NULL OR side='over') AND result IN ('over','under') "
         f"AND ({where})")]
     con.close()
@@ -108,27 +108,32 @@ def _grec(gs):
     return f"{w}-{len(gs)-w} ({w/len(gs)*100:.0f}%)" if gs else "n=0"
 
 
+def _base_min(g):
+    # baseline ("with-star") minutes ≈ projected minutes − the WOWY minutes bump. High = consistent
+    # starter (minutes already capped, can't grow); low = rotation player with room to expand.
+    return (g["proj_min"] or 0) - (g["d_min"] or 0)
+
+
 def hypotheses():
-    # the two competing selection-refinement stories, at DISTINCT PLAYER-GAME level (dedup ladders).
+    # THE validated story (2026-07-20, user): the edge is ROLE EXPANSION, not scoring average. A
+    # consistent starter's minutes are capped, so an injury only adds a few shots and the projection
+    # overreaches; a rotation player gets BOTH more minutes and more shots. Discriminator = baseline
+    # minutes + both-bumps. Tracked at DISTINCT PLAYER-GAME level (dedup ladders). Still small — n<15.
     rows = [r for r in _overs("stat='points' AND elev_avg IS NOT NULL")
             if r["d_min"] is not None and 0 <= r["d_min"] <= 8 and r["season_avg"] is not None]
     games = _player_games(rows)
-    print(f"SELECTION HYPOTHESES [distinct player-games, n={len(games)} — dedup ladders; small!]")
+    print(f"ROLE-EXPANSION HYPOTHESIS [distinct player-games, n={len(games)} — small, forward-tracked]")
     print(f"  in-band overall: {_grec(games)}")
-    # H1 (user): role-player dream-jump = low season + big elevation should LOSE
-    dream = [g for g in games if g["season_avg"] < 12 and (g["elev_avg"] - g["season_avg"]) >= 3]
-    estab = [g for g in games if g["season_avg"] >= 12]
-    print(f"  H1 role-player dream (sea<12 & elev>=3): {_grec(dream)}   <- if this WINS, H1 is refuted")
-    print(f"     established (sea>=12):                {_grec(estab)}")
-    # H2 (alt): weak minutes bump = player barely plays more should LOSE
-    weak = [g for g in games if g["d_min"] < 2]
-    strong = [g for g in games if g["d_min"] >= 2]
-    print(f"  H2 weak minutes bump (d_min<2):          {_grec(weak)}   <- if this LOSES, H2 holds")
-    print(f"     real minutes bump (d_min>=2):         {_grec(strong)}")
-    # elevation sweet spot, deduped
-    print("  elevation buckets:  " + "  ".join(
-        f"{lbl} {_grec([g for g in games if lo <= (g['elev_avg']-g['season_avg']) < hi])}"
-        for lo, hi, lbl in [(-99, 3, '<3'), (3, 5, '3-5'), (5, 99, '>=5')]))
+    starter = [g for g in games if _base_min(g) >= 24]
+    rot = [g for g in games if _base_min(g) < 24]
+    print(f"  consistent starter (baseline >=24 min, can't grow): {_grec(starter)}   <- over-projection risk")
+    print(f"  rotation player   (baseline <24 min, room to grow): {_grec(rot)}")
+    both = [g for g in games if (g["d_min"] or 0) >= 2 and (g["d_fga"] or 0) >= 1]
+    print(f"  both bumps (minutes +2 AND usage +1):               {_grec(both)}")
+    sweet = [g for g in games if _base_min(g) < 24 and (g["d_min"] or 0) >= 2 and (g["d_fga"] or 0) >= 1]
+    print(f"  ARCHETYPE: rotation + both bumps:                   {_grec(sweet)}  ({', '.join(g['player'].split()[-1] for g in sweet)})")
+    # NOTE prior framings that DIED: 'role-player dream-jump by scoring avg' was contradicted (role
+    # players won 2-0); the 'elevation 3-5 sweet spot' was a laddering illusion (7-1 -> 4-1 deduped).
 
 
 def haircut_menu():
@@ -156,10 +161,11 @@ def report():
     haircut_menu()
     print("=" * 68)
     print("VERDICT: band gate already handles the points leak; haircut is parked.")
-    print("H1 (role-player dream-jump loses) is CONTRADICTED so far — role players with")
-    print("big elevations won (2-0). H2 (weak minutes bump loses, 1-2 vs 7-4) is the")
-    print("cleaner watch: a usage bump WITHOUT a minutes bump = coin flip. Both n<15,")
-    print("no live change until the checkpoint confirms one.")
+    print("REAL SIGNAL = role expansion. Consistent starters (baseline >=24 min) get")
+    print("over-projected (minutes capped, injury adds only shots) and go ~4-5; rotation")
+    print("players with BOTH a minutes and usage bump go 4-0. Discriminator is baseline")
+    print("minutes + both-bumps, NOT scoring average. Still n<15 — tracked forward, no")
+    print("live ranking change until the checkpoint confirms.")
 
 
 if __name__ == "__main__":
