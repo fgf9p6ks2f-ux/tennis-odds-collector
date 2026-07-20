@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T04:40:21Z",
+ "captured_at": "2026-07-20T04:44:53Z",
  "matches": [
-  {
-   "event_id": 35844329,
-   "p1": "Jakub Pruszkowski",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "jakub pruszkowski",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-20T04:30:00.000Z",
-   "line": 51.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35844330,
    "p1": "Krzysztof Kotyl",
@@ -19,9 +8,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-20T04:30:00.000Z",
-   "line": 78.5,
+   "line": 94.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35844336,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-20T04:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 59.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844342,
@@ -88,6 +77,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35844370,
+   "p1": "Witold Stechly",
+   "p2": "Michal Machelski",
+   "p1_norm": "witold stechly",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-20T05:10:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
