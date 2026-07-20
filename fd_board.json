@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T06:59:55Z",
+ "captured_at": "2026-07-20T07:04:30Z",
  "matches": [
-  {
-   "event_id": 35844445,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Grzegorz Jurowicz",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "grzegorz jurowicz",
-   "open_date": "2026-07-20T06:45:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844446,
    "p1": "Dariusz Maszczynski",
@@ -19,7 +8,7 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "witold stechly",
    "open_date": "2026-07-20T06:45:00.000Z",
-   "line": 73.5,
+   "line": 89.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,7 +19,7 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-20T06:50:00.000Z",
-   "line": 81.5,
+   "line": 90.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844450,
@@ -52,9 +41,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844451,
@@ -63,9 +52,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844456,
@@ -130,6 +119,17 @@
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T07:20:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35844474,
+   "p1": "Oskar Jadach",
+   "p2": "Wiktor Ptak",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "wiktor ptak",
+   "open_date": "2026-07-20T07:30:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
