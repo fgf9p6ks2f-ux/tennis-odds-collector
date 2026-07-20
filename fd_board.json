@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T04:50:06Z",
+ "captured_at": "2026-07-20T04:54:41Z",
  "matches": [
-  {
-   "event_id": 35844330,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-20T04:30:00.000Z",
-   "line": 97.5,
-   "over_odds": -190,
-   "under_odds": 135
-  },
-  {
-   "event_id": 35844336,
-   "p1": "Grzegorz Marud",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-20T04:40:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844342,
    "p1": "Janus Slawomir",
@@ -30,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T04:50:00.000Z",
-   "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844344,
