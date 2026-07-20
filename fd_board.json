@@ -1,16 +1,16 @@
 {
- "captured_at": "2026-07-20T18:30:43Z",
+ "captured_at": "2026-07-20T18:37:30Z",
  "matches": [
   {
-   "event_id": 35846379,
-   "p1": "Grzegorz Marud",
-   "p2": "Robert Kostepski",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-20T18:20:00.000Z",
-   "line": 55.5,
-   "over_odds": 115,
-   "under_odds": -160
+   "event_id": 35846386,
+   "p1": "Jacek Zelezik",
+   "p2": "Mateusz Baran",
+   "p1_norm": "jacek zelezik",
+   "p2_norm": "mateusz baran",
+   "open_date": "2026-07-20T18:30:00.000Z",
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35846387,
@@ -19,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "wojciech gluszek",
    "open_date": "2026-07-20T18:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846388,
@@ -30,9 +30,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "artur gromek",
    "open_date": "2026-07-20T18:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846490,
@@ -53,8 +53,8 @@
    "p2_norm": "rafal niemiec",
    "open_date": "2026-07-20T18:45:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35846505,
@@ -63,9 +63,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-20T18:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35846506,
@@ -75,8 +75,8 @@
    "p2_norm": "michal krutak",
    "open_date": "2026-07-20T18:55:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
