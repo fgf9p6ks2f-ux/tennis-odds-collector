@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T11:51:59Z",
+ "captured_at": "2026-07-20T11:57:33Z",
  "matches": [
   {
    "event_id": 35844889,
@@ -8,9 +8,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T11:40:00.000Z",
-   "line": 92.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 95.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35844891,
@@ -19,9 +19,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "miroslav sklensky",
    "open_date": "2026-07-20T11:45:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 50.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35844895,
@@ -30,7 +30,7 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-20T11:50:00.000Z",
-   "line": 79.5,
+   "line": 88.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +41,7 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-20T11:50:00.000Z",
-   "line": 73.5,
+   "line": 74.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -52,9 +52,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-20T11:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844926,
@@ -99,6 +99,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844945,
+   "p1": "Oskar Jadach",
+   "p2": "Grzegorz Wichowski",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "grzegorz wichowski",
+   "open_date": "2026-07-20T12:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
