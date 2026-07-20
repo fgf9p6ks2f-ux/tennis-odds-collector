@@ -467,6 +467,17 @@ def prop_edges(player, log, proj_min, w=None, vacated=None, ctx=None, out_logs=N
             # (tolerate small negatives — early-season WOWY samples are thin/noisy).
             if side == "over" and d_stat is not None and d_stat < -1.0 and not use_vol:
                 continue
+            # GUARD-REBOUND TRAP (2026-07-20, user + 53-projection backtest): in the WNBA a guard's
+            # rebounds at a <=3.5 line are noise — they're rarely in prime rebounding spots, so the
+            # board depends on where the ball bounces, not on the vacated role. Graded guard rebound
+            # projections cleared o3.5 just 33% (o2.5 46%) even when the model projected an over, and a
+            # guard projects 5+ reb ~1/53. Skip a guard's rebound OVER at <=3.5 unless it genuinely
+            # projects 5+ (the user's "insane evidence" bar). Assists are UNAFFECTED (those aren't luck).
+            # WNBA-SPECIFIC — do NOT port to the NBA, where guard-forwards (Luka/Dončić) average 7-8 reb.
+            _pg = (pos or "").strip().upper()
+            if (side == "over" and stat == "rebounds" and elev_avg < 5 and line <= 3.5
+                    and (_pg.startswith("G") or _pg in ("PG", "SG", "GF"))):
+                continue
             # CONVICTION gate: an injury-driven OVER only pays when the role actually EXPANDS — more
             # minutes or more shot volume. A flat/negative WOWY driver = a coin-flip star-over that
             # regresses to the mean (Stewart o18.5 w/ Fiebich out: usage +0.1, minutes -3.5 -> lost).
