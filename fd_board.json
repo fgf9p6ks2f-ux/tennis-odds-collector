@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T04:17:07Z",
+ "captured_at": "2026-07-20T04:21:33Z",
  "matches": [
   {
    "event_id": 35844153,
@@ -9,8 +9,8 @@
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T04:00:00.000Z",
    "line": 87.5,
-   "over_odds": 105,
-   "under_odds": -145
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844302,
@@ -19,9 +19,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-20T04:10:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844304,
@@ -30,7 +30,7 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "rafal idaczyk",
    "open_date": "2026-07-20T04:10:00.000Z",
-   "line": 72.5,
+   "line": 84.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -41,9 +41,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "andrzej krezel",
    "open_date": "2026-07-20T04:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844315,
