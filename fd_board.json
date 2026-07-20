@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-20T03:18:45Z",
+ "captured_at": "2026-07-20T03:22:56Z",
  "matches": [
-  {
-   "event_id": 35843905,
-   "p1": "Tibor Spanik",
-   "p2": "Szymon Sporek",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-20T03:00:00.000Z",
-   "line": 82.5,
-   "over_odds": -155,
-   "under_odds": 110
-  },
-  {
-   "event_id": 35843908,
-   "p1": "Mariusz Baron",
-   "p2": "Grzegorz Marud",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "grzegorz marud",
-   "open_date": "2026-07-20T03:05:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35843911,
-   "p1": "Michal Wolny",
-   "p2": "Jerzy Michalik",
-   "p1_norm": "michal wolny",
-   "p2_norm": "jerzy michalik",
-   "open_date": "2026-07-20T03:10:00.000Z",
-   "line": 57.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35843946,
    "p1": "Grzegorz Poliniewicz",
@@ -53,8 +20,8 @@
    "p2_norm": "artur sobel",
    "open_date": "2026-07-20T03:25:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35843948,
