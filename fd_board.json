@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T07:09:47Z",
+ "captured_at": "2026-07-20T07:14:21Z",
  "matches": [
   {
    "event_id": 35844447,
@@ -8,31 +8,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-20T06:50:00.000Z",
-   "line": 94.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35844449,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 75.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
-  {
-   "event_id": 35844450,
-   "p1": "Tibor Spanik",
-   "p2": "Patrik Klos",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "patrik klos",
-   "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 91.5,
-   "over_odds": -135,
-   "under_odds": -105
+   "line": 108.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844451,
@@ -41,9 +19,9 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-20T06:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35844456,
@@ -52,9 +30,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T07:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844457,
@@ -63,9 +41,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T07:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844462,
@@ -132,6 +110,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844481,
+   "p1": "Michal Minda",
+   "p2": "Kacper Szurlej",
+   "p1_norm": "michal minda",
+   "p2_norm": "kacper szurlej",
+   "open_date": "2026-07-20T07:40:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
