@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T19:13:25Z",
+ "captured_at": "2026-07-20T19:17:31Z",
  "matches": [
   {
    "event_id": 35846520,
@@ -8,9 +8,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T19:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 65.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846521,
@@ -19,7 +19,7 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-20T19:10:00.000Z",
-   "line": 63.5,
+   "line": 58.5,
    "over_odds": -120,
    "under_odds": -115
   },
