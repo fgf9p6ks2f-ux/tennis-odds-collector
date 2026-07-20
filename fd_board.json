@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T16:58:24Z",
+ "captured_at": "2026-07-20T17:04:05Z",
  "matches": [
-  {
-   "event_id": 35846177,
-   "p1": "Dariusz Maszczynski",
-   "p2": "Kazimierz Rybak",
-   "p1_norm": "dariusz maszczynski",
-   "p2_norm": "kazimierz rybak",
-   "open_date": "2026-07-20T16:50:00.000Z",
-   "line": 50.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35846181,
-   "p1": "Mateusz Baran",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-20T16:55:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35846182,
    "p1": "Wojciech Gluszek",
@@ -30,9 +8,20 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-20T16:55:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35846183,
+   "p1": "Artur Gromek",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "artur gromek",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-20T16:55:00.000Z",
+   "line": 60.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35846233,
