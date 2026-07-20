@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T00:17:08Z",
+ "captured_at": "2026-07-20T00:24:46Z",
  "matches": [
-  {
-   "event_id": 35843745,
-   "p1": "Mariusz Baron",
-   "p2": "Wojciech Urban",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-19T23:55:00.000Z",
-   "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35843748,
    "p1": "Andriej Fomin",
@@ -19,9 +8,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-20T00:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 103.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843749,
@@ -30,9 +19,9 @@
    "p1_norm": "adam linek",
    "p2_norm": "gracjan kesik",
    "open_date": "2026-07-20T00:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 96.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843750,
@@ -41,20 +30,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T00:20:00.000Z",
-   "line": 74.5,
+   "line": 72.5,
    "over_odds": -120,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35843751,
-   "p1": "Grzegorz Marud",
-   "p2": "Andrzej Krezel",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "andrzej krezel",
-   "open_date": "2026-07-20T00:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "under_odds": -115
   },
   {
    "event_id": 35843754,
