@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T15:24:36Z",
+ "captured_at": "2026-07-20T15:30:12Z",
  "matches": [
   {
    "event_id": 35845680,
@@ -8,9 +8,9 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-20T15:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 58.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35845681,
@@ -19,9 +19,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T15:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35845682,
@@ -30,9 +30,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-20T15:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35845693,
@@ -41,9 +41,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-20T15:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35845704,
@@ -77,6 +77,17 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35845759,
+   "p1": "Wiktor Ptak",
+   "p2": "Patryk Mecik",
+   "p1_norm": "wiktor ptak",
+   "p2_norm": "patryk mecik",
+   "open_date": "2026-07-20T15:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
