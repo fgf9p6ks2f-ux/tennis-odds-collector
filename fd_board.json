@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T12:31:42Z",
+ "captured_at": "2026-07-20T12:39:38Z",
  "matches": [
-  {
-   "event_id": 35844936,
-   "p1": "Artur Sobel",
-   "p2": "Dominik Solilo",
-   "p1_norm": "artur sobel",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-20T12:15:00.000Z",
-   "line": 92.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35844945,
    "p1": "Oskar Jadach",
@@ -19,9 +8,9 @@
    "p1_norm": "oskar jadach",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-20T12:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 86.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35844951,
@@ -30,9 +19,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T12:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 88.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35844955,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "miroslav sklensky",
    "open_date": "2026-07-20T12:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844961,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-20T12:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35844962,
@@ -86,8 +75,41 @@
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T12:55:00.000Z",
    "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35845336,
+   "p1": "Patrik Klos",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "patrik klos",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-20T13:00:00.000Z",
+   "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35845353,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Krzysztof Hetnar",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "krzysztof hetnar",
+   "open_date": "2026-07-20T13:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35845354,
+   "p1": "Kamil Rudomina",
+   "p2": "Artur Sobel",
+   "p1_norm": "kamil rudomina",
+   "p2_norm": "artur sobel",
+   "open_date": "2026-07-20T13:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
