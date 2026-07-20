@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T11:07:04Z",
+ "captured_at": "2026-07-20T11:12:21Z",
  "matches": [
   {
    "event_id": 35844823,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-20T10:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35844834,
@@ -19,7 +19,7 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T11:00:00.000Z",
-   "line": 81.5,
+   "line": 73.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +30,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-20T11:00:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844837,
@@ -41,9 +41,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-20T11:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844853,
