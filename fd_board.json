@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T01:30:22Z",
+ "captured_at": "2026-07-20T01:35:02Z",
  "matches": [
-  {
-   "event_id": 35843810,
-   "p1": "Pawel Kurek",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-20T01:10:00.000Z",
-   "line": 97.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35843825,
    "p1": "Zbigniew Nocun",
@@ -19,9 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-20T01:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35843826,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-20T01:30:00.000Z",
-   "line": 78.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 73.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35843840,
@@ -66,6 +55,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843873,
+   "p1": "Jakub Jesiek",
+   "p2": "Sebastian Juzek",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "sebastian juzek",
+   "open_date": "2026-07-20T02:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
