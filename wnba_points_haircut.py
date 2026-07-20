@@ -150,6 +150,17 @@ def haircut_menu():
             print(f"    {name:>6} kept {_rec(kept)}")
 
 
+def selected_by_baseline():
+    # THE RIGHT POPULATION (user's correction): not every projection, only plays the model actually
+    # SELECTED & bet (all stats), split by baseline minutes, at the real-bet (line-vs-actual) level.
+    rows = _overs("proj_min IS NOT NULL AND d_min IS NOT NULL")
+    b = lambda r: (r["proj_min"] or 0) - (r["d_min"] or 0)
+    print(f"SELECTED & BET plays by BASELINE MINUTES  [all stats, n={len(rows)} — the right population]")
+    for lbl, lo, hi in [("rotation <20", 0, 20), ("tweener 20-24", 20, 24), ("starter >=24", 24, 99)]:
+        print(f"  {lbl:14} {_rec([r for r in rows if lo <= b(r) < hi])}")
+    print("  => baseline minutes is a WASH at the bet level (rotation ~53% == starter ~52%).")
+
+
 def projection_bias():
     # THE LARGER, HONEST SAMPLE: wnba_proj_log grades proj-vs-actual for EVERY projection (incl.
     # never-bet), ~110 rows vs 14 bet games. It settled the role-expansion debate: LOW-baseline
@@ -184,6 +195,8 @@ def report():
     per_prop()
     print("-" * 68)
     points_regime()
+    print("-" * 68)
+    selected_by_baseline()
     print("-" * 68)
     projection_bias()
     print("-" * 68)
