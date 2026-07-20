@@ -161,6 +161,36 @@ def selected_by_baseline():
     print("  => baseline minutes is a WASH at the bet level (rotation ~53% == starter ~52%).")
 
 
+def guard_rebound_watch():
+    # user's hard-won filter (2026-07-20): guard rebounds at <=3.5 lines are a trap unless the guard
+    # genuinely projects 5+ rebounds with the player out. Bigger sample (proj_log guard rebound
+    # projections, bet or not) strongly agrees. Tracked forward so the bet record grows.
+    plog = HERE / "wnba_proj_log.sqlite"
+    if not plog.exists():
+        return
+    con = sqlite3.connect(plog)
+    con.row_factory = sqlite3.Row
+    pos = {r["player"]: r["pos"] for r in con.execute("SELECT DISTINCT player,pos FROM projections WHERE pos IS NOT NULL")}
+    gr = [dict(r) for r in con.execute("SELECT proj_reb,actual_reb FROM projections WHERE pos='G' AND actual_reb IS NOT NULL AND proj_reb IS NOT NULL")]
+    con.close()
+    print(f"GUARD-REBOUND WATCH  [user filter: avoid <=3.5 unless guard projects 5+]")
+    for ln in (2.5, 3.5):
+        trig = [r for r in gr if r["proj_reb"] > ln]
+        c = sum(1 for r in trig if r["actual_reb"] > ln)
+        print(f"  proj_log o{ln}: model projects over on {len(trig)}/{len(gr)} guards, cleared {c}/{len(trig)} "
+              f"({c/len(trig)*100:.0f}%)" if trig else f"  proj_log o{ln}: n=0")
+    hi = sum(1 for r in gr if r["proj_reb"] >= 5)
+    print(f"  guards ever projected 5+ reb: {hi}/{len(gr)} (the user's bet-worthy bar — ~never)")
+    # our ACTUAL bet record on guard rebounds <=3.5 (grows as we bet)
+    lc = sqlite3.connect(LEDGER)
+    lc.row_factory = sqlite3.Row
+    reb = [dict(r) for r in lc.execute("SELECT player,line,odds,result FROM predictions "
+           "WHERE stat='rebounds' AND (side IS NULL OR side='over') AND result IN ('over','under') AND line<=3.5")]
+    lc.close()
+    gb = [r for r in reb if (pos.get(r["player"]) or "").startswith("G")]
+    print(f"  OUR BET RECORD (guard reb <=3.5): {_rec(gb)}  <- watch this grow")
+
+
 def projection_bias():
     # THE LARGER, HONEST SAMPLE: wnba_proj_log grades proj-vs-actual for EVERY projection (incl.
     # never-bet), ~110 rows vs 14 bet games. It settled the role-expansion debate: LOW-baseline
@@ -195,6 +225,8 @@ def report():
     per_prop()
     print("-" * 68)
     points_regime()
+    print("-" * 68)
+    guard_rebound_watch()
     print("-" * 68)
     selected_by_baseline()
     print("-" * 68)
