@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T13:47:17Z",
+ "captured_at": "2026-07-20T13:52:50Z",
  "matches": [
   {
    "event_id": 35845421,
@@ -8,9 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T13:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35845453,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-20T13:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35845456,
@@ -42,8 +42,8 @@
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-20T13:55:00.000Z",
    "line": 68.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35845458,
@@ -52,9 +52,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T13:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35845464,
