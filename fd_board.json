@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T09:27:22Z",
+ "captured_at": "2026-07-20T09:32:34Z",
  "matches": [
   {
    "event_id": 35844662,
@@ -8,8 +8,8 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-20T09:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
+   "line": 93.5,
+   "over_odds": -110,
    "under_odds": -120
   },
   {
@@ -19,7 +19,7 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "jakub kosowski",
    "open_date": "2026-07-20T09:20:00.000Z",
-   "line": 79.5,
+   "line": 95.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,7 +30,18 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-20T09:25:00.000Z",
-   "line": 78.5,
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35844675,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-20T09:25:00.000Z",
+   "line": 84.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -42,8 +53,8 @@
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-20T09:30:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844713,
