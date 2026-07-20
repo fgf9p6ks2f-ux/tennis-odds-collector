@@ -25,6 +25,7 @@ rw|462|Drops 21 points against former team
 rw|483|Paces Sky with 20 points
 rw|485|Hits game-winning shot at buzzer
 rw|539|Another 30-point performance
+rw|577|Unlikely to play Monday
 rw|580|Racks up 20 points in Sunday's win
 rw|581|On fire from perimeter
 rw|586|Posts double-double in victory
@@ -41,6 +42,7 @@ rw|912|Logs 21 minutes Sunday
 rw|916|Posts 15 points despite restriction
 rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss
+rw|979|Not on injury report
 rw|982|Rolls up 21 points in road loss
 rw|998|Could return Sunday
 rw|aaliyahedwards|Edwards (knee) won't return to Sunday's 
@@ -61,4 +63,4 @@ rw|samiwhitcomb|Whitcomb is out for Sunday's game agains
 rw|saniyarivers|Rivers (ankle) is probable for Sunday's 
 rw|shayciezki|Ciezki (coach's decision) has been ruled
 rw|shayciezki|Ciezki (coach's decision) has been ruledrw|tainamair|Mai (coach's decision) is out for Monday
-rw|tainamair|Mai (coach's decision) is out for Monday
+rw|tainamair|Mai (coach's decision) is out for Mondayrw|alannasmith|Smith (leg) is doubtful for Monday's gam
