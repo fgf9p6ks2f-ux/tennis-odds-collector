@@ -50,6 +50,7 @@
 2026-07-20|Isabelle Harrison|points|11.5
 2026-07-20|Isabelle Harrison|points|14.5
 2026-07-20|Isabelle Harrison|rebounds|5.5
+2026-07-20|Marina Mabrey|pra|29.5
 2026-07-20|Marina Mabrey|pts_ast|26.5
 2026-07-20|Marina Mabrey|reb_ast|6.5
 2026-07-20|Marine Johannes|points|8.5
