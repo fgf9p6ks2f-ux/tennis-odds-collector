@@ -150,22 +150,53 @@ def haircut_menu():
             print(f"    {name:>6} kept {_rec(kept)}")
 
 
+def projection_bias():
+    # THE LARGER, HONEST SAMPLE: wnba_proj_log grades proj-vs-actual for EVERY projection (incl.
+    # never-bet), ~110 rows vs 14 bet games. It settled the role-expansion debate: LOW-baseline
+    # players are the OVER-projected group, not the starters (the bet sample was survivorship).
+    import statistics as st
+    plog = HERE / "wnba_proj_log.sqlite"
+    if not plog.exists():
+        print("PROJECTION BIAS: wnba_proj_log.sqlite not found")
+        return
+    con = sqlite3.connect(plog)
+    con.row_factory = sqlite3.Row
+    rows = [dict(r) for r in con.execute(
+        "SELECT d_min,proj_min,proj_pts,actual_pts,actual_min FROM projections "
+        "WHERE proj_pts IS NOT NULL AND actual_pts IS NOT NULL AND proj_min IS NOT NULL AND d_min IS NOT NULL")]
+    con.close()
+    base = lambda r: (r["proj_min"] or 0) - (r["d_min"] or 0)
+    print(f"POINTS PROJECTION BIAS by baseline minutes  [proj_log, n={len(rows)} — the honest sample]")
+    for lbl, lo, hi in [("rotation/bench <20", 0, 20), ("tweener 20-24", 20, 24), ("starter >=24", 24, 99)]:
+        g = [r for r in rows if lo <= base(r) < hi]
+        if not g:
+            continue
+        bias = st.mean([r["proj_pts"] - r["actual_pts"] for r in g])
+        reach = sum(1 for r in g if r["actual_pts"] >= r["proj_pts"]) / len(g) * 100
+        mgap = st.mean([r["proj_min"] - r["actual_min"] for r in g if r["actual_min"]])
+        print(f"  {lbl:20} n={len(g):3}  pts bias {bias:+.1f}  reach {reach:2.0f}%  phantom-min {mgap:+.1f}")
+    print("  => LOW-baseline players are OVER-projected (phantom minutes); starters are calibrated.")
+    print("  => the bet sample's 'rotation 4-0' was survivorship (soft lines), not projection skill.")
+
+
 def report():
     print("=" * 68)
     per_prop()
     print("-" * 68)
     points_regime()
     print("-" * 68)
+    projection_bias()
+    print("-" * 68)
     hypotheses()
     print("-" * 68)
     haircut_menu()
     print("=" * 68)
     print("VERDICT: band gate already handles the points leak; haircut is parked.")
-    print("REAL SIGNAL = role expansion. Consistent starters (baseline >=24 min) get")
-    print("over-projected (minutes capped, injury adds only shots) and go ~4-5; rotation")
-    print("players with BOTH a minutes and usage bump go 4-0. Discriminator is baseline")
-    print("minutes + both-bumps, NOT scoring average. Still n<15 — tracked forward, no")
-    print("live ranking change until the checkpoint confirms.")
+    print("The bet sample's 'role-expansion' story (rotation players are the edge) was")
+    print("REFUTED by the 110-row proj_log: LOW-baseline players are the OVER-projected")
+    print("group (+1.8 pts, +3.5 phantom minutes, reach proj 28%); starters are calibrated")
+    print("(+0.4, 40%). The 4-0 was survivorship on soft lines. SHIP NOTHING on n<~100")
+    print("player-games — every small-sample story here has reversed under more data.")
 
 
 if __name__ == "__main__":
