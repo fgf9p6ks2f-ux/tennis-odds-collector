@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T20:20:02Z",
+ "captured_at": "2026-07-20T20:25:50Z",
  "matches": [
   {
    "event_id": 35846607,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-20T20:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35846608,
@@ -19,9 +19,9 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-20T20:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846622,
