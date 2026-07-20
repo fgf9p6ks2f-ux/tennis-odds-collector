@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T03:36:00Z",
+ "captured_at": "2026-07-20T03:40:09Z",
  "matches": [
   {
    "event_id": 35843947,
@@ -8,9 +8,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-20T03:25:00.000Z",
-   "line": 67.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 73.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35843948,
@@ -19,7 +19,18 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T03:25:00.000Z",
-   "line": 76.5,
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35843950,
+   "p1": "Dariusz Maszczynski",
+   "p2": "Michal Machelski",
+   "p1_norm": "dariusz maszczynski",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-20T03:35:00.000Z",
+   "line": 73.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,7 +63,7 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-20T03:50:00.000Z",
-   "line": 77.5,
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   },
