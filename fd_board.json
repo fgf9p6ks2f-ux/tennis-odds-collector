@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T09:15:54Z",
+ "captured_at": "2026-07-20T09:21:05Z",
  "matches": [
   {
    "event_id": 35844630,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-20T09:05:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844662,
@@ -31,8 +31,8 @@
    "p2_norm": "jakub kosowski",
    "open_date": "2026-07-20T09:20:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844674,
@@ -77,6 +77,17 @@
    "line": 83.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844717,
+   "p1": "Miroslav Sklensky",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-20T09:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
