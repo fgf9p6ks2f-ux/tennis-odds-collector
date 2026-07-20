@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T22:55:12Z",
+ "captured_at": "2026-07-20T22:59:36Z",
  "matches": [
   {
    "event_id": 35846966,
@@ -8,20 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-20T22:30:00.000Z",
-   "line": 93.5,
+   "line": 94.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35846969,
-   "p1": "Kuba Golaszewski",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "kuba golaszewski",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-20T22:35:00.000Z",
-   "line": 89.5,
-   "over_odds": null,
-   "under_odds": null
   },
   {
    "event_id": 35846971,
@@ -30,7 +19,7 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T22:40:00.000Z",
-   "line": 56.5,
+   "line": 75.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -52,9 +41,9 @@
    "p1_norm": "mateusz baran",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-20T22:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35846975,
@@ -63,9 +52,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-20T22:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846978,
