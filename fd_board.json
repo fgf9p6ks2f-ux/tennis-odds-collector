@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T04:21:33Z",
+ "captured_at": "2026-07-20T04:26:04Z",
  "matches": [
-  {
-   "event_id": 35844153,
-   "p1": "Witold Stechly",
-   "p2": "Janus Slawomir",
-   "p1_norm": "witold stechly",
-   "p2_norm": "janus slawomir",
-   "open_date": "2026-07-20T04:00:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35844302,
    "p1": "Tibor Spanik",
@@ -19,20 +8,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-20T04:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35844304,
-   "p1": "Krzysztof Hetnar",
-   "p2": "Rafal Idaczyk",
-   "p1_norm": "krzysztof hetnar",
-   "p2_norm": "rafal idaczyk",
-   "open_date": "2026-07-20T04:10:00.000Z",
-   "line": 84.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35844313,
@@ -41,31 +19,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "andrzej krezel",
    "open_date": "2026-07-20T04:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35844315,
-   "p1": "Kacper Szurlej",
-   "p2": "Jakub Chmielowski",
-   "p1_norm": "kacper szurlej",
-   "p2_norm": "jakub chmielowski",
-   "open_date": "2026-07-20T04:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35844316,
-   "p1": "Michal Wolny",
-   "p2": "Dariusz Maszczynski",
-   "p1_norm": "michal wolny",
-   "p2_norm": "dariusz maszczynski",
-   "open_date": "2026-07-20T04:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844329,
@@ -110,6 +66,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844342,
+   "p1": "Janus Slawomir",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "janus slawomir",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-20T04:50:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
