@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T06:40:32Z",
+ "captured_at": "2026-07-20T06:45:05Z",
  "matches": [
-  {
-   "event_id": 35844431,
-   "p1": "Oskar Jadach",
-   "p2": "Jerzy Pelka",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "jerzy pelka",
-   "open_date": "2026-07-20T06:20:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35844432,
    "p1": "Janus Slawomir",
@@ -19,7 +8,7 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-20T06:25:00.000Z",
-   "line": 82.5,
+   "line": 97.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +19,9 @@
    "p1_norm": "dominik solilo",
    "p2_norm": "michal minda",
    "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35844437,
@@ -41,20 +30,9 @@
    "p1_norm": "rafal idaczyk",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35844438,
-   "p1": "Blazej Warpas",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "blazej warpas",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844439,
@@ -63,9 +41,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "jakub kosowski",
    "open_date": "2026-07-20T06:30:00.000Z",
-   "line": 85.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35844445,
@@ -75,8 +53,8 @@
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-20T06:45:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35844446,
@@ -130,6 +108,28 @@
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-20T06:55:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35844456,
+   "p1": "Michal Wolny",
+   "p2": "Janus Slawomir",
+   "p1_norm": "michal wolny",
+   "p2_norm": "janus slawomir",
+   "open_date": "2026-07-20T07:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35844457,
+   "p1": "Jerzy Pelka",
+   "p2": "Patryk Mecik",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "patryk mecik",
+   "open_date": "2026-07-20T07:10:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
