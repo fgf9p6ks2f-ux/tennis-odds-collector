@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T00:40:08Z",
+ "captured_at": "2026-07-20T00:48:04Z",
  "matches": [
   {
    "event_id": 35843761,
@@ -8,31 +8,9 @@
    "p1_norm": "mateusz karpiuk",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-20T00:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35843792,
-   "p1": "Jakub Jesiek",
-   "p2": "Sebastian Krupa",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "sebastian krupa",
-   "open_date": "2026-07-20T00:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35843793,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Mariusz Baron",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-20T00:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35843794,
@@ -41,9 +19,9 @@
    "p1_norm": "filip mlynarski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-20T00:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35843807,
@@ -66,6 +44,28 @@
    "line": 70.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843810,
+   "p1": "Pawel Kurek",
+   "p2": "Sebastian Juzek",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "sebastian juzek",
+   "open_date": "2026-07-20T01:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843811,
+   "p1": "Andrzej Krezel",
+   "p2": "Pawel Slosarczyk",
+   "p1_norm": "andrzej krezel",
+   "p2_norm": "pawel slosarczyk",
+   "open_date": "2026-07-20T01:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
