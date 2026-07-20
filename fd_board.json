@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T02:34:27Z",
+ "captured_at": "2026-07-20T02:38:37Z",
  "matches": [
   {
    "event_id": 35843896,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-20T02:35:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843900,
@@ -64,6 +64,17 @@
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T03:00:00.000Z",
    "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35843908,
+   "p1": "Mariusz Baron",
+   "p2": "Grzegorz Marud",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "grzegorz marud",
+   "open_date": "2026-07-20T03:05:00.000Z",
+   "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
   }
