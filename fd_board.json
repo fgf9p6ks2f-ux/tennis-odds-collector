@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T01:13:17Z",
+ "captured_at": "2026-07-20T01:18:10Z",
  "matches": [
   {
    "event_id": 35843808,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "andriej fomin",
    "open_date": "2026-07-20T01:00:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 95.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35843810,
@@ -19,9 +19,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-20T01:10:00.000Z",
-   "line": 79.5,
+   "line": 73.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35843811,
@@ -30,9 +30,9 @@
    "p1_norm": "andrzej krezel",
    "p2_norm": "pawel slosarczyk",
    "open_date": "2026-07-20T01:10:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843824,
@@ -74,6 +74,17 @@
    "p1_norm": "jaroslaw badura",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-20T01:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35843854,
+   "p1": "Mateusz Karpiuk",
+   "p2": "Andriej Fomin",
+   "p1_norm": "mateusz karpiuk",
+   "p2_norm": "andriej fomin",
+   "open_date": "2026-07-20T01:45:00.000Z",
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
