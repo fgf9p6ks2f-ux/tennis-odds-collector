@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T22:59:36Z",
+ "captured_at": "2026-07-20T23:05:04Z",
  "matches": [
-  {
-   "event_id": 35846966,
-   "p1": "Jakub Kuzmicz",
-   "p2": "Lukasz Pietraszko",
-   "p1_norm": "jakub kuzmicz",
-   "p2_norm": "lukasz pietraszko",
-   "open_date": "2026-07-20T22:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35846971,
    "p1": "Grzegorz Marud",
@@ -19,7 +8,7 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-20T22:40:00.000Z",
-   "line": 75.5,
+   "line": 96.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,29 +19,7 @@
    "p1_norm": "artur gromek",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-20T22:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35846974,
-   "p1": "Mateusz Baran",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-20T22:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35846975,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-20T22:55:00.000Z",
-   "line": 80.5,
+   "line": 75.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -64,8 +31,8 @@
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-20T23:05:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35846982,
@@ -110,6 +77,17 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35847070,
+   "p1": "Robert Kostepski",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-20T23:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
