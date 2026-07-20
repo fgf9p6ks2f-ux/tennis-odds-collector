@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T11:29:37Z",
+ "captured_at": "2026-07-20T11:34:56Z",
  "matches": [
-  {
-   "event_id": 35844837,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Wiktor Ptak",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "wiktor ptak",
-   "open_date": "2026-07-20T11:05:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35844853,
-   "p1": "Tibor Spanik",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-20T11:15:00.000Z",
-   "line": 92.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35844860,
    "p1": "Jakub Kuzmicz",
@@ -30,9 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-20T11:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844867,
@@ -41,9 +19,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-20T11:25:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 93.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35844868,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T11:25:00.000Z",
-   "line": 77.5,
+   "line": 70.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35844875,
@@ -63,9 +41,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T11:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844889,
