@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T14:49:32Z",
+ "captured_at": "2026-07-20T14:55:58Z",
  "matches": [
-  {
-   "event_id": 35845501,
-   "p1": "Karol Strowski",
-   "p2": "Jakub Kosowski",
-   "p1_norm": "karol strowski",
-   "p2_norm": "jakub kosowski",
-   "open_date": "2026-07-20T14:35:00.000Z",
-   "line": 60.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35845505,
    "p1": "Kamil Rudomina",
@@ -19,20 +8,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-20T14:40:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35845506,
-   "p1": "Jakub Pruszkowski",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "jakub pruszkowski",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-20T14:40:00.000Z",
-   "line": 51.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 103.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35845516,
@@ -41,9 +19,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-20T14:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35845551,
