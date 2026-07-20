@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T19:25:45Z",
+ "captured_at": "2026-07-20T19:31:09Z",
  "matches": [
-  {
-   "event_id": 35846521,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Dariusz Maszczynski",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "dariusz maszczynski",
-   "open_date": "2026-07-20T19:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35846534,
    "p1": "Kuba Golaszewski",
@@ -19,9 +8,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-20T19:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 92.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35846535,
@@ -30,8 +19,8 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-20T19:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
+   "line": 87.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -42,8 +31,8 @@
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-20T19:30:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35846551,
@@ -53,8 +42,8 @@
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-20T19:35:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35846553,
@@ -63,9 +52,9 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "michal krutak",
    "open_date": "2026-07-20T19:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35846554,
@@ -88,6 +77,17 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35846572,
+   "p1": "Rafal Niemiec",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-20T19:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
