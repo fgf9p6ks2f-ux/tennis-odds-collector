@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T10:34:12Z",
+ "captured_at": "2026-07-20T10:39:28Z",
  "matches": [
-  {
-   "event_id": 35844782,
-   "p1": "Grzegorz Jurowicz",
-   "p2": "Jerzy Pelka",
-   "p1_norm": "grzegorz jurowicz",
-   "p2_norm": "jerzy pelka",
-   "open_date": "2026-07-20T10:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35844790,
-   "p1": "Szymon Sporek",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "szymon sporek",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-20T10:25:00.000Z",
-   "line": 102.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35844799,
    "p1": "Jakub Chmielowski",
@@ -30,7 +8,7 @@
    "p1_norm": "jakub chmielowski",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-20T10:30:00.000Z",
-   "line": 72.5,
+   "line": 60.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +19,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-20T10:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844804,
@@ -52,8 +30,8 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T10:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
+   "line": 80.5,
+   "over_odds": -115,
    "under_odds": -120
   },
   {
@@ -96,6 +74,28 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-20T11:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35844835,
+   "p1": "Kacper Szurlej",
+   "p2": "Dominik Solilo",
+   "p1_norm": "kacper szurlej",
+   "p2_norm": "dominik solilo",
+   "open_date": "2026-07-20T11:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844837,
+   "p1": "Grzegorz Wichowski",
+   "p2": "Wiktor Ptak",
+   "p1_norm": "grzegorz wichowski",
+   "p2_norm": "wiktor ptak",
+   "open_date": "2026-07-20T11:05:00.000Z",
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
