@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T04:31:17Z",
+ "captured_at": "2026-07-20T04:35:50Z",
  "matches": [
   {
    "event_id": 35844313,
@@ -8,18 +8,29 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "andrzej krezel",
    "open_date": "2026-07-20T04:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
-   "event_id": 35844316,
-   "p1": "Michal Wolny",
-   "p2": "Dariusz Maszczynski",
-   "p1_norm": "michal wolny",
-   "p2_norm": "dariusz maszczynski",
-   "open_date": "2026-07-20T04:25:00.000Z",
-   "line": 65.5,
+   "event_id": 35844329,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-20T04:30:00.000Z",
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35844330,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-20T04:30:00.000Z",
+   "line": 72.5,
    "over_odds": -115,
    "under_odds": -120
   },
