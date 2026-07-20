@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T05:51:16Z",
+ "captured_at": "2026-07-20T05:55:46Z",
  "matches": [
   {
    "event_id": 35844393,
@@ -8,20 +8,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-20T05:40:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35844395,
-   "p1": "Tibor Spanik",
-   "p2": "Jakub Kosowski",
-   "p1_norm": "tibor spanik",
-   "p2_norm": "jakub kosowski",
-   "open_date": "2026-07-20T05:40:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35844396,
@@ -30,9 +19,20 @@
    "p1_norm": "krzysztof hetnar",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-20T05:40:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -130,
+   "under_odds": -105
+  },
+  {
+   "event_id": 35844424,
+   "p1": "Dominik Solilo",
+   "p2": "Kacper Szurlej",
+   "p1_norm": "dominik solilo",
+   "p2_norm": "kacper szurlej",
+   "open_date": "2026-07-20T05:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844408,
@@ -88,6 +88,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35844431,
+   "p1": "Oskar Jadach",
+   "p2": "Jerzy Pelka",
+   "p1_norm": "oskar jadach",
+   "p2_norm": "jerzy pelka",
+   "open_date": "2026-07-20T06:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
