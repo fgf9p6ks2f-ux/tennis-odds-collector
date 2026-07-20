@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="82fc7b6f33">
+<meta name="bv" content="f34159ed7f">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -212,6 +212,17 @@
     font-size:15px; font-weight:900; flex:none; }
   .pind.o { color:#5ad98a; background:rgba(90,217,138,.16); }
   .pind.u { color:#74a8ef; background:rgba(116,168,239,.16); }
+  /* TT likely-flag bet row — mirrors the WNBA prop-row design system */
+  .ttbet { display:flex; align-items:center; gap:11px; padding:11px 0 10px; border-bottom:1px solid #161d28; }
+  .ttbet:last-of-type { border-bottom:none; }
+  .ttbln { font-size:16px; font-weight:800; color:var(--t1); font-variant-numeric:tabular-nums; min-width:52px; letter-spacing:-.01em; }
+  .ttbln .tld { color:#5b6b82; font-weight:600; margin-right:1px; }
+  .ttbmid { flex:1; min-width:0; }
+  .ttbnm { font-size:14px; color:#cdd5e0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ttbnm b { color:var(--t1); font-weight:700; }
+  .ttbsb { color:#93a0b4; font-size:12px; margin-top:2px; }
+  .ttbsb .pj { color:#8ea2bd; font-weight:600; }
+  .ttbsb .fd { color:#4da3ff; font-weight:600; }
   .plno { font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
           white-space:nowrap; }
   .plno.rng { font-size:16px; }
@@ -526,7 +537,7 @@
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>
-    <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Upcoming<span class="ttcnt">18</span></h3><div class="ttrow tflat"><div class="ttmain"><b>Aleksander Barton</b> v Kazimierz Rybak<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U 75.5</span></div><div class="ttsub">Mon 3:10 PM MT · no edge · <span class="ttrec">9-10</span> o75.5 · 19 H2H</div></div><div class="ttrow tflat"><div class="ttmain"><b>Jerzy Michalik</b> v Henryk Tkaczyk<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U 72.5</span></div><div class="ttsub">Mon 3:20 PM MT · no edge · <span class="ttrec">29-14</span> o72.5 · 43 H2H</div></div><div class="ttrow tflat"><div class="ttmain"><b>Lukasz Pietraszko</b> v Artur Gromek<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U 77.5</span></div><div class="ttsub">Mon 3:20 PM MT · no edge · <span class="ttrec">1-0</span> o77.5 · 1 H2H</div></div><div class="ttrow tflat"><div class="ttmain"><b>Krzysztof Kotyl</b> v Miroslaw Piecowski<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U 79.5</span></div><div class="ttsub">Mon 3:20 PM MT · no edge · <span class="ttrec">23-25</span> o79.5 · 48 H2H</div></div><div class="ttrow tflat"><div class="ttmain"><b>Kacper Adamus</b> v Robert Kostepski<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~75.5</span></div><div class="ttsub">Mon 3:30 PM MT · projected line · <span class="ttrec">toss-up · 1/4 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Jakub Cyndera</b> v Adam Staniczek<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~71.5</span></div><div class="ttsub">Mon 3:35 PM MT · projected line · <span class="ttrec">toss-up · 20/39 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Jakub Kuzmicz</b> v Artur Gromek<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~77.5</span></div><div class="ttsub">Mon 3:45 PM MT · projected line · <span class="ttrec">toss-up · 1/1 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Mateusz Baran</b> v Artur Kubiak<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~77.5</span></div><div class="ttsub">Mon 3:45 PM MT · projected line · <span class="ttrec">toss-up · 0/1 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Kuba Golaszewski</b> v Miroslaw Piecowski<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~80.5</span></div><div class="ttsub">Mon 3:45 PM MT · projected line · <span class="ttrec">toss-up · 2/3 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Wojciech Wojtaszczyk</b> v Krzysztof Schaniel<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~76.5</span></div><div class="ttsub">Mon 3:55 PM MT · projected line · <span class="ttrec">toss-up · 0/2 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Michal Machelski</b> v Miroslaw Warzecha<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~74.5</span></div><div class="ttsub">Mon 4:00 PM MT · projected line · <span class="ttrec">toss-up · 22/50 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Mateusz Rutkowski</b> v Lukasz Pietraszko<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~76.5</span></div><div class="ttsub">Mon 4:05 PM MT · projected line · <span class="ttrec">toss-up · 8/14 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Michal Krutak</b> v Jerzy Michalik<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~79.5</span></div><div class="ttsub">Mon 4:10 PM MT · projected line · <span class="ttrec">toss-up · 1/4 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Mikolaj Lukaszewski</b> v Krzysztof Kotyl<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~78.5</span></div><div class="ttsub">Mon 4:10 PM MT · projected line · <span class="ttrec">toss-up · 56/121 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Rafal Niemiec</b> v Robert Kostepski<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~75.5</span></div><div class="ttsub">Mon 4:20 PM MT · projected line · <span class="ttrec">no H2H history</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Aleksander Barton</b> v Jakub Cyndera<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~67.5</span></div><div class="ttsub">Mon 4:25 PM MT · projected line · <span class="ttrec">toss-up · 2/6 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Jakub Kuzmicz</b> v Lukasz Pietraszko<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~75.5 OVER</span></div><div class="ttsub">Mon 4:30 PM MT · projected line · <span class="ttrec">lean <b>over</b> · 6/10 H2H</span></div></div><div class="ttrow tflat"><div class="ttmain"><b>Artur Kubiak</b> v Mateusz Karpiuk<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~78.5</span></div><div class="ttsub">Mon 4:35 PM MT · projected line · <span class="ttrec">toss-up · 5/9 H2H</span></div></div><div class="ttfoot">BET = a +EV side at the real FanDuel line · PROJ ~ = our projected line before FanDuel posts (informational, not bet)</div></div></div>
+    <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flags<span class="ttcnt">4</span></h3><div class="ttbet"><span class="pind o">O</span><span class="ttbln"><span class="tld">~</span>74.5</span><div class="ttbmid"><div class="ttbnm"><b>Michal Krutak</b> v Henryk Tkaczyk</div><div class="ttbsb">8:10 PM MT · over · <span class="pj">projected</span></div></div><span class="tchip tA">79%</span></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln"><span class="tld">~</span>79.5</span><div class="ttbmid"><div class="ttbnm"><b>Miroslav Sklensky</b> v Grzegorz Poliniewicz</div><div class="ttbsb">3:00 AM MT · under · <span class="pj">projected</span></div></div><span class="tchip tB">73%</span></div><div class="ttbet"><span class="pind o">O</span><span class="ttbln"><span class="tld">~</span>77.5</span><div class="ttbmid"><div class="ttbnm"><b>Adrian Wiecek</b> v Maciej Nowalinski</div><div class="ttbsb">5:40 AM MT · over · <span class="pj">projected</span></div></div><span class="tchip tB">70%</span></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln"><span class="tld">~</span>75.5</span><div class="ttbmid"><div class="ttbnm"><b>Krystian Kolodziej</b> v Jakub Zochniak</div><div class="ttbsb">10:30 AM MT · under · <span class="pj">projected</span></div></div><span class="tchip tA">85%</span></div><div class="ttfoot">only pairs hitting a side 70%+ at the line · FanDuel = priced now · projected = our line before FanDuel posts</div></div></div>
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record</h2>
@@ -658,57 +669,44 @@
     if (!el) return;
     var now = Date.now(), mid = '\u00B7';
     var entries = [], boardPairs = {};
-    // real FanDuel-priced games (fresh board) — a +EV side = BET, else the line for reference
+    // real FanDuel-priced games — keep ONLY those with a +EV pick (a flagged bet)
     (_ttBoard || []).forEach(function(m){
       if (!m || m.line == null || !m.open_date || new Date(m.open_date).getTime() <= now) return;
-      var key = _ttKey(m.p1_norm, m.p2_norm);
-      boardPairs[key] = 1;
-      var entry = _ttH2H ? _ttH2H[key] : null;
+      var key = _ttKey(m.p1_norm, m.p2_norm); boardPairs[key] = 1;
+      var entry = _ttH2H ? _ttH2H[key] : null; if (!entry || !entry.pick) return;
+      var tots = entry.totals || [], n = tots.length, ov = 0, j;
+      for (j=0;j<n;j++){ if (tots[j] > +m.line) ov++; }
+      var hit = n ? Math.round((entry.pick.side==='over'?ov:n-ov)/n*100) : null;
       entries.push({start: new Date(m.open_date).getTime(), p1: m.p1, p2: m.p2, line: +m.line,
-                    real: true, pick: entry ? entry.pick : null, tots: (entry && entry.totals) || []});
+                    side: entry.pick.side, hit: hit, real: true});
     });
-    // projected upcoming (24live) — drop any pair the FRESH board now prices (shown above with real line)
+    // projected likely-flags (pre-filtered to >=70% in tt_board) — dedup vs the fresh board
     (_ttUpcoming || []).forEach(function(e){
-      if (boardPairs[_ttKey(e.p1n, e.p2n)]) return;
+      if (!e.side || boardPairs[_ttKey(e.p1n, e.p2n)]) return;
       var st = e.ts * 1000; if (st <= now) return;
-      entries.push({start: st, p1: e.p1, p2: e.p2, line: e.proj, real: false,
-                    side: e.side, over: e.over || 0, n: e.n || 0});
+      entries.push({start: st, p1: e.p1, p2: e.p2, line: e.proj, side: e.side, hit: e.hit, real: false});
     });
     if (!entries.length){
-      el.innerHTML = '<div class="card"><h3 class="ttlg">\uD83C\uDFD3 TT Elite ' + mid + ' Upcoming</h3>'
-        + '<div class="ttempty">No upcoming TT Elite games yet ' + mid + ' check back closer to the games.</div></div>';
+      el.innerHTML = '<div class="card"><h3 class="ttlg">\uD83C\uDFD3 TT Elite ' + mid + ' Flags</h3>'
+        + '<div class="ttempty">No TT Elite flags right now ' + mid + ' no pair clears the 70% bar at its line (real or projected).</div></div>';
       return;
     }
-    entries.sort(function(a,b){ var af=(a.real&&a.pick)?0:1, bf=(b.real&&b.pick)?0:1; return af-bf || a.start-b.start; });
-    entries = entries.slice(0, 18);
-    var nflag = 0, rows = '';
+    entries.sort(function(a,b){ return (a.real?0:1)-(b.real?0:1) || a.start-b.start; });
+    entries = entries.slice(0, 16);
+    var rows = '';
     for (var i=0; i<entries.length; i++){
-      var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), line = x.line, tag, sub, j, ov=0, n;
-      if (x.real && x.pick){                             // firm bet at the real FanDuel line
-        nflag++; var side = x.pick.side; n = x.tots.length;
-        for (j=0; j<n; j++){ if (x.tots[j] > line) ov++; }
-        var wins = side === 'over' ? ov : n - ov;
-        var rec = n ? '<span class="ttrec">' + wins + '-' + (n-wins) + '</span> ' + mid + ' ' + Math.round(wins/n*100) + '% ' + side : '<span class="ttrec">no H2H history</span>';
-        tag = '<span class="ttpick">' + side.toUpperCase() + ' ' + line + '</span>';
-        sub = tip + ' MT ' + mid + ' <b>BET</b> ' + mid + ' ' + rec;
-      } else if (x.real){                                // real line, no edge
-        n = x.tots.length; for (j=0; j<n; j++){ if (x.tots[j] > line) ov++; }
-        var rec2 = n ? '<span class="ttrec">' + ov + '-' + (n-ov) + '</span> o' + line + ' ' + mid + ' ' + n + ' H2H' : '<span class="ttrec">no H2H history</span>';
-        tag = '<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U ' + line + '</span>';
-        sub = tip + ' MT ' + mid + ' no edge ' + mid + ' ' + rec2;
-      } else {                                           // projected line — FanDuel hasn't priced it yet
-        var sd = x.side; n = x.n || 0; ov = x.over || 0;
-        var lean = sd ? ('lean <b>' + sd + '</b> ' + mid + ' ' + ov + '/' + n + ' H2H') : (n ? ('toss-up ' + mid + ' ' + ov + '/' + n + ' H2H') : 'no H2H history');
-        tag = '<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~' + line + (sd ? (' ' + sd.toUpperCase()) : '') + '</span>';
-        sub = tip + ' MT ' + mid + ' projected line ' + mid + ' <span class="ttrec">' + lean + '</span>';
-      }
-      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(x.p1) + '</b> v ' + _ttEsc(x.p2) + tag + '</div><div class="ttsub">' + sub + '</div></div>';
+      var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), o = x.side==='over'?'O':'U';
+      var chip = (x.hit != null) ? ('<span class="tchip ' + (x.hit>=78?'tA':'tB') + '">' + x.hit + '%</span>') : '';
+      var lncell = x.real ? (''+x.line) : ('<span class="tld">~</span>' + x.line);
+      var src = x.real ? '<span class="fd">FanDuel line</span>' : '<span class="pj">projected</span>';
+      rows += '<div class="ttbet"><span class="pind ' + o.toLowerCase() + '">' + o + '</span>'
+            + '<span class="ttbln">' + lncell + '</span>'
+            + '<div class="ttbmid"><div class="ttbnm"><b>' + _ttEsc(x.p1) + '</b> v ' + _ttEsc(x.p2) + '</div>'
+            + '<div class="ttbsb">' + tip + ' MT ' + mid + ' ' + x.side + ' ' + mid + ' ' + src + '</div></div>' + chip + '</div>';
     }
-    var foot = nflag ? ('bet the highlighted side at that FanDuel line ' + mid + ' PROJ ~ = our projected line before FanDuel posts')
-                     : ('PROJ ~ = our projected line before FanDuel posts (info, not bet) ' + mid + ' games flip to the real line when priced');
-    el.innerHTML = '<div class="card"><h3 class="ttlg">\uD83C\uDFD3 TT Elite ' + mid + ' Upcoming'
+    el.innerHTML = '<div class="card"><h3 class="ttlg">\uD83C\uDFD3 TT Elite ' + mid + ' Flags'
       + '<span class="ttcnt">' + entries.length + '</span></h3>' + rows
-      + '<div class="ttfoot">' + foot + '</div></div>';
+      + '<div class="ttfoot">only pairs hitting a side 70%+ at the line ' + mid + ' FanDuel = priced now ' + mid + ' projected = before FanDuel posts</div></div>';
   };
   window._fetchTTTotals = async function(){
     try {
