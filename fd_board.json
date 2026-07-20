@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T16:05:34Z",
+ "captured_at": "2026-07-20T16:11:09Z",
  "matches": [
   {
    "event_id": 35845792,
@@ -8,20 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-20T15:45:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35845755,
-   "p1": "Mateusz Baran",
-   "p2": "Michal Krutak",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "michal krutak",
-   "open_date": "2026-07-20T15:50:00.000Z",
-   "line": 92.5,
-   "over_odds": -200,
-   "under_odds": 140
+   "line": 97.5,
+   "over_odds": 110,
+   "under_odds": -155
   },
   {
    "event_id": 35845759,
@@ -30,9 +19,9 @@
    "p1_norm": "wiktor ptak",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T15:55:00.000Z",
-   "line": 92.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 96.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35845767,
@@ -42,8 +31,8 @@
    "p2_norm": "dariusz maszczynski",
    "open_date": "2026-07-20T16:00:00.000Z",
    "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35845785,
@@ -99,6 +88,28 @@
    "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35846124,
+   "p1": "Michal Krutak",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "michal krutak",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-20T16:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35846126,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-20T16:35:00.000Z",
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
