@@ -55,6 +55,7 @@
 2026-07-20|Marina Mabrey|pts_reb|26.5
 2026-07-20|Marina Mabrey|reb_ast|6.5
 2026-07-20|Marine Johannes|points|8.5
+2026-07-20|Pauline Astier|reb_ast|5.5
 2026-07-20|Sabrina Ionescu|assists|4.5
 n1|2026-07-20|Arike Ogunbowale|points|14.5
 n1|2026-07-20|Arike Ogunbowale|points|15.5
