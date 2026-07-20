@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-20T04:07:26Z",
+ "captured_at": "2026-07-20T04:12:35Z",
  "matches": [
-  {
-   "event_id": 35843955,
-   "p1": "Jakub Kosowski",
-   "p2": "Patrik Klos",
-   "p1_norm": "jakub kosowski",
-   "p2_norm": "patrik klos",
-   "open_date": "2026-07-20T03:45:00.000Z",
-   "line": 100.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35843956,
-   "p1": "Pawel Adamus",
-   "p2": "Jakub Pruszkowski",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "jakub pruszkowski",
-   "open_date": "2026-07-20T03:50:00.000Z",
-   "line": 86.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35844022,
-   "p1": "Wojciech Urban",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "wojciech urban",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-20T03:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
   {
    "event_id": 35844153,
    "p1": "Witold Stechly",
@@ -41,9 +8,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T04:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844302,
@@ -52,20 +19,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-20T04:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35844303,
-   "p1": "Blazej Warpas",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "blazej warpas",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-20T04:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844304,
@@ -75,8 +31,8 @@
    "p2_norm": "rafal idaczyk",
    "open_date": "2026-07-20T04:10:00.000Z",
    "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844313,
@@ -85,9 +41,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "andrzej krezel",
    "open_date": "2026-07-20T04:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35844315,
