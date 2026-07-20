@@ -954,11 +954,11 @@ def _tt_totals_card(tt_json, now=None):
     h2h = {frozenset((e.get("p1n"), e.get("p2n"))): e
            for e in (tt_json or {}).get("elite_h2h", [])}
     now = now or dt.datetime.now(dt.timezone.utc)
-    # show the whole UPCOMING FanDuel Elite slate (2026-07-20, user), not only flagged picks — a game
-    # with a +EV side is highlighted as a BET; the rest are shown for reference with their FanDuel
-    # line + the pair's H2H at that line. (Before, no-pick games were dropped, so an edgeless slate
-    # rendered as "nothing here" and the upcoming games never displayed.)
-    upc = []
+    # show the whole UPCOMING Elite slate: FanDuel-priced games (real line; a +EV side highlighted as
+    # BET) PLUS games FanDuel hasn't priced yet, pulled from 24live and shown with our PROJECTED line
+    # + the pair's H2H lean (2026-07-20, user "post it as far in advance as we can — real or projected
+    # line, over/under"). elite_upcoming (tt_board.json, Actions) carries the projections.
+    entries = []
     for m in board.get("matches", []):
         od, line = m.get("open_date"), m.get("line")
         if not od or line is None:
@@ -970,39 +970,64 @@ def _tt_totals_card(tt_json, now=None):
         if start <= now:                        # started -> live, exclude
             continue
         entry = h2h.get(frozenset((m.get("p1_norm"), m.get("p2_norm")))) or {}
-        upc.append((start, m, line, entry.get("pick"), entry.get("totals") or []))
-    if not upc:
+        entries.append({"start": start, "p1": m.get("p1", "?"), "p2": m.get("p2", "?"),
+                        "line": line, "real": True, "pick": entry.get("pick"),
+                        "tots": entry.get("totals") or []})
+    for e in (tt_json or {}).get("elite_upcoming", []):
+        try:
+            start = dt.datetime.fromtimestamp(int(e["ts"]), dt.timezone.utc)
+        except (KeyError, TypeError, ValueError, OSError):
+            continue
+        if start <= now:
+            continue
+        entries.append({"start": start, "p1": e.get("p1", "?"), "p2": e.get("p2", "?"),
+                        "line": e.get("proj"), "real": False, "side": e.get("side"),
+                        "over": e.get("over", 0), "n": e.get("n", 0)})
+    if not entries:
         return ('<div class="card"><h3 class="ttlg">🏓 TT Elite · Upcoming</h3>'
-                '<div class="ttempty">No upcoming TT Elite games on the FanDuel board right now — '
-                'check back closer to the games.</div></div>')
-    upc.sort(key=lambda b: (b[3] is None, b[0]))     # flagged bets first, then the rest by tip time
-    nflag = sum(1 for u in upc if u[3])
+                '<div class="ttempty">No upcoming TT Elite games yet — check back closer to the '
+                'games.</div></div>')
+    # flagged BETs first (actionable), then the rest of the slate by tip time; cap the card length
+    entries.sort(key=lambda x: (not (x["real"] and x.get("pick")), x["start"]))
+    entries = entries[:18]
+    nflag = sum(1 for x in entries if x["real"] and x.get("pick"))
     rows = ""
-    for start, m, line, pick, tots in upc:
-        n = len(tots)
-        tip = start.astimezone(MT).strftime("%a %-I:%M %p")
-        over = sum(1 for t in tots if t > line)
-        if pick:                                # flagged bet — highlight the side to bet
-            side = pick["side"]
+    for x in entries:
+        tip = x["start"].astimezone(MT).strftime("%a %-I:%M %p")
+        line = x["line"]
+        if x["real"] and x.get("pick"):         # firm bet at the real FanDuel line
+            side = x["pick"]["side"]
+            tots = x["tots"]
+            n = len(tots)
+            over = sum(1 for t in tots if t > line)
             wins = over if side == "over" else n - over
             rec = (f'<span class="ttrec">{wins}-{n - wins}</span> · {round(wins / n * 100)}% {side}'
                    if n else '<span class="ttrec">no H2H history</span>')
             tag = f'<span class="ttpick">{side.upper()} {line:g}</span>'
             sub = f'{tip} MT · <b>BET</b> · {rec}'
-        else:                                   # upcoming, no edge — line + H2H for reference
+        elif x["real"]:                         # real FanDuel line, no edge
+            tots = x["tots"]
+            n = len(tots)
+            over = sum(1 for t in tots if t > line)
             rec = (f'<span class="ttrec">{over}-{n - over}</span> o{line:g} · {n} H2H'
                    if n else '<span class="ttrec">no H2H history</span>')
-            tag = (f'<span class="ttpick" style="opacity:.45;background:none;'
+            tag = (f'<span class="ttpick" style="opacity:.5;background:none;'
                    f'border:1px solid currentColor">O/U {line:g}</span>')
             sub = f'{tip} MT · no edge · {rec}'
+        else:                                   # projected line — FanDuel hasn't priced it yet
+            side, n, over = x.get("side"), x.get("n", 0), x.get("over", 0)
+            lean = (f'lean <b>{side}</b> · {over}/{n} H2H' if side
+                    else (f'toss-up · {over}/{n} H2H' if n else 'no H2H history'))
+            tag = (f'<span class="ttpick" style="opacity:.65;background:none;border:1px dashed '
+                   f'currentColor">PROJ ~{line:g}{(" " + side.upper()) if side else ""}</span>')
+            sub = f'{tip} MT · projected line · <span class="ttrec">{lean}</span>'
         rows += (f'<div class="ttrow tflat"><div class="ttmain">'
-                 f'<b>{html.escape(m.get("p1", "?"))}</b> v {html.escape(m.get("p2", "?"))}'
+                 f'<b>{html.escape(x["p1"])}</b> v {html.escape(x["p2"])}'
                  f'{tag}</div><div class="ttsub">{sub}</div></div>')
-    foot = ('bet the highlighted side at that FanDuel line · record &amp; hit% = the pair\'s H2H '
-            'at that line' if nflag else
-            'no +EV edge on the current slate — upcoming games shown for reference')
+    foot = ('BET = a +EV side at the real FanDuel line · PROJ ~ = our projected line before FanDuel '
+            'posts (informational, not bet)')
     return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Upcoming'
-            f'<span class="ttcnt">{len(upc)}</span></h3>{rows}'
+            f'<span class="ttcnt">{len(entries)}</span></h3>{rows}'
             f'<div class="ttfoot">{foot}</div></div>')
 
 
