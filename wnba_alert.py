@@ -575,11 +575,13 @@ def collect():
             out_here = {n for n, s in inj.items() if s in ("Out", "Doubtful")
                         and pl.get(n) and pl[n]["team"] == p["team"]}
             opts = [n for _, n in mates[1:] if n not in out_here][:3]
-            # honest status: a feed tagged 'Out' but with a FULL prop slate still up on the book is a
-            # game-time decision, not ruled out (Bueckers 7/20 — ESPN stale-tags her Out, official
-            # report hasn't ruled her out, FD still prices her). Relabel to GTD so the display stops
-            # contradicting the board. Confirmed outs keep their real status.
-            eff_status = "GTD" if T.confirmed_playing(nm, p["team"]) else stt
+            # honest status: an ESPN/rolling-feed 'Out' tag that ISN'T in confirmed_for (the same gate
+            # the firm engine bets on — official injury report / long-term return date) is UNCONFIRMED,
+            # a stale tag not a ruling (Bueckers 7/20: ESPN Out, but off the official report + still on
+            # the board). Relabel those to GTD so the display stops contradicting the board; a genuine
+            # confirmed out (Satou Sabally, on the official report) keeps 'Out'. Questionable stays as-is.
+            eff_status = "GTD" if (stt in ("Out", "Doubtful")
+                                   and nm not in T.confirmed_for(sdate)) else stt
             star_watch.append({"player": nm, "team": p["team"], "status": eff_status, "date": sdate,
                                "opp": mus.get(p["team"], ""), "mpg": round(p["min"]),
                                "ppg": round(p["pts"], 1), "ast": round(p.get("ast") or 0, 1),
