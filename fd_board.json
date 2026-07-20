@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T05:13:28Z",
+ "captured_at": "2026-07-20T05:18:02Z",
  "matches": [
-  {
-   "event_id": 35844342,
-   "p1": "Janus Slawomir",
-   "p2": "Jerzy Michalik",
-   "p1_norm": "janus slawomir",
-   "p2_norm": "jerzy michalik",
-   "open_date": "2026-07-20T04:50:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35844344,
-   "p1": "Pawel Adamus",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-20T04:55:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35844366,
    "p1": "Jakub Kaczmarek",
@@ -30,9 +8,31 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-20T05:05:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -105,
+   "under_odds": -130
+  },
+  {
+   "event_id": 35844370,
+   "p1": "Witold Stechly",
+   "p2": "Michal Machelski",
+   "p1_norm": "witold stechly",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-20T05:10:00.000Z",
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35844392,
+   "p1": "Dominik Solilo",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "dominik solilo",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-20T05:10:00.000Z",
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844372,
@@ -41,9 +41,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-20T05:15:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35844373,
@@ -52,9 +52,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-20T05:15:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844374,
@@ -64,8 +64,8 @@
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T05:15:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844389,
