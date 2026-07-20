@@ -882,57 +882,44 @@ TT_LIVE_JS = """
     if (!el) return;
     var now = Date.now(), mid = '\\u00B7';
     var entries = [], boardPairs = {};
-    // real FanDuel-priced games (fresh board) — a +EV side = BET, else the line for reference
+    // real FanDuel-priced games — keep ONLY those with a +EV pick (a flagged bet)
     (_ttBoard || []).forEach(function(m){
       if (!m || m.line == null || !m.open_date || new Date(m.open_date).getTime() <= now) return;
-      var key = _ttKey(m.p1_norm, m.p2_norm);
-      boardPairs[key] = 1;
-      var entry = _ttH2H ? _ttH2H[key] : null;
+      var key = _ttKey(m.p1_norm, m.p2_norm); boardPairs[key] = 1;
+      var entry = _ttH2H ? _ttH2H[key] : null; if (!entry || !entry.pick) return;
+      var tots = entry.totals || [], n = tots.length, ov = 0, j;
+      for (j=0;j<n;j++){ if (tots[j] > +m.line) ov++; }
+      var hit = n ? Math.round((entry.pick.side==='over'?ov:n-ov)/n*100) : null;
       entries.push({start: new Date(m.open_date).getTime(), p1: m.p1, p2: m.p2, line: +m.line,
-                    real: true, pick: entry ? entry.pick : null, tots: (entry && entry.totals) || []});
+                    side: entry.pick.side, hit: hit, real: true});
     });
-    // projected upcoming (24live) — drop any pair the FRESH board now prices (shown above with real line)
+    // projected likely-flags (pre-filtered to >=70% in tt_board) — dedup vs the fresh board
     (_ttUpcoming || []).forEach(function(e){
-      if (boardPairs[_ttKey(e.p1n, e.p2n)]) return;
+      if (!e.side || boardPairs[_ttKey(e.p1n, e.p2n)]) return;
       var st = e.ts * 1000; if (st <= now) return;
-      entries.push({start: st, p1: e.p1, p2: e.p2, line: e.proj, real: false,
-                    side: e.side, over: e.over || 0, n: e.n || 0});
+      entries.push({start: st, p1: e.p1, p2: e.p2, line: e.proj, side: e.side, hit: e.hit, real: false});
     });
     if (!entries.length){
-      el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Upcoming</h3>'
-        + '<div class="ttempty">No upcoming TT Elite games yet ' + mid + ' check back closer to the games.</div></div>';
+      el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flags</h3>'
+        + '<div class="ttempty">No TT Elite flags right now ' + mid + ' no pair clears the 70% bar at its line (real or projected).</div></div>';
       return;
     }
-    entries.sort(function(a,b){ var af=(a.real&&a.pick)?0:1, bf=(b.real&&b.pick)?0:1; return af-bf || a.start-b.start; });
-    entries = entries.slice(0, 18);
-    var nflag = 0, rows = '';
+    entries.sort(function(a,b){ return (a.real?0:1)-(b.real?0:1) || a.start-b.start; });
+    entries = entries.slice(0, 16);
+    var rows = '';
     for (var i=0; i<entries.length; i++){
-      var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), line = x.line, tag, sub, j, ov=0, n;
-      if (x.real && x.pick){                             // firm bet at the real FanDuel line
-        nflag++; var side = x.pick.side; n = x.tots.length;
-        for (j=0; j<n; j++){ if (x.tots[j] > line) ov++; }
-        var wins = side === 'over' ? ov : n - ov;
-        var rec = n ? '<span class="ttrec">' + wins + '-' + (n-wins) + '</span> ' + mid + ' ' + Math.round(wins/n*100) + '% ' + side : '<span class="ttrec">no H2H history</span>';
-        tag = '<span class="ttpick">' + side.toUpperCase() + ' ' + line + '</span>';
-        sub = tip + ' MT ' + mid + ' <b>BET</b> ' + mid + ' ' + rec;
-      } else if (x.real){                                // real line, no edge
-        n = x.tots.length; for (j=0; j<n; j++){ if (x.tots[j] > line) ov++; }
-        var rec2 = n ? '<span class="ttrec">' + ov + '-' + (n-ov) + '</span> o' + line + ' ' + mid + ' ' + n + ' H2H' : '<span class="ttrec">no H2H history</span>';
-        tag = '<span class="ttpick" style="opacity:.5;background:none;border:1px solid currentColor">O/U ' + line + '</span>';
-        sub = tip + ' MT ' + mid + ' no edge ' + mid + ' ' + rec2;
-      } else {                                           // projected line — FanDuel hasn't priced it yet
-        var sd = x.side; n = x.n || 0; ov = x.over || 0;
-        var lean = sd ? ('lean <b>' + sd + '</b> ' + mid + ' ' + ov + '/' + n + ' H2H') : (n ? ('toss-up ' + mid + ' ' + ov + '/' + n + ' H2H') : 'no H2H history');
-        tag = '<span class="ttpick" style="opacity:.65;background:none;border:1px dashed currentColor">PROJ ~' + line + (sd ? (' ' + sd.toUpperCase()) : '') + '</span>';
-        sub = tip + ' MT ' + mid + ' projected line ' + mid + ' <span class="ttrec">' + lean + '</span>';
-      }
-      rows += '<div class="ttrow tflat"><div class="ttmain"><b>' + _ttEsc(x.p1) + '</b> v ' + _ttEsc(x.p2) + tag + '</div><div class="ttsub">' + sub + '</div></div>';
+      var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), o = x.side==='over'?'O':'U';
+      var chip = (x.hit != null) ? ('<span class="tchip ' + (x.hit>=78?'tA':'tB') + '">' + x.hit + '%</span>') : '';
+      var lncell = x.real ? (''+x.line) : ('<span class="tld">~</span>' + x.line);
+      var src = x.real ? '<span class="fd">FanDuel line</span>' : '<span class="pj">projected</span>';
+      rows += '<div class="ttbet"><span class="pind ' + o.toLowerCase() + '">' + o + '</span>'
+            + '<span class="ttbln">' + lncell + '</span>'
+            + '<div class="ttbmid"><div class="ttbnm"><b>' + _ttEsc(x.p1) + '</b> v ' + _ttEsc(x.p2) + '</div>'
+            + '<div class="ttbsb">' + tip + ' MT ' + mid + ' ' + x.side + ' ' + mid + ' ' + src + '</div></div>' + chip + '</div>';
     }
-    var foot = nflag ? ('bet the highlighted side at that FanDuel line ' + mid + ' PROJ ~ = our projected line before FanDuel posts')
-                     : ('PROJ ~ = our projected line before FanDuel posts (info, not bet) ' + mid + ' games flip to the real line when priced');
-    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Upcoming'
+    el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flags'
       + '<span class="ttcnt">' + entries.length + '</span></h3>' + rows
-      + '<div class="ttfoot">' + foot + '</div></div>';
+      + '<div class="ttfoot">only pairs hitting a side 70%+ at the line ' + mid + ' FanDuel = priced now ' + mid + ' projected = before FanDuel posts</div></div>';
   };
   window._fetchTTTotals = async function(){
     try {
@@ -979,12 +966,11 @@ def _tt_totals_card(tt_json, now=None):
     h2h = {frozenset((e.get("p1n"), e.get("p2n"))): e
            for e in (tt_json or {}).get("elite_h2h", [])}
     now = now or dt.datetime.now(dt.timezone.utc)
-    # show the whole UPCOMING Elite slate: FanDuel-priced games (real line; a +EV side highlighted as
-    # BET) PLUS games FanDuel hasn't priced yet, pulled from 24live and shown with our PROJECTED line
-    # + the pair's H2H lean (2026-07-20, user "post it as far in advance as we can — real or projected
-    # line, over/under"). elite_upcoming (tt_board.json, Actions) carries the projections.
+    # LIKELY FLAGS ONLY, WNBA-card styled (2026-07-20, user): a real FanDuel-priced +EV side, PLUS
+    # upcoming games that already clear the flag bar at our PROJECTED line (tt_board pre-filters
+    # elite_upcoming to pairs hitting a side >=70%, min 12 H2H). No-edge / toss-up games are dropped.
     entries = []
-    board_pairs = set()                         # pairs FanDuel prices NOW (fresh VM board) -> dedup proj
+    board_pairs = set()
     for m in board.get("matches", []):
         od, line = m.get("open_date"), m.get("line")
         if not od or line is None:
@@ -993,20 +979,22 @@ def _tt_totals_card(tt_json, now=None):
             start = dt.datetime.fromisoformat(od.replace("Z", "+00:00"))
         except ValueError:
             continue
-        if start <= now:                        # started -> live, exclude
+        if start <= now:
             continue
-        board_pairs.add(frozenset((m.get("p1_norm"), m.get("p2_norm"))))
-        entry = h2h.get(frozenset((m.get("p1_norm"), m.get("p2_norm")))) or {}
+        key = frozenset((m.get("p1_norm"), m.get("p2_norm")))
+        board_pairs.add(key)
+        pick = (h2h.get(key) or {}).get("pick")
+        if not pick:                            # only flagged bets on the real board
+            continue
+        tots = (h2h.get(key) or {}).get("totals") or []
+        n = len(tots)
+        over = sum(1 for t in tots if t > line)
+        hit = round((over if pick["side"] == "over" else n - over) / n * 100) if n else None
         entries.append({"start": start, "p1": m.get("p1", "?"), "p2": m.get("p2", "?"),
-                        "line": line, "real": True, "pick": entry.get("pick"),
-                        "tots": entry.get("totals") or []})
-    # projected games (24live via Actions) — but if the FRESH board now prices a pair, it's already
-    # shown above with its REAL line, so drop the projected dupe. This dedup + the start<=now filter
-    # run at VM render cadence, so games flip projected->real and drop off at VM speed even though the
-    # projection LIST is refreshed on the slower Actions cadence (the VM can't reach 24live directly).
+                        "line": line, "side": pick["side"], "hit": hit, "real": True})
     for e in (tt_json or {}).get("elite_upcoming", []):
-        if frozenset((e.get("p1n"), e.get("p2n"))) in board_pairs:
-            continue
+        if not e.get("side") or frozenset((e.get("p1n"), e.get("p2n"))) in board_pairs:
+            continue                            # projections are pre-filtered to likely flags; dedup vs board
         try:
             start = dt.datetime.fromtimestamp(int(e["ts"]), dt.timezone.utc)
         except (KeyError, TypeError, ValueError, OSError):
@@ -1014,54 +1002,33 @@ def _tt_totals_card(tt_json, now=None):
         if start <= now:
             continue
         entries.append({"start": start, "p1": e.get("p1", "?"), "p2": e.get("p2", "?"),
-                        "line": e.get("proj"), "real": False, "side": e.get("side"),
-                        "over": e.get("over", 0), "n": e.get("n", 0)})
+                        "line": e.get("proj"), "side": e["side"], "hit": e.get("hit"), "real": False})
     if not entries:
-        return ('<div class="card"><h3 class="ttlg">🏓 TT Elite · Upcoming</h3>'
-                '<div class="ttempty">No upcoming TT Elite games yet — check back closer to the '
-                'games.</div></div>')
-    # flagged BETs first (actionable), then the rest of the slate by tip time; cap the card length
-    entries.sort(key=lambda x: (not (x["real"] and x.get("pick")), x["start"]))
-    entries = entries[:18]
-    nflag = sum(1 for x in entries if x["real"] and x.get("pick"))
+        return ('<div class="card"><h3 class="ttlg">🏓 TT Elite · Flags</h3>'
+                '<div class="ttempty">No TT Elite flags right now — no pair clears the 70% bar at its '
+                'line (real or projected). Check back closer to the games.</div></div>')
+    entries.sort(key=lambda x: (not x["real"], x["start"]))     # real bets first, then projected by tip
+    entries = entries[:16]
     rows = ""
     for x in entries:
-        tip = x["start"].astimezone(MT).strftime("%a %-I:%M %p")
-        line = x["line"]
-        if x["real"] and x.get("pick"):         # firm bet at the real FanDuel line
-            side = x["pick"]["side"]
-            tots = x["tots"]
-            n = len(tots)
-            over = sum(1 for t in tots if t > line)
-            wins = over if side == "over" else n - over
-            rec = (f'<span class="ttrec">{wins}-{n - wins}</span> · {round(wins / n * 100)}% {side}'
-                   if n else '<span class="ttrec">no H2H history</span>')
-            tag = f'<span class="ttpick">{side.upper()} {line:g}</span>'
-            sub = f'{tip} MT · <b>BET</b> · {rec}'
-        elif x["real"]:                         # real FanDuel line, no edge
-            tots = x["tots"]
-            n = len(tots)
-            over = sum(1 for t in tots if t > line)
-            rec = (f'<span class="ttrec">{over}-{n - over}</span> o{line:g} · {n} H2H'
-                   if n else '<span class="ttrec">no H2H history</span>')
-            tag = (f'<span class="ttpick" style="opacity:.5;background:none;'
-                   f'border:1px solid currentColor">O/U {line:g}</span>')
-            sub = f'{tip} MT · no edge · {rec}'
-        else:                                   # projected line — FanDuel hasn't priced it yet
-            side, n, over = x.get("side"), x.get("n", 0), x.get("over", 0)
-            lean = (f'lean <b>{side}</b> · {over}/{n} H2H' if side
-                    else (f'toss-up · {over}/{n} H2H' if n else 'no H2H history'))
-            tag = (f'<span class="ttpick" style="opacity:.65;background:none;border:1px dashed '
-                   f'currentColor">PROJ ~{line:g}{(" " + side.upper()) if side else ""}</span>')
-            sub = f'{tip} MT · projected line · <span class="ttrec">{lean}</span>'
-        rows += (f'<div class="ttrow tflat"><div class="ttmain">'
-                 f'<b>{html.escape(x["p1"])}</b> v {html.escape(x["p2"])}'
-                 f'{tag}</div><div class="ttsub">{sub}</div></div>')
-    foot = ('BET = a +EV side at the real FanDuel line · PROJ ~ = our projected line before FanDuel '
-            'posts (informational, not bet)')
-    return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Upcoming'
+        tip = x["start"].astimezone(MT).strftime("%-I:%M %p")
+        o = "O" if x["side"] == "over" else "U"
+        conf = x.get("hit")
+        chip = (f'<span class="tchip {"tA" if conf >= 78 else "tB"}">{conf}%</span>'
+                if conf is not None else "")
+        if x["real"]:
+            lncell, src = f'{x["line"]:g}', '<span class="fd">FanDuel line</span>'
+        else:
+            lncell, src = f'<span class="tld">~</span>{x["line"]:g}', '<span class="pj">projected</span>'
+        rows += (f'<div class="ttbet"><span class="pind {o.lower()}">{o}</span>'
+                 f'<span class="ttbln">{lncell}</span>'
+                 f'<div class="ttbmid"><div class="ttbnm"><b>{html.escape(x["p1"])}</b> v '
+                 f'{html.escape(x["p2"])}</div><div class="ttbsb">{tip} MT · {x["side"]} · {src}</div></div>'
+                 f'{chip}</div>')
+    return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Flags'
             f'<span class="ttcnt">{len(entries)}</span></h3>{rows}'
-            f'<div class="ttfoot">{foot}</div></div>')
+            f'<div class="ttfoot">only pairs hitting a side 70%+ at the line · FanDuel = priced now · '
+            f'projected = our line before FanDuel posts</div></div>')
 
 
 def _tt_panel(data):
@@ -1755,6 +1722,17 @@ def build():
     font-size:15px; font-weight:900; flex:none; }}
   .pind.o {{ color:#5ad98a; background:rgba(90,217,138,.16); }}
   .pind.u {{ color:#74a8ef; background:rgba(116,168,239,.16); }}
+  /* TT likely-flag bet row — mirrors the WNBA prop-row design system */
+  .ttbet {{ display:flex; align-items:center; gap:11px; padding:11px 0 10px; border-bottom:1px solid #161d28; }}
+  .ttbet:last-of-type {{ border-bottom:none; }}
+  .ttbln {{ font-size:16px; font-weight:800; color:var(--t1); font-variant-numeric:tabular-nums; min-width:52px; letter-spacing:-.01em; }}
+  .ttbln .tld {{ color:#5b6b82; font-weight:600; margin-right:1px; }}
+  .ttbmid {{ flex:1; min-width:0; }}
+  .ttbnm {{ font-size:14px; color:#cdd5e0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+  .ttbnm b {{ color:var(--t1); font-weight:700; }}
+  .ttbsb {{ color:#93a0b4; font-size:12px; margin-top:2px; }}
+  .ttbsb .pj {{ color:#8ea2bd; font-weight:600; }}
+  .ttbsb .fd {{ color:#4da3ff; font-weight:600; }}
   .plno {{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
           white-space:nowrap; }}
   .plno.rng {{ font-size:16px; }}

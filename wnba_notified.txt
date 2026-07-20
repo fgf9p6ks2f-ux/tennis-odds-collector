@@ -52,6 +52,7 @@
 2026-07-20|Isabelle Harrison|pts_reb|17.5
 2026-07-20|Isabelle Harrison|rebounds|5.5
 2026-07-20|Marina Mabrey|pra|29.5
+2026-07-20|Marina Mabrey|pra|30.5
 2026-07-20|Marina Mabrey|pts_ast|26.5
 2026-07-20|Marina Mabrey|pts_reb|26.5
 2026-07-20|Marina Mabrey|reb_ast|6.5
@@ -112,6 +113,7 @@ watch|2026-07-19|Olivia Nelson-Ododa|rebounds|7.5
 watch|2026-07-19|Sydney Taylor|points|14.5
 watch|2026-07-20|Breanna Stewart|pra|31.5
 watch|2026-07-20|Breanna Stewart|rebounds|7.5
+watch|2026-07-20|Laura Juskaite|points|10.5
 watch|2026-07-20|Laura Juskaite|points|9.5
 watch|2026-07-20|Laura Juskaite|pts_reb|13.5
 watch|2026-07-20|Laura Juskaite|pts_reb|14.5
