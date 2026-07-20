@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T01:39:04Z",
+ "captured_at": "2026-07-20T01:43:10Z",
  "matches": [
   {
    "event_id": 35843825,
@@ -8,9 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-20T01:25:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35843826,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-20T01:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 74.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35843840,
@@ -30,7 +30,7 @@
    "p1_norm": "jaroslaw badura",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-20T01:35:00.000Z",
-   "line": 68.5,
+   "line": 71.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -66,6 +66,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35843878,
+   "p1": "Jakub Skorupa",
+   "p2": "Michal Guzik",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-20T02:10:00.000Z",
+   "line": 71.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
