@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T16:16:47Z",
+ "captured_at": "2026-07-20T16:22:26Z",
  "matches": [
-  {
-   "event_id": 35845792,
-   "p1": "Miroslav Sklensky",
-   "p2": "Lukasz Pietraszko",
-   "p1_norm": "miroslav sklensky",
-   "p2_norm": "lukasz pietraszko",
-   "open_date": "2026-07-20T15:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35845767,
-   "p1": "Piotr Gesiarz",
-   "p2": "Dariusz Maszczynski",
-   "p1_norm": "piotr gesiarz",
-   "p2_norm": "dariusz maszczynski",
-   "open_date": "2026-07-20T16:00:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35845785,
    "p1": "Miroslav Sklensky",
@@ -30,9 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-20T16:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35845798,
@@ -41,9 +19,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-20T16:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35845799,
@@ -52,9 +30,9 @@
    "p1_norm": "miroslaw piecowski",
    "p2_norm": "marcin kowalczyk",
    "open_date": "2026-07-20T16:15:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35845856,
@@ -63,9 +41,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-20T16:20:00.000Z",
-   "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35845951,
