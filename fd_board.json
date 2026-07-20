@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T02:30:21Z",
+ "captured_at": "2026-07-20T02:34:27Z",
  "matches": [
   {
    "event_id": 35843896,
@@ -33,6 +33,39 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35843905,
+   "p1": "Tibor Spanik",
+   "p2": "Szymon Sporek",
+   "p1_norm": "tibor spanik",
+   "p2_norm": "szymon sporek",
+   "open_date": "2026-07-20T03:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843906,
+   "p1": "Krzysztof Hetnar",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "krzysztof hetnar",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-20T03:00:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35843907,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Blazej Warpas",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "blazej warpas",
+   "open_date": "2026-07-20T03:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
