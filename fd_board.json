@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T02:51:48Z",
+ "captured_at": "2026-07-20T02:55:58Z",
  "matches": [
-  {
-   "event_id": 35843900,
-   "p1": "Pawel Kurek",
-   "p2": "Jaroslaw Badura",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "jaroslaw badura",
-   "open_date": "2026-07-20T02:45:00.000Z",
-   "line": 51.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35843901,
    "p1": "Andrzej Krezel",
@@ -19,9 +8,9 @@
    "p1_norm": "andrzej krezel",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-20T02:45:00.000Z",
-   "line": 56.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 61.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35843905,
