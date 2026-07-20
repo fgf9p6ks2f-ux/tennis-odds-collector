@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T08:25:09Z",
+ "captured_at": "2026-07-20T08:30:18Z",
  "matches": [
-  {
-   "event_id": 35844503,
-   "p1": "Jakub Kosowski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "jakub kosowski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-20T08:05:00.000Z",
-   "line": 97.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844520,
    "p1": "Pawel Adamus",
@@ -19,9 +8,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-20T08:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 90.5,
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
    "event_id": 35844550,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-20T08:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 56.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844551,
@@ -41,7 +30,7 @@
    "p1_norm": "witold stechly",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-20T08:20:00.000Z",
-   "line": 89.5,
+   "line": 94.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -52,9 +41,9 @@
    "p1_norm": "jakub chmielowski",
    "p2_norm": "michal minda",
    "open_date": "2026-07-20T08:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844580,
@@ -63,9 +52,9 @@
    "p1_norm": "tibor spanik",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-20T08:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35844583,
