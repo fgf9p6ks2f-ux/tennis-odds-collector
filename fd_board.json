@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-20T07:57:37Z",
+ "captured_at": "2026-07-20T08:02:49Z",
  "matches": [
-  {
-   "event_id": 35844481,
-   "p1": "Michal Minda",
-   "p2": "Kacper Szurlej",
-   "p1_norm": "michal minda",
-   "p2_norm": "kacper szurlej",
-   "open_date": "2026-07-20T07:40:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35844492,
    "p1": "Grzegorz Jurowicz",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "patryk mecik",
    "open_date": "2026-07-20T07:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35844498,
@@ -30,9 +19,9 @@
    "p1_norm": "dariusz maszczynski",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-20T08:00:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844502,
