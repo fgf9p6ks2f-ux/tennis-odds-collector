@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-20T02:04:21Z",
+ "captured_at": "2026-07-20T02:09:04Z",
  "matches": [
-  {
-   "event_id": 35843854,
-   "p1": "Mateusz Karpiuk",
-   "p2": "Andriej Fomin",
-   "p1_norm": "mateusz karpiuk",
-   "p2_norm": "andriej fomin",
-   "open_date": "2026-07-20T01:45:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35843871,
-   "p1": "Mariusz Baron",
-   "p2": "Pawel Slosarczyk",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "pawel slosarczyk",
-   "open_date": "2026-07-20T01:55:00.000Z",
-   "line": 55.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35843878,
    "p1": "Jakub Skorupa",
@@ -42,8 +20,8 @@
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-20T02:20:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35843885,
@@ -52,9 +30,20 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "rafal ogon",
    "open_date": "2026-07-20T02:20:00.000Z",
-   "line": 78.5,
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35843896,
+   "p1": "Pawel Chojnacki",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-20T02:35:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
