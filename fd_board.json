@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T10:22:37Z",
+ "captured_at": "2026-07-20T10:27:56Z",
  "matches": [
   {
    "event_id": 35844751,
@@ -8,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-20T10:05:00.000Z",
-   "line": 94.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 95.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35844766,
@@ -19,9 +19,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-20T10:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 89.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35844767,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-20T10:10:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35844782,
@@ -41,7 +41,7 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-20T10:20:00.000Z",
-   "line": 77.5,
+   "line": 73.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -53,8 +53,8 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-20T10:25:00.000Z",
    "line": 82.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35844799,
@@ -98,6 +98,28 @@
    "open_date": "2026-07-20T10:40:00.000Z",
    "line": 78.5,
    "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844812,
+   "p1": "Maciej Nowalinski",
+   "p2": "Jakub Kosowski",
+   "p1_norm": "maciej nowalinski",
+   "p2_norm": "jakub kosowski",
+   "open_date": "2026-07-20T10:50:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35844823,
+   "p1": "Miroslav Sklensky",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-20T10:55:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
    "under_odds": -116
   }
  ]
