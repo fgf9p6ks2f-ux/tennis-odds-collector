@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T17:22:12Z",
+ "captured_at": "2026-07-20T17:28:27Z",
  "matches": [
   {
    "event_id": 35846236,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr gesiarz",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-20T17:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
    "event_id": 35846265,
@@ -19,7 +19,7 @@
    "p1_norm": "jacek zelezik",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-20T17:20:00.000Z",
-   "line": 77.5,
+   "line": 89.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -74,6 +74,17 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-20T17:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35846334,
+   "p1": "Rafal Niemiec",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-20T17:55:00.000Z",
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
