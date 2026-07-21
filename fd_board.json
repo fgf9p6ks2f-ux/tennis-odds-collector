@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T10:11:13Z",
+ "captured_at": "2026-07-21T10:17:48Z",
  "matches": [
   {
    "event_id": 35848578,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-21T10:05:00.000Z",
-   "line": 63.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 50.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35848584,
@@ -19,9 +19,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-21T10:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848585,
@@ -30,9 +30,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-21T10:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 48.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848614,
@@ -44,6 +44,28 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35848629,
+   "p1": "Szymon Sporek",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "szymon sporek",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-21T10:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35848634,
+   "p1": "Jakub Chmielowski",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "jakub chmielowski",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-21T10:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35848653,
@@ -64,6 +86,17 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T10:35:00.000Z",
    "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35848660,
+   "p1": "Boguslaw Madej",
+   "p2": "Karol Jablonski",
+   "p1_norm": "boguslaw madej",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-21T10:40:00.000Z",
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
