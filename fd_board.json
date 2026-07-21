@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T01:11:32Z",
+ "captured_at": "2026-07-21T01:18:54Z",
  "matches": [
-  {
-   "event_id": 35847299,
-   "p1": "Kacper Adamus",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-21T00:50:00.000Z",
-   "line": 52.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35847313,
    "p1": "Kuba Golaszewski",
@@ -19,9 +8,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T01:00:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35847460,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35847471,
@@ -41,9 +30,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 55.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 63.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847472,
@@ -52,9 +41,20 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35847485,
+   "p1": "Artur Gromek",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "artur gromek",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-21T01:10:00.000Z",
+   "line": 63.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35847500,
@@ -64,8 +64,8 @@
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T01:25:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35847501,
@@ -97,8 +97,8 @@
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-21T01:35:00.000Z",
    "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
