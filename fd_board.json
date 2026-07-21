@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T01:36:54Z",
+ "captured_at": "2026-07-21T01:44:26Z",
  "matches": [
-  {
-   "event_id": 35847500,
-   "p1": "Miroslaw Piecowski",
-   "p2": "Mikolaj Lukaszewski",
-   "p1_norm": "miroslaw piecowski",
-   "p2_norm": "mikolaj lukaszewski",
-   "open_date": "2026-07-21T01:25:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35847501,
-   "p1": "Jerzy Michalik",
-   "p2": "Artur Kubiak",
-   "p1_norm": "jerzy michalik",
-   "p2_norm": "artur kubiak",
-   "open_date": "2026-07-21T01:30:00.000Z",
-   "line": 60.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35847502,
    "p1": "Rafal Niemiec",
@@ -30,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-21T01:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847513,
@@ -41,9 +19,9 @@
    "p1_norm": "adam staniczek",
    "p2_norm": "kazimierz rybak",
    "open_date": "2026-07-21T01:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 57.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847538,
@@ -77,6 +55,28 @@
    "line": 71.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35847547,
+   "p1": "Michal Krutak",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "michal krutak",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-21T02:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35847548,
+   "p1": "Kacper Adamus",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-21T02:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
