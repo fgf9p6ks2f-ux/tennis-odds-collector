@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T00:07:49Z",
+ "captured_at": "2026-07-21T00:12:17Z",
  "matches": [
   {
    "event_id": 35847081,
@@ -8,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-20T23:50:00.000Z",
-   "line": 96.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35847090,
@@ -19,9 +19,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-21T00:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35847214,
@@ -31,7 +31,7 @@
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-21T00:10:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
+   "over_odds": -116,
    "under_odds": -118
   },
   {
@@ -41,9 +41,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847216,
@@ -52,9 +52,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35847223,
