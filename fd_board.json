@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T11:24:43Z",
+ "captured_at": "2026-07-21T11:30:00Z",
  "matches": [
   {
    "event_id": 35848749,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T11:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848759,
@@ -19,9 +19,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-21T11:20:00.000Z",
-   "line": 55.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 52.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35848764,
@@ -30,9 +30,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T11:25:00.000Z",
-   "line": 73.5,
+   "line": 69.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35848765,
@@ -41,9 +41,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "michal minda",
    "open_date": "2026-07-21T11:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848783,
@@ -97,6 +97,17 @@
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-21T11:50:00.000Z",
    "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35848865,
+   "p1": "Rafal Gajda",
+   "p2": "Mariusz Baron",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-21T11:55:00.000Z",
+   "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
   }
