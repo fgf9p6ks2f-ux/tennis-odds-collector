@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T15:30:12Z",
+ "captured_at": "2026-07-21T15:36:55Z",
  "matches": [
   {
    "event_id": 35849670,
@@ -8,18 +8,7 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-21T15:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35849671,
-   "p1": "Mariusz Koczyba",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "mariusz koczyba",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-21T15:25:00.000Z",
-   "line": 52.5,
+   "line": 84.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T15:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35849687,
@@ -41,9 +30,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "michal oracz",
    "open_date": "2026-07-21T15:30:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 49.5,
+   "over_odds": 110,
+   "under_odds": -155
   },
   {
    "event_id": 35849700,
@@ -52,9 +41,9 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-21T15:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35849751,
@@ -88,6 +77,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35849773,
+   "p1": "Robert Szymik",
+   "p2": "Sebastian Krupa",
+   "p1_norm": "robert szymik",
+   "p2_norm": "sebastian krupa",
+   "open_date": "2026-07-21T16:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
