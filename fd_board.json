@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T17:12:34Z",
+ "captured_at": "2026-07-21T17:18:04Z",
  "matches": [
-  {
-   "event_id": 35850259,
-   "p1": "Pawel Adamus",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-21T16:55:00.000Z",
-   "line": 92.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
-  {
-   "event_id": 35850272,
-   "p1": "Maksymilian Rus",
-   "p2": "Mariusz Baron",
-   "p1_norm": "maksymilian rus",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-21T17:05:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35850275,
    "p1": "Robert Szymik",
@@ -30,7 +8,7 @@
    "p1_norm": "robert szymik",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-21T17:10:00.000Z",
-   "line": 73.5,
+   "line": 85.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -88,6 +66,28 @@
    "line": 77.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35850344,
+   "p1": "Stanislaw Wnek",
+   "p2": "Wojciech Gluszek",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "wojciech gluszek",
+   "open_date": "2026-07-21T17:45:00.000Z",
+   "line": 82.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850345,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Pawel Adamus",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "pawel adamus",
+   "open_date": "2026-07-21T17:45:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
