@@ -712,10 +712,74 @@ def _load_tt():
         return None
 
 
+def _wnba_recent(days=2):
+    """Per-day list of the SELECTED graded bets over the last `days` slate days (current_selection +
+    ladder staking) — each with W/L + units, plus the day's record + units. Feeds the 24h dropdown."""
+    try:
+        con = sqlite3.connect(LEDGER)
+        con.row_factory = sqlite3.Row
+        cutoff = (dt.datetime.now(ET).date() - dt.timedelta(days=days - 1)).isoformat()
+        g = [dict(r) for r in con.execute(
+            "SELECT * FROM predictions WHERE graded=1 AND pred_date >= ?", (cutoff,))]
+        con.close()
+        import wnba_slip as SL
+    except Exception:
+        return []
+    by_day = {}
+    for r in g:
+        by_day.setdefault(r["pred_date"], []).append(r)
+    out = []
+    for d in sorted(by_day, reverse=True):
+        overs = [r for r in by_day[d] if r["result"] in ("over", "under") and (r["side"] or "over") == "over"]
+        if not overs:
+            continue
+        try:
+            dec, _ = SL.current_selection(overs)
+            sm = SL.ladder_stake_map(dec)
+        except Exception:
+            dec, sm = overs, {}
+        bets, w, u = [], 0, 0.0
+        for r in sorted(dec, key=lambda r: (r["player"], r["stat"], r["line"])):
+            st = sm.get((r["pred_date"], r["player"], r["stat"], r["line"]), 1.0)
+            won = r["result"] == "over"
+            pnl = st * (r["odds"] - 1) if won else -st
+            w += 1 if won else 0
+            u += pnl
+            bets.append({"name": f'{_short(r["player"])} {STAT.get(r["stat"], r["stat"])} o{r["line"]:g}',
+                         "won": won, "pnl": round(pnl, 2)})
+        if bets:
+            out.append({"date": d, "w": w, "l": len(bets) - w, "u": round(u, 2), "bets": bets})
+    return out
+
+
+def _recent_dd(days):
+    """Collapsible 'last 24h' dropdown from _wnba_recent()/TT recent data — per-day record + units,
+    then each settled bet with W/L + units. Same shape for WNBA and TT Elite."""
+    if not days:
+        return ""
+    inner = ""
+    for day in days:
+        try:
+            lbl = dt.date.fromisoformat(day["date"]).strftime("%a %-m/%-d")
+        except (ValueError, KeyError, TypeError):
+            lbl = str(day.get("date", ""))
+        ucls = "up" if day["u"] > 0 else ("down" if day["u"] < 0 else "")
+        inner += (f'<div class="ddday"><span>{lbl}</span><span class="ddtot">{day["w"]}-{day["l"]} · '
+                  f'<span class="{ucls}">{day["u"]:+.2f}u</span></span></div>')
+        for b in day["bets"]:
+            wl = "W" if b["won"] else "L"
+            inner += (f'<div class="ddbet"><span class="ddnm">{html.escape(b["name"])}</span>'
+                      f'<span class="ddwl {wl.lower()}">{wl}</span>'
+                      f'<span class="ddu {"up" if b["pnl"] > 0 else "down"}">{b["pnl"]:+.2f}u</span></div>')
+    nbet = sum(len(d["bets"]) for d in days)
+    return (f'<details class="tdd"><summary>last 24h <span class="ddcnt">{nbet}</span></summary>'
+            f'<div class="ddbody">{inner}</div></details>')
+
+
 def _tracker_panel(wnba_rec, tt_json):
     """Tracker tab — live record / hit rate / units for WNBA and Table Tennis, flat 1u,
     updated as each event settles."""
-    def card(emoji, title, w, l, u, note):
+    def card(emoji, title, w, l, u, note, recent=None):
         n = w + l
         hit = f"{w/n*100:.0f}%" if n else "—"
         roi = f"{u/n*100:+.0f}%" if n else ""
@@ -729,9 +793,10 @@ def _tracker_panel(wnba_rec, tt_json):
           <div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{u:+.1f}u</div></div>
         </div>
         <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
+        {_recent_dd(recent)}
       </div>"""
     w, l, u = wnba_rec
-    out = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9")
+    out = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9", recent=_wnba_recent())
     try:                                                  # parlay ROI (ALL suggested, staked .25/.15u)
         import wnba_slip as SLIP
         pr = SLIP.parlay_record()
@@ -775,7 +840,8 @@ def _tracker_panel(wnba_rec, tt_json):
         if elite:                                          # the bettable one — real FanDuel line + odds
             ep = (tt or {}).get("elite_pending", 0)
             note = "graded at the actual FanDuel line + odds" + (f" · {ep} pending" if ep else "")
-            out += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note)
+            out += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note,
+                        recent=(tt or {}).get("recent"))
         rest = [x for x in leagues if x["league"] != "TT Elite Series"]
         if rest:                                           # shadow leagues — compact per-league table
             trows = ""
@@ -1864,6 +1930,26 @@ def build():
   .tv {{ font-size:22px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }}
   .tv.up {{ color:#37d67f; }} .tv.down {{ color:#f8716b; }}
   .tsub {{ color:#7d8696; font-size:11.5px; text-align:center; margin-top:12px; }}
+  /* last-24h bet dropdown (WNBA + TT Elite trackers) */
+  .tdd {{ margin-top:12px; border-top:1px solid #191d26; padding-top:9px; }}
+  .tdd summary {{ list-style:none; cursor:pointer; color:#93a0b4; font-size:12px; font-weight:600;
+    display:flex; align-items:center; gap:7px; user-select:none; }}
+  .tdd summary::-webkit-details-marker {{ display:none; }}
+  .tdd summary::before {{ content:"\\25B8"; color:#5b6b82; font-size:10px; transition:transform .15s ease; }}
+  .tdd[open] summary::before {{ transform:rotate(90deg); }}
+  .ddcnt {{ color:#5b6b82; font-weight:600; }}
+  .ddbody {{ margin-top:6px; }}
+  .ddday {{ display:flex; justify-content:space-between; align-items:baseline; font-size:11px;
+    font-weight:700; color:#7d8696; text-transform:uppercase; letter-spacing:.04em;
+    margin:10px 0 3px; padding-bottom:4px; border-bottom:1px solid #161d28; }}
+  .ddtot {{ font-variant-numeric:tabular-nums; letter-spacing:0; text-transform:none; color:#cdd5e0; }}
+  .ddbet {{ display:grid; grid-template-columns:1fr auto 62px; gap:9px; align-items:center;
+    padding:5px 0; font-size:13px; }}
+  .ddnm {{ color:#cdd5e0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
+  .ddwl {{ font-weight:800; font-size:10.5px; width:19px; text-align:center; border-radius:5px; padding:1px 0; }}
+  .ddwl.w {{ color:#5ad98a; background:rgba(90,217,138,.14); }}
+  .ddwl.l {{ color:#ef7a7a; background:rgba(239,122,122,.13); }}
+  .ddu {{ text-align:right; font-variant-numeric:tabular-nums; font-weight:600; }}
 
   /* ═══════════ DESIGN OVERHAUL (2026-07-17) — ProspectScore visual language ═══════════
      Tokens + surfaces from web2/design-system: near-black graphite, ONE blue accent (#4DA3FF),

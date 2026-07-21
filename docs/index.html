@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="f34159ed7f">
+<meta name="bv" content="0a2f9813db">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -354,6 +354,26 @@
   .tv { font-size:22px; font-weight:800; line-height:1; font-variant-numeric:tabular-nums; }
   .tv.up { color:#37d67f; } .tv.down { color:#f8716b; }
   .tsub { color:#7d8696; font-size:11.5px; text-align:center; margin-top:12px; }
+  /* last-24h bet dropdown (WNBA + TT Elite trackers) */
+  .tdd { margin-top:12px; border-top:1px solid #191d26; padding-top:9px; }
+  .tdd summary { list-style:none; cursor:pointer; color:#93a0b4; font-size:12px; font-weight:600;
+    display:flex; align-items:center; gap:7px; user-select:none; }
+  .tdd summary::-webkit-details-marker { display:none; }
+  .tdd summary::before { content:"\25B8"; color:#5b6b82; font-size:10px; transition:transform .15s ease; }
+  .tdd[open] summary::before { transform:rotate(90deg); }
+  .ddcnt { color:#5b6b82; font-weight:600; }
+  .ddbody { margin-top:6px; }
+  .ddday { display:flex; justify-content:space-between; align-items:baseline; font-size:11px;
+    font-weight:700; color:#7d8696; text-transform:uppercase; letter-spacing:.04em;
+    margin:10px 0 3px; padding-bottom:4px; border-bottom:1px solid #161d28; }
+  .ddtot { font-variant-numeric:tabular-nums; letter-spacing:0; text-transform:none; color:#cdd5e0; }
+  .ddbet { display:grid; grid-template-columns:1fr auto 62px; gap:9px; align-items:center;
+    padding:5px 0; font-size:13px; }
+  .ddnm { color:#cdd5e0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .ddwl { font-weight:800; font-size:10.5px; width:19px; text-align:center; border-radius:5px; padding:1px 0; }
+  .ddwl.w { color:#5ad98a; background:rgba(90,217,138,.14); }
+  .ddwl.l { color:#ef7a7a; background:rgba(239,122,122,.13); }
+  .ddu { text-align:right; font-variant-numeric:tabular-nums; font-weight:600; }
 
   /* ═══════════ DESIGN OVERHAUL (2026-07-17) — ProspectScore visual language ═══════════
      Tokens + surfaces from web2/design-system: near-black graphite, ONE blue accent (#4DA3FF),
@@ -476,7 +496,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>11:24 PM MT
+    <div class="live"><span class="dot"></span>11:25 PM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -512,6 +532,7 @@
           <div class="tbox"><div class="tk">Units</div><div class="tv up">+13.1u</div></div>
         </div>
         <div class="tsub">current-model picks (overs · thin-sample &amp; over-stack filtered) · 1u base + declining rungs · since 7/9 · ROI +31%</div>
+        <details class="tdd"><summary>last 24h <span class="ddcnt">5</span></summary><div class="ddbody"><div class="ddday"><span>Mon 7/20</span><span class="ddtot">4-1 · <span class="up">+2.25u</span></span></div><div class="ddbet"><span class="ddnm">B. Stewart REB o7.5</span><span class="ddwl w">W</span><span class="ddu up">+0.82u</span></div><div class="ddbet"><span class="ddnm">I. Harrison PTS o10.5</span><span class="ddwl w">W</span><span class="ddu up">+0.78u</span></div><div class="ddbet"><span class="ddnm">I. Harrison PTS o14.5</span><span class="ddwl w">W</span><span class="ddu up">+0.62u</span></div><div class="ddbet"><span class="ddnm">I. Harrison REB o5.5</span><span class="ddwl w">W</span><span class="ddu up">+1.02u</span></div><div class="ddbet"><span class="ddnm">S. Ionescu AST o4.5</span><span class="ddwl l">L</span><span class="ddu down">-1.00u</span></div></div></details>
       </div><div class="tcard"><div class="thead">🎰 WNBA parlays</div><div class="trow"><div class="tbox"><div class="tk">Record</div><div class="tv">4-7</div></div><div class="tbox"><div class="tk">Hit rate</div><div class="tv">36%</div></div><div class="tbox"><div class="tk">Units</div><div class="tv up">+1.88u</div></div></div><div class="tsub">every suggested parlay counts · .25u · .15u ≥+1000 · ROI +68%</div></div><div class="tcard diag"><div class="thead" style="cursor:pointer" onclick="this.parentElement.classList.toggle('open')">📐 Calibration <span class="tsh">diagnostics · tap</span></div><div class="tbody"><div class="trow"><div class="tbox"><div class="tk">Sample</div><div class="tv">90/100</div></div><div class="tbox"><div class="tk">Optimism</div><div class="tv">+9%</div></div><div class="tbox"><div class="tk">Ranking</div><div class="tv ">+0%</div></div></div><div class="tsub">accumulating 90/100 graded — flat sizing + current selection (no expand)</div></div></div>
       <div class="tcard">
         <div class="thead">🏓 TT Elite (FanDuel real line)</div>
@@ -521,6 +542,7 @@
           <div class="tbox"><div class="tk">Units</div><div class="tv up">+12.5u</div></div>
         </div>
         <div class="tsub">graded at the actual FanDuel line + odds · ROI +23%</div>
+        
       </div>
       <div class="tcard">
         <div class="thead">🎯 Injury-timing CLV</div>
