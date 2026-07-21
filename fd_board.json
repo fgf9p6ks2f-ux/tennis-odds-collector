@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T22:24:16Z",
+ "captured_at": "2026-07-21T22:30:05Z",
  "matches": [
-  {
-   "event_id": 35850768,
-   "p1": "Mikolaj Lukaszewski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "mikolaj lukaszewski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35850769,
    "p1": "Wojciech Wojtaszczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 85.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 94.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850777,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-21T22:20:00.000Z",
-   "line": 70.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35850780,
@@ -41,9 +30,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-21T22:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850786,
@@ -52,9 +41,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-21T22:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -118
   },
   {
    "event_id": 35850800,
@@ -86,8 +75,8 @@
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T22:40:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850820,
@@ -110,6 +99,28 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35850831,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-21T22:55:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850832,
+   "p1": "Pawel Adamus",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "pawel adamus",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-21T22:55:00.000Z",
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
