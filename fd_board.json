@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T19:52:54Z",
+ "captured_at": "2026-07-21T20:00:09Z",
  "matches": [
   {
    "event_id": 35850573,
@@ -8,9 +8,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-21T19:40:00.000Z",
-   "line": 67.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850602,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 51.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850607,
@@ -55,6 +55,28 @@
    "line": 82.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35850637,
+   "p1": "Robert Szymik",
+   "p2": "Kaczynski Piotr",
+   "p1_norm": "robert szymik",
+   "p2_norm": "kaczynski piotr",
+   "open_date": "2026-07-21T20:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850638,
+   "p1": "Marian Brunner",
+   "p2": "Michal Machelski",
+   "p1_norm": "marian brunner",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-21T20:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
