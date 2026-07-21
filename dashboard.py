@@ -1147,23 +1147,20 @@ def _tt_health(data):
 
 
 def _wnba_health():
-    """Broken-vs-quiet for the WNBA board. 0 flags is usually a LEGIT quiet slate (injury-driven), so
-    we never judge on play count — we judge the INJURY FEED the scanner depends on ('scanning quietly
-    stopped', mirroring wnba_selfcheck's 45min rule but a touch more lenient for a soft banner). Fails
-    OPEN when the cache is absent (a non-VM checkout / Actions) so it can't false-positive off-box."""
+    """Broken-vs-quiet for the WNBA board. 0 flags is usually a LEGIT quiet slate (injury-driven), and
+    0 injury ROWS is ALSO legit on an off-day / All-Star break (the scanner rewrites the cache fresh
+    every cycle even when the report is empty — verified 2026-07-21: 0 predictions stamped, cache
+    fresh+empty), so we judge ONLY on STALENESS — a cache that stopped refreshing means the scanner
+    actually died. Fails OPEN when the cache is absent (non-VM checkout / Actions) so it can't
+    false-positive off-box. (wnba_selfcheck's separate pre-game 0-rows check is intentional there.)"""
     if not _WNBA_INJ.exists():
         return {"ok": True, "reason": ""}                  # not the scanner box — don't judge
     try:
         age = (dt.datetime.now(dt.timezone.utc).timestamp() - _WNBA_INJ.stat().st_mtime) / 60
     except OSError:
         return {"ok": True, "reason": ""}
-    if age > 60:
-        return {"ok": False, "reason": f"injury feed {age:.0f}min stale — scanning may have stopped"}
-    try:
-        if not json.loads(_WNBA_INJ.read_text()).get("rows"):
-            return {"ok": False, "reason": "injury feed parsed but empty (0 rows)"}
-    except (ValueError, OSError):
-        return {"ok": False, "reason": "injury feed unreadable"}
+    if age > 90:
+        return {"ok": False, "reason": f"injury feed {age:.0f}min stale — scanner may have stopped"}
     return {"ok": True, "reason": ""}
 
 
