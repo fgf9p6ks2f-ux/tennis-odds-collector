@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T19:23:41Z",
+ "captured_at": "2026-07-21T19:29:20Z",
  "matches": [
   {
    "event_id": 35850522,
@@ -8,9 +8,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 74.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850525,
@@ -19,9 +19,9 @@
    "p1_norm": "maciej nowalinski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T19:15:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 93.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850536,
@@ -30,9 +30,9 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T19:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850556,
@@ -88,6 +88,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35850602,
+   "p1": "Jakub Skorupa",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-21T19:55:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
