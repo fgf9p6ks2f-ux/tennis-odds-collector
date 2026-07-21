@@ -19,10 +19,18 @@ PROP_STATS = {"Total Strikeouts": "strikeouts", "Pitching Outs": "outs",
               "Total Bases": "total_bases", "Home Runs": "home_runs",
               "Stolen Bases": "stolen_bases", "RBIs": "rbis", "Hits": "hits"}
 
+# Single-GAME prop line sanity (min, max inclusive). The label substring match above also matches
+# team/season markets (e.g. a season "Home Runs" total leaks a 127.5 line into the game HR feed) —
+# reject any line outside the plausible single-game range so junk never enters the table.
+SANE_LINE = {"strikeouts": (0.5, 15.5), "outs": (3.5, 24.5), "hits_allowed": (0.5, 12.5),
+             "earned_runs": (0.5, 9.5), "total_bases": (0.5, 8.5), "home_runs": (0.5, 3.5),
+             "stolen_bases": (0.5, 4.5), "rbis": (0.5, 8.5), "hits": (0.5, 6.5)}
+
 
 def collect():
     matchups = pinnacle._get("/sports/3/matchups")
     out = []
+    skipped = 0
     for mu in matchups:
         desc = (mu.get("special") or {}).get("description") or ""
         stat = next((s for label, s in PROP_STATS.items() if label in desc), None)
@@ -40,8 +48,15 @@ def collect():
         line = over.get("points")
         o = pinnacle.american_to_decimal(over.get("price"))
         u = pinnacle.american_to_decimal(under.get("price"))
-        if line is not None and o and u:
-            out.append((player, stat, line, o, u, mu.get("startTime")))
+        if line is None or not (o and u):
+            continue
+        lo, hi = SANE_LINE.get(stat, (None, None))
+        if lo is not None and not (lo <= line <= hi):
+            skipped += 1                                   # team/season market leaked in — reject
+            continue
+        out.append((player, stat, line, o, u, mu.get("startTime")))
+    if skipped:
+        print(f"  filtered {skipped} out-of-range prop line(s)", flush=True)
     return out
 
 
