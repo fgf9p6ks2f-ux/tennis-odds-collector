@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T01:51:56Z",
+ "captured_at": "2026-07-21T01:59:31Z",
  "matches": [
-  {
-   "event_id": 35847538,
-   "p1": "Robert Kostepski",
-   "p2": "Grzegorz Marud",
-   "p1_norm": "robert kostepski",
-   "p2_norm": "grzegorz marud",
-   "open_date": "2026-07-21T01:50:00.000Z",
-   "line": 70.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35847539,
    "p1": "Mateusz Baran",
@@ -19,9 +8,9 @@
    "p1_norm": "mateusz baran",
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-21T01:50:00.000Z",
-   "line": 74.5,
+   "line": 71.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35847542,
@@ -41,9 +30,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-21T02:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35847548,
@@ -55,6 +44,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35847565,
+   "p1": "Michal Machelski",
+   "p2": "Kazimierz Rybak",
+   "p1_norm": "michal machelski",
+   "p2_norm": "kazimierz rybak",
+   "open_date": "2026-07-21T02:20:00.000Z",
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
