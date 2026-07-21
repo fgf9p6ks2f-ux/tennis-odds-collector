@@ -123,6 +123,7 @@ watch|2026-07-20|Pauline Astier|assists|3.5
 watch|2026-07-20|Pauline Astier|reb_ast|5.5
 watch|2026-07-20|Sabrina Ionescu|assists|4.5
 watch|2026-07-22|Arike Ogunbowale|pts_reb|20.5
+watch|2026-07-22|Azura Stevens|pra|22.5
 watch|2026-07-22|Azura Stevens|reb_ast|9.5
 watch|2026-07-22|Brittney Griner|points|13.5
 watch|2026-07-22|Brittney Griner|pra|22.5
