@@ -34,6 +34,9 @@ H = {"Referer": "https://sportsbook.draftkings.com/", "Accept": "application/jso
 STAT_MAP = {
     "strikeouts thrown": "strikeouts", "outs recorded": "outs", "pitching outs": "outs",
     "pitcher outs": "outs", "outs": "outs",
+    # pitcher run-prevention markets (edge hunt 2026-07-22): DK posts these O/U for the starter, so
+    # collecting them lets us forward-test the 'line-above-recent -> under' signal on REAL soft lines.
+    "earned runs allowed": "earned_runs", "walks allowed": "walks", "hits allowed": "hits_allowed",
     "total bases": "total_bases", "hits": "hits",
     "hits + runs + rbis": "hrr",
     "home runs": "home_runs", "rbis": "rbis", "stolen bases": "stolen_bases",

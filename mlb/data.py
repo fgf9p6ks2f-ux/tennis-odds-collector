@@ -168,6 +168,7 @@ def pitcher_gamelog(pid: int, season: int) -> list[dict]:
         out.append({"date": g.get("date"), "opp_id": g.get("opponent", {}).get("id"),
                     "k": s.get("strikeOuts") or 0, "bf": s.get("battersFaced") or 0,
                     "outs": s.get("outs") or 0,
+                    "er": s.get("earnedRuns") or 0, "bb": s.get("baseOnBalls") or 0,
                     "pitches": s.get("numberOfPitches") or 0,
                     "game_pk": (g.get("game") or {}).get("gamePk"),
                     "is_home": g.get("isHome")})
