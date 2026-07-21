@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T04:48:10Z",
+ "captured_at": "2026-07-21T04:52:40Z",
  "matches": [
   {
    "event_id": 35848232,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-21T04:40:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 53.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848237,
@@ -31,8 +31,8 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-21T04:50:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848245,
