@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T16:31:27Z",
+ "captured_at": "2026-07-21T16:36:57Z",
  "matches": [
-  {
-   "event_id": 35849941,
-   "p1": "Stanislaw Wnek",
-   "p2": "Marcin Kowalczyk",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "marcin kowalczyk",
-   "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 92.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35850045,
-   "p1": "Rafal Gajda",
-   "p2": "Michal Oracz",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "michal oracz",
-   "open_date": "2026-07-21T16:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35850151,
    "p1": "Grzegorz Marud",
@@ -30,9 +8,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-21T16:25:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 90.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850218,
@@ -41,9 +19,9 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-21T16:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850219,
@@ -53,8 +31,8 @@
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T16:35:00.000Z",
    "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850228,
@@ -75,8 +53,8 @@
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T16:50:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -118
   },
   {
    "event_id": 35850258,
