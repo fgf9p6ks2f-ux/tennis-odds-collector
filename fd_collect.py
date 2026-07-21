@@ -100,6 +100,29 @@ def extract(m, sport, event_name=""):
                 if o is not None:
                     rows.append((r.get("runnerName") or "", wstat, line, "over", o))
         return rows
+    # 0) pitcher OUTS: FanDuel names it "{Player} [Alt ]Outs Recorded" / "{Player} Pitching Outs"
+    #    — NO dash (strikeouts use "{Player} - Strikeouts"), and runners are "{Player} Over/Under
+    #    X.5" (player prefix, not a bare "Over"). The dash-required logic below missed all of it,
+    #    which is why FD outs collected 0 rows despite FanDuel posting the market. (Confirmed by a
+    #    live board screenshot 2026-07-21: "Zack Wheeler Outs Recorded", Over/Under 17.5.)
+    if re.search(r"(?i)\b(?:outs recorded|pitching outs)\s*$", nm):
+        player = re.sub(r"(?i)\s*(?:alt\s+)?(?:outs recorded|pitching outs)\s*$", "", nm).strip()
+        for r in m.get("runners") or []:
+            o, rn = _odds(r), (r.get("runnerName") or "")
+            if o is None:
+                continue
+            rl = rn.lower()
+            side = "over" if "over" in rl else ("under" if "under" in rl else None)
+            if side is None:
+                continue
+            h = r.get("handicap")
+            if h is None:                                # line lives in the runner name ("Over 17.5")
+                mm = re.search(r"(\d+(?:\.\d+)?)", rn)
+                h = float(mm.group(1)) if mm else None
+            if h is not None:
+                rows.append((player, "outs", float(h), side, o))
+        if rows:
+            return rows
     # 1) pitcher prop: "{Pitcher} - [Alt ]Strikeouts / Outs / ..." — match on the STAT portion
     # (after the dash). 'outs' is a SUBSTRING of 'strikeouts', so the old whole-name keyword
     # match missed a bare "{Player} - Outs" / "Alt Outs" market (why FD outs collected 0 rows).
