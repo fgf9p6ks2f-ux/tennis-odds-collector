@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T19:47:22Z",
+ "captured_at": "2026-07-21T19:52:54Z",
  "matches": [
-  {
-   "event_id": 35850572,
-   "p1": "Mariusz Koczyba",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "mariusz koczyba",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-21T19:40:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35850573,
    "p1": "Marcin Kowalczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-21T19:40:00.000Z",
-   "line": 70.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 67.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850602,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850607,
@@ -63,7 +52,7 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T20:05:00.000Z",
-   "line": 78.5,
+   "line": 82.5,
    "over_odds": -118,
    "under_odds": -112
   }
