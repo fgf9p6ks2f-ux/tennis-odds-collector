@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T20:33:00Z",
+ "captured_at": "2026-07-21T20:38:37Z",
  "matches": [
   {
    "event_id": 35850637,
@@ -8,20 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T20:20:00.000Z",
-   "line": 98.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35850638,
-   "p1": "Marian Brunner",
-   "p2": "Michal Machelski",
-   "p1_norm": "marian brunner",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-21T20:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850650,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T20:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850651,
@@ -41,9 +30,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T20:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850652,
@@ -52,9 +41,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-21T20:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35850667,
@@ -77,6 +66,50 @@
    "line": 67.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35850686,
+   "p1": "Wojciech Gluszek",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "wojciech gluszek",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-21T21:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850687,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-21T21:00:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850688,
+   "p1": "Artur Gromek",
+   "p2": "Jakub Kuzmicz",
+   "p1_norm": "artur gromek",
+   "p2_norm": "jakub kuzmicz",
+   "open_date": "2026-07-21T21:00:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850694,
+   "p1": "Jakub Skorupa",
+   "p2": "Michal Machelski",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-21T21:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -118
   }
  ]
 }
