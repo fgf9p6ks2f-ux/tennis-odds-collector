@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-21T21:37:55Z",
+ "captured_at": "2026-07-21T21:43:41Z",
  "matches": [
-  {
-   "event_id": 35850714,
-   "p1": "Jakub Pruszkowski",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "jakub pruszkowski",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-21T21:20:00.000Z",
-   "line": 106.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35850718,
-   "p1": "Marian Brunner",
-   "p2": "Dariusz Molenda",
-   "p1_norm": "marian brunner",
-   "p2_norm": "dariusz molenda",
-   "open_date": "2026-07-21T21:30:00.000Z",
-   "line": 57.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35850730,
-   "p1": "Grzegorz Marud",
-   "p2": "Marek Tkocz",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-21T21:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35850740,
    "p1": "Artur Gromek",
@@ -42,8 +9,8 @@
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-21T21:45:00.000Z",
    "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35850741,
@@ -52,9 +19,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T21:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35850742,
@@ -99,6 +66,28 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35850768,
+   "p1": "Mikolaj Lukaszewski",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "mikolaj lukaszewski",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-21T22:10:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850769,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-21T22:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
