@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-21T12:54:53Z",
+ "captured_at": "2026-07-21T13:00:22Z",
  "matches": [
-  {
-   "event_id": 35848920,
-   "p1": "Krystian Kolodziej",
-   "p2": "Jiri Vrablik",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "jiri vrablik",
-   "open_date": "2026-07-21T12:35:00.000Z",
-   "line": 70.5,
-   "over_odds": -155,
-   "under_odds": 110
-  },
-  {
-   "event_id": 35848922,
-   "p1": "Waldemar Glanowski",
-   "p2": "Igor Szymanski",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "igor szymanski",
-   "open_date": "2026-07-21T12:40:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35848928,
-   "p1": "Maksymilian Rus",
-   "p2": "Rafal Gajda",
-   "p1_norm": "maksymilian rus",
-   "p2_norm": "rafal gajda",
-   "open_date": "2026-07-21T12:45:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35849270,
    "p1": "Adrian Wiecek",
@@ -41,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T12:55:00.000Z",
-   "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35849277,
@@ -52,7 +19,7 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T13:00:00.000Z",
-   "line": 76.5,
+   "line": 77.5,
    "over_odds": -116,
    "under_odds": -116
   },
@@ -96,9 +63,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T13:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
