@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T06:47:54Z",
+ "captured_at": "2026-07-21T06:53:03Z",
  "matches": [
-  {
-   "event_id": 35848351,
-   "p1": "Jiri Vrablik",
-   "p2": "Adrian Wiecek",
-   "p1_norm": "jiri vrablik",
-   "p2_norm": "adrian wiecek",
-   "open_date": "2026-07-21T06:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35848352,
-   "p1": "Waldemar Glanowski",
-   "p2": "Jakub Nowak",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "jakub nowak",
-   "open_date": "2026-07-21T06:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35848361,
    "p1": "Adam Ruszkiewicz",
@@ -30,9 +8,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "dawid jendrysik",
    "open_date": "2026-07-21T06:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848362,
@@ -41,9 +19,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-21T06:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848364,
@@ -52,9 +30,9 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-21T06:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848367,
