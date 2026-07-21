@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T11:30:00Z",
+ "captured_at": "2026-07-21T11:35:19Z",
  "matches": [
   {
    "event_id": 35848749,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T11:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35848759,
@@ -19,20 +19,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-21T11:20:00.000Z",
-   "line": 52.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35848764,
-   "p1": "Waldemar Glanowski",
-   "p2": "Pawel Kurek",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-21T11:25:00.000Z",
-   "line": 69.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848765,
@@ -41,9 +30,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "michal minda",
    "open_date": "2026-07-21T11:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848783,
@@ -52,9 +41,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T11:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848837,
