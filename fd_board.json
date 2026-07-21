@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T11:57:55Z",
+ "captured_at": "2026-07-21T12:03:15Z",
  "matches": [
   {
    "event_id": 35848847,
@@ -8,7 +8,7 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-21T11:45:00.000Z",
-   "line": 90.5,
+   "line": 95.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,20 +19,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-21T11:50:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35848861,
-   "p1": "Artur Sobel",
-   "p2": "Dominik Solilo",
-   "p1_norm": "artur sobel",
-   "p2_norm": "dominik solilo",
-   "open_date": "2026-07-21T11:50:00.000Z",
-   "line": 57.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 60.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35848865,
@@ -41,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-21T11:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848881,
