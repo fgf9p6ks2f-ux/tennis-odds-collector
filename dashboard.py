@@ -841,6 +841,10 @@ def _tracker_panel(wnba_rec, tt_json):
         if elite:                                          # the bettable one — real FanDuel line + odds
             ep = (tt or {}).get("elite_pending", 0)
             note = "graded at the actual FanDuel line + odds" + (f" · {ep} pending" if ep else "")
+            flt = (tt or {}).get("filtered") or {}        # the 80-90-under leak: shadowed, not bet
+            if (flt.get("w", 0) + flt.get("l", 0)) > 0:
+                note += (f" · shadow 80-90u {flt['w']}-{flt['l']} "
+                         f"({flt['u']:+.1f}u, filtered out — validating)")
             out += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note,
                         recent=(tt or {}).get("recent"))
         rest = [x for x in leagues if x["league"] != "TT Elite Series"]
