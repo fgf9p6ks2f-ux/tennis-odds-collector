@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T19:17:59Z",
+ "captured_at": "2026-07-21T19:23:41Z",
  "matches": [
   {
    "event_id": 35850522,
@@ -8,20 +8,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35850523,
-   "p1": "Grzegorz Marud",
-   "p2": "Sebastian Krupa",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "sebastian krupa",
-   "open_date": "2026-07-21T19:10:00.000Z",
-   "line": 51.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850525,
@@ -30,20 +19,9 @@
    "p1_norm": "maciej nowalinski",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T19:15:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35850535,
-   "p1": "Jaroslaw Rolak",
-   "p2": "Kuba Golaszewski",
-   "p1_norm": "jaroslaw rolak",
-   "p2_norm": "kuba golaszewski",
-   "open_date": "2026-07-21T19:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850536,
@@ -52,9 +30,9 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T19:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850556,
