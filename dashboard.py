@@ -1279,14 +1279,17 @@ def _mlb_plays(now=None):
             continue
         cands.sort(key=lambda x: (x[1], x[2]), reverse=True)          # highest main line, then best odds
         bk, line, odds = cands[0]
-        # ★★ PREMIUM: opponent low-patience (pitches/PA < league median) OR line above the pitcher's
-        # recent-5 outs (market optimism). Either half hit ~+49% ROI; the "neither" bucket loses.
+        # THE MODEL (2026-07-21, validated): away+contact AND (opponent low-patience [pitches/PA <
+        # league median] OR line > pitcher's recent-5 outs). Either half ~+49% ROI; the "neither"
+        # bucket loses, so it's dropped. Clean signal (line>recent) alone is +48% & leak-free.
         oppp = oh.get("ppa")
         r5 = _pitcher_r5(pl)
         premium = bool((oppp is not None and oppp < ppa_med) or (r5 is not None and line > r5))
+        if not premium:
+            continue                                     # only the model's plays
         plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line, "odds": odds,
-                      "book": bk, "opp": opp, "away": away, "premium": premium})
-    plays.sort(key=lambda p: (not p.get("premium"), p["pitcher"]))   # ★★ premium first
+                      "book": bk, "opp": opp, "away": away, "premium": True})
+    plays.sort(key=lambda p: p["pitcher"])
     return plays[:16]
 
 
@@ -1294,17 +1297,16 @@ def _mlb_plays_card(now=None):
     """MLB 'Today's Plays' card — WNBA design, no dropdown; each row = the bet + best-book line/price."""
     plays = _mlb_plays(now)
     if not plays:
-        return ('<div class="card"><h3 class="ttlg">⚾ MLB · Best-book plays</h3>'
-                '<div class="ttempty">No MLB plays right now — no away starter vs a contact '
-                'offense with an outs line ≤16.5 on today’s board.</div></div>')
+        return ('<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model</h3>'
+                '<div class="ttempty">No MLB plays right now — no away starter vs a contact offense '
+                '(≤16.5 outs) that also clears the premium filter on today’s board.</div></div>')
     rows = ""
     for p in plays:
         o = "U" if p["side"] == "under" else "O"
         mk = "outs"
         bcls = "fd" if p["book"] == "fd" else ("dk" if p["book"] == "dk" else "oth")
         loc = "@ " if p.get("away") else ("vs " if p.get("away") is False else "")
-        tag = (' <span class="mlbprem">★★ premium</span>' if p.get("premium")
-               else ' <span class="mlbaway">★ away+contact</span>')
+        tag = ' <span class="mlbprem">★★</span>'          # every play is the validated ★★ model
         blogo = (f'<img class="bklogo" src="book-{p["book"]}.png" alt="{p["book"].upper()}">'
                  if p["book"] in ("fd", "dk")                    # only these have logo files
                  else f'<span class="bktag">{html.escape(p["book"][:3].upper())}</span>')
@@ -1314,12 +1316,11 @@ def _mlb_plays_card(now=None):
                  f'<span class="xteam">{loc}{html.escape(p["opp"])}</span></div>'
                  f'<div class="ttbsb">{mk} · {p["side"]}{tag}</div></div>'
                  f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
-    nprem = sum(1 for p in plays if p.get("premium"))
-    return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under plays'
+    return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model'
             f'<span class="ttcnt">{len(plays)}</span></h3>{rows}'
-            f'<div class="ttfoot">outs-under ≤16.5 · AWAY vs CONTACT (base +25%). '
-            f'<b>★★ premium</b> ({nprem}) = also low-patience opp OR line &gt; recent outs '
-            f'(+49% backtest) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>')
+            f'<div class="ttfoot">the model: outs-under ≤16.5 · AWAY vs a CONTACT offense, AND '
+            f'(low-patience opp OR line &gt; the pitcher’s recent outs) · +49% backtest '
+            f'(leak-free signal +48%) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>')
 
 
 # only the AWAY + CONTACT stack counts toward the record (the +40% edge); home/whiff are dropped.
