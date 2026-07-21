@@ -88,6 +88,7 @@ rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss
 rw|979|Not on injury report
 rw|979|Sitting out Monday
+rw|980|Flirts with double-double
 rw|981|Nearly double-doubles
 rw|982|Rolls up 21 points in road loss
 rw|991|Posts double-double Monday
