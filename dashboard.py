@@ -1170,17 +1170,19 @@ def _team_hit():
         return {}
 
 
-def _ppa_median(hit):
+def _ppa_low(hit):
+    """25th-percentile pitches/PA = the 'genuinely low-patience' opponent threshold (a <median
+    split was a coin-flip that false-flagged borderline offenses — user 2026-07-21)."""
     vals = sorted(v["ppa"] for v in hit.values() if v.get("ppa"))
     if not vals:
-        return 3.9
-    n = len(vals)
-    return vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+        return 3.82
+    return vals[int(len(vals) * 0.25)]
 
 
 def _pitcher_r5(name):
-    """Recent-5-start avg OUTS for a pitcher (line-vs-recent premium signal); cached daily per
-    pitcher, fail-open (None -> premium falls back to the opponent-patience signal only)."""
+    """Recent-5-start MEDIAN OUTS for a pitcher (line-vs-recent premium signal). Median, not mean,
+    so a single opener/blowup can't drag it below the line and false-flag a workhorse (user
+    2026-07-21: Rasmussen [21,18,18,15,7] mean 15.8 vs median 18). Cached daily, fail-open."""
     try:
         cache = json.loads(_MLB_R5.read_text()) if _MLB_R5.exists() else {}
     except (ValueError, OSError):
@@ -1199,8 +1201,9 @@ def _pitcher_r5(name):
                          if g.get("outs") is not None and (g.get("bf") or 0) >= 5],
                         key=lambda g: g.get("date") or "")
             if len(gl) >= 3:
-                last = gl[-5:]
-                val = sum(g["outs"] for g in last) / len(last)
+                last = sorted(g["outs"] for g in gl[-5:])
+                m = len(last)
+                val = last[m // 2] if m % 2 else (last[m // 2 - 1] + last[m // 2]) / 2
     except Exception:
         val = None
     cache[name] = val
@@ -1261,7 +1264,7 @@ def _mlb_plays(now=None):
         main = min(two, key=lambda ln: abs((two[ln].get("over") or two[ln].get("under") or 9) - 1.95))
         mains.setdefault((pl, stat), []).append((bk, main, two[main].get("over"), two[main].get("under")))
     hit = _team_hit()
-    ppa_med = _ppa_median(hit)
+    ppa_low = _ppa_low(hit)
     plays = []
     for (pl, stat), offs in mains.items():
         if stat != "outs":
@@ -1279,12 +1282,12 @@ def _mlb_plays(now=None):
             continue
         cands.sort(key=lambda x: (x[1], x[2]), reverse=True)          # highest main line, then best odds
         bk, line, odds = cands[0]
-        # THE MODEL (2026-07-21, validated): away+contact AND (opponent low-patience [pitches/PA <
-        # league median] OR line > pitcher's recent-5 outs). Either half ~+49% ROI; the "neither"
-        # bucket loses, so it's dropped. Clean signal (line>recent) alone is +48% & leak-free.
+        # THE MODEL (2026-07-21, v2 after user scrutiny): away+contact AND (opponent GENUINELY
+        # low-patience [pitches/PA < p25] OR line > pitcher's recent MEDIAN outs). Median + p25
+        # (was mean + <median) so one opener/blowup can't false-flag a workhorse. 23-6 / +44%.
         oppp = oh.get("ppa")
         r5 = _pitcher_r5(pl)
-        premium = bool((oppp is not None and oppp < ppa_med) or (r5 is not None and line > r5))
+        premium = bool((oppp is not None and oppp < ppa_low) or (r5 is not None and line > r5))
         if not premium:
             continue                                     # only the model's plays
         plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line, "odds": odds,

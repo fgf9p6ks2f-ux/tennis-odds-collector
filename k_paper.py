@@ -73,8 +73,9 @@ def _team_hit(season):
                 ppa[t["team"]["id"]] = pit / pa
     except Exception:
         pass
-    med = sorted(ppa.values())[len(ppa) // 2] if ppa else 3.9
-    return tk, lg, ppa, med
+    vals = sorted(ppa.values())
+    p25 = vals[int(len(vals) * 0.25)] if vals else 3.82   # genuinely-low-patience threshold (not median)
+    return tk, lg, ppa, p25
 
 
 def _now():
@@ -221,13 +222,15 @@ def grade():
                 tkcache[season] = _team_hit(season)
             except Exception:
                 tkcache[season] = ({}, 0.22, {}, 3.9)
-        tk, lg_k, ppa_map, ppa_med = tkcache[season]
+        tk, lg_k, ppa_map, ppa_low = tkcache[season]
         opp_k = tk.get(g.get("opp_id"), lg_k)
         opp_ppa = ppa_map.get(g.get("opp_id"))
-        # recent-5 outs from the pitcher's PRIOR starts (before this one) — for the line>recent signal
+        # recent-5 MEDIAN outs from the pitcher's PRIOR starts — robust to one opener/blowup outlier
         priors = sorted([x for x in logcache[pid] if x.get("date") and x["date"] < g["date"]
                          and (x.get("bf") or 0) >= 5], key=lambda x: x["date"])
-        r5 = (sum(x["outs"] for x in priors[-5:]) / len(priors[-5:])) if len(priors) >= 3 else None
+        _l5 = sorted(x["outs"] for x in priors[-5:])
+        r5 = (_l5[len(_l5) // 2] if len(_l5) % 2 else (_l5[len(_l5) // 2 - 1] + _l5[len(_l5) // 2]) / 2) \
+            if len(priors) >= 3 else None
         for market, keyk in (("k", "k"), ("outs", "outs")):
             for (side, line, odds) in con.execute(
                     "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
@@ -241,7 +244,7 @@ def grade():
                 home = 1 if g.get("is_home") else 0
                 # ★★ premium (outs only): low-patience opp OR line above the pitcher's recent-5 outs
                 premium = 1 if (market == "outs" and (
-                    (opp_ppa is not None and opp_ppa < ppa_med) or (r5 is not None and line > r5))) else 0
+                    (opp_ppa is not None and opp_ppa < ppa_low) or (r5 is not None and line > r5))) else 0
                 con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
                             "home=?, opp_k=?, premium=? WHERE pitcher=? AND game_date=? AND market=? "
                             "AND result IS NULL",
