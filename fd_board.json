@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T05:47:02Z",
+ "captured_at": "2026-07-21T05:51:40Z",
  "matches": [
   {
    "event_id": 35848305,
@@ -8,20 +8,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-21T05:35:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35848308,
-   "p1": "Igor Dabrowski",
-   "p2": "Artur Sobel",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "artur sobel",
-   "open_date": "2026-07-21T05:40:00.000Z",
-   "line": 57.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848311,
@@ -30,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-21T05:40:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35848321,
