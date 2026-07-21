@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T13:57:18Z",
+ "captured_at": "2026-07-21T14:05:09Z",
  "matches": [
-  {
-   "event_id": 35849378,
-   "p1": "Jakub Kosowski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "jakub kosowski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-21T13:45:00.000Z",
-   "line": 51.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35849416,
    "p1": "Krystian Kolodziej",
@@ -19,7 +8,7 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T13:50:00.000Z",
-   "line": 59.5,
+   "line": 89.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +19,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-21T13:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849428,
@@ -41,8 +30,8 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-21T13:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
+   "line": 89.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
@@ -52,7 +41,7 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T13:55:00.000Z",
-   "line": 81.5,
+   "line": 95.5,
    "over_odds": -115,
    "under_odds": -120
   },
