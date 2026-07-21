@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T17:35:59Z",
+ "captured_at": "2026-07-21T17:41:30Z",
  "matches": [
   {
    "event_id": 35850306,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T17:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850326,
@@ -19,9 +19,9 @@
    "p1_norm": "marian brunner",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T17:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 54.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850329,
@@ -30,7 +30,7 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T17:35:00.000Z",
-   "line": 77.5,
+   "line": 85.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -64,8 +64,8 @@
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-21T17:55:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -116
   },
   {
    "event_id": 35850387,
@@ -75,6 +75,17 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-21T18:00:00.000Z",
    "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850393,
+   "p1": "Krystian Kolodziej",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-21T18:05:00.000Z",
+   "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
   }
