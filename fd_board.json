@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T16:54:35Z",
+ "captured_at": "2026-07-21T17:00:06Z",
  "matches": [
   {
    "event_id": 35850253,
@@ -8,9 +8,9 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T16:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850258,
@@ -19,9 +19,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T16:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850259,
@@ -30,9 +30,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T16:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850272,
