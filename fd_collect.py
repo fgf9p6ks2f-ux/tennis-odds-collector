@@ -107,6 +107,10 @@ def extract(m, sport, event_name=""):
     #    live board screenshot 2026-07-21: "Zack Wheeler Outs Recorded", Over/Under 17.5.)
     if re.search(r"(?i)\b(?:outs recorded|pitching outs)\s*$", nm):
         player = re.sub(r"(?i)\s*(?:alt\s+)?(?:outs recorded|pitching outs)\s*$", "", nm).strip()
+        if sport == "mlb":                               # DIAG (one run): show where the line lives
+            print(f"[FD-OUTS-DIAG] {nm!r} "
+                  f"{[(r.get('runnerName'), r.get('handicap')) for r in (m.get('runners') or [])][:4]}",
+                  flush=True)
         for r in m.get("runners") or []:
             o, rn = _odds(r), (r.get("runnerName") or "")
             if o is None:
@@ -115,11 +119,11 @@ def extract(m, sport, event_name=""):
             side = "over" if "over" in rl else ("under" if "under" in rl else None)
             if side is None:
                 continue
-            h = r.get("handicap")
-            if h is None:                                # line lives in the runner name ("Over 17.5")
-                mm = re.search(r"(\d+(?:\.\d+)?)", rn)
-                h = float(mm.group(1)) if mm else None
-            if h is not None:
+            # line: FD puts it in the runner NAME ("... Over 17.5"); handicap comes back 0.0 here,
+            # so parse the number from the name first, fall back to a real (>0) handicap.
+            mm = re.search(r"(\d+(?:\.\d+)?)", rn)
+            h = float(mm.group(1)) if mm else (r.get("handicap") or 0)
+            if h and float(h) > 0:                        # 0.0 = no real line -> skip (no junk row)
                 rows.append((player, "outs", float(h), side, o))
         if rows:
             return rows
