@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T02:06:56Z",
+ "captured_at": "2026-07-21T02:14:03Z",
  "matches": [
-  {
-   "event_id": 35847542,
-   "p1": "Jakub Cyndera",
-   "p2": "Miroslaw Warzecha",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "miroslaw warzecha",
-   "open_date": "2026-07-21T02:00:00.000Z",
-   "line": 61.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35847547,
    "p1": "Michal Krutak",
@@ -19,9 +8,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-21T02:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847548,
@@ -30,9 +19,9 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-21T02:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847565,
