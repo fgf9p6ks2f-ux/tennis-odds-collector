@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-21T18:05:11Z",
+ "captured_at": "2026-07-21T18:10:42Z",
  "matches": [
-  {
-   "event_id": 35850378,
-   "p1": "Jakub Skorupa",
-   "p2": "Jerzy Debski",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-21T17:55:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35850387,
-   "p1": "Grzegorz Marud",
-   "p2": "Robert Szymik",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "robert szymik",
-   "open_date": "2026-07-21T18:00:00.000Z",
-   "line": 48.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35850393,
-   "p1": "Krystian Kolodziej",
-   "p2": "Maciej Nowalinski",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "maciej nowalinski",
-   "open_date": "2026-07-21T18:05:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850409,
    "p1": "Dariusz Szlubowski",
@@ -52,9 +19,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T18:10:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 68.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850433,
