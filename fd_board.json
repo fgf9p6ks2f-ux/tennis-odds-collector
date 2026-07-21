@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T21:43:41Z",
+ "captured_at": "2026-07-21T21:49:25Z",
  "matches": [
   {
    "event_id": 35850740,
@@ -8,9 +8,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-21T21:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850741,
@@ -19,9 +19,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T21:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850742,
@@ -31,8 +31,8 @@
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-21T21:45:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850748,
