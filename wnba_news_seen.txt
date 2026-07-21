@@ -35,6 +35,7 @@ rw|413|Leads Lynx with 24 points
 rw|415|Totals 16 points in loss in Dallas
 rw|432|Probable for Sunday
 rw|440|Drops 26 points in Saturday's loss
+rw|440|Flirts with triple-double in OT win
 rw|462|Drops 21 points against former team
 rw|483|Paces Sky with 20 points
 rw|485|Hits game-winning shot at buzzer
