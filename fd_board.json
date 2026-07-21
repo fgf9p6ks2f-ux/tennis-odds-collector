@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T05:27:16Z",
+ "captured_at": "2026-07-21T05:31:57Z",
  "matches": [
-  {
-   "event_id": 35848281,
-   "p1": "Waldemar Glanowski",
-   "p2": "Pawel Kurek",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-21T05:15:00.000Z",
-   "line": 73.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35848282,
    "p1": "Jiri Vrablik",
@@ -19,9 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T05:15:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848284,
@@ -30,8 +19,8 @@
    "p1_norm": "jakub chmielowski",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-21T05:15:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
+   "line": 98.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
@@ -41,9 +30,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T05:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848305,
