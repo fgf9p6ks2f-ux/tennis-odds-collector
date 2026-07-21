@@ -31,7 +31,7 @@ from pathlib import Path
 import requests
 
 HERE = Path(__file__).resolve().parent
-HANDLE = os.environ.get("X_HANDLE", "Underdog__WNBA")
+HANDLE = os.environ.get("X_HANDLE", "UnderdogWNBA")   # verified real handle (id 1577742107929968640)
 SEEN = HERE / "underdog_seen.txt"
 LOG = HERE / "underdog_log.jsonl"
 QCACHE = HERE / ".x_query_ids.json"
