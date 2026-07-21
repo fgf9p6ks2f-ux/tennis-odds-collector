@@ -1802,8 +1802,12 @@ def build():
   .ttbsb .pj {{ color:#8ea2bd; font-weight:600; }}
   .ttbsb .fd {{ color:#4da3ff; font-weight:600; }}
   .ttbet .pind.u {{ color:#ef6a6a; background:rgba(239,106,106,.16); }}   /* TT: unders RED (over stays green) */
-  .ttconf {{ display:flex; flex-direction:column; align-items:center; gap:2px; flex:none; }}
-  .ttconf .tchip {{ margin:0; vertical-align:0; }}
+  .ttconf {{ display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }}
+  /* TT %-chip holds "73%" (3 chars), not a single A/B/C letter — override the fixed 18px box so the
+     number sits centered with even padding on all sides instead of spilling out the edges */
+  .ttconf .tchip {{ margin:0; vertical-align:0; width:auto; height:auto; min-width:46px;
+                   padding:5px 11px; border-radius:9px; font-size:12.5px; line-height:1;
+                   font-variant-numeric:tabular-nums; box-sizing:border-box; }}
   .ttconflab {{ font-size:8px; color:#5b6b82; text-transform:uppercase; letter-spacing:.04em; font-weight:700; white-space:nowrap; }}
   .plno {{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
           white-space:nowrap; }}
