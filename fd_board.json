@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T09:33:13Z",
+ "captured_at": "2026-07-21T09:38:25Z",
  "matches": [
   {
    "event_id": 35848512,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-21T09:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848519,
@@ -19,9 +19,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-21T09:25:00.000Z",
-   "line": 84.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 90.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35848520,
@@ -30,9 +30,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-21T09:25:00.000Z",
-   "line": 83.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35848522,
@@ -41,9 +41,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "maksymilian rus",
    "open_date": "2026-07-21T09:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848535,
@@ -96,9 +96,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T09:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35848572,
