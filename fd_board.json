@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T22:55:24Z",
+ "captured_at": "2026-07-21T23:01:22Z",
  "matches": [
-  {
-   "event_id": 35850800,
-   "p1": "Wojciech Gluszek",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "wojciech gluszek",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-21T22:35:00.000Z",
-   "line": 88.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850820,
    "p1": "Robert Szymik",
@@ -19,20 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-21T22:50:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35850821,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-21T22:50:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850831,
@@ -41,9 +19,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T22:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850832,
@@ -52,9 +30,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T22:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 66.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850838,
