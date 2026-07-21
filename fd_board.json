@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T04:17:45Z",
+ "captured_at": "2026-07-21T04:23:35Z",
  "matches": [
-  {
-   "event_id": 35847779,
-   "p1": "Kacper Szurlej",
-   "p2": "Jakub Chmielowski",
-   "p1_norm": "kacper szurlej",
-   "p2_norm": "jakub chmielowski",
-   "open_date": "2026-07-21T04:00:00.000Z",
-   "line": 103.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35848001,
-   "p1": "Jakub Kosowski",
-   "p2": "Jiri Vrablik",
-   "p1_norm": "jakub kosowski",
-   "p2_norm": "jiri vrablik",
-   "open_date": "2026-07-21T04:10:00.000Z",
-   "line": 51.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35848002,
    "p1": "Igor Szymanski",
@@ -30,9 +8,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-21T04:10:00.000Z",
-   "line": 76.5,
+   "line": 93.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35848003,
@@ -41,9 +19,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-21T04:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848173,
@@ -52,9 +30,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-21T04:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848177,
@@ -121,6 +99,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35848237,
+   "p1": "Mariusz Adamus",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-21T04:50:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
