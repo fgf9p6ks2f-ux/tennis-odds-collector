@@ -896,6 +896,13 @@ def _tracker_panel(wnba_rec, tt_json):
         </div>
         <div class="tsub">{vtext}{hit} · {cv['n']} shadows / {cv.get('dates', '?')} slates (open vs close)</div>
       </div>"""
+    # ⚾ MLB outs-under (FanDuel, flag-time price) — the away+contact edge, forward paper track
+    mw, ml, mu, mpend = _mlb_record()
+    mrec = _mlb_recent()
+    if (mw + ml) or mpend or mrec:
+        note = "away+contact under edge · ≤16.5 · flag-time FD price · paper"
+        note += f" · {mpend} pending" if mpend else ""
+        out += card("⚾", "MLB outs-under (FanDuel)", mw, ml, mu, note, recent=mrec)
     return out
 
 
@@ -1117,6 +1124,153 @@ def _tt_panel(data):
     leagues are HIDDEN from the board per the user — they still get flagged + logged in the
     background (paper ledger + the per-league tracker), just not shown as bet cards here."""
     return '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
+
+
+# ---------------------------------------------------------------- MLB pitcher-prop plays + tracker
+K_PAPER = HERE / "k_paper.sqlite"
+FD_PROPS = HERE / "fanduel_props.sqlite"
+OUTS_UNDER_MAX = 16.5      # outs line <= this -> UNDER play   (mirrors k_paper.py rules)
+K_OVER_MIN = 6.5           # strikeout line >= this -> OVER play
+
+
+def _mlb_matchup(event, player):
+    """(is_away, opponent_team) from a FD MLB event 'Away Team (P) @ Home Team (P)'."""
+    try:
+        away_s, home_s = event.split(" @ ", 1)
+        team = lambda s: re.sub(r"\s*\(.*$", "", s).strip()
+        return (True, team(home_s)) if player.split()[-1].lower() in away_s.lower() \
+            else (False, team(away_s))
+    except (ValueError, AttributeError, IndexError):
+        return (None, "")
+
+
+def _mlb_plays(now=None):
+    """Today's MLB pitcher-prop plays at the BEST soft book (FD/DK/BetMGM): outs-under ≤16.5
+    (the away+contact edge) + K-over ≥6.5. Per pitcher+market pick the best LINE (under: highest;
+    over: lowest), then the best odds; matchup + home/away parsed from the FD event string."""
+    if not FD_PROPS.exists():
+        return []
+    try:
+        con = sqlite3.connect(f"file:{FD_PROPS}?mode=ro", uri=True)
+        rows = con.execute(
+            "SELECT book, player, event, stat, line, side, odds, collected_at FROM fd_lines "
+            "WHERE sport='mlb' AND stat IN ('outs','strikeouts') "
+            "AND collected_at > datetime('now','-18 hours')").fetchall()
+        con.close()
+    except sqlite3.Error:
+        return []
+    latest, ev_by = {}, {}                             # freshest odds per (book,player,stat,line,side)
+    for bk, pl, ev, stat, line, side, odds, cat in rows:
+        if odds is None or line is None or side is None:
+            continue
+        k = (bk or "fd", pl, stat, round(float(line), 1), side)
+        if k not in latest or cat > latest[k][1]:
+            latest[k] = (float(odds), cat)
+        ev_by[(pl, stat)] = ev
+    # a pitcher's ladder -> the MAIN line only (2-sided, over-odds nearest even) so we never bet an
+    # alt rung (e.g. over 6.5 @ +560 on an opener). Then line-shop that main line across books.
+    ladder = {}                                        # (book,player,stat) -> {line: {side: odds}}
+    for (bk, pl, stat, line, side), (odds, _c) in latest.items():
+        ladder.setdefault((bk, pl, stat), {}).setdefault(line, {})[side] = odds
+    mains = {}                                          # (player,stat) -> [(book, line, over, under)]
+    for (bk, pl, stat), lines in ladder.items():
+        two = {ln: v for ln, v in lines.items() if "over" in v and "under" in v} or lines
+        main = min(two, key=lambda ln: abs((two[ln].get("over") or two[ln].get("under") or 9) - 1.95))
+        mains.setdefault((pl, stat), []).append((bk, main, two[main].get("over"), two[main].get("under")))
+    plays = []
+    for (pl, stat), offs in mains.items():
+        if stat == "outs":
+            cands = [(bk, ln, uo) for bk, ln, oo, uo in offs if uo and ln <= OUTS_UNDER_MAX]
+            if not cands:
+                continue
+            cands.sort(key=lambda x: (x[1], x[2]), reverse=True)      # highest main line, then best odds
+            mkt, sd = "outs", "under"
+        else:
+            cands = [(bk, ln, oo) for bk, ln, oo, uo in offs if oo and ln >= K_OVER_MIN]
+            if not cands:
+                continue
+            cands.sort(key=lambda x: (x[1], -x[2]))                   # lowest main line, then best odds
+            mkt, sd = "k", "over"
+        bk, line, odds = cands[0]
+        away, opp = _mlb_matchup(ev_by.get((pl, stat), ""), pl)
+        plays.append({"pitcher": pl, "market": mkt, "side": sd, "line": line,
+                      "odds": odds, "book": bk, "opp": opp, "away": away})
+    plays.sort(key=lambda p: (p["market"] != "outs", not p.get("away"), p["pitcher"]))
+    return plays[:16]
+
+
+def _mlb_plays_card(now=None):
+    """MLB 'Today's Plays' card — WNBA design, no dropdown; each row = the bet + best-book line/price."""
+    plays = _mlb_plays(now)
+    if not plays:
+        return ('<div class="card"><h3 class="ttlg">⚾ MLB · Best-book plays</h3>'
+                '<div class="ttempty">No MLB pitcher-prop plays right now — no pitcher clears the '
+                'rules (outs-under ≤16.5 / K-over ≥6.5) on today’s board.</div></div>')
+    rows = ""
+    for p in plays:
+        o = "U" if p["side"] == "under" else "O"
+        mk = "outs" if p["market"] == "outs" else "Ks"
+        bcls = "fd" if p["book"] == "fd" else ("dk" if p["book"] == "dk" else "oth")
+        loc = "@ " if p.get("away") else ("vs " if p.get("away") is False else "")
+        tag = ' <span class="mlbaway">away</span>' if (p.get("away") and p["market"] == "outs") else ""
+        blogo = (f'<img class="bklogo" src="book-{p["book"]}.png" alt="{p["book"].upper()}">'
+                 if p["book"] in ("fd", "dk")                    # only these have logo files
+                 else f'<span class="bktag">{html.escape(p["book"][:3].upper())}</span>')
+        rows += (f'<div class="ttbet"><span class="pind {o.lower()}">{o}</span>'
+                 f'<span class="ttbln">{p["line"]:g}</span>'
+                 f'<div class="ttbmid"><div class="ttbnm"><b>{html.escape(_short(p["pitcher"]))}</b> '
+                 f'<span class="xteam">{loc}{html.escape(p["opp"])}</span></div>'
+                 f'<div class="ttbsb">{mk} · {p["side"]}{tag}</div></div>'
+                 f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
+    return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Best-book plays'
+            f'<span class="ttcnt">{len(plays)}</span></h3>{rows}'
+            f'<div class="ttfoot">outs-under ≤16.5 (★ away + contact = the edge) · K-over ≥6.5 · '
+            f'line + price = the best of FanDuel / DraftKings / BetMGM · paper, unconfirmed</div></div>')
+
+
+def _mlb_record():
+    """(w, l, u, pending) for the MLB outs-under edge at FanDuel (flag-time price, graded)."""
+    if not K_PAPER.exists():
+        return (0, 0, 0.0, 0)
+    try:
+        con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
+        w, l, u = con.execute(
+            "SELECT COALESCE(SUM(result='W'),0), COALESCE(SUM(result='L'),0), COALESCE(SUM(pnl),0) "
+            "FROM paper WHERE rule='outs_under' AND book='fd' AND result IN ('W','L')").fetchone()
+        pend = con.execute("SELECT COUNT(*) FROM paper WHERE rule='outs_under' AND book='fd' "
+                           "AND result IS NULL").fetchone()[0]
+        con.close()
+        return (w or 0, l or 0, round(u or 0, 2), pend or 0)
+    except sqlite3.Error:
+        return (0, 0, 0.0, 0)
+
+
+def _mlb_recent(days=2):
+    """Per-day graded MLB outs-under FD bets (flag-time price) for the 24h dropdown."""
+    if not K_PAPER.exists():
+        return []
+    try:
+        con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
+        cutoff = (dt.datetime.now(ET).date() - dt.timedelta(days=days - 1)).isoformat()
+        rows = con.execute("SELECT game_date, pitcher, line, result, pnl FROM paper "
+                           "WHERE rule='outs_under' AND book='fd' AND result IN ('W','L') "
+                           "AND game_date >= ? ORDER BY game_date DESC", (cutoff,)).fetchall()
+        con.close()
+    except sqlite3.Error:
+        return []
+    by_day = {}
+    for gd, pit, line, res, pnl in rows:
+        by_day.setdefault(gd, []).append((pit, line, res, pnl))
+    out = []
+    for d in sorted(by_day, reverse=True):
+        bets, w, u = [], 0, 0.0
+        for pit, line, res, pnl in by_day[d]:
+            won = res == "W"
+            w += 1 if won else 0
+            u += pnl or 0
+            bets.append({"name": f'{_short(pit)} u{line:g} outs', "won": won, "pnl": round(pnl or 0, 2)})
+        out.append({"date": d, "w": w, "l": len(bets) - w, "u": round(u, 2), "bets": bets})
+    return out
 
 
 _WL_STAT = {"points": "pts", "rebounds": "reb", "assists": "ast", "pra": "PRA",
@@ -1541,6 +1695,7 @@ def build():
     starwatch_html = _starwatch_html()
     tt_json = _load_tt()
     tt_html = _tt_panel(tt_json)
+    mlb_html = _mlb_plays_card(now)
     tracker_html = _tracker_panel((w, l, u), tt_json)
     # Client-side LIVE pre-match totals: refetch fd_board.json (the VM's FanDuel.ca board) from the
     # raw URL every 60s and re-render #tt-totals, so the totals update on their own between the
@@ -1588,6 +1743,8 @@ def build():
     ICON_TT = (f'<svg {_ic}><circle cx="9.6" cy="9.6" r="5.6"/><path d="M13.6 13.6l4.6 5"/>'
                '<circle cx="16.4" cy="6.6" r="1.35" fill="currentColor" stroke="none"/></svg>')
     ICON_TRK = f'<svg {_ic}><path d="M4 4v16h16"/><path d="M8 16v-4M12 16V8M16 16v-6"/></svg>'
+    ICON_MLB = (f'<svg {_ic}><circle cx="12" cy="12" r="9.2"/>'
+                '<path d="M5.4 5.4C9 8 9 16 5.4 18.6"/><path d="M18.6 5.4C15 8 15 16 18.6 18.6"/></svg>')
     doc = f"""<!doctype html><html lang="en"><head>
 {_live_head}
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -1814,6 +1971,11 @@ def build():
   .ttbsb .pj {{ color:#8ea2bd; font-weight:600; }}
   .ttbsb .fd {{ color:#4da3ff; font-weight:600; }}
   .ttbet .pind.u {{ color:#ef6a6a; background:rgba(239,106,106,.16); }}   /* TT: unders RED (over stays green) */
+  .mlbaway {{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+             color:#5ad98a; background:rgba(90,217,138,.14); border-radius:5px; padding:1px 5px;
+             margin-left:5px; vertical-align:1px; }}   /* ★ the away+contact outs-under edge */
+  .bktag {{ display:inline-block; font-size:9px; font-weight:800; color:#9aa3b2; background:#1a1f29;
+           border-radius:5px; padding:2px 5px; margin-left:5px; vertical-align:2px; }}
   .ttconf {{ display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }}
   /* TT %-chip holds "73%" (3 chars), not a single A/B/C letter — override the fixed 18px box so the
      number sits centered with even padding on all sides instead of spilling out the edges */
@@ -2102,6 +2264,7 @@ def build():
     <div class="tabthumb" id="tabthumb"></div>
     <div class="tab active" data-tab="wnba" onclick="showTab('wnba')">{ICON_WNBA}<span>WNBA</span></div>
     <div class="tab" data-tab="tt" onclick="showTab('tt')">{ICON_TT}<span>TT</span></div>
+    <div class="tab" data-tab="mlb" onclick="showTab('mlb')">{ICON_MLB}<span>MLB</span></div>
     <div class="tab" data-tab="tracker" onclick="showTab('tracker')">{ICON_TRK}<span>Tracker</span></div>
   </div>
   <div class="panel" id="wnba">
@@ -2118,6 +2281,10 @@ def build():
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>
     {tt_html}
+  </div>
+  <div class="panel hidden" id="mlb">
+    <h2>MLB pitcher props · best book</h2>
+    {mlb_html}
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record</h2>

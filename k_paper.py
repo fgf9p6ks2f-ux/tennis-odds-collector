@@ -142,18 +142,18 @@ def flag():
                     continue
                 row = con.execute("SELECT closed FROM paper WHERE pitcher=? AND game_date=? "
                                   "AND market=? AND book=?", (pitcher, gd, market, book)).fetchone()
-                if row is None:
+                if row is None:                        # FIRST time we see it -> FREEZE the flag-time
                     con.execute("INSERT INTO paper (pitcher,game_date,market,rule,book,side,line,"
                                 "odds,flagged_at) VALUES (?,?,?,?,?,?,?,?,?)",
                                 (pitcher, gd, market, rule, book, side, line, odds, ts))
                     added += 1
-                elif not row[0]:                       # not yet closed -> refresh toward closing line
-                    con.execute("UPDATE paper SET line=?, odds=? WHERE pitcher=? AND game_date=? "
-                                "AND market=? AND book=?", (line, odds, pitcher, gd, market, book))
-                    updated += 1
+                # NOTE (user 2026-07-21): keep the FLAG-TIME line/odds — do NOT refresh toward the
+                # close. The price when first flagged is the number we'd have bet (usually the best,
+                # before the market moves), so the record is graded/paid at that price. (Applies to
+                # every tracker; WNBA/TT already stamp odds at flag time.)
     con.commit()
     con.close()
-    print(f"flag: +{added} new, {updated} refreshed")
+    print(f"flag: +{added} new")
 
 
 def grade():
