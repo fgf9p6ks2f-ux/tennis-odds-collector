@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T18:28:40Z",
+ "captured_at": "2026-07-21T18:34:21Z",
  "matches": [
-  {
-   "event_id": 35850409,
-   "p1": "Dariusz Szlubowski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "dariusz szlubowski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-21T18:10:00.000Z",
-   "line": 103.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35850433,
-   "p1": "Michal Machelski",
-   "p2": "Dariusz Molenda",
-   "p1_norm": "michal machelski",
-   "p2_norm": "dariusz molenda",
-   "open_date": "2026-07-21T18:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35850437,
    "p1": "Sebastian Krupa",
@@ -30,7 +8,7 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-21T18:25:00.000Z",
-   "line": 80.5,
+   "line": 58.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "wojciech gluszek",
    "open_date": "2026-07-21T18:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850442,
@@ -52,9 +30,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-21T18:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850463,
