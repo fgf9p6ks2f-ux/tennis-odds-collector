@@ -896,13 +896,14 @@ def _tracker_panel(wnba_rec, tt_json):
         </div>
         <div class="tsub">{vtext}{hit} · {cv['n']} shadows / {cv.get('dates', '?')} slates (open vs close)</div>
       </div>"""
-    # ⚾ MLB outs-under (FanDuel, flag-time price) — the away+contact edge, forward paper track
-    mw, ml, mu, mpend = _mlb_record()
+    # ⚾ MLB outs-under AWAY+CONTACT (FanDuel, flag-time price) — the +40% edge, forward paper track
+    mw, ml, mu = _mlb_record()
     mrec = _mlb_recent()
+    mpend = sum(1 for p in _mlb_plays() if p["market"] == "outs")   # today's away+contact outs plays
     if (mw + ml) or mpend or mrec:
-        note = "away+contact under edge · ≤16.5 · flag-time FD price · paper"
+        note = "away starter vs contact offense · under ≤16.5 · flag-time FD price · paper"
         note += f" · {mpend} pending" if mpend else ""
-        out += card("⚾", "MLB outs-under (FanDuel)", mw, ml, mu, note, recent=mrec)
+        out += card("⚾", "MLB outs-under · away+contact", mw, ml, mu, note, recent=mrec)
     return out
 
 
@@ -1131,6 +1132,33 @@ K_PAPER = HERE / "k_paper.sqlite"
 FD_PROPS = HERE / "fanduel_props.sqlite"
 OUTS_UNDER_MAX = 16.5      # outs line <= this -> UNDER play   (mirrors k_paper.py rules)
 K_OVER_MIN = 6.5           # strikeout line >= this -> OVER play
+CONTACT_MAX = 0.225        # opp team K% < this = CONTACT offense. The outs-under EDGE is AWAY + CONTACT
+#                            ONLY (+40% ROI); HOME is a LOSER (−10..−20%), away+whiff marginal (+7%).
+_MLB_TEAMK = HERE / "mlb_teamk.json"
+
+
+def _team_kpct():
+    """{team_name_lower: season K%/PA} for tagging CONTACT offenses; cached daily (moves slowly)."""
+    try:
+        if _MLB_TEAMK.exists():
+            d = json.loads(_MLB_TEAMK.read_text())
+            if d.get("date") == dt.date.today().isoformat():
+                return d["k"]
+    except (ValueError, OSError):
+        pass
+    try:
+        from mlb import data as _MD
+        raw = _MD._get("/teams/stats", stats="season", group="hitting",
+                       season=dt.date.today().year, sportId=1)
+        out = {}
+        for t in raw["stats"][0]["splits"]:
+            st, pa = t["stat"], (t["stat"].get("plateAppearances") or 0)
+            if pa:
+                out[(t["team"]["name"] or "").lower()] = (st.get("strikeOuts") or 0) / pa
+        _MLB_TEAMK.write_text(json.dumps({"date": dt.date.today().isoformat(), "k": out}))
+        return out
+    except Exception:
+        return {}
 
 
 def _mlb_matchup(event, player):
@@ -1177,9 +1205,18 @@ def _mlb_plays(now=None):
         two = {ln: v for ln, v in lines.items() if "over" in v and "under" in v} or lines
         main = min(two, key=lambda ln: abs((two[ln].get("over") or two[ln].get("under") or 9) - 1.95))
         mains.setdefault((pl, stat), []).append((bk, main, two[main].get("over"), two[main].get("under")))
+    teamk = _team_kpct()
     plays = []
     for (pl, stat), offs in mains.items():
+        away, opp = _mlb_matchup(ev_by.get((pl, stat), ""), pl)
         if stat == "outs":
+            # ONLY the edge: AWAY starter vs a CONTACT offense (+40% ROI). Home loses; away+whiff is
+            # marginal — both dropped. (Fail-open on opp K% only if statsapi is unreachable.)
+            oppk = teamk.get((opp or "").lower())
+            if not away:
+                continue
+            if teamk and oppk is not None and oppk >= CONTACT_MAX:
+                continue
             cands = [(bk, ln, uo) for bk, ln, oo, uo in offs if uo and ln <= OUTS_UNDER_MAX]
             if not cands:
                 continue
@@ -1192,10 +1229,9 @@ def _mlb_plays(now=None):
             cands.sort(key=lambda x: (x[1], -x[2]))                   # lowest main line, then best odds
             mkt, sd = "k", "over"
         bk, line, odds = cands[0]
-        away, opp = _mlb_matchup(ev_by.get((pl, stat), ""), pl)
         plays.append({"pitcher": pl, "market": mkt, "side": sd, "line": line,
                       "odds": odds, "book": bk, "opp": opp, "away": away})
-    plays.sort(key=lambda p: (p["market"] != "outs", not p.get("away"), p["pitcher"]))
+    plays.sort(key=lambda p: (p["market"] != "outs", p["pitcher"]))
     return plays[:16]
 
 
@@ -1212,7 +1248,7 @@ def _mlb_plays_card(now=None):
         mk = "outs" if p["market"] == "outs" else "Ks"
         bcls = "fd" if p["book"] == "fd" else ("dk" if p["book"] == "dk" else "oth")
         loc = "@ " if p.get("away") else ("vs " if p.get("away") is False else "")
-        tag = ' <span class="mlbaway">away</span>' if (p.get("away") and p["market"] == "outs") else ""
+        tag = ' <span class="mlbaway">★ away+contact</span>' if p["market"] == "outs" else ""
         blogo = (f'<img class="bklogo" src="book-{p["book"]}.png" alt="{p["book"].upper()}">'
                  if p["book"] in ("fd", "dk")                    # only these have logo files
                  else f'<span class="bktag">{html.escape(p["book"][:3].upper())}</span>')
@@ -1224,36 +1260,40 @@ def _mlb_plays_card(now=None):
                  f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
     return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Best-book plays'
             f'<span class="ttcnt">{len(plays)}</span></h3>{rows}'
-            f'<div class="ttfoot">outs-under ≤16.5 (★ away + contact = the edge) · K-over ≥6.5 · '
-            f'line + price = the best of FanDuel / DraftKings / BetMGM · paper, unconfirmed</div></div>')
+            f'<div class="ttfoot">★ the edge = outs-under ≤16.5 on an AWAY starter vs a CONTACT '
+            f'offense (home & whiff dropped — they lose) · K-over ≥6.5 · best of FD / DK / BetMGM · '
+            f'paper, unconfirmed</div></div>')
+
+
+# only the AWAY + CONTACT stack counts toward the record (the +40% edge); home/whiff are dropped.
+_AC = "home=0 AND opp_k IS NOT NULL AND opp_k < %s" % CONTACT_MAX
 
 
 def _mlb_record():
-    """(w, l, u, pending) for the MLB outs-under edge at FanDuel (flag-time price, graded)."""
+    """(w, l, u) for the MLB outs-under AWAY+CONTACT edge at FanDuel (flag-time price, graded)."""
     if not K_PAPER.exists():
-        return (0, 0, 0.0, 0)
+        return (0, 0, 0.0)
     try:
         con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
         w, l, u = con.execute(
             "SELECT COALESCE(SUM(result='W'),0), COALESCE(SUM(result='L'),0), COALESCE(SUM(pnl),0) "
-            "FROM paper WHERE rule='outs_under' AND book='fd' AND result IN ('W','L')").fetchone()
-        pend = con.execute("SELECT COUNT(*) FROM paper WHERE rule='outs_under' AND book='fd' "
-                           "AND result IS NULL").fetchone()[0]
+            f"FROM paper WHERE rule='outs_under' AND book='fd' AND result IN ('W','L') AND {_AC}"
+        ).fetchone()
         con.close()
-        return (w or 0, l or 0, round(u or 0, 2), pend or 0)
+        return (w or 0, l or 0, round(u or 0, 2))
     except sqlite3.Error:
-        return (0, 0, 0.0, 0)
+        return (0, 0, 0.0)
 
 
 def _mlb_recent(days=2):
-    """Per-day graded MLB outs-under FD bets (flag-time price) for the 24h dropdown."""
+    """Per-day graded MLB outs-under AWAY+CONTACT FD bets (flag-time price) for the 24h dropdown."""
     if not K_PAPER.exists():
         return []
     try:
         con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
         cutoff = (dt.datetime.now(ET).date() - dt.timedelta(days=days - 1)).isoformat()
         rows = con.execute("SELECT game_date, pitcher, line, result, pnl FROM paper "
-                           "WHERE rule='outs_under' AND book='fd' AND result IN ('W','L') "
+                           f"WHERE rule='outs_under' AND book='fd' AND result IN ('W','L') AND {_AC} "
                            "AND game_date >= ? ORDER BY game_date DESC", (cutoff,)).fetchall()
         con.close()
     except sqlite3.Error:
