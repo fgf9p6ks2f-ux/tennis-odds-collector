@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T22:43:22Z",
+ "captured_at": "2026-07-21T22:49:11Z",
  "matches": [
-  {
-   "event_id": 35850786,
-   "p1": "Artur Gromek",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "artur gromek",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-21T22:30:00.000Z",
-   "line": 84.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850800,
    "p1": "Wojciech Gluszek",
@@ -19,9 +8,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T22:35:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850820,
@@ -85,6 +74,17 @@
    "p1_norm": "marian lebek",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-21T23:10:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850841,
+   "p1": "Artur Gromek",
+   "p2": "Jakub Kuzmicz",
+   "p1_norm": "artur gromek",
+   "p2_norm": "jakub kuzmicz",
+   "open_date": "2026-07-21T23:15:00.000Z",
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
