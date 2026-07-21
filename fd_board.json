@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T22:13:46Z",
+ "captured_at": "2026-07-21T22:18:31Z",
  "matches": [
-  {
-   "event_id": 35850748,
-   "p1": "Jerzy Debski",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "jerzy debski",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-21T21:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35850758,
-   "p1": "Marian Lebek",
-   "p2": "Robert Szymik",
-   "p1_norm": "marian lebek",
-   "p2_norm": "robert szymik",
-   "open_date": "2026-07-21T22:00:00.000Z",
-   "line": 87.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35850764,
    "p1": "Jakub Kuzmicz",
@@ -30,9 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-21T22:05:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850768,
@@ -41,9 +19,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 85.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850769,
@@ -52,9 +30,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850777,
