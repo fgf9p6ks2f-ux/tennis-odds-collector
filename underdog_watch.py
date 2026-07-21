@@ -181,10 +181,13 @@ def _tweets(ids, ct0, uid):
         return "AUTH"
     if r.status_code == 404:
         return "ENDPOINT"
+    if r.status_code == 429:
+        return "RATE"                          # rate-limited (transient) — back off, do NOT alert
     try:
         d = r.json()
     except ValueError:
-        return "PARSE"
+        # a rate-limit / interstitial can return non-JSON ("Rate limit exceeded") — treat as transient
+        return "RATE" if "rate limit" in r.text.lower() else "PARSE"
     if d.get("errors") and not d.get("data"):
         return "ENDPOINT"
     # Deep-walk for tweet objects (rest_id + legacy.full_text) instead of a fixed path — X renames the
@@ -238,6 +241,9 @@ def run(test=False, force=False):
         _alert(topic, f"X-watch: couldn't resolve @{HANDLE} (endpoint/format change) — needs a look")
         return
     tw = _tweets(ids, ct0, uid)
+    if tw == "RATE":                           # X rate limit hit — normal at a fast cadence; skip quietly
+        print("underdog_watch: rate-limited (429) — backing off this cycle")
+        return
     if tw in ("AUTH", "ENDPOINT", "PARSE"):
         _alert(topic, f"X-watch: UserTweets failed ({tw}) — cookie or X endpoint changed, needs a look")
         return
