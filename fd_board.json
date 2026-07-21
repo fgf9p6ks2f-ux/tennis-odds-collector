@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T23:21:01Z",
+ "captured_at": "2026-07-21T23:26:52Z",
  "matches": [
-  {
-   "event_id": 35850838,
-   "p1": "Marian Brunner",
-   "p2": "Jerzy Debski",
-   "p1_norm": "marian brunner",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-21T23:05:00.000Z",
-   "line": 94.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35850840,
-   "p1": "Marian Lebek",
-   "p2": "Marek Tkocz",
-   "p1_norm": "marian lebek",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-21T23:10:00.000Z",
-   "line": 56.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850841,
    "p1": "Artur Gromek",
@@ -30,9 +8,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-21T23:15:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 62.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850850,
@@ -41,9 +19,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T23:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850851,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T23:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850862,
@@ -96,7 +74,7 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T23:45:00.000Z",
-   "line": 80.5,
+   "line": 82.5,
    "over_odds": -112,
    "under_odds": -118
   },
