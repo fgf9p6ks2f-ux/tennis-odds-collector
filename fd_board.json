@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T08:03:29Z",
+ "captured_at": "2026-07-21T08:08:51Z",
  "matches": [
   {
    "event_id": 35848405,
@@ -8,9 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-21T07:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 95.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848408,
@@ -19,9 +19,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T07:55:00.000Z",
-   "line": 56.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 90.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35848410,
@@ -30,9 +30,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-21T08:00:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848415,
@@ -41,7 +41,7 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T08:05:00.000Z",
-   "line": 75.5,
+   "line": 73.5,
    "over_odds": -118,
    "under_odds": -112
   },
@@ -52,9 +52,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-21T08:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848422,
@@ -110,6 +110,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35848454,
+   "p1": "Igor Szymanski",
+   "p2": "Wojciech Urban",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-21T08:35:00.000Z",
+   "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
