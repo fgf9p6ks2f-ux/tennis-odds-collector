@@ -100,9 +100,18 @@ def extract(m, sport, event_name=""):
                 if o is not None:
                     rows.append((r.get("runnerName") or "", wstat, line, "over", o))
         return rows
-    # 1) pitcher prop: "{Pitcher} - ... Strikeouts/Outs"
-    pstat = next((v for k, v in PITCHER_STATS.items() if k in low), None)
-    if pstat and " - " in nm:
+    # 1) pitcher prop: "{Pitcher} - [Alt ]Strikeouts / Outs / ..." — match on the STAT portion
+    # (after the dash). 'outs' is a SUBSTRING of 'strikeouts', so the old whole-name keyword
+    # match missed a bare "{Player} - Outs" / "Alt Outs" market (why FD outs collected 0 rows).
+    # Check strikeout FIRST, then any remaining 'out' -> the pitching-outs prop.
+    pstat = None
+    if " - " in nm:
+        _sp = re.split(r"\s+-\s+", nm, 1)[1].lower()
+        if "strikeout" in _sp:
+            pstat = "strikeouts"
+        elif "out" in _sp:                      # Outs / Alt Outs / Pitching Outs / Outs Recorded
+            pstat = "outs"
+    if pstat:
         player = re.split(r"\s+-\s+", nm)[0].strip()
         for r in m.get("runners") or []:
             o, rn = _odds(r), (r.get("runnerName") or "")

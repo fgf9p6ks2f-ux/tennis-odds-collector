@@ -41,17 +41,24 @@ EPOCH = "2026-07-22"    # games on/after this = the true FORWARD (out-of-sample)
 DDL = """CREATE TABLE IF NOT EXISTS paper (
   pitcher TEXT, game_date TEXT, market TEXT, rule TEXT, book TEXT,
   side TEXT, line REAL, odds REAL, flagged_at TEXT, closed INTEGER DEFAULT 0,
-  result TEXT, actual INTEGER, pnl REAL, graded_at TEXT, home INTEGER,
+  result TEXT, actual INTEGER, pnl REAL, graded_at TEXT, home INTEGER, opp_k REAL,
   PRIMARY KEY (pitcher, game_date, market, book))"""
 
 
+CONTACT_MAX = 0.225     # opponent team K% below this = a CONTACT offense (balls in play ->
+#                         traffic -> higher pitch count -> earlier hook -> outs-under stacks)
+
+
 def _ensure(con):
-    """Create the table + add later columns to an existing DB (home was added 2026-07-21:
-    the outs-under edge is really an AWAY-starter effect — away starters go ~0.43 outs shorter,
-    t≈2.8 over 2248 starts — so we tag home/away and validate the away split forward)."""
+    """Create the table + add later columns to an existing DB (2026-07-21: the outs-under edge
+    is really an AWAY-starter effect — away go ~0.43 outs shorter, t≈2.8/2248 starts — and it
+    STACKS with contact offenses, so we tag home/away + opponent K% and validate forward)."""
     con.execute(DDL)
-    if "home" not in {r[1] for r in con.execute("PRAGMA table_info(paper)")}:
+    cols = {r[1] for r in con.execute("PRAGMA table_info(paper)")}
+    if "home" not in cols:
         con.execute("ALTER TABLE paper ADD COLUMN home INTEGER")
+    if "opp_k" not in cols:
+        con.execute("ALTER TABLE paper ADD COLUMN opp_k REAL")
 
 
 def _now():
@@ -157,6 +164,7 @@ def grade():
     todo = con.execute("SELECT DISTINCT pitcher, game_date FROM paper WHERE result IS NULL "
                        "AND game_date < ?", (today,)).fetchall()
     logcache = {}
+    tkcache = {}                                          # season -> (team K% map, league K%)
     graded = 0
     for pitcher, gd in todo:
         pid = ids.get(pitcher)
@@ -174,6 +182,14 @@ def grade():
         g = next((x for x in logcache[pid] if x["date"] == gd and x["bf"] >= 5), None)
         if not g:                                       # scratched / not final yet
             continue
+        season = int(gd[:4])
+        if season not in tkcache:
+            try:
+                tkcache[season] = data.team_kpct(season)
+            except Exception:
+                tkcache[season] = ({}, 0.22)
+        tk, lg_k = tkcache[season]
+        opp_k = tk.get(g.get("opp_id"), lg_k)
         for market, keyk in (("k", "k"), ("outs", "outs")):
             for (side, line, odds) in con.execute(
                     "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
@@ -185,9 +201,10 @@ def grade():
                     won = (actual > line) if side == "over" else (actual < line)
                     res, pnl = ("W", odds - 1) if won else ("L", -1.0)
                 home = 1 if g.get("is_home") else 0
-                con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, home=? "
-                            "WHERE pitcher=? AND game_date=? AND market=? AND result IS NULL",
-                            (res, actual, pnl, _now(), home, pitcher, gd, market))
+                con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
+                            "home=?, opp_k=? WHERE pitcher=? AND game_date=? AND market=? "
+                            "AND result IS NULL",
+                            (res, actual, pnl, _now(), home, opp_k, pitcher, gd, market))
                 graded += 1
     con.commit()
     con.close()
@@ -229,6 +246,15 @@ def report():
         g = con.execute("SELECT COUNT(*), SUM(result='W'), COALESCE(SUM(pnl),0) FROM paper "
                         "WHERE rule='outs_under' AND book='pinn' AND result IN ('W','L') AND home=?",
                         (hv,)).fetchone()
+        n, w, pnl = g[0], g[1] or 0, g[2] or 0
+        roi = pnl / n * 100 if n else 0
+        print(f"{lbl} {w}/{n} ({roi:+.0f}%)", end="   ")
+    # ★ stacked: AWAY + CONTACT offense (opp K% < CONTACT_MAX) — the sharpest slice
+    print("\n  outs_under AWAY x offense (pinn):", end=" ")
+    for lbl, cond in (("AWAY+CONTACT", f"opp_k < {CONTACT_MAX}"), ("AWAY+whiff", f"opp_k >= {CONTACT_MAX}")):
+        g = con.execute(f"SELECT COUNT(*), SUM(result='W'), COALESCE(SUM(pnl),0) FROM paper "
+                        f"WHERE rule='outs_under' AND book='pinn' AND result IN ('W','L') "
+                        f"AND home=0 AND opp_k IS NOT NULL AND {cond}").fetchone()
         n, w, pnl = g[0], g[1] or 0, g[2] or 0
         roi = pnl / n * 100 if n else 0
         print(f"{lbl} {w}/{n} ({roi:+.0f}%)", end="   ")
