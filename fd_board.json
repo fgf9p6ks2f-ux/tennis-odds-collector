@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T15:07:04Z",
+ "captured_at": "2026-07-21T15:13:47Z",
  "matches": [
   {
    "event_id": 35849593,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T15:00:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35849594,
@@ -19,18 +19,7 @@
    "p1_norm": "artur gromek",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T15:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35849595,
-   "p1": "Stanislaw Wnek",
-   "p2": "Kuba Golaszewski",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "kuba golaszewski",
-   "open_date": "2026-07-21T15:00:00.000Z",
-   "line": 83.5,
+   "line": 90.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "boguslaw madej",
    "open_date": "2026-07-21T15:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35849642,
@@ -52,9 +41,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T15:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849670,
@@ -99,6 +88,17 @@
    "line": 71.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35849700,
+   "p1": "Sebastian Szostok",
+   "p2": "Wojciech Pytlas",
+   "p1_norm": "sebastian szostok",
+   "p2_norm": "wojciech pytlas",
+   "open_date": "2026-07-21T15:35:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
