@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T23:26:52Z",
+ "captured_at": "2026-07-21T23:34:25Z",
  "matches": [
-  {
-   "event_id": 35850841,
-   "p1": "Artur Gromek",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "artur gromek",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-21T23:15:00.000Z",
-   "line": 62.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850850,
    "p1": "Wojciech Gluszek",
@@ -19,9 +8,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T23:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35850851,
@@ -30,7 +19,7 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T23:20:00.000Z",
-   "line": 86.5,
+   "line": 93.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +30,9 @@
    "p1_norm": "jerzy michalik",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T23:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850873,
@@ -74,9 +63,9 @@
    "p1_norm": "jaroslaw rolak",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T23:45:00.000Z",
-   "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850877,
@@ -88,6 +77,39 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35850880,
+   "p1": "Jakub Skorupa",
+   "p2": "Jerzy Debski",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "jerzy debski",
+   "open_date": "2026-07-21T23:55:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850881,
+   "p1": "Artur Gromek",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "artur gromek",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-21T23:55:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850883,
+   "p1": "Oliver Vincenec",
+   "p2": "Marian Lebek",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-22T00:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
