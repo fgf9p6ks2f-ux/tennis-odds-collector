@@ -86,6 +86,7 @@ rw|856|Plays well off bench
 rw|860|Back with 12 points off bench
 rw|863|Explodes for 18 points off bench
 rw|911|Dishes seven dimes Saturday
+rw|911|Probable for Wednesday
 rw|912|Logs 21 minutes Sunday
 rw|914|Ruled out for Wednesday
 rw|916|Posts 15 points despite restriction
