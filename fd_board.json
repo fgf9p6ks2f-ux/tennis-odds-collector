@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T07:09:57Z",
+ "captured_at": "2026-07-21T07:15:07Z",
  "matches": [
-  {
-   "event_id": 35848368,
-   "p1": "Stapor Rafal",
-   "p2": "Igor Dabrowski",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "igor dabrowski",
-   "open_date": "2026-07-21T06:55:00.000Z",
-   "line": 93.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35848369,
-   "p1": "Jakub Kosowski",
-   "p2": "Martin Olejnik",
-   "p1_norm": "jakub kosowski",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-21T06:55:00.000Z",
-   "line": 55.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35848378,
    "p1": "Milosz Cesarz",
@@ -30,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-21T07:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848379,
@@ -41,9 +19,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T07:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848384,
@@ -110,6 +88,17 @@
    "line": 74.5,
    "over_odds": -116,
    "under_odds": -118
+  },
+  {
+   "event_id": 35848402,
+   "p1": "Jakub Chmielowski",
+   "p2": "Blazej Warpas",
+   "p1_norm": "jakub chmielowski",
+   "p2_norm": "blazej warpas",
+   "open_date": "2026-07-21T07:40:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
