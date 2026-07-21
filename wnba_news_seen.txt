@@ -58,6 +58,7 @@ rw|483|Paces Sky with 20 points
 rw|485|Hits game-winning shot at buzzer
 rw|539|Another 30-point performance
 rw|571|Picks up another double-double
+rw|574|Probable for Wednesday
 rw|577|Downgraded to out
 rw|577|Unlikely to play Monday
 rw|580|Racks up 20 points in Sunday's win
