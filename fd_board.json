@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T21:49:25Z",
+ "captured_at": "2026-07-21T21:55:08Z",
  "matches": [
   {
    "event_id": 35850740,
@@ -8,9 +8,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-21T21:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 50.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35850741,
@@ -20,8 +20,8 @@
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T21:45:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850742,
@@ -30,7 +30,7 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-21T21:45:00.000Z",
-   "line": 75.5,
+   "line": 85.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -74,9 +74,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35850769,
@@ -86,6 +86,17 @@
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-21T22:10:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850777,
+   "p1": "Jakub Skorupa",
+   "p2": "Dariusz Molenda",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "dariusz molenda",
+   "open_date": "2026-07-21T22:20:00.000Z",
+   "line": 69.5,
    "over_odds": -112,
    "under_odds": -118
   }
