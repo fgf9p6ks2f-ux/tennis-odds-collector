@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="418966fa85">
+<meta name="bv" content="44ae6ac027">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -232,6 +232,9 @@
   .mlbprem { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
              color:#f2c14e; background:rgba(242,193,78,.15); border:1px solid rgba(242,193,78,.35);
              border-radius:5px; padding:1px 5px; margin-left:5px; vertical-align:1px; }  /* ★★ +49% tier */
+  .mlbwarn { font-size:12px; font-weight:700; color:#ffb4a2; background:rgba(224,90,74,.14);
+              border:1px solid rgba(224,90,74,.45); border-radius:8px; padding:8px 10px;
+              margin:2px 0 10px; line-height:1.4; }  /* LOUD: feed broken, not a quiet slate */
   .ttconf { display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }
   /* TT %-chip holds "73%" (3 chars), not a single A/B/C letter — override the fixed 18px box so the
      number sits centered with even padding on all sides instead of spilling out the edges */
@@ -512,7 +515,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>12:44 PM MT
+    <div class="live"><span class="dot"></span>12:51 PM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
