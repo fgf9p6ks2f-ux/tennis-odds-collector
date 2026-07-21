@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="65c6314b95">
+<meta name="bv" content="f193940e0d">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -229,6 +229,9 @@
              margin-left:5px; vertical-align:1px; }   /* ★ the away+contact outs-under edge */
   .bktag { display:inline-block; font-size:9px; font-weight:800; color:#9aa3b2; background:#1a1f29;
            border-radius:5px; padding:2px 5px; margin-left:5px; vertical-align:2px; }
+  .mlbprem { font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+             color:#f2c14e; background:rgba(242,193,78,.15); border:1px solid rgba(242,193,78,.35);
+             border-radius:5px; padding:1px 5px; margin-left:5px; vertical-align:1px; }  /* ★★ +49% tier */
   .ttconf { display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }
   /* TT %-chip holds "73%" (3 chars), not a single A/B/C letter — override the fixed 18px box so the
      number sits centered with even padding on all sides instead of spilling out the edges */
@@ -509,7 +512,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>3:52 AM MT
+    <div class="live"><span class="dot"></span>4:05 AM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -533,11 +536,11 @@
   </div>
   <div class="panel hidden" id="tt">
     <h2>Table tennis · real FD lines</h2>
-    <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flags<span class="ttcnt">4</span></h3><div class="ttbet"><span class="pind u">U</span><span class="ttbln">84.5</span><div class="ttbmid"><div class="ttbnm"><b>Adrian Wiecek</b> v Jakub Kosowski</div><div class="ttbsb">4:00 AM MT · under · <span class="fd">FanDuel · confirmed</span></div></div><div class="ttconf"><span class="tchip tB">71%</span><span class="ttconflab">hit rate</span></div></div><div class="ttbet"><span class="pind o">O</span><span class="ttbln"><span class="tld">~</span>77.5</span><div class="ttbmid"><div class="ttbnm"><b>Adrian Wiecek</b> v Maciej Nowalinski</div><div class="ttbsb">5:40 AM MT · over · <span class="pj">projected</span></div></div><div class="ttconf"><span class="tchip tB">70%</span><span class="ttconflab">hit rate</span></div></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln"><span class="tld">~</span>76.5</span><div class="ttbmid"><div class="ttbnm"><b>Krystian Kolodziej</b> v Jakub Zochniak</div><div class="ttbsb">10:30 AM MT · under · <span class="pj">projected</span></div></div><div class="ttconf"><span class="tchip tA">88%</span><span class="ttconflab">hit rate</span></div></div><div class="ttbet"><span class="pind o">O</span><span class="ttbln"><span class="tld">~</span>78.5</span><div class="ttbmid"><div class="ttbnm"><b>Jaroslaw Rolak</b> v Krzysztof Kotyl</div><div class="ttbsb">3:20 PM MT · over · <span class="pj">projected</span></div></div><div class="ttconf"><span class="tchip tA">79%</span><span class="ttconflab">hit rate</span></div></div><div class="ttfoot">hit rate = share of the pair’s H2H meetings that went this side at this line · only pairs ≥70% shown · confirmed = FanDuel has posted the line (tracked) · projected = our line before FanDuel posts (never tracked)</div></div></div>
+    <div id="tt-totals"><div class="card"><h3 class="ttlg">🏓 TT Elite · Flags<span class="ttcnt">3</span></h3><div class="ttbet"><span class="pind o">O</span><span class="ttbln"><span class="tld">~</span>77.5</span><div class="ttbmid"><div class="ttbnm"><b>Adrian Wiecek</b> v Maciej Nowalinski</div><div class="ttbsb">5:40 AM MT · over · <span class="pj">projected</span></div></div><div class="ttconf"><span class="tchip tB">70%</span><span class="ttconflab">hit rate</span></div></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln"><span class="tld">~</span>75.5</span><div class="ttbmid"><div class="ttbnm"><b>Krystian Kolodziej</b> v Jakub Zochniak</div><div class="ttbsb">10:30 AM MT · under · <span class="pj">projected</span></div></div><div class="ttconf"><span class="tchip tA">85%</span><span class="ttconflab">hit rate</span></div></div><div class="ttbet"><span class="pind o">O</span><span class="ttbln"><span class="tld">~</span>78.5</span><div class="ttbmid"><div class="ttbnm"><b>Jaroslaw Rolak</b> v Krzysztof Kotyl</div><div class="ttbsb">3:20 PM MT · over · <span class="pj">projected</span></div></div><div class="ttconf"><span class="tchip tA">79%</span><span class="ttconflab">hit rate</span></div></div><div class="ttfoot">hit rate = share of the pair’s H2H meetings that went this side at this line · only pairs ≥70% shown · confirmed = FanDuel has posted the line (tracked) · projected = our line before FanDuel posts (never tracked)</div></div></div>
   </div>
   <div class="panel hidden" id="mlb">
     <h2>MLB pitcher props · best book</h2>
-    <div class="card"><h3 class="ttlg">⚾ MLB · Outs-under plays<span class="ttcnt">4</span></h3><div class="ttbet"><span class="pind u">U</span><span class="ttbln">16.5</span><div class="ttbmid"><div class="ttbnm"><b>D. Rasmussen</b> <span class="xteam">@ Toronto Blue Jays</span></div><div class="ttbsb">outs · under <span class="mlbaway">★ away+contact</span></div></div><span class="podds fd">+110</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>N. Schultz</b> <span class="xteam">@ Texas Rangers</span></div><div class="ttbsb">outs · under <span class="mlbaway">★ away+contact</span></div></div><span class="podds fd">-166</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>T. Mahle</b> <span class="xteam">@ Kansas City Royals</span></div><div class="ttbsb">outs · under <span class="mlbaway">★ away+contact</span></div></div><span class="podds fd">-108</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">14.5</span><div class="ttbmid"><div class="ttbnm"><b>T. Phillips</b> <span class="xteam">@ Houston Astros</span></div><div class="ttbsb">outs · under <span class="mlbaway">★ away+contact</span></div></div><span class="podds fd">+132</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttfoot">the edge = outs-under ≤16.5 on an AWAY starter vs a CONTACT offense (+24% ROI backtest) · best of FanDuel / DraftKings / BetMGM · paper, unconfirmed</div></div>
+    <div class="card"><h3 class="ttlg">⚾ MLB · Outs-under plays<span class="ttcnt">4</span></h3><div class="ttbet"><span class="pind u">U</span><span class="ttbln">16.5</span><div class="ttbmid"><div class="ttbnm"><b>D. Rasmussen</b> <span class="xteam">@ Toronto Blue Jays</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★ premium</span></div></div><span class="podds fd">+110</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>N. Schultz</b> <span class="xteam">@ Texas Rangers</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★ premium</span></div></div><span class="podds fd">-166</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>T. Mahle</b> <span class="xteam">@ Kansas City Royals</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★ premium</span></div></div><span class="podds fd">-108</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">14.5</span><div class="ttbmid"><div class="ttbnm"><b>T. Phillips</b> <span class="xteam">@ Houston Astros</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★ premium</span></div></div><span class="podds fd">+132</span><img class="bklogo" src="book-fd.png" alt="FD"></div><div class="ttfoot">outs-under ≤16.5 · AWAY vs CONTACT (base +25%). <b>★★ premium</b> (4) = also low-patience opp OR line &gt; recent outs (+49% backtest) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record</h2>
@@ -572,14 +575,14 @@
         <div class="tsub">~ mixed: mean move positive but most lines drift against · realized 53% · 302 shadows / 9 slates (open vs close)</div>
       </div>
       <div class="tcard">
-        <div class="thead">⚾ MLB outs-under · away+contact</div>
+        <div class="thead">⚾ MLB outs-under ★★</div>
         <div class="trow">
-          <div class="tbox"><div class="tk">Record</div><div class="tv">0-0</div></div>
-          <div class="tbox"><div class="tk">Hit rate</div><div class="tv">—</div></div>
-          <div class="tbox"><div class="tk">Units</div><div class="tv ">+0.0u</div></div>
+          <div class="tbox"><div class="tk">Record</div><div class="tv">24-6</div></div>
+          <div class="tbox"><div class="tk">Hit rate</div><div class="tv">80%</div></div>
+          <div class="tbox"><div class="tk">Units</div><div class="tv up">+14.8u</div></div>
         </div>
-        <div class="tsub">away starter vs contact offense · under ≤16.5 · flag-time FD price · paper · 4 pending</div>
-        
+        <div class="tsub">★★ = away+contact + (low-patience opp OR line&amp;gt;recent) · base away+contact 28-14 (+10.2u) · flag-time price · paper · 4 premium pending · ROI +49%</div>
+        <details class="tdd"><summary>last 24h <span class="ddcnt">3</span></summary><div class="ddbody"><div class="ddday"><span>Mon 7/20</span><span class="ddtot">1-2 · <span class="down">-1.23u</span></span></div><div class="ddbet"><span class="ddnm">F. Peralta u15.5 outs</span><span class="ddwl l">L</span><span class="ddu down">-1.00u</span></div><div class="ddbet"><span class="ddnm">N. Martinez u16.5 outs</span><span class="ddwl l">L</span><span class="ddu down">-1.00u</span></div><div class="ddbet"><span class="ddnm">T. McDonald u15.5 outs</span><span class="ddwl w">W</span><span class="ddu up">+0.77u</span></div></div></details>
       </div>
   </div>
   <div class="foot">auto-generated · self-refreshing · WNBA 1u ladders · TT/GG ¼-Kelly paper</div>
