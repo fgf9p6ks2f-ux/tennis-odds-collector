@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T11:47:08Z",
+ "captured_at": "2026-07-21T11:52:24Z",
  "matches": [
-  {
-   "event_id": 35848783,
-   "p1": "Maksymilian Rus",
-   "p2": "Karol Jablonski",
-   "p1_norm": "maksymilian rus",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-21T11:30:00.000Z",
-   "line": 103.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35848847,
    "p1": "Miroslav Sklensky",
@@ -19,20 +8,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-21T11:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35848860,
-   "p1": "Patryk Mecik",
-   "p2": "Igor Szymanski",
-   "p1_norm": "patryk mecik",
-   "p2_norm": "igor szymanski",
-   "open_date": "2026-07-21T11:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848861,
@@ -41,9 +19,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-21T11:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848865,
@@ -66,6 +44,28 @@
    "line": 73.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35848892,
+   "p1": "Maciej Kolek",
+   "p2": "Kacper Szurlej",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "kacper szurlej",
+   "open_date": "2026-07-21T12:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35848893,
+   "p1": "Jakub Nowak",
+   "p2": "Wojciech Urban",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-21T12:15:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
