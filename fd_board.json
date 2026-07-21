@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T16:16:56Z",
+ "captured_at": "2026-07-21T16:24:55Z",
  "matches": [
   {
    "event_id": 35849799,
@@ -9,8 +9,8 @@
    "p2_norm": "miroslav sklensky",
    "open_date": "2026-07-21T16:05:00.000Z",
    "line": 70.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849941,
@@ -19,9 +19,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "marcin kowalczyk",
    "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35849942,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 81.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850045,
@@ -41,9 +41,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "michal oracz",
    "open_date": "2026-07-21T16:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850151,
@@ -97,8 +97,19 @@
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T16:40:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850253,
+   "p1": "Sebastian Krupa",
+   "p2": "Kaczynski Piotr",
+   "p1_norm": "sebastian krupa",
+   "p2_norm": "kaczynski piotr",
+   "open_date": "2026-07-21T16:50:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
