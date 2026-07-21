@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T05:51:40Z",
+ "captured_at": "2026-07-21T05:56:24Z",
  "matches": [
   {
    "event_id": 35848305,
@@ -8,7 +8,7 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-21T05:35:00.000Z",
-   "line": 87.5,
+   "line": 88.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-21T05:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 92.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35848321,
@@ -30,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-21T05:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35848325,
@@ -88,6 +88,17 @@
    "line": 74.5,
    "over_odds": -118,
    "under_odds": -116
+  },
+  {
+   "event_id": 35848345,
+   "p1": "Boguslaw Madej",
+   "p2": "Maksymilian Rus",
+   "p1_norm": "boguslaw madej",
+   "p2_norm": "maksymilian rus",
+   "open_date": "2026-07-21T06:20:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
