@@ -179,7 +179,24 @@ def grade():
                 logcache[pid] = data.pitcher_gamelog(pid, season)
             except Exception:
                 logcache[pid] = []
-        g = next((x for x in logcache[pid] if x["date"] == gd and x["bf"] >= 5), None)
+        # TOLERANT date match (audit 2026-07-21): game_date is date(start_time) in UTC, but the
+        # statsapi gamelog date is the ET game date — a night game is off by one, which was silently
+        # dropping ~27% of bets (they'd never grade). Match the start within ±1 day, closest.
+        try:
+            _ld = dt.date.fromisoformat(gd)
+        except ValueError:
+            _ld = None
+        g, _best = None, None
+        if _ld:
+            for x in logcache[pid]:
+                if x["bf"] < 5 or not x.get("date"):
+                    continue
+                try:
+                    _diff = abs((dt.date.fromisoformat(x["date"]) - _ld).days)
+                except ValueError:
+                    continue
+                if _diff <= 1 and (_best is None or _diff < _best):
+                    _best, g = _diff, x
         if not g:                                       # scratched / not final yet
             continue
         season = int(gd[:4])

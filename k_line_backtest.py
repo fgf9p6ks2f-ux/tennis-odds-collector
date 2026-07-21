@@ -15,6 +15,7 @@ alt/line probabilities use the true spread. Caches name->id + gamelogs to scratc
 """
 from __future__ import annotations
 
+import datetime as dt
 import json
 import os
 import sqlite3
@@ -137,10 +138,18 @@ def main():
         gl = logs.get(name)
         if not gl:
             skipped += 1; continue
-        cur = next((g for g in gl if g["date"] == gd), None)
+        # TOLERANT date match: line game_date is UTC; statsapi gamelog date is ET -> night games
+        # off by one (dropped ~27% of the sample). Match the start within ±1 day, closest.
+        try:
+            _ld = dt.date.fromisoformat(gd)
+            cur = min((g for g in gl if g["bf"] >= 5 and g.get("date")
+                       and abs((dt.date.fromisoformat(g["date"]) - _ld).days) <= 1),
+                      key=lambda g: abs((dt.date.fromisoformat(g["date"]) - _ld).days), default=None)
+        except ValueError:
+            cur = None
         if cur is None or cur["bf"] < 5:
             skipped += 1; continue                     # scratched / didn't actually start
-        prior = [g for g in gl if (g["date"] or "") < gd and g["bf"] >= 5]
+        prior = [g for g in gl if (g["date"] or "") < cur["date"] and g["bf"] >= 5]
         if len(prior) < 3:
             skipped += 1; continue                     # too few priors to project
         pm = proj_mean(prior, tk.get(cur["opp_id"], lg_k), lg_k)
