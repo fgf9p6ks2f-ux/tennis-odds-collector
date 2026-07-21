@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T04:52:40Z",
+ "captured_at": "2026-07-21T04:57:23Z",
  "matches": [
-  {
-   "event_id": 35848232,
-   "p1": "Grzegorz Marud",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-21T04:40:00.000Z",
-   "line": 53.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35848237,
    "p1": "Mariusz Adamus",
@@ -19,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-21T04:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848274,
@@ -30,7 +19,7 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-21T04:50:00.000Z",
-   "line": 76.5,
+   "line": 50.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -41,9 +30,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-21T04:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848246,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub nowak",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-21T04:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848247,
@@ -63,9 +52,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T04:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848273,
