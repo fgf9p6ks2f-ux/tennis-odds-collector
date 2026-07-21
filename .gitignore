@@ -21,3 +21,9 @@ mlb_probables.json
 prob_test.py
 mlb_trace.py
 health_pinged.json
+underdog_seen.txt
+underdog_log.jsonl
+.x_query_ids.json
+.x_uid_cache.json
+.underdog_last
+.x_alert_pinged

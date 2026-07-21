@@ -126,6 +126,7 @@ while true; do i=$((i+1))
     was_hot=1; hot_ticks=$((hot_ticks+1))
     python3 wnba_watch.py >/dev/null 2>&1 || true
     python3 wnba_news_watch.py 2>&1 | grep -i "NEWS\|trigger" || true
+    python3 underdog_watch.py 2>&1 | grep -i "NEWS\|trigger\|ALERT" || true   # benched until X_AUTH_TOKEN set
     if [ -f /tmp/.force_fullscan ]; then
       rm -f /tmp/.force_fullscan
       echo "[$(date +%H:%M)] TRIGGERED full scan (fresh out / new lines)"; fullscan
@@ -153,6 +154,7 @@ while true; do i=$((i+1))
     collectors
     python3 wnba_watch.py >/dev/null 2>&1 || true
     python3 wnba_news_watch.py 2>&1 | grep -i "NEWS\|trigger" || true
+    python3 underdog_watch.py 2>&1 | grep -i "NEWS\|trigger\|ALERT" || true   # benched until X_AUTH_TOKEN set
         if [ -f /tmp/.force_fullscan ]; then
       rm -f /tmp/.force_fullscan
       echo "[$(date +%H:%M)] TRIGGERED full scan (fresh out / new lines)"; fullscan
