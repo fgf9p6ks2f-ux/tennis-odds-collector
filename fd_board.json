@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T22:07:53Z",
+ "captured_at": "2026-07-21T22:13:46Z",
  "matches": [
-  {
-   "event_id": 35850742,
-   "p1": "Pawel Adamus",
-   "p2": "Sebastian Szostok",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "sebastian szostok",
-   "open_date": "2026-07-21T21:45:00.000Z",
-   "line": 110.5,
-   "over_odds": 120,
-   "under_odds": -165
-  },
   {
    "event_id": 35850748,
    "p1": "Jerzy Debski",
@@ -19,9 +8,9 @@
    "p1_norm": "jerzy debski",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T21:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 81.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850758,
@@ -31,8 +20,8 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-21T22:00:00.000Z",
    "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35850764,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-21T22:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850768,
@@ -52,9 +41,9 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850769,
@@ -63,9 +52,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-21T22:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850777,
@@ -120,6 +109,17 @@
    "open_date": "2026-07-21T22:35:00.000Z",
    "line": 76.5,
    "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850807,
+   "p1": "Michal Machelski",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "michal machelski",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-21T22:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
    "under_odds": -116
   }
  ]
