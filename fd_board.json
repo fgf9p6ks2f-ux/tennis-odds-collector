@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T19:11:48Z",
+ "captured_at": "2026-07-21T19:17:59Z",
  "matches": [
   {
    "event_id": 35850522,
@@ -8,9 +8,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 82.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850523,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-21T19:10:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 51.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35850525,
@@ -31,8 +31,8 @@
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T19:15:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850535,
@@ -77,6 +77,39 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35850571,
+   "p1": "Miroslav Sklensky",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-21T19:40:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850572,
+   "p1": "Mariusz Koczyba",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "mariusz koczyba",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-21T19:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850573,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Dariusz Szlubowski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "dariusz szlubowski",
+   "open_date": "2026-07-21T19:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
