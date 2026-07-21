@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T08:37:20Z",
+ "captured_at": "2026-07-21T08:42:46Z",
  "matches": [
-  {
-   "event_id": 35848433,
-   "p1": "Michal Oracz",
-   "p2": "Boguslaw Madej",
-   "p1_norm": "michal oracz",
-   "p2_norm": "boguslaw madej",
-   "open_date": "2026-07-21T08:20:00.000Z",
-   "line": 106.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35848448,
    "p1": "Jakub Kosowski",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T08:30:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35848449,
@@ -30,9 +19,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T08:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 93.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35848454,
@@ -41,7 +30,7 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-21T08:35:00.000Z",
-   "line": 65.5,
+   "line": 51.5,
    "over_odds": -115,
    "under_odds": -120
   },
