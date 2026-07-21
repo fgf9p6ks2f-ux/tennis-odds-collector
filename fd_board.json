@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T00:19:43Z",
+ "captured_at": "2026-07-21T00:27:10Z",
  "matches": [
   {
    "event_id": 35847214,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35847215,
@@ -19,9 +19,9 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 94.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35847216,
@@ -30,9 +30,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847223,
@@ -41,9 +41,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-21T00:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847226,
@@ -52,9 +52,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-21T00:25:00.000Z",
-   "line": 67.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847231,
@@ -110,6 +110,28 @@
    "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35847299,
+   "p1": "Kacper Adamus",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-21T00:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35847300,
+   "p1": "Michal Krutak",
+   "p2": "Artur Kubiak",
+   "p1_norm": "michal krutak",
+   "p2_norm": "artur kubiak",
+   "open_date": "2026-07-21T00:50:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
