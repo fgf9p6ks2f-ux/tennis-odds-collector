@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T06:16:15Z",
+ "captured_at": "2026-07-21T06:21:04Z",
  "matches": [
-  {
-   "event_id": 35848326,
-   "p1": "Kamil Klocek",
-   "p2": "Jakub Chmielowski",
-   "p1_norm": "kamil klocek",
-   "p2_norm": "jakub chmielowski",
-   "open_date": "2026-07-21T06:00:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35848334,
    "p1": "Stapor Rafal",
@@ -19,9 +8,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-21T06:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848335,
@@ -31,8 +20,8 @@
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-21T06:05:00.000Z",
    "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35848336,
@@ -41,9 +30,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T06:05:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848345,
@@ -52,9 +41,9 @@
    "p1_norm": "boguslaw madej",
    "p2_norm": "maksymilian rus",
    "open_date": "2026-07-21T06:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848347,
@@ -109,6 +98,28 @@
    "open_date": "2026-07-21T06:30:00.000Z",
    "line": 78.5,
    "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35848361,
+   "p1": "Adam Ruszkiewicz",
+   "p2": "Dawid Jendrysik",
+   "p1_norm": "adam ruszkiewicz",
+   "p2_norm": "dawid jendrysik",
+   "open_date": "2026-07-21T06:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35848362,
+   "p1": "Michal Oracz",
+   "p2": "Rafal Gajda",
+   "p1_norm": "michal oracz",
+   "p2_norm": "rafal gajda",
+   "open_date": "2026-07-21T06:45:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
    "under_odds": -116
   }
  ]
