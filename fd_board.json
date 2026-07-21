@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T03:25:23Z",
+ "captured_at": "2026-07-21T03:31:47Z",
  "matches": [
-  {
-   "event_id": 35847613,
-   "p1": "Milosz Cesarz",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "milosz cesarz",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-21T03:10:00.000Z",
-   "line": 93.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35847654,
    "p1": "Jiri Vrablik",
@@ -19,9 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T03:25:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847655,
@@ -30,9 +19,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-21T03:25:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847656,
@@ -41,7 +30,7 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "artur sobel",
    "open_date": "2026-07-21T03:25:00.000Z",
-   "line": 80.5,
+   "line": 73.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -53,8 +42,8 @@
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-21T03:30:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847661,
@@ -99,6 +88,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35847683,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-21T03:55:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -118
   }
  ]
 }
