@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T12:37:38Z",
+ "captured_at": "2026-07-21T12:42:57Z",
  "matches": [
   {
    "event_id": 35848916,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-21T12:30:00.000Z",
-   "line": 70.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848920,
@@ -19,7 +19,7 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-21T12:35:00.000Z",
-   "line": 74.5,
+   "line": 82.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +30,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-21T12:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848923,
@@ -41,9 +41,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "dominik solilo",
    "open_date": "2026-07-21T12:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848928,
@@ -52,9 +52,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-21T12:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35849270,
