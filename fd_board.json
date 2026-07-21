@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T09:21:35Z",
+ "captured_at": "2026-07-21T09:26:51Z",
  "matches": [
   {
    "event_id": 35848475,
@@ -8,31 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T09:00:00.000Z",
-   "line": 112.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35848477,
-   "p1": "Miroslav Sklensky",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "miroslav sklensky",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-21T09:00:00.000Z",
-   "line": 97.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35848485,
-   "p1": "Rafal Gajda",
-   "p2": "Boguslaw Madej",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "boguslaw madej",
-   "open_date": "2026-07-21T09:05:00.000Z",
-   "line": 92.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 115.5,
+   "over_odds": 125,
+   "under_odds": -180
   },
   {
    "event_id": 35848512,
@@ -52,9 +30,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-21T09:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848520,
@@ -63,9 +41,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "kacper szurlej",
    "open_date": "2026-07-21T09:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848522,
@@ -99,6 +77,28 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35848559,
+   "p1": "Igor Szymanski",
+   "p2": "Jakub Nowak",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-21T09:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35848560,
+   "p1": "Dominik Solilo",
+   "p2": "Maciej Kolek",
+   "p1_norm": "dominik solilo",
+   "p2_norm": "maciej kolek",
+   "open_date": "2026-07-21T09:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
