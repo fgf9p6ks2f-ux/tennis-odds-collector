@@ -62,6 +62,7 @@ rw|571|Picks up another double-double
 rw|574|Probable for Wednesday
 rw|577|Downgraded to out
 rw|577|Unlikely to play Monday
+rw|579|Not listed on injury report
 rw|580|Racks up 20 points in Sunday's win
 rw|580|Scores team-high 29 points
 rw|581|On fire from perimeter
