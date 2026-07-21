@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T18:34:21Z",
+ "captured_at": "2026-07-21T18:40:22Z",
  "matches": [
-  {
-   "event_id": 35850437,
-   "p1": "Sebastian Krupa",
-   "p2": "Wojciech Pytlas",
-   "p1_norm": "sebastian krupa",
-   "p2_norm": "wojciech pytlas",
-   "open_date": "2026-07-21T18:25:00.000Z",
-   "line": 58.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35850440,
    "p1": "Marcin Kowalczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "wojciech gluszek",
    "open_date": "2026-07-21T18:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850442,
@@ -30,7 +19,7 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "pawel adamus",
    "open_date": "2026-07-21T18:30:00.000Z",
-   "line": 82.5,
+   "line": 94.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -42,8 +31,8 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-21T18:45:00.000Z",
    "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850464,
