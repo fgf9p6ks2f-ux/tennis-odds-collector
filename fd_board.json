@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-20T23:58:29Z",
+ "captured_at": "2026-07-21T00:03:33Z",
  "matches": [
   {
    "event_id": 35847074,
@@ -8,9 +8,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "mateusz baran",
    "open_date": "2026-07-20T23:45:00.000Z",
-   "line": 98.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 105.5,
+   "over_odds": -150,
+   "under_odds": 110
   },
   {
    "event_id": 35847081,
@@ -19,7 +19,7 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-20T23:50:00.000Z",
-   "line": 73.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +30,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "artur gromek",
    "open_date": "2026-07-20T23:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847090,
@@ -41,9 +41,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-21T00:00:00.000Z",
-   "line": 69.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35847214,
@@ -64,8 +64,8 @@
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-21T00:10:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35847216,
@@ -97,6 +97,28 @@
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-21T00:25:00.000Z",
    "line": 69.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35847231,
+   "p1": "Robert Kostepski",
+   "p2": "Rafal Niemiec",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "rafal niemiec",
+   "open_date": "2026-07-21T00:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35847232,
+   "p1": "Jerzy Michalik",
+   "p2": "Mateusz Baran",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "mateusz baran",
+   "open_date": "2026-07-21T00:30:00.000Z",
+   "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
   }
