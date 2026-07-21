@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T23:09:01Z",
+ "captured_at": "2026-07-21T23:15:05Z",
  "matches": [
   {
    "event_id": 35850832,
@@ -8,7 +8,7 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T22:55:00.000Z",
-   "line": 82.5,
+   "line": 104.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,9 +19,9 @@
    "p1_norm": "marian brunner",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-21T23:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 57.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850840,
@@ -30,9 +30,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-21T23:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850841,
