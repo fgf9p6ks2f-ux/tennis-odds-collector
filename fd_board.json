@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T01:18:54Z",
+ "captured_at": "2026-07-21T01:26:16Z",
  "matches": [
-  {
-   "event_id": 35847313,
-   "p1": "Kuba Golaszewski",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "kuba golaszewski",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-21T01:00:00.000Z",
-   "line": 92.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35847460,
    "p1": "Grzegorz Marud",
@@ -19,42 +8,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35847471,
-   "p1": "Aleksander Barton",
-   "p2": "Miroslaw Warzecha",
-   "p1_norm": "aleksander barton",
-   "p2_norm": "miroslaw warzecha",
-   "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 63.5,
+   "line": 91.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35847472,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Mateusz Karpiuk",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "mateusz karpiuk",
-   "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35847485,
-   "p1": "Artur Gromek",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "artur gromek",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-21T01:10:00.000Z",
-   "line": 63.5,
-   "over_odds": -110,
-   "under_odds": -125
   },
   {
    "event_id": 35847500,
@@ -64,8 +20,8 @@
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T01:25:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847501,
@@ -99,6 +55,28 @@
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35847538,
+   "p1": "Robert Kostepski",
+   "p2": "Grzegorz Marud",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "grzegorz marud",
+   "open_date": "2026-07-21T01:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35847539,
+   "p1": "Mateusz Baran",
+   "p2": "Mateusz Karpiuk",
+   "p1_norm": "mateusz baran",
+   "p2_norm": "mateusz karpiuk",
+   "open_date": "2026-07-21T01:50:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
