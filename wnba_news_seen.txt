@@ -29,6 +29,7 @@ rw|1093|Fades injury report
 rw|233|Chips in with season-high 12 points
 rw|254|Produces 18 points in win
 rw|276|Double-doubles in win
+rw|278|Reaches 20-point plateau
 rw|291|Goes for 15 points in loss
 rw|297|Generates 29 points against Chicago
 rw|297|Rolls up 29 points against Sky
@@ -69,6 +70,7 @@ rw|615|Listed out for Monday
 rw|640|Hands out four dimes in loss
 rw|641|Chips in 12 points in loss
 rw|641|Nets 21 points in overtime win
+rw|733|Swats four shots in loss
 rw|735|Limited production in return
 rw|735|On track to return Sunday
 rw|755|Double-doubles off bench
@@ -77,6 +79,7 @@ rw|786|Grabs 15 boards in win
 rw|807|Posts double-double in road loss
 rw|852|Logs 15 points vs. New York
 rw|854|Available for Monday
+rw|856|Plays well off bench
 rw|860|Back with 12 points off bench
 rw|911|Dishes seven dimes Saturday
 rw|912|Logs 21 minutes Sunday
