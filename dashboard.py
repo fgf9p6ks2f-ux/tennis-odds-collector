@@ -943,15 +943,17 @@ TT_LIVE_JS = """
   function _ttTime(iso){ try { return new Date(iso).toLocaleTimeString('en-US', {timeZone:'America/Denver', hour:'numeric', minute:'2-digit'}); } catch(e){ return ''; } }
   function _ttAm(o){ return (o != null && o > 0) ? '+' + o : '' + o; }
   function _ttKey(a, b){ return [a, b].sort().join('|'); }
+  function _ttLast(s){ var a = String(s == null ? '' : s).split(/\\s+/).filter(Boolean); return a.length ? a[a.length-1] : ''; }
   window._applyTTTotals = function(){
     var el = document.getElementById('tt-totals');
     if (!el) return;
     var now = Date.now(), mid = '\\u00B7';
-    var entries = [], boardPairs = {};
+    var entries = [], boardPairs = {}, boardLast = {};
     // real FanDuel-priced games — keep ONLY those with a +EV pick (a flagged bet)
     (_ttBoard || []).forEach(function(m){
       if (!m || m.line == null || !m.open_date || new Date(m.open_date).getTime() <= now) return;
       var key = _ttKey(m.p1_norm, m.p2_norm); boardPairs[key] = 1;
+      boardLast[_ttKey(_ttLast(m.p1_norm), _ttLast(m.p2_norm))] = 1;   // last-name fallback key
       var entry = _ttH2H ? _ttH2H[key] : null; if (!entry || !entry.pick) return;
       var tots = entry.totals || [], n = tots.length, ov = 0, j;
       for (j=0;j<n;j++){ if (tots[j] > +m.line) ov++; }
@@ -959,9 +961,10 @@ TT_LIVE_JS = """
       entries.push({start: new Date(m.open_date).getTime(), p1: m.p1, p2: m.p2, line: +m.line,
                     side: entry.pick.side, hit: hit, real: true});
     });
-    // projected likely-flags (pre-filtered to >=70% in tt_board) — dedup vs the fresh board
+    // projected likely-flags (pre-filtered to >=70% in tt_board) — DROP the moment FanDuel posts
+    // this pair (exact key OR last-name fallback), so a "projected" tag never lingers past the real line
     (_ttUpcoming || []).forEach(function(e){
-      if (!e.side || boardPairs[_ttKey(e.p1n, e.p2n)]) return;
+      if (!e.side || boardPairs[_ttKey(e.p1n, e.p2n)] || boardLast[_ttKey(_ttLast(e.p1n), _ttLast(e.p2n))]) return;
       var st = e.ts * 1000; if (st <= now) return;
       entries.push({start: st, p1: e.p1, p2: e.p2, line: e.proj, side: e.side, hit: e.hit, real: false});
     });
@@ -977,7 +980,7 @@ TT_LIVE_JS = """
       var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), o = x.side==='over'?'O':'U';
       var chip = (x.hit != null) ? ('<div class="ttconf"><span class="tchip ' + (x.hit>=78?'tA':'tB') + '">' + x.hit + '%</span><span class="ttconflab">hit rate</span></div>') : '';
       var lncell = x.real ? (''+x.line) : ('<span class="tld">~</span>' + x.line);
-      var src = x.real ? '<span class="fd">FanDuel line</span>' : '<span class="pj">projected</span>';
+      var src = x.real ? '<span class="fd">FanDuel ' + mid + ' confirmed</span>' : '<span class="pj">projected</span>';
       rows += '<div class="ttbet"><span class="pind ' + o.toLowerCase() + '">' + o + '</span>'
             + '<span class="ttbln">' + lncell + '</span>'
             + '<div class="ttbmid"><div class="ttbnm"><b>' + _ttEsc(x.p1) + '</b> v ' + _ttEsc(x.p2) + '</div>'
@@ -985,7 +988,7 @@ TT_LIVE_JS = """
     }
     el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flags'
       + '<span class="ttcnt">' + entries.length + '</span></h3>' + rows
-      + '<div class="ttfoot">hit rate = share of H2H meetings that went this side at this line ' + mid + ' only pairs \\u226570% shown ' + mid + ' FanDuel = priced now ' + mid + ' projected = before FanDuel posts</div></div>';
+      + '<div class="ttfoot">hit rate = share of H2H meetings that went this side at this line ' + mid + ' only pairs \\u226570% shown ' + mid + ' confirmed = FanDuel has posted the line (tracked) ' + mid + ' projected = before FanDuel posts (never tracked)</div></div>';
   };
   window._fetchTTTotals = async function(){
     try {
@@ -1037,6 +1040,9 @@ def _tt_totals_card(tt_json, now=None):
     # elite_upcoming to pairs hitting a side >=70%, min 12 H2H). No-edge / toss-up games are dropped.
     entries = []
     board_pairs = set()
+    board_last = set()          # {frozenset(lastname1, lastname2)} — tolerant fallback so a projection
+    #                             flips to the real line even if 24live/FanDuel spell first names differently
+    _last = lambda s: (s or "").split()[-1] if (s or "").split() else ""
     for m in board.get("matches", []):
         od, line = m.get("open_date"), m.get("line")
         if not od or line is None:
@@ -1049,6 +1055,7 @@ def _tt_totals_card(tt_json, now=None):
             continue
         key = frozenset((m.get("p1_norm"), m.get("p2_norm")))
         board_pairs.add(key)
+        board_last.add(frozenset((_last(m.get("p1_norm")), _last(m.get("p2_norm")))))
         pick = (h2h.get(key) or {}).get("pick")
         if not pick:                            # only flagged bets on the real board
             continue
@@ -1059,8 +1066,13 @@ def _tt_totals_card(tt_json, now=None):
         entries.append({"start": start, "p1": m.get("p1", "?"), "p2": m.get("p2", "?"),
                         "line": line, "side": pick["side"], "hit": hit, "real": True})
     for e in (tt_json or {}).get("elite_upcoming", []):
-        if not e.get("side") or frozenset((e.get("p1n"), e.get("p2n"))) in board_pairs:
-            continue                            # projections are pre-filtered to likely flags; dedup vs board
+        if not e.get("side"):
+            continue
+        # DROP the projection the moment FanDuel posts this pair (exact key OR last-name fallback) —
+        # a "projected" tag must never linger once the real line exists (user, 2026-07-21).
+        if (frozenset((e.get("p1n"), e.get("p2n"))) in board_pairs
+                or frozenset((_last(e.get("p1n")), _last(e.get("p2n")))) in board_last):
+            continue
         try:
             start = dt.datetime.fromtimestamp(int(e["ts"]), dt.timezone.utc)
         except (KeyError, TypeError, ValueError, OSError):
@@ -1084,7 +1096,7 @@ def _tt_totals_card(tt_json, now=None):
                 f'<span class="ttconflab">hit rate</span></div>'
                 if conf is not None else "")
         if x["real"]:
-            lncell, src = f'{x["line"]:g}', '<span class="fd">FanDuel line</span>'
+            lncell, src = f'{x["line"]:g}', '<span class="fd">FanDuel · confirmed</span>'
         else:
             lncell, src = f'<span class="tld">~</span>{x["line"]:g}', '<span class="pj">projected</span>'
         rows += (f'<div class="ttbet"><span class="pind {o.lower()}">{o}</span>'
@@ -1095,8 +1107,8 @@ def _tt_totals_card(tt_json, now=None):
     return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Flags'
             f'<span class="ttcnt">{len(entries)}</span></h3>{rows}'
             f'<div class="ttfoot">hit rate = share of the pair’s H2H meetings that went this side '
-            f'at this line · only pairs ≥70% shown · FanDuel = priced now · '
-            f'projected = our line before FanDuel posts</div></div>')
+            f'at this line · only pairs ≥70% shown · confirmed = FanDuel has posted the line (tracked) · '
+            f'projected = our line before FanDuel posts (never tracked)</div></div>')
 
 
 def _tt_panel(data):
