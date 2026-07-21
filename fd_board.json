@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T15:53:50Z",
+ "captured_at": "2026-07-21T16:00:34Z",
  "matches": [
   {
    "event_id": 35849751,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-21T15:50:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849752,
@@ -19,9 +19,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-21T15:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35849768,
@@ -30,9 +30,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T15:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 62.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35849773,
@@ -74,9 +74,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850045,
@@ -88,6 +88,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35850151,
+   "p1": "Grzegorz Marud",
+   "p2": "Sebastian Szostok",
+   "p1_norm": "grzegorz marud",
+   "p2_norm": "sebastian szostok",
+   "open_date": "2026-07-21T16:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
