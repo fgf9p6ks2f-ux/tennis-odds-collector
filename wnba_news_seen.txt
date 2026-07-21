@@ -100,6 +100,7 @@ rw|982|Rolls up 21 points in road loss
 rw|984|Fills box score in win
 rw|991|Posts double-double Monday
 rw|998|Could return Sunday
+rw|998|Removed from injury report
 rw|aaliyahedwards|Edwards (knee) won't return to Sunday's 
 rw|alannasmith|Smith (leg) is doubtful for Monday's gam
 rw|alannasmith|Smith (leg) is out for Monday's game ver

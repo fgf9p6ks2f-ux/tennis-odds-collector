@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T20:49:57Z",
+ "captured_at": "2026-07-21T20:57:18Z",
  "matches": [
   {
    "event_id": 35850667,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-21T20:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 86.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35850668,
@@ -19,9 +19,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-21T20:45:00.000Z",
-   "line": 54.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850686,
@@ -77,6 +77,39 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35850714,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-21T21:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850715,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Krzysztof Kotyl",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "krzysztof kotyl",
+   "open_date": "2026-07-21T21:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850716,
+   "p1": "Jakub Glanowski",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "jakub glanowski",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-21T21:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
