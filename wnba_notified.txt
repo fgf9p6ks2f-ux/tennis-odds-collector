@@ -122,9 +122,13 @@ watch|2026-07-20|Laura Juskaite|pts_reb|14.5
 watch|2026-07-20|Pauline Astier|assists|3.5
 watch|2026-07-20|Pauline Astier|reb_ast|5.5
 watch|2026-07-20|Sabrina Ionescu|assists|4.5
+watch|2026-07-22|Azura Stevens|reb_ast|9.5
 watch|2026-07-22|Brittney Griner|points|13.5
 watch|2026-07-22|Brittney Griner|pra|22.5
 watch|2026-07-22|Brittney Griner|pts_reb|19.5
 watch|2026-07-22|Carla Leite|points|14.5
+watch|2026-07-22|Natasha Cloud|points|10.5
 watch|2026-07-22|Olivia Nelson-Ododa|pts_reb|17.5
 watch|2026-07-22|Pauline Astier|pts_ast|13.5
+watch|2026-07-22|Pauline Astier|reb_ast|5.5
+watch|2026-07-22|Sydney Taylor|points|16.5
