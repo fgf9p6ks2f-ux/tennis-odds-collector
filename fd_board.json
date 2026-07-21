@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T20:00:09Z",
+ "captured_at": "2026-07-21T20:07:33Z",
  "matches": [
-  {
-   "event_id": 35850573,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Dariusz Szlubowski",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "dariusz szlubowski",
-   "open_date": "2026-07-21T19:40:00.000Z",
-   "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850602,
    "p1": "Jakub Skorupa",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:55:00.000Z",
-   "line": 51.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850607,
@@ -30,9 +19,9 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-21T20:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850624,
@@ -41,9 +30,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-21T20:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850625,
@@ -52,9 +41,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T20:05:00.000Z",
-   "line": 82.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850637,
@@ -75,6 +64,39 @@
    "p2_norm": "michal machelski",
    "open_date": "2026-07-21T20:20:00.000Z",
    "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850650,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-21T20:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850651,
+   "p1": "Stanislaw Wnek",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-21T20:30:00.000Z",
+   "line": 83.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850652,
+   "p1": "Artur Gromek",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "artur gromek",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-21T20:30:00.000Z",
+   "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
   }
