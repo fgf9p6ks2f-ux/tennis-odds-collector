@@ -13,6 +13,7 @@ from __future__ import annotations
 import datetime as dt
 import html
 import json
+import os
 import re
 import sqlite3
 from collections import defaultdict
@@ -1122,12 +1123,97 @@ def _tt_totals_card(tt_json, now=None):
             f'projected = our line before FanDuel posts (never tracked)</div></div>')
 
 
+_WNBA_INJ = HERE / "wnba_injury_report_cache.json"
+_HEALTH_PINGED = HERE / "health_pinged.json"
+
+
+def _tt_health(data):
+    """Broken-vs-quiet for the TT board (built in Actions, committed + served). Trips ONLY on a clear
+    outage — board unreadable, or its own 'updated' stamp hours stale (build/feed stopped) — never on
+    a genuinely empty slate. Threshold deliberately generous (180min ≈ 6 missed builds) so it can't
+    cry wolf; the cost is up to ~3h detection latency vs. silent-forever, which is the right trade."""
+    if not data:
+        return {"ok": False, "reason": "TT board missing/unreadable"}
+    up = data.get("updated")
+    if not up:
+        return {"ok": True, "reason": ""}
+    try:
+        age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(up)).total_seconds() / 60
+    except (ValueError, TypeError):
+        return {"ok": True, "reason": ""}
+    if age > 180:
+        return {"ok": False, "reason": f"TT board {age:.0f}min stale — feed/build stopped"}
+    return {"ok": True, "reason": ""}
+
+
+def _wnba_health():
+    """Broken-vs-quiet for the WNBA board. 0 flags is usually a LEGIT quiet slate (injury-driven), so
+    we never judge on play count — we judge the INJURY FEED the scanner depends on ('scanning quietly
+    stopped', mirroring wnba_selfcheck's 45min rule but a touch more lenient for a soft banner). Fails
+    OPEN when the cache is absent (a non-VM checkout / Actions) so it can't false-positive off-box."""
+    if not _WNBA_INJ.exists():
+        return {"ok": True, "reason": ""}                  # not the scanner box — don't judge
+    try:
+        age = (dt.datetime.now(dt.timezone.utc).timestamp() - _WNBA_INJ.stat().st_mtime) / 60
+    except OSError:
+        return {"ok": True, "reason": ""}
+    if age > 60:
+        return {"ok": False, "reason": f"injury feed {age:.0f}min stale — scanning may have stopped"}
+    try:
+        if not json.loads(_WNBA_INJ.read_text()).get("rows"):
+            return {"ok": False, "reason": "injury feed parsed but empty (0 rows)"}
+    except (ValueError, OSError):
+        return {"ok": False, "reason": "injury feed unreadable"}
+    return {"ok": True, "reason": ""}
+
+
+def _feed_health_ping(tt_json):
+    """Once/day ntfy when the TT or WNBA board is BROKEN (not quiet) — the loop-ALIVE-but-data-broken
+    case (today's MLB outage was exactly this). Complements wnba_selfcheck, which catches loop DEATH
+    from OUTSIDE the loop (this can't fire if the loop is dead, since the bake is part of the loop).
+    Silent no-op without NTFY_TOPIC. Dedup: 'today|BOARD' in health_pinged.json (per-box, gitignored)."""
+    topic = os.environ.get("NTFY_TOPIC")
+    if not topic:
+        return
+    broken = {k: v for k, v in (("TT", _tt_health(tt_json)), ("WNBA", _wnba_health())) if not v["ok"]}
+    if not broken:
+        return
+    today = dt.date.today().isoformat()
+    try:
+        seen = set(json.loads(_HEALTH_PINGED.read_text())) if _HEALTH_PINGED.exists() else set()
+    except (ValueError, OSError):
+        seen = set()
+    changed = False
+    for board, v in broken.items():
+        key = f"{today}|{board}"
+        if key in seen:
+            continue
+        text = f"⚠️ {board} feed issue: {v['reason']} — board may be missing plays, check the pipeline"
+        try:
+            requests.post(f"https://ntfy.sh/{topic}", data=text.encode("utf-8"),
+                          params={"title": "Pickz", "priority": "high"}, timeout=15).raise_for_status()
+            seen.add(key)
+            changed = True
+            print(f"pushed HEALTH: {text}")
+        except requests.RequestException as e:
+            print(f"feed health push failed: {str(e)[:80]}")
+    if changed:
+        try:
+            _HEALTH_PINGED.write_text(json.dumps(sorted(seen)[-400:]))
+        except OSError:
+            pass
+
+
 def _tt_panel(data):
     """Table Tennis tab — TT Elite FLAGGED BETS at the FanDuel line ONLY (in the #tt-totals card:
     server-baked here for instant paint, then re-rendered live by the tt-live script). The other TT
     leagues are HIDDEN from the board per the user — they still get flagged + logged in the
-    background (paper ledger + the per-league tracker), just not shown as bet cards here."""
-    return '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
+    background (paper ledger + the per-league tracker), just not shown as bet cards here.
+    A ⚠️ health banner sits OUTSIDE #tt-totals so the client-side live re-render can't wipe it."""
+    h = _tt_health(data)
+    warn = ("" if h["ok"] else f'<div class="mlbwarn">⚠️ TT feed issue: {html.escape(h["reason"])} — '
+            f'flags may be missing (you were alerted). This is NOT a quiet slate.</div>')
+    return warn + '<div id="tt-totals">' + _tt_totals_card(data) + '</div>'
 
 
 # ---------------------------------------------------------------- MLB pitcher-prop plays + tracker
@@ -1879,11 +1965,16 @@ def build():
         _parts.append(_game_group(pl, tips, today, i))
     cards = "\n".join(p for p in _parts if p) if order else \
         '<div class="empty">No plays flagged yet.<br><span>The watcher checks every ~60s and fills this in the moment a key player is ruled out.</span></div>'
+    _wh = _wnba_health()                                   # LOUD: broken scan feed != a quiet slate
+    if not _wh["ok"]:
+        cards = (f'<div class="mlbwarn">⚠️ WNBA feed issue: {html.escape(_wh["reason"])} — the board '
+                 f'may be missing plays (you were alerted). This is NOT a quiet slate.</div>' + cards)
     ladders_html = _ladders_html(rows)
     slip_html = _slip_html(rows)
     wl_html = _watchlist_html({(r.get("pred_date"), r.get("player"), r.get("stat")) for r in rows}, tips)
     starwatch_html = _starwatch_html()
     tt_json = _load_tt()
+    _feed_health_ping(tt_json)                             # once/day ntfy if TT/WNBA is broken (not quiet)
     tt_html = _tt_panel(tt_json)
     mlb_html = _mlb_plays_card(now)
     tracker_html = _tracker_panel((w, l, u), tt_json)
