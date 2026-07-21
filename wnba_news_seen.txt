@@ -33,6 +33,7 @@ rw|378|Starting Monday
 rw|394|Shines in return to Phoenix
 rw|413|Leads Lynx with 24 points
 rw|415|Totals 16 points in loss in Dallas
+rw|416|Posts career-high 26 points
 rw|432|Probable for Sunday
 rw|440|Drops 26 points in Saturday's loss
 rw|440|Flirts with triple-double in OT win
