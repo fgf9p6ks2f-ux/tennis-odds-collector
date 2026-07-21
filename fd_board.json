@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T13:00:22Z",
+ "captured_at": "2026-07-21T13:05:41Z",
  "matches": [
   {
    "event_id": 35849270,
@@ -8,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T12:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35849277,
@@ -19,9 +19,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T13:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35849296,
@@ -30,9 +30,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-21T13:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35849297,
@@ -41,9 +41,9 @@
    "p1_norm": "artur sobel",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-21T13:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849306,
@@ -66,6 +66,39 @@
    "line": 73.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35849348,
+   "p1": "Kacper Szurlej",
+   "p2": "Michal Minda",
+   "p1_norm": "kacper szurlej",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-21T13:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35849349,
+   "p1": "Wojciech Urban",
+   "p2": "Pawel Kurek",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "pawel kurek",
+   "open_date": "2026-07-21T13:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35849350,
+   "p1": "Boguslaw Madej",
+   "p2": "Mariusz Baron",
+   "p1_norm": "boguslaw madej",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-21T13:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
