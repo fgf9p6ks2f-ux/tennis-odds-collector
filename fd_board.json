@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T09:48:56Z",
+ "captured_at": "2026-07-21T09:55:27Z",
  "matches": [
-  {
-   "event_id": 35848522,
-   "p1": "Michal Oracz",
-   "p2": "Maksymilian Rus",
-   "p1_norm": "michal oracz",
-   "p2_norm": "maksymilian rus",
-   "open_date": "2026-07-21T09:30:00.000Z",
-   "line": 101.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
-  {
-   "event_id": 35848535,
-   "p1": "Maciej Nowalinski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "maciej nowalinski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-21T09:40:00.000Z",
-   "line": 82.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
   {
    "event_id": 35848554,
    "p1": "Jiri Vrablik",
@@ -30,9 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T09:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35848559,
@@ -41,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-21T09:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848560,
@@ -53,8 +31,8 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-21T09:50:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848568,
@@ -79,6 +57,17 @@
    "under_odds": -116
   },
   {
+   "event_id": 35848578,
+   "p1": "Miroslav Sklensky",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-21T10:05:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
    "event_id": 35848584,
    "p1": "Patryk Mecik",
    "p2": "Waldemar Glanowski",
@@ -86,6 +75,17 @@
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-21T10:10:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35848585,
+   "p1": "Artur Sobel",
+   "p2": "Igor Dabrowski",
+   "p1_norm": "artur sobel",
+   "p2_norm": "igor dabrowski",
+   "open_date": "2026-07-21T10:10:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
