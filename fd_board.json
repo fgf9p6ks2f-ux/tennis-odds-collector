@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T08:42:46Z",
+ "captured_at": "2026-07-21T08:49:14Z",
  "matches": [
-  {
-   "event_id": 35848448,
-   "p1": "Jakub Kosowski",
-   "p2": "Szymon Sporek",
-   "p1_norm": "jakub kosowski",
-   "p2_norm": "szymon sporek",
-   "open_date": "2026-07-21T08:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35848449,
    "p1": "Kamil Klocek",
@@ -19,20 +8,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T08:30:00.000Z",
-   "line": 93.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35848454,
-   "p1": "Igor Szymanski",
-   "p2": "Wojciech Urban",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-21T08:35:00.000Z",
-   "line": 51.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 95.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35848461,
@@ -41,9 +19,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-21T08:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848462,
@@ -52,9 +30,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-21T08:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848473,
