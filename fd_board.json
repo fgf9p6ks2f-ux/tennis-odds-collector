@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T00:56:45Z",
+ "captured_at": "2026-07-21T01:04:05Z",
  "matches": [
-  {
-   "event_id": 35847231,
-   "p1": "Robert Kostepski",
-   "p2": "Rafal Niemiec",
-   "p1_norm": "robert kostepski",
-   "p2_norm": "rafal niemiec",
-   "open_date": "2026-07-21T00:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35847261,
    "p1": "Jakub Kuzmicz",
@@ -19,31 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-21T00:45:00.000Z",
-   "line": 65.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35847262,
-   "p1": "Jakub Cyndera",
-   "p2": "Michal Machelski",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-21T00:45:00.000Z",
-   "line": 51.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35847300,
-   "p1": "Michal Krutak",
-   "p2": "Artur Kubiak",
-   "p1_norm": "michal krutak",
-   "p2_norm": "artur kubiak",
-   "open_date": "2026-07-21T00:50:00.000Z",
    "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35847313,
@@ -52,9 +19,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-21T01:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847460,
@@ -99,6 +66,39 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35847500,
+   "p1": "Miroslaw Piecowski",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "miroslaw piecowski",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-21T01:25:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35847501,
+   "p1": "Jerzy Michalik",
+   "p2": "Artur Kubiak",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "artur kubiak",
+   "open_date": "2026-07-21T01:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35847502,
+   "p1": "Rafal Niemiec",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-21T01:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
