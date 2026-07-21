@@ -213,13 +213,13 @@ def _seen():
         return set()
 
 
-def run(test=False):
+def run(test=False, force=False):
     topic = os.environ.get("NTFY_TOPIC")
     at, ct0 = _cookie()
     if not at:
         print("underdog_watch: no X_AUTH_TOKEN -> benched")
         return
-    if not test:
+    if not test and not force:                 # force=True in --loop mode (the loop's own sleep paces it)
         try:
             if THROTTLE.exists() and time.time() - THROTTLE.stat().st_mtime < MIN_GAP:
                 return
@@ -281,5 +281,22 @@ def run(test=False):
     print(f"underdog_watch: {len(tw)} tweets, {len(fresh)} new, {hits} injury hits")
 
 
+def loop(interval):
+    """Persistent daemon: poll every `interval` seconds in ONE process (no per-poll process spawn),
+    so it's light on the box even at 10s. Errors are swallowed so a transient X hiccup can't kill it."""
+    print(f"underdog_watch: daemon polling @{HANDLE} every {interval}s")
+    while True:
+        try:
+            run(force=True)
+        except Exception as e:
+            print("underdog_watch loop error:", str(e)[:120])
+        time.sleep(interval)
+
+
 if __name__ == "__main__":
-    run(test="--test" in sys.argv)
+    if "--loop" in sys.argv:
+        i = sys.argv.index("--loop")
+        secs = int(sys.argv[i + 1]) if len(sys.argv) > i + 1 and sys.argv[i + 1].isdigit() else 10
+        loop(max(5, secs))
+    else:
+        run(test="--test" in sys.argv)
