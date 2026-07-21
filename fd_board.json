@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T18:53:00Z",
+ "captured_at": "2026-07-21T18:58:47Z",
  "matches": [
-  {
-   "event_id": 35850463,
-   "p1": "Sebastian Szostok",
-   "p2": "Robert Szymik",
-   "p1_norm": "sebastian szostok",
-   "p2_norm": "robert szymik",
-   "open_date": "2026-07-21T18:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35850464,
    "p1": "Marian Brunner",
@@ -19,9 +8,9 @@
    "p1_norm": "marian brunner",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-21T18:45:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850476,
@@ -30,20 +19,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-21T18:50:00.000Z",
-   "line": 70.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35850481,
-   "p1": "Stanislaw Wnek",
-   "p2": "Dariusz Szlubowski",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "dariusz szlubowski",
-   "open_date": "2026-07-21T18:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850482,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-21T18:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35850522,
