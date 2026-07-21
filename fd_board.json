@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T16:24:55Z",
+ "captured_at": "2026-07-21T16:31:27Z",
  "matches": [
-  {
-   "event_id": 35849799,
-   "p1": "Artur Gromek",
-   "p2": "Miroslav Sklensky",
-   "p1_norm": "artur gromek",
-   "p2_norm": "miroslav sklensky",
-   "open_date": "2026-07-21T16:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35849941,
    "p1": "Stanislaw Wnek",
@@ -19,20 +8,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "marcin kowalczyk",
    "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 90.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35849942,
-   "p1": "Jakub Pruszkowski",
-   "p2": "Mariusz Koczyba",
-   "p1_norm": "jakub pruszkowski",
-   "p2_norm": "mariusz koczyba",
-   "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 81.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 92.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35850045,
@@ -41,7 +19,7 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "michal oracz",
    "open_date": "2026-07-21T16:20:00.000Z",
-   "line": 81.5,
+   "line": 84.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -52,20 +30,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-21T16:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35850188,
-   "p1": "Krystian Kolodziej",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-21T16:30:00.000Z",
-   "line": 66.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850218,
@@ -108,6 +75,28 @@
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T16:50:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850258,
+   "p1": "Wojciech Gluszek",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "wojciech gluszek",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-21T16:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850259,
+   "p1": "Pawel Adamus",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "pawel adamus",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-21T16:55:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
