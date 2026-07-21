@@ -1290,8 +1290,19 @@ def _mlb_plays(now=None):
         premium = bool((oppp is not None and oppp < ppa_low) or (r5 is not None and line > r5))
         if not premium:
             continue                                     # only the model's plays
+        # PRICE-SHOP THE RUNG (edge already decided on the validated ≤16.5 line above). Take a HIGHER
+        # under line ONLY if some book offers it at odds >= our pick — a safer line at no-worse price
+        # strictly dominates (free lunch on a stale/mispriced book). We deliberately do NOT pay extra
+        # juice to climb a rung: that EV-chase is unvalidated (no historical alt-rung data yet) and a
+        # from-scratch outs-distribution model can't reproduce our +44% selection edge, so it can't be
+        # trusted to price a 17.5. Dominance only. Rasmussen 17.5 @ -138 vs 16.5 @ +110 -> keeps 16.5.
+        base = line
+        ups = [(b, ln, uo) for b, ln, oo, uo in offs if uo and ln > base and uo >= odds]
+        if ups:
+            ups.sort(key=lambda x: (x[2], x[1]), reverse=True)        # best price, then highest line
+            bk, line, odds = ups[0]
         plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line, "odds": odds,
-                      "book": bk, "opp": opp, "away": away, "premium": True})
+                      "book": bk, "opp": opp, "away": away, "premium": True, "base_line": base})
     plays.sort(key=lambda p: p["pitcher"])
     return plays[:16]
 
