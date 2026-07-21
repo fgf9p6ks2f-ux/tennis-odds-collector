@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T01:59:31Z",
+ "captured_at": "2026-07-21T02:06:56Z",
  "matches": [
-  {
-   "event_id": 35847539,
-   "p1": "Mateusz Baran",
-   "p2": "Mateusz Karpiuk",
-   "p1_norm": "mateusz baran",
-   "p2_norm": "mateusz karpiuk",
-   "open_date": "2026-07-21T01:50:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
   {
    "event_id": 35847542,
    "p1": "Jakub Cyndera",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-21T02:00:00.000Z",
-   "line": 71.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 61.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847547,
@@ -55,6 +44,17 @@
    "line": 70.5,
    "over_odds": -120,
    "under_odds": -110
+  },
+  {
+   "event_id": 35847573,
+   "p1": "Rafal Niemiec",
+   "p2": "Grzegorz Marud",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "grzegorz marud",
+   "open_date": "2026-07-21T02:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
