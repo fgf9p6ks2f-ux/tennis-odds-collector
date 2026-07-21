@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T20:57:18Z",
+ "captured_at": "2026-07-21T21:03:01Z",
  "matches": [
-  {
-   "event_id": 35850667,
-   "p1": "Grzegorz Marud",
-   "p2": "Wojciech Pytlas",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "wojciech pytlas",
-   "open_date": "2026-07-21T20:45:00.000Z",
-   "line": 86.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35850668,
    "p1": "Dariusz Molenda",
@@ -19,9 +8,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-21T20:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35850686,
@@ -30,9 +19,9 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T21:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850687,
@@ -41,9 +30,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T21:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850688,
@@ -52,9 +41,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-21T21:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850694,
