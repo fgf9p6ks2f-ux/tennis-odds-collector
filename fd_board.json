@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T18:23:08Z",
+ "captured_at": "2026-07-21T18:28:40Z",
  "matches": [
   {
    "event_id": 35850409,
@@ -8,20 +8,9 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T18:10:00.000Z",
-   "line": 96.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35850410,
-   "p1": "Wojciech Wojtaszczyk",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "wojciech wojtaszczyk",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-21T18:10:00.000Z",
-   "line": 70.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 103.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35850433,
@@ -30,9 +19,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-21T18:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850437,
@@ -41,9 +30,9 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-21T18:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850440,
@@ -99,6 +88,28 @@
    "line": 72.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35850481,
+   "p1": "Stanislaw Wnek",
+   "p2": "Dariusz Szlubowski",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "dariusz szlubowski",
+   "open_date": "2026-07-21T18:55:00.000Z",
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850482,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-21T18:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
