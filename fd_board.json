@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T13:22:55Z",
+ "captured_at": "2026-07-21T13:28:14Z",
  "matches": [
-  {
-   "event_id": 35849306,
-   "p1": "Michal Oracz",
-   "p2": "Karol Jablonski",
-   "p1_norm": "michal oracz",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-21T13:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35849325,
    "p1": "Martin Olejnik",
@@ -19,9 +8,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T13:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849348,
@@ -66,6 +55,50 @@
    "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35849416,
+   "p1": "Krystian Kolodziej",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-21T13:50:00.000Z",
+   "line": 71.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35849427,
+   "p1": "Waldemar Glanowski",
+   "p2": "Jakub Nowak",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-21T13:55:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35849428,
+   "p1": "Igor Dabrowski",
+   "p2": "Maciej Kolek",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "maciej kolek",
+   "open_date": "2026-07-21T13:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35849429,
+   "p1": "Rafal Gajda",
+   "p2": "Karol Jablonski",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-21T13:55:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
