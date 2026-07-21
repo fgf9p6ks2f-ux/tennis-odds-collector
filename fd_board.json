@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T00:12:17Z",
+ "captured_at": "2026-07-21T00:19:43Z",
  "matches": [
-  {
-   "event_id": 35847081,
-   "p1": "Rafal Niemiec",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "rafal niemiec",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-20T23:50:00.000Z",
-   "line": 85.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
-  {
-   "event_id": 35847090,
-   "p1": "Aleksander Barton",
-   "p2": "Michal Machelski",
-   "p1_norm": "aleksander barton",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-21T00:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35847214,
    "p1": "Grzegorz Marud",
@@ -30,9 +8,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35847215,
@@ -41,7 +19,7 @@
    "p1_norm": "artur kubiak",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 78.5,
+   "line": 84.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +30,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "miroslaw piecowski",
    "open_date": "2026-07-21T00:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847223,
@@ -64,8 +42,8 @@
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-21T00:20:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35847226,
@@ -85,7 +63,7 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "rafal niemiec",
    "open_date": "2026-07-21T00:30:00.000Z",
-   "line": 74.5,
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   },
@@ -110,6 +88,28 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35847261,
+   "p1": "Jakub Kuzmicz",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "jakub kuzmicz",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-21T00:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35847262,
+   "p1": "Jakub Cyndera",
+   "p2": "Michal Machelski",
+   "p1_norm": "jakub cyndera",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-21T00:45:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
