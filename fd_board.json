@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T01:44:26Z",
+ "captured_at": "2026-07-21T01:51:56Z",
  "matches": [
-  {
-   "event_id": 35847502,
-   "p1": "Rafal Niemiec",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "rafal niemiec",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-21T01:30:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35847513,
-   "p1": "Adam Staniczek",
-   "p2": "Kazimierz Rybak",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "kazimierz rybak",
-   "open_date": "2026-07-21T01:35:00.000Z",
-   "line": 57.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35847538,
    "p1": "Robert Kostepski",
@@ -30,9 +8,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-21T01:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847539,
@@ -42,8 +20,8 @@
    "p2_norm": "mateusz karpiuk",
    "open_date": "2026-07-21T01:50:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847542,
