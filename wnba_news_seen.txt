@@ -88,6 +88,7 @@ rw|912|Logs 21 minutes Sunday
 rw|916|Posts 15 points despite restriction
 rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss
+rw|969|Manages 11 points in loss
 rw|979|Not on injury report
 rw|979|Sitting out Monday
 rw|980|Flirts with double-double
