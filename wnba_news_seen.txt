@@ -24,6 +24,7 @@ rw|1071|Totals 18 points in road loss
 rw|1093|Fades injury report
 rw|233|Chips in with season-high 12 points
 rw|254|Produces 18 points in win
+rw|291|Goes for 15 points in loss
 rw|297|Generates 29 points against Chicago
 rw|297|Rolls up 29 points against Sky
 rw|309|Just misses double-double
