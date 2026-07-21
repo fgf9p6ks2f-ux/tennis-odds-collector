@@ -131,7 +131,7 @@ def flag():
     ts = _now()
     added = updated = 0
     for market, stat, books in (("k", "strikeouts", ((PINN, "pinn"), (FD, "fd"))),
-                                ("outs", "outs", ((PINN, "pinn"),))):
+                                ("outs", "outs", ((PINN, "pinn"), (FD, "fd")))):
         for db, book in books:
             for (pitcher, gd), (line, oo, uo, start) in _closing_lines(db, stat).items():
                 side, rule = _qualifies(market, line)
@@ -226,7 +226,8 @@ def report():
     for label, where, args in [("FORWARD (out-of-sample, the real test)", " AND game_date>=?", (EPOCH,)),
                                ("in-sample seed (the 2-wk backtest, for reference)", " AND game_date<?", (EPOCH,))]:
         print(f"\n=== MLB pitcher-prop PAPER edges — {label} ===")
-        for rule, book in [("k_over", "pinn"), ("k_over", "fd"), ("outs_under", "pinn")]:
+        for rule, book in [("k_over", "pinn"), ("k_over", "fd"),
+                           ("outs_under", "pinn"), ("outs_under", "fd")]:
             n, w, l, pnl = _bucket(con, rule, book, where, args)
             openn = con.execute(f"SELECT COUNT(*) FROM paper WHERE rule=? AND book=? AND result IS NULL"
                                 f"{where}", (rule, book, *args)).fetchone()[0]

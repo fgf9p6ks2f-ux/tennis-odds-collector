@@ -107,10 +107,6 @@ def extract(m, sport, event_name=""):
     #    live board screenshot 2026-07-21: "Zack Wheeler Outs Recorded", Over/Under 17.5.)
     if re.search(r"(?i)\b(?:outs recorded|pitching outs)\s*$", nm):
         player = re.sub(r"(?i)\s*(?:alt\s+)?(?:outs recorded|pitching outs)\s*$", "", nm).strip()
-        if sport == "mlb":                               # DIAG (one run): show where the line lives
-            print(f"[FD-OUTS-DIAG] {nm!r} "
-                  f"{[(r.get('runnerName'), r.get('handicap')) for r in (m.get('runners') or [])][:4]}",
-                  flush=True)
         for r in m.get("runners") or []:
             o, rn = _odds(r), (r.get("runnerName") or "")
             if o is None:
