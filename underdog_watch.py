@@ -181,21 +181,29 @@ def _tweets(ids, ct0, uid):
         return "AUTH"
     if r.status_code == 404:
         return "ENDPOINT"
-    out = []
     try:
-        insts = r.json()["data"]["user"]["result"]["timeline_v2"]["timeline"]["instructions"]
-        for ins in insts:
-            for e in ins.get("entries", []):
-                res = (((e.get("content") or {}).get("itemContent") or {}).get("tweet_results") or {}).get("result")
-                if not res:
-                    continue
-                lg = res.get("legacy") or (res.get("tweet") or {}).get("legacy") or {}
-                tid, txt = res.get("rest_id") or e.get("entryId", ""), lg.get("full_text")
-                if tid and txt:
-                    out.append((str(tid), txt))
-    except (ValueError, KeyError, TypeError):
+        d = r.json()
+    except ValueError:
         return "PARSE"
-    return out
+    if d.get("errors") and not d.get("data"):
+        return "ENDPOINT"
+    # Deep-walk for tweet objects (rest_id + legacy.full_text) instead of a fixed path — X renames the
+    # timeline container often (timeline_v2 -> timeline ...), so walking the whole payload is what keeps
+    # this from breaking on every X redesign. Dedup by id; order doesn't matter (we filter vs `seen`).
+    tw = {}
+
+    def _walk(o):
+        if isinstance(o, dict):
+            lg = o.get("legacy")
+            if isinstance(lg, dict) and lg.get("full_text") and o.get("rest_id"):
+                tw[str(o["rest_id"])] = lg["full_text"]
+            for v in o.values():
+                _walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                _walk(v)
+    _walk(d.get("data") or {})
+    return list(tw.items()) if tw else "PARSE"
 
 
 def _seen():
@@ -239,11 +247,14 @@ def run(test=False):
             print(f"  [{tid}] {txt[:140].replace(chr(10),' ')}")
         return
     seen = _seen()
+    first = not SEEN.exists()            # first-ever run = baseline: mark the backlog seen, don't alert
     fresh, hits = [], 0
     for tid, txt in tw:
         if tid in seen:
             continue
         fresh.append(tid)
+        if first:
+            continue                     # no push storm on the historical timeline
         if OUT_RX.search(txt) or IN_RX.search(txt):
             hits += 1
             FORCE.touch()                              # kick the loop to re-scan lines NOW
