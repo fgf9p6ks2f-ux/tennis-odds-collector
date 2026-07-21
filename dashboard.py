@@ -896,14 +896,17 @@ def _tracker_panel(wnba_rec, tt_json):
         </div>
         <div class="tsub">{vtext}{hit} · {cv['n']} shadows / {cv.get('dates', '?')} slates (open vs close)</div>
       </div>"""
-    # ⚾ MLB outs-under AWAY+CONTACT (FanDuel, flag-time price) — the +40% edge, forward paper track
-    mw, ml, mu = _mlb_record()
-    mrec = _mlb_recent()
-    mpend = sum(1 for p in _mlb_plays() if p["market"] == "outs")   # today's away+contact outs plays
-    if (mw + ml) or mpend or mrec:
-        note = "away starter vs contact offense · under ≤16.5 · flag-time FD price · paper"
-        note += f" · {mpend} pending" if mpend else ""
-        out += card("⚾", "MLB outs-under · away+contact", mw, ml, mu, note, recent=mrec)
+    # ⚾ MLB outs-under — headline the ★★ PREMIUM tier (+49% backtest); base away+contact in the note
+    pw, pl, pu = _mlb_record(premium=True)
+    bw, bl, bu = _mlb_record()                                       # base away+contact (+25%)
+    prec = _mlb_recent(premium=True)
+    plays_now = _mlb_plays()
+    ppend = sum(1 for p in plays_now if p.get("premium"))
+    if (pw + pl + bw + bl) or ppend or prec:
+        note = (f"★★ = away+contact + (low-patience opp OR line&gt;recent) · base away+contact "
+                f"{bw}-{bl} ({bu:+.1f}u) · flag-time price · paper")
+        note += f" · {ppend} premium pending" if ppend else ""
+        out += card("⚾", "MLB outs-under ★★", pw, pl, pu, note, recent=prec)
     return out
 
 
@@ -1132,18 +1135,22 @@ K_PAPER = HERE / "k_paper.sqlite"
 FD_PROPS = HERE / "fanduel_props.sqlite"
 OUTS_UNDER_MAX = 16.5      # outs line <= this -> UNDER play   (mirrors k_paper.py rules)
 K_OVER_MIN = 6.5           # strikeout line >= this -> OVER play
-CONTACT_MAX = 0.225        # opp team K% < this = CONTACT offense. The outs-under EDGE is AWAY + CONTACT
-#                            ONLY (+40% ROI); HOME is a LOSER (−10..−20%), away+whiff marginal (+7%).
+CONTACT_MAX = 0.225        # opp team K% < this = CONTACT offense. Base edge = AWAY + CONTACT (+25%).
+#   ★★ PREMIUM tier (audit 2026-07-21, +49% ROI on the fuller sample): away+contact AND EITHER a
+#   LOW-PATIENCE opponent (pitches/PA below league median, Cohen's d=−0.68) OR the line set ABOVE
+#   the pitcher's recent-5 outs (market optimism, d=+0.35). The "neither" bucket is a net loser.
 _MLB_TEAMK = HERE / "mlb_teamk.json"
+_MLB_R5 = HERE / "mlb_pitcher_r5.json"
 
 
-def _team_kpct():
-    """{team_name_lower: season K%/PA} for tagging CONTACT offenses; cached daily (moves slowly)."""
+def _team_hit():
+    """{name_lower: {'k': K%/PA, 'ppa': pitches/PA}} league-wide; cached daily. Powers the CONTACT
+    filter (K%) and the ★★ premium tier (opponent patience = pitches/PA)."""
     try:
         if _MLB_TEAMK.exists():
             d = json.loads(_MLB_TEAMK.read_text())
-            if d.get("date") == dt.date.today().isoformat():
-                return d["k"]
+            if d.get("date") == dt.date.today().isoformat() and "hit" in d:
+                return d["hit"]
     except (ValueError, OSError):
         pass
     try:
@@ -1154,11 +1161,59 @@ def _team_kpct():
         for t in raw["stats"][0]["splits"]:
             st, pa = t["stat"], (t["stat"].get("plateAppearances") or 0)
             if pa:
-                out[(t["team"]["name"] or "").lower()] = (st.get("strikeOuts") or 0) / pa
-        _MLB_TEAMK.write_text(json.dumps({"date": dt.date.today().isoformat(), "k": out}))
+                pit = st.get("numberOfPitches") or 0
+                out[(t["team"]["name"] or "").lower()] = {"k": (st.get("strikeOuts") or 0) / pa,
+                                                          "ppa": (pit / pa) if pit else None}
+        _MLB_TEAMK.write_text(json.dumps({"date": dt.date.today().isoformat(), "hit": out}))
         return out
     except Exception:
         return {}
+
+
+def _ppa_median(hit):
+    vals = sorted(v["ppa"] for v in hit.values() if v.get("ppa"))
+    if not vals:
+        return 3.9
+    n = len(vals)
+    return vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
+
+
+def _pitcher_r5(name):
+    """Recent-5-start avg OUTS for a pitcher (line-vs-recent premium signal); cached daily per
+    pitcher, fail-open (None -> premium falls back to the opponent-patience signal only)."""
+    try:
+        cache = json.loads(_MLB_R5.read_text()) if _MLB_R5.exists() else {}
+    except (ValueError, OSError):
+        cache = {}
+    today = dt.date.today().isoformat()
+    if cache.get("date") != today:
+        cache = {"date": today}
+    if name in cache:
+        return cache[name]
+    val = None
+    try:
+        from mlb import data as _MD
+        pid = _MD.find_pitcher(name)
+        if pid:
+            gl = sorted([g for g in _MD.pitcher_gamelog(pid, dt.date.today().year)
+                         if g.get("outs") is not None and (g.get("bf") or 0) >= 5],
+                        key=lambda g: g.get("date") or "")
+            if len(gl) >= 3:
+                last = gl[-5:]
+                val = sum(g["outs"] for g in last) / len(last)
+    except Exception:
+        val = None
+    cache[name] = val
+    try:
+        _MLB_R5.write_text(json.dumps(cache))
+    except OSError:
+        pass
+    return val
+
+
+def _team_kpct():
+    """{name_lower: K%/PA} — thin shim over _team_hit() for the contact check."""
+    return {k: v["k"] for k, v in _team_hit().items()}
 
 
 def _mlb_matchup(event, player):
@@ -1205,27 +1260,33 @@ def _mlb_plays(now=None):
         two = {ln: v for ln, v in lines.items() if "over" in v and "under" in v} or lines
         main = min(two, key=lambda ln: abs((two[ln].get("over") or two[ln].get("under") or 9) - 1.95))
         mains.setdefault((pl, stat), []).append((bk, main, two[main].get("over"), two[main].get("under")))
-    teamk = _team_kpct()
+    hit = _team_hit()
+    ppa_med = _ppa_median(hit)
     plays = []
     for (pl, stat), offs in mains.items():
         if stat != "outs":
             continue                          # K-over pulled 2026-07-21 (weak +3% & no stack — audit)
         away, opp = _mlb_matchup(ev_by.get((pl, stat), ""), pl)
-        # ONLY the edge: AWAY starter vs a CONTACT offense (+24% ROI). Home loses; away+whiff is
-        # marginal — both dropped. (Fail-open on opp K% only if statsapi is unreachable.)
-        oppk = teamk.get((opp or "").lower())
+        # base edge: AWAY starter vs a CONTACT offense (+25% ROI). Home loses; away+whiff marginal.
+        oh = hit.get((opp or "").lower(), {})
+        oppk = oh.get("k")
         if not away:
             continue
-        if teamk and oppk is not None and oppk >= CONTACT_MAX:
+        if hit and oppk is not None and oppk >= CONTACT_MAX:
             continue
         cands = [(bk, ln, uo) for bk, ln, oo, uo in offs if uo and ln <= OUTS_UNDER_MAX]
         if not cands:
             continue
         cands.sort(key=lambda x: (x[1], x[2]), reverse=True)          # highest main line, then best odds
         bk, line, odds = cands[0]
-        plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line,
-                      "odds": odds, "book": bk, "opp": opp, "away": away})
-    plays.sort(key=lambda p: p["pitcher"])
+        # ★★ PREMIUM: opponent low-patience (pitches/PA < league median) OR line above the pitcher's
+        # recent-5 outs (market optimism). Either half hit ~+49% ROI; the "neither" bucket loses.
+        oppp = oh.get("ppa")
+        r5 = _pitcher_r5(pl)
+        premium = bool((oppp is not None and oppp < ppa_med) or (r5 is not None and line > r5))
+        plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line, "odds": odds,
+                      "book": bk, "opp": opp, "away": away, "premium": premium})
+    plays.sort(key=lambda p: (not p.get("premium"), p["pitcher"]))   # ★★ premium first
     return plays[:16]
 
 
@@ -1242,7 +1303,8 @@ def _mlb_plays_card(now=None):
         mk = "outs"
         bcls = "fd" if p["book"] == "fd" else ("dk" if p["book"] == "dk" else "oth")
         loc = "@ " if p.get("away") else ("vs " if p.get("away") is False else "")
-        tag = ' <span class="mlbaway">★ away+contact</span>'
+        tag = (' <span class="mlbprem">★★ premium</span>' if p.get("premium")
+               else ' <span class="mlbaway">★ away+contact</span>')
         blogo = (f'<img class="bklogo" src="book-{p["book"]}.png" alt="{p["book"].upper()}">'
                  if p["book"] in ("fd", "dk")                    # only these have logo files
                  else f'<span class="bktag">{html.escape(p["book"][:3].upper())}</span>')
@@ -1252,49 +1314,54 @@ def _mlb_plays_card(now=None):
                  f'<span class="xteam">{loc}{html.escape(p["opp"])}</span></div>'
                  f'<div class="ttbsb">{mk} · {p["side"]}{tag}</div></div>'
                  f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
+    nprem = sum(1 for p in plays if p.get("premium"))
     return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under plays'
             f'<span class="ttcnt">{len(plays)}</span></h3>{rows}'
-            f'<div class="ttfoot">the edge = outs-under ≤16.5 on an AWAY starter vs a CONTACT '
-            f'offense (+24% ROI backtest) · best of FanDuel / DraftKings / BetMGM · paper, '
-            f'unconfirmed</div></div>')
+            f'<div class="ttfoot">outs-under ≤16.5 · AWAY vs CONTACT (base +25%). '
+            f'<b>★★ premium</b> ({nprem}) = also low-patience opp OR line &gt; recent outs '
+            f'(+49% backtest) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>')
 
 
 # only the AWAY + CONTACT stack counts toward the record (the +40% edge); home/whiff are dropped.
 _AC = "home=0 AND opp_k IS NOT NULL AND opp_k < %s" % CONTACT_MAX
 
 
-def _mlb_record():
-    """(w, l, u) for the MLB outs-under AWAY+CONTACT edge at FanDuel (flag-time price, graded)."""
-    if not K_PAPER.exists():
-        return (0, 0, 0.0)
-    try:
-        con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
-        w, l, u = con.execute(
-            "SELECT COALESCE(SUM(result='W'),0), COALESCE(SUM(result='L'),0), COALESCE(SUM(pnl),0) "
-            f"FROM paper WHERE rule='outs_under' AND book='fd' AND result IN ('W','L') AND {_AC}"
-        ).fetchone()
-        con.close()
-        return (w or 0, l or 0, round(u or 0, 2))
-    except sqlite3.Error:
-        return (0, 0, 0.0)
-
-
-def _mlb_recent(days=2):
-    """Per-day graded MLB outs-under AWAY+CONTACT FD bets (flag-time price) for the 24h dropdown."""
+def _mlb_graded(premium=False):
+    """Deduped graded away+contact outs-under bets (prefer FanDuel when a game has both books;
+    Pinnacle is the backtest seed, FanDuel the forward). premium=True -> the ★★ tier only."""
     if not K_PAPER.exists():
         return []
+    where = _AC + (" AND premium=1" if premium else "")
     try:
         con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
-        cutoff = (dt.datetime.now(ET).date() - dt.timedelta(days=days - 1)).isoformat()
-        rows = con.execute("SELECT game_date, pitcher, line, result, pnl FROM paper "
-                           f"WHERE rule='outs_under' AND book='fd' AND result IN ('W','L') AND {_AC} "
-                           "AND game_date >= ? ORDER BY game_date DESC", (cutoff,)).fetchall()
+        rows = con.execute(f"SELECT game_date, pitcher, line, result, pnl, book FROM paper "
+                           f"WHERE rule='outs_under' AND result IN ('W','L') AND {where}").fetchall()
         con.close()
     except sqlite3.Error:
         return []
+    best = {}
+    for gd, pit, line, res, pnl, book in rows:
+        k = (pit, gd)
+        if k not in best or book == "fd":                # FanDuel (bettable) beats Pinnacle seed
+            best[k] = (gd, pit, line, res, pnl)
+    return list(best.values())
+
+
+def _mlb_record(premium=False):
+    """(w, l, u) for the MLB outs-under away+contact (or ★★ premium) edge."""
+    g = _mlb_graded(premium)
+    w = sum(1 for r in g if r[3] == "W")
+    l = sum(1 for r in g if r[3] == "L")
+    return (w, l, round(sum(r[4] or 0 for r in g), 2))
+
+
+def _mlb_recent(days=2, premium=True):
+    """Per-day graded ★★ premium outs-unders for the 24h dropdown."""
+    cutoff = (dt.datetime.now(ET).date() - dt.timedelta(days=days - 1)).isoformat()
     by_day = {}
-    for gd, pit, line, res, pnl in rows:
-        by_day.setdefault(gd, []).append((pit, line, res, pnl))
+    for gd, pit, line, res, pnl in _mlb_graded(premium):
+        if gd >= cutoff:
+            by_day.setdefault(gd, []).append((pit, line, res, pnl))
     out = []
     for d in sorted(by_day, reverse=True):
         bets, w, u = [], 0, 0.0
@@ -2010,6 +2077,9 @@ def build():
              margin-left:5px; vertical-align:1px; }}   /* ★ the away+contact outs-under edge */
   .bktag {{ display:inline-block; font-size:9px; font-weight:800; color:#9aa3b2; background:#1a1f29;
            border-radius:5px; padding:2px 5px; margin-left:5px; vertical-align:2px; }}
+  .mlbprem {{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+             color:#f2c14e; background:rgba(242,193,78,.15); border:1px solid rgba(242,193,78,.35);
+             border-radius:5px; padding:1px 5px; margin-left:5px; vertical-align:1px; }}  /* ★★ +49% tier */
   .ttconf {{ display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }}
   /* TT %-chip holds "73%" (3 chars), not a single A/B/C letter — override the fixed 18px box so the
      number sits centered with even padding on all sides instead of spilling out the edges */

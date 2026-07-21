@@ -41,7 +41,7 @@ EPOCH = "2026-07-22"    # games on/after this = the true FORWARD (out-of-sample)
 DDL = """CREATE TABLE IF NOT EXISTS paper (
   pitcher TEXT, game_date TEXT, market TEXT, rule TEXT, book TEXT,
   side TEXT, line REAL, odds REAL, flagged_at TEXT, closed INTEGER DEFAULT 0,
-  result TEXT, actual INTEGER, pnl REAL, graded_at TEXT, home INTEGER, opp_k REAL,
+  result TEXT, actual INTEGER, pnl REAL, graded_at TEXT, home INTEGER, opp_k REAL, premium INTEGER,
   PRIMARY KEY (pitcher, game_date, market, book))"""
 
 
@@ -50,15 +50,31 @@ CONTACT_MAX = 0.225     # opponent team K% below this = a CONTACT offense (balls
 
 
 def _ensure(con):
-    """Create the table + add later columns to an existing DB (2026-07-21: the outs-under edge
-    is really an AWAY-starter effect — away go ~0.43 outs shorter, t≈2.8/2248 starts — and it
-    STACKS with contact offenses, so we tag home/away + opponent K% and validate forward)."""
+    """Create the table + add later columns. The outs-under edge is an AWAY-starter effect that
+    STACKS with contact offenses (tag home/away + opp_k), and the ★★ PREMIUM tier stacks further:
+    away+contact + (low-patience opp OR line>recent-outs) hit ~+49% ROI (tag `premium`)."""
     con.execute(DDL)
     cols = {r[1] for r in con.execute("PRAGMA table_info(paper)")}
-    if "home" not in cols:
-        con.execute("ALTER TABLE paper ADD COLUMN home INTEGER")
-    if "opp_k" not in cols:
-        con.execute("ALTER TABLE paper ADD COLUMN opp_k REAL")
+    for c, typ in (("home", "INTEGER"), ("opp_k", "REAL"), ("premium", "INTEGER")):
+        if c not in cols:
+            con.execute(f"ALTER TABLE paper ADD COLUMN {c} {typ}")
+
+
+def _team_hit(season):
+    """(k_map{tid:K%}, lg_k, ppa_map{tid:pitches/PA}, ppa_median) — for contact + patience tags."""
+    tk, lg = data.team_kpct(season)
+    ppa = {}
+    try:
+        raw = data._get("/teams/stats", stats="season", group="hitting", season=season, sportId=1)
+        for t in raw["stats"][0]["splits"]:
+            st, pa = t["stat"], (t["stat"].get("plateAppearances") or 0)
+            pit = st.get("numberOfPitches") or 0
+            if pa and pit:
+                ppa[t["team"]["id"]] = pit / pa
+    except Exception:
+        pass
+    med = sorted(ppa.values())[len(ppa) // 2] if ppa else 3.9
+    return tk, lg, ppa, med
 
 
 def _now():
@@ -202,11 +218,16 @@ def grade():
         season = int(gd[:4])
         if season not in tkcache:
             try:
-                tkcache[season] = data.team_kpct(season)
+                tkcache[season] = _team_hit(season)
             except Exception:
-                tkcache[season] = ({}, 0.22)
-        tk, lg_k = tkcache[season]
+                tkcache[season] = ({}, 0.22, {}, 3.9)
+        tk, lg_k, ppa_map, ppa_med = tkcache[season]
         opp_k = tk.get(g.get("opp_id"), lg_k)
+        opp_ppa = ppa_map.get(g.get("opp_id"))
+        # recent-5 outs from the pitcher's PRIOR starts (before this one) — for the line>recent signal
+        priors = sorted([x for x in logcache[pid] if x.get("date") and x["date"] < g["date"]
+                         and (x.get("bf") or 0) >= 5], key=lambda x: x["date"])
+        r5 = (sum(x["outs"] for x in priors[-5:]) / len(priors[-5:])) if len(priors) >= 3 else None
         for market, keyk in (("k", "k"), ("outs", "outs")):
             for (side, line, odds) in con.execute(
                     "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
@@ -218,10 +239,13 @@ def grade():
                     won = (actual > line) if side == "over" else (actual < line)
                     res, pnl = ("W", odds - 1) if won else ("L", -1.0)
                 home = 1 if g.get("is_home") else 0
+                # ★★ premium (outs only): low-patience opp OR line above the pitcher's recent-5 outs
+                premium = 1 if (market == "outs" and (
+                    (opp_ppa is not None and opp_ppa < ppa_med) or (r5 is not None and line > r5))) else 0
                 con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
-                            "home=?, opp_k=? WHERE pitcher=? AND game_date=? AND market=? "
+                            "home=?, opp_k=?, premium=? WHERE pitcher=? AND game_date=? AND market=? "
                             "AND result IS NULL",
-                            (res, actual, pnl, _now(), home, opp_k, pitcher, gd, market))
+                            (res, actual, pnl, _now(), home, opp_k, premium, pitcher, gd, market))
                 graded += 1
     con.commit()
     con.close()
