@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T19:36:15Z",
+ "captured_at": "2026-07-21T19:41:47Z",
  "matches": [
-  {
-   "event_id": 35850525,
-   "p1": "Maciej Nowalinski",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "maciej nowalinski",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-21T19:15:00.000Z",
-   "line": 99.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35850562,
    "p1": "Wojciech Pytlas",
@@ -19,20 +8,9 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T19:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35850571,
-   "p1": "Miroslav Sklensky",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "miroslav sklensky",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-21T19:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 56.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850572,
@@ -42,8 +20,8 @@
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-21T19:40:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850573,
@@ -53,8 +31,8 @@
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-21T19:40:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35850602,
@@ -63,9 +41,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-21T19:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35850607,
@@ -75,8 +53,30 @@
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-21T20:00:00.000Z",
    "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850624,
+   "p1": "Wojciech Gluszek",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "wojciech gluszek",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-21T20:05:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850625,
+   "p1": "Pawel Adamus",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "pawel adamus",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-21T20:05:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
