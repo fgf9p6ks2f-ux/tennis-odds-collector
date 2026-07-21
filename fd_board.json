@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T08:14:15Z",
+ "captured_at": "2026-07-21T08:19:48Z",
  "matches": [
-  {
-   "event_id": 35848405,
-   "p1": "Jiri Vrablik",
-   "p2": "Martin Olejnik",
-   "p1_norm": "jiri vrablik",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-21T07:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35848410,
    "p1": "Adam Ruszkiewicz",
@@ -19,9 +8,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-21T08:00:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 95.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848415,
@@ -31,8 +20,8 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T08:05:00.000Z",
    "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848416,
@@ -41,9 +30,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-21T08:05:00.000Z",
-   "line": 56.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 71.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35848422,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub nowak",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T08:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848432,
@@ -76,7 +65,7 @@
    "open_date": "2026-07-21T08:20:00.000Z",
    "line": 76.5,
    "over_odds": -116,
-   "under_odds": -116
+   "under_odds": -118
   },
   {
    "event_id": 35848448,
@@ -96,7 +85,7 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T08:30:00.000Z",
-   "line": 77.5,
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   },
@@ -110,6 +99,28 @@
    "line": 70.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35848461,
+   "p1": "Maksymilian Rus",
+   "p2": "Mariusz Baron",
+   "p1_norm": "maksymilian rus",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-21T08:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35848462,
+   "p1": "Milosz Cesarz",
+   "p2": "Oskar Jadach",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-21T08:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
