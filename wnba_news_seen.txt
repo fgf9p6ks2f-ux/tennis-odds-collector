@@ -40,6 +40,7 @@ rw|309|Just misses double-double
 rw|326|Another double-double in loss
 rw|330|Starting Monday
 rw|331|Strong line in win
+rw|344|Available for Wednesday
 rw|354|Very efficient in home victory
 rw|378|Starting Monday
 rw|394|Iffy for Wednesday
@@ -98,6 +99,7 @@ rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss
 rw|969|Manages 11 points in loss
 rw|971|Remains away from team
+rw|972|Not listed on injury report
 rw|979|Not on injury report
 rw|979|Sitting out Monday
 rw|980|Flirts with double-double
