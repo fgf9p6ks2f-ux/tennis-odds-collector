@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T02:53:15Z",
+ "captured_at": "2026-07-21T02:59:40Z",
  "matches": [
   {
    "event_id": 35847607,
@@ -31,8 +31,8 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T03:00:00.000Z",
    "line": 69.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35847613,
@@ -42,6 +42,39 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-21T03:10:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35847654,
+   "p1": "Jiri Vrablik",
+   "p2": "Szymon Sporek",
+   "p1_norm": "jiri vrablik",
+   "p2_norm": "szymon sporek",
+   "open_date": "2026-07-21T03:25:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35847655,
+   "p1": "Waldemar Glanowski",
+   "p2": "Wojciech Urban",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-21T03:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35847656,
+   "p1": "Igor Dabrowski",
+   "p2": "Artur Sobel",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "artur sobel",
+   "open_date": "2026-07-21T03:25:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
