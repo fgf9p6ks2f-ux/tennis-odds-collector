@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T15:01:38Z",
+ "captured_at": "2026-07-21T15:07:04Z",
  "matches": [
-  {
-   "event_id": 35849539,
-   "p1": "Adrian Wiecek",
-   "p2": "Martin Olejnik",
-   "p1_norm": "adrian wiecek",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-21T14:35:00.000Z",
-   "line": 93.5,
-   "over_odds": 110,
-   "under_odds": -150
-  },
   {
    "event_id": 35849593,
    "p1": "Jakub Pruszkowski",
@@ -19,7 +8,7 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T15:00:00.000Z",
-   "line": 73.5,
+   "line": 86.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +19,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T15:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849595,
@@ -41,7 +30,7 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-21T15:00:00.000Z",
-   "line": 79.5,
+   "line": 83.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +41,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "boguslaw madej",
    "open_date": "2026-07-21T15:05:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35849642,
@@ -99,6 +88,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35849687,
+   "p1": "Maksymilian Rus",
+   "p2": "Michal Oracz",
+   "p1_norm": "maksymilian rus",
+   "p2_norm": "michal oracz",
+   "open_date": "2026-07-21T15:30:00.000Z",
+   "line": 71.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
