@@ -1141,6 +1141,8 @@ CONTACT_MAX = 0.225        # opp team K% < this = CONTACT offense. Base edge = A
 #   the pitcher's recent-5 outs (market optimism, d=+0.35). The "neither" bucket is a net loser.
 _MLB_TEAMK = HERE / "mlb_teamk.json"
 _MLB_R5 = HERE / "mlb_pitcher_r5.json"
+_MLB_PROB = HERE / "mlb_probables.json"
+_PROB_MEMO = {}
 
 
 def _team_hit():
@@ -1219,15 +1221,54 @@ def _team_kpct():
     return {k: v["k"] for k, v in _team_hit().items()}
 
 
-def _mlb_matchup(event, player):
-    """(is_away, opponent_team) from a FD MLB event 'Away Team (P) @ Home Team (P)'."""
+def _probables_today():
+    """{pitcher_lower: [away_bool, opp_full_name]} from MLB statsapi probables — the AUTHORITATIVE
+    home/away + full opponent name (which joins _team_hit). FanDuel dropped the '(pitcher)' annotation
+    and abbreviated the cities in its event string on 2026-07-21 ('TB Rays @ TOR Blue Jays'), which
+    broke the old event-string parse and blanked the whole board. Memoized per-process; persisted to
+    a daily file so a transient statsapi blip falls back to today's cache instead of going dark."""
+    today = dt.date.today().isoformat()
+    if _PROB_MEMO.get("date") == today:
+        return _PROB_MEMO["map"]
+    m = {}
     try:
-        away_s, home_s = event.split(" @ ", 1)
-        team = lambda s: re.sub(r"\s*\(.*$", "", s).strip()
-        return (True, team(home_s)) if player.split()[-1].lower() in away_s.lower() \
-            else (False, team(away_s))
-    except (ValueError, AttributeError, IndexError):
-        return (None, "")
+        from mlb import data as _MD
+        for g in _MD.probables(today):
+            nm = (g.get("pitcher") or "").lower()
+            if nm:
+                m[nm] = [bool(g.get("away")), g.get("opp") or ""]
+    except Exception:
+        m = {}
+    if m:                                              # fresh -> persist for a later blip
+        try:
+            _MLB_PROB.write_text(json.dumps({"date": today, "map": m}))
+        except OSError:
+            pass
+    else:                                              # statsapi blip -> reuse today's cached file
+        try:
+            c = json.loads(_MLB_PROB.read_text())
+            if c.get("date") == today:
+                m = c.get("map", {})
+        except (ValueError, OSError):
+            m = {}
+    _PROB_MEMO.clear()
+    _PROB_MEMO.update(date=today, map=m)
+    return m
+
+
+def _mlb_matchup(event, player):
+    """(is_away, opponent_full_name) for a starting pitcher, from MLB statsapi probables. The FD
+    `event` string is no longer parsed (FD dropped pitchers + abbreviated cities 2026-07-21) — kept
+    in the signature for callers. Exact name match, then a last-name fallback, else (None, '')."""
+    pm = _probables_today()
+    v = pm.get((player or "").lower())
+    if not v and player:
+        ln = player.split()[-1].lower()
+        for name, val in pm.items():
+            if ln and ln in name:
+                v = val
+                break
+    return (bool(v[0]), v[1]) if v else (None, "")
 
 
 def _mlb_plays(now=None):

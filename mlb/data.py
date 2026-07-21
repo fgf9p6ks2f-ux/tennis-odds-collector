@@ -282,5 +282,6 @@ def probables(date: str) -> list[dict]:
                 if pp:
                     games.append({"pitcher_id": pp["id"], "pitcher": pp["fullName"],
                                   "team_id": side["team"]["id"], "opp_id": opp["team"]["id"],
-                                  "opp": opp["team"]["name"], "game_date": g.get("gameDate")})
+                                  "opp": opp["team"]["name"], "away": side is a,
+                                  "game_date": g.get("gameDate")})
     return games
