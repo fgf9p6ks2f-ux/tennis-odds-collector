@@ -41,8 +41,17 @@ EPOCH = "2026-07-22"    # games on/after this = the true FORWARD (out-of-sample)
 DDL = """CREATE TABLE IF NOT EXISTS paper (
   pitcher TEXT, game_date TEXT, market TEXT, rule TEXT, book TEXT,
   side TEXT, line REAL, odds REAL, flagged_at TEXT, closed INTEGER DEFAULT 0,
-  result TEXT, actual INTEGER, pnl REAL, graded_at TEXT,
+  result TEXT, actual INTEGER, pnl REAL, graded_at TEXT, home INTEGER,
   PRIMARY KEY (pitcher, game_date, market, book))"""
+
+
+def _ensure(con):
+    """Create the table + add later columns to an existing DB (home was added 2026-07-21:
+    the outs-under edge is really an AWAY-starter effect — away starters go ~0.43 outs shorter,
+    t≈2.8 over 2248 starts — so we tag home/away and validate the away split forward)."""
+    con.execute(DDL)
+    if "home" not in {r[1] for r in con.execute("PRAGMA table_info(paper)")}:
+        con.execute("ALTER TABLE paper ADD COLUMN home INTEGER")
 
 
 def _now():
@@ -111,7 +120,7 @@ def _qualifies(market, line):
 
 def flag():
     con = sqlite3.connect(DB)
-    con.execute(DDL)
+    _ensure(con)
     ts = _now()
     added = updated = 0
     for market, stat, books in (("k", "strikeouts", ((PINN, "pinn"), (FD, "fd"))),
@@ -142,7 +151,7 @@ def flag():
 
 def grade():
     con = sqlite3.connect(DB)
-    con.execute(DDL)
+    _ensure(con)
     ids = _load_ids()
     today = dt.date.today().isoformat()
     todo = con.execute("SELECT DISTINCT pitcher, game_date FROM paper WHERE result IS NULL "
@@ -175,9 +184,10 @@ def grade():
                 else:
                     won = (actual > line) if side == "over" else (actual < line)
                     res, pnl = ("W", odds - 1) if won else ("L", -1.0)
-                con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1 "
+                home = 1 if g.get("is_home") else 0
+                con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, home=? "
                             "WHERE pitcher=? AND game_date=? AND market=? AND result IS NULL",
-                            (res, actual, pnl, _now(), pitcher, gd, market))
+                            (res, actual, pnl, _now(), home, pitcher, gd, market))
                 graded += 1
     con.commit()
     con.close()
@@ -195,7 +205,7 @@ def _bucket(con, rule, book, where, args):
 
 def report():
     con = sqlite3.connect(DB)
-    con.execute(DDL)
+    _ensure(con)
     for label, where, args in [("FORWARD (out-of-sample, the real test)", " AND game_date>=?", (EPOCH,)),
                                ("in-sample seed (the 2-wk backtest, for reference)", " AND game_date<?", (EPOCH,))]:
         print(f"\n=== MLB pitcher-prop PAPER edges — {label} ===")
@@ -212,6 +222,16 @@ def report():
             "SELECT line, COUNT(*), SUM(result='W'), COALESCE(SUM(pnl),0) FROM paper "
             "WHERE rule='outs_under' AND book='pinn' AND result IN ('W','L') GROUP BY line ORDER BY line"):
         print(f"{line}:{w}/{n}({pnl:+.1f}u)", end="  ")
+    # ★ the DIAMOND: outs-under is really an AWAY-starter effect (away go ~0.43 outs shorter, t≈2.8).
+    # Track the home/away split forward — away should keep winning, home should keep losing.
+    print("\n  outs_under home/away (pinn, all):", end=" ")
+    for lbl, hv in (("AWAY", 0), ("HOME", 1)):
+        g = con.execute("SELECT COUNT(*), SUM(result='W'), COALESCE(SUM(pnl),0) FROM paper "
+                        "WHERE rule='outs_under' AND book='pinn' AND result IN ('W','L') AND home=?",
+                        (hv,)).fetchone()
+        n, w, pnl = g[0], g[1] or 0, g[2] or 0
+        roi = pnl / n * 100 if n else 0
+        print(f"{lbl} {w}/{n} ({roi:+.0f}%)", end="   ")
     print()
     con.close()
 
