@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T02:59:40Z",
+ "captured_at": "2026-07-21T03:06:08Z",
  "matches": [
   {
    "event_id": 35847607,
@@ -8,9 +8,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-21T03:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847608,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T03:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35847609,
@@ -30,9 +30,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T03:00:00.000Z",
-   "line": 69.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 52.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35847613,
@@ -77,6 +77,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35847658,
+   "p1": "Robert Kostepski",
+   "p2": "Kacper Adamus",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "kacper adamus",
+   "open_date": "2026-07-21T03:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
