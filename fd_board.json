@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T08:19:48Z",
+ "captured_at": "2026-07-21T08:26:20Z",
  "matches": [
-  {
-   "event_id": 35848410,
-   "p1": "Adam Ruszkiewicz",
-   "p2": "Mariusz Adamus",
-   "p1_norm": "adam ruszkiewicz",
-   "p2_norm": "mariusz adamus",
-   "open_date": "2026-07-21T08:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35848415,
    "p1": "Adrian Wiecek",
@@ -19,31 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T08:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35848416,
-   "p1": "Kacper Szurlej",
-   "p2": "Blazej Warpas",
-   "p1_norm": "kacper szurlej",
-   "p2_norm": "blazej warpas",
-   "open_date": "2026-07-21T08:05:00.000Z",
-   "line": 71.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35848422,
-   "p1": "Jakub Nowak",
-   "p2": "Pawel Kurek",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-21T08:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35848432,
@@ -52,9 +19,9 @@
    "p1_norm": "dawid jendrysik",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-21T08:20:00.000Z",
-   "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848433,
@@ -63,9 +30,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "boguslaw madej",
    "open_date": "2026-07-21T08:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848448,
