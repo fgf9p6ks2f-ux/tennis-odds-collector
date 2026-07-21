@@ -71,6 +71,7 @@ rw|641|Chips in 12 points in loss
 rw|641|Nets 21 points in overtime win
 rw|735|Limited production in return
 rw|735|On track to return Sunday
+rw|755|Double-doubles off bench
 rw|785|Productive in win over Tempo
 rw|786|Grabs 15 boards in win
 rw|807|Posts double-double in road loss
