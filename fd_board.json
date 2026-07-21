@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-21T10:50:32Z",
+ "captured_at": "2026-07-21T10:56:06Z",
  "matches": [
-  {
-   "event_id": 35848653,
-   "p1": "Maciej Kolek",
-   "p2": "Michal Minda",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-21T10:35:00.000Z",
-   "line": 101.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35848654,
-   "p1": "Jakub Nowak",
-   "p2": "Pawel Kurek",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-21T10:35:00.000Z",
-   "line": 93.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35848660,
-   "p1": "Boguslaw Madej",
-   "p2": "Karol Jablonski",
-   "p1_norm": "boguslaw madej",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-21T10:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35848664,
    "p1": "Maciej Nowalinski",
@@ -41,9 +8,9 @@
    "p1_norm": "maciej nowalinski",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-21T10:50:00.000Z",
-   "line": 70.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848672,
@@ -88,6 +55,17 @@
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35848759,
+   "p1": "Krystian Kolodziej",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-21T11:20:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
