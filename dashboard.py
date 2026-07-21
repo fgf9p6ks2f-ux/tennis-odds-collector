@@ -1208,30 +1208,24 @@ def _mlb_plays(now=None):
     teamk = _team_kpct()
     plays = []
     for (pl, stat), offs in mains.items():
+        if stat != "outs":
+            continue                          # K-over pulled 2026-07-21 (weak +3% & no stack — audit)
         away, opp = _mlb_matchup(ev_by.get((pl, stat), ""), pl)
-        if stat == "outs":
-            # ONLY the edge: AWAY starter vs a CONTACT offense (+40% ROI). Home loses; away+whiff is
-            # marginal — both dropped. (Fail-open on opp K% only if statsapi is unreachable.)
-            oppk = teamk.get((opp or "").lower())
-            if not away:
-                continue
-            if teamk and oppk is not None and oppk >= CONTACT_MAX:
-                continue
-            cands = [(bk, ln, uo) for bk, ln, oo, uo in offs if uo and ln <= OUTS_UNDER_MAX]
-            if not cands:
-                continue
-            cands.sort(key=lambda x: (x[1], x[2]), reverse=True)      # highest main line, then best odds
-            mkt, sd = "outs", "under"
-        else:
-            cands = [(bk, ln, oo) for bk, ln, oo, uo in offs if oo and ln >= K_OVER_MIN]
-            if not cands:
-                continue
-            cands.sort(key=lambda x: (x[1], -x[2]))                   # lowest main line, then best odds
-            mkt, sd = "k", "over"
+        # ONLY the edge: AWAY starter vs a CONTACT offense (+24% ROI). Home loses; away+whiff is
+        # marginal — both dropped. (Fail-open on opp K% only if statsapi is unreachable.)
+        oppk = teamk.get((opp or "").lower())
+        if not away:
+            continue
+        if teamk and oppk is not None and oppk >= CONTACT_MAX:
+            continue
+        cands = [(bk, ln, uo) for bk, ln, oo, uo in offs if uo and ln <= OUTS_UNDER_MAX]
+        if not cands:
+            continue
+        cands.sort(key=lambda x: (x[1], x[2]), reverse=True)          # highest main line, then best odds
         bk, line, odds = cands[0]
-        plays.append({"pitcher": pl, "market": mkt, "side": sd, "line": line,
+        plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line,
                       "odds": odds, "book": bk, "opp": opp, "away": away})
-    plays.sort(key=lambda p: (p["market"] != "outs", p["pitcher"]))
+    plays.sort(key=lambda p: p["pitcher"])
     return plays[:16]
 
 
@@ -1240,15 +1234,15 @@ def _mlb_plays_card(now=None):
     plays = _mlb_plays(now)
     if not plays:
         return ('<div class="card"><h3 class="ttlg">⚾ MLB · Best-book plays</h3>'
-                '<div class="ttempty">No MLB pitcher-prop plays right now — no pitcher clears the '
-                'rules (outs-under ≤16.5 / K-over ≥6.5) on today’s board.</div></div>')
+                '<div class="ttempty">No MLB plays right now — no away starter vs a contact '
+                'offense with an outs line ≤16.5 on today’s board.</div></div>')
     rows = ""
     for p in plays:
         o = "U" if p["side"] == "under" else "O"
-        mk = "outs" if p["market"] == "outs" else "Ks"
+        mk = "outs"
         bcls = "fd" if p["book"] == "fd" else ("dk" if p["book"] == "dk" else "oth")
         loc = "@ " if p.get("away") else ("vs " if p.get("away") is False else "")
-        tag = ' <span class="mlbaway">★ away+contact</span>' if p["market"] == "outs" else ""
+        tag = ' <span class="mlbaway">★ away+contact</span>'
         blogo = (f'<img class="bklogo" src="book-{p["book"]}.png" alt="{p["book"].upper()}">'
                  if p["book"] in ("fd", "dk")                    # only these have logo files
                  else f'<span class="bktag">{html.escape(p["book"][:3].upper())}</span>')
@@ -1258,11 +1252,11 @@ def _mlb_plays_card(now=None):
                  f'<span class="xteam">{loc}{html.escape(p["opp"])}</span></div>'
                  f'<div class="ttbsb">{mk} · {p["side"]}{tag}</div></div>'
                  f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
-    return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Best-book plays'
+    return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under plays'
             f'<span class="ttcnt">{len(plays)}</span></h3>{rows}'
-            f'<div class="ttfoot">★ the edge = outs-under ≤16.5 on an AWAY starter vs a CONTACT '
-            f'offense (home & whiff dropped — they lose) · K-over ≥6.5 · best of FD / DK / BetMGM · '
-            f'paper, unconfirmed</div></div>')
+            f'<div class="ttfoot">the edge = outs-under ≤16.5 on an AWAY starter vs a CONTACT '
+            f'offense (+24% ROI backtest) · best of FanDuel / DraftKings / BetMGM · paper, '
+            f'unconfirmed</div></div>')
 
 
 # only the AWAY + CONTACT stack counts toward the record (the +40% edge); home/whiff are dropped.
