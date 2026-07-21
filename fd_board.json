@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T16:06:01Z",
+ "captured_at": "2026-07-21T16:11:26Z",
  "matches": [
-  {
-   "event_id": 35849751,
-   "p1": "Pawel Adamus",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-21T15:50:00.000Z",
-   "line": 95.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35849773,
    "p1": "Robert Szymik",
@@ -19,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "sebastian krupa",
    "open_date": "2026-07-21T16:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 65.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35849799,
@@ -52,9 +41,9 @@
    "p1_norm": "jakub pruszkowski",
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-21T16:15:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35850045,
@@ -85,8 +74,30 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T16:30:00.000Z",
-   "line": 70.5,
+   "line": 66.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850218,
+   "p1": "Dariusz Szlubowski",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "dariusz szlubowski",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-21T16:35:00.000Z",
+   "line": 78.5,
    "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850219,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-21T16:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
    "under_odds": -118
   }
  ]
