@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T16:49:10Z",
+ "captured_at": "2026-07-21T16:54:35Z",
  "matches": [
-  {
-   "event_id": 35850219,
-   "p1": "Wojciech Wojtaszczyk",
-   "p2": "Piotr Przewlocki",
-   "p1_norm": "wojciech wojtaszczyk",
-   "p2_norm": "piotr przewlocki",
-   "open_date": "2026-07-21T16:35:00.000Z",
-   "line": 95.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35850253,
    "p1": "Sebastian Krupa",
@@ -19,9 +8,9 @@
    "p1_norm": "sebastian krupa",
    "p2_norm": "kaczynski piotr",
    "open_date": "2026-07-21T16:50:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850258,
@@ -42,8 +31,8 @@
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T16:55:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35850272,
@@ -66,6 +55,39 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35850304,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-21T17:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850305,
+   "p1": "Mariusz Koczyba",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "mariusz koczyba",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-21T17:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850306,
+   "p1": "Miroslav Sklensky",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "miroslav sklensky",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-21T17:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
