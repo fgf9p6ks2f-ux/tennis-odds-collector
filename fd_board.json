@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T03:38:11Z",
+ "captured_at": "2026-07-21T03:44:35Z",
  "matches": [
   {
    "event_id": 35847654,
@@ -8,20 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T03:25:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35847656,
-   "p1": "Igor Dabrowski",
-   "p2": "Artur Sobel",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "artur sobel",
-   "open_date": "2026-07-21T03:25:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 92.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35847658,
@@ -30,9 +19,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-21T03:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35847661,
@@ -41,7 +30,7 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-21T03:35:00.000Z",
-   "line": 76.5,
+   "line": 69.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -107,6 +96,39 @@
    "p1_norm": "dawid jendrysik",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-21T04:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35848001,
+   "p1": "Jakub Kosowski",
+   "p2": "Jiri Vrablik",
+   "p1_norm": "jakub kosowski",
+   "p2_norm": "jiri vrablik",
+   "open_date": "2026-07-21T04:10:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35848002,
+   "p1": "Igor Szymanski",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-21T04:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35848003,
+   "p1": "Kamil Rudomina",
+   "p2": "Igor Dabrowski",
+   "p1_norm": "kamil rudomina",
+   "p2_norm": "igor dabrowski",
+   "open_date": "2026-07-21T04:10:00.000Z",
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
