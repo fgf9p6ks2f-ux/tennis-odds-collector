@@ -45,6 +45,7 @@ rw|577|Unlikely to play Monday
 rw|580|Racks up 20 points in Sunday's win
 rw|581|On fire from perimeter
 rw|586|Posts double-double in victory
+rw|586|Pulls down 16 boards in loss
 rw|615|Doesn't return Saturday
 rw|615|Goes to locker room
 rw|615|Listed out for Monday
