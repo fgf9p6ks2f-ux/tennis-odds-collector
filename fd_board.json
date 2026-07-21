@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T14:27:57Z",
+ "captured_at": "2026-07-21T14:33:18Z",
  "matches": [
-  {
-   "event_id": 35849463,
-   "p1": "Maciej Nowalinski",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "maciej nowalinski",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-21T14:10:00.000Z",
-   "line": 92.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35849471,
-   "p1": "Jiri Vrablik",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "jiri vrablik",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-21T14:15:00.000Z",
-   "line": 57.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35849491,
    "p1": "Maksymilian Rus",
@@ -30,7 +8,7 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "boguslaw madej",
    "open_date": "2026-07-21T14:20:00.000Z",
-   "line": 83.5,
+   "line": 77.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T14:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35849493,
@@ -52,9 +30,9 @@
    "p1_norm": "dominik solilo",
    "p2_norm": "michal minda",
    "open_date": "2026-07-21T14:20:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35849539,
@@ -97,6 +75,39 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-21T14:45:00.000Z",
    "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35849593,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-21T15:00:00.000Z",
+   "line": 72.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35849594,
+   "p1": "Artur Gromek",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "artur gromek",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-21T15:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35849595,
+   "p1": "Stanislaw Wnek",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-21T15:00:00.000Z",
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
