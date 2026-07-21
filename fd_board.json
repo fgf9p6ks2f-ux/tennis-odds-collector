@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T23:15:05Z",
+ "captured_at": "2026-07-21T23:21:01Z",
  "matches": [
-  {
-   "event_id": 35850832,
-   "p1": "Pawel Adamus",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "pawel adamus",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-21T22:55:00.000Z",
-   "line": 104.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35850838,
    "p1": "Marian Brunner",
@@ -19,9 +8,9 @@
    "p1_norm": "marian brunner",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-21T23:05:00.000Z",
-   "line": 57.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 94.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35850840,
@@ -30,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-21T23:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 56.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850841,
@@ -41,9 +30,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-21T23:15:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850850,
@@ -53,8 +42,8 @@
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-21T23:20:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35850851,
@@ -64,8 +53,8 @@
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-21T23:20:00.000Z",
    "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35850862,
@@ -99,6 +88,28 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35850876,
+   "p1": "Jaroslaw Rolak",
+   "p2": "Krzysztof Kotyl",
+   "p1_norm": "jaroslaw rolak",
+   "p2_norm": "krzysztof kotyl",
+   "open_date": "2026-07-21T23:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850877,
+   "p1": "Wojciech Wojtaszczyk",
+   "p2": "Pawel Adamus",
+   "p1_norm": "wojciech wojtaszczyk",
+   "p2_norm": "pawel adamus",
+   "open_date": "2026-07-21T23:45:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
