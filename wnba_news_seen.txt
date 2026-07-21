@@ -14,6 +14,7 @@ gn|Paige Bueckers ruled out for Liberty game but avoids concuss
 gn|UConn great Paige Bueckers won't play vs. NY Liberty on Mond
 gn|Wings star Paige Bueckers out Monday vs. Liberty despite cle
 gn|“Figure That Out Now”: WNBA Legend Raises Concern Over Fever
+rw|1007|Questionable for Wednesday
 rw|1021|Paces Golden State off bench
 rw|1043|Not listed on injury report
 rw|1047|Season-high 11 rebounds
@@ -86,6 +87,7 @@ rw|860|Back with 12 points off bench
 rw|863|Explodes for 18 points off bench
 rw|911|Dishes seven dimes Saturday
 rw|912|Logs 21 minutes Sunday
+rw|914|Ruled out for Wednesday
 rw|916|Posts 15 points despite restriction
 rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss

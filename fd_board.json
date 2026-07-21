@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-21T20:44:11Z",
+ "captured_at": "2026-07-21T20:49:57Z",
  "matches": [
-  {
-   "event_id": 35850650,
-   "p1": "Jakub Pruszkowski",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "jakub pruszkowski",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-21T20:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35850651,
-   "p1": "Stanislaw Wnek",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "stanislaw wnek",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-21T20:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35850667,
    "p1": "Grzegorz Marud",
@@ -31,8 +9,8 @@
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-21T20:45:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850668,
@@ -41,9 +19,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-21T20:45:00.000Z",
-   "line": 67.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 54.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35850686,
