@@ -1348,11 +1348,44 @@ def _mlb_plays(now=None):
     return plays[:16]
 
 
+def _mlb_health():
+    """Tell a BROKEN pipeline apart from a genuinely quiet slate so an empty board is never silent
+    again (2026-07-21: an FD event-format change blanked the board behind a calm 'no plays' card).
+    Returns {"ok", "reason"}. Trips ONLY on unambiguous breaks — lines are flowing but the matchup/
+    stats inputs don't resolve — never on a real off-day (too few lines -> stays quiet)."""
+    try:
+        if not FD_PROPS.exists():
+            return {"ok": True, "reason": ""}
+        con = sqlite3.connect(f"file:{FD_PROPS}?mode=ro", uri=True)
+        pitchers = [r[0] for r in con.execute(
+            "SELECT DISTINCT player FROM fd_lines WHERE sport='mlb' AND stat='outs' "
+            "AND collected_at > datetime('now','-18 hours')").fetchall()]
+        con.close()
+    except sqlite3.Error:
+        return {"ok": True, "reason": ""}
+    n = len(pitchers)
+    if n < 5:                                    # too few lines to judge (early / off-day) — not an alarm
+        return {"ok": True, "reason": ""}
+    if len(_team_hit()) < 20:                     # team K%/patience feed down -> contact+premium degraded
+        return {"ok": False, "reason": "team-stats feed down"}
+    if not _probables_today():                    # no matchup source (statsapi down AND no cache)
+        return {"ok": False, "reason": "no matchup source (statsapi probables empty)"}
+    resolved = sum(1 for p in pitchers if _mlb_matchup("", p)[0] is not None)
+    if resolved == 0:                             # THE 2026-07-21 signature: lines flow, nothing resolves
+        return {"ok": False, "reason": f"0/{n} matchups resolve — book format change?"}
+    if resolved < n * 0.5:                        # partial break: most starters unresolved
+        return {"ok": False, "reason": f"only {resolved}/{n} matchups resolve"}
+    return {"ok": True, "reason": ""}
+
+
 def _mlb_plays_card(now=None):
     """MLB 'Today's Plays' card — WNBA design, no dropdown; each row = the bet + best-book line/price."""
     plays = _mlb_plays(now)
+    h = _mlb_health()
+    warn = ("" if h["ok"] else f'<div class="mlbwarn">⚠️ MLB feed issue: {html.escape(h["reason"])} — '
+            f'plays may be missing (you were alerted). This is NOT a quiet slate.</div>')
     if not plays:
-        return ('<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model</h3>'
+        return ('<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model</h3>' + warn +
                 '<div class="ttempty">No MLB plays right now — no away starter vs a contact offense '
                 '(≤16.5 outs) that also clears the premium filter on today’s board.</div></div>')
     rows = ""
@@ -1372,7 +1405,7 @@ def _mlb_plays_card(now=None):
                  f'<div class="ttbsb">{mk} · {p["side"]}{tag}</div></div>'
                  f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
     return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model'
-            f'<span class="ttcnt">{len(plays)}</span></h3>{rows}'
+            f'<span class="ttcnt">{len(plays)}</span></h3>{warn}{rows}'
             f'<div class="ttfoot">the model: outs-under ≤16.5 · AWAY vs a CONTACT offense, AND '
             f'(low-patience opp OR line &gt; the pitcher’s recent outs) · +49% backtest '
             f'(leak-free signal +48%) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>')
@@ -2136,6 +2169,9 @@ def build():
   .mlbprem {{ font-size:9px; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
              color:#f2c14e; background:rgba(242,193,78,.15); border:1px solid rgba(242,193,78,.35);
              border-radius:5px; padding:1px 5px; margin-left:5px; vertical-align:1px; }}  /* ★★ +49% tier */
+  .mlbwarn {{ font-size:12px; font-weight:700; color:#ffb4a2; background:rgba(224,90,74,.14);
+              border:1px solid rgba(224,90,74,.45); border-radius:8px; padding:8px 10px;
+              margin:2px 0 10px; line-height:1.4; }}  /* LOUD: feed broken, not a quiet slate */
   .ttconf {{ display:flex; flex-direction:column; align-items:center; gap:3px; flex:none; }}
   /* TT %-chip holds "73%" (3 chars), not a single A/B/C letter — override the fixed 18px box so the
      number sits centered with even padding on all sides instead of spilling out the edges */

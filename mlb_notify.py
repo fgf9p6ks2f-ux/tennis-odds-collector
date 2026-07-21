@@ -36,15 +36,38 @@ def main():
     except Exception as e:                                 # never let a bad import break the run
         print(f"mlb_notify: dashboard import failed: {str(e)[:100]}")
         return
-    plays = D._mlb_plays()                                 # today's MODEL plays (premium only)
-    if not plays:
-        print("mlb_notify: no model plays")
-        return
     try:
         seen = set(json.loads(SEEN.read_text())) if SEEN.exists() else set()
     except (ValueError, OSError):
         seen = set()
     today = dt.date.today().isoformat()
+    # HEALTH ALERT (once/day): a broken feed used to look identical to a quiet slate (2026-07-21 FD
+    # format change blanked the board silently). Ping when the pipeline is actually broken so it can
+    # never fail quietly again — checked BEFORE the "no plays" early return, since a break usually
+    # means 0 plays. Only trips on unambiguous breaks (lines flowing but matchup/stats don't resolve).
+    try:
+        h = D._mlb_health()
+    except Exception as e:
+        h = {"ok": False, "reason": f"health check crashed: {str(e)[:60]}"}
+    hkey = f"{today}|HEALTH"
+    if not h["ok"] and hkey not in seen:
+        htext = f"⚠️ ⚾ MLB feed issue: {h['reason']} — board may be missing plays, check the pipeline"
+        try:
+            requests.post(f"https://ntfy.sh/{topic}", data=htext.encode("utf-8"),
+                          params={"title": "Pickz", "priority": "high"}, timeout=15).raise_for_status()
+            seen.add(hkey)
+            print(f"pushed HEALTH: {htext}")
+        except requests.RequestException as e:
+            print(f"mlb_notify health push failed: {str(e)[:80]}")
+
+    plays = D._mlb_plays()                                 # today's MODEL plays (premium only)
+    if not plays:
+        try:
+            SEEN.write_text(json.dumps(sorted(seen)[-800:]))   # persist the health-alert dedup key
+        except OSError:
+            pass
+        print("mlb_notify: no model plays")
+        return
     sent = 0
     for p in plays:
         key = f"{today}|{p['pitcher']}|{p['line']:g}"
