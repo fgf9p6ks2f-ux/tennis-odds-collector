@@ -50,6 +50,7 @@ rw|580|Scores team-high 29 points
 rw|581|On fire from perimeter
 rw|586|Posts double-double in victory
 rw|586|Pulls down 16 boards in loss
+rw|603|Rough shooting night in loss
 rw|605|Scores 15 points in loss Monday
 rw|615|Doesn't return Saturday
 rw|615|Goes to locker room
