@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T11:40:37Z",
+ "captured_at": "2026-07-21T11:47:08Z",
  "matches": [
-  {
-   "event_id": 35848759,
-   "p1": "Krystian Kolodziej",
-   "p2": "Grzegorz Poliniewicz",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "grzegorz poliniewicz",
-   "open_date": "2026-07-21T11:20:00.000Z",
-   "line": 90.5,
-   "over_odds": -165,
-   "under_odds": 120
-  },
   {
    "event_id": 35848783,
    "p1": "Maksymilian Rus",
@@ -19,9 +8,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T11:30:00.000Z",
-   "line": 90.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 103.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35848847,
@@ -31,8 +20,8 @@
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-21T11:45:00.000Z",
    "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -118,
+   "under_odds": -116
   },
   {
    "event_id": 35848860,
