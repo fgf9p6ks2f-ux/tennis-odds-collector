@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T02:40:19Z",
+ "captured_at": "2026-07-21T02:46:45Z",
  "matches": [
   {
    "event_id": 35847573,
@@ -8,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "grzegorz marud",
    "open_date": "2026-07-21T02:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35847587,
@@ -19,9 +19,9 @@
    "p1_norm": "aleksander barton",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-21T02:45:00.000Z",
-   "line": 66.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35847607,
@@ -55,6 +55,17 @@
    "line": 69.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35847613,
+   "p1": "Milosz Cesarz",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-21T03:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
