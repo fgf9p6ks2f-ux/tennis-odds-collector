@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T09:16:25Z",
+ "captured_at": "2026-07-21T09:21:35Z",
  "matches": [
-  {
-   "event_id": 35848473,
-   "p1": "Patryk Mecik",
-   "p2": "Pawel Kurek",
-   "p1_norm": "patryk mecik",
-   "p2_norm": "pawel kurek",
-   "open_date": "2026-07-21T09:00:00.000Z",
-   "line": 100.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35848475,
    "p1": "Adrian Wiecek",
@@ -19,20 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T09:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35848476,
-   "p1": "Artur Sobel",
-   "p2": "Michal Minda",
-   "p1_norm": "artur sobel",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-21T09:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 112.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848477,
@@ -41,9 +19,9 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-21T09:00:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 97.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848485,
@@ -52,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "boguslaw madej",
    "open_date": "2026-07-21T09:05:00.000Z",
-   "line": 93.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35848512,
@@ -64,8 +42,8 @@
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-21T09:20:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35848519,
@@ -110,6 +88,17 @@
    "line": 83.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35848554,
+   "p1": "Jiri Vrablik",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "jiri vrablik",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-21T09:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
