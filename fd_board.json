@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T03:12:35Z",
+ "captured_at": "2026-07-21T03:18:58Z",
  "matches": [
-  {
-   "event_id": 35847607,
-   "p1": "Stapor Rafal",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-21T03:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35847608,
    "p1": "Jakub Kosowski",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub kosowski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T03:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35847609,
@@ -30,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T03:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": 160,
+   "under_odds": -230
   },
   {
    "event_id": 35847613,
@@ -41,9 +30,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-21T03:10:00.000Z",
-   "line": 74.5,
+   "line": 87.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35847654,
@@ -99,6 +88,17 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35847665,
+   "p1": "Adrian Wiecek",
+   "p2": "Martin Olejnik",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "martin olejnik",
+   "open_date": "2026-07-21T03:45:00.000Z",
+   "line": 82.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
