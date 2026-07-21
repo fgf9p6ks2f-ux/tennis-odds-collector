@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T13:05:41Z",
+ "captured_at": "2026-07-21T13:11:00Z",
  "matches": [
   {
    "event_id": 35849270,
@@ -8,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "szymon sporek",
    "open_date": "2026-07-21T12:55:00.000Z",
-   "line": 70.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849277,
@@ -19,7 +19,7 @@
    "p1_norm": "miroslav sklensky",
    "p2_norm": "jakub chmielowski",
    "open_date": "2026-07-21T13:00:00.000Z",
-   "line": 70.5,
+   "line": 67.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +30,9 @@
    "p1_norm": "patryk mecik",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-21T13:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35849297,
@@ -41,7 +41,7 @@
    "p1_norm": "artur sobel",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-21T13:05:00.000Z",
-   "line": 77.5,
+   "line": 83.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +52,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T13:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35849325,
@@ -63,7 +63,7 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T13:20:00.000Z",
-   "line": 73.5,
+   "line": 70.5,
    "over_odds": -118,
    "under_odds": -112
   },
