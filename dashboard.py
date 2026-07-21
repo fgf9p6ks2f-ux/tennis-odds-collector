@@ -975,7 +975,7 @@ TT_LIVE_JS = """
     var rows = '';
     for (var i=0; i<entries.length; i++){
       var x = entries[i], tip = _ttTime(new Date(x.start).toISOString()), o = x.side==='over'?'O':'U';
-      var chip = (x.hit != null) ? ('<span class="tchip ' + (x.hit>=78?'tA':'tB') + '">' + x.hit + '%</span>') : '';
+      var chip = (x.hit != null) ? ('<div class="ttconf"><span class="tchip ' + (x.hit>=78?'tA':'tB') + '">' + x.hit + '%</span><span class="ttconflab">hit rate</span></div>') : '';
       var lncell = x.real ? (''+x.line) : ('<span class="tld">~</span>' + x.line);
       var src = x.real ? '<span class="fd">FanDuel line</span>' : '<span class="pj">projected</span>';
       rows += '<div class="ttbet"><span class="pind ' + o.toLowerCase() + '">' + o + '</span>'
@@ -985,7 +985,7 @@ TT_LIVE_JS = """
     }
     el.innerHTML = '<div class="card"><h3 class="ttlg">\\uD83C\\uDFD3 TT Elite ' + mid + ' Flags'
       + '<span class="ttcnt">' + entries.length + '</span></h3>' + rows
-      + '<div class="ttfoot">only pairs hitting a side 70%+ at the line ' + mid + ' FanDuel = priced now ' + mid + ' projected = before FanDuel posts</div></div>';
+      + '<div class="ttfoot">hit rate = share of H2H meetings that went this side at this line ' + mid + ' only pairs \\u226570% shown ' + mid + ' FanDuel = priced now ' + mid + ' projected = before FanDuel posts</div></div>';
   };
   window._fetchTTTotals = async function(){
     try {
@@ -1080,7 +1080,8 @@ def _tt_totals_card(tt_json, now=None):
         tip = x["start"].astimezone(MT).strftime("%-I:%M %p")
         o = "O" if x["side"] == "over" else "U"
         conf = x.get("hit")
-        chip = (f'<span class="tchip {"tA" if conf >= 78 else "tB"}">{conf}%</span>'
+        chip = (f'<div class="ttconf"><span class="tchip {"tA" if conf >= 78 else "tB"}">{conf}%</span>'
+                f'<span class="ttconflab">hit rate</span></div>'
                 if conf is not None else "")
         if x["real"]:
             lncell, src = f'{x["line"]:g}', '<span class="fd">FanDuel line</span>'
@@ -1093,7 +1094,8 @@ def _tt_totals_card(tt_json, now=None):
                  f'{chip}</div>')
     return (f'<div class="card"><h3 class="ttlg">🏓 TT Elite · Flags'
             f'<span class="ttcnt">{len(entries)}</span></h3>{rows}'
-            f'<div class="ttfoot">only pairs hitting a side 70%+ at the line · FanDuel = priced now · '
+            f'<div class="ttfoot">hit rate = share of the pair’s H2H meetings that went this side '
+            f'at this line · only pairs ≥70% shown · FanDuel = priced now · '
             f'projected = our line before FanDuel posts</div></div>')
 
 
@@ -1799,6 +1801,10 @@ def build():
   .ttbsb {{ color:#93a0b4; font-size:12px; margin-top:2px; }}
   .ttbsb .pj {{ color:#8ea2bd; font-weight:600; }}
   .ttbsb .fd {{ color:#4da3ff; font-weight:600; }}
+  .ttbet .pind.u {{ color:#ef6a6a; background:rgba(239,106,106,.16); }}   /* TT: unders RED (over stays green) */
+  .ttconf {{ display:flex; flex-direction:column; align-items:center; gap:2px; flex:none; }}
+  .ttconf .tchip {{ margin:0; vertical-align:0; }}
+  .ttconflab {{ font-size:8px; color:#5b6b82; text-transform:uppercase; letter-spacing:.04em; font-weight:700; white-space:nowrap; }}
   .plno {{ font-size:24px; font-weight:800; font-variant-numeric:tabular-nums; letter-spacing:-.015em;
           white-space:nowrap; }}
   .plno.rng {{ font-size:16px; }}
