@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T08:54:27Z",
+ "captured_at": "2026-07-21T08:59:40Z",
  "matches": [
   {
    "event_id": 35848461,
@@ -8,9 +8,9 @@
    "p1_norm": "maksymilian rus",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-21T08:45:00.000Z",
-   "line": 88.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 91.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35848462,
@@ -19,9 +19,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-21T08:45:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 108.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848473,
@@ -31,8 +31,8 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-21T09:00:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35848475,
@@ -42,8 +42,8 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T09:00:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35848476,
@@ -88,6 +88,28 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35848519,
+   "p1": "Waldemar Glanowski",
+   "p2": "Wojciech Urban",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-21T09:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35848520,
+   "p1": "Igor Dabrowski",
+   "p2": "Kacper Szurlej",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "kacper szurlej",
+   "open_date": "2026-07-21T09:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
