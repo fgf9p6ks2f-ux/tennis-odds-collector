@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-21T05:31:57Z",
+ "captured_at": "2026-07-21T05:36:31Z",
  "matches": [
   {
    "event_id": 35848282,
@@ -8,20 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-21T05:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35848284,
-   "p1": "Jakub Chmielowski",
-   "p2": "Blazej Warpas",
-   "p1_norm": "jakub chmielowski",
-   "p2_norm": "blazej warpas",
-   "open_date": "2026-07-21T05:15:00.000Z",
-   "line": 98.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 72.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35848300,
@@ -30,9 +19,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-21T05:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 63.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848305,
@@ -41,9 +30,9 @@
    "p1_norm": "kacper szurlej",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-21T05:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35848306,
@@ -52,9 +41,9 @@
    "p1_norm": "adam ruszkiewicz",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-21T05:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35848308,
@@ -99,6 +88,28 @@
    "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35848325,
+   "p1": "Milosz Cesarz",
+   "p2": "Dawid Jendrysik",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "dawid jendrysik",
+   "open_date": "2026-07-21T06:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35848326,
+   "p1": "Kamil Klocek",
+   "p2": "Jakub Chmielowski",
+   "p1_norm": "kamil klocek",
+   "p2_norm": "jakub chmielowski",
+   "open_date": "2026-07-21T06:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
