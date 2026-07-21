@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T17:00:06Z",
+ "captured_at": "2026-07-21T17:05:44Z",
  "matches": [
-  {
-   "event_id": 35850253,
-   "p1": "Sebastian Krupa",
-   "p2": "Kaczynski Piotr",
-   "p1_norm": "sebastian krupa",
-   "p2_norm": "kaczynski piotr",
-   "open_date": "2026-07-21T16:50:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35850258,
    "p1": "Wojciech Gluszek",
@@ -19,7 +8,7 @@
    "p1_norm": "wojciech gluszek",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-21T16:55:00.000Z",
-   "line": 79.5,
+   "line": 90.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,7 +19,7 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-21T16:55:00.000Z",
-   "line": 77.5,
+   "line": 89.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -43,7 +32,7 @@
    "open_date": "2026-07-21T17:05:00.000Z",
    "line": 78.5,
    "over_odds": -118,
-   "under_odds": -112
+   "under_odds": -116
   },
   {
    "event_id": 35850275,
@@ -86,6 +75,17 @@
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-21T17:20:00.000Z",
    "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850326,
+   "p1": "Marian Brunner",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "marian brunner",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-21T17:30:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
