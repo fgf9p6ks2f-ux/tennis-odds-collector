@@ -1,5 +1,5 @@
 # WNBA prop context report
-_updated 2026-07-21 02:18 UTC · 116 graded props (116 matched to finals)_
+_updated 2026-07-21 02:24 UTC · 116 graded props (116 matched to finals)_
 
 Overall **61-55 (53%)** · OVER 46-41 (53%) · UNDER 15-14 (52%)
 
