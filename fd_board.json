@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T16:31:12Z",
+ "captured_at": "2026-07-22T16:38:53Z",
  "matches": [
-  {
-   "event_id": 35853487,
-   "p1": "Wojciech Pytlas",
-   "p2": "Jerzy Pelka",
-   "p1_norm": "wojciech pytlas",
-   "p2_norm": "jerzy pelka",
-   "open_date": "2026-07-22T16:25:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35853480,
    "p1": "Jakub Kuzmicz",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-22T16:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35853516,
@@ -30,20 +19,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-22T16:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35853522,
-   "p1": "Adrian Fabis",
-   "p2": "Bartlomiej Wisniewski",
-   "p1_norm": "adrian fabis",
-   "p2_norm": "bartlomiej wisniewski",
-   "open_date": "2026-07-22T16:35:00.000Z",
-   "line": 83.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -115
   }
  ]
 }
