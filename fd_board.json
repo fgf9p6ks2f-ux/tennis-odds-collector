@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-22T11:43:27Z",
+ "captured_at": "2026-07-22T11:49:34Z",
  "matches": [
-  {
-   "event_id": 35852165,
-   "p1": "Mariusz Baron",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-22T11:25:00.000Z",
-   "line": 105.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35852196,
-   "p1": "Mariusz Zwolinski",
-   "p2": "Adrian Myszewski",
-   "p1_norm": "mariusz zwolinski",
-   "p2_norm": "adrian myszewski",
-   "open_date": "2026-07-22T11:25:00.000Z",
-   "line": 99.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35852200,
-   "p1": "Kamil Smolka",
-   "p2": "Krzysztof Hetnar",
-   "p1_norm": "kamil smolka",
-   "p2_norm": "krzysztof hetnar",
-   "open_date": "2026-07-22T11:30:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35852186,
    "p1": "Josef Braun",
@@ -41,9 +8,20 @@
    "p1_norm": "josef braun",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-22T11:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35852216,
+   "p1": "Grzegorz Adamiak",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "grzegorz adamiak",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-22T11:45:00.000Z",
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852197,
@@ -66,6 +44,17 @@
    "line": 71.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35852224,
+   "p1": "Igor Szymanski",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-22T12:15:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
