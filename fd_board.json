@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T13:24:51Z",
+ "captured_at": "2026-07-22T13:29:23Z",
  "matches": [
-  {
-   "event_id": 35852663,
-   "p1": "Grzegorz Adamiak",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "grzegorz adamiak",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-22T13:00:00.000Z",
-   "line": 95.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35852659,
    "p1": "Jakub Folwarski",
@@ -19,9 +8,20 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T13:20:00.000Z",
-   "line": 53.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 51.5,
+   "over_odds": 120,
+   "under_odds": -165
+  },
+  {
+   "event_id": 35852908,
+   "p1": "Kacper Glazowski",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "kacper glazowski",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-22T13:25:00.000Z",
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852683,
@@ -44,6 +44,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35852916,
+   "p1": "Mariusz Baron",
+   "p2": "Igor Szymanski",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-22T13:55:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
