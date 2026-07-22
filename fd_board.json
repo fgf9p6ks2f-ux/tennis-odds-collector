@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T16:18:29Z",
+ "captured_at": "2026-07-22T16:24:46Z",
  "matches": [
   {
    "event_id": 35853478,
@@ -8,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-22T16:05:00.000Z",
-   "line": 61.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 77.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35853485,
@@ -19,20 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-22T16:15:00.000Z",
-   "line": 77.5,
+   "line": 83.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35853497,
-   "p1": "Rafal Gajda",
-   "p2": "Michal Oracz",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "michal oracz",
-   "open_date": "2026-07-22T16:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35853487,
@@ -53,8 +42,8 @@
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-22T16:30:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
