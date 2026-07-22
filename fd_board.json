@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T07:32:53Z",
+ "captured_at": "2026-07-22T07:38:50Z",
  "matches": [
-  {
-   "event_id": 35851660,
-   "p1": "Piotr Gumulinski",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-22T07:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35851662,
    "p1": "Jiri Vrablik",
@@ -19,9 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T07:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 88.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35851665,
@@ -30,20 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-22T07:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35851664,
-   "p1": "Marek Tkocz",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "marek tkocz",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-22T07:35:00.000Z",
-   "line": 77.5,
+   "line": 60.5,
    "over_odds": -110,
-   "under_odds": -120
+   "under_odds": -125
   },
   {
    "event_id": 35851661,
@@ -75,6 +53,17 @@
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-22T07:45:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35851714,
+   "p1": "Karol Wisniewski",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-22T08:05:00.000Z",
+   "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
   }
