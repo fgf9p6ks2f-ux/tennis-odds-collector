@@ -778,8 +778,10 @@ def _recent_dd(days):
 
 
 def _tracker_panel(wnba_rec, tt_json):
-    """Tracker tab — live record / hit rate / units for WNBA and Table Tennis, flat 1u,
-    updated as each event settles."""
+    """Tracker tab — live record / hit rate / units, flat 1u, updated as each event settles.
+    Order (user 2026-07-22): WNBA · MLB · TT Elite · WNBA parlays. CLV + calibration were REMOVED
+    from the display — still computed/accumulated in the background (wnba_clv.py --close in the loop,
+    wnba_calib.calibration() on demand), just not rendered here."""
     def card(emoji, title, w, l, u, note, recent=None):
         n = w + l
         hit = f"{w/n*100:.0f}%" if n else "—"
@@ -796,42 +798,26 @@ def _tracker_panel(wnba_rec, tt_json):
         <div class="tsub">{html.escape(note)}{(' · ROI ' + roi) if roi else ''}</div>
         {_recent_dd(recent)}
       </div>"""
+
+    # 1) WNBA injury props
     w, l, u = wnba_rec
-    out = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9", recent=_wnba_recent())
-    try:                                                  # parlay ROI (ALL suggested, staked .25/.15u)
-        import wnba_slip as SLIP
-        pr = SLIP.parlay_record()
-        if pr["w"] + pr["l"] + pr["void"] + pr["pending"] + pr["suggested"] > 0:
-            hit = f"{pr['w'] / (pr['w'] + pr['l']) * 100:.0f}%" if (pr["w"] + pr["l"]) else "—"
-            roi = f"{pr['roi'] * 100:+.0f}%" if pr["staked"] else "—"
-            ucls = "up" if pr["units"] > 0 else ("down" if pr["units"] < 0 else "")
-            sub = "every suggested parlay counts · .25u · .15u ≥+1000"
-            extra = [f"{pr['pending']} pending"] if pr["pending"] else []
-            extra += [f"{pr['void']} void"] if pr["void"] else []
-            extra += [f"{pr['suggested']} suggested"] if pr["suggested"] else []
-            sub += (" · " + " · ".join(extra)) if extra else ""
-            out += (f'<div class="tcard"><div class="thead">🎰 WNBA parlays</div><div class="trow">'
-                    f'<div class="tbox"><div class="tk">Record</div><div class="tv">{pr["w"]}-{pr["l"]}</div></div>'
-                    f'<div class="tbox"><div class="tk">Hit rate</div><div class="tv">{hit}</div></div>'
-                    f'<div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{pr["units"]:+.2f}u</div></div>'
-                    f'</div><div class="tsub">{html.escape(sub)}'
-                    + (f' · ROI {roi}' if (pr["w"] + pr["l"]) >= 10 else '') + '</div></div>')
-    except Exception:
-        pass
-    try:                                                  # calibration monitor — the expand/edge-size green light
-        import wnba_calib as CAL
-        c = CAL.calibration()
-        if c:
-            dcls = "up" if c["disc"] > 0 else ("down" if c["disc"] < 0 else "")
-            out += (f'<div class="tcard diag"><div class="thead" style="cursor:pointer" '
-                    f'onclick="this.parentElement.classList.toggle(\'open\')">📐 Calibration '
-                    f'<span class="tsh">diagnostics · tap</span></div><div class="tbody"><div class="trow">'
-                    f'<div class="tbox"><div class="tk">Sample</div><div class="tv">{c["n"]}/{CAL.MIN_N}</div></div>'
-                    f'<div class="tbox"><div class="tk">Optimism</div><div class="tv">{c["optimism"] * 100:+.0f}%</div></div>'
-                    f'<div class="tbox"><div class="tk">Ranking</div><div class="tv {dcls}">{c["disc"] * 100:+.0f}%</div></div>'
-                    f'</div><div class="tsub">{html.escape(c["verdict"])}</div></div></div>')
-    except Exception:
-        pass
+    wnba_card = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9", recent=_wnba_recent())
+
+    # 2) MLB outs-under — headline the ★★ PREMIUM tier; base away+contact in the note
+    mlb_card = ""
+    pw, pl, pu = _mlb_record(premium=True)
+    bw, bl, bu = _mlb_record()                                       # base away+contact
+    prec = _mlb_recent(premium=True)
+    plays_now = _mlb_plays()
+    ppend = sum(1 for p in plays_now if p.get("premium"))
+    if (pw + pl + bw + bl) or ppend or prec:
+        note = (f"★★ = away+contact + (low-patience opp OR line&gt;recent) · base away+contact "
+                f"{bw}-{bl} ({bu:+.1f}u) · flag-time price · paper")
+        note += f" · {ppend} premium pending" if ppend else ""
+        mlb_card = card("⚾", "MLB outs-under ★★", pw, pl, pu, note, recent=prec)
+
+    # 3) TT Elite (real FanDuel line) + shadow leagues sub-table
+    tt_card = ""
     tt = (tt_json or {}).get("tracker")
     leagues = (tt or {}).get("leagues")
     if leagues:
@@ -845,8 +831,8 @@ def _tracker_panel(wnba_rec, tt_json):
             if (flt.get("w", 0) + flt.get("l", 0)) > 0:
                 note += (f" · shadow 80-90u {flt['w']}-{flt['l']} "
                          f"({flt['u']:+.1f}u, filtered out — validating)")
-            out += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note,
-                        recent=(tt or {}).get("recent"))
+            tt_card += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note,
+                            recent=(tt or {}).get("recent"))
         rest = [x for x in leagues if x["league"] != "TT Elite Series"]
         if rest:                                           # shadow leagues — compact per-league table
             trows = ""
@@ -857,63 +843,42 @@ def _tracker_panel(wnba_rec, tt_json):
                 trows += (f'<div class="ttrkrow"><span>{html.escape(SHORT.get(x["league"], x["league"]))}</span>'
                           f'<span>{x["w"]}-{x["l"]}</span><span>{hit}</span>'
                           f'<span class="{ucls}">{x["u"]:+.1f}u</span></div>')
-            out += (f'<div class="tcard"><div class="thead">🏓 Other TT leagues '
-                    f'<span class="tsh">shadow · not bet</span></div>'
-                    f'<div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span>'
-                    f'<span>hit</span><span>units</span></div>{trows}</div>'
-                    f'<div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div>')
+            tt_card += (f'<div class="tcard"><div class="thead">🏓 Other TT leagues '
+                        f'<span class="tsh">shadow · not bet</span></div>'
+                        f'<div class="ttrk"><div class="ttrkrow ttrkhd"><span>league</span><span>W-L</span>'
+                        f'<span>hit</span><span>units</span></div>{trows}</div>'
+                        f'<div class="tsub">validation only · flat 1u @ -120 · hidden from the bet board</div></div>')
     elif tt:                                               # backward-compat: old combined tracker
-        out += card("🏓", "Table tennis", tt.get("w", 0), tt.get("l", 0), tt.get("u", 0.0),
-                    "flat 1u · settles live · since 7/9")
+        tt_card += card("🏓", "Table tennis", tt.get("w", 0), tt.get("l", 0), tt.get("u", 0.0),
+                        "flat 1u · settles live · since 7/9")
     else:
-        out += ('<div class="tcard"><div class="thead">🏓 Table tennis</div>'
-                '<div class="tsub">connecting… (needs the tt-elite bridge)</div></div>')
-    # INJURY-TIMING CLV — the real proof-of-edge: does the line move toward our read from the moment
-    # we flag the injury (open) to the close? Accumulates as slates settle; the verdict is the green
-    # light to scale real money.
-    try:
-        import wnba_clv as CLV
-        cv = CLV.verdict()
-    except Exception:
-        cv = None
-    if cv and not cv["ready"]:
-        out += (f'<div class="tcard"><div class="thead">🎯 Injury-timing CLV</div>'
-                f'<div class="tsub">Accumulating <b>{cv["n"]}/{cv["need"]}</b> shadows over '
-                f'<b>{cv.get("dates", 0)}/{cv.get("need_dates", 5)}</b> slates — one night\'s shadows are '
-                f'correlated, so the "are we beating the close?" verdict waits for breadth. This is the '
-                f'proof the timing edge is real before scaling stakes.</div></div>')
-    elif cv:
-        lm, pos = cv["line_move"], cv["pos_rate"]
-        good = lm > 0 and pos >= 0.5
-        mixed = lm > 0 and pos < 0.5
-        vcls = "up" if good else ("" if mixed else "down")
-        vtext = ('✓ line moves toward our read — beating the close' if good
-                 else '~ mixed: mean move positive but most lines drift against'
-                 if mixed else '✗ line drifts against us')
-        hit = f' · realized {cv["hit"] * 100:.0f}%' if cv["hit"] is not None else ""
-        out += f"""
-      <div class="tcard">
-        <div class="thead">🎯 Injury-timing CLV</div>
-        <div class="trow">
-          <div class="tbox"><div class="tk">Line move</div><div class="tv {vcls}">{lm:+.2f}</div></div>
-          <div class="tbox"><div class="tk">Positive</div><div class="tv">{pos * 100:.0f}%</div></div>
-          <div class="tbox"><div class="tk">Corr</div><div class="tv">{cv["corr"]:+.2f}</div></div>
-        </div>
-        <div class="tsub">{vtext}{hit} · {cv['n']} shadows / {cv.get('dates', '?')} slates (open vs close)</div>
-      </div>"""
-    # ⚾ MLB outs-under — headline the ★★ PREMIUM tier (+49% backtest); base away+contact in the note
-    pw, pl, pu = _mlb_record(premium=True)
-    bw, bl, bu = _mlb_record()                                       # base away+contact (+25%)
-    prec = _mlb_recent(premium=True)
-    plays_now = _mlb_plays()
-    ppend = sum(1 for p in plays_now if p.get("premium"))
-    if (pw + pl + bw + bl) or ppend or prec:
-        note = (f"★★ = away+contact + (low-patience opp OR line&gt;recent) · base away+contact "
-                f"{bw}-{bl} ({bu:+.1f}u) · flag-time price · paper")
-        note += f" · {ppend} premium pending" if ppend else ""
-        out += card("⚾", "MLB outs-under ★★", pw, pl, pu, note, recent=prec)
-    return out
+        tt_card += ('<div class="tcard"><div class="thead">🏓 Table tennis</div>'
+                    '<div class="tsub">connecting… (needs the tt-elite bridge)</div></div>')
 
+    # 4) WNBA parlays
+    parlay_card = ""
+    try:                                                  # parlay ROI (ALL suggested, staked .25/.15u)
+        import wnba_slip as SLIP
+        pr = SLIP.parlay_record()
+        if pr["w"] + pr["l"] + pr["void"] + pr["pending"] + pr["suggested"] > 0:
+            hit = f"{pr['w'] / (pr['w'] + pr['l']) * 100:.0f}%" if (pr["w"] + pr["l"]) else "—"
+            roi = f"{pr['roi'] * 100:+.0f}%" if pr["staked"] else "—"
+            ucls = "up" if pr["units"] > 0 else ("down" if pr["units"] < 0 else "")
+            sub = "every suggested parlay counts · .25u · .15u ≥+1000"
+            extra = [f"{pr['pending']} pending"] if pr["pending"] else []
+            extra += [f"{pr['void']} void"] if pr["void"] else []
+            extra += [f"{pr['suggested']} suggested"] if pr["suggested"] else []
+            sub += (" · " + " · ".join(extra)) if extra else ""
+            parlay_card = (f'<div class="tcard"><div class="thead">🎰 WNBA parlays</div><div class="trow">'
+                           f'<div class="tbox"><div class="tk">Record</div><div class="tv">{pr["w"]}-{pr["l"]}</div></div>'
+                           f'<div class="tbox"><div class="tk">Hit rate</div><div class="tv">{hit}</div></div>'
+                           f'<div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{pr["units"]:+.2f}u</div></div>'
+                           f'</div><div class="tsub">{html.escape(sub)}'
+                           + (f' · ROI {roi}' if (pr["w"] + pr["l"]) >= 10 else '') + '</div></div>')
+    except Exception:
+        pass
+
+    return wnba_card + mlb_card + tt_card + parlay_card
 
 def _tt_ladder(lad, play_to, zone):
     """Tap-to-expand hit-rate ladder: the raw H2H hit rate of the FLAGGED SIDE at every line
