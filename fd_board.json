@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T04:10:41Z",
+ "captured_at": "2026-07-22T04:17:40Z",
  "matches": [
-  {
-   "event_id": 35851123,
-   "p1": "Adrian Myszewski",
-   "p2": "Artur Szoltysek",
-   "p1_norm": "adrian myszewski",
-   "p2_norm": "artur szoltysek",
-   "open_date": "2026-07-22T03:50:00.000Z",
-   "line": 94.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35851128,
-   "p1": "Stapor Rafal",
-   "p2": "Michal Minda",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-22T04:00:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35851134,
    "p1": "Karol Sulkowski",
@@ -30,9 +8,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "mariusz zwolinski",
    "open_date": "2026-07-22T04:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851151,
@@ -88,6 +66,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35851184,
+   "p1": "Michal Machelski",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "michal machelski",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-22T04:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
