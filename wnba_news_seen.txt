@@ -102,6 +102,7 @@ rw|969|Manages 11 points in loss
 rw|971|Remains away from team
 rw|972|Not listed on injury report
 rw|979|Not on injury report
+rw|979|Questionable for Wednesday
 rw|979|Sitting out Monday
 rw|980|Flirts with double-double
 rw|981|Nearly double-doubles
