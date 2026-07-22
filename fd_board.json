@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T04:23:20Z",
+ "captured_at": "2026-07-22T04:29:05Z",
  "matches": [
-  {
-   "event_id": 35851134,
-   "p1": "Karol Sulkowski",
-   "p2": "Mariusz Zwolinski",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "mariusz zwolinski",
-   "open_date": "2026-07-22T04:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35851151,
-   "p1": "Jakub Skorupa",
-   "p2": "Marian Brunner",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "marian brunner",
-   "open_date": "2026-07-22T04:20:00.000Z",
-   "line": 57.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35851152,
    "p1": "Milosz Cesarz",
@@ -30,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-22T04:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851161,
@@ -74,9 +52,20 @@
    "p1_norm": "michal machelski",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T04:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35851198,
+   "p1": "Stapor Rafal",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-22T04:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35851199,
@@ -88,6 +77,39 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35851206,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-22T04:55:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35851207,
+   "p1": "Karol Wisniewski",
+   "p2": "Jiri Vrablik",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "jiri vrablik",
+   "open_date": "2026-07-22T04:55:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35851208,
+   "p1": "Artur Szoltysek",
+   "p2": "Karol Sulkowski",
+   "p1_norm": "artur szoltysek",
+   "p2_norm": "karol sulkowski",
+   "open_date": "2026-07-22T04:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
