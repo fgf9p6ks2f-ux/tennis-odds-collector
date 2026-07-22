@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T13:55:27Z",
+ "captured_at": "2026-07-22T14:01:58Z",
  "matches": [
   {
    "event_id": 35852939,
@@ -8,20 +8,20 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-22T13:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
-   "event_id": 35852916,
-   "p1": "Mariusz Baron",
-   "p2": "Igor Szymanski",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "igor szymanski",
+   "event_id": 35852941,
+   "p1": "Mariusz Zwolinski",
+   "p2": "Artur Szoltysek",
+   "p1_norm": "mariusz zwolinski",
+   "p2_norm": "artur szoltysek",
    "open_date": "2026-07-22T13:55:00.000Z",
-   "line": 73.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852930,
