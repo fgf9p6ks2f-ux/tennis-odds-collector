@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T10:32:39Z",
+ "captured_at": "2026-07-22T10:38:42Z",
  "matches": [
-  {
-   "event_id": 35852014,
-   "p1": "Rafal Gajda",
-   "p2": "Kamil Smolka",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "kamil smolka",
-   "open_date": "2026-07-22T10:20:00.000Z",
-   "line": 94.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35851982,
    "p1": "Jiri Vrablik",
@@ -19,9 +8,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T10:25:00.000Z",
-   "line": 72.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852087,
@@ -30,20 +19,20 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-22T10:30:00.000Z",
-   "line": 79.5,
+   "line": 87.5,
    "over_odds": -120,
    "under_odds": -115
   },
   {
-   "event_id": 35851986,
-   "p1": "Igor Szymanski",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "jakub kaczmarek",
+   "event_id": 35852122,
+   "p1": "Artur Szoltysek",
+   "p2": "Adrian Myszewski",
+   "p1_norm": "artur szoltysek",
+   "p2_norm": "adrian myszewski",
    "open_date": "2026-07-22T10:35:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852017,
@@ -55,6 +44,17 @@
    "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35852129,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-22T11:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
