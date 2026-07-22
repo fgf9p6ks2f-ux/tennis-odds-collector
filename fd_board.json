@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T09:16:29Z",
+ "captured_at": "2026-07-22T09:22:24Z",
  "matches": [
   {
    "event_id": 35851791,
@@ -8,31 +8,9 @@
    "p1_norm": "wiktor ptak",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T09:00:00.000Z",
-   "line": 99.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35851792,
-   "p1": "Josef Braun",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "josef braun",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-22T09:00:00.000Z",
-   "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35851891,
-   "p1": "Rafal Gajda",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-22T09:05:00.000Z",
-   "line": 68.5,
-   "over_odds": -145,
-   "under_odds": 105
+   "line": 106.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35851873,
