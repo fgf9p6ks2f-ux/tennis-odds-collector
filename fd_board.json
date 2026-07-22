@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T03:18:56Z",
+ "captured_at": "2026-07-22T03:24:19Z",
  "matches": [
-  {
-   "event_id": 35851080,
-   "p1": "Jakub Skorupa",
-   "p2": "Michal Machelski",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-22T03:05:00.000Z",
-   "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35851084,
-   "p1": "Milosz Cesarz",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "milosz cesarz",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-22T03:10:00.000Z",
-   "line": 54.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35851108,
    "p1": "Mariusz Zwolinski",
@@ -88,6 +66,28 @@
    "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35851123,
+   "p1": "Adrian Myszewski",
+   "p2": "Artur Szoltysek",
+   "p1_norm": "adrian myszewski",
+   "p2_norm": "artur szoltysek",
+   "open_date": "2026-07-22T03:50:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35851124,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Wiktor Ptak",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "wiktor ptak",
+   "open_date": "2026-07-22T03:50:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
