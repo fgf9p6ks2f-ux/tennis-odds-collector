@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T12:28:12Z",
+ "captured_at": "2026-07-22T12:35:49Z",
  "matches": [
-  {
-   "event_id": 35852486,
-   "p1": "Artur Szoltysek",
-   "p2": "Kamil Klocek",
-   "p1_norm": "artur szoltysek",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-22T12:15:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35852502,
-   "p1": "Sebastian Juzek",
-   "p2": "Michal Oracz",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "michal oracz",
-   "open_date": "2026-07-22T12:20:00.000Z",
-   "line": 51.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35852246,
    "p1": "Adrian Wiecek",
@@ -30,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-22T12:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852487,
