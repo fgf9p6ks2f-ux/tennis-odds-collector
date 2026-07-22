@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T22:12:31Z",
+ "captured_at": "2026-07-22T22:18:45Z",
  "matches": [
-  {
-   "event_id": 35854472,
-   "p1": "Michal Wolny",
-   "p2": "Jacek Zelezik",
-   "p1_norm": "michal wolny",
-   "p2_norm": "jacek zelezik",
-   "open_date": "2026-07-22T21:55:00.000Z",
-   "line": 98.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35854475,
    "p1": "Maciej Kolek",
@@ -19,9 +8,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-22T22:05:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35854479,
@@ -30,7 +19,7 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "mikolaj lukaszewski",
    "open_date": "2026-07-22T22:10:00.000Z",
-   "line": 80.5,
+   "line": 52.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-22T22:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -125,
+   "under_odds": -110
   }
  ]
 }
