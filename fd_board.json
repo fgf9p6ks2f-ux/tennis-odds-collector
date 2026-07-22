@@ -1,4 +1,16 @@
 {
- "captured_at": "2026-07-22T17:56:17Z",
- "matches": []
+ "captured_at": "2026-07-22T18:01:03Z",
+ "matches": [
+  {
+   "event_id": 35853840,
+   "p1": "Janus Slawomir",
+   "p2": "Michal Wolny",
+   "p1_norm": "janus slawomir",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-22T17:55:00.000Z",
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
+  }
+ ]
 }
