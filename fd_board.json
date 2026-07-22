@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T10:13:21Z",
+ "captured_at": "2026-07-22T10:19:21Z",
  "matches": [
   {
    "event_id": 35851938,
@@ -9,8 +9,8 @@
    "p2_norm": "adrian wiecek",
    "open_date": "2026-07-22T10:00:00.000Z",
    "line": 89.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35851958,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-22T10:05:00.000Z",
-   "line": 66.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 51.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35851962,
@@ -30,7 +30,7 @@
    "p1_norm": "wiktor ptak",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-22T10:10:00.000Z",
-   "line": 79.5,
+   "line": 86.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +41,9 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "mariusz zwolinski",
    "open_date": "2026-07-22T10:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35851982,
@@ -52,9 +52,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T10:25:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35851986,
