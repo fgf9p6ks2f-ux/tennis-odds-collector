@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T17:39:38Z",
+ "captured_at": "2026-07-22T17:45:42Z",
  "matches": [
-  {
-   "event_id": 35853638,
-   "p1": "Adam Staniczek",
-   "p2": "Kacper Kwiatkowski",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "kacper kwiatkowski",
-   "open_date": "2026-07-22T17:20:00.000Z",
-   "line": 91.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35853657,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Jacek Zelezik",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "jacek zelezik",
-   "open_date": "2026-07-22T17:30:00.000Z",
-   "line": 55.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35853668,
    "p1": "Jerzy Pelka",
@@ -30,7 +8,7 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "piotr zemla",
    "open_date": "2026-07-22T17:35:00.000Z",
-   "line": 79.5,
+   "line": 95.5,
    "over_odds": -120,
    "under_odds": -115
   }
