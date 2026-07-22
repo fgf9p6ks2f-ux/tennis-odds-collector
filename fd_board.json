@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-22T20:46:29Z",
+ "captured_at": "2026-07-22T20:52:46Z",
  "matches": [
+  {
+   "event_id": 35854378,
+   "p1": "Henryk Tkaczyk",
+   "p2": "Michal Wolny",
+   "p1_norm": "henryk tkaczyk",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-22T20:45:00.000Z",
+   "line": 62.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
   {
    "event_id": 35854379,
    "p1": "Wojciech Pytlas",
@@ -8,7 +19,7 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-22T20:45:00.000Z",
-   "line": 79.5,
+   "line": 62.5,
    "over_odds": -115,
    "under_odds": -120
   }
