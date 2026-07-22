@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T03:30:53Z",
+ "captured_at": "2026-07-22T03:36:16Z",
  "matches": [
   {
    "event_id": 35851108,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz zwolinski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-22T03:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851109,
@@ -19,9 +19,9 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-22T03:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851112,
@@ -30,7 +30,7 @@
    "p1_norm": "jerzy michalik",
    "p2_norm": "marian brunner",
    "open_date": "2026-07-22T03:30:00.000Z",
-   "line": 77.5,
+   "line": 84.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +41,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-22T03:35:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851119,
@@ -86,6 +86,28 @@
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T03:55:00.000Z",
    "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35851128,
+   "p1": "Stapor Rafal",
+   "p2": "Michal Minda",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-22T04:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35851129,
+   "p1": "Marian Lebek",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "marian lebek",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-22T04:00:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
