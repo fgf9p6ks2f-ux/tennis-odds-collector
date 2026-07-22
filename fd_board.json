@@ -1,14 +1,14 @@
 {
- "captured_at": "2026-07-22T03:01:23Z",
+ "captured_at": "2026-07-22T03:07:53Z",
  "matches": [
   {
-   "event_id": 35851051,
-   "p1": "Oliver Vincenec",
-   "p2": "Marek Tkocz",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-22T02:45:00.000Z",
-   "line": 90.5,
+   "event_id": 35851073,
+   "p1": "Adrian Myszewski",
+   "p2": "Karol Sulkowski",
+   "p1_norm": "adrian myszewski",
+   "p2_norm": "karol sulkowski",
+   "open_date": "2026-07-22T03:00:00.000Z",
+   "line": 83.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -19,9 +19,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T03:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35851080,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-22T03:05:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851084,
@@ -77,6 +77,28 @@
    "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35851112,
+   "p1": "Jerzy Michalik",
+   "p2": "Marian Brunner",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "marian brunner",
+   "open_date": "2026-07-22T03:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35851114,
+   "p1": "Wojciech Urban",
+   "p2": "Marek Tkocz",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "marek tkocz",
+   "open_date": "2026-07-22T03:35:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
