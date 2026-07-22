@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T11:35:56Z",
+ "captured_at": "2026-07-22T11:43:27Z",
  "matches": [
   {
    "event_id": 35852165,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T11:25:00.000Z",
-   "line": 93.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 105.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35852196,
@@ -19,7 +19,7 @@
    "p1_norm": "mariusz zwolinski",
    "p2_norm": "adrian myszewski",
    "open_date": "2026-07-22T11:25:00.000Z",
-   "line": 92.5,
+   "line": 99.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +30,9 @@
    "p1_norm": "kamil smolka",
    "p2_norm": "krzysztof hetnar",
    "open_date": "2026-07-22T11:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35852186,
@@ -42,8 +42,8 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-22T11:40:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35852197,
@@ -55,6 +55,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35852210,
+   "p1": "Jiri Vrablik",
+   "p2": "Jakub Folwarski",
+   "p1_norm": "jiri vrablik",
+   "p2_norm": "jakub folwarski",
+   "open_date": "2026-07-22T12:05:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
