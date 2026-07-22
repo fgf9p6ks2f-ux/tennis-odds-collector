@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T00:10:51Z",
+ "captured_at": "2026-07-22T00:15:08Z",
  "matches": [
-  {
-   "event_id": 35850881,
-   "p1": "Artur Gromek",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "artur gromek",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-21T23:55:00.000Z",
-   "line": 74.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35850895,
    "p1": "Sebastian Szostok",
@@ -19,9 +8,9 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-22T00:10:00.000Z",
-   "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850898,
