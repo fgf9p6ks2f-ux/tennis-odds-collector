@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T19:57:23Z",
+ "captured_at": "2026-07-22T20:02:03Z",
  "matches": [
-  {
-   "event_id": 35854284,
-   "p1": "Oskar Jadach",
-   "p2": "Piotr Zemla",
-   "p1_norm": "oskar jadach",
-   "p2_norm": "piotr zemla",
-   "open_date": "2026-07-22T19:35:00.000Z",
-   "line": 94.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35854289,
    "p1": "Grzegorz Adamiak",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-22T19:40:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 99.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854317,
@@ -30,9 +19,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-22T19:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 56.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
