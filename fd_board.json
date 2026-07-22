@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T17:11:52Z",
+ "captured_at": "2026-07-22T17:18:10Z",
  "matches": [
   {
    "event_id": 35853605,
@@ -8,7 +8,7 @@
    "p1_norm": "kamil smolka",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-22T17:05:00.000Z",
-   "line": 88.5,
+   "line": 92.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-22T17:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   }
  ]
 }
