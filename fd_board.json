@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T22:29:30Z",
+ "captured_at": "2026-07-22T22:35:34Z",
  "matches": [
   {
    "event_id": 35854491,
@@ -8,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-22T22:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35854494,
@@ -19,9 +19,20 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-22T22:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854496,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Patryk Jendrzejewski",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "patryk jendrzejewski",
+   "open_date": "2026-07-22T22:30:00.000Z",
+   "line": 76.5,
+   "over_odds": -125,
+   "under_odds": -110
   }
  ]
 }
