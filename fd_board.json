@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T09:28:18Z",
+ "captured_at": "2026-07-22T09:35:35Z",
  "matches": [
   {
    "event_id": 35851873,
@@ -9,19 +9,8 @@
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-22T09:20:00.000Z",
    "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35851919,
-   "p1": "Aleksander Lilien",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-22T09:20:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35851887,
@@ -30,7 +19,7 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-22T09:25:00.000Z",
-   "line": 81.5,
+   "line": 77.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +30,20 @@
    "p1_norm": "mariusz zwolinski",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-22T09:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35851927,
+   "p1": "Michal Oracz",
+   "p2": "Kamil Smolka",
+   "p1_norm": "michal oracz",
+   "p2_norm": "kamil smolka",
+   "open_date": "2026-07-22T09:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35851907,
@@ -57,6 +57,17 @@
    "under_odds": -118
   },
   {
+   "event_id": 35851937,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-22T09:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
    "event_id": 35851925,
    "p1": "Schaniel Krzysztof",
    "p2": "Igor Szymanski",
@@ -64,6 +75,17 @@
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-22T09:50:00.000Z",
    "line": 72.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35851938,
+   "p1": "Josef Braun",
+   "p2": "Adrian Wiecek",
+   "p1_norm": "josef braun",
+   "p2_norm": "adrian wiecek",
+   "open_date": "2026-07-22T10:00:00.000Z",
+   "line": 84.5,
    "over_odds": -112,
    "under_odds": -118
   }
