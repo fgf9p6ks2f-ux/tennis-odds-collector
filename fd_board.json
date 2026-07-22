@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T15:37:50Z",
+ "captured_at": "2026-07-22T15:45:24Z",
  "matches": [
   {
    "event_id": 35853103,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-22T15:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 91.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35853121,
@@ -19,9 +19,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-22T15:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 65.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
