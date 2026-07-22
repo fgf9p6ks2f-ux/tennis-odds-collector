@@ -1729,7 +1729,7 @@ def _slip_html(rows=None):
         if not cards:
             return ""
         return ('<div class="parlays"><div class="op-title">Parlays'
-                '<span> · .25u · tap ✓ when played</span></div>'
+                '</div>'
                 f'<div class="slips">{cards}</div></div>')
     except Exception:
         return ""
@@ -1772,7 +1772,7 @@ def _ladders_html(rows):
                       f'<span class="lsp"></span><span class="ltot">{tot:g}u <span>total</span></span></div>'
                       f'<div class="lrungs">{rungs}</div></div>')
         return ('<div class="ladders"><div class="op-title">Ladders'
-                '<span> · 1u + declining rungs</span></div>'
+                '</div>'
                 f'{cards}</div>')
     except Exception:
         return ""
@@ -2523,7 +2523,6 @@ def build():
   </div>
   <div class="panel" id="wnba">
     {recstrip_html}
-    <div class="fbar">{h2_html}</div>
     <div id="games">{cards}</div>
     {starwatch_html}
     {ladders_html}
