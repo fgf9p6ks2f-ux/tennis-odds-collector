@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T18:54:31Z",
+ "captured_at": "2026-07-22T18:59:15Z",
  "matches": [
   {
    "event_id": 35854229,
@@ -8,9 +8,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-22T18:45:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35854230,
@@ -19,7 +19,7 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-22T18:45:00.000Z",
-   "line": 74.5,
+   "line": 80.5,
    "over_odds": -115,
    "under_odds": -120
   }
