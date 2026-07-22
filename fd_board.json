@@ -1,14 +1,14 @@
 {
- "captured_at": "2026-07-22T15:02:11Z",
+ "captured_at": "2026-07-22T15:08:59Z",
  "matches": [
   {
-   "event_id": 35852966,
-   "p1": "Josef Braun",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "josef braun",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-22T14:35:00.000Z",
-   "line": 98.5,
+   "event_id": 35853045,
+   "p1": "Patryk Jendrzejewski",
+   "p2": "Maciej Kolek",
+   "p1_norm": "patryk jendrzejewski",
+   "p2_norm": "maciej kolek",
+   "open_date": "2026-07-22T15:00:00.000Z",
+   "line": 77.5,
    "over_odds": -115,
    "under_odds": -120
   }
