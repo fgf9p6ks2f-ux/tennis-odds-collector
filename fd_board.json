@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T08:56:44Z",
+ "captured_at": "2026-07-22T09:00:56Z",
  "matches": [
-  {
-   "event_id": 35851814,
-   "p1": "Kamil Smolka",
-   "p2": "Kacper Adamus",
-   "p1_norm": "kamil smolka",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-22T08:45:00.000Z",
-   "line": 66.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35851791,
    "p1": "Wiktor Ptak",
@@ -19,9 +8,9 @@
    "p1_norm": "wiktor ptak",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T09:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851792,
@@ -31,8 +20,8 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T09:00:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851873,
@@ -44,6 +33,17 @@
    "line": 83.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35851887,
+   "p1": "Mariusz Baron",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-22T09:25:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
