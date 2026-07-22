@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T00:21:30Z",
+ "captured_at": "2026-07-22T00:27:52Z",
  "matches": [
   {
    "event_id": 35850895,
@@ -8,9 +8,9 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-22T00:10:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 100.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850900,
@@ -19,9 +19,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-22T00:25:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850907,
