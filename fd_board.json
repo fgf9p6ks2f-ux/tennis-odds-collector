@@ -1,16 +1,27 @@
 {
- "captured_at": "2026-07-22T20:18:53Z",
+ "captured_at": "2026-07-22T20:27:45Z",
  "matches": [
   {
-   "event_id": 35854326,
-   "p1": "Jerzy Michalik",
-   "p2": "Kacper Kwiatkowski",
-   "p1_norm": "jerzy michalik",
-   "p2_norm": "kacper kwiatkowski",
-   "open_date": "2026-07-22T20:05:00.000Z",
-   "line": 93.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "event_id": 35854335,
+   "p1": "Pawel Kurek",
+   "p2": "Piotr Zemla",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "piotr zemla",
+   "open_date": "2026-07-22T20:20:00.000Z",
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854336,
+   "p1": "Miroslaw Warzecha",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "miroslaw warzecha",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-22T20:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   }
  ]
 }
