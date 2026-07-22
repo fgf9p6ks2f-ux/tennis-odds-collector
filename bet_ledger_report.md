@@ -1,13 +1,13 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-22T00:11:57 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-22T04:05:21 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 142-251-2  ·  **P&L:** -50.92u ($-5,092)  ·  **ROI:** -12.9%
-- **Avg CLV:** +6.95% over 312 closed bets  ·  **Open:** 24  ·  **Total logged:** 442
+- **Record:** 145-254-2  ·  **P&L:** -51.09u ($-5,108)  ·  **ROI:** -12.7%
+- **Avg CLV:** +6.95% over 312 closed bets  ·  **Open:** 19  ·  **Total logged:** 443
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
-Data OK — FanDuel 1254 lines @ `2026-07-22T00:11:10`.
+Data OK — FanDuel 1132 lines @ `2026-07-22T04:04:57`.
 
 ### by sport / stat
 
@@ -15,8 +15,8 @@ Data OK — FanDuel 1254 lines @ `2026-07-22T00:11:10`.
 |---|---|---|---|---|
 | ebasketball | total | 37 | +5.95 | -4.65% |
 | efootball | total | 3 | +0.74 | — |
-| mlb | f5_total | 32 | +9.95 | — |
-| mlb | game_total | 78 | +4.29 | — |
+| mlb | f5_total | 32 | +10.77 | — |
+| mlb | game_total | 79 | +3.31 | — |
 | mlb | strikeouts | 29 | -5.91 | +3.87% |
 | mlb | total_bases | 253 | -61.42 | +8.10% |
 | tennis | player_games | 10 | -4.54 | +11.06% |
@@ -25,6 +25,12 @@ Data OK — FanDuel 1254 lines @ `2026-07-22T00:11:10`.
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-22 | mlb | GAME (game_total) | game_total under 8.5 | 2.00 | W | 4 | +1.00u | — |
+| 2026-07-22 | mlb | GAME (game_total) | game_total over 9.5 | 1.87 | L | 5 | -1.00u | — |
+| 2026-07-22 | mlb | GAME (game_total) | game_total over 8.5 | 2.02 | W | 14 | +1.02u | — |
+| 2026-07-22 | mlb | GAME (game_total) | game_total over 7.5 | 2.04 | L | 7 | -1.00u | — |
+| 2026-07-22 | mlb | GAME (f5_total) | f5_total over 2.5 | 1.82 | W | 3 | +0.82u | — |
+| 2026-07-22 | mlb | GAME (game_total) | game_total over 6.5 | 1.72 | L | 5 | -1.00u | — |
 | 2026-07-21 | mlb | GAME (f5_total) | f5_total over 4.5 | 1.98 | W | 7 | +0.98u | — |
 | 2026-07-21 | mlb | GAME (game_total) | game_total over 13.5 | 1.85 | W | 17 | +0.85u | — |
 | 2026-07-21 | mlb | GAME (game_total) | game_total over 4.5 | 1.62 | W | 5 | +0.62u | — |
@@ -44,10 +50,4 @@ Data OK — FanDuel 1254 lines @ `2026-07-22T00:11:10`.
 | 2026-07-20 | ebasketball | CURSE v TAAPZ | total over 105.5 | 1.83 | W | 115 | +0.83u | -4.3% |
 | 2026-07-20 | mlb | GAME (f5_total) | f5_total over 4.5 | 2.00 | W | 5 | +1.00u | — |
 | 2026-07-20 | mlb | GAME (game_total) | game_total over 7.5 | 1.96 | W | 9 | +0.96u | — |
-| 2026-07-19 | ebasketball | HAWK v OMEN | total over 97.5 | 1.83 | L | 80 | -1.00u | -4.3% |
-| 2026-07-19 | mlb | GAME (game_total) | game_total over 3.5 | 1.56 | L | 3 | -1.00u | — |
-| 2026-07-19 | ebasketball | OMEN v HAWK | total over 97.5 | 1.80 | L | 75 | -1.00u | — |
-| 2026-07-19 | ebasketball | SKYFOX v THUNDER | total over 106.5 | 1.83 | W | 136 | +0.83u | -4.3% |
-| 2026-07-19 | ebasketball | DEFIANT v OUTLAW | total over 109.5 | 1.83 | W | 135 | +0.83u | -4.3% |
-| 2026-07-19 | mlb | GAME (game_total) | game_total under 9.5 | 1.91 | L | 13 | -1.00u | — |
 
