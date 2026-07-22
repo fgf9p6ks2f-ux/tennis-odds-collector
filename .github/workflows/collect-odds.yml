@@ -11,14 +11,16 @@ on:
 
 concurrency:
   group: collect-odds
-  cancel-in-progress: false
+  cancel-in-progress: true      # a fresh (cron OR self-redispatched) run supersedes the old — no pileup
 
 permissions:
   contents: write
+  actions: write                # github.token self-redispatch -> immortal chain past the throttled */30 cron
 
 jobs:
   collect:
     runs-on: ubuntu-latest
+    timeout-minutes: 45         # ~3min work + ~26min sleep + redispatch; a hung run can't block forever
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -104,3 +106,21 @@ jobs:
           # a branch; the final || echo means a lost snapshot never fails the run (next run re-collects).
           git pull --rebase --autostash -X theirs -q 2>/dev/null || { git rebase --abort 2>/dev/null || true; git reset --hard origin/main -q; }
           git push -q 2>/dev/null || { git pull --rebase --autostash -X theirs -q 2>/dev/null || git reset --hard origin/main -q; git push -q 2>/dev/null || echo "push skipped (next run retries)"; }
+      - name: self-redispatch — immortal ~30-min chain past the throttled */30 cron
+        # collect-odds had NO self-redispatch, so it lived and died by the */30 cron — which GitHub
+        # was throttling to every ~4-5h (MLB collection silently stalled for hours). Sleep ~26 min so
+        # each cycle lands ~30 min, then dispatch ourselves -> an immortal chain independent of the
+        # cron (now just a seed). success()||failure() (not always()) so a superseded/cancelled run
+        # doesn't redispatch — the run that superseded it carries the chain (cancel-in-progress:true).
+        if: success() || failure()
+        env:
+          TOKEN: ${{ github.token }}
+        run: |
+          sleep 1560
+          code=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+            -H "Authorization: Bearer $TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/collect-odds.yml/dispatches" \
+            -d '{"ref":"${{ github.ref_name }}"}')
+          if [ "$code" = "204" ]; then echo "✓ redispatched collect-odds (immortal ~30-min chain)";
+          else echo "redispatch HTTP $code — the */30 cron is the fallback"; fi
