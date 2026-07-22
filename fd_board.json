@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T17:45:42Z",
+ "captured_at": "2026-07-22T17:50:16Z",
  "matches": [
   {
    "event_id": 35853668,
@@ -8,9 +8,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "piotr zemla",
    "open_date": "2026-07-22T17:35:00.000Z",
-   "line": 95.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
