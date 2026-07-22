@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T14:08:05Z",
+ "captured_at": "2026-07-22T14:14:16Z",
  "matches": [
-  {
-   "event_id": 35852939,
-   "p1": "Aleksander Lilien",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-22T13:50:00.000Z",
-   "line": 88.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35852941,
    "p1": "Mariusz Zwolinski",
@@ -19,7 +8,7 @@
    "p1_norm": "mariusz zwolinski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-22T13:55:00.000Z",
-   "line": 95.5,
+   "line": 96.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +19,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T14:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852944,
@@ -55,6 +44,17 @@
    "line": 73.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35852971,
+   "p1": "Wiktor Ptak",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "wiktor ptak",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-22T14:40:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
