@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T21:46:52Z",
+ "captured_at": "2026-07-22T21:53:34Z",
  "matches": [
-  {
-   "event_id": 35854429,
-   "p1": "Jerzy Pelka",
-   "p2": "Marian Lebek",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-22T21:35:00.000Z",
-   "line": 70.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35854446,
    "p1": "Jerzy Michalik",
@@ -19,9 +8,31 @@
    "p1_norm": "jerzy michalik",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-22T21:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35854447,
+   "p1": "Milosz Piecowski",
+   "p2": "Adrian Fabis",
+   "p1_norm": "milosz piecowski",
+   "p2_norm": "adrian fabis",
+   "open_date": "2026-07-22T21:45:00.000Z",
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854451,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-22T21:45:00.000Z",
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
   }
  ]
 }

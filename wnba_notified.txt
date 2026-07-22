@@ -68,6 +68,7 @@
 2026-07-22|Azura Stevens|pra|22.5
 2026-07-22|Azura Stevens|reb_ast|9.5
 2026-07-22|Natasha Cloud|points|10.5
+2026-07-22|Pauline Astier|assists|3.5
 2026-07-22|Sabrina Ionescu|points|16.5
 2026-07-22|Sabrina Ionescu|points|17.5
 2026-07-22|Sabrina Ionescu|points|19.5
