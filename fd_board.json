@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-22T12:22:05Z",
+ "captured_at": "2026-07-22T12:28:12Z",
  "matches": [
-  {
-   "event_id": 35852210,
-   "p1": "Jiri Vrablik",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "jiri vrablik",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-22T12:05:00.000Z",
-   "line": 72.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35852448,
-   "p1": "Jakub Zochniak",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-22T12:10:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35852224,
-   "p1": "Igor Szymanski",
-   "p2": "Piotr Gumulinski",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "piotr gumulinski",
-   "open_date": "2026-07-22T12:15:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35852486,
    "p1": "Artur Szoltysek",
@@ -41,9 +8,20 @@
    "p1_norm": "artur szoltysek",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-22T12:15:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 58.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35852502,
+   "p1": "Sebastian Juzek",
+   "p2": "Michal Oracz",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "michal oracz",
+   "open_date": "2026-07-22T12:20:00.000Z",
+   "line": 51.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35852246,
@@ -63,7 +41,18 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-22T12:40:00.000Z",
-   "line": 76.5,
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35852515,
+   "p1": "Josef Braun",
+   "p2": "Jiri Vrablik",
+   "p1_norm": "josef braun",
+   "p2_norm": "jiri vrablik",
+   "open_date": "2026-07-22T12:55:00.000Z",
+   "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
   }
