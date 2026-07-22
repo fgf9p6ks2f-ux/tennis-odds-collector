@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T18:10:19Z",
+ "captured_at": "2026-07-22T18:15:00Z",
  "matches": [
   {
    "event_id": 35853840,
@@ -8,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "michal wolny",
    "open_date": "2026-07-22T17:55:00.000Z",
-   "line": 107.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35853845,
@@ -19,9 +19,9 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-22T18:00:00.000Z",
-   "line": 88.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 72.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35853846,
@@ -30,9 +30,20 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-22T18:05:00.000Z",
-   "line": 84.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35853853,
+   "p1": "Jakub Skorupa",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-22T18:10:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -125
   }
  ]
 }
