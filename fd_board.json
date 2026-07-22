@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T04:34:51Z",
+ "captured_at": "2026-07-22T04:41:40Z",
  "matches": [
   {
    "event_id": 35851152,
@@ -8,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-22T04:25:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 94.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35851161,
@@ -19,7 +19,7 @@
    "p1_norm": "adrian myszewski",
    "p2_norm": "mariusz zwolinski",
    "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 79.5,
+   "line": 86.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,7 +30,7 @@
    "p1_norm": "josef braun",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 78.5,
+   "line": 88.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,9 +41,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T04:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851198,
@@ -64,8 +64,8 @@
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-22T04:50:00.000Z",
    "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35851206,
@@ -96,9 +96,20 @@
    "p1_norm": "artur szoltysek",
    "p2_norm": "karol sulkowski",
    "open_date": "2026-07-22T04:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35851284,
+   "p1": "Jerzy Michalik",
+   "p2": "Jerzy Debski",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "jerzy debski",
+   "open_date": "2026-07-22T05:05:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
