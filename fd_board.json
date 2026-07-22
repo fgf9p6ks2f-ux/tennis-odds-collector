@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T09:41:40Z",
+ "captured_at": "2026-07-22T09:47:46Z",
  "matches": [
-  {
-   "event_id": 35851873,
-   "p1": "Adrian Wiecek",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "adrian wiecek",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-22T09:20:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35851927,
-   "p1": "Michal Oracz",
-   "p2": "Kamil Smolka",
-   "p1_norm": "michal oracz",
-   "p2_norm": "kamil smolka",
-   "open_date": "2026-07-22T09:30:00.000Z",
-   "line": 89.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35851907,
    "p1": "Krystian Kolodziej",
@@ -30,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-22T09:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851937,
@@ -41,9 +19,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-22T09:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851925,
@@ -77,6 +55,17 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35851962,
+   "p1": "Wiktor Ptak",
+   "p2": "Mariusz Baron",
+   "p1_norm": "wiktor ptak",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-22T10:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
