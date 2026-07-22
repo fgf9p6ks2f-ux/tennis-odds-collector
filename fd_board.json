@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T07:51:52Z",
+ "captured_at": "2026-07-22T07:58:10Z",
  "matches": [
   {
    "event_id": 35851659,
@@ -8,7 +8,7 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "josef braun",
    "open_date": "2026-07-22T07:45:00.000Z",
-   "line": 74.5,
+   "line": 85.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,20 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-22T07:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 77.5,
+   "over_odds": -105,
+   "under_odds": -135
+  },
+  {
+   "event_id": 35851731,
+   "p1": "Rafal Gajda",
+   "p2": "Krzysztof Hetnar",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "krzysztof hetnar",
+   "open_date": "2026-07-22T07:55:00.000Z",
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851714,
