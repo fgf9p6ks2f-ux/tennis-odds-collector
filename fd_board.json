@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T23:40:31Z",
+ "captured_at": "2026-07-22T23:45:43Z",
  "matches": [
-  {
-   "event_id": 35854576,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Jacek Zelezik",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "jacek zelezik",
-   "open_date": "2026-07-22T23:30:00.000Z",
-   "line": 52.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35854580,
-   "p1": "Jerzy Pelka",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-22T23:35:00.000Z",
-   "line": 63.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35854581,
    "p1": "Patryk Jendrzejewski",
@@ -30,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-22T23:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 93.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854575,
@@ -41,7 +19,7 @@
    "p1_norm": "mikolaj lukaszewski",
    "p2_norm": "adrian fabis",
    "open_date": "2026-07-22T23:45:00.000Z",
-   "line": 81.5,
+   "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
   }
