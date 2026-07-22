@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T14:55:54Z",
+ "captured_at": "2026-07-22T15:02:11Z",
  "matches": [
   {
    "event_id": 35852966,
@@ -8,9 +8,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-22T14:35:00.000Z",
-   "line": 96.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 98.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
