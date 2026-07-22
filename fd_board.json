@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T12:35:49Z",
+ "captured_at": "2026-07-22T12:42:00Z",
  "matches": [
   {
    "event_id": 35852246,
@@ -8,9 +8,20 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-22T12:30:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35852518,
+   "p1": "Aleksander Lilien",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-22T12:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35852487,
@@ -19,9 +30,20 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-22T12:40:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35852614,
+   "p1": "Mariusz Zwolinski",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "mariusz zwolinski",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-22T12:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35852515,
@@ -33,6 +55,17 @@
    "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35852616,
+   "p1": "Wiktor Ptak",
+   "p2": "Igor Szymanski",
+   "p1_norm": "wiktor ptak",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-22T13:05:00.000Z",
+   "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
