@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T21:26:45Z",
+ "captured_at": "2026-07-22T21:31:10Z",
  "matches": [
   {
    "event_id": 35854406,
@@ -8,9 +8,9 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T21:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -140,
-   "under_odds": 100
+   "line": 90.5,
+   "over_odds": 160,
+   "under_odds": -230
   },
   {
    "event_id": 35854416,
@@ -19,9 +19,9 @@
    "p1_norm": "adam staniczek",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-22T21:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854417,
@@ -30,9 +30,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-22T21:20:00.000Z",
-   "line": 57.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 58.5,
+   "over_odds": null,
+   "under_odds": null
   }
  ]
 }
