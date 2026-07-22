@@ -1,50 +1,6 @@
 {
- "captured_at": "2026-07-22T07:26:53Z",
+ "captured_at": "2026-07-22T07:32:53Z",
  "matches": [
-  {
-   "event_id": 35851652,
-   "p1": "Milosz Cesarz",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "milosz cesarz",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-22T07:10:00.000Z",
-   "line": 107.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35851658,
-   "p1": "Kamil Smolka",
-   "p2": "Krzysztof Hetnar",
-   "p1_norm": "kamil smolka",
-   "p2_norm": "krzysztof hetnar",
-   "open_date": "2026-07-22T07:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35851651,
-   "p1": "Stapor Rafal",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-22T07:15:00.000Z",
-   "line": 55.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35851655,
-   "p1": "Artur Szoltysek",
-   "p2": "Karol Sulkowski",
-   "p1_norm": "artur szoltysek",
-   "p2_norm": "karol sulkowski",
-   "open_date": "2026-07-22T07:20:00.000Z",
-   "line": 57.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35851660,
    "p1": "Piotr Gumulinski",
@@ -52,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T07:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 68.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35851662,
@@ -63,9 +19,9 @@
    "p1_norm": "jiri vrablik",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T07:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35851665,
@@ -74,9 +30,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-22T07:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35851664,
@@ -86,8 +42,8 @@
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-22T07:35:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35851661,
