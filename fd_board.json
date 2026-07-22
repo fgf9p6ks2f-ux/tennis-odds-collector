@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T09:35:35Z",
+ "captured_at": "2026-07-22T09:41:40Z",
  "matches": [
   {
    "event_id": 35851873,
@@ -8,31 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-22T09:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35851887,
-   "p1": "Mariusz Baron",
-   "p2": "Piotr Gumulinski",
-   "p1_norm": "mariusz baron",
-   "p2_norm": "piotr gumulinski",
-   "open_date": "2026-07-22T09:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35851924,
-   "p1": "Mariusz Zwolinski",
-   "p2": "Kamil Klocek",
-   "p1_norm": "mariusz zwolinski",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-22T09:25:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851927,
@@ -41,9 +19,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "kamil smolka",
    "open_date": "2026-07-22T09:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35851907,
@@ -52,7 +30,7 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-22T09:40:00.000Z",
-   "line": 77.5,
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   },
@@ -64,8 +42,8 @@
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-22T09:45:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35851925,
@@ -86,6 +64,17 @@
    "p2_norm": "adrian wiecek",
    "open_date": "2026-07-22T10:00:00.000Z",
    "line": 84.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35851958,
+   "p1": "Grzegorz Adamiak",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "grzegorz adamiak",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-22T10:05:00.000Z",
+   "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
   }
