@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T21:31:10Z",
+ "captured_at": "2026-07-22T21:39:42Z",
  "matches": [
-  {
-   "event_id": 35854406,
-   "p1": "Janus Slawomir",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "janus slawomir",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-22T21:05:00.000Z",
-   "line": 90.5,
-   "over_odds": 160,
-   "under_odds": -230
-  },
-  {
-   "event_id": 35854416,
-   "p1": "Adam Staniczek",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-22T21:20:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35854417,
    "p1": "Patryk Jendrzejewski",
@@ -30,9 +8,31 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-22T21:20:00.000Z",
-   "line": 58.5,
+   "line": 103.5,
    "over_odds": null,
    "under_odds": null
+  },
+  {
+   "event_id": 35854425,
+   "p1": "Miroslaw Warzecha",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "miroslaw warzecha",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-22T21:30:00.000Z",
+   "line": 53.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854429,
+   "p1": "Jerzy Pelka",
+   "p2": "Marian Lebek",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-22T21:35:00.000Z",
+   "line": 84.5,
+   "over_odds": -125,
+   "under_odds": -110
   }
  ]
 }
