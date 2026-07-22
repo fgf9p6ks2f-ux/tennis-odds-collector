@@ -244,6 +244,28 @@ def _load(mt_date):
     g = [dict(r) for r in con.execute("SELECT result,odds,side,pred_date,player,team,stat,line,n_elev,d_min,ev,elev_avg "
                                       "FROM predictions WHERE graded=1 AND pred_date>='2026-07-09'")]
     con.close()
+    # LIVE-LINE FILTER (2026-07-22, the Nelson-Ododa o18.5 case): the ledger accumulates EVERY rung
+    # ever flagged, but the board must only show a play whose FanDuel rung is LIVE right now. Without
+    # this, a rung FD moved off (o18.5, 88min stale) keeps showing as the top play because it had the
+    # higher EV. Drop any pending prediction whose line is no longer in posted_props. FAIL-OPEN
+    # (posted_props error -> keep the row) so a lookup hiccup can never blank the board.
+    try:
+        import wnba_tonight as _T
+        _ppc = {}
+        def _live(r):
+            plr, stt, ln = r.get("player"), r.get("stat"), r.get("line")
+            if not plr or ln is None:
+                return True
+            if plr not in _ppc:
+                try: _ppc[plr] = _T.posted_props(plr)
+                except Exception: _ppc[plr] = None
+            pp = _ppc[plr]
+            if pp is None:
+                return True
+            return round(float(ln), 1) in (pp.get(stt) or {})
+        rows = [r for r in rows if _live(r)]
+    except Exception:
+        pass
     # durable user-played marks (wnba_played.txt) — read-only, so the ✓ shows on the board
     # independent of when CI last synced the DB column
     pf = HERE / "wnba_played.txt"
