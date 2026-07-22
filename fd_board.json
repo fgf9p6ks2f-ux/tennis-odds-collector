@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T20:02:03Z",
+ "captured_at": "2026-07-22T20:08:13Z",
  "matches": [
   {
    "event_id": 35854289,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-22T19:40:00.000Z",
-   "line": 99.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 102.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35854317,
@@ -19,9 +19,31 @@
    "p1_norm": "janus slawomir",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-22T19:55:00.000Z",
-   "line": 56.5,
+   "line": 54.5,
+   "over_odds": null,
+   "under_odds": null
+  },
+  {
+   "event_id": 35854321,
+   "p1": "Jerzy Pelka",
+   "p2": "Mariusz Koczyba",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "mariusz koczyba",
+   "open_date": "2026-07-22T20:00:00.000Z",
+   "line": 57.5,
+   "over_odds": -105,
+   "under_odds": -135
+  },
+  {
+   "event_id": 35854326,
+   "p1": "Jerzy Michalik",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-22T20:05:00.000Z",
+   "line": 79.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   }
  ]
 }
