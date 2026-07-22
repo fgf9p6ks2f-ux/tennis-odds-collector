@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T16:24:46Z",
+ "captured_at": "2026-07-22T16:31:12Z",
  "matches": [
-  {
-   "event_id": 35853478,
-   "p1": "Patryk Jendrzejewski",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "patryk jendrzejewski",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-22T16:05:00.000Z",
-   "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35853485,
-   "p1": "Jakub Skorupa",
-   "p2": "Adam Staniczek",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "adam staniczek",
-   "open_date": "2026-07-22T16:15:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35853487,
    "p1": "Wojciech Pytlas",
@@ -30,9 +8,9 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-22T16:25:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35853480,
@@ -41,9 +19,31 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-22T16:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35853516,
+   "p1": "Andriej Fomin",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-22T16:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35853522,
+   "p1": "Adrian Fabis",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "adrian fabis",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-22T16:35:00.000Z",
+   "line": 83.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
