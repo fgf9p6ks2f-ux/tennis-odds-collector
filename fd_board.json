@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T03:13:14Z",
+ "captured_at": "2026-07-22T03:18:56Z",
  "matches": [
-  {
-   "event_id": 35851073,
-   "p1": "Adrian Myszewski",
-   "p2": "Karol Sulkowski",
-   "p1_norm": "adrian myszewski",
-   "p2_norm": "karol sulkowski",
-   "open_date": "2026-07-22T03:00:00.000Z",
-   "line": 90.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35851080,
    "p1": "Jakub Skorupa",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-22T03:05:00.000Z",
-   "line": 58.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 76.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851084,
@@ -30,9 +19,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-22T03:10:00.000Z",
-   "line": 67.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 54.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35851108,
@@ -86,6 +75,17 @@
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-22T03:35:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35851119,
+   "p1": "Karol Wisniewski",
+   "p2": "Josef Braun",
+   "p1_norm": "karol wisniewski",
+   "p2_norm": "josef braun",
+   "open_date": "2026-07-22T03:45:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
