@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T00:55:45Z",
+ "captured_at": "2026-07-22T01:01:04Z",
  "matches": [
   {
    "event_id": 35850928,
@@ -8,20 +8,9 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-22T01:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35850929,
-   "p1": "Wojciech Gluszek",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "wojciech gluszek",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-22T01:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35850934,
@@ -52,6 +41,28 @@
    "p1_norm": "marian brunner",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T01:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35850949,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-22T01:25:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850950,
+   "p1": "Mateusz Sikon",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "mateusz sikon",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-22T01:25:00.000Z",
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
