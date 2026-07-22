@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T03:53:33Z",
+ "captured_at": "2026-07-22T03:59:05Z",
  "matches": [
-  {
-   "event_id": 35851109,
-   "p1": "Kacper Glazowski",
-   "p2": "Jiri Vrablik",
-   "p1_norm": "kacper glazowski",
-   "p2_norm": "jiri vrablik",
-   "open_date": "2026-07-22T03:25:00.000Z",
-   "line": 99.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35851119,
    "p1": "Karol Wisniewski",
@@ -30,9 +19,9 @@
    "p1_norm": "adrian myszewski",
    "p2_norm": "artur szoltysek",
    "open_date": "2026-07-22T03:50:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35851124,
@@ -41,9 +30,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-22T03:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851126,
@@ -52,9 +41,9 @@
    "p1_norm": "jerzy debski",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T03:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851128,
@@ -121,6 +110,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35851152,
+   "p1": "Milosz Cesarz",
+   "p2": "Wojciech Urban",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "wojciech urban",
+   "open_date": "2026-07-22T04:25:00.000Z",
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
