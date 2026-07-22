@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T10:52:04Z",
+ "captured_at": "2026-07-22T10:58:11Z",
  "matches": [
   {
    "event_id": 35852017,
@@ -8,9 +8,20 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-22T10:50:00.000Z",
-   "line": 72.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 69.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35852155,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-22T10:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35852129,
@@ -31,6 +42,17 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T11:15:00.000Z",
    "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35852165,
+   "p1": "Mariusz Baron",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "mariusz baron",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-22T11:25:00.000Z",
+   "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
   }
