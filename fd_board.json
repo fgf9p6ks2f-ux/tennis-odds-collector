@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T19:20:26Z",
+ "captured_at": "2026-07-22T19:25:11Z",
  "matches": [
   {
    "event_id": 35854258,
@@ -8,9 +8,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jacek zelezik",
    "open_date": "2026-07-22T19:10:00.000Z",
-   "line": 92.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 83.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35854259,
@@ -19,9 +19,31 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-22T19:10:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35854264,
+   "p1": "Mikolaj Lukaszewski",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "mikolaj lukaszewski",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-22T19:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35854265,
+   "p1": "Pawel Chojnacki",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-22T19:20:00.000Z",
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
