@@ -822,6 +822,39 @@ def injuries():
                 out.pop(nm, None)
     except Exception:
         pass
+    # ── FAST-NEWS OVERRIDES (2026-07-22, the Griner miss) — Underdog/RotoWire breaking "ruled
+    # out" writes wnba_news_overrides.json the instant it's detected, so injuries() reflects the
+    # OUT at NEWS-time instead of waiting ~10-15 min for the official PDF / RW lineup page to catch
+    # up (that lag was the value window we lost). Speed doctrine: news OUT wins UNLESS the official
+    # report explicitly cleared the player today (Probable/Available = independent veto). FULLY
+    # try-wrapped (broad except): any error here falls back to the feed-only view, never breaks flagging.
+    try:
+        _nov = json.loads((Path(__file__).resolve().parent
+                           / "wnba_news_overrides.json").read_text())
+        _td = dt.datetime.now(ET).date().isoformat()
+        _off_avail = {n for n, st_ in (_official.get(_td, {}) or {}).items()
+                      if st_ in ("Probable", "Available", "Playing")}
+        try:
+            _pl = json.loads((Path(__file__).resolve().parent
+                              / "wnba_players_cache.json").read_text()).get("players", {})
+        except (OSError, ValueError):
+            _pl = {}
+        for _nm, _o in (_nov or {}).items():
+            if (_o.get("date") or "") != _td:
+                continue                                   # only today's fresh rulings
+            if (_o.get("status") or "Out") not in ("Out", "Doubtful"):
+                continue
+            _cano = _nm
+            if _nm not in out:                             # resolve to the roster name if needed
+                _m = [n for n in _pl if RW.norm(n) == RW.norm(_nm)]
+                if len(_m) == 1:
+                    _cano = _m[0]
+            if _cano in _off_avail:
+                continue                                   # official says available -> veto the news
+            if out.get(_cano) not in ("Out", "Doubtful"):
+                out[_cano] = "Out"                         # promote at news-time (fs stamps it fresh->confirmed)
+    except Exception:
+        pass
     # MANUAL STATUS OVERRIDES — applied LAST (2026-07-18 fix: the RW merge ran after this
     # block and re-marked Boston Out, silently demoting the user's override; highest
     # precedence means highest, so overrides now run after every feed source): wnba_status_overrides.json — {"Player": {"status":
