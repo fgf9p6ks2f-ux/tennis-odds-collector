@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T00:05:31Z",
+ "captured_at": "2026-07-22T00:10:51Z",
  "matches": [
   {
    "event_id": 35850881,
@@ -8,9 +8,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-21T23:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 74.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850895,
@@ -19,9 +19,9 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-22T00:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35850898,
@@ -35,26 +35,37 @@
    "under_odds": -112
   },
   {
-   "event_id": 35850899,
-   "p1": "Michal Machelski",
-   "p2": "Marian Brunner",
-   "p1_norm": "michal machelski",
-   "p2_norm": "marian brunner",
-   "open_date": "2026-07-22T00:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
    "event_id": 35850900,
    "p1": "Robert Szymik",
    "p2": "Marek Tkocz",
    "p1_norm": "robert szymik",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-22T00:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35850907,
+   "p1": "Mikolaj Lukaszewski",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "mikolaj lukaszewski",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-22T00:35:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35850908,
+   "p1": "Jakub Pruszkowski",
+   "p2": "Pawel Adamus",
+   "p1_norm": "jakub pruszkowski",
+   "p2_norm": "pawel adamus",
+   "open_date": "2026-07-22T00:35:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
