@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T11:23:43Z",
+ "captured_at": "2026-07-22T11:29:55Z",
  "matches": [
   {
    "event_id": 35852149,
@@ -8,9 +8,9 @@
    "p1_norm": "adrian wiecek",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T11:15:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35852188,
@@ -19,9 +19,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-22T11:20:00.000Z",
-   "line": 83.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 81.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35852165,
@@ -31,8 +31,19 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T11:25:00.000Z",
    "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35852196,
+   "p1": "Mariusz Zwolinski",
+   "p2": "Adrian Myszewski",
+   "p1_norm": "mariusz zwolinski",
+   "p2_norm": "adrian myszewski",
+   "open_date": "2026-07-22T11:25:00.000Z",
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35852186,
@@ -42,8 +53,8 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-22T11:40:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35852197,
