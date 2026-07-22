@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T13:12:26Z",
+ "captured_at": "2026-07-22T13:18:38Z",
  "matches": [
   {
    "event_id": 35852515,
@@ -9,8 +9,8 @@
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-22T12:55:00.000Z",
    "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35852663,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-22T13:00:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 96.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35852659,
@@ -44,6 +44,17 @@
    "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35852901,
+   "p1": "Adrian Wiecek",
+   "p2": "Jiri Vrablik",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "jiri vrablik",
+   "open_date": "2026-07-22T13:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
