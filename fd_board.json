@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T15:13:17Z",
+ "captured_at": "2026-07-22T15:18:57Z",
  "matches": [
   {
    "event_id": 35853045,
@@ -8,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "maciej kolek",
    "open_date": "2026-07-22T15:00:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 72.5,
+   "over_odds": null,
+   "under_odds": null
   }
  ]
 }
