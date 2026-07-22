@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-21T23:59:46Z",
+ "captured_at": "2026-07-22T00:05:31Z",
  "matches": [
-  {
-   "event_id": 35850880,
-   "p1": "Jakub Skorupa",
-   "p2": "Jerzy Debski",
-   "p1_norm": "jakub skorupa",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-21T23:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35850881,
    "p1": "Artur Gromek",
@@ -19,20 +8,9 @@
    "p1_norm": "artur gromek",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-21T23:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35850883,
-   "p1": "Oliver Vincenec",
-   "p2": "Marian Lebek",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-22T00:00:00.000Z",
    "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35850895,
@@ -42,17 +20,6 @@
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-22T00:10:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35850896,
-   "p1": "Wojciech Gluszek",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "wojciech gluszek",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-22T00:10:00.000Z",
-   "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
   },
