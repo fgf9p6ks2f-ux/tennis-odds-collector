@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T01:58:05Z",
+ "captured_at": "2026-07-22T02:03:39Z",
  "matches": [
   {
    "event_id": 35850987,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T01:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35850999,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz marud",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-22T02:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851006,
@@ -30,9 +30,9 @@
    "p1_norm": "pawel adamus",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-22T02:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35851010,
