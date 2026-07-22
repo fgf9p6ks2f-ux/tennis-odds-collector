@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T18:48:25Z",
+ "captured_at": "2026-07-22T18:54:31Z",
  "matches": [
-  {
-   "event_id": 35853868,
-   "p1": "Mariusz Koczyba",
-   "p2": "Oskar Jadach",
-   "p1_norm": "mariusz koczyba",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-22T18:25:00.000Z",
-   "line": 101.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35854229,
    "p1": "Miroslaw Warzecha",
@@ -19,7 +8,18 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "janus slawomir",
    "open_date": "2026-07-22T18:45:00.000Z",
-   "line": 78.5,
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35854230,
+   "p1": "Jerzy Pelka",
+   "p2": "Pawel Kurek",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "pawel kurek",
+   "open_date": "2026-07-22T18:45:00.000Z",
+   "line": 74.5,
    "over_odds": -115,
    "under_odds": -120
   }
