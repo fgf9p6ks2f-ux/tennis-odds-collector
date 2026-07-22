@@ -801,7 +801,7 @@ def _tracker_panel(wnba_rec, tt_json):
 
     # 1) WNBA injury props
     w, l, u = wnba_rec
-    wnba_card = card("🏀", "WNBA injury props", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9", recent=_wnba_recent())
+    wnba_card = card('<img class="tlogo" src="logos/wnba.png" alt="">', "WNBA", w, l, u, "current-model picks (overs · thin-sample & over-stack filtered) · 1u base + declining rungs · since 7/9", recent=_wnba_recent())
 
     # 2) MLB outs-under — headline the ★★ PREMIUM tier; base away+contact in the note
     mlb_card = ""
@@ -814,7 +814,7 @@ def _tracker_panel(wnba_rec, tt_json):
         note = (f"★★ = away+contact + (low-patience opp OR line&gt;recent) · base away+contact "
                 f"{bw}-{bl} ({bu:+.1f}u) · flag-time price · paper")
         note += f" · {ppend} premium pending" if ppend else ""
-        mlb_card = card("⚾", "MLB outs-under ★★", pw, pl, pu, note, recent=prec)
+        mlb_card = card('<img class="tlogo" src="logos/mlb.png" alt="">', "MLB", pw, pl, pu, note, recent=prec)
 
     # 3) TT Elite (real FanDuel line) + shadow leagues sub-table
     tt_card = ""
@@ -831,7 +831,7 @@ def _tracker_panel(wnba_rec, tt_json):
             if (flt.get("w", 0) + flt.get("l", 0)) > 0:
                 note += (f" · shadow 80-90u {flt['w']}-{flt['l']} "
                          f"({flt['u']:+.1f}u, filtered out — validating)")
-            tt_card += card("🏓", "TT Elite (FanDuel real line)", elite["w"], elite["l"], elite["u"], note,
+            tt_card += card("🏓", "TT Elite", elite["w"], elite["l"], elite["u"], note,
                             recent=(tt or {}).get("recent"))
         rest = [x for x in leagues if x["league"] != "TT Elite Series"]
         if rest:                                           # shadow leagues — compact per-league table
@@ -869,7 +869,7 @@ def _tracker_panel(wnba_rec, tt_json):
             extra += [f"{pr['void']} void"] if pr["void"] else []
             extra += [f"{pr['suggested']} suggested"] if pr["suggested"] else []
             sub += (" · " + " · ".join(extra)) if extra else ""
-            parlay_card = (f'<div class="tcard"><div class="thead">🎰 WNBA parlays</div><div class="trow">'
+            parlay_card = (f'<div class="tcard"><div class="thead">🎰 WNBA Parlays</div><div class="trow">'
                            f'<div class="tbox"><div class="tk">Record</div><div class="tv">{pr["w"]}-{pr["l"]}</div></div>'
                            f'<div class="tbox"><div class="tk">Hit rate</div><div class="tv">{hit}</div></div>'
                            f'<div class="tbox"><div class="tk">Units</div><div class="tv {ucls}">{pr["units"]:+.2f}u</div></div>'
@@ -2039,6 +2039,7 @@ def build():
     margin-bottom:11px; border-bottom:1px solid #14181f; }}
   .gmatch {{ font-size:17px; font-weight:800; letter-spacing:-.01em; display:flex; align-items:center; gap:7px; }}
   .glogo {{ width:22px; height:22px; object-fit:contain; background:#dbe1ea; border-radius:50%; padding:2.5px; }}
+  .tlogo {{ width:20px; height:20px; object-fit:contain; vertical-align:-4px; margin-right:3px; }}
   .gvs {{ color:#4d5560; font-weight:600; font-size:11px; margin:0 1px; }}
   .gtime {{ color:#c3c9d4; font-size:14px; font-weight:700; font-variant-numeric:tabular-nums; }}
   .gout {{ display:flex; align-items:center; gap:6px; color:#c08a4d; font-size:12px; font-weight:600;
