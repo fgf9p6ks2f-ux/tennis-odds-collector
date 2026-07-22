@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T23:45:43Z",
+ "captured_at": "2026-07-22T23:53:26Z",
  "matches": [
-  {
-   "event_id": 35854581,
-   "p1": "Patryk Jendrzejewski",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "patryk jendrzejewski",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-22T23:35:00.000Z",
-   "line": 93.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35854575,
    "p1": "Mikolaj Lukaszewski",
@@ -20,8 +9,19 @@
    "p2_norm": "adrian fabis",
    "open_date": "2026-07-22T23:45:00.000Z",
    "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35854584,
+   "p1": "Andriej Fomin",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-22T23:45:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   }
  ]
 }
