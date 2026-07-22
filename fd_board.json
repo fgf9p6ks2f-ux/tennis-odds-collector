@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T01:18:13Z",
+ "captured_at": "2026-07-22T01:23:32Z",
  "matches": [
   {
    "event_id": 35850934,
@@ -8,20 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-22T01:10:00.000Z",
-   "line": 80.5,
+   "line": 90.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35850935,
-   "p1": "Oliver Vincenec",
-   "p2": "Robert Szymik",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "robert szymik",
-   "open_date": "2026-07-22T01:10:00.000Z",
-   "line": 50.5,
-   "over_odds": 105,
-   "under_odds": -145
   },
   {
    "event_id": 35850949,
