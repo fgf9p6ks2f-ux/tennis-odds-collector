@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T00:50:20Z",
+ "captured_at": "2026-07-22T00:55:45Z",
  "matches": [
-  {
-   "event_id": 35850911,
-   "p1": "Grzegorz Marud",
-   "p2": "Marian Lebek",
-   "p1_norm": "grzegorz marud",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-22T00:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35850928,
    "p1": "Wojciech Wojtaszczyk",
@@ -20,8 +9,8 @@
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-22T01:00:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35850929,
