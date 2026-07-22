@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T18:37:54Z",
+ "captured_at": "2026-07-22T18:43:54Z",
  "matches": [
-  {
-   "event_id": 35853860,
-   "p1": "Zbigniew Nocun",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "zbigniew nocun",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-22T18:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35853868,
    "p1": "Mariusz Koczyba",
@@ -19,20 +8,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-22T18:25:00.000Z",
-   "line": 89.5,
+   "line": 102.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35853876,
-   "p1": "Adam Staniczek",
-   "p2": "Jerzy Michalik",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "jerzy michalik",
-   "open_date": "2026-07-22T18:30:00.000Z",
-   "line": 58.5,
-   "over_odds": -105,
-   "under_odds": -135
   }
  ]
 }
