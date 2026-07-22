@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T10:38:42Z",
+ "captured_at": "2026-07-22T10:44:49Z",
  "matches": [
-  {
-   "event_id": 35851982,
-   "p1": "Jiri Vrablik",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "jiri vrablik",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-22T10:25:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35852087,
    "p1": "Jakub Zochniak",
@@ -19,8 +8,19 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "maciej nowalinski",
    "open_date": "2026-07-22T10:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35851986,
+   "p1": "Igor Szymanski",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-22T10:35:00.000Z",
+   "line": 80.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -30,7 +30,18 @@
    "p1_norm": "artur szoltysek",
    "p2_norm": "adrian myszewski",
    "open_date": "2026-07-22T10:35:00.000Z",
-   "line": 78.5,
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35852137,
+   "p1": "Sebastian Juzek",
+   "p2": "Krzysztof Hetnar",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "krzysztof hetnar",
+   "open_date": "2026-07-22T10:40:00.000Z",
+   "line": 69.5,
    "over_odds": -120,
    "under_odds": -115
   },
