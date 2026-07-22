@@ -30,7 +30,8 @@ except Exception:
     ET = dt.timezone(dt.timedelta(hours=-4))
 
 HERE = Path(__file__).resolve().parent
-FRESH_MIN = 90     # best-price: only quotes re-posted within this many min of the newest count as live
+FRESH_MIN = 10     # best-price: only quotes re-posted within this many min of the newest count as live
+                   # (2026-07-22: was 90 — Actions-era relic let a moved-off rung linger ~1.5h as a phantom)
 LEDGER = HERE / "wnba_ledger.sqlite"
 OUT = HERE / "docs" / "index.html"
 STAT = {"points": "PTS", "rebounds": "REB", "assists": "AST",
