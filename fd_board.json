@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T01:35:18Z",
+ "captured_at": "2026-07-22T01:40:44Z",
  "matches": [
   {
    "event_id": 35850955,
@@ -8,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-22T01:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 62.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35850973,
@@ -42,8 +42,8 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-22T02:00:00.000Z",
    "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
