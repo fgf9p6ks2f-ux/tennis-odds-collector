@@ -216,6 +216,33 @@ def _seen():
         return set()
 
 
+# Underdog WNBA tweets are terse status lines — "{Player} ({injury}) {status} for {day}." The old
+# ruled-out-only regex missed the EARLY signals the speed edge actually wants (questionable / doubtful
+# / GTD). Match the real status vocabulary; skip "not on injury report" (= healthy, no news).
+_UD_SKIP = re.compile(r"not (?:listed |currently )?on (?:the )?injury report|"
+                      r"not listed on (?:the )?injury report|removed from (?:the )?injury report", re.I)
+_UD_OUT = re.compile(r"ruled out|listed out|\bis out\b|\bout for\b|will not play|won'?t play|"
+                     r"sidelined|out indefinitely|\binactive\b|doubtful", re.I)
+_UD_Q = re.compile(r"questionable|game[- ]time decision|\bGTD\b", re.I)
+_UD_IN = re.compile(r"probable|available|will play|cleared to play|upgraded|good to go|"
+                    r"active(?! roster)", re.I)
+
+
+def _ud_status(txt):
+    """(kind, ntfy_priority) for an Underdog injury tweet — 'out'/'q'/'in', or (None, None) to ignore.
+    out = ruled out/doubtful (a beneficiary just opened); q = questionable/GTD (early watch);
+    in = available/cleared (a questionable star is IN → kills a beneficiary bet)."""
+    if _UD_SKIP.search(txt):
+        return None, None
+    if _UD_OUT.search(txt):
+        return "out", "urgent"
+    if _UD_Q.search(txt):
+        return "q", "high"
+    if _UD_IN.search(txt):
+        return "in", "default"
+    return None, None
+
+
 def run(test=False, force=False):
     topic = os.environ.get("NTFY_TOPIC")
     at, ct0 = _cookie()
@@ -261,24 +288,26 @@ def run(test=False, force=False):
         fresh.append(tid)
         if first:
             continue                     # no push storm on the historical timeline
-        if OUT_RX.search(txt) or IN_RX.search(txt):
-            hits += 1
-            FORCE.touch()                              # kick the loop to re-scan lines NOW
-            if topic:
-                pri = "urgent" if OUT_RX.search(txt) else "high"
-                try:
-                    requests.post(f"https://ntfy.sh/{topic}",
-                                  data=f"\U0001f6a8 @{HANDLE}: {txt[:180]}".encode(),
-                                  headers={"Title": "Underdog WNBA", "Priority": pri}, timeout=10)
-                except requests.RequestException:
-                    pass
+        st, pri = _ud_status(txt)
+        if not st:
+            continue                                   # not an actionable injury status
+        hits += 1
+        FORCE.touch()                                  # kick the loop to re-scan lines NOW
+        tag = {"out": "\U0001f6a8 OUT", "q": "⚠️ Q", "in": "✅ IN"}[st]
+        if topic:
             try:
-                with LOG.open("a") as f:
-                    f.write(json.dumps({"t": dt.datetime.now(dt.timezone.utc).isoformat(),
-                                        "id": tid, "text": txt[:280]}) + "\n")
-            except OSError:
+                requests.post(f"https://ntfy.sh/{topic}",
+                              data=f"{tag} @{HANDLE}: {txt[:180]}".encode(),
+                              headers={"Title": "Underdog WNBA", "Priority": pri}, timeout=10)
+            except requests.RequestException:
                 pass
-            print(f"NEWS trigger @{HANDLE}: {txt[:120]}")
+        try:
+            with LOG.open("a") as f:
+                f.write(json.dumps({"t": dt.datetime.now(dt.timezone.utc).isoformat(),
+                                    "id": tid, "text": txt[:280], "st": st}) + "\n")
+        except OSError:
+            pass
+        print(f"NEWS trigger ({st}) @{HANDLE}: {txt[:120]}")
     if fresh:
         try:
             SEEN.write_text(" ".join((list(seen) + fresh)[-3000:]))
