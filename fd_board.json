@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T04:29:05Z",
+ "captured_at": "2026-07-22T04:34:51Z",
  "matches": [
   {
    "event_id": 35851152,
@@ -8,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-22T04:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35851161,
@@ -19,9 +19,9 @@
    "p1_norm": "adrian myszewski",
    "p2_norm": "mariusz zwolinski",
    "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851162,
@@ -30,20 +30,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35851163,
-   "p1": "Wiktor Ptak",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "wiktor ptak",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851184,
