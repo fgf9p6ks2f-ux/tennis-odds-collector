@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T01:46:10Z",
+ "captured_at": "2026-07-22T01:51:30Z",
  "matches": [
-  {
-   "event_id": 35850955,
-   "p1": "Michal Machelski",
-   "p2": "Jerzy Debski",
-   "p1_norm": "michal machelski",
-   "p2_norm": "jerzy debski",
-   "open_date": "2026-07-22T01:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35850987,
    "p1": "Jakub Skorupa",
