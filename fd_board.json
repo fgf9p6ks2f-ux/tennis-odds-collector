@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T22:35:34Z",
+ "captured_at": "2026-07-22T22:44:38Z",
  "matches": [
-  {
-   "event_id": 35854491,
-   "p1": "Janus Slawomir",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "janus slawomir",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-22T22:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35854494,
-   "p1": "Oliver Vincenec",
-   "p2": "Jerzy Pelka",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "jerzy pelka",
-   "open_date": "2026-07-22T22:25:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35854496,
    "p1": "Mateusz Rutkowski",
@@ -30,9 +8,42 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-22T22:30:00.000Z",
-   "line": 76.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35854499,
+   "p1": "Milosz Piecowski",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "milosz piecowski",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-22T22:35:00.000Z",
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35854503,
+   "p1": "Jakub Skorupa",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-22T22:35:00.000Z",
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854506,
+   "p1": "Zbigniew Nocun",
+   "p2": "Jacek Zelezik",
+   "p1_norm": "zbigniew nocun",
+   "p2_norm": "jacek zelezik",
+   "open_date": "2026-07-22T22:40:00.000Z",
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
