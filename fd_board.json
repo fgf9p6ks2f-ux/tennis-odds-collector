@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T12:54:17Z",
+ "captured_at": "2026-07-22T13:01:52Z",
  "matches": [
   {
    "event_id": 35852487,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-22T12:40:00.000Z",
-   "line": 98.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 99.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35852618,
@@ -19,9 +19,9 @@
    "p1_norm": "kamil smolka",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-22T12:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 96.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35852515,
@@ -30,9 +30,9 @@
    "p1_norm": "josef braun",
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-22T12:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 54.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35852616,
