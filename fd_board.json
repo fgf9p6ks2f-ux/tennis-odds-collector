@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T10:26:36Z",
+ "captured_at": "2026-07-22T10:32:39Z",
  "matches": [
   {
    "event_id": 35852014,
@@ -8,9 +8,31 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "kamil smolka",
    "open_date": "2026-07-22T10:20:00.000Z",
-   "line": 88.5,
+   "line": 94.5,
+   "over_odds": -105,
+   "under_odds": -135
+  },
+  {
+   "event_id": 35851982,
+   "p1": "Jiri Vrablik",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "jiri vrablik",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-22T10:25:00.000Z",
+   "line": 72.5,
    "over_odds": -125,
    "under_odds": -110
+  },
+  {
+   "event_id": 35852087,
+   "p1": "Jakub Zochniak",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-22T10:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35851986,
@@ -20,8 +42,8 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T10:35:00.000Z",
    "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35852017,
