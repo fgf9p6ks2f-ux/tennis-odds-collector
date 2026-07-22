@@ -1,8 +1,16 @@
 # Pitcher strikeout alt-ladder scan (cross-book line-shopping)
 
-_2026-07-22 06:25 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
+_2026-07-22 06:53 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
 
 **No +EV rung tonight** — the K market is efficient; even the best of 3 books is -EV on every agreeing rung. This is a SHOPPING sheet (best book per rung to minimize vig), not a bet list. A genuine +EV rung (a slow book) would ⭐ here.
+
+**Sandy Alcantara**
+  O2.5: FD -1799 (1 book, no consensus)
+  O3.5: FD -430 (1 book, no consensus)
+  O4.5: fair 57% · DK -135 FD -174 → best DK
+  O5.5: FD +132 (1 book, no consensus)
+  O6.5: FD +285 (1 book, no consensus)
+  O7.5: FD +600 (1 book, no consensus)
 
 **Landen Roupp**
   O2.5: FD -1799 (1 book, no consensus)
@@ -25,12 +33,6 @@ _2026-07-22 06:25 UTC · fair = vig-stripped consensus of the books posting each
   O4.5: fair 52% · DK -120 FD -136 → best DK
   O5.5: FD +164 (1 book, no consensus)
   O6.5: FD +350 (1 book, no consensus)
-
-**Slade Cecconi**
-  O2.5: FD -460 (1 book, no consensus)
-  O3.5: fair 59% · FD -162 DK -175 → best FD
-  O4.5: FD +152 (1 book, no consensus)
-  O5.5: FD +340 (1 book, no consensus)
 
 **Bailey Ober**
   O2.5: FD -460 (1 book, no consensus)
@@ -91,6 +93,12 @@ _2026-07-22 06:25 UTC · fair = vig-stripped consensus of the books posting each
   O4.5: FD +215 (1 book, no consensus)
   O5.5: FD +480 (1 book, no consensus)
 
+**Slade Cecconi**
+  O2.5: FD -460 (1 book, no consensus)
+  O3.5: fair 58% · FD -162 DK -164 → best FD
+  O4.5: FD +152 (1 book, no consensus)
+  O5.5: FD +340 (1 book, no consensus)
+
 **Christian Scott**
   O2.5: FD -3003 (1 book, no consensus)
   O3.5: FD -720 (1 book, no consensus)
@@ -129,6 +137,14 @@ _2026-07-22 06:25 UTC · fair = vig-stripped consensus of the books posting each
   O5.5: fair 51% · FD -122 DK -125 → best FD
   O6.5: FD +180 (1 book, no consensus)
   O7.5: FD +360 (1 book, no consensus)
+
+**Peter Lambert**
+  O2.5: FD -2500 (1 book, no consensus)
+  O3.5: FD -590 (1 book, no consensus)
+  O4.5: FD -215 (1 book, no consensus)
+  O5.5: fair 43% · FD +116 DK +111 → best FD
+  O6.5: FD +240 (1 book, no consensus)
+  O7.5: FD +500 (1 book, no consensus)
 
 **Brady Singer**
   O2.5: FD -2000 (1 book, no consensus)
@@ -172,18 +188,4 @@ _2026-07-22 06:25 UTC · fair = vig-stripped consensus of the books posting each
   O5.5: BETMGM -105 (1 book, no consensus)
   O6.5: BETMGM +180 (1 book, no consensus)
   O7.5: BETMGM +340 (1 book, no consensus)
-
-**Matt Liberatore**
-  O3.5: BETMGM -385 (1 book, no consensus)
-  O4.5: BETMGM -167 (1 book, no consensus)
-  O5.5: BETMGM +115 (1 book, no consensus)
-  O6.5: BETMGM +225 (1 book, no consensus)
-  O7.5: BETMGM +425 (1 book, no consensus)
-
-**Michael Lorenzen**
-  O2.5: BETMGM -278 (1 book, no consensus)
-  O3.5: BETMGM -110 (1 book, no consensus)
-  O4.5: BETMGM +200 (1 book, no consensus)
-  O5.5: BETMGM +400 (1 book, no consensus)
-  O6.5: BETMGM +750 (1 book, no consensus)
 
