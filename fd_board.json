@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T07:45:59Z",
+ "captured_at": "2026-07-22T07:51:52Z",
  "matches": [
-  {
-   "event_id": 35851662,
-   "p1": "Jiri Vrablik",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "jiri vrablik",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-22T07:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35851661,
-   "p1": "Michal Minda",
-   "p2": "Kamil Klocek",
-   "p1_norm": "michal minda",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-22T07:40:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35851659,
    "p1": "Kacper Glazowski",
@@ -30,9 +8,9 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "josef braun",
    "open_date": "2026-07-22T07:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851663,
@@ -41,9 +19,9 @@
    "p1_norm": "mariusz baron",
    "p2_norm": "wiktor ptak",
    "open_date": "2026-07-22T07:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35851714,
