@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-22T15:31:36Z",
+ "captured_at": "2026-07-22T15:37:50Z",
  "matches": [
-  {
-   "event_id": 35853101,
-   "p1": "Adam Staniczek",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-22T15:25:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35853103,
    "p1": "Grzegorz Adamiak",
@@ -19,9 +8,20 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-22T15:25:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35853121,
+   "p1": "Jerzy Pelka",
+   "p2": "Oskar Jadach",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-22T15:35:00.000Z",
    "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": -120,
+   "under_odds": -115
   }
  ]
 }
