@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-22T04:17:40Z",
+ "captured_at": "2026-07-22T04:23:20Z",
  "matches": [
   {
    "event_id": 35851134,
@@ -8,9 +8,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "mariusz zwolinski",
    "open_date": "2026-07-22T04:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851151,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "marian brunner",
    "open_date": "2026-07-22T04:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 57.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35851152,
@@ -77,6 +77,17 @@
    "line": 76.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35851199,
+   "p1": "Oliver Vincenec",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-22T04:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
