@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-22T04:47:23Z",
+ "captured_at": "2026-07-22T04:53:12Z",
  "matches": [
-  {
-   "event_id": 35851161,
-   "p1": "Adrian Myszewski",
-   "p2": "Mariusz Zwolinski",
-   "p1_norm": "adrian myszewski",
-   "p2_norm": "mariusz zwolinski",
-   "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35851162,
-   "p1": "Josef Braun",
-   "p2": "Krzysztof Wloczko",
-   "p1_norm": "josef braun",
-   "p2_norm": "krzysztof wloczko",
-   "open_date": "2026-07-22T04:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35851184,
    "p1": "Michal Machelski",
@@ -30,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-22T04:40:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35851198,
@@ -41,20 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-22T04:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35851199,
-   "p1": "Oliver Vincenec",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-22T04:50:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851206,
@@ -64,8 +31,8 @@
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-22T04:55:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851207,
@@ -75,8 +42,8 @@
    "p2_norm": "jiri vrablik",
    "open_date": "2026-07-22T04:55:00.000Z",
    "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851208,
@@ -86,8 +53,8 @@
    "p2_norm": "karol sulkowski",
    "open_date": "2026-07-22T04:55:00.000Z",
    "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851284,
@@ -97,8 +64,8 @@
    "p2_norm": "jerzy debski",
    "open_date": "2026-07-22T05:05:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851412,
@@ -108,8 +75,8 @@
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-22T05:10:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851504,
@@ -119,8 +86,8 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-22T05:15:00.000Z",
    "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851505,
@@ -130,8 +97,8 @@
    "p2_norm": "karol sulkowski",
    "open_date": "2026-07-22T05:15:00.000Z",
    "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851506,
@@ -141,8 +108,8 @@
    "p2_norm": "krzysztof wloczko",
    "open_date": "2026-07-22T05:15:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35851507,
@@ -152,8 +119,8 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-22T05:15:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   }
  ]
 }
