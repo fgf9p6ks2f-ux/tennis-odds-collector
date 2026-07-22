@@ -1,27 +1,27 @@
 {
- "captured_at": "2026-07-22T11:17:40Z",
+ "captured_at": "2026-07-22T11:23:43Z",
  "matches": [
   {
-   "event_id": 35852017,
-   "p1": "Krystian Kolodziej",
-   "p2": "Jakub Folwarski",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "jakub folwarski",
-   "open_date": "2026-07-22T10:50:00.000Z",
-   "line": 88.5,
-   "over_odds": null,
-   "under_odds": null
+   "event_id": 35852149,
+   "p1": "Adrian Wiecek",
+   "p2": "Krzysztof Wloczko",
+   "p1_norm": "adrian wiecek",
+   "p2_norm": "krzysztof wloczko",
+   "open_date": "2026-07-22T11:15:00.000Z",
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
-   "event_id": 35852170,
-   "p1": "Michal Oracz",
-   "p2": "Kacper Adamus",
-   "p1_norm": "michal oracz",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-22T11:05:00.000Z",
-   "line": 80.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "event_id": 35852188,
+   "p1": "Aleksander Lilien",
+   "p2": "Maciej Nowalinski",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "maciej nowalinski",
+   "open_date": "2026-07-22T11:20:00.000Z",
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35852165,
@@ -44,6 +44,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35852197,
+   "p1": "Wiktor Ptak",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "wiktor ptak",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-22T11:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
