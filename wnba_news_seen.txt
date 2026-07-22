@@ -28,6 +28,7 @@ rw|1061|Not on injury report
 rw|1067|Cleared to play
 rw|1067|Not listed on injury report
 rw|1071|Totals 18 points in road loss
+rw|1074|Not listed on injury report
 rw|1093|Fades injury report
 rw|1093|Not listed on injury report
 rw|228|Listed out for Wednesday
@@ -85,6 +86,7 @@ rw|641|Nets 21 points in overtime win
 rw|733|Swats four shots in loss
 rw|735|Limited production in return
 rw|735|On track to return Sunday
+rw|751|Listed as questionable
 rw|755|Double-doubles off bench
 rw|785|Productive in win over Tempo
 rw|786|Grabs 15 boards in win
