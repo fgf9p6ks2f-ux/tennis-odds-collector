@@ -292,6 +292,8 @@ def run(test=False, force=False):
         if not st:
             continue                                   # not an actionable injury status
         hits += 1
+        if st == "out":
+            _stamp_news_out(_ud_player(txt))       # bridge OUT -> injuries() at news-time
         FORCE.touch()                                  # kick the loop to re-scan lines NOW
         tag = {"out": "\U0001f6a8 OUT", "q": "⚠️ Q", "in": "✅ IN"}[st]
         if topic:
@@ -327,6 +329,41 @@ def loop(interval):
             print("underdog_watch loop error:", str(e)[:120])
         time.sleep(interval)
 
+
+
+def _stamp_news_out(name):
+    """Bridge a breaking OUT into wnba_tonight.injuries() at news-time (not ~10-15min later when
+    the official PDF / RW lineup catches up). Writes wnba_news_overrides.json, pruned to today."""
+    if not name or len(str(name).strip()) < 3:
+        return
+    import json as _j, datetime as _d
+    from pathlib import Path as _P
+    try:
+        from zoneinfo import ZoneInfo
+        today = _d.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
+    except Exception:
+        today = _d.datetime.utcnow().date().isoformat()
+    f = _P(__file__).resolve().parent / "wnba_news_overrides.json"
+    try:
+        cur = _j.loads(f.read_text())
+    except (OSError, ValueError):
+        cur = {}
+    cur = {k: v for k, v in (cur or {}).items() if (v.get("date") or "") == today}
+    cur[str(name).strip()] = {"status": "Out", "date": today, "src": "news"}
+    try:
+        f.write_text(_j.dumps(cur, indent=0))
+    except OSError:
+        pass
+
+
+def _ud_player(txt):
+    """Player name from an Underdog injury tweet: \'{Name} ({injury}) {status}...\'."""
+    import re as _re
+    name = (txt or "").split("(")[0].strip()
+    if not name or name == (txt or "").strip():
+        name = _re.split(r"\b(?:ruled|listed|downgraded|upgraded|is |will |out|questionable|doubtful|probable|available)\b",
+                         txt or "", 1, flags=_re.I)[0].strip()
+    return name.strip(" .-")
 
 if __name__ == "__main__":
     if "--loop" in sys.argv:
