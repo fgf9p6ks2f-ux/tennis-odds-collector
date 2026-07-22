@@ -164,7 +164,10 @@ def confirmed_playing(player, team):
         return False
 
 
-FRESH_MIN = 90   # a book's CURRENT ladder = rungs re-posted within this many minutes of its newest
+FRESH_MIN = 10   # a book's CURRENT ladder = rungs re-posted within this many minutes of its newest
+                 # (2026-07-22: was 90 — an Actions-era relic; the VM collects every 25-75s, so 90min let a
+                 # moved-off rung linger as a phantom live line, e.g. Nelson-Ododa o18.5 shown 88min after FD
+                 # went to o20.5. 10min = ~8-24 collection cycles of slack, drops anything genuinely gone.)
                  # stamp. A prior slate's rows (~24h back) fall outside it, so a stale alt price can
                  # never merge into tonight's ladder (the bug that logged o14.5 @ +280 vs a real 17.5).
 
