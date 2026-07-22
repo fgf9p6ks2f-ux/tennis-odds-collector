@@ -1,6 +1,6 @@
 # Pitcher strikeout alt-ladder scan (cross-book line-shopping)
 
-_2026-07-22 05:57 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
+_2026-07-22 06:25 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
 
 **No +EV rung tonight** — the K market is efficient; even the best of 3 books is -EV on every agreeing rung. This is a SHOPPING sheet (best book per rung to minimize vig), not a bet list. A genuine +EV rung (a slow book) would ⭐ here.
 
@@ -20,11 +20,17 @@ _2026-07-22 05:57 UTC · fair = vig-stripped consensus of the books posting each
   O6.5: FD +600 (1 book, no consensus)
 
 **Anthony Kay**
-  O2.5: FD -1000 (1 book, no consensus)
-  O3.5: FD -330 (1 book, no consensus)
-  O4.5: fair 52% · DK -120 FD -132 → best DK
-  O5.5: FD +168 (1 book, no consensus)
+  O2.5: FD -1100 (1 book, no consensus)
+  O3.5: FD -340 (1 book, no consensus)
+  O4.5: fair 52% · DK -120 FD -136 → best DK
+  O5.5: FD +164 (1 book, no consensus)
   O6.5: FD +350 (1 book, no consensus)
+
+**Slade Cecconi**
+  O2.5: FD -460 (1 book, no consensus)
+  O3.5: fair 59% · FD -162 DK -175 → best FD
+  O4.5: FD +152 (1 book, no consensus)
+  O5.5: FD +340 (1 book, no consensus)
 
 **Bailey Ober**
   O2.5: FD -460 (1 book, no consensus)
@@ -69,12 +75,6 @@ _2026-07-22 05:57 UTC · fair = vig-stripped consensus of the books posting each
   O4.5: fair 48% · FD -102 DK -111 → best FD
   O5.5: FD +215 (1 book, no consensus)
   O6.5: FD +450 (1 book, no consensus)
-
-**Slade Cecconi**
-  O2.5: FD -460 (1 book, no consensus)
-  O3.5: fair 58% · FD -162 DK -167 → best FD
-  O4.5: FD +152 (1 book, no consensus)
-  O5.5: FD +340 (1 book, no consensus)
 
 **Reid Detmers**
   O2.5: FD -4505 (1 book, no consensus)
