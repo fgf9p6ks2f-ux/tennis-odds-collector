@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T02:13:16Z",
+ "captured_at": "2026-07-23T02:19:39Z",
  "matches": [
   {
    "event_id": 35854711,
@@ -8,9 +8,9 @@
    "p1_norm": "jerzy michalik",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T02:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 52.5,
+   "over_odds": 110,
+   "under_odds": -155
   }
  ]
 }
