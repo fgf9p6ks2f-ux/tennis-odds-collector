@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T06:52:05Z",
+ "captured_at": "2026-07-23T06:56:14Z",
  "matches": [
   {
    "event_id": 35855393,
@@ -8,18 +8,7 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-23T06:45:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35855394,
-   "p1": "Michal Oracz",
-   "p2": "Mariusz Adamus",
-   "p1_norm": "michal oracz",
-   "p2_norm": "mariusz adamus",
-   "open_date": "2026-07-23T06:45:00.000Z",
-   "line": 66.5,
+   "line": 94.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,31 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T06:50:00.000Z",
-   "line": 77.5,
+   "line": 68.5,
    "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35855406,
-   "p1": "Jakub Folwarski",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "jakub folwarski",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35855407,
-   "p1": "Igor Dabrowski",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35855408,
@@ -63,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855416,
@@ -97,6 +64,28 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T07:15:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35855433,
+   "p1": "Witold Buczynski",
+   "p2": "Michal Durda",
+   "p1_norm": "witold buczynski",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-23T07:20:00.000Z",
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35855434,
+   "p1": "Kacper Glazowski",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "kacper glazowski",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-23T07:20:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }

@@ -31,6 +31,7 @@ HERE = Path(__file__).resolve().parent
 DB = HERE / "k_paper.sqlite"
 PINN = HERE / "mlb_kprops.sqlite"
 FD = HERE / "fanduel_props.sqlite"
+TOTALS = HERE / "mlb_totals.sqlite"     # Vegas game O/U totals — SHADOW feature source (forward)
 IDCACHE = HERE / "k_paper_ids.json"
 
 K_OVER_MIN = 6.5        # RULE 1: strikeout line >= this -> OVER
@@ -55,7 +56,13 @@ def _ensure(con):
     away+contact + (low-patience opp OR line>recent-outs) hit ~+49% ROI (tag `premium`)."""
     con.execute(DDL)
     cols = {r[1] for r in con.execute("PRAGMA table_info(paper)")}
-    for c, typ in (("home", "INTEGER"), ("opp_k", "REAL"), ("premium", "INTEGER")):
+    # SHADOW features (2026-07-23): captured at grade time on NEW bets only (old rows stay NULL =
+    # forward-only). NONE feed _qualifies/flag() or _mlb_graded — pure observation, so we can later
+    # test whether run-environment / opponent OBP / pitcher role sharpen the outs-under edge without
+    # touching the live 30-9 model. game_total = wired for real; the other three are the shadow test.
+    for c, typ in (("home", "INTEGER"), ("opp_k", "REAL"), ("premium", "INTEGER"),
+                   ("game_total", "REAL"), ("opp_obp", "REAL"),
+                   ("pitcher_gs", "INTEGER"), ("pitcher_avg_outs", "REAL")):
         if c not in cols:
             con.execute(f"ALTER TABLE paper ADD COLUMN {c} {typ}")
 
@@ -76,6 +83,29 @@ def _team_hit(season):
     vals = sorted(ppa.values())
     p25 = vals[int(len(vals) * 0.25)] if vals else 3.82   # genuinely-low-patience threshold (not median)
     return tk, lg, ppa, p25
+
+
+def _game_total(pitcher, gd):
+    """Vegas game O/U total for the pitcher's game on `gd` (SHADOW field — never used by the model
+    or the record). Matches mlb_totals rows by the pitcher's LAST NAME inside the event string
+    (e.g. 'Diamondbacks (B Pfaadt) @ Cardinals (M McGreevy)'), latest snapshot, date within ±1 day.
+    Returns None when the total wasn't collected (fine — forward capture is best-effort)."""
+    last = (pitcher or "").split()[-1].lower()
+    if not (last and TOTALS.exists()):
+        return None
+    try:
+        con = sqlite3.connect(f"file:{TOTALS}?mode=ro", uri=True)
+        rows = con.execute(
+            "SELECT line, event FROM totals WHERE market='game_total' AND line>0 "
+            "AND date(start_time) BETWEEN date(?, '-1 day') AND date(?, '+1 day') "
+            "ORDER BY collected_at DESC", (gd, gd)).fetchall()
+        con.close()
+    except sqlite3.Error:
+        return None
+    for line, event in rows:
+        if last in (event or "").lower():
+            return line
+    return None
 
 
 def _now():
@@ -193,6 +223,7 @@ def grade():
 
     logcache = {}
     tkcache = {}
+    obpcache = {}                                             # season -> {team_id: OBP} (shadow)
     graded = 0
     for pitcher, gds in by_pitcher.items():
         pid = ids.get(pitcher)
@@ -256,6 +287,16 @@ def grade():
             _l5 = sorted(x["outs"] for x in priors[-5:])
             r5 = (_l5[len(_l5) // 2] if len(_l5) % 2 else (_l5[len(_l5) // 2 - 1] + _l5[len(_l5) // 2]) / 2) \
                 if len(priors) >= 3 else None
+            # ── SHADOW features (forward-only; do NOT gate the bet or the record) ──
+            if season not in obpcache:
+                try:
+                    obpcache[season] = data.team_obp(season)[0]
+                except Exception:
+                    obpcache[season] = {}
+            sh_gtot = _game_total(pitcher, gd)                       # run environment
+            sh_oobp = obpcache[season].get(g.get("opp_id"))          # opponent on-base
+            sh_pgs = len(priors) + 1                                 # pitcher pedigree = start # this yr
+            sh_pavg = round(sum(x["outs"] for x in priors) / len(priors), 2) if priors else None  # workload
             for market, keyk in (("k", "k"), ("outs", "outs")):
                 for (side, line, odds) in con.execute(
                         "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
@@ -270,9 +311,11 @@ def grade():
                     premium = 1 if (market == "outs" and (
                         (opp_ppa is not None and opp_ppa < ppa_low) or (r5 is not None and line > r5))) else 0
                     con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
-                                "home=?, opp_k=?, premium=? WHERE pitcher=? AND game_date=? AND market=? "
+                                "home=?, opp_k=?, premium=?, game_total=?, opp_obp=?, pitcher_gs=?, "
+                                "pitcher_avg_outs=? WHERE pitcher=? AND game_date=? AND market=? "
                                 "AND result IS NULL",
-                                (res, actual, pnl, _now(), home, opp_k, premium, pitcher, gd, market))
+                                (res, actual, pnl, _now(), home, opp_k, premium,
+                                 sh_gtot, sh_oobp, sh_pgs, sh_pavg, pitcher, gd, market))
                     graded += 1
     con.commit()
     con.close()
