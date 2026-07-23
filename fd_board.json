@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T18:59:56Z",
+ "captured_at": "2026-07-23T19:04:49Z",
  "matches": [
   {
    "event_id": 35857592,
@@ -8,20 +8,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35857593,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Michal Machelski",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 60.5,
-   "over_odds": 120,
-   "under_odds": -165
+   "line": 95.5,
+   "over_odds": -220,
+   "under_odds": 150
   },
   {
    "event_id": 35857607,
@@ -30,20 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-23T18:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35857608,
-   "p1": "Jacek Przewlocki",
-   "p2": "Dariusz Szlubowski",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "dariusz szlubowski",
-   "open_date": "2026-07-23T18:55:00.000Z",
-   "line": 55.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857623,
@@ -99,6 +77,17 @@
    "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35857662,
+   "p1": "Zbigniew Nocun",
+   "p2": "Adam Staniczek",
+   "p1_norm": "zbigniew nocun",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-23T19:30:00.000Z",
+   "line": 72.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
