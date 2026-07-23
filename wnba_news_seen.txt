@@ -120,6 +120,7 @@ rw|581|On fire from perimeter
 rw|586|Posts double-double in victory
 rw|586|Pulls down 16 boards in loss
 rw|587|Hands out 10 dimes in loss
+rw|587|Records pair of steals Wednesday
 rw|603|Rough shooting night in loss
 rw|605|Scores 15 points in loss Monday
 rw|615|Doesn't return Saturday
