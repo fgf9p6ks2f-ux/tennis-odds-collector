@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T10:56:57Z",
+ "captured_at": "2026-07-23T11:01:07Z",
  "matches": [
   {
    "event_id": 35856121,
@@ -8,20 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T10:50:00.000Z",
-   "line": 79.5,
+   "line": 85.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35856130,
-   "p1": "Igor Dabrowski",
-   "p2": "Aleksander Lilien",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "aleksander lilien",
-   "open_date": "2026-07-23T11:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
   },
   {
    "event_id": 35856131,
@@ -31,8 +20,8 @@
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T11:00:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856135,
@@ -64,6 +53,28 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T11:20:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856150,
+   "p1": "Karol Sulkowski",
+   "p2": "Blazej Warpas",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "blazej warpas",
+   "open_date": "2026-07-23T11:25:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856151,
+   "p1": "Robert Szymik",
+   "p2": "Michal Durda",
+   "p1_norm": "robert szymik",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-23T11:25:00.000Z",
+   "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
   }
