@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T23:07:52Z",
+ "captured_at": "2026-07-23T23:12:49Z",
  "matches": [
-  {
-   "event_id": 35857849,
-   "p1": "Pawel Chojnacki",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-23T22:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35857861,
    "p1": "Henryk Tkaczyk",
@@ -19,20 +8,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T23:05:00.000Z",
-   "line": 69.5,
+   "line": 67.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35857868,
-   "p1": "Jakub Nowak",
-   "p2": "Marek Tkocz",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-23T23:10:00.000Z",
-   "line": 64.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35857848,
@@ -74,9 +52,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T23:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35857907,
