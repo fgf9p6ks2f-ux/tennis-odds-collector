@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T06:10:02Z",
+ "captured_at": "2026-07-23T06:15:49Z",
  "matches": [
-  {
-   "event_id": 35855324,
-   "p1": "Mariusz Adamus",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-23T05:55:00.000Z",
-   "line": 102.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35855331,
    "p1": "Wojciech Urban",
@@ -19,20 +8,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-23T06:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35855332,
-   "p1": "Adrian Spychala",
-   "p2": "Jakub Zochniak",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "jakub zochniak",
-   "open_date": "2026-07-23T06:00:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 81.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35855336,
@@ -41,9 +19,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T06:05:00.000Z",
-   "line": 65.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 67.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35855337,
@@ -52,9 +30,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-23T06:05:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 79.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35855338,
@@ -63,9 +41,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T06:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855374,
