@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T07:25:03Z",
+ "captured_at": "2026-07-23T07:30:58Z",
  "matches": [
   {
    "event_id": 35855416,
@@ -8,20 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T07:10:00.000Z",
-   "line": 94.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35855417,
-   "p1": "Wojciech Urban",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "wojciech urban",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-23T07:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 99.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855425,
@@ -30,9 +19,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T07:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": 155,
+   "under_odds": -230
   },
   {
    "event_id": 35855433,
@@ -41,9 +30,9 @@
    "p1_norm": "witold buczynski",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T07:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855443,
@@ -99,6 +88,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35855487,
+   "p1": "Mariusz Adamus",
+   "p2": "Mariusz Baron",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-23T07:55:00.000Z",
+   "line": 81.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
