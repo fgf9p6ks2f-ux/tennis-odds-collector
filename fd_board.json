@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-23T12:15:29Z",
+ "captured_at": "2026-07-23T12:19:41Z",
  "matches": [
+  {
+   "event_id": 35856192,
+   "p1": "Kacper Glazowski",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "kacper glazowski",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-23T12:05:00.000Z",
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
   {
    "event_id": 35856198,
    "p1": "Rafal Gajda",
@@ -8,7 +19,7 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T12:15:00.000Z",
-   "line": 78.5,
+   "line": 84.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +30,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-23T12:15:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 67.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856201,
@@ -77,6 +88,17 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35856222,
+   "p1": "Piotr Gumulinski",
+   "p2": "Mariusz Adamus",
+   "p1_norm": "piotr gumulinski",
+   "p2_norm": "mariusz adamus",
+   "open_date": "2026-07-23T12:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
