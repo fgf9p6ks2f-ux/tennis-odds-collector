@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T13:26:26Z",
+ "captured_at": "2026-07-23T13:30:38Z",
  "matches": [
   {
    "event_id": 35856324,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T13:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856345,
@@ -20,8 +20,8 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T13:30:00.000Z",
    "line": 68.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35856346,
@@ -66,6 +66,39 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856371,
+   "p1": "Mariusz Adamus",
+   "p2": "Mariusz Baron",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-23T13:55:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35856372,
+   "p1": "Karol Sulkowski",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-23T13:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856373,
+   "p1": "Robert Szymik",
+   "p2": "Rafal Gajda",
+   "p1_norm": "robert szymik",
+   "p2_norm": "rafal gajda",
+   "open_date": "2026-07-23T13:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
