@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T09:44:29Z",
+ "captured_at": "2026-07-23T09:49:11Z",
  "matches": [
-  {
-   "event_id": 35855687,
-   "p1": "Michal Oracz",
-   "p2": "Piotr Gumulinski",
-   "p1_norm": "michal oracz",
-   "p2_norm": "piotr gumulinski",
-   "open_date": "2026-07-23T09:30:00.000Z",
-   "line": 75.5,
-   "over_odds": -155,
-   "under_odds": 110
-  },
   {
    "event_id": 35855734,
    "p1": "Krystian Kolodziej",
@@ -19,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T09:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 48.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35855994,
@@ -30,9 +19,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T09:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856018,
