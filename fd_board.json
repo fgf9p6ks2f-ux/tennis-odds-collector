@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T02:50:54Z",
+ "captured_at": "2026-07-23T02:57:01Z",
  "matches": [
-  {
-   "event_id": 35854756,
-   "p1": "Andriej Fomin",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "andriej fomin",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-23T02:35:00.000Z",
-   "line": 89.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35854754,
    "p1": "Oliver Vincenec",
@@ -19,9 +8,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T02:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 55.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35854755,
@@ -30,9 +19,9 @@
    "p1_norm": "miroslaw warzecha",
    "p2_norm": "michal wolny",
    "open_date": "2026-07-23T02:45:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 63.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35854760,
