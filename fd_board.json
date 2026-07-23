@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T10:30:13Z",
+ "captured_at": "2026-07-23T10:34:25Z",
  "matches": [
-  {
-   "event_id": 35856055,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Robert Szymik",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "robert szymik",
-   "open_date": "2026-07-23T10:10:00.000Z",
-   "line": 94.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35856066,
    "p1": "Mariusz Adamus",
@@ -19,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-23T10:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 91.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35856074,
@@ -41,9 +30,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T10:30:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856112,
@@ -87,6 +76,28 @@
    "open_date": "2026-07-23T10:50:00.000Z",
    "line": 75.5,
    "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35856130,
+   "p1": "Igor Dabrowski",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-23T11:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856131,
+   "p1": "Mateusz Sikon",
+   "p2": "Witold Buczynski",
+   "p1_norm": "mateusz sikon",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-23T11:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
    "under_odds": -116
   }
  ]
