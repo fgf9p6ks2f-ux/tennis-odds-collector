@@ -301,10 +301,11 @@ def grade():
             sh_oobp = obpcache[season].get(g.get("opp_id"))          # opponent on-base
             sh_pgs = len(priors) + 1                                 # pitcher pedigree = start # this yr
             sh_pavg = round(sum(x["outs"] for x in priors) / len(priors), 2) if priors else None  # workload
-            # STARTS-ONLY baseline (2026-07-23): `priors` is bf>=5, which lets multi-inning RELIEF
-            # outings in — a reliever-turned-starter's relief games skew every per-start average.
-            # A real start = 3+ innings (9 outs) or 50+ pitches.
-            _st = [x for x in priors if (x.get("outs") or 0) >= 9 or (x.get("pitches") or 0) >= 50]
+            # `priors` is ALREADY starts-only — mlb.data.pitcher_gamelog skips any split with
+            # gamesStarted=0, so relief never enters. Do NOT add an outs/pitches "is it a start?"
+            # heuristic: it can't distinguish a short START from relief and deletes exactly the
+            # blow-up starts (May 6-out/44p and 2-out/34p, both gamesStarted=1) that matter most.
+            _st = priors
             # ★ the leading new-route-B candidate: recent PITCHES PER OUT. This is literally the rate
             # he burns his pitch limit (~95 pitches / 5.7 per out ~= 16.7 outs), so HIGH = inefficient
             # = pulled earlier = outs-under wins. Mechanism-sound AND leak-free (prior starts only),
