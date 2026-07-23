@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T08:34:32Z",
+ "captured_at": "2026-07-23T08:40:26Z",
  "matches": [
-  {
-   "event_id": 35855542,
-   "p1": "Adrian Burkacki",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "adrian burkacki",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-23T08:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35855560,
    "p1": "Adrian Spychala",
@@ -19,9 +8,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-23T08:30:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 55.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855561,
@@ -30,7 +19,7 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T08:30:00.000Z",
-   "line": 72.5,
+   "line": 81.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T08:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 65.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855573,
@@ -108,6 +97,17 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T09:00:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35855612,
+   "p1": "Mariusz Adamus",
+   "p2": "Sebastian Juzek",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "sebastian juzek",
+   "open_date": "2026-07-23T09:05:00.000Z",
+   "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
   }
