@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T07:10:39Z",
+ "captured_at": "2026-07-23T07:14:42Z",
  "matches": [
   {
    "event_id": 35855406,
@@ -8,31 +8,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 83.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35855407,
-   "p1": "Igor Dabrowski",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 89.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35855408,
-   "p1": "Rafal Gajda",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 86.5,
+   "over_odds": -190,
+   "under_odds": 135
   },
   {
    "event_id": 35855416,
@@ -42,8 +20,8 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T07:10:00.000Z",
    "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855417,
@@ -53,8 +31,8 @@
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-23T07:10:00.000Z",
    "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855425,
@@ -110,6 +88,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35855457,
+   "p1": "Jakub Zochniak",
+   "p2": "Stapor Rafal",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "stapor rafal",
+   "open_date": "2026-07-23T07:40:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
