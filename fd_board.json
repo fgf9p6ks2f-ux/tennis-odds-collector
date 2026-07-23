@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T10:26:05Z",
+ "captured_at": "2026-07-23T10:30:13Z",
  "matches": [
   {
    "event_id": 35856055,
@@ -8,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-23T10:10:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 94.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856066,
@@ -19,9 +19,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-23T10:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856074,
@@ -30,9 +30,9 @@
    "p1_norm": "kacper glazowski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T10:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856100,
@@ -42,8 +42,8 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T10:30:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856112,
