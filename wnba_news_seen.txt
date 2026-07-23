@@ -81,6 +81,7 @@ rw|297|Rolls up 29 points against Sky
 rw|309|Just misses double-double
 rw|326|Another double-double Wednesday
 rw|326|Another double-double in loss
+rw|330|Not starting Wednesday
 rw|330|Starting Monday
 rw|331|Strong line in win
 rw|344|Available for Wednesday
@@ -106,9 +107,11 @@ rw|440|Flirts with triple-double in OT win
 rw|462|Cools off Wednesday
 rw|462|Drops 21 points against former team
 rw|481|Dominant in win Monday
+rw|481|Posts 38 points in road loss
 rw|483|Paces Sky with 20 points
 rw|485|Hits game-winning shot at buzzer
 rw|539|Another 30-point performance
+rw|571|Drops 24 in nation's capital
 rw|571|Picks up another double-double
 rw|574|Probable for Wednesday
 rw|574|Shines in season debut

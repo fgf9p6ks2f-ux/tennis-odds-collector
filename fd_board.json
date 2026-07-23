@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T01:45:27Z",
+ "captured_at": "2026-07-23T01:52:55Z",
  "matches": [
   {
    "event_id": 35854699,
@@ -8,9 +8,20 @@
    "p1_norm": "marian lebek",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T01:35:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35854700,
+   "p1": "Adam Staniczek",
+   "p2": "Jakub Skorupa",
+   "p1_norm": "adam staniczek",
+   "p2_norm": "jakub skorupa",
+   "open_date": "2026-07-23T01:45:00.000Z",
+   "line": 47.5,
+   "over_odds": -130,
+   "under_odds": -105
   }
  ]
 }
