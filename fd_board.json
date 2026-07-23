@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T03:52:47Z",
+ "captured_at": "2026-07-23T03:59:14Z",
  "matches": [
   {
    "event_id": 35854808,
@@ -8,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T03:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35854818,
@@ -19,9 +19,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-23T03:50:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35854819,
@@ -30,8 +30,19 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-23T03:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854841,
+   "p1": "Michal Wolny",
+   "p2": "Jacek Zelezik",
+   "p1_norm": "michal wolny",
+   "p2_norm": "jacek zelezik",
+   "open_date": "2026-07-23T03:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
@@ -88,6 +99,17 @@
    "line": 70.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35854848,
+   "p1": "Wojciech Urban",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-23T04:25:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
