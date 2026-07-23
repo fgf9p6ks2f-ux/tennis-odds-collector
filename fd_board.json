@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-23T05:01:15Z",
+ "captured_at": "2026-07-23T05:06:54Z",
  "matches": [
-  {
-   "event_id": 35854876,
-   "p1": "Oliver Vincenec",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-23T04:50:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35854877,
-   "p1": "Aleksander Lilien",
-   "p2": "Adrian Spychala",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-23T04:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35854878,
-   "p1": "Patrik Klos",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "patrik klos",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-23T04:55:00.000Z",
-   "line": 66.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35854879,
    "p1": "Mateusz Sikon",
@@ -41,20 +8,9 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T04:55:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35854880,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-23T04:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 94.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855153,
@@ -110,6 +66,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35855279,
+   "p1": "Michal Oracz",
+   "p2": "Mariusz Baron",
+   "p1_norm": "michal oracz",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-23T05:30:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
