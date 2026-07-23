@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T20:40:06Z",
+ "captured_at": "2026-07-23T20:44:36Z",
  "matches": [
   {
    "event_id": 35857744,
@@ -8,9 +8,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857745,
@@ -19,9 +19,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857752,
@@ -86,6 +86,17 @@
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-23T21:05:00.000Z",
    "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857775,
+   "p1": "Lukasz Oracz",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "lukasz oracz",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-23T21:10:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
