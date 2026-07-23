@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T09:49:11Z",
+ "captured_at": "2026-07-23T09:54:42Z",
  "matches": [
   {
    "event_id": 35855734,
@@ -8,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T09:40:00.000Z",
-   "line": 48.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 68.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855994,
@@ -19,9 +19,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T09:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 90.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35856018,
@@ -30,9 +30,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T09:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856019,
@@ -41,9 +41,9 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T09:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856037,
@@ -74,9 +74,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-23T10:05:00.000Z",
-   "line": 82.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35856054,
@@ -97,6 +97,17 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-23T10:10:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856066,
+   "p1": "Mariusz Adamus",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-23T10:20:00.000Z",
+   "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
   }
