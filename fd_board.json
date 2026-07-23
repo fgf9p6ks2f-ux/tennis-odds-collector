@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T03:15:26Z",
+ "captured_at": "2026-07-23T03:21:16Z",
  "matches": [
-  {
-   "event_id": 35854762,
-   "p1": "Igor Dabrowski",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-23T03:00:00.000Z",
-   "line": 96.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35854798,
    "p1": "Witold Stechly",
@@ -19,9 +8,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-23T03:05:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 69.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35854767,
@@ -30,9 +19,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T03:10:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35854793,
@@ -52,9 +41,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T03:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35854795,
@@ -77,6 +66,17 @@
    "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35854808,
+   "p1": "Patrik Klos",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "patrik klos",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-23T03:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
