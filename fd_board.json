@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T15:21:51Z",
+ "captured_at": "2026-07-23T15:26:05Z",
  "matches": [
-  {
-   "event_id": 35856611,
-   "p1": "Jacek Przewlocki",
-   "p2": "Milosz Piecowski",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "milosz piecowski",
-   "open_date": "2026-07-23T15:00:00.000Z",
-   "line": 97.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35856612,
    "p1": "Patryk Jendrzejewski",
@@ -20,8 +9,8 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T15:00:00.000Z",
    "line": 94.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856731,
@@ -30,31 +19,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -110
-  },
-  {
-   "event_id": 35856732,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35856733,
-   "p1": "Jakub Cyndera",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856786,
@@ -77,6 +44,28 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856817,
+   "p1": "Pawel Chojnacki",
+   "p2": "Michal Guzik",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-23T15:50:00.000Z",
+   "line": 72.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856818,
+   "p1": "Stanislaw Wnek",
+   "p2": "Dariusz Szlubowski",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "dariusz szlubowski",
+   "open_date": "2026-07-23T15:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
