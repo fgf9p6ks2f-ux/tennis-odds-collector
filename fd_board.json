@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T19:43:41Z",
+ "captured_at": "2026-07-23T19:47:45Z",
  "matches": [
   {
    "event_id": 35857662,
@@ -8,20 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T19:30:00.000Z",
-   "line": 55.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35857664,
-   "p1": "Jakub Nowak",
-   "p2": "Karol Jablonski",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-23T19:35:00.000Z",
-   "line": 64.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 74.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857667,
@@ -30,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-23T19:40:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 60.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857668,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-23T19:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857684,
