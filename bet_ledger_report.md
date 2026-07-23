@@ -1,13 +1,13 @@
 # Bet ledger — automated results, CLV & P&L
 
-_2026-07-23T20:14:52 UTC_ · 1 unit = $100 · flag threshold +2% EV
+_2026-07-23T20:36:38 UTC_ · 1 unit = $100 · flag threshold +2% EV
 
-- **Record:** 166-269-3  ·  **P&L:** -47.75u ($-4,775)  ·  **ROI:** -10.9%
-- **Avg CLV:** +6.95% over 312 closed bets  ·  **Open:** 12  ·  **Total logged:** 473
+- **Record:** 168-271-3  ·  **P&L:** -48.06u ($-4,806)  ·  **ROI:** -10.9%
+- **Avg CLV:** +6.95% over 312 closed bets  ·  **Open:** 9  ·  **Total logged:** 474
 
 > CLV is the signal that matters — positive average CLV means the edge is real even before the W-L catches up. W-L over small samples is noise.
 
-Data OK — FanDuel 292 lines @ `2026-07-23T20:14:27`.
+Data OK — FanDuel 294 lines @ `2026-07-23T20:36:19`.
 
 ### by sport / stat
 
@@ -16,7 +16,7 @@ Data OK — FanDuel 292 lines @ `2026-07-23T20:14:27`.
 | ebasketball | total | 37 | +5.95 | -4.65% |
 | efootball | total | 3 | +0.74 | — |
 | mlb | f5_total | 41 | +9.86 | — |
-| mlb | game_total | 100 | +7.57 | — |
+| mlb | game_total | 101 | +7.26 | — |
 | mlb | strikeouts | 29 | -5.91 | +3.87% |
 | mlb | total_bases | 253 | -61.42 | +8.10% |
 | tennis | player_games | 10 | -4.54 | +11.06% |
@@ -25,6 +25,10 @@ Data OK — FanDuel 292 lines @ `2026-07-23T20:14:27`.
 
 | date | sport | player | bet | odds | result | got | P&L | CLV |
 |---|---|---|---|---|---|---|---|---|
+| 2026-07-23 | mlb | GAME (game_total) | game_total over 8.0 | 1.89 | W | 11 | +0.89u | — |
+| 2026-07-23 | mlb | GAME (game_total) | game_total under 8.0 | 1.93 | L | 11 | -1.00u | — |
+| 2026-07-23 | mlb | GAME (game_total) | game_total over 10.5 | 1.80 | W | 11 | +0.80u | — |
+| 2026-07-23 | mlb | GAME (game_total) | game_total under 9.5 | 2.12 | L | 11 | -1.00u | — |
 | 2026-07-23 | mlb | GAME (game_total) | game_total over 8.5 | 1.91 | L | 6 | -1.00u | — |
 | 2026-07-23 | mlb | GAME (game_total) | game_total under 8.5 | 1.85 | W | 6 | +0.85u | — |
 | 2026-07-23 | mlb | GAME (f5_total) | f5_total under 4.5 | 1.87 | L | 5 | -1.00u | — |
@@ -46,8 +50,4 @@ Data OK — FanDuel 292 lines @ `2026-07-23T20:14:27`.
 | 2026-07-22 | mlb | GAME (f5_total) | f5_total under 3.5 | 1.83 | L | 11 | -1.00u | — |
 | 2026-07-22 | mlb | GAME (f5_total) | f5_total over 2.5 | 1.63 | W | 5 | +0.63u | — |
 | 2026-07-22 | mlb | GAME (game_total) | game_total over 18.5 | 1.98 | W | 20 | +0.98u | — |
-| 2026-07-22 | mlb | GAME (game_total) | game_total over 11.5 | 2.00 | L | 8 | -1.00u | — |
-| 2026-07-22 | mlb | GAME (game_total) | game_total over 8.0 | 1.95 | L | 7 | -1.00u | — |
-| 2026-07-22 | mlb | GAME (f5_total) | f5_total over 1.5 | 2.18 | L | 0 | -1.00u | — |
-| 2026-07-22 | mlb | GAME (game_total) | game_total over 5.5 | 2.08 | W | 9 | +1.08u | — |
 
