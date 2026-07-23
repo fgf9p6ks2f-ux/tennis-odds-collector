@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T03:09:35Z",
+ "captured_at": "2026-07-23T03:15:26Z",
  "matches": [
-  {
-   "event_id": 35854760,
-   "p1": "Jakub Folwarski",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "jakub folwarski",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-23T03:00:00.000Z",
-   "line": 54.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35854761,
-   "p1": "Rafal Gajda",
-   "p2": "Michal Durda",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-23T03:00:00.000Z",
-   "line": 70.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35854762,
    "p1": "Igor Dabrowski",
@@ -30,9 +8,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T03:00:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35854798,
@@ -41,9 +19,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-23T03:05:00.000Z",
-   "line": 63.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854767,
@@ -52,9 +30,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T03:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854793,
