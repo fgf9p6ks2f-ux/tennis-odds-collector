@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T18:02:59Z",
+ "captured_at": "2026-07-23T18:07:10Z",
  "matches": [
-  {
-   "event_id": 35857410,
-   "p1": "Jacek Oracz",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-23T17:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -210,
-   "under_odds": 145
-  },
   {
    "event_id": 35857411,
    "p1": "Jacek Przewlocki",
@@ -19,9 +8,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-23T17:45:00.000Z",
-   "line": 106.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "line": 109.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857432,
@@ -30,9 +19,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T17:55:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": 100,
+   "under_odds": -135
   },
   {
    "event_id": 35857438,
@@ -41,9 +30,9 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-23T18:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 53.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35857469,
@@ -86,6 +75,39 @@
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T18:25:00.000Z",
    "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857567,
+   "p1": "Grzegorz Adamiak",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "grzegorz adamiak",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-23T18:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857568,
+   "p1": "Jakub Cyndera",
+   "p2": "Pawel Chojnacki",
+   "p1_norm": "jakub cyndera",
+   "p2_norm": "pawel chojnacki",
+   "open_date": "2026-07-23T18:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35857569,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-23T18:30:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
