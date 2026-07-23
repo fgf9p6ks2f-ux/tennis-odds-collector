@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T08:02:31Z",
+ "captured_at": "2026-07-23T08:06:42Z",
  "matches": [
   {
    "event_id": 35855465,
@@ -8,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-23T07:45:00.000Z",
-   "line": 84.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 111.5,
+   "over_odds": -135,
+   "under_odds": 100
   },
   {
    "event_id": 35855487,
@@ -19,9 +19,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T07:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855495,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-23T08:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855499,
@@ -52,9 +52,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-23T08:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855511,
@@ -88,6 +88,28 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35855560,
+   "p1": "Adrian Spychala",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "adrian spychala",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-23T08:30:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35855561,
+   "p1": "Jakub Folwarski",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "jakub folwarski",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-23T08:30:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
