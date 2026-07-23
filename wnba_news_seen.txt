@@ -162,6 +162,7 @@ rw|807|Posts double-double in road loss
 rw|836|Inactive versus Liberty
 rw|852|Drops 22 points in blowout win
 rw|852|Logs 15 points vs. New York
+rw|853|Paces Connecticut in loss
 rw|854|Available for Monday
 rw|854|Won't suit up Wednesday
 rw|856|Plays well off bench
