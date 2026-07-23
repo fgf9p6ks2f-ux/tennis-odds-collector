@@ -155,6 +155,7 @@ rw|641|Season-high 29 points in win
 rw|678|Closing in on return
 rw|733|Swats four shots in loss
 rw|735|Limited production in return
+rw|735|Notches 10 points
 rw|735|On track to return Sunday
 rw|751|Listed as questionable
 rw|751|Upgraded to available
@@ -191,6 +192,7 @@ rw|935|Commits nine turnovers in loss
 rw|969|Manages 11 points in loss
 rw|971|Remains away from team
 rw|972|Not listed on injury report
+rw|977|Fares well against Sparks
 rw|979|Good to go Wednesday
 rw|979|Nets 21 points Wednesday
 rw|979|Not on injury report
