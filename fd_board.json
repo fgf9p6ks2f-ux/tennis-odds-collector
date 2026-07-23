@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T15:34:27Z",
+ "captured_at": "2026-07-23T15:39:19Z",
  "matches": [
   {
    "event_id": 35856731,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856732,
@@ -19,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856733,
@@ -30,7 +30,7 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 83.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +41,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "michal oracz",
    "open_date": "2026-07-23T15:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856787,
@@ -52,9 +52,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T15:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35856817,
@@ -85,9 +85,9 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T15:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 84.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856846,
@@ -96,6 +96,17 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-23T16:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856850,
+   "p1": "Patryk Jendrzejewski",
+   "p2": "Grzegorz Adamiak",
+   "p1_norm": "patryk jendrzejewski",
+   "p2_norm": "grzegorz adamiak",
+   "open_date": "2026-07-23T16:05:00.000Z",
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118

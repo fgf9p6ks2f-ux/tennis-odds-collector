@@ -47,6 +47,7 @@ rw|1045|Racks up 13 points in victory
 rw|1047|Records double-double in home loss
 rw|1047|Season-high 11 rebounds
 rw|1048|Goes for 11 points in victory
+rw|1048|Miled effort in win
 rw|1048|Records 11 points in victory
 rw|1050|Provides scoring punch
 rw|1050|Scores team-high 26 points
@@ -63,6 +64,7 @@ rw|1067|Not listed on injury report
 rw|1067|Ruled out Wednesday
 rw|1071|Erupts with 31 points Wednesday
 rw|1071|Totals 18 points in road loss
+rw|1073|Fares well off bench
 rw|1074|Not listed on injury report
 rw|1074|Ruled out Wednesday
 rw|1078|Available to play
@@ -155,6 +157,7 @@ rw|640|Hands out four dimes in loss
 rw|641|Chips in 12 points in loss
 rw|641|Nets 21 points in overtime win
 rw|641|Season-high 29 points in win
+rw|647|Plays well off bench
 rw|678|Closing in on return
 rw|733|Swats four shots in loss
 rw|735|Limited production in return
