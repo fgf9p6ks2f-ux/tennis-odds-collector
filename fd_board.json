@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T18:47:06Z",
+ "captured_at": "2026-07-23T18:51:10Z",
  "matches": [
-  {
-   "event_id": 35857522,
-   "p1": "Zbigniew Nocun",
-   "p2": "Dariusz Molenda",
-   "p1_norm": "zbigniew nocun",
-   "p2_norm": "dariusz molenda",
-   "open_date": "2026-07-23T18:20:00.000Z",
-   "line": 94.5,
-   "over_odds": -160,
-   "under_odds": 115
-  },
-  {
-   "event_id": 35857567,
-   "p1": "Grzegorz Adamiak",
-   "p2": "Lukasz Pietraszko",
-   "p1_norm": "grzegorz adamiak",
-   "p2_norm": "lukasz pietraszko",
-   "open_date": "2026-07-23T18:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35857592,
    "p1": "Kaczynski Piotr",
@@ -30,9 +8,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857593,
@@ -41,9 +19,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857607,
