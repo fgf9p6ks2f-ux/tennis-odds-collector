@@ -1,16 +1,27 @@
 {
- "captured_at": "2026-07-23T01:00:19Z",
+ "captured_at": "2026-07-23T01:09:13Z",
  "matches": [
   {
-   "event_id": 35854669,
-   "p1": "Jerzy Pelka",
-   "p2": "Adrian Burkacki",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "adrian burkacki",
-   "open_date": "2026-07-23T00:45:00.000Z",
-   "line": 98.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "event_id": 35854679,
+   "p1": "Milosz Piecowski",
+   "p2": "Mikolaj Lukaszewski",
+   "p1_norm": "milosz piecowski",
+   "p2_norm": "mikolaj lukaszewski",
+   "open_date": "2026-07-23T01:00:00.000Z",
+   "line": 82.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35854680,
+   "p1": "Andriej Fomin",
+   "p2": "Jakub Skorupa",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "jakub skorupa",
+   "open_date": "2026-07-23T01:00:00.000Z",
+   "line": 65.5,
+   "over_odds": -105,
+   "under_odds": -130
   }
  ]
 }
