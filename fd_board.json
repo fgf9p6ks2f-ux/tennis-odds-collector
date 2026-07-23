@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T14:15:14Z",
+ "captured_at": "2026-07-23T14:19:24Z",
  "matches": [
-  {
-   "event_id": 35856371,
-   "p1": "Mariusz Adamus",
-   "p2": "Mariusz Baron",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35856412,
    "p1": "Krystian Kolodziej",
@@ -19,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T14:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856420,
@@ -30,9 +19,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T14:15:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856429,
@@ -99,6 +88,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856499,
+   "p1": "Michal Oracz",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "michal oracz",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-23T14:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
