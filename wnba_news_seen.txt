@@ -150,6 +150,7 @@ rw|755|Double-doubles off bench
 rw|782|Out Wednesday
 rw|785|Productive in win over Tempo
 rw|786|Grabs 15 boards in win
+rw|786|Paces Mystics with 25 points
 rw|792|Won't play Wednesday
 rw|797|Scores team-high 20 points
 rw|807|Posts double-double in road loss
