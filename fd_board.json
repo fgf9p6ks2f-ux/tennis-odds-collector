@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T02:38:30Z",
+ "captured_at": "2026-07-23T02:44:31Z",
  "matches": [
   {
    "event_id": 35854756,
@@ -8,9 +8,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T02:35:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35854754,
@@ -66,6 +66,17 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35854767,
+   "p1": "Wojciech Urban",
+   "p2": "Lukasz Oracz",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "lukasz oracz",
+   "open_date": "2026-07-23T03:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
