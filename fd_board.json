@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T20:44:36Z",
+ "captured_at": "2026-07-23T20:49:07Z",
  "matches": [
-  {
-   "event_id": 35857744,
-   "p1": "Jacek Przewlocki",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35857745,
-   "p1": "Patryk Jendrzejewski",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "patryk jendrzejewski",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35857752,
    "p1": "Kacper Adamus",
@@ -30,9 +8,9 @@
    "p1_norm": "kacper adamus",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T20:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857753,
@@ -41,9 +19,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T20:45:00.000Z",
-   "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 54.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857765,
