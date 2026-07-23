@@ -1,12 +1,12 @@
 # Pitcher strikeout alt-ladder scan (cross-book line-shopping)
 
-_2026-07-23 09:04 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
+_2026-07-23 09:16 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
 
 **No +EV rung tonight** — the K market is efficient; even the best of 3 books is -EV on every agreeing rung. This is a SHOPPING sheet (best book per rung to minimize vig), not a bet list. A genuine +EV rung (a slow book) would ⭐ here.
 
 **Brandon Pfaadt**
   O2.5: FD -260 (1 book, no consensus)
-  O3.5: fair 47% · FD +106 DK -112 → best FD
+  O3.5: fair 47% · FD +106 DK -109 → best FD
   O4.5: FD +255 (1 book, no consensus)
   O5.5: FD +600 (1 book, no consensus)
 
@@ -16,14 +16,6 @@ _2026-07-23 09:04 UTC · fair = vig-stripped consensus of the books posting each
   O4.5: FD +126 (1 book, no consensus)
   O5.5: FD +280 (1 book, no consensus)
   O6.5: FD +600 (1 book, no consensus)
-
-**Troy Melton**
-  O2.5: FD -3497 (1 book, no consensus)
-  O3.5: FD -770 (1 book, no consensus)
-  O4.5: FD -290 (1 book, no consensus)
-  O5.5: fair 48% · DK -101 FD -113 → best DK
-  O6.5: FD +180 (1 book, no consensus)
-  O7.5: FD +360 (1 book, no consensus)
 
 **Michael McGreevy**
   O2.5: FD -230 (1 book, no consensus)
@@ -51,8 +43,16 @@ _2026-07-23 09:04 UTC · fair = vig-stripped consensus of the books posting each
 **Randy Dobnak**
   O2.5: FD -215 (1 book, no consensus)
   O3.5: fair 41% · FD +128 DK +117 → best FD
-  O4.5: FD +265 (1 book, no consensus)
-  O5.5: FD +600 (1 book, no consensus)
+  O4.5: FD +280 (1 book, no consensus)
+  O5.5: FD +630 (1 book, no consensus)
+
+**Troy Melton**
+  O2.5: FD -4000 (1 book, no consensus)
+  O3.5: FD -800 (1 book, no consensus)
+  O4.5: FD -280 (1 book, no consensus)
+  O5.5: fair 48% · DK -104 FD -108 → best DK
+  O6.5: FD +186 (1 book, no consensus)
+  O7.5: FD +390 (1 book, no consensus)
 
 **Taj Bradley**
   O3.5: FD -1200 (1 book, no consensus)
