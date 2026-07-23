@@ -116,6 +116,7 @@ rw|481|Posts 38 points in road loss
 rw|483|Paces Sky with 20 points
 rw|485|Hits game-winning shot at buzzer
 rw|539|Another 30-point performance
+rw|539|Posts 23 points in rout
 rw|571|Drops 24 in nation's capital
 rw|571|Picks up another double-double
 rw|574|Probable for Wednesday
