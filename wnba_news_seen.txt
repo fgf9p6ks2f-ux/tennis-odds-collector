@@ -130,6 +130,7 @@ rw|577|Out again Wednesday
 rw|577|Questionable for Wednesday
 rw|577|Unlikely to play Monday
 rw|579|Not listed on injury report
+rw|579|Paces Portland in loss
 rw|580|Leading scorer in win
 rw|580|Racks up 20 points in Sunday's win
 rw|580|Scores team-high 29 points
