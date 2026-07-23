@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T14:36:58Z",
+ "captured_at": "2026-07-23T14:41:04Z",
  "matches": [
-  {
-   "event_id": 35856430,
-   "p1": "Piotr Gumulinski",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-23T14:20:00.000Z",
-   "line": 68.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35856485,
    "p1": "Patrik Klos",
@@ -19,9 +8,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T14:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856491,
@@ -30,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T14:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856492,
@@ -86,6 +75,17 @@
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T15:00:00.000Z",
    "line": 71.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856629,
+   "p1": "Mariusz Adamus",
+   "p2": "Sebastian Juzek",
+   "p1_norm": "mariusz adamus",
+   "p2_norm": "sebastian juzek",
+   "open_date": "2026-07-23T15:05:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
