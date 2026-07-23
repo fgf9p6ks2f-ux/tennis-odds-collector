@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T06:47:11Z",
+ "captured_at": "2026-07-23T06:52:05Z",
  "matches": [
   {
    "event_id": 35855393,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-23T06:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855394,
@@ -19,9 +19,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-23T06:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 66.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855402,
@@ -30,9 +30,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T06:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855406,
