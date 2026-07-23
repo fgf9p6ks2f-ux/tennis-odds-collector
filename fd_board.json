@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T08:12:22Z",
+ "captured_at": "2026-07-23T08:18:22Z",
  "matches": [
-  {
-   "event_id": 35855487,
-   "p1": "Mariusz Adamus",
-   "p2": "Mariusz Baron",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-23T07:55:00.000Z",
-   "line": 97.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35855495,
    "p1": "Jakub Kaczmarek",
@@ -24,24 +13,13 @@
    "under_odds": -115
   },
   {
-   "event_id": 35855499,
-   "p1": "Patrik Klos",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "patrik klos",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-23T08:05:00.000Z",
-   "line": 62.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
    "event_id": 35855500,
    "p1": "Aleksander Lilien",
    "p2": "Stapor Rafal",
    "p1_norm": "aleksander lilien",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-23T08:05:00.000Z",
-   "line": 78.5,
+   "line": 84.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +30,9 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T08:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855542,
@@ -75,7 +53,7 @@
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-23T08:20:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
+   "over_odds": -112,
    "under_odds": -118
   },
   {
@@ -109,6 +87,28 @@
    "open_date": "2026-07-23T08:35:00.000Z",
    "line": 79.5,
    "over_odds": -116,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35855573,
+   "p1": "Piotr Gumulinski",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "piotr gumulinski",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-23T08:45:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35855574,
+   "p1": "Wojciech Urban",
+   "p2": "Marian Lebek",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-23T08:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
    "under_odds": -118
   }
  ]
