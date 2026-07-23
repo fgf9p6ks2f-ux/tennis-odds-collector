@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T08:59:55Z",
+ "captured_at": "2026-07-23T09:03:58Z",
  "matches": [
   {
    "event_id": 35855573,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T08:45:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -190,
+   "under_odds": 135
   },
   {
    "event_id": 35855574,
@@ -19,9 +19,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T08:45:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 96.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35855607,
@@ -30,9 +30,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T09:00:00.000Z",
-   "line": 65.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855608,
@@ -41,9 +41,9 @@
    "p1_norm": "patrik klos",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T09:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855609,
@@ -52,20 +52,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T09:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35855610,
-   "p1": "Michal Minda",
-   "p2": "Adrian Spychala",
-   "p1_norm": "michal minda",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-23T09:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855612,
@@ -110,6 +99,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35855687,
+   "p1": "Michal Oracz",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "michal oracz",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-23T09:30:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
