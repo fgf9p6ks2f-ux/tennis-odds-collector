@@ -421,6 +421,14 @@ def collect():
     # ast d3, both lost). EV does NOT rescue contested overs (depth>=2 hi-EV still 47%), so the gate
     # is depth-only. FIRM OVERS only — unders + the full projection tracker are untouched. Breadcrumb
     # (wnba_depth_capped.csv) grades the suppressed overs forward. DEPTH_CAP=False kills it instantly.
+    # PURE-POINTS EXEMPT (2026-07-23 refinement): the cap's mechanism — a vacated role CONTESTED by
+    # same-role bodies — only bites POSITION-LOCKED production: rebounds (the frontcourt fights for the
+    # same boards) and assists (the backcourt shares the creation). It does NOT apply to points, which
+    # come off a player's OWN usage — a crowd doesn't stop you scoring. Capping points was an over-reach
+    # of the mechanism; the ledger confirms it (crowded-depth>=3 pure-points overs went 5-2 / 71%, while
+    # reb/ast/combo went 4-8). So `points` is exempt (still capped: rebounds, assists, pts_reb, pts_ast,
+    # reb_ast, pra). On the curated headline record this takes 34-17 -> 30-9 (vs 25-7 for the blunt
+    # all-stats cap) and still kills all three CON disasters (Ododa pts_reb ×2 + Lacan assists).
     DEPTH_CAP = True
     if DEPTH_CAP and preds:
         def _role_depth(p):
@@ -439,7 +447,9 @@ def collect():
                        and nm not in outs_here and nm not in out_names
                        and (vv.get("min") or 0) >= 18
                        and _POSG.get((vv.get("position") or "F").upper(), "F") in poolset)
-        dcap = [p for p in preds if p.get("side") == "over" and _role_depth(p) >= 3]
+        # pure points exempt — the cap only applies to position-locked stats (reb/ast/combos)
+        dcap = [p for p in preds if p.get("side") == "over" and p["stat"] != "points"
+                and _role_depth(p) >= 3]
         if dcap:
             drop_d = {(p["player"], p["stat"]) for p in dcap}
             try:                                         # breadcrumb (like wnba_capped_legs.csv) so
