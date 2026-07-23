@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T13:08:38Z",
+ "captured_at": "2026-07-23T13:12:48Z",
  "matches": [
   {
    "event_id": 35856270,
@@ -8,9 +8,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T13:00:00.000Z",
-   "line": 64.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 65.5,
+   "over_odds": 120,
+   "under_odds": -165
   },
   {
    "event_id": 35856294,
@@ -19,7 +19,7 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T13:05:00.000Z",
-   "line": 79.5,
+   "line": 89.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +30,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T13:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856309,
@@ -41,9 +41,9 @@
    "p1_norm": "michal oracz",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T13:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856324,
