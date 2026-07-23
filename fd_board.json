@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T19:17:24Z",
+ "captured_at": "2026-07-23T19:22:25Z",
  "matches": [
-  {
-   "event_id": 35857623,
-   "p1": "Kacper Adamus",
-   "p2": "Wojciech Pytlas",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "wojciech pytlas",
-   "open_date": "2026-07-23T19:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35857624,
    "p1": "Dariusz Molenda",
@@ -19,9 +8,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T19:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35857628,
@@ -30,9 +19,9 @@
    "p1_norm": "michal olbrycht",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T19:15:00.000Z",
-   "line": 66.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 54.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857633,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T19:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35857634,
@@ -53,8 +42,8 @@
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-23T19:20:00.000Z",
    "line": 80.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857662,
