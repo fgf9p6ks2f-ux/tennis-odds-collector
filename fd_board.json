@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T16:49:41Z",
+ "captured_at": "2026-07-23T16:53:51Z",
  "matches": [
-  {
-   "event_id": 35857134,
-   "p1": "Sebastian Juzek",
-   "p2": "Mariusz Baron",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-23T16:40:00.000Z",
-   "line": 69.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35857269,
    "p1": "Wojciech Pytlas",
@@ -19,9 +8,9 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-23T16:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857289,
@@ -77,6 +66,39 @@
    "line": 84.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35857348,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Milosz Piecowski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "milosz piecowski",
+   "open_date": "2026-07-23T17:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35857349,
+   "p1": "Jakub Cyndera",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "jakub cyndera",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-23T17:20:00.000Z",
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857350,
+   "p1": "Grzegorz Adamiak",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "grzegorz adamiak",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-23T17:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
