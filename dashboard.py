@@ -1448,8 +1448,15 @@ def _mlb_health():
     resolved = sum(1 for p in pitchers if _mlb_matchup("", p)[0] is not None)
     if resolved == 0:                             # THE 2026-07-21 signature: lines flow, nothing resolves
         return {"ok": False, "reason": f"0/{n} matchups resolve — book format change?"}
-    if resolved < n * 0.5:                        # partial break: most starters unresolved
-        return {"ok": False, "reason": f"only {resolved}/{n} matchups resolve"}
+    # PARTIAL break judged against CONFIRMED starters, not all lined pitchers (2026-07-23 fix): books
+    # (esp. DraftKings) post speculative + NEXT-DAY outs lines hours ahead of statsapi confirming
+    # starters, so `n` is inflated early (e.g. 47 lines vs ~10 confirmed) and comparing `resolved` to
+    # it tripped the red banner every morning (cry-wolf). A confirmed starter that's lined DOES resolve
+    # (both come from the same probables map); unconfirmed/next-day lines simply don't resolve yet =
+    # NOT a break. So alarm only when plenty of starters ARE confirmed yet few resolve (name-join break).
+    np_ = len(_probables_today())
+    if np_ >= 5 and resolved < np_ * 0.5:
+        return {"ok": False, "reason": f"only {resolved}/{np_} confirmed starters resolve"}
     return {"ok": True, "reason": ""}
 
 
