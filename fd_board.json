@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T02:57:01Z",
+ "captured_at": "2026-07-23T03:03:38Z",
  "matches": [
-  {
-   "event_id": 35854754,
-   "p1": "Oliver Vincenec",
-   "p2": "Marian Lebek",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "marian lebek",
-   "open_date": "2026-07-23T02:45:00.000Z",
-   "line": 55.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
-  {
-   "event_id": 35854755,
-   "p1": "Miroslaw Warzecha",
-   "p2": "Michal Wolny",
-   "p1_norm": "miroslaw warzecha",
-   "p2_norm": "michal wolny",
-   "open_date": "2026-07-23T02:45:00.000Z",
-   "line": 63.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35854760,
    "p1": "Jakub Folwarski",
@@ -41,9 +19,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T03:00:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 65.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854762,
@@ -52,9 +30,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T03:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35854767,
@@ -66,6 +44,39 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35854793,
+   "p1": "Bartosz Sulkowski",
+   "p2": "Krzysztof Kotyl",
+   "p1_norm": "bartosz sulkowski",
+   "p2_norm": "krzysztof kotyl",
+   "open_date": "2026-07-23T03:25:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35854794,
+   "p1": "Grzegorz Poliniewicz",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "grzegorz poliniewicz",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-23T03:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35854795,
+   "p1": "Robert Szymik",
+   "p2": "Witold Buczynski",
+   "p1_norm": "robert szymik",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-23T03:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
