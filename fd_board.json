@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T12:02:12Z",
+ "captured_at": "2026-07-23T12:07:04Z",
  "matches": [
   {
    "event_id": 35856170,
@@ -9,8 +9,8 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T11:40:00.000Z",
    "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856181,
@@ -19,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 90.5,
+   "line": 94.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35856186,
@@ -30,20 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T11:55:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856192,
-   "p1": "Kacper Glazowski",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "kacper glazowski",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-23T12:05:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 54.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856198,
@@ -77,6 +66,17 @@
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35856209,
+   "p1": "Jakub Folwarski",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "jakub folwarski",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-23T12:30:00.000Z",
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
