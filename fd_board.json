@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T13:53:10Z",
+ "captured_at": "2026-07-23T13:57:29Z",
  "matches": [
   {
    "event_id": 35856360,
@@ -8,7 +8,7 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T13:45:00.000Z",
-   "line": 73.5,
+   "line": 81.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,7 +19,7 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T13:50:00.000Z",
-   "line": 79.5,
+   "line": 64.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856372,
@@ -41,9 +41,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856373,
@@ -52,9 +52,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856412,
