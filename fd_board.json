@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T23:17:57Z",
+ "captured_at": "2026-07-23T23:22:40Z",
  "matches": [
-  {
-   "event_id": 35857861,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Adam Staniczek",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "adam staniczek",
-   "open_date": "2026-07-23T23:05:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35857881,
    "p1": "Mateusz Rutkowski",
@@ -19,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-23T23:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 86.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35857899,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T23:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35857905,
