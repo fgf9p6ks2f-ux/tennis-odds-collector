@@ -42,6 +42,7 @@ rw|1021|Paces Golden State off bench
 rw|1043|Not listed on injury report
 rw|1043|Not on injury report
 rw|1043|Ruled out Wednesday
+rw|1045|Racks up 13 points in victory
 rw|1047|Records double-double in home loss
 rw|1047|Season-high 11 rebounds
 rw|1048|Goes for 11 points in victory

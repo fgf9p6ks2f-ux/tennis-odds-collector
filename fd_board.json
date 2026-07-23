@@ -1,16 +1,16 @@
 {
- "captured_at": "2026-07-23T02:06:47Z",
+ "captured_at": "2026-07-23T02:13:16Z",
  "matches": [
   {
-   "event_id": 35854707,
-   "p1": "Jerzy Pelka",
-   "p2": "Mariusz Koczyba",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "mariusz koczyba",
-   "open_date": "2026-07-23T02:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "event_id": 35854711,
+   "p1": "Jerzy Michalik",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "jerzy michalik",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-23T02:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   }
  ]
 }
