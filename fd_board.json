@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T05:33:50Z",
+ "captured_at": "2026-07-23T05:39:29Z",
  "matches": [
   {
    "event_id": 35855279,
@@ -8,7 +8,7 @@
    "p1_norm": "michal oracz",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T05:30:00.000Z",
-   "line": 80.5,
+   "line": 73.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T05:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855284,
@@ -30,9 +30,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-23T05:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855298,
@@ -42,7 +42,7 @@
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-23T05:40:00.000Z",
    "line": 79.5,
-   "over_odds": -116,
+   "over_odds": -112,
    "under_odds": -118
   },
   {
@@ -97,8 +97,41 @@
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-23T06:00:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35855336,
+   "p1": "Grzegorz Felkel",
+   "p2": "Kacper Glazowski",
+   "p1_norm": "grzegorz felkel",
+   "p2_norm": "kacper glazowski",
+   "open_date": "2026-07-23T06:05:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35855337,
+   "p1": "Igor Dabrowski",
+   "p2": "Krzysztof Kotyl",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "krzysztof kotyl",
+   "open_date": "2026-07-23T06:05:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35855338,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Witold Buczynski",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-23T06:05:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
