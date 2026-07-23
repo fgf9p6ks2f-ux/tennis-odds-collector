@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T07:44:23Z",
+ "captured_at": "2026-07-23T07:48:30Z",
  "matches": [
-  {
-   "event_id": 35855443,
-   "p1": "Sebastian Juzek",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-23T07:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35855448,
-   "p1": "Marian Lebek",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "marian lebek",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-23T07:35:00.000Z",
-   "line": 59.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35855457,
    "p1": "Jakub Zochniak",
@@ -30,9 +8,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-23T07:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855464,
@@ -41,9 +19,9 @@
    "p1_norm": "grzegorz poliniewicz",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T07:45:00.000Z",
-   "line": 63.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 56.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855465,
@@ -53,8 +31,8 @@
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-23T07:45:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855487,
