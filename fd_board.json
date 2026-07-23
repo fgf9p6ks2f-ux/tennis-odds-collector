@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T16:59:32Z",
+ "captured_at": "2026-07-23T17:04:04Z",
  "matches": [
-  {
-   "event_id": 35857269,
-   "p1": "Wojciech Pytlas",
-   "p2": "Karol Jablonski",
-   "p1_norm": "wojciech pytlas",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-23T16:50:00.000Z",
-   "line": 75.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35857289,
    "p1": "Lukasz Pietraszko",
@@ -19,7 +8,7 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T16:55:00.000Z",
-   "line": 69.5,
+   "line": 58.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T16:55:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857291,
@@ -41,9 +30,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-23T16:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 57.5,
+   "over_odds": 110,
+   "under_odds": -155
   },
   {
    "event_id": 35857324,
@@ -97,8 +86,19 @@
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T17:20:00.000Z",
    "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857375,
+   "p1": "Henryk Tkaczyk",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "henryk tkaczyk",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-23T17:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
