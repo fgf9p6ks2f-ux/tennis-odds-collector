@@ -126,6 +126,7 @@ rw|462|Drops 21 points against former team
 rw|481|Dominant in win Monday
 rw|481|Posts 38 points in road loss
 rw|483|Paces Sky with 20 points
+rw|483|Stuffs stat sheet in defeat
 rw|485|Hits game-winning shot at buzzer
 rw|488|Fares well in win
 rw|498|Strong effort in loss
