@@ -215,6 +215,7 @@ rw|935|Makes most of playing time
 rw|969|Manages 11 points in loss
 rw|971|Remains away from team
 rw|972|Not listed on injury report
+rw|973|Bottoms out Wednesday
 rw|977|Fares well against Sparks
 rw|979|Good to go Wednesday
 rw|979|Nets 21 points Wednesday
