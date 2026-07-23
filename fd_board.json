@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T17:13:00Z",
+ "captured_at": "2026-07-23T17:17:58Z",
  "matches": [
   {
    "event_id": 35857289,
@@ -8,9 +8,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T16:55:00.000Z",
-   "line": 96.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 103.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857324,
@@ -19,9 +19,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T17:05:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 73.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857334,
@@ -30,7 +30,7 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T17:10:00.000Z",
-   "line": 84.5,
+   "line": 95.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -88,6 +88,39 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35857396,
+   "p1": "Patryk Jendrzejewski",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "patryk jendrzejewski",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-23T17:40:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857410,
+   "p1": "Jacek Oracz",
+   "p2": "Pawel Chojnacki",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "pawel chojnacki",
+   "open_date": "2026-07-23T17:45:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857411,
+   "p1": "Jacek Przewlocki",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-23T17:45:00.000Z",
+   "line": 83.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
