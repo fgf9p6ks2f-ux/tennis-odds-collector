@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T14:06:16Z",
+ "captured_at": "2026-07-23T14:11:06Z",
  "matches": [
   {
    "event_id": 35856371,
@@ -8,20 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 86.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35856373,
-   "p1": "Robert Szymik",
-   "p2": "Rafal Gajda",
-   "p1_norm": "robert szymik",
-   "p2_norm": "rafal gajda",
-   "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 70.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 90.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35856412,
@@ -42,8 +31,8 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T14:15:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35856429,
@@ -53,8 +42,8 @@
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T14:20:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856430,
@@ -64,8 +53,8 @@
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-23T14:20:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856431,
@@ -75,6 +64,17 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T14:20:00.000Z",
    "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856485,
+   "p1": "Patrik Klos",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "patrik klos",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-23T14:35:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
