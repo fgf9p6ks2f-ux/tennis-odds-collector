@@ -41,6 +41,7 @@ rw|1021|Paces Golden State off bench
 rw|1043|Not listed on injury report
 rw|1043|Not on injury report
 rw|1043|Ruled out Wednesday
+rw|1047|Records double-double in home loss
 rw|1047|Season-high 11 rebounds
 rw|1048|Goes for 11 points in victory
 rw|1048|Records 11 points in victory
@@ -69,6 +70,7 @@ rw|254|Scores game-high 21 points
 rw|272|Picks up triple-double Wednesday
 rw|276|Double-doubles in win
 rw|278|Reaches 20-point plateau
+rw|278|Scoreless in road win
 rw|291|Goes for 15 points in loss
 rw|297|Generates 29 points against Chicago
 rw|297|Rolls up 29 points against Sky
