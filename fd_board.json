@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T02:32:13Z",
+ "captured_at": "2026-07-23T02:38:30Z",
  "matches": [
-  {
-   "event_id": 35854730,
-   "p1": "Adrian Burkacki",
-   "p2": "Lukasz Oracz",
-   "p1_norm": "adrian burkacki",
-   "p2_norm": "lukasz oracz",
-   "open_date": "2026-07-23T02:20:00.000Z",
-   "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35854756,
    "p1": "Andriej Fomin",
@@ -19,9 +8,9 @@
    "p1_norm": "andriej fomin",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T02:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35854754,
@@ -42,6 +31,39 @@
    "p2_norm": "michal wolny",
    "open_date": "2026-07-23T02:45:00.000Z",
    "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35854760,
+   "p1": "Jakub Folwarski",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "jakub folwarski",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-23T03:00:00.000Z",
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35854761,
+   "p1": "Rafal Gajda",
+   "p2": "Michal Durda",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-23T03:00:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35854762,
+   "p1": "Igor Dabrowski",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-23T03:00:00.000Z",
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
