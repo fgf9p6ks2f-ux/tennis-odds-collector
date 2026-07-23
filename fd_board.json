@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T22:12:57Z",
+ "captured_at": "2026-07-23T22:17:23Z",
  "matches": [
-  {
-   "event_id": 35857811,
-   "p1": "Jakub Nowak",
-   "p2": "Kacper Adamus",
-   "p1_norm": "jakub nowak",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-23T22:00:00.000Z",
-   "line": 87.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35857815,
    "p1": "Lukasz Pietraszko",
@@ -19,9 +8,9 @@
    "p1_norm": "lukasz pietraszko",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-23T22:05:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35857818,
@@ -30,7 +19,7 @@
    "p1_norm": "michal guzik",
    "p2_norm": "jakub cyndera",
    "open_date": "2026-07-23T22:10:00.000Z",
-   "line": 77.5,
+   "line": 58.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -41,9 +30,9 @@
    "p1_norm": "kuba golaszewski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T22:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857828,
@@ -96,9 +85,20 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T22:35:00.000Z",
-   "line": 71.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35857841,
+   "p1": "Zbigniew Nocun",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "zbigniew nocun",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-23T22:40:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
