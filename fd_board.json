@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T08:55:08Z",
+ "captured_at": "2026-07-23T08:59:55Z",
  "matches": [
   {
    "event_id": 35855573,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T08:45:00.000Z",
-   "line": 54.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855574,
@@ -19,7 +19,7 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T08:45:00.000Z",
-   "line": 89.5,
+   "line": 91.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -52,9 +52,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T09:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35855610,
@@ -88,6 +88,28 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35855672,
+   "p1": "Robert Szymik",
+   "p2": "Witold Buczynski",
+   "p1_norm": "robert szymik",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-23T09:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35855673,
+   "p1": "Karol Sulkowski",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-23T09:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
