@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T09:36:04Z",
+ "captured_at": "2026-07-23T09:40:16Z",
  "matches": [
   {
    "event_id": 35855656,
@@ -8,31 +8,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T09:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35855672,
-   "p1": "Robert Szymik",
-   "p2": "Witold Buczynski",
-   "p1_norm": "robert szymik",
-   "p2_norm": "witold buczynski",
-   "open_date": "2026-07-23T09:25:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35855673,
-   "p1": "Karol Sulkowski",
-   "p2": "Aleksander Lilien",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "aleksander lilien",
-   "open_date": "2026-07-23T09:25:00.000Z",
-   "line": 85.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 79.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35855687,
@@ -41,7 +19,7 @@
    "p1_norm": "michal oracz",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-23T09:30:00.000Z",
-   "line": 82.5,
+   "line": 57.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -53,8 +31,8 @@
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T09:40:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35855994,
@@ -85,9 +63,9 @@
    "p1_norm": "mateusz sikon",
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T09:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35856037,
@@ -96,7 +74,7 @@
    "p1_norm": "waldemar glanowski",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T09:55:00.000Z",
-   "line": 79.5,
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   },
@@ -110,6 +88,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856050,
+   "p1": "Michal Minda",
+   "p2": "Jakub Zochniak",
+   "p1_norm": "michal minda",
+   "p2_norm": "jakub zochniak",
+   "open_date": "2026-07-23T10:05:00.000Z",
+   "line": 82.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
