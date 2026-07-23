@@ -60,6 +60,7 @@ rw|1061|Ruled out for Wednesday
 rw|1067|Cleared to play
 rw|1067|Not listed on injury report
 rw|1067|Ruled out Wednesday
+rw|1071|Erupts with 31 points Wednesday
 rw|1071|Totals 18 points in road loss
 rw|1074|Not listed on injury report
 rw|1074|Ruled out Wednesday
