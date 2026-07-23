@@ -1139,20 +1139,29 @@ def _tt_health(data):
 
 
 def _wnba_health():
-    """Broken-vs-quiet for the WNBA board. 0 flags is usually a LEGIT quiet slate (injury-driven), and
-    0 injury ROWS is ALSO legit on an off-day / All-Star break (the scanner rewrites the cache fresh
-    every cycle even when the report is empty — verified 2026-07-21: 0 predictions stamped, cache
-    fresh+empty), so we judge ONLY on STALENESS — a cache that stopped refreshing means the scanner
-    actually died. Fails OPEN when the cache is absent (non-VM checkout / Actions) so it can't
-    false-positive off-box. (wnba_selfcheck's separate pre-game 0-rows check is intentional there.)"""
-    if not _WNBA_INJ.exists():
+    """Broken-vs-quiet for the WNBA board. 0 flags / 0 injury ROWS are LEGIT (quiet slate / off-day),
+    so judge ONLY on STALENESS — but against a REAL per-cycle heartbeat, NOT the official injury-REPORT
+    cache. 2026-07-23 cry-wolf fix: `wnba_injury_report_cache.json` is only rewritten when the OFFICIAL
+    WNBA report changes — it's finalized ~2am ET after the slate and the next one isn't published until
+    game day, so its mtime legitimately sits stale for HOURS overnight while the scanner is perfectly
+    alive (the old docstring's "rewrites fresh every cycle" was never true for this file). That fired
+    the "scanner stopped" banner every night. Use the NEWEST of [report cache, `.news_watch_last`] as
+    the liveness signal — the news-watch marker IS rewritten every loop cycle — so only BOTH going
+    stale (the loop/scanner genuinely stopped cycling) trips it. A crashing flag engine is caught
+    separately by the loop's ALERT-PASS-FAILED ping; loop DEATH by wnba_selfcheck (external cron).
+    Fails OPEN off-box (neither file present -> non-VM checkout / Actions)."""
+    hb = []
+    for f in (_WNBA_INJ, HERE / ".news_watch_last"):       # newest = the real "scanner ran" signal
+        try:
+            if f.exists():
+                hb.append(f.stat().st_mtime)
+        except OSError:
+            pass
+    if not hb:
         return {"ok": True, "reason": ""}                  # not the scanner box — don't judge
-    try:
-        age = (dt.datetime.now(dt.timezone.utc).timestamp() - _WNBA_INJ.stat().st_mtime) / 60
-    except OSError:
-        return {"ok": True, "reason": ""}
+    age = (dt.datetime.now(dt.timezone.utc).timestamp() - max(hb)) / 60
     if age > 90:
-        return {"ok": False, "reason": f"injury feed {age:.0f}min stale — scanner may have stopped"}
+        return {"ok": False, "reason": f"injury scanner {age:.0f}min stale — may have stopped"}
     return {"ok": True, "reason": ""}
 
 
