@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T00:12:13Z",
+ "captured_at": "2026-07-23T00:20:15Z",
  "matches": [
   {
    "event_id": 35854595,
@@ -8,9 +8,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-23T00:00:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 101.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35854606,
@@ -19,9 +19,20 @@
    "p1_norm": "jakub skorupa",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T00:10:00.000Z",
-   "line": 74.5,
+   "line": 89.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
+  },
+  {
+   "event_id": 35854607,
+   "p1": "Milosz Piecowski",
+   "p2": "Adrian Fabis",
+   "p1_norm": "milosz piecowski",
+   "p2_norm": "adrian fabis",
+   "open_date": "2026-07-23T00:10:00.000Z",
+   "line": 74.5,
+   "over_odds": -125,
+   "under_odds": -110
   }
  ]
 }
