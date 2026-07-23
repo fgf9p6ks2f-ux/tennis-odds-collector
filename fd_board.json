@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T19:04:49Z",
+ "captured_at": "2026-07-23T19:09:09Z",
  "matches": [
-  {
-   "event_id": 35857592,
-   "p1": "Kaczynski Piotr",
-   "p2": "Wojciech Urban",
-   "p1_norm": "kaczynski piotr",
-   "p2_norm": "wojciech urban",
-   "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 95.5,
-   "over_odds": -220,
-   "under_odds": 150
-  },
   {
    "event_id": 35857607,
    "p1": "Jacek Oracz",
@@ -19,9 +8,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-23T18:55:00.000Z",
-   "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 93.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35857623,
@@ -41,9 +30,9 @@
    "p1_norm": "dariusz molenda",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T19:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 72.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35857628,
@@ -86,8 +75,19 @@
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T19:30:00.000Z",
    "line": 72.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857664,
+   "p1": "Jakub Nowak",
+   "p2": "Karol Jablonski",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-23T19:35:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
