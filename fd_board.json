@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T14:23:43Z",
+ "captured_at": "2026-07-23T14:28:39Z",
  "matches": [
   {
    "event_id": 35856412,
@@ -8,20 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T14:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35856420,
-   "p1": "Michal Olbrycht",
-   "p2": "Adrian Spychala",
-   "p1_norm": "michal olbrycht",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-23T14:15:00.000Z",
-   "line": 71.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 60.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856429,
@@ -30,9 +19,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T14:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 63.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856430,
@@ -41,20 +30,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-23T14:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35856431,
-   "p1": "Mateusz Sikon",
-   "p2": "Michal Durda",
-   "p1_norm": "mateusz sikon",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-23T14:20:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856485,
