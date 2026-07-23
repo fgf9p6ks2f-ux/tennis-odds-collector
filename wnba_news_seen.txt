@@ -45,6 +45,7 @@ rw|1047|Records double-double in home loss
 rw|1047|Season-high 11 rebounds
 rw|1048|Goes for 11 points in victory
 rw|1048|Records 11 points in victory
+rw|1050|Provides scoring punch
 rw|1050|Scores team-high 26 points
 rw|1051|Unavailable versus Sun
 rw|1053|Won't play Wednesday
