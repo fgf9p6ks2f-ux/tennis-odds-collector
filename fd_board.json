@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T16:41:23Z",
+ "captured_at": "2026-07-23T16:45:32Z",
  "matches": [
   {
    "event_id": 35857050,
@@ -8,9 +8,9 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-23T16:35:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 57.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35857309,
@@ -19,9 +19,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T16:35:00.000Z",
-   "line": 47.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 44.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857134,
@@ -30,7 +30,7 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T16:40:00.000Z",
-   "line": 81.5,
+   "line": 68.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -88,6 +88,17 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35857334,
+   "p1": "Wojciech Urban",
+   "p2": "Jakub Nowak",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-23T17:10:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
