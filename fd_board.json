@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T20:30:13Z",
+ "captured_at": "2026-07-23T20:35:20Z",
  "matches": [
   {
    "event_id": 35857715,
@@ -8,20 +8,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-23T20:20:00.000Z",
-   "line": 83.5,
+   "line": 73.5,
    "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35857716,
-   "p1": "Wojciech Urban",
-   "p2": "Karol Jablonski",
-   "p1_norm": "wojciech urban",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-23T20:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -135
   },
   {
    "event_id": 35857743,
@@ -30,9 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 50.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857744,
@@ -41,9 +30,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857745,
@@ -52,9 +41,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T20:30:00.000Z",
-   "line": 78.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 86.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857752,
@@ -75,6 +64,39 @@
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T20:45:00.000Z",
    "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857765,
+   "p1": "Michal Guzik",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "michal guzik",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-23T21:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35857766,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Lukasz Pietraszko",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "lukasz pietraszko",
+   "open_date": "2026-07-23T21:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857767,
+   "p1": "Jacek Przewlocki",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-23T21:00:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
