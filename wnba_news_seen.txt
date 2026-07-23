@@ -142,6 +142,7 @@ rw|580|Racks up 20 points in Sunday's win
 rw|580|Scores team-high 29 points
 rw|581|On fire from perimeter
 rw|581|Tallies 18 points in loss
+rw|584|Notches eight points in win
 rw|586|Drops triple-double in win
 rw|586|Posts double-double in victory
 rw|586|Pulls down 16 boards in loss
@@ -176,6 +177,7 @@ rw|786|Paces Mystics with 25 points
 rw|792|Won't play Wednesday
 rw|797|Scores team-high 20 points
 rw|807|Posts double-double in road loss
+rw|807|Settling into starting lineup
 rw|836|Inactive versus Liberty
 rw|852|Drops 22 points in blowout win
 rw|852|Logs 15 points vs. New York
