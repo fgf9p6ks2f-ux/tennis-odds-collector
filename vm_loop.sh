@@ -52,12 +52,12 @@ push(){
 
 collectors(){
   python3 fd_collect.py --wnba >/dev/null 2>&1 || true
-  # MLB FanDuel outs lines EVERY cycle (2026-07-23) so the board reflects newly-posted lines within
-  # ~60-75s instead of the ~30min Actions cadence — FD posts pitcher-outs props late/gradually through
-  # the day, and the user wants plays to surface as soon as they're lined. One lightweight page fetch;
-  # NOT a speed edge (outs lines are efficient/slow-moving) — this is board RESPONSIVENESS. DraftKings
-  # MLB stays on Actions (Akamai-blocks the VM IP, same as WNBA DK); the board line-shops across both.
-  python3 fd_collect.py --mlb >/dev/null 2>&1 || true
+  # NOTE (2026-07-23): MLB FD collection is NOT run here. Tried it for board responsiveness but the
+  # loop git-commits the 81MB fanduel_props.sqlite every cycle and its conflict-fallback (reset --hard)
+  # reverts the loop's fresh MLB writes back to Actions' version — so per-cycle MLB never persisted, and
+  # the extra fetch only added load to the memory-tight box during WNBA game windows (where speed IS the
+  # edge). MLB outs lines come from Actions (~30min, reliably persisted); the board reads them. The real
+  # fix for a fast board = stop committing the 81MB DB to git each cycle (push a small JSON, like TT).
   # DK lines arrive via the Mac's residential IP (dk_publish.py -> dk_board.json, git-pulled
   # each cycle); ingest lights up book-aware prices everywhere. Local-only, cheap, idempotent.
   python3 dk_ingest.py >/dev/null 2>&1 || true
