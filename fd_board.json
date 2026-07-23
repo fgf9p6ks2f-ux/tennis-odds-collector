@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T18:24:52Z",
+ "captured_at": "2026-07-23T18:29:57Z",
  "matches": [
-  {
-   "event_id": 35857469,
-   "p1": "Dariusz Szlubowski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "dariusz szlubowski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-23T18:10:00.000Z",
-   "line": 104.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35857522,
    "p1": "Zbigniew Nocun",
@@ -19,9 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-23T18:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857549,
@@ -30,9 +19,9 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T18:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857567,
@@ -41,7 +30,7 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-23T18:30:00.000Z",
-   "line": 75.5,
+   "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
   },
@@ -53,8 +42,8 @@
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T18:30:00.000Z",
    "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -120,
+   "under_odds": -110
   },
   {
    "event_id": 35857569,
@@ -74,9 +63,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35857593,
@@ -88,6 +77,28 @@
    "line": 72.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35857607,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Guzik",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-23T18:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35857608,
+   "p1": "Jacek Przewlocki",
+   "p2": "Dariusz Szlubowski",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "dariusz szlubowski",
+   "open_date": "2026-07-23T18:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
