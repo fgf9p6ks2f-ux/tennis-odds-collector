@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-23T22:17:23Z",
+ "captured_at": "2026-07-23T22:21:58Z",
  "matches": [
-  {
-   "event_id": 35857815,
-   "p1": "Lukasz Pietraszko",
-   "p2": "Patryk Jendrzejewski",
-   "p1_norm": "lukasz pietraszko",
-   "p2_norm": "patryk jendrzejewski",
-   "open_date": "2026-07-23T22:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35857818,
-   "p1": "Michal Guzik",
-   "p2": "Jakub Cyndera",
-   "p1_norm": "michal guzik",
-   "p2_norm": "jakub cyndera",
-   "open_date": "2026-07-23T22:10:00.000Z",
-   "line": 58.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35857819,
-   "p1": "Kuba Golaszewski",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "kuba golaszewski",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-23T22:10:00.000Z",
-   "line": 86.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35857828,
    "p1": "Michal Machelski",
@@ -41,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-23T22:20:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857831,
