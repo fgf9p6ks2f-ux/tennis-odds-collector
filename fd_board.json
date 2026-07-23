@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T02:26:03Z",
+ "captured_at": "2026-07-23T02:32:13Z",
  "matches": [
-  {
-   "event_id": 35854729,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-23T02:20:00.000Z",
-   "line": 57.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35854730,
    "p1": "Adrian Burkacki",
@@ -19,9 +8,42 @@
    "p1_norm": "adrian burkacki",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T02:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 77.5,
+   "over_odds": null,
+   "under_odds": null
+  },
+  {
+   "event_id": 35854756,
+   "p1": "Andriej Fomin",
+   "p2": "Pawel Chojnacki",
+   "p1_norm": "andriej fomin",
+   "p2_norm": "pawel chojnacki",
+   "open_date": "2026-07-23T02:35:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35854754,
+   "p1": "Oliver Vincenec",
+   "p2": "Marian Lebek",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-23T02:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35854755,
+   "p1": "Miroslaw Warzecha",
+   "p2": "Michal Wolny",
+   "p1_norm": "miroslaw warzecha",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-23T02:45:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
