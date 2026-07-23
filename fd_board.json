@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T07:30:58Z",
+ "captured_at": "2026-07-23T07:35:01Z",
  "matches": [
-  {
-   "event_id": 35855416,
-   "p1": "Piotr Gumulinski",
-   "p2": "Mariusz Baron",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-23T07:10:00.000Z",
-   "line": 99.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35855425,
-   "p1": "Aleksander Lilien",
-   "p2": "Adrian Spychala",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-23T07:15:00.000Z",
-   "line": 96.5,
-   "over_odds": 155,
-   "under_odds": -230
-  },
   {
    "event_id": 35855433,
    "p1": "Witold Buczynski",
@@ -30,9 +8,9 @@
    "p1_norm": "witold buczynski",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T07:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 94.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855443,
@@ -41,9 +19,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T07:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855448,
@@ -99,6 +77,17 @@
    "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35855495,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-23T08:00:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
