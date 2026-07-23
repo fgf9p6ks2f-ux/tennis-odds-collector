@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T17:40:35Z",
+ "captured_at": "2026-07-23T17:44:55Z",
  "matches": [
-  {
-   "event_id": 35857350,
-   "p1": "Grzegorz Adamiak",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "grzegorz adamiak",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 56.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35857375,
    "p1": "Henryk Tkaczyk",
@@ -19,9 +8,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T17:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 75.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857385,
@@ -30,8 +19,8 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-23T17:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
+   "line": 57.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -41,9 +30,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-23T17:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857410,
@@ -52,7 +41,7 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T17:45:00.000Z",
-   "line": 73.5,
+   "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
   },
@@ -88,6 +77,28 @@
    "line": 80.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35857469,
+   "p1": "Dariusz Szlubowski",
+   "p2": "Jaroslaw Rolak",
+   "p1_norm": "dariusz szlubowski",
+   "p2_norm": "jaroslaw rolak",
+   "open_date": "2026-07-23T18:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857470,
+   "p1": "Michal Guzik",
+   "p2": "Jakub Skorupa",
+   "p1_norm": "michal guzik",
+   "p2_norm": "jakub skorupa",
+   "open_date": "2026-07-23T18:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
