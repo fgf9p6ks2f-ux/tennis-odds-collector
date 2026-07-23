@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T17:36:10Z",
+ "captured_at": "2026-07-23T17:40:35Z",
  "matches": [
-  {
-   "event_id": 35857348,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Milosz Piecowski",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "milosz piecowski",
-   "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 90.5,
-   "over_odds": -165,
-   "under_odds": 120
-  },
   {
    "event_id": 35857350,
    "p1": "Grzegorz Adamiak",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 60.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 56.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35857375,
@@ -30,9 +19,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T17:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857385,
@@ -41,7 +30,7 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-23T17:35:00.000Z",
-   "line": 79.5,
+   "line": 75.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,7 +41,7 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-23T17:40:00.000Z",
-   "line": 75.5,
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   },
@@ -64,8 +53,8 @@
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T17:45:00.000Z",
    "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35857411,
@@ -87,7 +76,7 @@
    "open_date": "2026-07-23T17:55:00.000Z",
    "line": 76.5,
    "over_odds": -118,
-   "under_odds": -112
+   "under_odds": -116
   },
   {
    "event_id": 35857438,
