@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T08:23:55Z",
+ "captured_at": "2026-07-23T08:29:38Z",
  "matches": [
-  {
-   "event_id": 35855500,
-   "p1": "Aleksander Lilien",
-   "p2": "Stapor Rafal",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "stapor rafal",
-   "open_date": "2026-07-23T08:05:00.000Z",
-   "line": 92.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35855511,
-   "p1": "Mateusz Sikon",
-   "p2": "Michal Durda",
-   "p1_norm": "mateusz sikon",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-23T08:10:00.000Z",
-   "line": 96.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35855542,
    "p1": "Adrian Burkacki",
@@ -30,9 +8,9 @@
    "p1_norm": "adrian burkacki",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T08:20:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855543,
@@ -41,7 +19,7 @@
    "p1_norm": "michal oracz",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-23T08:20:00.000Z",
-   "line": 80.5,
+   "line": 49.5,
    "over_odds": -125,
    "under_odds": -110
   },
