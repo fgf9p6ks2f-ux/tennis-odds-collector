@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T12:07:04Z",
+ "captured_at": "2026-07-23T12:11:19Z",
  "matches": [
   {
    "event_id": 35856170,
@@ -8,7 +8,7 @@
    "p1_norm": "patrik klos",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T11:40:00.000Z",
-   "line": 89.5,
+   "line": 92.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,20 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 94.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856186,
-   "p1": "Mariusz Adamus",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-23T11:55:00.000Z",
-   "line": 54.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 104.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35856198,
@@ -52,9 +41,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-23T12:15:00.000Z",
-   "line": 72.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 71.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35856201,
@@ -77,6 +66,17 @@
    "line": 71.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35856212,
+   "p1": "Jakub Zochniak",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "jakub zochniak",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-23T12:35:00.000Z",
+   "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
