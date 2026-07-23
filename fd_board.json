@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T23:50:53Z",
+ "captured_at": "2026-07-23T23:56:11Z",
  "matches": [
   {
    "event_id": 35857917,
@@ -8,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-23T23:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857918,
@@ -19,9 +19,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-23T23:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857922,
@@ -55,6 +55,28 @@
    "line": 74.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35857944,
+   "p1": "Lukasz Pietraszko",
+   "p2": "Patryk Jendrzejewski",
+   "p1_norm": "lukasz pietraszko",
+   "p2_norm": "patryk jendrzejewski",
+   "open_date": "2026-07-24T00:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35857945,
+   "p1": "Zbigniew Nocun",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "zbigniew nocun",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-24T00:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
