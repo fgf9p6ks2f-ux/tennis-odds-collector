@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T13:35:28Z",
+ "captured_at": "2026-07-23T13:39:37Z",
  "matches": [
   {
    "event_id": 35856324,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T13:20:00.000Z",
-   "line": 57.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856345,
@@ -19,7 +19,7 @@
    "p1_norm": "witold buczynski",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 76.5,
+   "line": 82.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +30,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 59.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 50.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856347,
@@ -41,9 +41,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 70.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856360,
@@ -86,8 +86,8 @@
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T13:55:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856373,
@@ -97,8 +97,8 @@
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T13:55:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
