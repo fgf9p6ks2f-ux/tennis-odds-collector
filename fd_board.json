@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T13:04:28Z",
+ "captured_at": "2026-07-23T13:08:38Z",
  "matches": [
-  {
-   "event_id": 35856222,
-   "p1": "Piotr Gumulinski",
-   "p2": "Mariusz Adamus",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "mariusz adamus",
-   "open_date": "2026-07-23T12:45:00.000Z",
-   "line": 88.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35856242,
-   "p1": "Patrik Klos",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "patrik klos",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-23T12:55:00.000Z",
-   "line": 53.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35856270,
    "p1": "Michal Minda",
@@ -30,7 +8,7 @@
    "p1_norm": "michal minda",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T13:00:00.000Z",
-   "line": 51.5,
+   "line": 64.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +19,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T13:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856295,
@@ -53,8 +31,8 @@
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T13:05:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856309,
@@ -75,8 +53,8 @@
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T13:20:00.000Z",
    "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35856345,
@@ -99,6 +77,17 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856347,
+   "p1": "Sebastian Juzek",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-23T13:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
