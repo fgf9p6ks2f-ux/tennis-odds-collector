@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T23:22:40Z",
+ "captured_at": "2026-07-23T23:27:17Z",
  "matches": [
   {
    "event_id": 35857881,
@@ -8,7 +8,7 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-23T23:15:00.000Z",
-   "line": 86.5,
+   "line": 95.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -19,9 +19,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T23:20:00.000Z",
-   "line": 72.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 65.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857905,
@@ -64,6 +64,28 @@
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T23:45:00.000Z",
    "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857917,
+   "p1": "Michal Machelski",
+   "p2": "Adam Staniczek",
+   "p1_norm": "michal machelski",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-23T23:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35857918,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Jakub Kuzmicz",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "jakub kuzmicz",
+   "open_date": "2026-07-23T23:55:00.000Z",
+   "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
   }
