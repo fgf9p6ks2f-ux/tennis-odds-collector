@@ -197,6 +197,7 @@ rw|984|Fills box score in win
 rw|991|Posts another double-double
 rw|991|Posts double-double Monday
 rw|998|Could return Sunday
+rw|998|Nears double-double in return
 rw|998|Removed from injury report
 rw|998|Starting against Indiana
 rw|aaliyahedwards|Edwards (knee) is out for Wednesday's ga
