@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T19:57:22Z",
+ "captured_at": "2026-07-23T20:01:55Z",
  "matches": [
-  {
-   "event_id": 35857667,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Dariusz Szlubowski",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "dariusz szlubowski",
-   "open_date": "2026-07-23T19:40:00.000Z",
-   "line": 96.5,
-   "over_odds": 160,
-   "under_odds": -230
-  },
   {
    "event_id": 35857684,
    "p1": "Michal Machelski",
@@ -19,7 +8,7 @@
    "p1_norm": "michal machelski",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T19:55:00.000Z",
-   "line": 80.5,
+   "line": 93.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "wojciech pytlas",
    "open_date": "2026-07-23T20:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857702,
