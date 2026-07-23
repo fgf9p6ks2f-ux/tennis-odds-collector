@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T10:16:47Z",
+ "captured_at": "2026-07-23T10:21:55Z",
  "matches": [
   {
    "event_id": 35856048,
@@ -8,7 +8,7 @@
    "p1_norm": "patrik klos",
    "p2_norm": "jakub folwarski",
    "open_date": "2026-07-23T10:00:00.000Z",
-   "line": 67.5,
+   "line": 83.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-23T10:05:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 96.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35856054,
@@ -30,9 +30,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "karol sulkowski",
    "open_date": "2026-07-23T10:10:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856055,
@@ -41,9 +41,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "robert szymik",
    "open_date": "2026-07-23T10:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856066,
