@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T14:28:39Z",
+ "captured_at": "2026-07-23T14:32:49Z",
  "matches": [
-  {
-   "event_id": 35856412,
-   "p1": "Krystian Kolodziej",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-23T14:10:00.000Z",
-   "line": 60.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35856429,
-   "p1": "Igor Dabrowski",
-   "p2": "Blazej Warpas",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "blazej warpas",
-   "open_date": "2026-07-23T14:20:00.000Z",
-   "line": 63.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35856430,
    "p1": "Piotr Gumulinski",
@@ -30,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "sebastian juzek",
    "open_date": "2026-07-23T14:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 70.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35856485,
