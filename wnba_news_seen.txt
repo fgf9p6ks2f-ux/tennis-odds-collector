@@ -77,6 +77,7 @@ rw|1093|Fades injury report
 rw|1093|Not listed on injury report
 rw|1093|Sitting out Wednesday
 rw|1098|Headed to bench
+rw|1100|Muted output in win
 rw|1134|Won't play Wednesday
 rw|228|Listed out for Wednesday
 rw|233|Chips in with season-high 12 points
