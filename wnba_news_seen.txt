@@ -53,6 +53,7 @@ rw|1050|Provides scoring punch
 rw|1050|Scores team-high 26 points
 rw|1051|Unavailable versus Sun
 rw|1053|Won't play Wednesday
+rw|1054|Chips in seven points in upset win
 rw|1055|Explodes for 32 points
 rw|1055|Mild effort in win
 rw|1055|Records double-double in win
