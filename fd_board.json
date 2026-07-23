@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T07:35:01Z",
+ "captured_at": "2026-07-23T07:39:25Z",
  "matches": [
-  {
-   "event_id": 35855433,
-   "p1": "Witold Buczynski",
-   "p2": "Michal Durda",
-   "p1_norm": "witold buczynski",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-23T07:20:00.000Z",
-   "line": 94.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35855443,
    "p1": "Sebastian Juzek",
@@ -19,8 +8,8 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T07:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
+   "line": 86.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -30,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-23T07:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855457,
@@ -85,7 +74,29 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-23T08:00:00.000Z",
-   "line": 77.5,
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35855499,
+   "p1": "Patrik Klos",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "patrik klos",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-23T08:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35855500,
+   "p1": "Aleksander Lilien",
+   "p2": "Stapor Rafal",
+   "p1_norm": "aleksander lilien",
+   "p2_norm": "stapor rafal",
+   "open_date": "2026-07-23T08:05:00.000Z",
+   "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
   }
