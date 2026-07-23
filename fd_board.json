@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T18:20:44Z",
+ "captured_at": "2026-07-23T18:24:52Z",
  "matches": [
   {
    "event_id": 35857469,
@@ -8,18 +8,7 @@
    "p1_norm": "dariusz szlubowski",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T18:10:00.000Z",
-   "line": 84.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35857470,
-   "p1": "Michal Guzik",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "michal guzik",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-23T18:10:00.000Z",
-   "line": 80.5,
+   "line": 104.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +19,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-23T18:20:00.000Z",
-   "line": 68.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857549,
@@ -63,9 +52,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T18:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35857569,
