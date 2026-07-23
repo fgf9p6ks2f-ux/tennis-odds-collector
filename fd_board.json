@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T13:43:49Z",
+ "captured_at": "2026-07-23T13:48:01Z",
  "matches": [
   {
    "event_id": 35856324,
@@ -9,8 +9,8 @@
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T13:20:00.000Z",
    "line": 91.5,
-   "over_odds": -105,
-   "under_odds": -135
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35856345,
@@ -19,20 +19,9 @@
    "p1_norm": "witold buczynski",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35856347,
-   "p1": "Sebastian Juzek",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "sebastian juzek",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 90.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856360,
@@ -41,7 +30,7 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T13:45:00.000Z",
-   "line": 70.5,
+   "line": 69.5,
    "over_odds": -112,
    "under_odds": -118
   },
@@ -99,6 +88,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856420,
+   "p1": "Michal Olbrycht",
+   "p2": "Adrian Spychala",
+   "p1_norm": "michal olbrycht",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-23T14:15:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
