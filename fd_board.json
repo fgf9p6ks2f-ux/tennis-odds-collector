@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T10:34:25Z",
+ "captured_at": "2026-07-23T10:39:28Z",
  "matches": [
   {
    "event_id": 35856066,
@@ -8,31 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-23T10:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
-  {
-   "event_id": 35856074,
-   "p1": "Kacper Glazowski",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "kacper glazowski",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-23T10:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35856100,
-   "p1": "Grzegorz Poliniewicz",
-   "p2": "Adrian Spychala",
-   "p1_norm": "grzegorz poliniewicz",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-23T10:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -185,
+   "under_odds": 130
   },
   {
    "event_id": 35856112,
@@ -41,9 +19,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T10:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856113,
@@ -52,9 +30,9 @@
    "p1_norm": "kamil rudomina",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T10:35:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856116,
@@ -85,9 +63,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-23T11:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856131,
@@ -98,7 +76,18 @@
    "open_date": "2026-07-23T11:00:00.000Z",
    "line": 78.5,
    "over_odds": -118,
-   "under_odds": -116
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856135,
+   "p1": "Michal Oracz",
+   "p2": "Waldemar Glanowski",
+   "p1_norm": "michal oracz",
+   "p2_norm": "waldemar glanowski",
+   "open_date": "2026-07-23T11:05:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
