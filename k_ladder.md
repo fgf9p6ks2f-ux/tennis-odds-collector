@@ -1,6 +1,6 @@
 # Pitcher strikeout alt-ladder scan (cross-book line-shopping)
 
-_2026-07-23 00:17 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
+_2026-07-23 00:46 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
 
 **No +EV rung tonight** — the K market is efficient; even the best of 3 books is -EV on every agreeing rung. This is a SHOPPING sheet (best book per rung to minimize vig), not a bet list. A genuine +EV rung (a slow book) would ⭐ here.
 
@@ -44,6 +44,18 @@ _2026-07-23 00:17 UTC · fair = vig-stripped consensus of the books posting each
 **Brandon Pfaadt**
   O3.5: DK -112 (1 book, no consensus)
 
+**Gavin Williams**
+  O6.5: DK -112 (1 book, no consensus)
+
 **Michael McGreevy**
   O3.5: DK +111 (1 book, no consensus)
+
+**Randy Dobnak**
+  O3.5: DK +112 (1 book, no consensus)
+
+**Taj Bradley**
+  O5.5: DK -149 (1 book, no consensus)
+
+**Troy Melton**
+  O5.5: DK +115 (1 book, no consensus)
 
