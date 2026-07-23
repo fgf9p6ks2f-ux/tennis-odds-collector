@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T11:19:09Z",
+ "captured_at": "2026-07-23T11:23:16Z",
  "matches": [
-  {
-   "event_id": 35856121,
-   "p1": "Krystian Kolodziej",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-23T10:50:00.000Z",
-   "line": 105.5,
-   "over_odds": -165,
-   "under_odds": 120
-  },
-  {
-   "event_id": 35856135,
-   "p1": "Michal Oracz",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "michal oracz",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-23T11:05:00.000Z",
-   "line": 67.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35856140,
    "p1": "Jakub Folwarski",
@@ -41,9 +19,9 @@
    "p1_norm": "jakub zochniak",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T11:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856150,
@@ -99,6 +77,28 @@
    "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35856180,
+   "p1": "Kamil Klocek",
+   "p2": "Igor Dabrowski",
+   "p1_norm": "kamil klocek",
+   "p2_norm": "igor dabrowski",
+   "open_date": "2026-07-23T11:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856181,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-23T11:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
