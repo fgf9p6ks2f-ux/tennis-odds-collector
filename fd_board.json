@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T11:57:51Z",
+ "captured_at": "2026-07-23T12:02:12Z",
  "matches": [
-  {
-   "event_id": 35856154,
-   "p1": "Piotr Gumulinski",
-   "p2": "Mariusz Baron",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-23T11:30:00.000Z",
-   "line": 125.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35856170,
    "p1": "Patrik Klos",
@@ -19,18 +8,7 @@
    "p1_norm": "patrik klos",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T11:40:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856180,
-   "p1": "Kamil Klocek",
-   "p2": "Igor Dabrowski",
-   "p1_norm": "kamil klocek",
-   "p2_norm": "igor dabrowski",
-   "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 68.5,
+   "line": 89.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +19,7 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 82.5,
+   "line": 90.5,
    "over_odds": -115,
    "under_odds": -115
   },
@@ -52,9 +30,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T11:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856192,
