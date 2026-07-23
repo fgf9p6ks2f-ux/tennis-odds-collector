@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T04:05:11Z",
+ "captured_at": "2026-07-23T04:10:57Z",
  "matches": [
-  {
-   "event_id": 35854808,
-   "p1": "Patrik Klos",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "patrik klos",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-23T03:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35854826,
    "p1": "Adrian Burkacki",
@@ -19,7 +8,7 @@
    "p1_norm": "adrian burkacki",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-23T04:00:00.000Z",
-   "line": 72.5,
+   "line": 56.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,7 +19,7 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "jakub zochniak",
    "open_date": "2026-07-23T04:00:00.000Z",
-   "line": 75.5,
+   "line": 90.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -42,8 +31,8 @@
    "p2_norm": "robert szymik",
    "open_date": "2026-07-23T04:10:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35854833,
@@ -64,8 +53,8 @@
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T04:10:00.000Z",
    "line": 70.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35854848,
@@ -85,9 +74,9 @@
    "p1_norm": "igor dabrowski",
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-23T04:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35854866,
