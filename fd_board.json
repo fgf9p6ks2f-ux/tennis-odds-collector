@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T20:21:17Z",
+ "captured_at": "2026-07-23T20:25:44Z",
  "matches": [
   {
    "event_id": 35857704,
@@ -8,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T20:05:00.000Z",
-   "line": 77.5,
-   "over_odds": 100,
-   "under_odds": -140
+   "line": 94.5,
+   "over_odds": -170,
+   "under_odds": 120
   },
   {
    "event_id": 35857715,
@@ -19,9 +19,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-23T20:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -102,
-   "under_odds": -132
+   "line": 70.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35857716,
@@ -30,9 +30,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-23T20:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 53.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857743,
