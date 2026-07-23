@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T09:26:55Z",
+ "captured_at": "2026-07-23T09:31:18Z",
  "matches": [
   {
    "event_id": 35855656,
@@ -8,6 +8,17 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T09:20:00.000Z",
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35855672,
+   "p1": "Robert Szymik",
+   "p2": "Witold Buczynski",
+   "p1_norm": "robert szymik",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-23T09:25:00.000Z",
    "line": 75.5,
    "over_odds": -125,
    "under_odds": -110
@@ -19,9 +30,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-23T09:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855687,
@@ -31,8 +42,8 @@
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-23T09:30:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855734,
@@ -77,6 +88,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -116
+  },
+  {
+   "event_id": 35856037,
+   "p1": "Waldemar Glanowski",
+   "p2": "Mariusz Baron",
+   "p1_norm": "waldemar glanowski",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-23T09:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
