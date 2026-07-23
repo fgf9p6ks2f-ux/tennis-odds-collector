@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T11:49:22Z",
+ "captured_at": "2026-07-23T11:53:29Z",
  "matches": [
-  {
-   "event_id": 35856140,
-   "p1": "Jakub Folwarski",
-   "p2": "Grzegorz Adamiak",
-   "p1_norm": "jakub folwarski",
-   "p2_norm": "grzegorz adamiak",
-   "open_date": "2026-07-23T11:15:00.000Z",
-   "line": 91.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35856154,
    "p1": "Piotr Gumulinski",
@@ -19,9 +8,20 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T11:30:00.000Z",
-   "line": 111.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 122.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35856170,
+   "p1": "Patrik Klos",
+   "p2": "Krystian Kolodziej",
+   "p1_norm": "patrik klos",
+   "p2_norm": "krystian kolodziej",
+   "open_date": "2026-07-23T11:40:00.000Z",
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856176,
@@ -30,9 +30,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T11:45:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 59.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856180,
@@ -41,9 +41,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "igor dabrowski",
    "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856181,
@@ -52,9 +52,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856186,
@@ -97,6 +97,17 @@
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-23T12:15:00.000Z",
    "line": 72.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856201,
+   "p1": "Sebastian Juzek",
+   "p2": "Michal Oracz",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "michal oracz",
+   "open_date": "2026-07-23T12:20:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
