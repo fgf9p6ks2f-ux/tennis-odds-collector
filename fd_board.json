@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T15:43:38Z",
+ "captured_at": "2026-07-23T15:47:59Z",
  "matches": [
   {
    "event_id": 35856786,
@@ -9,8 +9,8 @@
    "p2_norm": "michal oracz",
    "open_date": "2026-07-23T15:30:00.000Z",
    "line": 89.5,
-   "over_odds": 110,
-   "under_odds": -155
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856787,
@@ -19,9 +19,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T15:35:00.000Z",
-   "line": 93.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 96.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35856817,
@@ -77,6 +77,28 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35856865,
+   "p1": "Jacek Przewlocki",
+   "p2": "Marcin Kowalczyk",
+   "p1_norm": "jacek przewlocki",
+   "p2_norm": "marcin kowalczyk",
+   "open_date": "2026-07-23T16:15:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856866,
+   "p1": "Jacek Oracz",
+   "p2": "Jakub Cyndera",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "jakub cyndera",
+   "open_date": "2026-07-23T16:15:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
