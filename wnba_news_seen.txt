@@ -168,6 +168,7 @@ rw|641|Nets 21 points in overtime win
 rw|641|Season-high 29 points in win
 rw|647|Plays well off bench
 rw|678|Closing in on return
+rw|703|Another quiet effort
 rw|733|Swats four shots in loss
 rw|735|Limited production in return
 rw|735|Notches 10 points

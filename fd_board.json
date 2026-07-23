@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T18:38:14Z",
+ "captured_at": "2026-07-23T18:42:19Z",
  "matches": [
   {
    "event_id": 35857522,
@@ -8,9 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-23T18:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -140,
-   "under_odds": 100
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857549,
@@ -19,9 +19,9 @@
    "p1_norm": "wojciech pytlas",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T18:25:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 96.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857567,
@@ -30,20 +30,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-23T18:30:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
+   "line": 89.5,
+   "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35857568,
-   "p1": "Jakub Cyndera",
-   "p2": "Pawel Chojnacki",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "pawel chojnacki",
-   "open_date": "2026-07-23T18:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
   },
   {
    "event_id": 35857592,
