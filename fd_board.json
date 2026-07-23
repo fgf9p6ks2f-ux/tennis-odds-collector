@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T16:10:15Z",
+ "captured_at": "2026-07-23T16:15:03Z",
  "matches": [
-  {
-   "event_id": 35856827,
-   "p1": "Waldemar Glanowski",
-   "p2": "Mariusz Baron",
-   "p1_norm": "waldemar glanowski",
-   "p2_norm": "mariusz baron",
-   "open_date": "2026-07-23T15:55:00.000Z",
-   "line": 86.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35856846,
-   "p1": "Wojciech Urban",
-   "p2": "Wojciech Pytlas",
-   "p1_norm": "wojciech urban",
-   "p2_norm": "wojciech pytlas",
-   "open_date": "2026-07-23T16:00:00.000Z",
-   "line": 62.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35856850,
    "p1": "Patryk Jendrzejewski",
@@ -30,9 +8,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T16:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 59.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856865,
@@ -41,9 +19,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "marcin kowalczyk",
    "open_date": "2026-07-23T16:15:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35856866,
@@ -88,6 +66,17 @@
    "line": 80.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35857134,
+   "p1": "Sebastian Juzek",
+   "p2": "Mariusz Baron",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "mariusz baron",
+   "open_date": "2026-07-23T16:40:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
