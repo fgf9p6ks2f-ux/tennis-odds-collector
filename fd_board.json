@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T12:54:58Z",
+ "captured_at": "2026-07-23T13:00:13Z",
  "matches": [
-  {
-   "event_id": 35856218,
-   "p1": "Robert Szymik",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "robert szymik",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-23T12:40:00.000Z",
-   "line": 82.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35856222,
    "p1": "Piotr Gumulinski",
@@ -19,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "mariusz adamus",
    "open_date": "2026-07-23T12:45:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 90.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35856242,
@@ -31,8 +20,8 @@
    "p2_norm": "kacper glazowski",
    "open_date": "2026-07-23T12:55:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856270,
@@ -41,9 +30,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "grzegorz poliniewicz",
    "open_date": "2026-07-23T13:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856294,
@@ -53,7 +42,7 @@
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-23T13:05:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
+   "over_odds": -116,
    "under_odds": -118
   },
   {
