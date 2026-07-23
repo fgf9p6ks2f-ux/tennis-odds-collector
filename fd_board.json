@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T11:40:35Z",
+ "captured_at": "2026-07-23T11:44:39Z",
  "matches": [
   {
    "event_id": 35856140,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T11:15:00.000Z",
-   "line": 92.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 93.5,
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
    "event_id": 35856154,
@@ -19,20 +19,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T11:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856170,
-   "p1": "Patrik Klos",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "patrik klos",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-23T11:40:00.000Z",
-   "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 107.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856176,
