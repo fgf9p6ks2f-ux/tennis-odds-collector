@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T06:56:14Z",
+ "captured_at": "2026-07-23T07:00:25Z",
  "matches": [
   {
    "event_id": 35855393,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-23T06:45:00.000Z",
-   "line": 94.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855402,
@@ -19,7 +19,29 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-23T06:50:00.000Z",
-   "line": 68.5,
+   "line": 66.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35855406,
+   "p1": "Jakub Folwarski",
+   "p2": "Grzegorz Felkel",
+   "p1_norm": "jakub folwarski",
+   "p2_norm": "grzegorz felkel",
+   "open_date": "2026-07-23T06:55:00.000Z",
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35855407,
+   "p1": "Igor Dabrowski",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "igor dabrowski",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-23T06:55:00.000Z",
+   "line": 77.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +52,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-23T06:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35855416,
