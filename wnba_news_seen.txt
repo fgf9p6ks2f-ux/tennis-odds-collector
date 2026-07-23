@@ -118,6 +118,7 @@ rw|481|Dominant in win Monday
 rw|481|Posts 38 points in road loss
 rw|483|Paces Sky with 20 points
 rw|485|Hits game-winning shot at buzzer
+rw|498|Strong effort in loss
 rw|539|Another 30-point performance
 rw|539|Posts 23 points in rout
 rw|571|Drops 24 in nation's capital

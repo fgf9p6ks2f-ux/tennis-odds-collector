@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T15:16:52Z",
+ "captured_at": "2026-07-23T15:21:51Z",
  "matches": [
   {
    "event_id": 35856611,
@@ -8,9 +8,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-23T15:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 97.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35856612,
@@ -19,31 +19,9 @@
    "p1_norm": "patryk jendrzejewski",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T15:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856629,
-   "p1": "Mariusz Adamus",
-   "p2": "Sebastian Juzek",
-   "p1_norm": "mariusz adamus",
-   "p2_norm": "sebastian juzek",
-   "open_date": "2026-07-23T15:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856644,
-   "p1": "Kacper Adamus",
-   "p2": "Karol Jablonski",
-   "p1_norm": "kacper adamus",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-23T15:10:00.000Z",
-   "line": 59.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 94.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35856731,
