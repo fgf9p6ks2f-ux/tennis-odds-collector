@@ -197,6 +197,7 @@ rw|923|Not listed on injury report
 rw|927|Double-double in defeat
 rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss
+rw|935|Makes most of playing time
 rw|969|Manages 11 points in loss
 rw|971|Remains away from team
 rw|972|Not listed on injury report
