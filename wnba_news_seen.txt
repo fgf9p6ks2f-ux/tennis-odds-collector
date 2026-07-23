@@ -192,6 +192,7 @@ rw|852|Logs 15 points vs. New York
 rw|853|Paces Connecticut in loss
 rw|854|Available for Monday
 rw|854|Won't suit up Wednesday
+rw|855|Stuck in reserve role
 rw|856|Plays well off bench
 rw|860|Back with 12 points off bench
 rw|863|Explodes for 18 points off bench
