@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T08:45:14Z",
+ "captured_at": "2026-07-23T08:49:15Z",
  "matches": [
-  {
-   "event_id": 35855561,
-   "p1": "Jakub Folwarski",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "jakub folwarski",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-23T08:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35855562,
-   "p1": "Rafal Gajda",
-   "p2": "Witold Buczynski",
-   "p1_norm": "rafal gajda",
-   "p2_norm": "witold buczynski",
-   "open_date": "2026-07-23T08:35:00.000Z",
-   "line": 64.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35855573,
    "p1": "Piotr Gumulinski",
@@ -30,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T08:45:00.000Z",
-   "line": 79.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855574,
@@ -42,8 +20,8 @@
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T08:45:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35855607,
