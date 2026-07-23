@@ -1407,12 +1407,23 @@ def _mlb_plays(now=None):
             continue
         cands.sort(key=lambda x: (x[1], x[2]), reverse=True)          # highest main line, then best odds
         bk, line, odds = cands[0]
-        # THE MODEL (2026-07-21, v2 after user scrutiny): away+contact AND (opponent GENUINELY
-        # low-patience [pitches/PA < p25] OR line > pitcher's recent MEDIAN outs). Median + p25
-        # (was mean + <median) so one opener/blowup can't false-flag a workhorse. 23-6 / +44%.
+        # THE MODEL v3 — ROUTE-A ONLY (2026-07-23, user: "B is contradictive, scratch it"). Was
+        # away+contact AND (low-patience opp [route B] OR line > recent-5 median outs [route A]).
+        # ROUTE B IS DROPPED, and plays where BOTH fire are scratched too, because B is backwards:
+        # an impatient / weak-on-base offense means FEWER pitches per PA and FEWER baserunners, so the
+        # starter goes DEEPER — that argues AGAINST an outs-under, not for it. B's backtest was also
+        # leak-flattered (season-long team stats classify with hindsight) and it has essentially no
+        # real-line support (1 FanDuel bet). Evidence: A-only 17-4 (81%, +43.8% ROI) and 5-0 at FD;
+        # BOTH-fire 4-4 overall and 1-2 at FD; B-only 9-1 but that's ~all in-sample Pinnacle.
+        # Route A survives because its mechanism is sound (the book lined him ABOVE his own recent
+        # form = a market-vs-form edge) and it's point-in-time clean (prior starts only).
+        # Costs ~46% of volume (39 -> 21 bets) but lifts ROI +39.2% -> +43.8%. k_paper keeps logging
+        # EVERY outs-under regardless, so B stays scoreable and this stays reversible.
         oppp = oh.get("ppa")
         r5 = _pitcher_r5(pl)
-        premium = bool((oppp is not None and oppp < ppa_low) or (r5 is not None and line > r5))
+        route_a = bool(r5 is not None and line > r5)
+        route_b = bool(oppp is not None and oppp < ppa_low)
+        premium = route_a and not route_b
         if not premium:
             continue                                     # only the model's plays
         # PRICE-SHOP THE RUNG (edge already decided on the validated ≤16.5 line above). Take a HIGHER
