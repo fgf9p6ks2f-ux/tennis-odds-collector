@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T12:11:19Z",
+ "captured_at": "2026-07-23T12:15:29Z",
  "matches": [
-  {
-   "event_id": 35856170,
-   "p1": "Patrik Klos",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "patrik klos",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-23T11:40:00.000Z",
-   "line": 92.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35856181,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Mateusz Sikon",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "mateusz sikon",
-   "open_date": "2026-07-23T11:50:00.000Z",
-   "line": 104.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35856198,
    "p1": "Rafal Gajda",
@@ -30,9 +8,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T12:15:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856199,
@@ -75,6 +53,28 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T12:35:00.000Z",
    "line": 80.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35856218,
+   "p1": "Robert Szymik",
+   "p2": "Mateusz Sikon",
+   "p1_norm": "robert szymik",
+   "p2_norm": "mateusz sikon",
+   "open_date": "2026-07-23T12:40:00.000Z",
+   "line": 74.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35856219,
+   "p1": "Karol Sulkowski",
+   "p2": "Igor Dabrowski",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "igor dabrowski",
+   "open_date": "2026-07-23T12:40:00.000Z",
+   "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
   }
