@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T17:26:19Z",
+ "captured_at": "2026-07-23T17:30:48Z",
  "matches": [
   {
    "event_id": 35857348,
@@ -8,9 +8,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857349,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 63.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35857350,
@@ -30,9 +30,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857375,
@@ -42,8 +42,8 @@
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-23T17:30:00.000Z",
    "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857385,
@@ -86,6 +86,17 @@
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-23T17:45:00.000Z",
    "line": 83.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857432,
+   "p1": "Michal Machelski",
+   "p2": "Adam Staniczek",
+   "p1_norm": "michal machelski",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-23T17:55:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
