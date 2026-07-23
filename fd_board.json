@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T18:55:40Z",
+ "captured_at": "2026-07-23T18:59:56Z",
  "matches": [
   {
    "event_id": 35857592,
@@ -8,7 +8,7 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "wojciech urban",
    "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 91.5,
+   "line": 75.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -19,7 +19,18 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "michal machelski",
    "open_date": "2026-07-23T18:45:00.000Z",
-   "line": 81.5,
+   "line": 60.5,
+   "over_odds": 120,
+   "under_odds": -165
+  },
+  {
+   "event_id": 35857607,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Guzik",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-23T18:55:00.000Z",
+   "line": 77.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,7 +41,7 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-23T18:55:00.000Z",
-   "line": 79.5,
+   "line": 55.5,
    "over_odds": -120,
    "under_odds": -115
   },
