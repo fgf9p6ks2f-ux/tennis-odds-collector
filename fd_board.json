@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T13:39:37Z",
+ "captured_at": "2026-07-23T13:43:49Z",
  "matches": [
   {
    "event_id": 35856324,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T13:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 91.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35856345,
@@ -19,20 +19,9 @@
    "p1_norm": "witold buczynski",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35856346,
-   "p1": "Aleksander Lilien",
-   "p2": "Blazej Warpas",
-   "p1_norm": "aleksander lilien",
-   "p2_norm": "blazej warpas",
-   "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 50.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 92.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35856347,
@@ -41,9 +30,9 @@
    "p1_norm": "sebastian juzek",
    "p2_norm": "waldemar glanowski",
    "open_date": "2026-07-23T13:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 90.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856360,
@@ -97,6 +86,17 @@
    "p2_norm": "rafal gajda",
    "open_date": "2026-07-23T13:55:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856412,
+   "p1": "Krystian Kolodziej",
+   "p2": "Grzegorz Adamiak",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "grzegorz adamiak",
+   "open_date": "2026-07-23T14:10:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
