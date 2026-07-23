@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T21:38:08Z",
+ "captured_at": "2026-07-23T21:42:42Z",
  "matches": [
   {
    "event_id": 35857784,
@@ -8,20 +8,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "dariusz molenda",
    "open_date": "2026-07-23T21:30:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35857791,
-   "p1": "Marian Lebek",
-   "p2": "Marek Tkocz",
-   "p1_norm": "marian lebek",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-23T21:35:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35857794,
