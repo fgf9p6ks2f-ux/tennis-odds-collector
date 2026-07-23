@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T14:11:06Z",
+ "captured_at": "2026-07-23T14:15:14Z",
  "matches": [
   {
    "event_id": 35856371,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz adamus",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T13:55:00.000Z",
-   "line": 90.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 91.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856412,
@@ -19,9 +19,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T14:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856420,
@@ -75,6 +75,28 @@
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T14:35:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856491,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Witold Buczynski",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "witold buczynski",
+   "open_date": "2026-07-23T14:40:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35856492,
+   "p1": "Kamil Klocek",
+   "p2": "Aleksander Lilien",
+   "p1_norm": "kamil klocek",
+   "p2_norm": "aleksander lilien",
+   "open_date": "2026-07-23T14:40:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
