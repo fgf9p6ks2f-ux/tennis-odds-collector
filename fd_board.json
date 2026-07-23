@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T15:30:15Z",
+ "captured_at": "2026-07-23T15:34:27Z",
  "matches": [
   {
    "event_id": 35856731,
@@ -8,7 +8,7 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 76.5,
+   "line": 74.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856733,
@@ -30,7 +30,7 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 77.5,
+   "line": 83.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +41,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "michal oracz",
    "open_date": "2026-07-23T15:30:00.000Z",
-   "line": 79.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856787,
@@ -74,9 +74,9 @@
    "p1_norm": "stanislaw wnek",
    "p2_norm": "dariusz szlubowski",
    "open_date": "2026-07-23T15:50:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35856827,
@@ -86,6 +86,17 @@
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T15:55:00.000Z",
    "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35856846,
+   "p1": "Wojciech Urban",
+   "p2": "Wojciech Pytlas",
+   "p1_norm": "wojciech urban",
+   "p2_norm": "wojciech pytlas",
+   "open_date": "2026-07-23T16:00:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }

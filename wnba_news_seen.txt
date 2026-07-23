@@ -160,6 +160,7 @@ rw|733|Swats four shots in loss
 rw|735|Limited production in return
 rw|735|Notches 10 points
 rw|735|On track to return Sunday
+rw|739|Records 10 points in win
 rw|751|Listed as questionable
 rw|751|Upgraded to available
 rw|755|Double-doubles off bench
