@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T17:44:55Z",
+ "captured_at": "2026-07-23T17:49:14Z",
  "matches": [
-  {
-   "event_id": 35857375,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Jerzy Michalik",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "jerzy michalik",
-   "open_date": "2026-07-23T17:30:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35857385,
-   "p1": "Kaczynski Piotr",
-   "p2": "Karol Jablonski",
-   "p1_norm": "kaczynski piotr",
-   "p2_norm": "karol jablonski",
-   "open_date": "2026-07-23T17:35:00.000Z",
-   "line": 57.5,
-   "over_odds": -115,
-   "under_odds": -115
-  },
   {
    "event_id": 35857396,
    "p1": "Patryk Jendrzejewski",
@@ -41,9 +19,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-23T17:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857411,
@@ -52,9 +30,9 @@
    "p1_norm": "jacek przewlocki",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-23T17:45:00.000Z",
-   "line": 83.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 86.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857432,
