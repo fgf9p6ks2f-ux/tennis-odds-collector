@@ -184,6 +184,7 @@ rw|916|Posts 15 points despite restriction
 rw|916|Scores 10 points in loss
 rw|923|Listed out for Wednesday
 rw|923|Not listed on injury report
+rw|927|Double-double in defeat
 rw|927|Leads team with seven assists
 rw|935|Commits nine turnovers in loss
 rw|969|Manages 11 points in loss
