@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T14:41:04Z",
+ "captured_at": "2026-07-23T14:45:54Z",
  "matches": [
   {
    "event_id": 35856485,
@@ -8,7 +8,7 @@
    "p1_norm": "patrik klos",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-23T14:35:00.000Z",
-   "line": 79.5,
+   "line": 87.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -19,7 +19,7 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T14:40:00.000Z",
-   "line": 79.5,
+   "line": 81.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,9 +30,9 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "aleksander lilien",
    "open_date": "2026-07-23T14:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35856499,
@@ -88,6 +88,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35856644,
+   "p1": "Kacper Adamus",
+   "p2": "Karol Jablonski",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "karol jablonski",
+   "open_date": "2026-07-23T15:10:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
