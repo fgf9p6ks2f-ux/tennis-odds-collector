@@ -243,23 +243,27 @@ def main():
     import argparse
     ap = argparse.ArgumentParser()
     ap.add_argument("--wnba", action="store_true", help="WNBA page ONLY — fast poll for the 60s loop")
+    ap.add_argument("--mlb", action="store_true", help="MLB page ONLY — fast poll (board responsiveness)")
     args = ap.parse_args()
     ts = dt.datetime.now(dt.timezone.utc).replace(microsecond=0, tzinfo=None).isoformat()
     rows = []
-    if not args.wnba:
+    scoped = args.wnba or args.mlb               # scoped fast-poll = just one sport's page (loop cadence)
+    if args.mlb or not scoped:
         try:
             rows += collect_page("mlb", "mlb", lambda n: "@" in n)
         except Exception as e:
             print("mlb page err:", str(e)[:80])
-        try:                       # NBA port P1: idles (0 prop rows) until Oct props post
+    if not scoped:                              # NBA only in the full pass (idles until Oct props post)
+        try:
             rows += collect_page("nba", "nba", lambda n: "@" in n)
         except Exception as e:
             print("nba page err:", str(e)[:80])
-    try:
-        rows += collect_page("wnba", "wnba", lambda n: "@" in n)
-    except Exception as e:
-        print("wnba page err:", str(e)[:80])
-    if not args.wnba:
+    if args.wnba or not scoped:
+        try:
+            rows += collect_page("wnba", "wnba", lambda n: "@" in n)
+        except Exception as e:
+            print("wnba page err:", str(e)[:80])
+    if not scoped:
         for pg in TENNIS_PAGES:
             try:
                 rows += collect_page(pg.strip(), "tennis", lambda n: " v " in n.lower())

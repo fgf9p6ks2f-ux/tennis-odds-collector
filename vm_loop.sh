@@ -52,6 +52,12 @@ push(){
 
 collectors(){
   python3 fd_collect.py --wnba >/dev/null 2>&1 || true
+  # MLB FanDuel outs lines EVERY cycle (2026-07-23) so the board reflects newly-posted lines within
+  # ~60-75s instead of the ~30min Actions cadence — FD posts pitcher-outs props late/gradually through
+  # the day, and the user wants plays to surface as soon as they're lined. One lightweight page fetch;
+  # NOT a speed edge (outs lines are efficient/slow-moving) — this is board RESPONSIVENESS. DraftKings
+  # MLB stays on Actions (Akamai-blocks the VM IP, same as WNBA DK); the board line-shops across both.
+  python3 fd_collect.py --mlb >/dev/null 2>&1 || true
   # DK lines arrive via the Mac's residential IP (dk_publish.py -> dk_board.json, git-pulled
   # each cycle); ingest lights up book-aware prices everywhere. Local-only, cheap, idempotent.
   python3 dk_ingest.py >/dev/null 2>&1 || true
