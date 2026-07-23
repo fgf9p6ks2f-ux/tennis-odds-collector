@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-23T00:28:12Z",
+ "captured_at": "2026-07-23T00:36:02Z",
  "matches": [
-  {
-   "event_id": 35854611,
-   "p1": "Maciej Kolek",
-   "p2": "Patryk Jendrzejewski",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "patryk jendrzejewski",
-   "open_date": "2026-07-23T00:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35854612,
    "p1": "Zbigniew Nocun",
@@ -19,9 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-23T00:20:00.000Z",
-   "line": 65.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 68.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35854621,
@@ -30,9 +19,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T00:25:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
