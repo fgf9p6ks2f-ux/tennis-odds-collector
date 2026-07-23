@@ -60,9 +60,13 @@ def _ensure(con):
     # forward-only). NONE feed _qualifies/flag() or _mlb_graded — pure observation, so we can later
     # test whether run-environment / opponent OBP / pitcher role sharpen the outs-under edge without
     # touching the live 30-9 model. game_total = wired for real; the other three are the shadow test.
+    # pitches_per_out / pps_ratio added 2026-07-23 — the two leading new-route-B candidates from the
+    # premium-stack audit (both starts-only + leak-free). Shadow ONLY until the forward sample supports
+    # promoting one to a live gate; the whole A-only+ppo lift was just 6 bets of difference.
     for c, typ in (("home", "INTEGER"), ("opp_k", "REAL"), ("premium", "INTEGER"),
                    ("game_total", "REAL"), ("opp_obp", "REAL"),
-                   ("pitcher_gs", "INTEGER"), ("pitcher_avg_outs", "REAL")):
+                   ("pitcher_gs", "INTEGER"), ("pitcher_avg_outs", "REAL"),
+                   ("pitches_per_out", "REAL"), ("pps_ratio", "REAL")):
         if c not in cols:
             con.execute(f"ALTER TABLE paper ADD COLUMN {c} {typ}")
 
@@ -297,6 +301,22 @@ def grade():
             sh_oobp = obpcache[season].get(g.get("opp_id"))          # opponent on-base
             sh_pgs = len(priors) + 1                                 # pitcher pedigree = start # this yr
             sh_pavg = round(sum(x["outs"] for x in priors) / len(priors), 2) if priors else None  # workload
+            # STARTS-ONLY baseline (2026-07-23): `priors` is bf>=5, which lets multi-inning RELIEF
+            # outings in — a reliever-turned-starter's relief games skew every per-start average.
+            # A real start = 3+ innings (9 outs) or 50+ pitches.
+            _st = [x for x in priors if (x.get("outs") or 0) >= 9 or (x.get("pitches") or 0) >= 50]
+            # ★ the leading new-route-B candidate: recent PITCHES PER OUT. This is literally the rate
+            # he burns his pitch limit (~95 pitches / 5.7 per out ~= 16.7 outs), so HIGH = inefficient
+            # = pulled earlier = outs-under wins. Mechanism-sound AND leak-free (prior starts only),
+            # unlike the dropped patience route. Audit: high half 20-3 vs low 14-8; 5-0 at FD.
+            _po = [(x.get("pitches") or 0, x.get("outs") or 0) for x in _st[-5:] if (x.get("pitches") or 0) > 0]
+            _to = sum(o for _, o in _po)
+            sh_ppo = round(sum(p for p, _ in _po) / _to, 3) if _to else None
+            # recent pitches/START vs his own season baseline (user's idea): <1 = going shorter than
+            # his norm = leash tightening -> under. Audit: low half 16-4 (80%), 4-0 at FD.
+            _r3 = [x.get("pitches") or 0 for x in _st[-3:] if (x.get("pitches") or 0) > 0]
+            _al = [x.get("pitches") or 0 for x in _st if (x.get("pitches") or 0) > 0]
+            sh_pps = round((sum(_r3) / len(_r3)) / (sum(_al) / len(_al)), 3) if (_r3 and len(_al) >= 4) else None
             for market, keyk in (("k", "k"), ("outs", "outs")):
                 for (side, line, odds) in con.execute(
                         "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
@@ -312,10 +332,12 @@ def grade():
                         (opp_ppa is not None and opp_ppa < ppa_low) or (r5 is not None and line > r5))) else 0
                     con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
                                 "home=?, opp_k=?, premium=?, game_total=?, opp_obp=?, pitcher_gs=?, "
-                                "pitcher_avg_outs=? WHERE pitcher=? AND game_date=? AND market=? "
+                                "pitcher_avg_outs=?, pitches_per_out=?, pps_ratio=? "
+                                "WHERE pitcher=? AND game_date=? AND market=? "
                                 "AND result IS NULL",
                                 (res, actual, pnl, _now(), home, opp_k, premium,
-                                 sh_gtot, sh_oobp, sh_pgs, sh_pavg, pitcher, gd, market))
+                                 sh_gtot, sh_oobp, sh_pgs, sh_pavg, sh_ppo, sh_pps,
+                                 pitcher, gd, market))
                     graded += 1
     con.commit()
     con.close()

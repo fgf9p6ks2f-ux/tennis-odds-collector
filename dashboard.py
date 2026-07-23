@@ -1283,8 +1283,15 @@ def _pitcher_r5(name):
         from mlb import data as _MD
         pid = _MD.find_pitcher(name)
         if pid:
+            # STARTS ONLY (2026-07-23 reliever fix, user's catch): bf>=5 let multi-inning RELIEF
+            # outings into the window, so a reliever-turned-starter's relief games drag this median
+            # down hard and route A fires on a line that ISN'T actually above his starter form.
+            # Measured: Dustin May 7/18 median said 12 outs, real starter form 17; Cal Quantrill
+            # 7/17 said 13.5 vs 15 — 2 of 45 graded bets had a non-start in the window and BOTH
+            # flipped route A off once corrected. A real start = 3+ innings (9 outs) or 50+ pitches.
             gl = sorted([g for g in _MD.pitcher_gamelog(pid, dt.date.today().year)
-                         if g.get("outs") is not None and (g.get("bf") or 0) >= 5],
+                         if g.get("outs") is not None
+                         and ((g.get("outs") or 0) >= 9 or (g.get("pitches") or 0) >= 50)],
                         key=lambda g: g.get("date") or "")
             if len(gl) >= 3:
                 last = sorted(g["outs"] for g in gl[-5:])
