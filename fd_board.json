@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-23T15:39:19Z",
+ "captured_at": "2026-07-23T15:43:38Z",
  "matches": [
-  {
-   "event_id": 35856731,
-   "p1": "Grzegorz Adamiak",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "grzegorz adamiak",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 70.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856732,
-   "p1": "Marcin Kowalczyk",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "marcin kowalczyk",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 71.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35856733,
-   "p1": "Jakub Cyndera",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "jakub cyndera",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-23T15:25:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35856786,
    "p1": "Piotr Gumulinski",
@@ -41,9 +8,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "michal oracz",
    "open_date": "2026-07-23T15:30:00.000Z",
-   "line": 91.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 89.5,
+   "over_odds": 110,
+   "under_odds": -155
   },
   {
    "event_id": 35856787,
@@ -52,9 +19,9 @@
    "p1_norm": "kaczynski piotr",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T15:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35856817,
