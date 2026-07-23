@@ -1,8 +1,16 @@
 # Pitcher strikeout alt-ladder scan (cross-book line-shopping)
 
-_2026-07-23 04:27 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
+_2026-07-23 04:55 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
 
 **No +EV rung tonight** — the K market is efficient; even the best of 3 books is -EV on every agreeing rung. This is a SHOPPING sheet (best book per rung to minimize vig), not a bet list. A genuine +EV rung (a slow book) would ⭐ here.
+
+**Ian Seymour**
+  O2.5: FD -1000 (1 book, no consensus)
+  O3.5: FD -330 (1 book, no consensus)
+  O4.5: fair 52% · DK -115 FD -138 → best DK
+  O5.5: FD +164 (1 book, no consensus)
+  O6.5: FD +350 (1 book, no consensus)
+  O7.5: FD +750 (1 book, no consensus)
 
 **Griffin Canning**
   O2.5: FD -500 (1 book, no consensus)
@@ -10,14 +18,6 @@ _2026-07-23 04:27 UTC · fair = vig-stripped consensus of the books posting each
   O4.5: FD +126 (1 book, no consensus)
   O5.5: FD +280 (1 book, no consensus)
   O6.5: FD +600 (1 book, no consensus)
-
-**Ian Seymour**
-  O2.5: FD -1000 (1 book, no consensus)
-  O3.5: FD -330 (1 book, no consensus)
-  O4.5: fair 53% · DK -122 FD -138 → best DK
-  O5.5: FD +164 (1 book, no consensus)
-  O6.5: FD +350 (1 book, no consensus)
-  O7.5: FD +750 (1 book, no consensus)
 
 **Taj Bradley**
   O3.5: FD -1100 (1 book, no consensus)
@@ -38,7 +38,7 @@ _2026-07-23 04:27 UTC · fair = vig-stripped consensus of the books posting each
   O2.5: FD -2500 (1 book, no consensus)
   O3.5: FD -530 (1 book, no consensus)
   O4.5: FD -210 (1 book, no consensus)
-  O5.5: fair 45% · FD +108 DK +100 → best FD
+  O5.5: fair 45% · FD +108 DK +104 → best FD
   O6.5: FD +235 (1 book, no consensus)
   O7.5: FD +480 (1 book, no consensus)
 
