@@ -184,6 +184,7 @@ rw|786|Paces Mystics with 25 points
 rw|792|Won't play Wednesday
 rw|793|Keeps picking up steals
 rw|797|Scores team-high 20 points
+rw|798|Stumbles in loss
 rw|807|Posts double-double in road loss
 rw|807|Settling into starting lineup
 rw|836|Inactive versus Liberty
