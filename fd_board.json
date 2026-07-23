@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-23T04:41:54Z",
+ "captured_at": "2026-07-23T04:46:17Z",
  "matches": [
-  {
-   "event_id": 35854869,
-   "p1": "Witold Stechly",
-   "p2": "Miroslaw Warzecha",
-   "p1_norm": "witold stechly",
-   "p2_norm": "miroslaw warzecha",
-   "open_date": "2026-07-23T04:20:00.000Z",
-   "line": 101.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35854848,
-   "p1": "Wojciech Urban",
-   "p2": "Jakub Kaczmarek",
-   "p1_norm": "wojciech urban",
-   "p2_norm": "jakub kaczmarek",
-   "open_date": "2026-07-23T04:25:00.000Z",
-   "line": 71.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35854865,
-   "p1": "Igor Dabrowski",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "igor dabrowski",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-23T04:30:00.000Z",
-   "line": 76.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35854866,
    "p1": "Grzegorz Felkel",
@@ -41,18 +8,7 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-23T04:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35854867,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Michal Durda",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-23T04:30:00.000Z",
-   "line": 60.5,
+   "line": 68.5,
    "over_odds": null,
    "under_odds": null
   },
@@ -110,6 +66,17 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35855153,
+   "p1": "Adrian Burkacki",
+   "p2": "Marian Lebek",
+   "p1_norm": "adrian burkacki",
+   "p2_norm": "marian lebek",
+   "open_date": "2026-07-23T05:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
