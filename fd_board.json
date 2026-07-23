@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T21:47:43Z",
+ "captured_at": "2026-07-23T21:53:01Z",
  "matches": [
   {
    "event_id": 35857794,
@@ -8,7 +8,7 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-23T21:45:00.000Z",
-   "line": 78.5,
+   "line": 76.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-23T21:45:00.000Z",
-   "line": 69.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 84.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35857807,
@@ -75,6 +75,17 @@
    "p2_norm": "jaroslaw rolak",
    "open_date": "2026-07-23T22:10:00.000Z",
    "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857828,
+   "p1": "Michal Machelski",
+   "p2": "Dariusz Molenda",
+   "p1_norm": "michal machelski",
+   "p2_norm": "dariusz molenda",
+   "open_date": "2026-07-23T22:20:00.000Z",
+   "line": 71.5,
    "over_odds": -118,
    "under_odds": -112
   }
