@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-23T00:52:13Z",
+ "captured_at": "2026-07-23T01:00:19Z",
  "matches": [
-  {
-   "event_id": 35854642,
-   "p1": "Adam Staniczek",
-   "p2": "Jerzy Michalik",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "jerzy michalik",
-   "open_date": "2026-07-23T00:35:00.000Z",
-   "line": 82.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
-  {
-   "event_id": 35854667,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Patryk Jendrzejewski",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "patryk jendrzejewski",
-   "open_date": "2026-07-23T00:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35854668,
-   "p1": "Henryk Tkaczyk",
-   "p2": "Witold Stechly",
-   "p1_norm": "henryk tkaczyk",
-   "p2_norm": "witold stechly",
-   "open_date": "2026-07-23T00:45:00.000Z",
-   "line": 54.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35854669,
    "p1": "Jerzy Pelka",
@@ -41,9 +8,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "adrian burkacki",
    "open_date": "2026-07-23T00:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": -115,
+   "under_odds": -120
   }
  ]
 }
