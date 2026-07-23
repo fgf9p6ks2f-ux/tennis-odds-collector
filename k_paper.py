@@ -180,10 +180,21 @@ def grade():
     today = dt.date.today().isoformat()
     todo = con.execute("SELECT DISTINCT pitcher, game_date FROM paper WHERE result IS NULL "
                        "AND game_date < ?", (today,)).fetchall()
-    logcache = {}
-    tkcache = {}                                          # season -> (team K% map, league K%)
-    graded = 0
+    from collections import defaultdict
+    by_pitcher = defaultdict(list)
     for pitcher, gd in todo:
+        by_pitcher[pitcher].append(gd)
+
+    def _d(s):
+        try:
+            return dt.date.fromisoformat(s)
+        except (ValueError, TypeError):
+            return None
+
+    logcache = {}
+    tkcache = {}
+    graded = 0
+    for pitcher, gds in by_pitcher.items():
         pid = ids.get(pitcher)
         if pid is None and pitcher not in ids:
             pid = data.find_pitcher(pitcher)
@@ -191,65 +202,78 @@ def grade():
         if not pid:
             continue
         if pid not in logcache:
-            season = int(gd[:4])
             try:
-                logcache[pid] = data.pitcher_gamelog(pid, season)
+                logcache[pid] = data.pitcher_gamelog(pid, int(gds[0][:4]))
             except Exception:
                 logcache[pid] = []
-        # TOLERANT date match (audit 2026-07-21): game_date is date(start_time) in UTC, but the
-        # statsapi gamelog date is the ET game date — a night game is off by one, which was silently
-        # dropping ~27% of bets (they'd never grade). Match the start within ±1 day, closest.
-        try:
-            _ld = dt.date.fromisoformat(gd)
-        except ValueError:
-            _ld = None
-        g, _best = None, None
-        if _ld:
-            for x in logcache[pid]:
-                if x["bf"] < 5 or not x.get("date"):
-                    continue
-                try:
-                    _diff = abs((dt.date.fromisoformat(x["date"]) - _ld).days)
-                except ValueError:
-                    continue
-                if _diff <= 1 and (_best is None or _diff < _best):
-                    _best, g = _diff, x
-        if not g:                                       # scratched / not final yet
-            continue
-        season = int(gd[:4])
+        # final games only (bf>=5), keyed by the statsapi ET gamelog date
+        logby = {}
+        for x in logcache[pid]:
+            if (x.get("bf") or 0) >= 5 and x.get("date"):
+                logby[x["date"]] = x
+        # ── CLAIM-ONCE matching (2026-07-23 fix): a real game grades EXACTLY ONCE. Exact date
+        # first, then ±1-day (the night-game UTC-vs-ET shift), never reusing a game already claimed
+        # by another game_date. A game_date left unmatched but with a CLAIMED ±1 neighbour is a
+        # phantom DUPLICATE (the 7/21-ET game re-logged under 7/22-UTC) -> voided, not double-counted.
+        match, claimed = {}, set()
+        for gd in sorted(gds):                                   # 1) exact
+            if gd in logby and gd not in claimed:
+                claimed.add(gd); match[gd] = logby[gd]
+        for gd in sorted(gds):                                   # 2) ±1 fallback, closest unclaimed
+            if gd in match:
+                continue
+            gdd = _d(gd)
+            if not gdd:
+                continue
+            cands = sorted([d for d in logby if d not in claimed and _d(d)
+                            and abs((_d(d) - gdd).days) <= 1],
+                           key=lambda d: abs((_d(d) - gdd).days))
+            if cands:
+                claimed.add(cands[0]); match[gd] = logby[cands[0]]
+
+        season = int(gds[0][:4])
         if season not in tkcache:
             try:
                 tkcache[season] = _team_hit(season)
             except Exception:
                 tkcache[season] = ({}, 0.22, {}, 3.9)
         tk, lg_k, ppa_map, ppa_low = tkcache[season]
-        opp_k = tk.get(g.get("opp_id"), lg_k)
-        opp_ppa = ppa_map.get(g.get("opp_id"))
-        # recent-5 MEDIAN outs from the pitcher's PRIOR starts — robust to one opener/blowup outlier
-        priors = sorted([x for x in logcache[pid] if x.get("date") and x["date"] < g["date"]
-                         and (x.get("bf") or 0) >= 5], key=lambda x: x["date"])
-        _l5 = sorted(x["outs"] for x in priors[-5:])
-        r5 = (_l5[len(_l5) // 2] if len(_l5) % 2 else (_l5[len(_l5) // 2 - 1] + _l5[len(_l5) // 2]) / 2) \
-            if len(priors) >= 3 else None
-        for market, keyk in (("k", "k"), ("outs", "outs")):
-            for (side, line, odds) in con.execute(
-                    "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
-                    "AND result IS NULL", (pitcher, gd, market)).fetchall():
-                actual = g[keyk]
-                if actual == line:
-                    res, pnl = "push", 0.0
-                else:
-                    won = (actual > line) if side == "over" else (actual < line)
-                    res, pnl = ("W", odds - 1) if won else ("L", -1.0)
-                home = 1 if g.get("is_home") else 0
-                # ★★ premium (outs only): low-patience opp OR line above the pitcher's recent-5 outs
-                premium = 1 if (market == "outs" and (
-                    (opp_ppa is not None and opp_ppa < ppa_low) or (r5 is not None and line > r5))) else 0
-                con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
-                            "home=?, opp_k=?, premium=? WHERE pitcher=? AND game_date=? AND market=? "
-                            "AND result IS NULL",
-                            (res, actual, pnl, _now(), home, opp_k, premium, pitcher, gd, market))
-                graded += 1
+
+        for gd in gds:
+            g = match.get(gd)
+            if g is None:
+                gdd = _d(gd)
+                had_near = any(_d(d) and gdd and abs((_d(d) - gdd).days) <= 1 for d in logby)
+                if had_near:                                     # duplicate of an already-graded game
+                    con.execute("UPDATE paper SET result='void', actual=NULL, pnl=0, graded_at=?, "
+                                "closed=1 WHERE pitcher=? AND game_date=? AND result IS NULL",
+                                (_now(), pitcher, gd))
+                continue                                         # else: not final / scratched -> leave
+            opp_k = tk.get(g.get("opp_id"), lg_k)
+            opp_ppa = ppa_map.get(g.get("opp_id"))
+            priors = sorted([x for x in logcache[pid] if x.get("date") and x["date"] < g["date"]
+                             and (x.get("bf") or 0) >= 5], key=lambda x: x["date"])
+            _l5 = sorted(x["outs"] for x in priors[-5:])
+            r5 = (_l5[len(_l5) // 2] if len(_l5) % 2 else (_l5[len(_l5) // 2 - 1] + _l5[len(_l5) // 2]) / 2) \
+                if len(priors) >= 3 else None
+            for market, keyk in (("k", "k"), ("outs", "outs")):
+                for (side, line, odds) in con.execute(
+                        "SELECT side, line, odds FROM paper WHERE pitcher=? AND game_date=? AND market=? "
+                        "AND result IS NULL", (pitcher, gd, market)).fetchall():
+                    actual = g[keyk]
+                    if actual == line:
+                        res, pnl = "push", 0.0
+                    else:
+                        won = (actual > line) if side == "over" else (actual < line)
+                        res, pnl = ("W", odds - 1) if won else ("L", -1.0)
+                    home = 1 if g.get("is_home") else 0
+                    premium = 1 if (market == "outs" and (
+                        (opp_ppa is not None and opp_ppa < ppa_low) or (r5 is not None and line > r5))) else 0
+                    con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
+                                "home=?, opp_k=?, premium=? WHERE pitcher=? AND game_date=? AND market=? "
+                                "AND result IS NULL",
+                                (res, actual, pnl, _now(), home, opp_k, premium, pitcher, gd, market))
+                    graded += 1
     con.commit()
     con.close()
     IDCACHE.write_text(json.dumps(ids))
