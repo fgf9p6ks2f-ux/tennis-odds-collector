@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T21:57:49Z",
+ "captured_at": "2026-07-23T22:03:04Z",
  "matches": [
-  {
-   "event_id": 35857794,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-23T21:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35857795,
-   "p1": "Pawel Chojnacki",
-   "p2": "Jacek Oracz",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "jacek oracz",
-   "open_date": "2026-07-23T21:45:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35857811,
    "p1": "Jakub Nowak",
@@ -30,9 +8,9 @@
    "p1_norm": "jakub nowak",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-23T22:00:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35857815,
@@ -85,6 +63,17 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T22:25:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857836,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Patryk Jendrzejewski",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "patryk jendrzejewski",
+   "open_date": "2026-07-23T22:30:00.000Z",
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
