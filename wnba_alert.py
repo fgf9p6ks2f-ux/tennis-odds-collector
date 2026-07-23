@@ -410,6 +410,53 @@ def collect():
                 wo = " | w/o: " + ", ".join(b for b in bits if b) if any(bits) else ""
                 print(f"DD note (no ping): {out_label} OUT -> {_short(n)} "
                       f"{dd['rate']*100:.0f}% in {dd['n']} role gms")
+    # ROLE-DEPTH CAP (2026-07-23, VALIDATED on 81 graded overs as a FLAG-TIME feature). The vacated
+    # production is contested by the beneficiary's healthy SAME-ROLE teammates — rebounds by the
+    # FRONTCOURT, assists by the GUARDS. When 3+ such rotation bodies (season >=18mpg, EXPECTED to
+    # play — a Questionable teammate is NOT in out_names so it COUNTS, which IS the "questionable-
+    # teammate premise" check the CON post-mortem asked for) are on the floor, the role is too crowded
+    # for the beneficiary to clear an elevated OVER. Dose-response (season-min proxy, overs): depth
+    # 1->60.9% / 2->50.0% / 3+->40.6% (-18.6% ROI); skipping depth>=3 lifts overs 40-41 (+1.7% ROI) ->
+    # 27-22 (+14.9%) and would have KILLED both CON read-error bets (Nelson-Ododa pts_reb d3, Lacan
+    # ast d3, both lost). EV does NOT rescue contested overs (depth>=2 hi-EV still 47%), so the gate
+    # is depth-only. FIRM OVERS only — unders + the full projection tracker are untouched. Breadcrumb
+    # (wnba_depth_capped.csv) grades the suppressed overs forward. DEPTH_CAP=False kills it instantly.
+    DEPTH_CAP = True
+    if DEPTH_CAP and preds:
+        def _role_depth(p):
+            pos = (pl.get(p["player"]) or {}).get("position")
+            s = p["stat"]
+            if "reb" in s:
+                poolset = {"F", "C"}                     # rebounding is frontcourt-locked
+            elif "ast" in s:
+                poolset = {"G"}                          # playmaking is guard-locked
+            else:                                        # points -> the beneficiary's own group
+                bg = _POSG.get((pos or "F").upper(), "F")
+                poolset = {"F", "C"} if bg in ("F", "C") else {"G"}
+            outs_here = {x.strip() for x in (p.get("out_player") or "").split(",")}
+            return sum(1 for nm, vv in pl.items()
+                       if vv.get("team") == p["team"] and nm != p["player"]
+                       and nm not in outs_here and nm not in out_names
+                       and (vv.get("min") or 0) >= 18
+                       and _POSG.get((vv.get("position") or "F").upper(), "F") in poolset)
+        dcap = [p for p in preds if p.get("side") == "over" and _role_depth(p) >= 3]
+        if dcap:
+            drop_d = {(p["player"], p["stat"]) for p in dcap}
+            try:                                         # breadcrumb (like wnba_capped_legs.csv) so
+                import csv                                # the suppressed overs still grade forward
+                with open(HERE / "wnba_depth_capped.csv", "a", newline="") as f:
+                    wcsv = csv.writer(f)
+                    for p in dcap:
+                        wcsv.writerow([p["pred_date"], p["team"], p["player"], p["stat"],
+                                       p["line"], p.get("odds"), p.get("ev"), _role_depth(p)])
+            except OSError:
+                pass
+            preds = [p for p in preds
+                     if not (p.get("side") == "over" and (p["player"], p["stat"]) in drop_d)]
+            alerts = [a for a in alerts
+                      if tuple(a[1].split("|")[1:3]) not in drop_d]
+            print(f"role-depth cap: dropped {len(dcap)} over(s) with 3+ same-role bodies on the floor")
+
     # CORRELATION CAP (user preference): don't recommend 2+ players' OVERS on the same team + same
     # prop FAMILY in one game — they're correlated, so one blowout / team-cold-shooting night sinks
     # them together (PHX went 0-6 on its overs 2026-07-11; 5 were points-family across Copper+Ayayi).
