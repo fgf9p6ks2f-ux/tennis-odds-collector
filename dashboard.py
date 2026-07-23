@@ -2664,7 +2664,13 @@ def build():
 {_live_sse}
 </body></html>"""
     OUT.parent.mkdir(exist_ok=True)
-    OUT.write_text(doc)
+    # ATOMIC write (2026-07-23): the fast pickz-bake service bakes every ~20s alongside the loop's
+    # own bakes and board_server reads on every /bump poll — a plain write_text can be read half-
+    # written and flash a broken board. Write a temp then os-level rename (atomic on POSIX) so a
+    # reader always sees a complete file.
+    _tmp = OUT.with_name("index.html.tmp")
+    _tmp.write_text(doc)
+    _tmp.replace(OUT)
     print(f"dashboard: {len(order)} games / {sum(len(pl) for _, pl in order)} beneficiaries / "
           f"{len(rows)} spots, record {w}-{l} ({u:+.1f}u), {pend} pending -> {OUT}")
 
