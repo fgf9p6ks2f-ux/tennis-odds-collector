@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T17:17:58Z",
+ "captured_at": "2026-07-23T17:22:09Z",
  "matches": [
-  {
-   "event_id": 35857289,
-   "p1": "Lukasz Pietraszko",
-   "p2": "Michal Olbrycht",
-   "p1_norm": "lukasz pietraszko",
-   "p2_norm": "michal olbrycht",
-   "open_date": "2026-07-23T16:55:00.000Z",
-   "line": 103.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35857324,
-   "p1": "Piotr Gumulinski",
-   "p2": "Waldemar Glanowski",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "waldemar glanowski",
-   "open_date": "2026-07-23T17:05:00.000Z",
-   "line": 73.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35857334,
    "p1": "Wojciech Urban",
@@ -30,9 +8,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "jakub nowak",
    "open_date": "2026-07-23T17:10:00.000Z",
-   "line": 95.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35857348,
@@ -41,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857349,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 72.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857350,
@@ -63,9 +41,9 @@
    "p1_norm": "grzegorz adamiak",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T17:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35857375,
