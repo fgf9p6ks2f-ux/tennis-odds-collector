@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T20:16:45Z",
+ "captured_at": "2026-07-23T20:21:17Z",
  "matches": [
-  {
-   "event_id": 35857694,
-   "p1": "Kaczynski Piotr",
-   "p2": "Wojciech Pytlas",
-   "p1_norm": "kaczynski piotr",
-   "p2_norm": "wojciech pytlas",
-   "open_date": "2026-07-23T20:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -125,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35857702,
-   "p1": "Lukasz Pietraszko",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "lukasz pietraszko",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-23T20:05:00.000Z",
-   "line": 51.5,
-   "over_odds": -175,
-   "under_odds": 125
-  },
   {
    "event_id": 35857704,
    "p1": "Pawel Chojnacki",
@@ -30,9 +8,9 @@
    "p1_norm": "pawel chojnacki",
    "p2_norm": "kacper kwiatkowski",
    "open_date": "2026-07-23T20:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35857715,
@@ -52,9 +30,9 @@
    "p1_norm": "wojciech urban",
    "p2_norm": "karol jablonski",
    "open_date": "2026-07-23T20:20:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 74.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857743,
@@ -88,6 +66,28 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35857752,
+   "p1": "Kacper Adamus",
+   "p2": "Jakub Nowak",
+   "p1_norm": "kacper adamus",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-23T20:45:00.000Z",
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35857753,
+   "p1": "Dariusz Molenda",
+   "p2": "Adam Staniczek",
+   "p1_norm": "dariusz molenda",
+   "p2_norm": "adam staniczek",
+   "open_date": "2026-07-23T20:45:00.000Z",
+   "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
