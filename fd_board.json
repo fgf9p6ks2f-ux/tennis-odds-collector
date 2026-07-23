@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T11:32:13Z",
+ "captured_at": "2026-07-23T11:36:25Z",
  "matches": [
   {
    "event_id": 35856140,
@@ -8,20 +8,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "grzegorz adamiak",
    "open_date": "2026-07-23T11:15:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35856146,
-   "p1": "Jakub Zochniak",
-   "p2": "Adrian Spychala",
-   "p1_norm": "jakub zochniak",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-23T11:20:00.000Z",
-   "line": 87.5,
-   "over_odds": -105,
-   "under_odds": -130
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35856150,
@@ -30,9 +19,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-23T11:25:00.000Z",
-   "line": 67.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35856151,
@@ -41,9 +30,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "michal durda",
    "open_date": "2026-07-23T11:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 63.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35856154,
@@ -52,8 +41,8 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "mariusz baron",
    "open_date": "2026-07-23T11:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
+   "line": 87.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
@@ -63,7 +52,7 @@
    "p1_norm": "patrik klos",
    "p2_norm": "krystian kolodziej",
    "open_date": "2026-07-23T11:40:00.000Z",
-   "line": 77.5,
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   },
