@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-23T03:38:39Z",
+ "captured_at": "2026-07-23T03:44:22Z",
  "matches": [
-  {
-   "event_id": 35854793,
-   "p1": "Bartosz Sulkowski",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "bartosz sulkowski",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-23T03:25:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35854794,
-   "p1": "Grzegorz Poliniewicz",
-   "p2": "Kacper Glazowski",
-   "p1_norm": "grzegorz poliniewicz",
-   "p2_norm": "kacper glazowski",
-   "open_date": "2026-07-23T03:25:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35854795,
    "p1": "Robert Szymik",
@@ -30,9 +8,9 @@
    "p1_norm": "robert szymik",
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T03:25:00.000Z",
-   "line": 82.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 103.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35854821,
@@ -41,9 +19,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "miroslaw warzecha",
    "open_date": "2026-07-23T03:30:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 73.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35854800,
@@ -52,9 +30,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-23T03:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 55.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35854808,
@@ -110,6 +88,39 @@
    "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35854832,
+   "p1": "Rafal Gajda",
+   "p2": "Robert Szymik",
+   "p1_norm": "rafal gajda",
+   "p2_norm": "robert szymik",
+   "open_date": "2026-07-23T04:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35854833,
+   "p1": "Kamil Rudomina",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "kamil rudomina",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-23T04:10:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35854834,
+   "p1": "Jakub Folwarski",
+   "p2": "Grzegorz Poliniewicz",
+   "p1_norm": "jakub folwarski",
+   "p2_norm": "grzegorz poliniewicz",
+   "open_date": "2026-07-23T04:10:00.000Z",
+   "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
