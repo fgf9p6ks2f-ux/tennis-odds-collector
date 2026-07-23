@@ -72,6 +72,7 @@ rw|1098|Headed to bench
 rw|1134|Won't play Wednesday
 rw|228|Listed out for Wednesday
 rw|233|Chips in with season-high 12 points
+rw|246|Records season-high 14 points
 rw|254|Produces 18 points in win
 rw|254|Scores game-high 21 points
 rw|272|Picks up triple-double Wednesday
