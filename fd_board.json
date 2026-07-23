@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-23T05:49:35Z",
+ "captured_at": "2026-07-23T05:53:39Z",
  "matches": [
   {
    "event_id": 35855284,
@@ -8,9 +8,9 @@
    "p1_norm": "aleksander lilien",
    "p2_norm": "stapor rafal",
    "open_date": "2026-07-23T05:35:00.000Z",
-   "line": 92.5,
-   "over_odds": -145,
-   "under_odds": 105
+   "line": 95.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35855298,
@@ -20,8 +20,8 @@
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-23T05:40:00.000Z",
    "line": 84.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35855299,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub folwarski",
    "p2_norm": "patrik klos",
    "open_date": "2026-07-23T05:40:00.000Z",
-   "line": 91.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 95.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35855300,
@@ -41,9 +41,9 @@
    "p1_norm": "rafal gajda",
    "p2_norm": "mateusz sikon",
    "open_date": "2026-07-23T05:40:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 71.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35855324,
@@ -108,6 +108,17 @@
    "p2_norm": "witold buczynski",
    "open_date": "2026-07-23T06:05:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35855374,
+   "p1": "Sebastian Juzek",
+   "p2": "Piotr Gumulinski",
+   "p1_norm": "sebastian juzek",
+   "p2_norm": "piotr gumulinski",
+   "open_date": "2026-07-23T06:20:00.000Z",
+   "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
   }
