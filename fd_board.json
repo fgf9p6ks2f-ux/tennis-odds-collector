@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T14:23:05Z",
+ "captured_at": "2026-07-24T14:27:17Z",
  "matches": [
   {
    "event_id": 35860120,
@@ -8,9 +8,9 @@
    "p1_norm": "kamil kostyk",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T14:15:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 64.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35860129,
@@ -19,9 +19,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-24T14:20:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860130,
@@ -30,8 +30,8 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T14:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
+   "line": 59.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
