@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T15:16:30Z",
+ "captured_at": "2026-07-24T15:20:47Z",
  "matches": [
-  {
-   "event_id": 35860256,
-   "p1": "Jakub Jesiek",
-   "p2": "Piotr Przewlocki",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "piotr przewlocki",
-   "open_date": "2026-07-24T15:00:00.000Z",
-   "line": 99.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
   {
    "event_id": 35860267,
    "p1": "Rafal Niemiec",
@@ -19,7 +8,7 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T15:05:00.000Z",
-   "line": 78.5,
+   "line": 75.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -53,8 +42,8 @@
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T15:25:00.000Z",
    "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35860321,
@@ -77,6 +66,17 @@
    "line": 67.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35860342,
+   "p1": "Piotr Cyrnek",
+   "p2": "Karol Strowski",
+   "p1_norm": "piotr cyrnek",
+   "p2_norm": "karol strowski",
+   "open_date": "2026-07-24T15:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
