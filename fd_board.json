@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T08:05:26Z",
+ "captured_at": "2026-07-24T08:09:56Z",
  "matches": [
   {
    "event_id": 35858818,
@@ -8,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T07:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858827,
@@ -19,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-24T08:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35858832,
@@ -30,9 +30,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T08:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858846,
@@ -64,8 +64,8 @@
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-24T08:20:00.000Z",
    "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35858873,
@@ -87,7 +87,18 @@
    "open_date": "2026-07-24T08:30:00.000Z",
    "line": 79.5,
    "over_odds": -118,
-   "under_odds": -116
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858882,
+   "p1": "Igor Szymanski",
+   "p2": "Sebastian Szostok",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "sebastian szostok",
+   "open_date": "2026-07-24T08:35:00.000Z",
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
