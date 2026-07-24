@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T09:55:17Z",
+ "captured_at": "2026-07-24T09:59:28Z",
  "matches": [
   {
    "event_id": 35859266,
@@ -8,9 +8,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T09:55:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859276,
@@ -63,6 +63,17 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T10:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35859323,
+   "p1": "Krystian Kolodziej",
+   "p2": "Karol Strowski",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "karol strowski",
+   "open_date": "2026-07-24T10:25:00.000Z",
    "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
