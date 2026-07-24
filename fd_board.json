@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T19:41:54Z",
+ "captured_at": "2026-07-24T19:46:09Z",
  "matches": [
   {
    "event_id": 35861380,
@@ -8,9 +8,9 @@
    "p1_norm": "michal wolny",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T19:35:00.000Z",
-   "line": 56.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 57.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35861384,
@@ -19,9 +19,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-24T19:40:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861385,
@@ -30,9 +30,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-24T19:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861386,
@@ -41,7 +41,7 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "adrian eliasz",
    "open_date": "2026-07-24T19:40:00.000Z",
-   "line": 74.5,
+   "line": 77.5,
    "over_odds": -120,
    "under_odds": -115
   },
