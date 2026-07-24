@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T08:14:15Z",
+ "captured_at": "2026-07-24T08:19:05Z",
  "matches": [
   {
    "event_id": 35858832,
@@ -8,7 +8,7 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T08:05:00.000Z",
-   "line": 90.5,
+   "line": 95.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -19,9 +19,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "michal durda",
    "open_date": "2026-07-24T08:10:00.000Z",
-   "line": 70.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 52.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858856,
@@ -74,9 +74,31 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 71.5,
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35858886,
+   "p1": "Jerzy Pelka",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-24T08:45:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
-   "under_odds": -116
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858887,
+   "p1": "Milosz Cesarz",
+   "p2": "Marek Tkocz",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "marek tkocz",
+   "open_date": "2026-07-24T08:45:00.000Z",
+   "line": 66.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
