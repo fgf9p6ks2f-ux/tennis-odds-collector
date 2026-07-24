@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T15:47:27Z",
+ "captured_at": "2026-07-24T15:52:24Z",
  "matches": [
   {
    "event_id": 35860342,
@@ -8,20 +8,9 @@
    "p1_norm": "piotr cyrnek",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T15:45:00.000Z",
-   "line": 80.5,
+   "line": 84.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35860349,
-   "p1": "Bartlomiej Wisniewski",
-   "p2": "Adrian Eliasz",
-   "p1_norm": "bartlomiej wisniewski",
-   "p2_norm": "adrian eliasz",
-   "open_date": "2026-07-24T15:50:00.000Z",
-   "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35860350,
@@ -30,7 +19,7 @@
    "p1_norm": "lukasz bernacki",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-24T15:50:00.000Z",
-   "line": 78.5,
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   },
@@ -86,8 +75,8 @@
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-24T16:15:00.000Z",
    "line": 74.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
