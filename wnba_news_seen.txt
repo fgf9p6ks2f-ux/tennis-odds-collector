@@ -92,6 +92,7 @@ rw|278|Scoreless in road win
 rw|291|Goes for 15 points in loss
 rw|297|Generates 29 points against Chicago
 rw|297|Rolls up 29 points against Sky
+rw|309|Another single-digit scoring effort
 rw|309|Just misses double-double
 rw|326|Another double-double Wednesday
 rw|326|Another double-double in loss
