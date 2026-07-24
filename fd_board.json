@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T07:42:57Z",
+ "captured_at": "2026-07-24T07:47:15Z",
  "matches": [
   {
    "event_id": 35858789,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T07:30:00.000Z",
-   "line": 99.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 98.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858797,
@@ -19,7 +19,7 @@
    "p1_norm": "marek tkocz",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-24T07:35:00.000Z",
-   "line": 60.5,
+   "line": 72.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,31 +30,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T07:40:00.000Z",
-   "line": 73.5,
+   "line": 53.5,
    "over_odds": -110,
    "under_odds": -125
-  },
-  {
-   "event_id": 35858808,
-   "p1": "Piotr Cyrnek",
-   "p2": "Marcin Jadczyk",
-   "p1_norm": "piotr cyrnek",
-   "p2_norm": "marcin jadczyk",
-   "open_date": "2026-07-24T07:45:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35858809,
-   "p1": "Pawel Kurek",
-   "p2": "Robert Kostepski",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-24T07:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
   },
   {
    "event_id": 35858818,
@@ -97,6 +75,17 @@
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T08:05:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858846,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Michal Durda",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-24T08:10:00.000Z",
+   "line": 69.5,
    "over_odds": -118,
    "under_odds": -112
   }
