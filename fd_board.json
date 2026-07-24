@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T20:13:14Z",
+ "captured_at": "2026-07-24T20:17:27Z",
  "matches": [
   {
    "event_id": 35861516,
@@ -8,9 +8,9 @@
    "p1_norm": "lukasz bernacki",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T20:05:00.000Z",
-   "line": 69.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861581,
@@ -19,9 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-24T20:05:00.000Z",
-   "line": 88.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861597,
@@ -75,6 +75,28 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T20:30:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861630,
+   "p1": "Damian Fira",
+   "p2": "Jakub Michalski",
+   "p1_norm": "damian fira",
+   "p2_norm": "jakub michalski",
+   "open_date": "2026-07-24T20:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861631,
+   "p1": "Cezary Pawlik",
+   "p2": "Michal Wolny",
+   "p1_norm": "cezary pawlik",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-24T20:45:00.000Z",
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   }
