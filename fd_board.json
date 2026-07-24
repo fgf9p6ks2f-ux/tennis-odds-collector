@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T05:18:43Z",
+ "captured_at": "2026-07-24T05:23:04Z",
  "matches": [
   {
    "event_id": 35858289,
@@ -8,31 +8,9 @@
    "p1_norm": "martin olejnik",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-24T04:55:00.000Z",
-   "line": 95.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
-  {
-   "event_id": 35858510,
-   "p1": "Witold Stechly",
-   "p2": "Adam Staniczek",
-   "p1_norm": "witold stechly",
-   "p2_norm": "adam staniczek",
-   "open_date": "2026-07-24T05:05:00.000Z",
-   "line": 67.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
-  {
-   "event_id": 35858591,
-   "p1": "Michal Paszkiewicz",
-   "p2": "Marek Tkocz",
-   "p1_norm": "michal paszkiewicz",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-24T05:10:00.000Z",
-   "line": 57.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 98.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35858595,
@@ -52,9 +30,9 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-24T05:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858597,
@@ -63,9 +41,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "michal durda",
    "open_date": "2026-07-24T05:15:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 60.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858598,
@@ -74,9 +52,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T05:15:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858609,
