@@ -41,17 +41,25 @@ def teams_on(date_iso):
     return out
 
 
-def historical_props(player, date_iso):
+def historical_props(player, date_iso, fd_db=FD_DB, snap_kind=None):
     """{stat: {line: (best_over_dec, best_under_dec)}} the books ACTUALLY posted for player on date —
     mirrors posted_props' both-sides structure so prop_edges can test the UNDER side (the validated
-    edge), not just overs. (Was over-only single-value, which crashed the current prop_edges.)"""
-    if not FD_DB.exists():
+    edge), not just overs. (Was over-only single-value, which crashed the current prop_edges.)
+
+    fd_db/snap_kind (added 2026-07-24 for the 3-season Odds-API archive replay): point the same replay
+    at wnba_odds_hist.sqlite instead of the live fd_lines, and — when the archive tags each row with a
+    snapshot bracket — grade the 'opener' (pre-injury-news, optimistic) or 'tip' (post-reprice,
+    conservative) line separately. snap_kind=None keeps the production 2-day smoke test byte-identical."""
+    if not Path(fd_db).exists():
         return {}
-    con = sqlite3.connect(FD_DB)
-    rows = con.execute(
-        "SELECT stat, line, side, odds FROM fd_lines WHERE sport='wnba' AND player=? "
-        "AND line IS NOT NULL AND substr(collected_at,1,10)=?",
-        (player, date_iso)).fetchall()
+    con = sqlite3.connect(fd_db)
+    q = ("SELECT stat, line, side, odds FROM fd_lines WHERE sport='wnba' AND player=? "
+         "AND line IS NOT NULL AND substr(collected_at,1,10)=?")
+    args = [player, date_iso]
+    if snap_kind is not None:
+        q += " AND snap_kind=?"
+        args.append(snap_kind)
+    rows = con.execute(q, args).fetchall()
     con.close()
     best = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0]))
     for stat, line, side, odds in rows:
@@ -62,7 +70,7 @@ def historical_props(player, date_iso):
     return {s: {k: tuple(v) for k, v in d.items()} for s, d in best.items()}
 
 
-def run():
+def run(dates=DATES, fd_db=FD_DB, snap_kind=None):
     pl = W.players()                                  # season avgs: used only to pick "key" players
     logs = {}                                         # cache full logs
 
@@ -75,7 +83,7 @@ def run():
         return logs[pid]
 
     graded = []                                       # (date, out, benef, stat, line, dec, ev, actual, win)
-    for D in DATES:
+    for D in dates:
         playing = teams_on(D)
         if not playing:
             continue
@@ -103,7 +111,7 @@ def run():
                     continue                          # not a genuine beneficiary
                 proj = w["without"]["min"]["mean"]
                 # flag with the LIVE logic but the HISTORICAL posted lines
-                T.posted_props = lambda pp, _d=D: historical_props(pp, _d)   # noqa: E731
+                T.posted_props = lambda pp, _d=D: historical_props(pp, _d, fd_db, snap_kind)  # noqa: E731
                 vac = {"points": p["pts"], "rebounds": p["reb"], "assists": p["ast"]}
                 for e in T.prop_edges(bname, before, proj, w, vac):
                     actual = today[0][T.PROP_STATS[e["stat"]]]
