@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T03:23:40Z",
+ "captured_at": "2026-07-24T03:28:14Z",
  "matches": [
-  {
-   "event_id": 35858166,
-   "p1": "Michal Machelski",
-   "p2": "Zbigniew Nocun",
-   "p1_norm": "michal machelski",
-   "p2_norm": "zbigniew nocun",
-   "open_date": "2026-07-24T03:05:00.000Z",
-   "line": 88.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35858188,
-   "p1": "Piotr Cyrnek",
-   "p2": "Adrian Spychala",
-   "p1_norm": "piotr cyrnek",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-24T03:25:00.000Z",
-   "line": 72.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35858189,
    "p1": "Arkadiusz Mugowski",
@@ -30,9 +8,9 @@
    "p1_norm": "arkadiusz mugowski",
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-24T03:25:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858195,
@@ -44,17 +22,6 @@
    "line": 65.5,
    "over_odds": -112,
    "under_odds": -118
-  },
-  {
-   "event_id": 35858200,
-   "p1": "Marian Lebek",
-   "p2": "Marek Tkocz",
-   "p1_norm": "marian lebek",
-   "p2_norm": "marek tkocz",
-   "open_date": "2026-07-24T03:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
   },
   {
    "event_id": 35858213,
@@ -88,6 +55,17 @@
    "line": 73.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35858219,
+   "p1": "Adam Staniczek",
+   "p2": "Jerzy Michalik",
+   "p1_norm": "adam staniczek",
+   "p2_norm": "jerzy michalik",
+   "open_date": "2026-07-24T03:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
