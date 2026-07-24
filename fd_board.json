@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T20:31:03Z",
+ "captured_at": "2026-07-24T20:35:15Z",
  "matches": [
   {
    "event_id": 35861616,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T20:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 66.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861617,
@@ -19,9 +19,9 @@
    "p1_norm": "kamil kostyk",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T20:30:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 80.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861630,
@@ -44,6 +44,39 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35861638,
+   "p1": "Mateusz Trela",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "mateusz trela",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-24T21:00:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861639,
+   "p1": "Schaniel Krzysztof",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "schaniel krzysztof",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-24T21:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861641,
+   "p1": "Karol Strowski",
+   "p2": "Artur Daniel",
+   "p1_norm": "karol strowski",
+   "p2_norm": "artur daniel",
+   "open_date": "2026-07-24T21:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
