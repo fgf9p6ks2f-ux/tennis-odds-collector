@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T08:01:14Z",
+ "captured_at": "2026-07-24T08:05:26Z",
  "matches": [
-  {
-   "event_id": 35858809,
-   "p1": "Pawel Kurek",
-   "p2": "Robert Kostepski",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-24T07:45:00.000Z",
-   "line": 68.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35858818,
    "p1": "Rafal Niemiec",
@@ -20,8 +9,8 @@
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T07:55:00.000Z",
    "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35858827,
@@ -30,20 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-24T08:00:00.000Z",
-   "line": 78.5,
+   "line": 81.5,
    "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35858831,
-   "p1": "Martin Olejnik",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "martin olejnik",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-24T08:05:00.000Z",
-   "line": 70.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "under_odds": -115
   },
   {
    "event_id": 35858832,
@@ -52,9 +30,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T08:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858846,
@@ -87,6 +65,28 @@
    "open_date": "2026-07-24T08:20:00.000Z",
    "line": 79.5,
    "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35858873,
+   "p1": "Grzegorz Felkel",
+   "p2": "Adrian Spychala",
+   "p1_norm": "grzegorz felkel",
+   "p2_norm": "adrian spychala",
+   "open_date": "2026-07-24T08:30:00.000Z",
+   "line": 68.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858874,
+   "p1": "Jakub Glanowski",
+   "p2": "Dawid Kosmal",
+   "p1_norm": "jakub glanowski",
+   "p2_norm": "dawid kosmal",
+   "open_date": "2026-07-24T08:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
    "under_odds": -116
   }
  ]
