@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T08:45:13Z",
+ "captured_at": "2026-07-24T08:49:33Z",
  "matches": [
   {
    "event_id": 35858882,
@@ -8,9 +8,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 86.5,
+   "line": 80.5,
    "over_odds": -115,
-   "under_odds": -115
+   "under_odds": -120
   },
   {
    "event_id": 35858886,
@@ -19,9 +19,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T08:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858887,
@@ -30,9 +30,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T08:45:00.000Z",
-   "line": 66.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 60.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858910,
