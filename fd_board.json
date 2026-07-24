@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T13:55:54Z",
+ "captured_at": "2026-07-24T14:00:20Z",
  "matches": [
-  {
-   "event_id": 35859993,
-   "p1": "Krystian Kolodziej",
-   "p2": "Grzegorz Felkel",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "grzegorz felkel",
-   "open_date": "2026-07-24T13:45:00.000Z",
-   "line": 55.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35860008,
    "p1": "Rafal Niemiec",
@@ -19,9 +8,31 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T13:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35860009,
+   "p1": "Pawel Kurek",
+   "p2": "Igor Szymanski",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-24T13:55:00.000Z",
+   "line": 63.5,
+   "over_odds": -115,
    "under_odds": -120
+  },
+  {
+   "event_id": 35860010,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Kamil Klocek",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-24T13:55:00.000Z",
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860114,
