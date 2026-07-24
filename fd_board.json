@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-24T06:21:41Z",
+ "captured_at": "2026-07-24T06:26:47Z",
  "matches": [
-  {
-   "event_id": 35858655,
-   "p1": "Blazej Warpas",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "blazej warpas",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 91.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35858656,
-   "p1": "Marcin Jadczyk",
-   "p2": "Adrian Spychala",
-   "p1_norm": "marcin jadczyk",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 86.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35858657,
-   "p1": "Robert Kostepski",
-   "p2": "Sebastian Szostok",
-   "p1_norm": "robert kostepski",
-   "p2_norm": "sebastian szostok",
-   "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 74.5,
-   "over_odds": 100,
-   "under_odds": -135
-  },
   {
    "event_id": 35858676,
    "p1": "Grzegorz Jurowicz",
@@ -41,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T06:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858680,
@@ -52,9 +19,9 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T06:25:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 71.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858681,
@@ -64,8 +31,8 @@
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T06:25:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858689,
@@ -119,6 +86,17 @@
    "p2_norm": "rafal niemiec",
    "open_date": "2026-07-24T06:45:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858729,
+   "p1": "Michal Minda",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "michal minda",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-24T06:50:00.000Z",
+   "line": 81.5,
    "over_odds": -118,
    "under_odds": -112
   }
