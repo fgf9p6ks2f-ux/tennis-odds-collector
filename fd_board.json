@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T18:16:47Z",
+ "captured_at": "2026-07-24T18:21:42Z",
  "matches": [
-  {
-   "event_id": 35861046,
-   "p1": "Cezary Pawlik",
-   "p2": "Michal Natkaniec",
-   "p1_norm": "cezary pawlik",
-   "p2_norm": "michal natkaniec",
-   "open_date": "2026-07-24T18:00:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35861142,
    "p1": "Marcin Marchlewski",
@@ -19,9 +8,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T18:05:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 93.5,
+   "over_odds": 110,
+   "under_odds": -150
   },
   {
    "event_id": 35861215,
@@ -30,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T18:10:00.000Z",
-   "line": 89.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861225,
@@ -41,9 +30,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "damian fira",
    "open_date": "2026-07-24T18:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861234,
@@ -88,6 +77,28 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861333,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Natkaniec",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal natkaniec",
+   "open_date": "2026-07-24T18:45:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861334,
+   "p1": "Roman Wiza",
+   "p2": "Tomasz Wrzalik",
+   "p1_norm": "roman wiza",
+   "p2_norm": "tomasz wrzalik",
+   "open_date": "2026-07-24T18:45:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
