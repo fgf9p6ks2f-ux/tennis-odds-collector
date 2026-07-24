@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T19:55:28Z",
+ "captured_at": "2026-07-24T19:59:51Z",
  "matches": [
-  {
-   "event_id": 35861385,
-   "p1": "Karol Strowski",
-   "p2": "Marcin Marchlewski",
-   "p1_norm": "karol strowski",
-   "p2_norm": "marcin marchlewski",
-   "open_date": "2026-07-24T19:40:00.000Z",
-   "line": 91.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35861407,
    "p1": "Jacek Oracz",
