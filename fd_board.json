@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T13:51:37Z",
+ "captured_at": "2026-07-24T13:55:54Z",
  "matches": [
   {
    "event_id": 35859993,
@@ -8,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-24T13:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 55.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35860008,
@@ -20,30 +20,8 @@
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T13:55:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35860009,
-   "p1": "Pawel Kurek",
-   "p2": "Igor Szymanski",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "igor szymanski",
-   "open_date": "2026-07-24T13:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35860010,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Kamil Klocek",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-24T13:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35860114,
@@ -64,6 +42,39 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T14:15:00.000Z",
    "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35860128,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Michal Durda",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-24T14:20:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35860129,
+   "p1": "Dawid Kosmal",
+   "p2": "Blazej Warpas",
+   "p1_norm": "dawid kosmal",
+   "p2_norm": "blazej warpas",
+   "open_date": "2026-07-24T14:20:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35860130,
+   "p1": "Jerzy Pelka",
+   "p2": "Grzegorz Jurowicz",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "grzegorz jurowicz",
+   "open_date": "2026-07-24T14:20:00.000Z",
+   "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
   }
