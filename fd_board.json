@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T08:31:46Z",
+ "captured_at": "2026-07-24T08:36:41Z",
  "matches": [
-  {
-   "event_id": 35858856,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Grzegorz Jurowicz",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "grzegorz jurowicz",
-   "open_date": "2026-07-24T08:20:00.000Z",
-   "line": 65.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35858874,
    "p1": "Jakub Glanowski",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T08:30:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 64.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858882,
@@ -31,8 +20,8 @@
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
    "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858886,
@@ -53,6 +42,39 @@
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T08:45:00.000Z",
    "line": 66.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858910,
+   "p1": "Karol Sulkowski",
+   "p2": "Blazej Warpas",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "blazej warpas",
+   "open_date": "2026-07-24T09:00:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858911,
+   "p1": "Robert Kostepski",
+   "p2": "Michal Durda",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "michal durda",
+   "open_date": "2026-07-24T09:00:00.000Z",
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858912,
+   "p1": "Artur Daniel",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "artur daniel",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-24T09:00:00.000Z",
+   "line": 75.5,
    "over_odds": -112,
    "under_odds": -118
   }
