@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-24T17:14:37Z",
+ "captured_at": "2026-07-24T17:18:55Z",
  "matches": [
+  {
+   "event_id": 35860789,
+   "p1": "Michal Natkaniec",
+   "p2": "Michal Wolny",
+   "p1_norm": "michal natkaniec",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-24T17:10:00.000Z",
+   "line": 82.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
   {
    "event_id": 35860837,
    "p1": "Marcin Kowalczyk",
@@ -31,8 +42,8 @@
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T17:20:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35860973,
@@ -64,6 +75,28 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T17:40:00.000Z",
    "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861033,
+   "p1": "Jakub Jesiek",
+   "p2": "Lukasz Bernacki",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "lukasz bernacki",
+   "open_date": "2026-07-24T17:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861034,
+   "p1": "Michal Skorski",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "michal skorski",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-24T17:45:00.000Z",
+   "line": 82.5,
    "over_odds": -112,
    "under_odds": -118
   }
