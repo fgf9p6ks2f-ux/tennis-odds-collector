@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T06:17:05Z",
+ "captured_at": "2026-07-24T06:21:41Z",
  "matches": [
-  {
-   "event_id": 35858649,
-   "p1": "Milosz Cesarz",
-   "p2": "Michal Paszkiewicz",
-   "p1_norm": "milosz cesarz",
-   "p2_norm": "michal paszkiewicz",
-   "open_date": "2026-07-24T06:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35858655,
    "p1": "Blazej Warpas",
@@ -20,8 +9,8 @@
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-24T06:05:00.000Z",
    "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35858656,
@@ -31,8 +20,8 @@
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-24T06:05:00.000Z",
    "line": 86.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35858657,
@@ -41,9 +30,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 74.5,
+   "over_odds": 100,
+   "under_odds": -135
   },
   {
    "event_id": 35858676,
@@ -53,8 +42,8 @@
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T06:20:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858680,
@@ -110,6 +99,17 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35858712,
+   "p1": "Marian Lebek",
+   "p2": "Michal Paszkiewicz",
+   "p1_norm": "marian lebek",
+   "p2_norm": "michal paszkiewicz",
+   "open_date": "2026-07-24T06:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35858713,
