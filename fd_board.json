@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T22:35:54Z",
+ "captured_at": "2026-07-24T22:40:08Z",
  "matches": [
-  {
-   "event_id": 35861746,
-   "p1": "Tomasz Wrzalik",
-   "p2": "Damian Fira",
-   "p1_norm": "tomasz wrzalik",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-24T22:20:00.000Z",
-   "line": 88.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
   {
    "event_id": 35861793,
    "p1": "Mateusz Rutkowski",
@@ -19,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-24T22:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 77.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35861803,
@@ -31,8 +20,8 @@
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-24T22:40:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35861807,
@@ -53,8 +42,8 @@
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T22:50:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35861811,
@@ -77,6 +66,17 @@
    "line": 84.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35861814,
+   "p1": "Roman Wiza",
+   "p2": "Jakub Michalski",
+   "p1_norm": "roman wiza",
+   "p2_norm": "jakub michalski",
+   "open_date": "2026-07-24T23:05:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
