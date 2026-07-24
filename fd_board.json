@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T20:44:35Z",
+ "captured_at": "2026-07-24T20:48:54Z",
  "matches": [
-  {
-   "event_id": 35861630,
-   "p1": "Damian Fira",
-   "p2": "Jakub Michalski",
-   "p1_norm": "damian fira",
-   "p2_norm": "jakub michalski",
-   "open_date": "2026-07-24T20:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35861631,
-   "p1": "Cezary Pawlik",
-   "p2": "Michal Wolny",
-   "p1_norm": "cezary pawlik",
-   "p2_norm": "michal wolny",
-   "open_date": "2026-07-24T20:45:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35861638,
    "p1": "Mateusz Trela",
