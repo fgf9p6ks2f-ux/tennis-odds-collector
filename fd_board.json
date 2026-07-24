@@ -1,36 +1,14 @@
 {
- "captured_at": "2026-07-24T07:47:15Z",
+ "captured_at": "2026-07-24T07:51:48Z",
  "matches": [
   {
-   "event_id": 35858789,
-   "p1": "Grzegorz Jurowicz",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "grzegorz jurowicz",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-24T07:30:00.000Z",
-   "line": 98.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35858797,
-   "p1": "Marek Tkocz",
-   "p2": "Jakub Pruszkowski",
-   "p1_norm": "marek tkocz",
-   "p2_norm": "jakub pruszkowski",
-   "open_date": "2026-07-24T07:35:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35858803,
-   "p1": "Dawid Kosmal",
-   "p2": "Michal Minda",
-   "p1_norm": "dawid kosmal",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-24T07:40:00.000Z",
-   "line": 53.5,
+   "event_id": 35858809,
+   "p1": "Pawel Kurek",
+   "p2": "Robert Kostepski",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-24T07:45:00.000Z",
+   "line": 77.5,
    "over_odds": -110,
    "under_odds": -125
   },
