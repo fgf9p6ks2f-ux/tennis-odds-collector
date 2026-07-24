@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T09:42:04Z",
+ "captured_at": "2026-07-24T09:46:53Z",
  "matches": [
-  {
-   "event_id": 35858993,
-   "p1": "Krzysztof Kotyl",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "krzysztof kotyl",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-24T09:25:00.000Z",
-   "line": 99.5,
-   "over_odds": 105,
-   "under_odds": -145
-  },
   {
    "event_id": 35858999,
    "p1": "Grzegorz Wichowski",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T09:30:00.000Z",
-   "line": 94.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 99.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35859250,
@@ -30,9 +19,9 @@
    "p1_norm": "kamil kostyk",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T09:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859266,
@@ -66,6 +55,17 @@
    "line": 72.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35859253,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Igor Szymanski",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-24T10:20:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
