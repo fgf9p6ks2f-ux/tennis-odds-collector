@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T20:53:12Z",
+ "captured_at": "2026-07-24T20:57:28Z",
  "matches": [
   {
    "event_id": 35861638,
@@ -53,6 +53,39 @@
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T21:10:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861657,
+   "p1": "Mariusz Koczyba",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "mariusz koczyba",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-24T21:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861658,
+   "p1": "Marcin Marchlewski",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "marcin marchlewski",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-24T21:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861659,
+   "p1": "Michal Skorski",
+   "p2": "Dariusz Wrobel",
+   "p1_norm": "michal skorski",
+   "p2_norm": "dariusz wrobel",
+   "open_date": "2026-07-24T21:20:00.000Z",
+   "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
   }
