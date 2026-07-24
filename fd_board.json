@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T15:56:45Z",
+ "captured_at": "2026-07-24T16:01:10Z",
  "matches": [
   {
    "event_id": 35860342,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr cyrnek",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T15:45:00.000Z",
-   "line": 96.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 94.5,
+   "over_odds": -150,
+   "under_odds": 110
   },
   {
    "event_id": 35860350,
@@ -19,20 +19,9 @@
    "p1_norm": "lukasz bernacki",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-24T15:50:00.000Z",
-   "line": 80.5,
+   "line": 76.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35860423,
-   "p1": "Michal Natkaniec",
-   "p2": "Michal Krutak",
-   "p1_norm": "michal natkaniec",
-   "p2_norm": "michal krutak",
-   "open_date": "2026-07-24T16:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35860481,
@@ -77,6 +66,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35860741,
+   "p1": "Cezary Pawlik",
+   "p2": "Jacek Oracz",
+   "p1_norm": "cezary pawlik",
+   "p2_norm": "jacek oracz",
+   "open_date": "2026-07-24T16:25:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
