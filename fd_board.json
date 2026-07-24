@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T02:33:24Z",
+ "captured_at": "2026-07-24T02:37:58Z",
  "matches": [
   {
    "event_id": 35858109,
@@ -19,9 +19,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-24T02:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 83.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858145,
@@ -52,9 +52,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-24T03:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 69.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35858164,
@@ -63,9 +63,9 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-24T03:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35858165,
@@ -75,6 +75,17 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-24T03:00:00.000Z",
    "line": 61.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858166,
+   "p1": "Michal Machelski",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "michal machelski",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-24T03:05:00.000Z",
+   "line": 73.5,
    "over_odds": -118,
    "under_odds": -112
   }
