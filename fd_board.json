@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T09:51:07Z",
+ "captured_at": "2026-07-24T09:55:17Z",
  "matches": [
-  {
-   "event_id": 35858999,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Jerzy Pelka",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "jerzy pelka",
-   "open_date": "2026-07-24T09:30:00.000Z",
-   "line": 98.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
-  {
-   "event_id": 35859250,
-   "p1": "Kamil Kostyk",
-   "p2": "Michal Minda",
-   "p1_norm": "kamil kostyk",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-24T09:45:00.000Z",
-   "line": 46.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35859266,
    "p1": "Oliver Vincenec",
@@ -30,9 +8,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T09:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859276,
@@ -75,6 +53,17 @@
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-24T10:20:00.000Z",
    "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35859310,
+   "p1": "Rafal Niemiec",
+   "p2": "Jerzy Pelka",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "jerzy pelka",
+   "open_date": "2026-07-24T10:20:00.000Z",
+   "line": 78.5,
    "over_odds": -112,
    "under_odds": -118
   }
