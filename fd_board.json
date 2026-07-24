@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T22:26:41Z",
+ "captured_at": "2026-07-24T22:31:37Z",
  "matches": [
-  {
-   "event_id": 35861740,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Mariusz Koczyba",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "mariusz koczyba",
-   "open_date": "2026-07-24T22:10:00.000Z",
-   "line": 93.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
   {
    "event_id": 35861746,
    "p1": "Tomasz Wrzalik",
@@ -19,7 +8,7 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "damian fira",
    "open_date": "2026-07-24T22:20:00.000Z",
-   "line": 86.5,
+   "line": 78.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,9 +19,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-24T22:30:00.000Z",
-   "line": 79.5,
+   "line": 77.5,
    "over_odds": -118,
-   "under_odds": -116
+   "under_odds": -112
   },
   {
    "event_id": 35861797,
@@ -86,6 +75,28 @@
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T22:50:00.000Z",
    "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861811,
+   "p1": "Lukasz Bernacki",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "lukasz bernacki",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-24T22:55:00.000Z",
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -110
+  },
+  {
+   "event_id": 35861812,
+   "p1": "Dariusz Wrobel",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "dariusz wrobel",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-24T22:55:00.000Z",
+   "line": 84.5,
    "over_odds": -116,
    "under_odds": -116
   }
