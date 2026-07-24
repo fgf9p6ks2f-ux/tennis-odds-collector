@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T00:14:54Z",
+ "captured_at": "2026-07-24T00:19:32Z",
  "matches": [
   {
    "event_id": 35857939,
@@ -9,19 +9,8 @@
    "p2_norm": "milosz piecowski",
    "open_date": "2026-07-24T00:10:00.000Z",
    "line": 80.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35857940,
-   "p1": "Jacek Oracz",
-   "p2": "Jakub Skorupa",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "jakub skorupa",
-   "open_date": "2026-07-24T00:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857944,
@@ -77,6 +66,39 @@
    "line": 74.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35857995,
+   "p1": "Mateusz Rutkowski",
+   "p2": "Patryk Jendrzejewski",
+   "p1_norm": "mateusz rutkowski",
+   "p2_norm": "patryk jendrzejewski",
+   "open_date": "2026-07-24T00:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857996,
+   "p1": "Marian Lebek",
+   "p2": "Jakub Nowak",
+   "p1_norm": "marian lebek",
+   "p2_norm": "jakub nowak",
+   "open_date": "2026-07-24T00:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35857997,
+   "p1": "Witold Stechly",
+   "p2": "Michal Machelski",
+   "p1_norm": "witold stechly",
+   "p2_norm": "michal machelski",
+   "open_date": "2026-07-24T00:45:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
