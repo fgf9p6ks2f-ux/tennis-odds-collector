@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T23:20:21Z",
+ "captured_at": "2026-07-24T23:25:16Z",
  "matches": [
   {
    "event_id": 35861823,
@@ -8,20 +8,9 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-24T23:15:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35861849,
-   "p1": "Mateusz Trela",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "mateusz trela",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-24T23:20:00.000Z",
-   "line": 81.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 52.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861880,
@@ -63,9 +52,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "lukasz bernacki",
    "open_date": "2026-07-24T23:45:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35861892,
