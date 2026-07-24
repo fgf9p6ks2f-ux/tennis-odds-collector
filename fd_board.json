@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T23:29:30Z",
+ "captured_at": "2026-07-24T23:33:42Z",
  "matches": [
-  {
-   "event_id": 35861823,
-   "p1": "Marcin Marchlewski",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "marcin marchlewski",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-24T23:15:00.000Z",
-   "line": 49.5,
-   "over_odds": -1450,
-   "under_odds": 550
-  },
-  {
-   "event_id": 35861880,
-   "p1": "Damian Fira",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "damian fira",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-24T23:30:00.000Z",
-   "line": 81.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
   {
    "event_id": 35861887,
    "p1": "Jacek Oracz",
@@ -88,6 +66,17 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861914,
+   "p1": "Michal Krutak",
+   "p2": "Michal Natkaniec",
+   "p1_norm": "michal krutak",
+   "p2_norm": "michal natkaniec",
+   "open_date": "2026-07-25T00:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
