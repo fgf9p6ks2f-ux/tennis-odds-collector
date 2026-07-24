@@ -85,6 +85,7 @@ rw|233|Chips in with season-high 12 points
 rw|246|Records season-high 14 points
 rw|254|Produces 18 points in win
 rw|254|Scores game-high 21 points
+rw|258|Quiet again off bench
 rw|272|Picks up triple-double Wednesday
 rw|276|Another quality showing Wednesday
 rw|276|Double-doubles in win
