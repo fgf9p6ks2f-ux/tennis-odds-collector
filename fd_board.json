@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T20:57:28Z",
+ "captured_at": "2026-07-24T21:02:29Z",
  "matches": [
-  {
-   "event_id": 35861638,
-   "p1": "Mateusz Trela",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "mateusz trela",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 85.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
   {
    "event_id": 35861639,
    "p1": "Schaniel Krzysztof",
@@ -19,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861641,
@@ -30,9 +19,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861644,
