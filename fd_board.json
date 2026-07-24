@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T10:08:38Z",
+ "captured_at": "2026-07-24T10:12:51Z",
  "matches": [
   {
    "event_id": 35859266,
@@ -8,9 +8,9 @@
    "p1_norm": "oliver vincenec",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T09:55:00.000Z",
-   "line": 80.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 97.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35859276,
@@ -19,9 +19,9 @@
    "p1_norm": "piotr cyrnek",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T10:00:00.000Z",
-   "line": 67.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 63.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859285,
@@ -30,7 +30,7 @@
    "p1_norm": "artur daniel",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-24T10:05:00.000Z",
-   "line": 76.5,
+   "line": 89.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +52,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-24T10:20:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35859310,
@@ -64,8 +64,8 @@
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T10:20:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35859323,
