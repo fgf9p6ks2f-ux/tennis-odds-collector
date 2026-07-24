@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T20:39:37Z",
+ "captured_at": "2026-07-24T20:44:35Z",
  "matches": [
-  {
-   "event_id": 35861616,
-   "p1": "Jakub Jesiek",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-24T20:30:00.000Z",
-   "line": 71.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35861630,
    "p1": "Damian Fira",
@@ -41,9 +30,9 @@
    "p1_norm": "mateusz trela",
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 85.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35861639,
@@ -75,6 +64,17 @@
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-24T21:05:00.000Z",
    "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861649,
+   "p1": "Michal Krutak",
+   "p2": "Michal Guzik",
+   "p1_norm": "michal krutak",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-24T21:10:00.000Z",
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   }
