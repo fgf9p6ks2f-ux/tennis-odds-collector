@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-24T19:06:12Z",
+ "captured_at": "2026-07-24T19:10:31Z",
  "matches": [
-  {
-   "event_id": 35861333,
-   "p1": "Jacek Oracz",
-   "p2": "Michal Natkaniec",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "michal natkaniec",
-   "open_date": "2026-07-24T18:45:00.000Z",
-   "line": 95.5,
-   "over_odds": -160,
-   "under_odds": 115
-  },
-  {
-   "event_id": 35861339,
-   "p1": "Maciej Kolek",
-   "p2": "Marcin Marchlewski",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "marcin marchlewski",
-   "open_date": "2026-07-24T18:50:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35861344,
-   "p1": "Jakub Jesiek",
-   "p2": "Schaniel Krzysztof",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "schaniel krzysztof",
-   "open_date": "2026-07-24T18:55:00.000Z",
-   "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35861354,
    "p1": "Cezary Pawlik",
@@ -42,19 +9,8 @@
    "p2_norm": "michal krutak",
    "open_date": "2026-07-24T19:10:00.000Z",
    "line": 86.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35861355,
-   "p1": "Damian Fira",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "damian fira",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-24T19:10:00.000Z",
-   "line": 82.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35861358,
@@ -74,7 +30,7 @@
    "p1_norm": "wojciech wojtaszczyk",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T19:20:00.000Z",
-   "line": 75.5,
+   "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
   },
@@ -99,6 +55,17 @@
    "line": 73.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35861380,
+   "p1": "Michal Wolny",
+   "p2": "Michal Guzik",
+   "p1_norm": "michal wolny",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-24T19:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
