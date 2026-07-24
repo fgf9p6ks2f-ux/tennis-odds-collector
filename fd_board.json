@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T15:02:48Z",
+ "captured_at": "2026-07-24T15:07:10Z",
  "matches": [
   {
    "event_id": 35860254,
@@ -8,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T15:00:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 59.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860256,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T15:00:00.000Z",
-   "line": 76.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860267,
@@ -31,8 +31,8 @@
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T15:05:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860276,
@@ -75,6 +75,17 @@
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T15:25:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35860321,
+   "p1": "Jerzy Pelka",
+   "p2": "Grzegorz Wichowski",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "grzegorz wichowski",
+   "open_date": "2026-07-24T15:30:00.000Z",
+   "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
   }
