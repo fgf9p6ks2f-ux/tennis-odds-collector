@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T01:09:40Z",
+ "captured_at": "2026-07-24T01:14:07Z",
  "matches": [
   {
    "event_id": 35858061,
@@ -8,9 +8,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-24T01:00:00.000Z",
-   "line": 66.5,
-   "over_odds": -130,
-   "under_odds": -105
+   "line": 81.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858050,
@@ -19,9 +19,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "lukasz pietraszko",
    "open_date": "2026-07-24T01:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858051,
@@ -30,20 +30,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T01:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35858052,
-   "p1": "Lukasz Oracz",
-   "p2": "Kacper Adamus",
-   "p1_norm": "lukasz oracz",
-   "p2_norm": "kacper adamus",
-   "open_date": "2026-07-24T01:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858063,

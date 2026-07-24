@@ -118,6 +118,7 @@ rw|415|Totals 16 points in loss in Dallas
 rw|416|Posts career-high 26 points
 rw|423|Moving to bench
 rw|432|Available for Wednesday
+rw|432|Logs 18 minutes in return
 rw|432|Probable for Sunday
 rw|436|Fares well off bench
 rw|440|Drops 26 points in Saturday's loss
