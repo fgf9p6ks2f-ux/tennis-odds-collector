@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T21:50:57Z",
+ "captured_at": "2026-07-24T21:55:54Z",
  "matches": [
   {
    "event_id": 35861674,
@@ -8,20 +8,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T21:45:00.000Z",
-   "line": 78.5,
+   "line": 87.5,
    "over_odds": -115,
    "under_odds": -120
-  },
-  {
-   "event_id": 35861729,
-   "p1": "Jakub Michalski",
-   "p2": "Adam Ruszkiewicz",
-   "p1_norm": "jakub michalski",
-   "p2_norm": "adam ruszkiewicz",
-   "open_date": "2026-07-24T21:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
   },
   {
    "event_id": 35861736,
@@ -66,6 +55,17 @@
    "line": 75.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35861746,
+   "p1": "Tomasz Wrzalik",
+   "p2": "Damian Fira",
+   "p1_norm": "tomasz wrzalik",
+   "p2_norm": "damian fira",
+   "open_date": "2026-07-24T22:20:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
