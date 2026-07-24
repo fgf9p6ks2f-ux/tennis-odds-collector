@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T21:15:30Z",
+ "captured_at": "2026-07-24T21:20:23Z",
  "matches": [
   {
    "event_id": 35861639,
@@ -8,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 103.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35861644,
@@ -19,7 +19,7 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-24T21:05:00.000Z",
-   "line": 90.5,
+   "line": 91.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +30,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T21:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35861658,
@@ -42,19 +42,8 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T21:20:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35861659,
-   "p1": "Michal Skorski",
-   "p2": "Dariusz Wrobel",
-   "p1_norm": "michal skorski",
-   "p2_norm": "dariusz wrobel",
-   "open_date": "2026-07-24T21:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861662,
@@ -75,6 +64,39 @@
    "p2_norm": "michal wolny",
    "open_date": "2026-07-24T21:35:00.000Z",
    "line": 70.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861673,
+   "p1": "Lukasz Bernacki",
+   "p2": "Jakub Jesiek",
+   "p1_norm": "lukasz bernacki",
+   "p2_norm": "jakub jesiek",
+   "open_date": "2026-07-24T21:45:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861674,
+   "p1": "Maciej Kolek",
+   "p2": "Kamil Kostyk",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "kamil kostyk",
+   "open_date": "2026-07-24T21:45:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861675,
+   "p1": "Mateusz Trela",
+   "p2": "Dariusz Wrobel",
+   "p1_norm": "mateusz trela",
+   "p2_norm": "dariusz wrobel",
+   "open_date": "2026-07-24T21:45:00.000Z",
+   "line": 81.5,
    "over_odds": -118,
    "under_odds": -112
   }
