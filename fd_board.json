@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T12:04:01Z",
+ "captured_at": "2026-07-24T12:08:21Z",
  "matches": [
   {
    "event_id": 35859693,
@@ -8,9 +8,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T11:55:00.000Z",
-   "line": 84.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35859747,
@@ -19,9 +19,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T12:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 75.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859748,
@@ -30,9 +30,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-24T12:00:00.000Z",
-   "line": 64.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 57.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859714,
@@ -41,9 +41,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T12:05:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35859730,
