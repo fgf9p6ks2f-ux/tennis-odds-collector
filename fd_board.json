@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T08:36:41Z",
+ "captured_at": "2026-07-24T08:40:59Z",
  "matches": [
   {
    "event_id": 35858874,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T08:30:00.000Z",
-   "line": 64.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 56.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35858882,
@@ -19,7 +19,7 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 71.5,
+   "line": 82.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -75,6 +75,17 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T09:00:00.000Z",
    "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858941,
+   "p1": "Rafal Niemiec",
+   "p2": "Grzegorz Jurowicz",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "grzegorz jurowicz",
+   "open_date": "2026-07-24T09:05:00.000Z",
+   "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
   }
