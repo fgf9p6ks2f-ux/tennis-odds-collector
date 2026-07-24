@@ -121,7 +121,12 @@ def _get(path: str, _tries=5, **params):
 
 # ── storage ──────────────────────────────────────────────────────────────────────────────────
 def _con(sport: str) -> sqlite3.Connection:
-    c = sqlite3.connect(_db(sport))
+    c = sqlite3.connect(_db(sport), timeout=60)
+    # WAL + a long busy_timeout so a concurrent READER (e.g. an audit query) can never crash a
+    # WRITE again: the 2026-07-24 MLB pull died at 2025-08-04 when an audit query held a lock and
+    # the fetch's commit hit "database is locked". Now the writer waits the reader out instead.
+    c.execute("PRAGMA journal_mode=WAL")
+    c.execute("PRAGMA busy_timeout=60000")
     c.execute("""CREATE TABLE IF NOT EXISTS props(
         sport TEXT, event_id TEXT, commence_time TEXT, game_date TEXT, home_team TEXT,
         away_team TEXT, book TEXT, market TEXT, player TEXT, side TEXT, line REAL, price REAL,
