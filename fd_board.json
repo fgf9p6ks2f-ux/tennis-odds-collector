@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T22:57:54Z",
+ "captured_at": "2026-07-24T23:02:15Z",
  "matches": [
   {
    "event_id": 35861807,
@@ -8,7 +8,7 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-24T22:50:00.000Z",
-   "line": 77.5,
+   "line": 69.5,
    "over_odds": -115,
    "under_odds": -120
   },
