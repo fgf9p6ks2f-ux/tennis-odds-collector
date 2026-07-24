@@ -235,6 +235,7 @@ rw|980|Huge two-way showing in loss
 rw|981|Nearly double-doubles
 rw|982|Leaves for locker room
 rw|982|Rolls up 21 points in road loss
+rw|982|To undergo season-ending surgery
 rw|982|Won't return Wednesday
 rw|984|Falls just short of double-double
 rw|984|Fills box score in win
