@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T23:02:15Z",
+ "captured_at": "2026-07-24T23:07:18Z",
  "matches": [
-  {
-   "event_id": 35861807,
-   "p1": "Maciej Kolek",
-   "p2": "Jakub Kuzmicz",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "jakub kuzmicz",
-   "open_date": "2026-07-24T22:50:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35861814,
    "p1": "Roman Wiza",
@@ -19,9 +8,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-24T23:05:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861818,
@@ -63,6 +52,17 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T23:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861880,
+   "p1": "Damian Fira",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "damian fira",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-24T23:30:00.000Z",
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
