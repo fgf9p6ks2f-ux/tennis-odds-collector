@@ -186,48 +186,17 @@ def main():
             "ts": dt.datetime.utcnow().isoformat()[:19], "src": src, "player": player,
             "class": cls, "onslate": onslate, "text": text[:200]}) + "\n")
         print(f"NEWS {cls} [{src}] {player}: {text[:90]}")
-        if cls == "OUT":
-            _stamp_news_out(player)                # bridge OUT -> injuries() at news-time
         if cls in ("OUT", "Q") and onslate:
             trigger = True
-        if topic and (onslate or cls == "OUT"):
-            prio = "urgent" if (cls == "OUT" and onslate) else "high"
-            try:
-                requests.post(f"https://ntfy.sh/{topic}",
-                              data=f"{player} — {text[:190]}".encode(),
-                              params={"title": f"📰 {src}", "priority": prio}, timeout=10)
-            except requests.RequestException:
-                pass
+        # NO injury-news ntfy push (user 2026-07-24: "get rid of the WNBA injury notifications, I just
+        # want the actual flagged bets"). Detection STILL drives the model — an OUT/Q hit forces the
+        # fullscan below, so the beneficiary over flags + pings via wnba_alert.py as usual. We just no
+        # longer ping the raw injury headline.
     if trigger:
         Path("/tmp/.force_fullscan").touch()
         print("news trigger -> forced fullscan")
     SEEN.write_text("\n".join(sorted(seen)[-3000:]))
 
-
-
-def _stamp_news_out(name):
-    """Bridge a breaking OUT into wnba_tonight.injuries() at news-time (not ~10-15min later when
-    the official PDF / RW lineup catches up). Writes wnba_news_overrides.json, pruned to today."""
-    if not name or len(str(name).strip()) < 3:
-        return
-    import json as _j, datetime as _d
-    from pathlib import Path as _P
-    try:
-        from zoneinfo import ZoneInfo
-        today = _d.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
-    except Exception:
-        today = _d.datetime.utcnow().date().isoformat()
-    f = _P(__file__).resolve().parent / "wnba_news_overrides.json"
-    try:
-        cur = _j.loads(f.read_text())
-    except (OSError, ValueError):
-        cur = {}
-    cur = {k: v for k, v in (cur or {}).items() if (v.get("date") or "") == today}
-    cur[str(name).strip()] = {"status": "Out", "date": today, "src": "news"}
-    try:
-        f.write_text(_j.dumps(cur, indent=0))
-    except OSError:
-        pass
 
 if __name__ == "__main__":
     main()
