@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T02:05:49Z",
+ "captured_at": "2026-07-24T02:10:26Z",
  "matches": [
   {
    "event_id": 35858109,
@@ -8,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T01:55:00.000Z",
-   "line": 96.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 101.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858112,
@@ -19,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-24T02:00:00.000Z",
-   "line": 61.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858124,
@@ -52,9 +52,20 @@
    "p1_norm": "jakub nowak",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-24T02:20:00.000Z",
-   "line": 72.5,
+   "line": 73.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35858141,
+   "p1": "Michal Guzik",
+   "p2": "Jakub Skorupa",
+   "p1_norm": "michal guzik",
+   "p2_norm": "jakub skorupa",
+   "open_date": "2026-07-24T02:35:00.000Z",
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
