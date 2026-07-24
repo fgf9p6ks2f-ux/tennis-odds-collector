@@ -27,3 +27,9 @@ underdog_log.jsonl
 .x_uid_cache.json
 .underdog_last
 .x_alert_pinged
+
+# The Odds API key (never commit)
+.odds_key
+mlb_odds_hist.sqlite
+wnba_odds_hist.sqlite
+mlb_pen_cache.json
