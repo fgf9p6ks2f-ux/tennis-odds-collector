@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T16:30:16Z",
+ "captured_at": "2026-07-24T16:34:34Z",
  "matches": [
-  {
-   "event_id": 35860486,
-   "p1": "Michal Skorski",
-   "p2": "Marcin Kowalczyk",
-   "p1_norm": "michal skorski",
-   "p2_norm": "marcin kowalczyk",
-   "open_date": "2026-07-24T16:15:00.000Z",
-   "line": 84.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35860487,
    "p1": "Jakub Jesiek",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-24T16:15:00.000Z",
-   "line": 100.5,
+   "line": 102.5,
    "over_odds": -135,
-   "under_odds": 100
+   "under_odds": -105
   },
   {
    "event_id": 35860493,
@@ -30,9 +19,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-24T16:20:00.000Z",
-   "line": 82.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35860746,
@@ -41,9 +30,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T16:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35860754,
