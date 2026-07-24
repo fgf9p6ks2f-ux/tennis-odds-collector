@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T18:43:45Z",
+ "captured_at": "2026-07-24T18:48:07Z",
  "matches": [
-  {
-   "event_id": 35861234,
-   "p1": "Michal Krutak",
-   "p2": "Michal Wolny",
-   "p1_norm": "michal krutak",
-   "p2_norm": "michal wolny",
-   "open_date": "2026-07-24T18:25:00.000Z",
-   "line": 101.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35861287,
    "p1": "Karol Strowski",
@@ -19,9 +8,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T18:30:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 84.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35861288,
@@ -30,9 +19,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-24T18:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 88.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35861333,
@@ -41,7 +30,7 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "michal natkaniec",
    "open_date": "2026-07-24T18:45:00.000Z",
-   "line": 67.5,
+   "line": 71.5,
    "over_odds": -116,
    "under_odds": -116
   },
@@ -52,9 +41,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "tomasz wrzalik",
    "open_date": "2026-07-24T18:45:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861339,
@@ -107,9 +96,20 @@
    "p1_norm": "damian fira",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-24T19:10:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 82.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861358,
+   "p1": "Artur Daniel",
+   "p2": "Kamil Kostyk",
+   "p1_norm": "artur daniel",
+   "p2_norm": "kamil kostyk",
+   "open_date": "2026-07-24T19:15:00.000Z",
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
