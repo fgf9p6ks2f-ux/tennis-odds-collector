@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T12:17:33Z",
+ "captured_at": "2026-07-24T12:21:49Z",
  "matches": [
   {
    "event_id": 35859714,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T12:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35859730,
@@ -19,7 +19,7 @@
    "p1_norm": "michal minda",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T12:10:00.000Z",
-   "line": 90.5,
+   "line": 94.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +30,31 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-24T12:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
+  },
+  {
+   "event_id": 35859784,
+   "p1": "Igor Szymanski",
+   "p2": "Sebastian Szostok",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "sebastian szostok",
+   "open_date": "2026-07-24T12:20:00.000Z",
+   "line": 70.5,
+   "over_odds": -115,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35859785,
+   "p1": "Kamil Klocek",
+   "p2": "Kamil Rudomina",
+   "p1_norm": "kamil klocek",
+   "p2_norm": "kamil rudomina",
+   "open_date": "2026-07-24T12:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859769,
@@ -63,9 +85,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-24T12:40:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35859779,
