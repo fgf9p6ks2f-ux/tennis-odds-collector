@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T09:20:25Z",
+ "captured_at": "2026-07-24T09:24:37Z",
  "matches": [
   {
    "event_id": 35858983,
@@ -8,9 +8,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T09:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 89.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858992,
@@ -55,6 +55,28 @@
    "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35859253,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Igor Szymanski",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-24T09:50:00.000Z",
+   "line": 73.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35859254,
+   "p1": "Dawid Kosmal",
+   "p2": "Kamil Klocek",
+   "p1_norm": "dawid kosmal",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-24T09:50:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
