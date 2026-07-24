@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T06:53:20Z",
+ "captured_at": "2026-07-24T06:57:20Z",
  "matches": [
   {
    "event_id": 35858712,
@@ -8,20 +8,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-24T06:45:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35858713,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Rafal Niemiec",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "rafal niemiec",
-   "open_date": "2026-07-24T06:45:00.000Z",
-   "line": 48.5,
-   "over_odds": 110,
-   "under_odds": -150
+   "line": 92.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858729,
@@ -30,7 +19,7 @@
    "p1_norm": "michal minda",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T06:50:00.000Z",
-   "line": 81.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -41,9 +30,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "robert kostepski",
    "open_date": "2026-07-24T06:55:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 63.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858744,
@@ -64,8 +53,8 @@
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-24T06:55:00.000Z",
    "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858770,
