@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T08:23:21Z",
+ "captured_at": "2026-07-24T08:27:32Z",
  "matches": [
-  {
-   "event_id": 35858832,
-   "p1": "Stapor Rafal",
-   "p2": "Michal Minda",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-24T08:05:00.000Z",
-   "line": 98.5,
-   "over_odds": 125,
-   "under_odds": -175
-  },
   {
    "event_id": 35858856,
    "p1": "Grzegorz Wichowski",
@@ -19,9 +8,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T08:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 56.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858857,
@@ -30,9 +19,9 @@
    "p1_norm": "michal paszkiewicz",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-24T08:20:00.000Z",
-   "line": 83.5,
+   "line": 69.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35858873,
@@ -63,9 +52,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 71.5,
-   "over_odds": -118,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35858886,
