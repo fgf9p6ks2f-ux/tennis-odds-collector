@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T14:44:58Z",
+ "captured_at": "2026-07-24T14:49:11Z",
  "matches": [
   {
    "event_id": 35860182,
@@ -8,20 +8,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T14:35:00.000Z",
-   "line": 86.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35860183,
-   "p1": "Artur Daniel",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "artur daniel",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-24T14:35:00.000Z",
-   "line": 73.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 89.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860192,
@@ -30,9 +19,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T14:40:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860193,
@@ -41,20 +30,9 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-24T14:40:00.000Z",
-   "line": 55.5,
-   "over_odds": -105,
-   "under_odds": -130
-  },
-  {
-   "event_id": 35860204,
-   "p1": "Grzegorz Wichowski",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "grzegorz wichowski",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-24T14:45:00.000Z",
-   "line": 73.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 88.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35860254,
