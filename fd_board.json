@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T17:54:35Z",
+ "captured_at": "2026-07-24T17:58:54Z",
  "matches": [
-  {
-   "event_id": 35861033,
-   "p1": "Jakub Jesiek",
-   "p2": "Lukasz Bernacki",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "lukasz bernacki",
-   "open_date": "2026-07-24T17:45:00.000Z",
-   "line": 54.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35861043,
    "p1": "Tomasz Wrzalik",
@@ -19,9 +8,9 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-24T17:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861046,
@@ -77,6 +66,17 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35861234,
+   "p1": "Michal Krutak",
+   "p2": "Michal Wolny",
+   "p1_norm": "michal krutak",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-24T18:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
