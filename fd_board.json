@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T10:26:22Z",
+ "captured_at": "2026-07-24T10:30:30Z",
  "matches": [
   {
    "event_id": 35859253,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-24T10:20:00.000Z",
-   "line": 80.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859254,
@@ -19,9 +19,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "kamil klocek",
    "open_date": "2026-07-24T10:20:00.000Z",
-   "line": 60.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 52.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35859310,
@@ -30,18 +30,7 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T10:20:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35859323,
-   "p1": "Krystian Kolodziej",
-   "p2": "Karol Strowski",
-   "p1_norm": "krystian kolodziej",
-   "p2_norm": "karol strowski",
-   "open_date": "2026-07-24T10:25:00.000Z",
-   "line": 82.5,
+   "line": 73.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -53,8 +42,8 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T10:30:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859346,
@@ -75,8 +64,19 @@
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T10:50:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35859395,
+   "p1": "Kamil Kostyk",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "kamil kostyk",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-24T10:55:00.000Z",
+   "line": 79.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
