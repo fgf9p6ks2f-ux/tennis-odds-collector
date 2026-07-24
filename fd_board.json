@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T06:31:05Z",
+ "captured_at": "2026-07-24T06:35:22Z",
  "matches": [
   {
    "event_id": 35858680,
@@ -8,9 +8,9 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T06:25:00.000Z",
-   "line": 52.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 53.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35858681,
@@ -19,9 +19,9 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T06:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 55.5,
+   "over_odds": -140,
+   "under_odds": 105
   },
   {
    "event_id": 35858689,
@@ -30,9 +30,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-24T06:30:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858691,
@@ -41,7 +41,7 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-24T06:30:00.000Z",
-   "line": 75.5,
+   "line": 87.5,
    "over_odds": -115,
    "under_odds": -120
   },
