@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T03:01:08Z",
+ "captured_at": "2026-07-24T03:05:30Z",
  "matches": [
   {
    "event_id": 35858163,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-24T03:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858166,
@@ -20,8 +20,8 @@
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-24T03:05:00.000Z",
    "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858169,
@@ -55,6 +55,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35858195,
+   "p1": "Witold Stechly",
+   "p2": "Henryk Tkaczyk",
+   "p1_norm": "witold stechly",
+   "p2_norm": "henryk tkaczyk",
+   "open_date": "2026-07-24T03:30:00.000Z",
+   "line": 63.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
