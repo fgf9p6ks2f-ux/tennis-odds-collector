@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T22:13:56Z",
+ "captured_at": "2026-07-24T22:18:11Z",
  "matches": [
   {
    "event_id": 35861737,
@@ -8,9 +8,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-24T22:05:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35861740,
@@ -19,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "mariusz koczyba",
    "open_date": "2026-07-24T22:10:00.000Z",
-   "line": 71.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861746,
