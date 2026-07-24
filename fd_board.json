@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T03:42:20Z",
+ "captured_at": "2026-07-24T03:46:35Z",
  "matches": [
   {
    "event_id": 35858195,
@@ -8,9 +8,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-24T03:30:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35858200,
@@ -19,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T03:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 83.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35858213,
@@ -31,7 +31,7 @@
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T03:45:00.000Z",
    "line": 77.5,
-   "over_odds": -118,
+   "over_odds": -116,
    "under_odds": -116
   },
   {
@@ -86,6 +86,39 @@
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-24T04:00:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858227,
+   "p1": "Igor Szymanski",
+   "p2": "Pawel Kurek",
+   "p1_norm": "igor szymanski",
+   "p2_norm": "pawel kurek",
+   "open_date": "2026-07-24T04:10:00.000Z",
+   "line": 72.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35858228,
+   "p1": "Grzegorz Felkel",
+   "p2": "Piotr Cyrnek",
+   "p1_norm": "grzegorz felkel",
+   "p2_norm": "piotr cyrnek",
+   "open_date": "2026-07-24T04:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858229,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Arkadiusz Mugowski",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "arkadiusz mugowski",
+   "open_date": "2026-07-24T04:10:00.000Z",
+   "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
   }
