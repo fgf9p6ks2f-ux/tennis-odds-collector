@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T16:34:34Z",
+ "captured_at": "2026-07-24T16:38:49Z",
  "matches": [
-  {
-   "event_id": 35860487,
-   "p1": "Jakub Jesiek",
-   "p2": "Mariusz Koczyba",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "mariusz koczyba",
-   "open_date": "2026-07-24T16:15:00.000Z",
-   "line": 102.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
-  {
-   "event_id": 35860493,
-   "p1": "Rafal Niemiec",
-   "p2": "Grzegorz Wichowski",
-   "p1_norm": "rafal niemiec",
-   "p2_norm": "grzegorz wichowski",
-   "open_date": "2026-07-24T16:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35860746,
    "p1": "Karol Strowski",
@@ -30,9 +8,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T16:30:00.000Z",
-   "line": 83.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 84.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860754,
@@ -41,20 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T16:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35860755,
-   "p1": "Adrian Eliasz",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "adrian eliasz",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-24T16:35:00.000Z",
-   "line": 83.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860760,
@@ -63,9 +30,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T16:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35860773,
@@ -85,9 +52,9 @@
    "p1_norm": "bartlomiej wisniewski",
    "p2_norm": "mateusz trela",
    "open_date": "2026-07-24T16:55:00.000Z",
-   "line": 82.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 83.5,
+   "over_odds": -110,
+   "under_odds": -118
   },
   {
    "event_id": 35860778,
@@ -110,6 +77,17 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35860787,
+   "p1": "Jerzy Pelka",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-24T17:05:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
