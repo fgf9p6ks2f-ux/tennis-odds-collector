@@ -1364,6 +1364,17 @@ def _mlb_matchup(event, player):
     return (bool(v[0]), v[1]) if v else (None, "")
 
 
+def _lag_s(cat, lead):
+    """Seconds `cat` trails `lead` (both ISO collected_at strings). Unparseable/missing -> huge, so a
+    quote we can't date is treated as dead rather than silently shopped into."""
+    if not cat or not lead:
+        return 1 << 30
+    try:
+        return max(0.0, (dt.datetime.fromisoformat(lead) - dt.datetime.fromisoformat(cat)).total_seconds())
+    except ValueError:
+        return 1 << 30
+
+
 def _mlb_plays(now=None):
     """Today's MLB pitcher-prop plays at the BEST soft book (FD/DK/BetMGM): outs-under ≤16.5
     (the away+contact edge) + K-over ≥6.5. Per pitcher+market pick the best LINE (under: highest;
@@ -1392,8 +1403,26 @@ def _mlb_plays(now=None):
     ladder = {}                                        # (book,player,stat) -> {line: {side: odds}}
     for (bk, pl, stat, line, side), (odds, _c) in latest.items():
         ladder.setdefault((bk, pl, stat), {}).setdefault(line, {})[side] = odds
+    # ── LIVE-QUOTE GATE (2026-07-24). The 18h window above exists so a play stays on the board all
+    # day, but it has a price-integrity cost: a book that PULLED a market (scratch, late injury,
+    # suspended) keeps its last quote for 18h — and if that dead price is the best, we line-shop INTO
+    # it and advertise a number nobody can actually bet. Per pitcher, a book is shoppable only if its
+    # freshest quote is within STALE_LAG of the freshest quote ANY book has for him: loose enough to
+    # absorb the fd-vs-dk collection-cadence gap, tight enough to drop a book that stopped quoting.
+    STALE_LAG = 45 * 60
+    seen_at = {}                                        # (book,player,stat) -> freshest collected_at
+    for (bk, pl, stat, _ln, _sd), (_o, cat) in latest.items():
+        k = (bk, pl, stat)
+        if k not in seen_at or cat > seen_at[k]:
+            seen_at[k] = cat
+    lead_at = {}                                        # (player,stat) -> freshest across ALL books
+    for (bk, pl, stat), cat in seen_at.items():
+        if (pl, stat) not in lead_at or cat > lead_at[(pl, stat)]:
+            lead_at[(pl, stat)] = cat
     mains = {}                                          # (player,stat) -> [(book, line, over, under)]
     for (bk, pl, stat), lines in ladder.items():
+        if _lag_s(seen_at.get((bk, pl, stat)), lead_at.get((pl, stat))) > STALE_LAG:
+            continue                                     # book went dark on him — its price is dead
         two = {ln: v for ln, v in lines.items() if "over" in v and "under" in v} or lines
         main = min(two, key=lambda ln: abs((two[ln].get("over") or two[ln].get("under") or 9) - 1.95))
         mains.setdefault((pl, stat), []).append((bk, main, two[main].get("over"), two[main].get("under")))
@@ -1446,8 +1475,14 @@ def _mlb_plays(now=None):
         if ups:
             ups.sort(key=lambda x: (x[2], x[1]), reverse=True)        # best price, then highest line
             bk, line, odds = ups[0]
+        # what the OTHER books had on the same rung — rendered next to the pick so the shop is
+        # visible (and auditable) instead of the board just asserting one book's number.
+        alt = sorted([(b, uo) for b, ln, oo, uo in offs
+                      if uo and abs(ln - line) < .01 and b != bk], key=lambda x: -x[1])
         plays.append({"pitcher": pl, "market": "outs", "side": "under", "line": line, "odds": odds,
-                      "book": bk, "opp": opp, "away": away, "premium": True, "base_line": base})
+                      "book": bk, "opp": opp, "away": away, "premium": True, "base_line": base,
+                      "alt": alt, "quoted_at": seen_at.get((bk, pl, stat)),
+                      "books_seen": len({b for b, _l, _o, _u in offs})})
     plays.sort(key=lambda p: p["pitcher"])
     return plays[:16]
 
@@ -1509,11 +1544,23 @@ def _mlb_plays_card(now=None):
         blogo = (f'<img class="bklogo" src="book-{p["book"]}.png" alt="{p["book"].upper()}">'
                  if p["book"] in ("fd", "dk")                    # only these have logo files
                  else f'<span class="bktag">{html.escape(p["book"][:3].upper())}</span>')
+        # SHOW THE SHOP (2026-07-24): name the books we beat and how old the quote is, so the price
+        # on the board is auditable rather than an unexplained number from one book.
+        alts = p.get("alt") or []
+        nb = p.get("books_seen") or 1
+        if alts:
+            shop = (' · <span class="shop">best of <b>%d</b> · beat %s</span>'
+                    % (nb, " / ".join(f'{b.upper()} {_am(o)}' for b, o in alts[:2])))
+        else:
+            shop = ' · <span class="shop">only book quoting it</span>'
+        secs = _lag_s(p.get("quoted_at"), dt.datetime.utcnow().isoformat(timespec="seconds"))
+        shop += (f' <span class="stalechip">· {int(secs // 60)}m old</span>'
+                 if 40 * 60 < secs < (1 << 29) else "")
         rows += (f'<div class="ttbet"><span class="pind {o.lower()}">{o}</span>'
                  f'<span class="ttbln">{p["line"]:g}</span>'
                  f'<div class="ttbmid"><div class="ttbnm"><b>{html.escape(_short(p["pitcher"]))}</b> '
                  f'<span class="xteam">{loc}{html.escape(p["opp"])}</span></div>'
-                 f'<div class="ttbsb">{mk} · {p["side"]}{tag}</div></div>'
+                 f'<div class="ttbsb">{mk} · {p["side"]}{tag}{shop}</div></div>'
                  f'<span class="podds {bcls}">{_am(p["odds"])}</span>{blogo}</div>')
     return (f'<div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model'
             f'<span class="ttcnt">{len(plays)}</span></h3>{warn}{rows}'
@@ -2275,6 +2322,9 @@ def build():
   .ttbnm {{ font-size:14px; color:#cdd5e0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }}
   .ttbnm b {{ color:var(--t1); font-weight:700; }}
   .ttbsb {{ color:#93a0b4; font-size:12px; margin-top:2px; }}
+  .shop {{ color:#6f7d92; font-size:11px; }}
+  .shop b {{ color:#8fa4c0; font-weight:600; }}
+  .stalechip {{ color:#e0a33a; font-size:11px; }}
   .ttbsb .pj {{ color:#8ea2bd; font-weight:600; }}
   .ttbsb .fd {{ color:#4da3ff; font-weight:600; }}
   .ttbet .pind.u {{ color:#ef6a6a; background:rgba(239,106,106,.16); }}   /* TT: unders RED (over stays green) */

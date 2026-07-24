@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T01:51:27Z",
+ "captured_at": "2026-07-24T01:55:51Z",
  "matches": [
   {
    "event_id": 35858099,
@@ -8,7 +8,7 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-24T01:45:00.000Z",
-   "line": 81.5,
+   "line": 95.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -44,6 +44,28 @@
    "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35858133,
+   "p1": "Witold Stechly",
+   "p2": "Zbigniew Nocun",
+   "p1_norm": "witold stechly",
+   "p2_norm": "zbigniew nocun",
+   "open_date": "2026-07-24T02:20:00.000Z",
+   "line": 69.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858134,
+   "p1": "Jakub Nowak",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "jakub nowak",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-24T02:20:00.000Z",
+   "line": 72.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }

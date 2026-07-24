@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-title" content="Pickz">
 <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
 <link rel="icon" type="image/png" sizes="64x64" href="icon-64.png">
-<meta name="bv" content="42d9c09177">
+<meta name="bv" content="94a9e6d367">
 <title>Today's Plays</title>
 <style>
   :root { color-scheme: dark; }
@@ -222,6 +222,9 @@
   .ttbnm { font-size:14px; color:#cdd5e0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .ttbnm b { color:var(--t1); font-weight:700; }
   .ttbsb { color:#93a0b4; font-size:12px; margin-top:2px; }
+  .shop { color:#6f7d92; font-size:11px; }
+  .shop b { color:#8fa4c0; font-weight:600; }
+  .stalechip { color:#e0a33a; font-size:11px; }
   .ttbsb .pj { color:#8ea2bd; font-weight:600; }
   .ttbsb .fd { color:#4da3ff; font-weight:600; }
   .ttbet .pind.u { color:#ef6a6a; background:rgba(239,106,106,.16); }   /* TT: unders RED (over stays green) */
@@ -516,7 +519,7 @@
 </style></head><body><div class="wrap">
   <header>
     <h1>Today's Plays</h1>
-    <div class="live"><span class="dot"></span>7:53 PM MT
+    <div class="live"><span class="dot"></span>7:56 PM MT
       <button class="rfrsh" onclick="manualRefresh(this)" title="Pull new plays now" aria-label="Refresh now">↻</button>
       <span id="rfchk"></span></div>
   </header>
@@ -543,7 +546,7 @@
   </div>
   <div class="panel hidden" id="mlb">
     <h2>MLB pitcher props · best book</h2>
-    <div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model<span class="ttcnt">2</span></h3><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>G. Rodriguez</b> <span class="xteam">@ San Francisco Giants</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★</span></div></div><span class="podds dk">-123</span><img class="bklogo" src="book-dk.png" alt="DK"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>T. Sugano</b> <span class="xteam">@ Milwaukee Brewers</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★</span></div></div><span class="podds dk">-154</span><img class="bklogo" src="book-dk.png" alt="DK"></div><div class="ttfoot">the model: outs-under ≤16.5 · AWAY vs a CONTACT offense, AND (low-patience opp OR line &gt; the pitcher’s recent outs) · +49% backtest (leak-free signal +48%) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>
+    <div class="card"><h3 class="ttlg">⚾ MLB · Outs-under model<span class="ttcnt">2</span></h3><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>G. Rodriguez</b> <span class="xteam">@ San Francisco Giants</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★</span> · <span class="shop">only book quoting it</span></div></div><span class="podds dk">-123</span><img class="bklogo" src="book-dk.png" alt="DK"></div><div class="ttbet"><span class="pind u">U</span><span class="ttbln">15.5</span><div class="ttbmid"><div class="ttbnm"><b>T. Sugano</b> <span class="xteam">@ Milwaukee Brewers</span></div><div class="ttbsb">outs · under <span class="mlbprem">★★</span> · <span class="shop">only book quoting it</span></div></div><span class="podds dk">-154</span><img class="bklogo" src="book-dk.png" alt="DK"></div><div class="ttfoot">the model: outs-under ≤16.5 · AWAY vs a CONTACT offense, AND (low-patience opp OR line &gt; the pitcher’s recent outs) · +49% backtest (leak-free signal +48%) · best of FD / DK / BetMGM · paper, unconfirmed</div></div>
   </div>
   <div class="panel hidden" id="tracker">
     <h2>Live record</h2>
