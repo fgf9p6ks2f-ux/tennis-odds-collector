@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T17:06:01Z",
+ "captured_at": "2026-07-24T17:10:17Z",
  "matches": [
   {
    "event_id": 35860778,
@@ -8,9 +8,9 @@
    "p1_norm": "lukasz bernacki",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T16:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35860789,
@@ -20,8 +20,8 @@
    "p2_norm": "michal wolny",
    "open_date": "2026-07-24T17:10:00.000Z",
    "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35860837,
@@ -53,8 +53,8 @@
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T17:20:00.000Z",
    "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35860973,
@@ -66,6 +66,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35860978,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Guzik",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-24T17:35:00.000Z",
+   "line": 76.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
