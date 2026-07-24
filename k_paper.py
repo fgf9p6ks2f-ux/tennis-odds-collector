@@ -66,7 +66,10 @@ def _ensure(con):
     for c, typ in (("home", "INTEGER"), ("opp_k", "REAL"), ("premium", "INTEGER"),
                    ("game_total", "REAL"), ("opp_obp", "REAL"),
                    ("pitcher_gs", "INTEGER"), ("pitcher_avg_outs", "REAL"),
-                   ("pitches_per_out", "REAL"), ("pps_ratio", "REAL")):
+                   ("pitches_per_out", "REAL"), ("pps_ratio", "REAL"),
+                   # which statsapi gamelog game this row was graded against — the durable
+                   # CROSS-RUN claim so a later run can never re-grade a game already used.
+                   ("log_date", "TEXT")):
         if c not in cols:
             con.execute(f"ALTER TABLE paper ADD COLUMN {c} {typ}")
 
@@ -246,11 +249,29 @@ def grade():
         for x in logcache[pid]:
             if (x.get("bf") or 0) >= 5 and x.get("date"):
                 logby[x["date"]] = x
+        # ── CROSS-RUN CLAIM (2026-07-24 fix, user caught Anthony Kay double-counted): claim-once
+        # below only dedupes WITHIN one grade() call — `todo` holds ungraded rows, so a game already
+        # graded in an EARLIER run is invisible and the ±1-day fallback happily re-claims it. That's
+        # how Kay/Rea/Montero's 7/22 starts got graded a second time under a phantom 7/23 game_date
+        # (2 fake W + 1 fake L). Seed `claimed` from rows this pitcher ALREADY has graded: prefer the
+        # stored log_date, and for legacy rows (pre-column) infer it by matching outs within ±1 day.
+        pre_claimed = set()
+        for _gd0, _act0, _ld0 in con.execute(
+                "SELECT game_date, actual, log_date FROM paper WHERE pitcher=? "
+                "AND result IN ('W','L')", (pitcher,)).fetchall():
+            if _ld0:
+                pre_claimed.add(_ld0)
+                continue
+            for _d0, _x0 in logby.items():                      # legacy: infer which game it used
+                if _x0.get("outs") == _act0 and _d(_d0) and _d(_gd0) \
+                        and abs((_d(_d0) - _d(_gd0)).days) <= 1:
+                    pre_claimed.add(_d0)
+                    break
         # ── CLAIM-ONCE matching (2026-07-23 fix): a real game grades EXACTLY ONCE. Exact date
         # first, then ±1-day (the night-game UTC-vs-ET shift), never reusing a game already claimed
         # by another game_date. A game_date left unmatched but with a CLAIMED ±1 neighbour is a
         # phantom DUPLICATE (the 7/21-ET game re-logged under 7/22-UTC) -> voided, not double-counted.
-        match, claimed = {}, set()
+        match, claimed = {}, set(pre_claimed)                     # seeded with prior runs' claims
         for gd in sorted(gds):                                   # 1) exact
             if gd in logby and gd not in claimed:
                 claimed.add(gd); match[gd] = logby[gd]
@@ -333,12 +354,12 @@ def grade():
                         (opp_ppa is not None and opp_ppa < ppa_low) or (r5 is not None and line > r5))) else 0
                     con.execute("UPDATE paper SET result=?, actual=?, pnl=?, graded_at=?, closed=1, "
                                 "home=?, opp_k=?, premium=?, game_total=?, opp_obp=?, pitcher_gs=?, "
-                                "pitcher_avg_outs=?, pitches_per_out=?, pps_ratio=? "
+                                "pitcher_avg_outs=?, pitches_per_out=?, pps_ratio=?, log_date=? "
                                 "WHERE pitcher=? AND game_date=? AND market=? "
                                 "AND result IS NULL",
                                 (res, actual, pnl, _now(), home, opp_k, premium,
                                  sh_gtot, sh_oobp, sh_pgs, sh_pavg, sh_ppo, sh_pps,
-                                 pitcher, gd, market))
+                                 g.get("date"), pitcher, gd, market))
                     graded += 1
     con.commit()
     con.close()
