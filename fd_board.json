@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T00:51:36Z",
+ "captured_at": "2026-07-24T00:55:53Z",
  "matches": [
   {
    "event_id": 35857995,
@@ -8,9 +8,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "patryk jendrzejewski",
    "open_date": "2026-07-24T00:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857997,
@@ -20,8 +20,8 @@
    "p2_norm": "michal machelski",
    "open_date": "2026-07-24T00:45:00.000Z",
    "line": 49.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35858033,

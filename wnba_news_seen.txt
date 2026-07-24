@@ -205,6 +205,7 @@ rw|911|Dishes seven dimes Saturday
 rw|911|Double-double in blowout win
 rw|911|Probable for Wednesday
 rw|912|Logs 21 minutes Sunday
+rw|912|Records five points in loss
 rw|914|Ruled out for Wednesday
 rw|916|Posts 15 points despite restriction
 rw|916|Scores 10 points in loss
