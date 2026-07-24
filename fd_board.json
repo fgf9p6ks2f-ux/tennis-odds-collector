@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T21:06:54Z",
+ "captured_at": "2026-07-24T21:11:15Z",
  "matches": [
   {
    "event_id": 35861639,
@@ -8,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 68.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": -135,
+   "under_odds": 100
   },
   {
    "event_id": 35861641,
@@ -19,9 +19,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-24T21:00:00.000Z",
-   "line": 83.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 69.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35861644,
@@ -30,20 +30,9 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "piotr gumulinski",
    "open_date": "2026-07-24T21:05:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35861649,
-   "p1": "Michal Krutak",
-   "p2": "Michal Guzik",
-   "p1_norm": "michal krutak",
-   "p2_norm": "michal guzik",
-   "open_date": "2026-07-24T21:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861657,
@@ -64,8 +53,8 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T21:20:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35861659,
@@ -88,6 +77,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861664,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Wolny",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-24T21:35:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
