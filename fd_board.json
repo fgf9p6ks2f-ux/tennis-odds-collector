@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T14:58:33Z",
+ "captured_at": "2026-07-24T15:02:48Z",
  "matches": [
   {
    "event_id": 35860254,
@@ -8,20 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T15:00:00.000Z",
-   "line": 76.5,
+   "line": 72.5,
    "over_odds": -110,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35860255,
-   "p1": "Michal Skorski",
-   "p2": "Stanislaw Wnek",
-   "p1_norm": "michal skorski",
-   "p2_norm": "stanislaw wnek",
-   "open_date": "2026-07-24T15:00:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "under_odds": -125
   },
   {
    "event_id": 35860256,
@@ -30,9 +19,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T15:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 76.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860267,
@@ -52,9 +41,9 @@
    "p1_norm": "cezary pawlik",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T15:10:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35860312,
