@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T17:58:54Z",
+ "captured_at": "2026-07-24T18:03:48Z",
  "matches": [
   {
    "event_id": 35861043,
@@ -8,8 +8,8 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-24T17:55:00.000Z",
-   "line": 79.5,
-   "over_odds": -120,
+   "line": 89.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
@@ -19,9 +19,9 @@
    "p1_norm": "cezary pawlik",
    "p2_norm": "michal natkaniec",
    "open_date": "2026-07-24T18:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 68.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861142,
@@ -75,6 +75,39 @@
    "p2_norm": "michal wolny",
    "open_date": "2026-07-24T18:25:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861287,
+   "p1": "Karol Strowski",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "karol strowski",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-24T18:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861288,
+   "p1": "Marcin Kowalczyk",
+   "p2": "Bartlomiej Wisniewski",
+   "p1_norm": "marcin kowalczyk",
+   "p2_norm": "bartlomiej wisniewski",
+   "open_date": "2026-07-24T18:30:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861289,
+   "p1": "Mariusz Koczyba",
+   "p2": "Lukasz Bernacki",
+   "p1_norm": "mariusz koczyba",
+   "p2_norm": "lukasz bernacki",
+   "open_date": "2026-07-24T18:30:00.000Z",
+   "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
   }
