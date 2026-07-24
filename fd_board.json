@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T10:34:40Z",
+ "captured_at": "2026-07-24T10:39:31Z",
  "matches": [
   {
    "event_id": 35859253,
@@ -8,9 +8,9 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-24T10:20:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35859331,
@@ -19,9 +19,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T10:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 71.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859346,
@@ -31,7 +31,7 @@
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T10:40:00.000Z",
    "line": 76.5,
-   "over_odds": -118,
+   "over_odds": -116,
    "under_odds": -116
   },
   {
@@ -42,8 +42,8 @@
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T10:50:00.000Z",
    "line": 77.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35859395,
@@ -55,6 +55,17 @@
    "line": 79.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35859409,
+   "p1": "Grzegorz Wichowski",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "grzegorz wichowski",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-24T11:05:00.000Z",
+   "line": 77.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
