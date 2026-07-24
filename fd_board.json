@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T03:37:53Z",
+ "captured_at": "2026-07-24T03:42:20Z",
  "matches": [
   {
    "event_id": 35858195,
@@ -8,9 +8,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-24T03:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 85.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858200,
@@ -19,9 +19,9 @@
    "p1_norm": "marian lebek",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T03:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858213,
