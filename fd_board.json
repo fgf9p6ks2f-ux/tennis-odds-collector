@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T04:40:04Z",
+ "captured_at": "2026-07-24T04:44:18Z",
  "matches": [
   {
    "event_id": 35858232,
@@ -8,31 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-24T04:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35858233,
-   "p1": "Michal Minda",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "michal minda",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-24T04:25:00.000Z",
-   "line": 91.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35858239,
-   "p1": "Robert Kostepski",
-   "p2": "Michal Durda",
-   "p1_norm": "robert kostepski",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-24T04:30:00.000Z",
-   "line": 59.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 79.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35858240,
@@ -41,9 +19,9 @@
    "p1_norm": "marcin jadczyk",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-24T04:30:00.000Z",
-   "line": 82.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 89.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35858241,
@@ -52,9 +30,9 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-24T04:30:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 72.5,
+   "over_odds": 100,
+   "under_odds": -140
   },
   {
    "event_id": 35858254,
@@ -63,9 +41,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T04:40:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858271,
@@ -132,6 +110,17 @@
    "line": 73.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35858591,
+   "p1": "Michal Paszkiewicz",
+   "p2": "Marek Tkocz",
+   "p1_norm": "michal paszkiewicz",
+   "p2_norm": "marek tkocz",
+   "open_date": "2026-07-24T05:10:00.000Z",
+   "line": 71.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
