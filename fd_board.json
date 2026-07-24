@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T14:49:11Z",
+ "captured_at": "2026-07-24T14:53:28Z",
  "matches": [
-  {
-   "event_id": 35860182,
-   "p1": "Karol Strowski",
-   "p2": "Martin Olejnik",
-   "p1_norm": "karol strowski",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-24T14:35:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35860192,
    "p1": "Robert Kostepski",
@@ -19,20 +8,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T14:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35860193,
-   "p1": "Karol Sulkowski",
-   "p2": "Kamil Rudomina",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "kamil rudomina",
-   "open_date": "2026-07-24T14:40:00.000Z",
-   "line": 88.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 93.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35860254,
@@ -85,9 +63,9 @@
    "p1_norm": "cezary pawlik",
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T15:10:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
