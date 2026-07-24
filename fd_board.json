@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-24T16:56:39Z",
+ "captured_at": "2026-07-24T17:01:02Z",
  "matches": [
+  {
+   "event_id": 35860778,
+   "p1": "Lukasz Bernacki",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "lukasz bernacki",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-24T16:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
   {
    "event_id": 35860787,
    "p1": "Jerzy Pelka",
@@ -53,8 +64,8 @@
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T17:20:00.000Z",
    "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
