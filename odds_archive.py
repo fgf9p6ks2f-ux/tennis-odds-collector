@@ -89,16 +89,34 @@ def _key() -> str:
     return k
 
 
-def _get(path: str, **params):
+BOOKS_DEFAULT = "fanduel,draftkings,betmgm,williamhill_us"   # FD, DK, BetMGM, Caesars (all us region)
+
+
+def _get(path: str, _tries=5, **params):
+    """GET with retry+backoff on transient failures (429 rate-limit, 5xx, network). 404/422 = no
+    snapshot / unposted market → (None, ...) so the caller skips cleanly. A hard-invalid key (401/403)
+    fails fast. Only raises after exhausting retries — the caller then leaves the event UN-marked so a
+    resume re-attempts it (no silent data loss)."""
     import requests
     params["apiKey"] = _key()
-    r = requests.get(f"{API}{path}", params=params, timeout=40)
-    rem = r.headers.get("x-requests-remaining")
-    if r.status_code in (404, 422):                  # no snapshot / market unposted — not fatal
-        return None, rem, r.status_code
-    if r.status_code != 200:
-        raise RuntimeError(f"{r.status_code} {r.url.split('apiKey=')[0]} :: {r.text[:200]}")
-    return r.json(), rem, 200
+    last = ""
+    for i in range(_tries):
+        try:
+            r = requests.get(f"{API}{path}", params=params, timeout=45)
+        except requests.RequestException as e:
+            last = f"net:{e}"
+            time.sleep(min(2 ** i, 30))
+            continue
+        rem = r.headers.get("x-requests-remaining")
+        if r.status_code == 200:
+            return r.json(), rem, 200
+        if r.status_code in (404, 422):              # no data at snapshot / market unposted — normal
+            return None, rem, r.status_code
+        if r.status_code in (401, 403):              # bad/expired key — no point retrying
+            raise RuntimeError(f"AUTH {r.status_code}: {r.text[:160]} (check .odds_key)")
+        last = f"{r.status_code} {r.text[:120]}"     # 429 / 5xx → back off and retry
+        time.sleep(min(2 ** i, 30))
+    raise RuntimeError(f"{path} failed after {_tries} tries :: {last}")
 
 
 # ── storage ──────────────────────────────────────────────────────────────────────────────────
@@ -147,7 +165,10 @@ def parse_event_odds(sport: str, data: dict, snap_ts: str, snap_kind: str) -> li
         for mk in bk.get("markets") or []:
             for o in mk.get("outcomes") or []:
                 side = (o.get("name") or "").lower()
-                if o.get("price") is None:
+                price = o.get("price")
+                # decimal odds must be > 1.0 to be a real bet — some books post a dead 1.0 (stake-back)
+                # on can't-happen unders (e.g. a slugger 'under 0.5 steals'); drop those, not real prices.
+                if price is None or float(price) <= 1.0:
                     continue
                 rows.append({"sport": sport, "event_id": eid, "commence_time": ct, "game_date": gd,
                              "home_team": home, "away_team": away, "book": bk.get("key"),
@@ -207,9 +228,11 @@ def cmd_fetch(a):
         dref = d.isoformat()
         if _done(c, f"day:{dref}") and not a.refresh:
             continue
-        ev_json, rem, st = _get(f"/historical/sports/{a.sport}/events", date=f"{dref}T18:00:00Z")
+        # snapshot the events list EARLY (13:00Z ≈ 9am ET) so the whole ET day is still upcoming — a
+        # late snapshot silently drops games that already started (verified: 23:00Z returned 11/15 vs
+        # 15/15 at 16:00Z). Then keep only games whose ET date is this day (event-log dedups overlap).
+        ev_json, rem, st = _get(f"/historical/sports/{a.sport}/events", date=f"{dref}T13:00:00Z")
         events = ((ev_json or {}).get("data")) or []
-        # only games whose ET date is this day (adjacent snapshots overlap; event-log dedups anyway)
         events = [e for e in events if _game_date(e.get("commence_time", "")) == dref]
         print(f"{dref}: {len(events)} events  [credits {rem}]", flush=True)
         for ev in events:
@@ -227,8 +250,13 @@ def cmd_fetch(a):
                             - delta).strftime("%Y-%m-%dT%H:%M:%SZ")
                 except Exception:
                     pass
-                od, rem, st = _get(f"/historical/sports/{a.sport}/events/{eid}/odds",
-                                   date=when, regions="us", markets=mk_param, oddsFormat="decimal")
+                try:
+                    od, rem, st = _get(f"/historical/sports/{a.sport}/events/{eid}/odds",
+                                       date=when, bookmakers=a.books, markets=mk_param,
+                                       oddsFormat="decimal")
+                except RuntimeError as e:            # exhausted retries — DON'T mark done, resume retries
+                    print(f"    ! {eid} {kind}: {e} — left for resume", flush=True)
+                    continue
                 snap_ts = (od or {}).get("timestamp")
                 rows = parse_event_odds(a.sport, (od or {}).get("data") or {}, snap_ts, kind)
                 for r in rows:
@@ -306,8 +334,10 @@ def main():
         s.add_argument("--opener", action="store_true", help="also grab a pre-news opener snapshot")
         s.add_argument("--games-per-day", type=int, default=0)
         if name == "fetch":
+            s.add_argument("--books", default=BOOKS_DEFAULT,
+                           help="comma book keys (default FD,DK,BetMGM,Caesars — all 'us' region)")
             s.add_argument("--lead", type=int, default=25, help="min before tip for the snapshot")
-            s.add_argument("--sleep", type=float, default=0.3)
+            s.add_argument("--sleep", type=float, default=0.2)
             s.add_argument("--refresh", action="store_true")
             s.add_argument("--all-days", action="store_true", help="don't skip offseason months")
         s.set_defaults(fn=fn)
