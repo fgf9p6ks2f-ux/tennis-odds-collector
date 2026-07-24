@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T21:55:54Z",
+ "captured_at": "2026-07-24T22:00:29Z",
  "matches": [
-  {
-   "event_id": 35861674,
-   "p1": "Maciej Kolek",
-   "p2": "Kamil Kostyk",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "kamil kostyk",
-   "open_date": "2026-07-24T21:45:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35861736,
-   "p1": "Michal Natkaniec",
-   "p2": "Cezary Pawlik",
-   "p1_norm": "michal natkaniec",
-   "p2_norm": "cezary pawlik",
-   "open_date": "2026-07-24T22:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35861737,
    "p1": "Maciej Kolek",
@@ -66,6 +44,17 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35861790,
+   "p1": "Michal Krutak",
+   "p2": "Jacek Oracz",
+   "p1_norm": "michal krutak",
+   "p2_norm": "jacek oracz",
+   "open_date": "2026-07-24T22:25:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
