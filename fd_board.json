@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T02:47:17Z",
+ "captured_at": "2026-07-24T02:51:36Z",
  "matches": [
   {
    "event_id": 35858109,
@@ -8,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T01:55:00.000Z",
-   "line": 98.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 99.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35858145,
@@ -19,7 +19,7 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-24T02:45:00.000Z",
-   "line": 70.5,
+   "line": 75.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,7 +30,7 @@
    "p1_norm": "lukasz oracz",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T02:45:00.000Z",
-   "line": 78.5,
+   "line": 84.5,
    "over_odds": -120,
    "under_odds": -115
   },
