@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-24T10:12:51Z",
+ "captured_at": "2026-07-24T10:17:08Z",
  "matches": [
-  {
-   "event_id": 35859266,
-   "p1": "Oliver Vincenec",
-   "p2": "Oskar Jadach",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-24T09:55:00.000Z",
-   "line": 97.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35859276,
-   "p1": "Piotr Cyrnek",
-   "p2": "Martin Olejnik",
-   "p1_norm": "piotr cyrnek",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-24T10:00:00.000Z",
-   "line": 63.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35859285,
-   "p1": "Artur Daniel",
-   "p2": "Adrian Spychala",
-   "p1_norm": "artur daniel",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-24T10:05:00.000Z",
-   "line": 89.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35859253,
    "p1": "Jakub Kaczmarek",
@@ -88,6 +55,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35859346,
+   "p1": "Grzegorz Jurowicz",
+   "p2": "Oskar Jadach",
+   "p1_norm": "grzegorz jurowicz",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-24T10:40:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
