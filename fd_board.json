@@ -1,50 +1,6 @@
 {
- "captured_at": "2026-07-24T20:17:27Z",
+ "captured_at": "2026-07-24T20:21:56Z",
  "matches": [
-  {
-   "event_id": 35861516,
-   "p1": "Lukasz Bernacki",
-   "p2": "Piotr Przewlocki",
-   "p1_norm": "lukasz bernacki",
-   "p2_norm": "piotr przewlocki",
-   "open_date": "2026-07-24T20:05:00.000Z",
-   "line": 83.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35861581,
-   "p1": "Maciej Kolek",
-   "p2": "Artur Daniel",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "artur daniel",
-   "open_date": "2026-07-24T20:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35861597,
-   "p1": "Michal Natkaniec",
-   "p2": "Michal Guzik",
-   "p1_norm": "michal natkaniec",
-   "p2_norm": "michal guzik",
-   "open_date": "2026-07-24T20:20:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35861598,
-   "p1": "Roman Wiza",
-   "p2": "Piotr Gumulinski",
-   "p1_norm": "roman wiza",
-   "p2_norm": "piotr gumulinski",
-   "open_date": "2026-07-24T20:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35861615,
    "p1": "Michal Skorski",
