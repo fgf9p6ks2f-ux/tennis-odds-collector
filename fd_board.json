@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T08:27:32Z",
+ "captured_at": "2026-07-24T08:31:46Z",
  "matches": [
   {
    "event_id": 35858856,
@@ -8,31 +8,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T08:20:00.000Z",
-   "line": 56.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35858857,
-   "p1": "Michal Paszkiewicz",
-   "p2": "Jakub Pruszkowski",
-   "p1_norm": "michal paszkiewicz",
-   "p2_norm": "jakub pruszkowski",
-   "open_date": "2026-07-24T08:20:00.000Z",
-   "line": 69.5,
-   "over_odds": -115,
+   "line": 65.5,
+   "over_odds": -120,
    "under_odds": -115
-  },
-  {
-   "event_id": 35858873,
-   "p1": "Grzegorz Felkel",
-   "p2": "Adrian Spychala",
-   "p1_norm": "grzegorz felkel",
-   "p2_norm": "adrian spychala",
-   "open_date": "2026-07-24T08:30:00.000Z",
-   "line": 68.5,
-   "over_odds": -112,
-   "under_odds": -118
   },
   {
    "event_id": 35858874,
@@ -42,8 +20,8 @@
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T08:30:00.000Z",
    "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858882,
@@ -52,9 +30,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 72.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35858886,
