@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T03:19:24Z",
+ "captured_at": "2026-07-24T03:23:40Z",
  "matches": [
   {
    "event_id": 35858166,
@@ -8,9 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "zbigniew nocun",
    "open_date": "2026-07-24T03:05:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35858188,
@@ -66,6 +66,28 @@
    "line": 77.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35858215,
+   "p1": "Blazej Warpas",
+   "p2": "Bartosz Sulkowski",
+   "p1_norm": "blazej warpas",
+   "p2_norm": "bartosz sulkowski",
+   "open_date": "2026-07-24T03:50:00.000Z",
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858216,
+   "p1": "Jakub Kaczmarek",
+   "p2": "Robert Kostepski",
+   "p1_norm": "jakub kaczmarek",
+   "p2_norm": "robert kostepski",
+   "open_date": "2026-07-24T03:50:00.000Z",
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
