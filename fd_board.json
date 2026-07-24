@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T15:20:47Z",
+ "captured_at": "2026-07-24T15:25:03Z",
  "matches": [
-  {
-   "event_id": 35860267,
-   "p1": "Rafal Niemiec",
-   "p2": "Grzegorz Jurowicz",
-   "p1_norm": "rafal niemiec",
-   "p2_norm": "grzegorz jurowicz",
-   "open_date": "2026-07-24T15:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35860312,
    "p1": "Marcin Kowalczyk",
@@ -31,8 +20,8 @@
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T15:25:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35860314,
@@ -42,8 +31,8 @@
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T15:25:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35860321,
@@ -76,6 +65,28 @@
    "open_date": "2026-07-24T15:45:00.000Z",
    "line": 76.5,
    "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35860349,
+   "p1": "Bartlomiej Wisniewski",
+   "p2": "Adrian Eliasz",
+   "p1_norm": "bartlomiej wisniewski",
+   "p2_norm": "adrian eliasz",
+   "open_date": "2026-07-24T15:50:00.000Z",
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35860350,
+   "p1": "Lukasz Bernacki",
+   "p2": "Schaniel Krzysztof",
+   "p1_norm": "lukasz bernacki",
+   "p2_norm": "schaniel krzysztof",
+   "open_date": "2026-07-24T15:50:00.000Z",
+   "line": 78.5,
+   "over_odds": -116,
    "under_odds": -116
   }
  ]
