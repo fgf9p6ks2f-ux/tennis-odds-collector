@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T04:22:20Z",
+ "captured_at": "2026-07-24T04:26:37Z",
  "matches": [
   {
    "event_id": 35858227,
@@ -8,7 +8,7 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-24T04:10:00.000Z",
-   "line": 91.5,
+   "line": 94.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "piotr cyrnek",
    "open_date": "2026-07-24T04:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 73.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858229,
@@ -30,9 +30,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-24T04:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 93.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858231,
@@ -41,9 +41,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-24T04:20:00.000Z",
-   "line": 51.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 52.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35858232,
@@ -52,9 +52,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-24T04:25:00.000Z",
-   "line": 66.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 70.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35858233,
@@ -63,9 +63,9 @@
    "p1_norm": "michal minda",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T04:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858239,
@@ -108,6 +108,28 @@
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T04:40:00.000Z",
    "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858271,
+   "p1": "Stapor Rafal",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-24T04:50:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858272,
+   "p1": "Lukasz Oracz",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "lukasz oracz",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-24T04:50:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
