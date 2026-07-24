@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T11:59:43Z",
+ "captured_at": "2026-07-24T12:04:01Z",
  "matches": [
-  {
-   "event_id": 35859565,
-   "p1": "Marcin Jadczyk",
-   "p2": "Martin Olejnik",
-   "p1_norm": "marcin jadczyk",
-   "p2_norm": "martin olejnik",
-   "open_date": "2026-07-24T11:40:00.000Z",
-   "line": 81.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35859693,
    "p1": "Rafal Niemiec",
@@ -22,6 +11,28 @@
    "line": 84.5,
    "over_odds": -120,
    "under_odds": -115
+  },
+  {
+   "event_id": 35859747,
+   "p1": "Karol Sulkowski",
+   "p2": "Dawid Kosmal",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "dawid kosmal",
+   "open_date": "2026-07-24T12:00:00.000Z",
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
+  },
+  {
+   "event_id": 35859748,
+   "p1": "Robert Kostepski",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-24T12:00:00.000Z",
+   "line": 64.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859714,
@@ -53,6 +64,17 @@
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-24T12:20:00.000Z",
    "line": 73.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35859769,
+   "p1": "Krystian Kolodziej",
+   "p2": "Martin Olejnik",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "martin olejnik",
+   "open_date": "2026-07-24T12:30:00.000Z",
+   "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
   }
