@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T00:37:44Z",
+ "captured_at": "2026-07-24T00:42:03Z",
  "matches": [
-  {
-   "event_id": 35857945,
-   "p1": "Zbigniew Nocun",
-   "p2": "Henryk Tkaczyk",
-   "p1_norm": "zbigniew nocun",
-   "p2_norm": "henryk tkaczyk",
-   "open_date": "2026-07-24T00:20:00.000Z",
-   "line": 86.5,
-   "over_odds": 125,
-   "under_odds": -175
-  },
   {
    "event_id": 35857971,
    "p1": "Jakub Cyndera",
@@ -19,9 +8,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "pawel chojnacki",
    "open_date": "2026-07-24T00:35:00.000Z",
-   "line": 74.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35857995,
