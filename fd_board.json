@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T07:06:37Z",
+ "captured_at": "2026-07-24T07:10:56Z",
  "matches": [
-  {
-   "event_id": 35858729,
-   "p1": "Michal Minda",
-   "p2": "Jakub Glanowski",
-   "p1_norm": "michal minda",
-   "p2_norm": "jakub glanowski",
-   "open_date": "2026-07-24T06:50:00.000Z",
-   "line": 102.5,
-   "over_odds": -145,
-   "under_odds": 105
-  },
   {
    "event_id": 35858744,
    "p1": "Grzegorz Felkel",
@@ -30,7 +19,7 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-24T06:55:00.000Z",
-   "line": 77.5,
+   "line": 96.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -42,8 +31,8 @@
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T07:10:00.000Z",
    "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858771,
@@ -110,6 +99,17 @@
    "line": 77.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35858797,
+   "p1": "Marek Tkocz",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "marek tkocz",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-24T07:35:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
