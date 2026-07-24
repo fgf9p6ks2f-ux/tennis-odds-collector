@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T05:59:11Z",
+ "captured_at": "2026-07-24T06:03:33Z",
  "matches": [
-  {
-   "event_id": 35858615,
-   "p1": "Stapor Rafal",
-   "p2": "Michal Minda",
-   "p1_norm": "stapor rafal",
-   "p2_norm": "michal minda",
-   "open_date": "2026-07-24T05:35:00.000Z",
-   "line": 92.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35858622,
    "p1": "Igor Szymanski",
@@ -19,9 +8,9 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-24T05:40:00.000Z",
-   "line": 86.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 97.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35858640,
@@ -30,9 +19,9 @@
    "p1_norm": "rafal niemiec",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T05:55:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 87.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858648,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub glanowski",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T06:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 81.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858649,
@@ -52,9 +41,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-24T06:00:00.000Z",
-   "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 78.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858655,
@@ -121,6 +110,39 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -116
+  },
+  {
+   "event_id": 35858689,
+   "p1": "Krzysztof Kotyl",
+   "p2": "Arkadiusz Mugowski",
+   "p1_norm": "krzysztof kotyl",
+   "p2_norm": "arkadiusz mugowski",
+   "open_date": "2026-07-24T06:30:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858690,
+   "p1": "Piotr Cyrnek",
+   "p2": "Martin Olejnik",
+   "p1_norm": "piotr cyrnek",
+   "p2_norm": "martin olejnik",
+   "open_date": "2026-07-24T06:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858691,
+   "p1": "Pawel Kurek",
+   "p2": "Jakub Kaczmarek",
+   "p1_norm": "pawel kurek",
+   "p2_norm": "jakub kaczmarek",
+   "open_date": "2026-07-24T06:30:00.000Z",
+   "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
