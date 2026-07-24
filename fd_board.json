@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T09:37:54Z",
+ "captured_at": "2026-07-24T09:42:04Z",
  "matches": [
   {
    "event_id": 35858993,
@@ -9,8 +9,8 @@
    "p2_norm": "kamil rudomina",
    "open_date": "2026-07-24T09:25:00.000Z",
    "line": 99.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35858999,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "jerzy pelka",
    "open_date": "2026-07-24T09:30:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 94.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859250,
