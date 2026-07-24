@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T05:32:22Z",
+ "captured_at": "2026-07-24T05:36:40Z",
  "matches": [
   {
    "event_id": 35858595,
@@ -8,7 +8,7 @@
    "p1_norm": "piotr cyrnek",
    "p2_norm": "karol wisniewski",
    "open_date": "2026-07-24T05:15:00.000Z",
-   "line": 84.5,
+   "line": 75.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -88,6 +88,28 @@
    "line": 79.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35858648,
+   "p1": "Jakub Glanowski",
+   "p2": "Dawid Kosmal",
+   "p1_norm": "jakub glanowski",
+   "p2_norm": "dawid kosmal",
+   "open_date": "2026-07-24T06:00:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858649,
+   "p1": "Milosz Cesarz",
+   "p2": "Michal Paszkiewicz",
+   "p1_norm": "milosz cesarz",
+   "p2_norm": "michal paszkiewicz",
+   "open_date": "2026-07-24T06:00:00.000Z",
+   "line": 74.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
