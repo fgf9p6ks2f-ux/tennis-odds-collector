@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T20:21:56Z",
+ "captured_at": "2026-07-24T20:26:50Z",
  "matches": [
   {
    "event_id": 35861615,
@@ -31,8 +31,8 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T20:30:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35861630,
