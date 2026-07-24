@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T18:30:18Z",
+ "captured_at": "2026-07-24T18:34:36Z",
  "matches": [
-  {
-   "event_id": 35861225,
-   "p1": "Piotr Gumulinski",
-   "p2": "Damian Fira",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "damian fira",
-   "open_date": "2026-07-24T18:20:00.000Z",
-   "line": 91.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35861234,
    "p1": "Michal Krutak",
@@ -19,9 +8,9 @@
    "p1_norm": "michal krutak",
    "p2_norm": "michal wolny",
    "open_date": "2026-07-24T18:25:00.000Z",
-   "line": 90.5,
-   "over_odds": -115,
-   "under_odds": -115
+   "line": 97.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861287,
@@ -30,9 +19,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T18:30:00.000Z",
-   "line": 70.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 81.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35861288,
@@ -41,20 +30,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "bartlomiej wisniewski",
    "open_date": "2026-07-24T18:30:00.000Z",
-   "line": 80.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35861289,
-   "p1": "Mariusz Koczyba",
-   "p2": "Lukasz Bernacki",
-   "p1_norm": "mariusz koczyba",
-   "p2_norm": "lukasz bernacki",
-   "open_date": "2026-07-24T18:30:00.000Z",
-   "line": 77.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 84.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861333,
