@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T19:59:51Z",
+ "captured_at": "2026-07-24T20:04:04Z",
  "matches": [
-  {
-   "event_id": 35861407,
-   "p1": "Jacek Oracz",
-   "p2": "Michal Krutak",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "michal krutak",
-   "open_date": "2026-07-24T20:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35861515,
    "p1": "Bartlomiej Wisniewski",
@@ -66,6 +55,39 @@
    "line": 75.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861615,
+   "p1": "Michal Skorski",
+   "p2": "Mateusz Trela",
+   "p1_norm": "michal skorski",
+   "p2_norm": "mateusz trela",
+   "open_date": "2026-07-24T20:30:00.000Z",
+   "line": 81.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861616,
+   "p1": "Jakub Jesiek",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-24T20:30:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35861617,
+   "p1": "Kamil Kostyk",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "kamil kostyk",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-24T20:30:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
