@@ -834,8 +834,11 @@ def _tracker_panel(wnba_rec, tt_json):
     plays_now = _mlb_plays()
     ppend = sum(1 for p in plays_now if p.get("premium"))
     if (pw + pl + bw + bl) or ppend or prec:
-        note = (f"★★ = away+contact + (low-patience opp OR line&gt;recent) · base away+contact "
-                f"{bw}-{bl} ({bu:+.1f}u) · flag-time price · paper")
+        note = (f"★★ = away+contact + line&gt;recent-5, capped at u{OUTS_UNDER_MAX:g} · base "
+                f"away+contact {bw}-{bl} ({bu:+.1f}u) · flag-time price · paper")
+        sw, sl, su = _mlb_record(premium=True, shadow=True)          # the unflagged 16.5 rung
+        note += (f" · shadow u{SHADOW_MAX:g} (logged, not flagged) {sw}-{sl} ({su:+.1f}u)"
+                 if sw + sl else "")
         note += f" · {ppend} premium pending" if ppend else ""
         mlb_card = card('<img class="tlogo" src="logos/mlb.png" alt="">', "MLB", pw, pl, pu, note, recent=prec)
 
@@ -1217,7 +1220,15 @@ def _tt_panel(data):
 # ---------------------------------------------------------------- MLB pitcher-prop plays + tracker
 K_PAPER = HERE / "k_paper.sqlite"
 FD_PROPS = HERE / "fanduel_props.sqlite"
-OUTS_UNDER_MAX = 16.5      # outs line <= this -> UNDER play   (mirrors k_paper.py rules)
+# BOARD RUNG CAP (2026-07-24). Was 16.5. The two rungs are NOT the same bet: <=15.5 ran 22-4 (85%,
+# +13.2u, ~30pt over breakeven) while 16.5 ran 9-6 (60%, +1.8u, ~7pt over — noise at n=15), and at
+# real FanDuel lines 16.5 was 3-2/+0.7u. Mechanism agrees: a 16.5 line is posted on arms the market
+# TRUSTS to go 5.2+, so "line > his recent-5 median" is often justified by talent rather than a stale
+# line, and 18 outs (a clean 6 IP) is that pool's MODAL outcome — we were betting against the mode
+# (Pfaadt, 7/23). So 16.5 stops being flagged and becomes a SHADOW: k_paper.py keeps its own cap at
+# 16.5, so those bets are still logged and graded, and this reverts by changing one number.
+OUTS_UNDER_MAX = 15.5      # outs line <= this -> UNDER play (flagged on the board)
+SHADOW_MAX = 16.5          # logged + graded, never flagged — revisit at n~30 if it holds >=58%
 K_OVER_MIN = 6.5           # strikeout line >= this -> OVER play
 CONTACT_MAX = 0.225        # opp team K% < this = CONTACT offense. Base edge = AWAY + CONTACT (+25%).
 #   ★★ PREMIUM tier (audit 2026-07-21, +49% ROI on the fuller sample): away+contact AND EITHER a
@@ -1573,12 +1584,16 @@ def _mlb_plays_card(now=None):
 _AC = "home=0 AND opp_k IS NOT NULL AND opp_k < %s" % CONTACT_MAX
 
 
-def _mlb_graded(premium=False):
+def _mlb_graded(premium=False, shadow=False):
     """Deduped graded away+contact outs-under bets (prefer FanDuel when a game has both books;
-    Pinnacle is the backtest seed, FanDuel the forward). premium=True -> the ★★ tier only."""
+    Pinnacle is the backtest seed, FanDuel the forward). premium=True -> the ★★ tier only.
+    shadow=True -> the 16.5 rung we log but no longer flag, so the record always describes exactly
+    what the board put in front of you (ping<->board coherence) and the dropped rung stays scored."""
     if not K_PAPER.exists():
         return []
-    where = _AC + (" AND premium=1" if premium else "")
+    rung = (" AND line > %s AND line <= %s" % (OUTS_UNDER_MAX, SHADOW_MAX) if shadow
+            else " AND line <= %s" % OUTS_UNDER_MAX)
+    where = _AC + rung + (" AND premium=1" if premium else "")
     try:
         con = sqlite3.connect(f"file:{K_PAPER}?mode=ro", uri=True)
         rows = con.execute(f"SELECT game_date, pitcher, line, result, pnl, book FROM paper "
@@ -1594,9 +1609,9 @@ def _mlb_graded(premium=False):
     return list(best.values())
 
 
-def _mlb_record(premium=False):
+def _mlb_record(premium=False, shadow=False):
     """(w, l, u) for the MLB outs-under away+contact (or ★★ premium) edge."""
-    g = _mlb_graded(premium)
+    g = _mlb_graded(premium, shadow)
     w = sum(1 for r in g if r[3] == "W")
     l = sum(1 for r in g if r[3] == "L")
     return (w, l, round(sum(r[4] or 0 for r in g), 2))
