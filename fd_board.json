@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-24T04:04:35Z",
+ "captured_at": "2026-07-24T04:08:51Z",
  "matches": [
-  {
-   "event_id": 35858215,
-   "p1": "Blazej Warpas",
-   "p2": "Bartosz Sulkowski",
-   "p1_norm": "blazej warpas",
-   "p2_norm": "bartosz sulkowski",
-   "open_date": "2026-07-24T03:50:00.000Z",
-   "line": 90.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
-  {
-   "event_id": 35858216,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Robert Kostepski",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "robert kostepski",
-   "open_date": "2026-07-24T03:50:00.000Z",
-   "line": 80.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35858219,
-   "p1": "Adam Staniczek",
-   "p2": "Jerzy Michalik",
-   "p1_norm": "adam staniczek",
-   "p2_norm": "jerzy michalik",
-   "open_date": "2026-07-24T03:55:00.000Z",
-   "line": 50.5,
-   "over_odds": -125,
-   "under_odds": -110
-  },
   {
    "event_id": 35858223,
    "p1": "Stapor Rafal",
@@ -41,7 +8,7 @@
    "p1_norm": "stapor rafal",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T04:00:00.000Z",
-   "line": 75.5,
+   "line": 84.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -52,9 +19,9 @@
    "p1_norm": "michal paszkiewicz",
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-24T04:00:00.000Z",
-   "line": 66.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 58.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858227,
@@ -64,8 +31,8 @@
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-24T04:10:00.000Z",
    "line": 72.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35858228,
@@ -85,9 +52,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "arkadiusz mugowski",
    "open_date": "2026-07-24T04:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35858231,
@@ -97,8 +64,8 @@
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-24T04:20:00.000Z",
    "line": 73.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35858232,
@@ -107,9 +74,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "marian lebek",
    "open_date": "2026-07-24T04:25:00.000Z",
-   "line": 70.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 66.5,
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35858233,
