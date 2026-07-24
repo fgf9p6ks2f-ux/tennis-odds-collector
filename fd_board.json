@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T01:41:15Z",
+ "captured_at": "2026-07-24T01:46:31Z",
  "matches": [
-  {
-   "event_id": 35858064,
-   "p1": "Milosz Piecowski",
-   "p2": "Kuba Golaszewski",
-   "p1_norm": "milosz piecowski",
-   "p2_norm": "kuba golaszewski",
-   "open_date": "2026-07-24T01:25:00.000Z",
-   "line": 91.5,
-   "over_odds": 100,
-   "under_odds": -140
-  },
   {
    "event_id": 35858082,
    "p1": "Zbigniew Nocun",
@@ -19,9 +8,9 @@
    "p1_norm": "zbigniew nocun",
    "p2_norm": "adam staniczek",
    "open_date": "2026-07-24T01:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 70.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858083,
@@ -30,9 +19,9 @@
    "p1_norm": "marek tkocz",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-24T01:35:00.000Z",
-   "line": 56.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 72.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35858099,
@@ -41,9 +30,9 @@
    "p1_norm": "jakub cyndera",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-24T01:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 76.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35858109,
@@ -66,6 +55,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35858124,
+   "p1": "Pawel Chojnacki",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "pawel chojnacki",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-24T02:10:00.000Z",
+   "line": 75.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
