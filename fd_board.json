@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T03:28:14Z",
+ "captured_at": "2026-07-24T03:32:38Z",
  "matches": [
   {
    "event_id": 35858189,
@@ -8,9 +8,9 @@
    "p1_norm": "arkadiusz mugowski",
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-24T03:25:00.000Z",
-   "line": 87.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35858195,
@@ -19,9 +19,9 @@
    "p1_norm": "witold stechly",
    "p2_norm": "henryk tkaczyk",
    "open_date": "2026-07-24T03:30:00.000Z",
-   "line": 65.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 62.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858213,
