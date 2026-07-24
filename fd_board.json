@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T02:24:29Z",
+ "captured_at": "2026-07-24T02:28:47Z",
  "matches": [
   {
    "event_id": 35858109,
@@ -8,20 +8,9 @@
    "p1_norm": "michal machelski",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T01:55:00.000Z",
-   "line": 97.5,
-   "over_odds": -105,
-   "under_odds": -135
-  },
-  {
-   "event_id": 35858124,
-   "p1": "Pawel Chojnacki",
-   "p2": "Kacper Kwiatkowski",
-   "p1_norm": "pawel chojnacki",
-   "p2_norm": "kacper kwiatkowski",
-   "open_date": "2026-07-24T02:10:00.000Z",
-   "line": 90.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 98.5,
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
    "event_id": 35858141,
@@ -31,8 +20,8 @@
    "p2_norm": "jakub skorupa",
    "open_date": "2026-07-24T02:35:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35858145,
