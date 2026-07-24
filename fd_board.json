@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T19:01:48Z",
+ "captured_at": "2026-07-24T19:06:12Z",
  "matches": [
   {
    "event_id": 35861333,
@@ -8,9 +8,9 @@
    "p1_norm": "jacek oracz",
    "p2_norm": "michal natkaniec",
    "open_date": "2026-07-24T18:45:00.000Z",
-   "line": 82.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 95.5,
+   "over_odds": -160,
+   "under_odds": 115
   },
   {
    "event_id": 35861339,
@@ -19,9 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-24T18:50:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 89.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861344,
@@ -30,9 +30,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-24T18:55:00.000Z",
-   "line": 87.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 92.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861354,
@@ -86,6 +86,17 @@
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-24T19:20:00.000Z",
    "line": 85.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861372,
+   "p1": "Piotr Gumulinski",
+   "p2": "Jakub Michalski",
+   "p1_norm": "piotr gumulinski",
+   "p2_norm": "jakub michalski",
+   "open_date": "2026-07-24T19:30:00.000Z",
+   "line": 73.5,
    "over_odds": -116,
    "under_odds": -116
   }
