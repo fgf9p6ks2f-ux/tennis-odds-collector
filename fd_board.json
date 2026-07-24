@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T21:28:52Z",
+ "captured_at": "2026-07-24T21:33:09Z",
  "matches": [
   {
    "event_id": 35861657,
@@ -8,9 +8,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T21:20:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 75.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35861658,
@@ -19,7 +19,7 @@
    "p1_norm": "marcin marchlewski",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T21:20:00.000Z",
-   "line": 88.5,
+   "line": 93.5,
    "over_odds": -125,
    "under_odds": -110
   },
@@ -30,9 +30,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "damian fira",
    "open_date": "2026-07-24T21:30:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35861664,
