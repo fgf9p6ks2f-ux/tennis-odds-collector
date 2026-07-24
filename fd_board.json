@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T06:12:40Z",
+ "captured_at": "2026-07-24T06:17:05Z",
  "matches": [
-  {
-   "event_id": 35858648,
-   "p1": "Jakub Glanowski",
-   "p2": "Dawid Kosmal",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "dawid kosmal",
-   "open_date": "2026-07-24T06:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35858649,
    "p1": "Milosz Cesarz",
@@ -19,9 +8,9 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "michal paszkiewicz",
    "open_date": "2026-07-24T06:00:00.000Z",
-   "line": 88.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 95.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858655,
@@ -30,9 +19,9 @@
    "p1_norm": "blazej warpas",
    "p2_norm": "bartosz sulkowski",
    "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 73.5,
+   "line": 91.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35858656,
@@ -41,9 +30,9 @@
    "p1_norm": "marcin jadczyk",
    "p2_norm": "adrian spychala",
    "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 86.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35858657,
@@ -52,7 +41,7 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T06:05:00.000Z",
-   "line": 68.5,
+   "line": 87.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -119,6 +108,17 @@
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-24T06:30:00.000Z",
    "line": 75.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858713,
+   "p1": "Grzegorz Wichowski",
+   "p2": "Rafal Niemiec",
+   "p1_norm": "grzegorz wichowski",
+   "p2_norm": "rafal niemiec",
+   "open_date": "2026-07-24T06:45:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
