@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T14:13:51Z",
+ "captured_at": "2026-07-24T14:18:07Z",
  "matches": [
-  {
-   "event_id": 35860009,
-   "p1": "Pawel Kurek",
-   "p2": "Igor Szymanski",
-   "p1_norm": "pawel kurek",
-   "p2_norm": "igor szymanski",
-   "open_date": "2026-07-24T13:55:00.000Z",
-   "line": 89.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35860114,
-   "p1": "Piotr Cyrnek",
-   "p2": "Marcin Jadczyk",
-   "p1_norm": "piotr cyrnek",
-   "p2_norm": "marcin jadczyk",
-   "open_date": "2026-07-24T14:10:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35860120,
    "p1": "Kamil Kostyk",
@@ -30,9 +8,9 @@
    "p1_norm": "kamil kostyk",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T14:15:00.000Z",
-   "line": 79.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 82.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860128,
@@ -110,6 +88,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35860204,
+   "p1": "Grzegorz Wichowski",
+   "p2": "Oliver Vincenec",
+   "p1_norm": "grzegorz wichowski",
+   "p2_norm": "oliver vincenec",
+   "open_date": "2026-07-24T14:45:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
