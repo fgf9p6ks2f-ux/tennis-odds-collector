@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T22:31:37Z",
+ "captured_at": "2026-07-24T22:35:54Z",
  "matches": [
   {
    "event_id": 35861746,
@@ -8,9 +8,9 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "damian fira",
    "open_date": "2026-07-24T22:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 88.5,
+   "over_odds": -105,
+   "under_odds": -135
   },
   {
    "event_id": 35861793,
@@ -19,31 +19,9 @@
    "p1_norm": "mateusz rutkowski",
    "p2_norm": "jakub kuzmicz",
    "open_date": "2026-07-24T22:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35861797,
-   "p1": "Jakub Jesiek",
-   "p2": "Piotr Przewlocki",
-   "p1_norm": "jakub jesiek",
-   "p2_norm": "piotr przewlocki",
-   "open_date": "2026-07-24T22:35:00.000Z",
    "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
-  {
-   "event_id": 35861798,
-   "p1": "Mateusz Trela",
-   "p2": "Michal Skorski",
-   "p1_norm": "mateusz trela",
-   "p2_norm": "michal skorski",
-   "open_date": "2026-07-24T22:35:00.000Z",
-   "line": 84.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35861803,
