@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T01:04:43Z",
+ "captured_at": "2026-07-24T01:09:40Z",
  "matches": [
-  {
-   "event_id": 35858033,
-   "p1": "Jacek Przewlocki",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-24T01:00:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
   {
    "event_id": 35858061,
    "p1": "Michal Guzik",
@@ -19,9 +8,9 @@
    "p1_norm": "michal guzik",
    "p2_norm": "jacek oracz",
    "open_date": "2026-07-24T01:00:00.000Z",
-   "line": 79.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 66.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35858050,
@@ -41,9 +30,9 @@
    "p1_norm": "henryk tkaczyk",
    "p2_norm": "jerzy michalik",
    "open_date": "2026-07-24T01:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35858052,
@@ -74,9 +63,9 @@
    "p1_norm": "milosz piecowski",
    "p2_norm": "kuba golaszewski",
    "open_date": "2026-07-24T01:25:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 80.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35858082,
@@ -88,6 +77,17 @@
    "line": 72.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35858083,
+   "p1": "Marek Tkocz",
+   "p2": "Jakub Pruszkowski",
+   "p1_norm": "marek tkocz",
+   "p2_norm": "jakub pruszkowski",
+   "open_date": "2026-07-24T01:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
