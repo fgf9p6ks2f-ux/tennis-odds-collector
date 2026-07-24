@@ -1,39 +1,6 @@
 {
- "captured_at": "2026-07-24T00:55:53Z",
+ "captured_at": "2026-07-24T01:00:25Z",
  "matches": [
-  {
-   "event_id": 35857995,
-   "p1": "Mateusz Rutkowski",
-   "p2": "Patryk Jendrzejewski",
-   "p1_norm": "mateusz rutkowski",
-   "p2_norm": "patryk jendrzejewski",
-   "open_date": "2026-07-24T00:45:00.000Z",
-   "line": 72.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35857997,
-   "p1": "Witold Stechly",
-   "p2": "Michal Machelski",
-   "p1_norm": "witold stechly",
-   "p2_norm": "michal machelski",
-   "open_date": "2026-07-24T00:45:00.000Z",
-   "line": 49.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35858033,
-   "p1": "Jacek Przewlocki",
-   "p2": "Jaroslaw Rolak",
-   "p1_norm": "jacek przewlocki",
-   "p2_norm": "jaroslaw rolak",
-   "open_date": "2026-07-24T01:00:00.000Z",
-   "line": 80.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
   {
    "event_id": 35858050,
    "p1": "Jakub Kuzmicz",
@@ -64,6 +31,28 @@
    "p2_norm": "kacper adamus",
    "open_date": "2026-07-24T01:10:00.000Z",
    "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858063,
+   "p1": "Jakub Skorupa",
+   "p2": "Kacper Kwiatkowski",
+   "p1_norm": "jakub skorupa",
+   "p2_norm": "kacper kwiatkowski",
+   "open_date": "2026-07-24T01:25:00.000Z",
+   "line": 74.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35858064,
+   "p1": "Milosz Piecowski",
+   "p2": "Kuba Golaszewski",
+   "p1_norm": "milosz piecowski",
+   "p2_norm": "kuba golaszewski",
+   "open_date": "2026-07-24T01:25:00.000Z",
+   "line": 81.5,
    "over_odds": -112,
    "under_odds": -118
   }
