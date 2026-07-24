@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T16:43:05Z",
+ "captured_at": "2026-07-24T16:48:10Z",
  "matches": [
-  {
-   "event_id": 35860746,
-   "p1": "Karol Strowski",
-   "p2": "Kamil Kostyk",
-   "p1_norm": "karol strowski",
-   "p2_norm": "kamil kostyk",
-   "open_date": "2026-07-24T16:30:00.000Z",
-   "line": 71.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35860754,
    "p1": "Schaniel Krzysztof",
@@ -19,9 +8,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T16:35:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 87.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35860760,
@@ -30,9 +19,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T16:40:00.000Z",
-   "line": 73.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 53.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35860773,
@@ -86,6 +75,17 @@
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T17:05:00.000Z",
    "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35860789,
+   "p1": "Michal Natkaniec",
+   "p2": "Michal Wolny",
+   "p1_norm": "michal natkaniec",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-24T17:10:00.000Z",
+   "line": 75.5,
    "over_odds": -116,
    "under_odds": -116
   }
