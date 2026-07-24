@@ -1,6 +1,17 @@
 {
- "captured_at": "2026-07-24T20:08:56Z",
+ "captured_at": "2026-07-24T20:13:14Z",
  "matches": [
+  {
+   "event_id": 35861516,
+   "p1": "Lukasz Bernacki",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "lukasz bernacki",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-24T20:05:00.000Z",
+   "line": 69.5,
+   "over_odds": -125,
+   "under_odds": -110
+  },
   {
    "event_id": 35861581,
    "p1": "Maciej Kolek",
@@ -8,9 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "artur daniel",
    "open_date": "2026-07-24T20:05:00.000Z",
-   "line": 76.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 88.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861597,
