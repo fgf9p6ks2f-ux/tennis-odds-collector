@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T14:18:07Z",
+ "captured_at": "2026-07-24T14:23:05Z",
  "matches": [
   {
    "event_id": 35860120,
@@ -8,20 +8,9 @@
    "p1_norm": "kamil kostyk",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T14:15:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35860128,
-   "p1": "Jakub Kaczmarek",
-   "p2": "Michal Durda",
-   "p1_norm": "jakub kaczmarek",
-   "p2_norm": "michal durda",
-   "open_date": "2026-07-24T14:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860129,
@@ -30,9 +19,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-24T14:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 83.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860130,
@@ -41,9 +30,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T14:20:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860182,
@@ -64,8 +53,8 @@
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T14:35:00.000Z",
    "line": 78.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35860192,
@@ -96,9 +85,9 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T14:45:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 73.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
