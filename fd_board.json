@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T11:06:02Z",
+ "captured_at": "2026-07-24T11:10:18Z",
  "matches": [
   {
    "event_id": 35859383,
@@ -8,7 +8,7 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T10:50:00.000Z",
-   "line": 88.5,
+   "line": 86.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -20,8 +20,8 @@
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T10:55:00.000Z",
    "line": 92.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "over_odds": -145,
+   "under_odds": 105
   },
   {
    "event_id": 35859477,
@@ -30,7 +30,7 @@
    "p1_norm": "kamil klocek",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-24T11:00:00.000Z",
-   "line": 82.5,
+   "line": 72.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -41,7 +41,7 @@
    "p1_norm": "grzegorz wichowski",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T11:05:00.000Z",
-   "line": 78.5,
+   "line": 77.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -64,8 +64,8 @@
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T11:20:00.000Z",
    "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35859494,
