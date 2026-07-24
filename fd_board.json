@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T23:42:50Z",
+ "captured_at": "2026-07-24T23:49:36Z",
  "matches": [
   {
    "event_id": 35861887,
@@ -9,8 +9,8 @@
    "p2_norm": "michal guzik",
    "open_date": "2026-07-24T23:35:00.000Z",
    "line": 75.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861888,
@@ -19,31 +19,9 @@
    "p1_norm": "maciej kolek",
    "p2_norm": "mateusz rutkowski",
    "open_date": "2026-07-24T23:35:00.000Z",
-   "line": 81.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
-  {
-   "event_id": 35861891,
-   "p1": "Schaniel Krzysztof",
-   "p2": "Lukasz Bernacki",
-   "p1_norm": "schaniel krzysztof",
-   "p2_norm": "lukasz bernacki",
-   "open_date": "2026-07-24T23:45:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35861892,
-   "p1": "Michal Skorski",
-   "p2": "Dariusz Wrobel",
-   "p1_norm": "michal skorski",
-   "p2_norm": "dariusz wrobel",
-   "open_date": "2026-07-24T23:45:00.000Z",
-   "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 98.5,
+   "over_odds": -130,
+   "under_odds": -105
   },
   {
    "event_id": 35861904,
@@ -64,8 +42,8 @@
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-24T23:55:00.000Z",
    "line": 76.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35861914,
@@ -75,6 +53,28 @@
    "p2_norm": "michal natkaniec",
    "open_date": "2026-07-25T00:00:00.000Z",
    "line": 78.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861917,
+   "p1": "Jakub Jesiek",
+   "p2": "Wojciech Wojtaszczyk",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "wojciech wojtaszczyk",
+   "open_date": "2026-07-25T00:10:00.000Z",
+   "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861918,
+   "p1": "Mateusz Trela",
+   "p2": "Dariusz Wrobel",
+   "p1_norm": "mateusz trela",
+   "p2_norm": "dariusz wrobel",
+   "open_date": "2026-07-25T00:10:00.000Z",
+   "line": 81.5,
    "over_odds": -116,
    "under_odds": -116
   }
