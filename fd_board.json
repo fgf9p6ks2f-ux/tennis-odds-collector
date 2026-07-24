@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T12:39:38Z",
+ "captured_at": "2026-07-24T12:43:50Z",
  "matches": [
   {
    "event_id": 35859769,
@@ -8,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T12:30:00.000Z",
-   "line": 72.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 60.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859775,
@@ -19,9 +19,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T12:35:00.000Z",
-   "line": 85.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 94.5,
+   "over_odds": -125,
+   "under_odds": -110
   },
   {
    "event_id": 35859778,
@@ -30,9 +30,9 @@
    "p1_norm": "pawel kurek",
    "p2_norm": "jakub kaczmarek",
    "open_date": "2026-07-24T12:40:00.000Z",
-   "line": 74.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859779,
@@ -41,9 +41,9 @@
    "p1_norm": "krzysztof kotyl",
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T12:40:00.000Z",
-   "line": 71.5,
-   "over_odds": -116,
-   "under_odds": -118
+   "line": 66.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859786,
@@ -99,6 +99,17 @@
    "line": 71.5,
    "over_odds": -110,
    "under_odds": -120
+  },
+  {
+   "event_id": 35859875,
+   "p1": "Grzegorz Wichowski",
+   "p2": "Oskar Jadach",
+   "p1_norm": "grzegorz wichowski",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-24T13:10:00.000Z",
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -110
   }
  ]
 }
