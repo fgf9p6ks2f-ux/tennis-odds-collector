@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T15:29:31Z",
+ "captured_at": "2026-07-24T15:34:27Z",
  "matches": [
   {
    "event_id": 35860312,
@@ -8,7 +8,7 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "mateusz trela",
    "open_date": "2026-07-24T15:25:00.000Z",
-   "line": 89.5,
+   "line": 93.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -19,7 +19,7 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T15:25:00.000Z",
-   "line": 77.5,
+   "line": 79.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -30,8 +30,8 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T15:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -115,
+   "line": 87.5,
+   "over_odds": -120,
    "under_odds": -115
   },
   {
@@ -41,9 +41,9 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "grzegorz wichowski",
    "open_date": "2026-07-24T15:30:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860331,
@@ -97,6 +97,17 @@
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T15:55:00.000Z",
    "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35860423,
+   "p1": "Michal Natkaniec",
+   "p2": "Michal Krutak",
+   "p1_norm": "michal natkaniec",
+   "p2_norm": "michal krutak",
+   "open_date": "2026-07-24T16:00:00.000Z",
+   "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
   }
