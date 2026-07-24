@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T14:31:31Z",
+ "captured_at": "2026-07-24T14:35:45Z",
  "matches": [
   {
    "event_id": 35860129,
@@ -8,9 +8,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "blazej warpas",
    "open_date": "2026-07-24T14:20:00.000Z",
-   "line": 95.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 92.5,
+   "over_odds": -135,
+   "under_odds": -105
   },
   {
    "event_id": 35860182,
@@ -20,8 +20,8 @@
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T14:35:00.000Z",
    "line": 74.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35860183,
@@ -30,9 +30,9 @@
    "p1_norm": "artur daniel",
    "p2_norm": "jakub glanowski",
    "open_date": "2026-07-24T14:35:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 75.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860192,
@@ -66,6 +66,39 @@
    "line": 73.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35860254,
+   "p1": "Krystian Kolodziej",
+   "p2": "Marcin Jadczyk",
+   "p1_norm": "krystian kolodziej",
+   "p2_norm": "marcin jadczyk",
+   "open_date": "2026-07-24T15:00:00.000Z",
+   "line": 76.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35860255,
+   "p1": "Michal Skorski",
+   "p2": "Stanislaw Wnek",
+   "p1_norm": "michal skorski",
+   "p2_norm": "stanislaw wnek",
+   "open_date": "2026-07-24T15:00:00.000Z",
+   "line": 81.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35860256,
+   "p1": "Jakub Jesiek",
+   "p2": "Piotr Przewlocki",
+   "p1_norm": "jakub jesiek",
+   "p2_norm": "piotr przewlocki",
+   "open_date": "2026-07-24T15:00:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
