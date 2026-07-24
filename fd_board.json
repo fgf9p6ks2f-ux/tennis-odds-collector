@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T07:33:15Z",
+ "captured_at": "2026-07-24T07:37:32Z",
  "matches": [
-  {
-   "event_id": 35858782,
-   "p1": "Bartosz Sulkowski",
-   "p2": "Krzysztof Kotyl",
-   "p1_norm": "bartosz sulkowski",
-   "p2_norm": "krzysztof kotyl",
-   "open_date": "2026-07-24T07:20:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35858783,
-   "p1": "Adrian Spychala",
-   "p2": "Karol Wisniewski",
-   "p1_norm": "adrian spychala",
-   "p2_norm": "karol wisniewski",
-   "open_date": "2026-07-24T07:20:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35858784,
    "p1": "Sebastian Szostok",
@@ -30,9 +8,9 @@
    "p1_norm": "sebastian szostok",
    "p2_norm": "michal durda",
    "open_date": "2026-07-24T07:20:00.000Z",
-   "line": 84.5,
-   "over_odds": 120,
-   "under_odds": -165
+   "line": 90.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35858789,
@@ -41,7 +19,7 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T07:30:00.000Z",
-   "line": 79.5,
+   "line": 80.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -52,9 +30,9 @@
    "p1_norm": "marek tkocz",
    "p2_norm": "jakub pruszkowski",
    "open_date": "2026-07-24T07:35:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 79.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35858803,
@@ -63,9 +41,9 @@
    "p1_norm": "dawid kosmal",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T07:40:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -120
   },
   {
    "event_id": 35858808,
@@ -108,6 +86,28 @@
    "p2_norm": "lukasz oracz",
    "open_date": "2026-07-24T08:00:00.000Z",
    "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35858831,
+   "p1": "Martin Olejnik",
+   "p2": "Karol Wisniewski",
+   "p1_norm": "martin olejnik",
+   "p2_norm": "karol wisniewski",
+   "open_date": "2026-07-24T08:05:00.000Z",
+   "line": 70.5,
+   "over_odds": -116,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35858832,
+   "p1": "Stapor Rafal",
+   "p2": "Michal Minda",
+   "p1_norm": "stapor rafal",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-24T08:05:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
