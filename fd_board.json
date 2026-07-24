@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T17:10:17Z",
+ "captured_at": "2026-07-24T17:14:37Z",
  "matches": [
-  {
-   "event_id": 35860778,
-   "p1": "Lukasz Bernacki",
-   "p2": "Wojciech Wojtaszczyk",
-   "p1_norm": "lukasz bernacki",
-   "p2_norm": "wojciech wojtaszczyk",
-   "open_date": "2026-07-24T16:55:00.000Z",
-   "line": 93.5,
-   "over_odds": null,
-   "under_odds": null
-  },
-  {
-   "event_id": 35860789,
-   "p1": "Michal Natkaniec",
-   "p2": "Michal Wolny",
-   "p1_norm": "michal natkaniec",
-   "p2_norm": "michal wolny",
-   "open_date": "2026-07-24T17:10:00.000Z",
-   "line": 75.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35860837,
    "p1": "Marcin Kowalczyk",
@@ -77,6 +55,17 @@
    "line": 76.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35861022,
+   "p1": "Artur Daniel",
+   "p2": "Michal Olbrycht",
+   "p1_norm": "artur daniel",
+   "p2_norm": "michal olbrycht",
+   "open_date": "2026-07-24T17:40:00.000Z",
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
