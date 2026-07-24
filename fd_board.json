@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T12:35:23Z",
+ "captured_at": "2026-07-24T12:39:38Z",
  "matches": [
-  {
-   "event_id": 35859784,
-   "p1": "Igor Szymanski",
-   "p2": "Sebastian Szostok",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "sebastian szostok",
-   "open_date": "2026-07-24T12:20:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
   {
    "event_id": 35859769,
    "p1": "Krystian Kolodziej",
@@ -19,9 +8,9 @@
    "p1_norm": "krystian kolodziej",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T12:30:00.000Z",
-   "line": 77.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 72.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859775,
@@ -30,9 +19,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T12:35:00.000Z",
-   "line": 79.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859778,
@@ -53,7 +42,7 @@
    "p2_norm": "dawid kosmal",
    "open_date": "2026-07-24T12:40:00.000Z",
    "line": 71.5,
-   "over_odds": -112,
+   "over_odds": -116,
    "under_odds": -118
   },
   {
@@ -85,9 +74,31 @@
    "p1_norm": "artur daniel",
    "p2_norm": "michal minda",
    "open_date": "2026-07-24T13:00:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -110
+   "line": 76.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35859857,
+   "p1": "Karol Sulkowski",
+   "p2": "Kamil Klocek",
+   "p1_norm": "karol sulkowski",
+   "p2_norm": "kamil klocek",
+   "open_date": "2026-07-24T13:05:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
+  },
+  {
+   "event_id": 35859858,
+   "p1": "Robert Kostepski",
+   "p2": "Igor Szymanski",
+   "p1_norm": "robert kostepski",
+   "p2_norm": "igor szymanski",
+   "open_date": "2026-07-24T13:05:00.000Z",
+   "line": 71.5,
+   "over_odds": -110,
+   "under_odds": -120
   }
  ]
 }
