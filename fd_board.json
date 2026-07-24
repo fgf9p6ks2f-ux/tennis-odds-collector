@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T17:01:02Z",
+ "captured_at": "2026-07-24T17:06:01Z",
  "matches": [
   {
    "event_id": 35860778,
@@ -8,20 +8,9 @@
    "p1_norm": "lukasz bernacki",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T16:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35860787,
-   "p1": "Jerzy Pelka",
-   "p2": "Oliver Vincenec",
-   "p1_norm": "jerzy pelka",
-   "p2_norm": "oliver vincenec",
-   "open_date": "2026-07-24T17:05:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 81.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860789,
@@ -64,6 +53,17 @@
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T17:20:00.000Z",
    "line": 75.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35860973,
+   "p1": "Roman Wiza",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "roman wiza",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-24T17:30:00.000Z",
+   "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
   }
