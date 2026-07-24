@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T19:24:08Z",
+ "captured_at": "2026-07-24T19:28:23Z",
  "matches": [
-  {
-   "event_id": 35861358,
-   "p1": "Artur Daniel",
-   "p2": "Kamil Kostyk",
-   "p1_norm": "artur daniel",
-   "p2_norm": "kamil kostyk",
-   "open_date": "2026-07-24T19:15:00.000Z",
-   "line": 56.5,
-   "over_odds": -135,
-   "under_odds": -105
-  },
   {
    "event_id": 35861372,
    "p1": "Piotr Gumulinski",
@@ -66,6 +55,17 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35861402,
+   "p1": "Tomasz Wrzalik",
+   "p2": "Adam Ruszkiewicz",
+   "p1_norm": "tomasz wrzalik",
+   "p2_norm": "adam ruszkiewicz",
+   "open_date": "2026-07-24T19:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
