@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T08:49:33Z",
+ "captured_at": "2026-07-24T08:54:25Z",
  "matches": [
-  {
-   "event_id": 35858882,
-   "p1": "Igor Szymanski",
-   "p2": "Sebastian Szostok",
-   "p1_norm": "igor szymanski",
-   "p2_norm": "sebastian szostok",
-   "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 80.5,
-   "over_odds": -115,
-   "under_odds": -120
-  },
   {
    "event_id": 35858886,
    "p1": "Jerzy Pelka",
@@ -19,7 +8,7 @@
    "p1_norm": "jerzy pelka",
    "p2_norm": "oliver vincenec",
    "open_date": "2026-07-24T08:45:00.000Z",
-   "line": 75.5,
+   "line": 86.5,
    "over_odds": -115,
    "under_odds": -120
   },
@@ -30,7 +19,7 @@
    "p1_norm": "milosz cesarz",
    "p2_norm": "marek tkocz",
    "open_date": "2026-07-24T08:45:00.000Z",
-   "line": 60.5,
+   "line": 63.5,
    "over_odds": -120,
    "under_odds": -115
   },
@@ -53,8 +42,8 @@
    "p2_norm": "michal durda",
    "open_date": "2026-07-24T09:00:00.000Z",
    "line": 75.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -116,
+   "under_odds": -116
   },
   {
    "event_id": 35858912,
@@ -75,6 +64,17 @@
    "p2_norm": "grzegorz jurowicz",
    "open_date": "2026-07-24T09:05:00.000Z",
    "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35858983,
+   "p1": "Adrian Spychala",
+   "p2": "Jakub Glanowski",
+   "p1_norm": "adrian spychala",
+   "p2_norm": "jakub glanowski",
+   "open_date": "2026-07-24T09:20:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
