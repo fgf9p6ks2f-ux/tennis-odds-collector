@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T13:20:08Z",
+ "captured_at": "2026-07-24T13:24:24Z",
  "matches": [
-  {
-   "event_id": 35859857,
-   "p1": "Karol Sulkowski",
-   "p2": "Kamil Klocek",
-   "p1_norm": "karol sulkowski",
-   "p2_norm": "kamil klocek",
-   "open_date": "2026-07-24T13:05:00.000Z",
-   "line": 91.5,
-   "over_odds": -230,
-   "under_odds": 155
-  },
   {
    "event_id": 35859858,
    "p1": "Robert Kostepski",
@@ -19,9 +8,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "igor szymanski",
    "open_date": "2026-07-24T13:05:00.000Z",
-   "line": 94.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 97.5,
+   "over_odds": 105,
+   "under_odds": -145
   },
   {
    "event_id": 35859875,
@@ -32,7 +21,7 @@
    "open_date": "2026-07-24T13:10:00.000Z",
    "line": 85.5,
    "over_odds": -115,
-   "under_odds": -120
+   "under_odds": -115
   },
   {
    "event_id": 35859897,
@@ -41,9 +30,9 @@
    "p1_norm": "marcin jadczyk",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T13:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 79.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859918,
@@ -97,6 +86,17 @@
    "p2_norm": "grzegorz felkel",
    "open_date": "2026-07-24T13:45:00.000Z",
    "line": 74.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35860004,
+   "p1": "Adrian Spychala",
+   "p2": "Michal Minda",
+   "p1_norm": "adrian spychala",
+   "p2_norm": "michal minda",
+   "open_date": "2026-07-24T13:50:00.000Z",
+   "line": 80.5,
    "over_odds": -112,
    "under_odds": -118
   }
