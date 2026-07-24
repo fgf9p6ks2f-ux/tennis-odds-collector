@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-24T23:49:36Z",
+ "captured_at": "2026-07-24T23:56:31Z",
  "matches": [
-  {
-   "event_id": 35861887,
-   "p1": "Jacek Oracz",
-   "p2": "Michal Guzik",
-   "p1_norm": "jacek oracz",
-   "p2_norm": "michal guzik",
-   "open_date": "2026-07-24T23:35:00.000Z",
-   "line": 75.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35861888,
-   "p1": "Maciej Kolek",
-   "p2": "Mateusz Rutkowski",
-   "p1_norm": "maciej kolek",
-   "p2_norm": "mateusz rutkowski",
-   "open_date": "2026-07-24T23:35:00.000Z",
-   "line": 98.5,
-   "over_odds": -130,
-   "under_odds": -105
-  },
   {
    "event_id": 35861904,
    "p1": "Tomasz Wrzalik",
@@ -31,8 +9,8 @@
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-24T23:55:00.000Z",
    "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861905,
@@ -41,9 +19,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-24T23:55:00.000Z",
-   "line": 76.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 73.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35861914,
@@ -77,6 +55,28 @@
    "line": 81.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35861925,
+   "p1": "Maciej Kolek",
+   "p2": "Marcin Marchlewski",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "marcin marchlewski",
+   "open_date": "2026-07-25T00:20:00.000Z",
+   "line": 78.5,
+   "over_odds": -112,
+   "under_odds": -118
+  },
+  {
+   "event_id": 35861926,
+   "p1": "Piotr Gumulinski",
+   "p2": "Roman Wiza",
+   "p1_norm": "piotr gumulinski",
+   "p2_norm": "roman wiza",
+   "open_date": "2026-07-25T00:20:00.000Z",
+   "line": 76.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
