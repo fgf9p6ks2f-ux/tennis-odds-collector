@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T10:48:09Z",
+ "captured_at": "2026-07-24T10:52:25Z",
  "matches": [
   {
    "event_id": 35859346,
@@ -8,9 +8,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T10:40:00.000Z",
-   "line": 65.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 74.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35859417,
@@ -19,7 +19,7 @@
    "p1_norm": "karol sulkowski",
    "p2_norm": "krzysztof kotyl",
    "open_date": "2026-07-24T10:40:00.000Z",
-   "line": 88.5,
+   "line": 90.5,
    "over_odds": -110,
    "under_odds": -125
   },
@@ -30,9 +30,9 @@
    "p1_norm": "robert kostepski",
    "p2_norm": "pawel kurek",
    "open_date": "2026-07-24T10:40:00.000Z",
-   "line": 85.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 92.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35859383,
@@ -42,8 +42,8 @@
    "p2_norm": "marcin jadczyk",
    "open_date": "2026-07-24T10:50:00.000Z",
    "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35859395,
