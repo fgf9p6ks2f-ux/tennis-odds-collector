@@ -178,11 +178,15 @@ def cmd_fetch(a):
             eid, ct = ev.get("id"), ev.get("commence_time")
             if not eid or _logged(c, "event", eid):
                 continue
-            # pull the line ~90 min before first pitch: posted + stable, pre-lineup-scratch churn
+            # pull the line ~`lead` min before first pitch. Default 25, NOT 90: the free-tier probe
+            # (2026-07-24) proved FanDuel posts pitcher_OUTS late (it had FD strikeouts but no FD outs
+            # 18h out) — a 90-min snapshot would catch DK but MISS FanDuel, and the live 22-4 is
+            # FD-anchored. Close to tip captures FD; outs lines barely move on late scratches, so the
+            # structural line>recent-5 signal is intact. --lead tunes it if FD posts even later.
             when = ct
             try:
                 when = (dt.datetime.fromisoformat(ct.replace("Z", "+00:00"))
-                        - dt.timedelta(minutes=90)).strftime("%Y-%m-%dT%H:%M:%SZ")
+                        - dt.timedelta(minutes=a.lead)).strftime("%Y-%m-%dT%H:%M:%SZ")
             except Exception:
                 pass
             od_json, rem, used = _get(f"/historical/sports/{SPORT}/events/{eid}/odds",
@@ -375,6 +379,8 @@ def main():
     e.add_argument("--games-per-day", type=int, default=13); e.set_defaults(fn=cmd_estimate)
     f = sub.add_parser("fetch"); f.add_argument("--start", required=True); f.add_argument("--end", required=True)
     f.add_argument("--sleep", type=float, default=0.3); f.add_argument("--refresh", action="store_true")
+    f.add_argument("--lead", type=int, default=25, help="minutes before tip to snapshot "
+                   "(low = catches FanDuel's late outs posting; the live edge is FD-anchored)")
     f.set_defaults(fn=cmd_fetch)
     b = sub.add_parser("backtest"); b.set_defaults(fn=cmd_backtest)
     s = sub.add_parser("self-test"); s.set_defaults(fn=cmd_selftest)
