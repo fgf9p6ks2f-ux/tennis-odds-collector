@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T08:40:59Z",
+ "captured_at": "2026-07-24T08:45:13Z",
  "matches": [
-  {
-   "event_id": 35858874,
-   "p1": "Jakub Glanowski",
-   "p2": "Dawid Kosmal",
-   "p1_norm": "jakub glanowski",
-   "p2_norm": "dawid kosmal",
-   "open_date": "2026-07-24T08:30:00.000Z",
-   "line": 56.5,
-   "over_odds": null,
-   "under_odds": null
-  },
   {
    "event_id": 35858882,
    "p1": "Igor Szymanski",
@@ -19,8 +8,8 @@
    "p1_norm": "igor szymanski",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T08:35:00.000Z",
-   "line": 82.5,
-   "over_odds": -120,
+   "line": 86.5,
+   "over_odds": -115,
    "under_odds": -115
   },
   {
