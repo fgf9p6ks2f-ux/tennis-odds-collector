@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T11:30:49Z",
+ "captured_at": "2026-07-24T11:37:40Z",
  "matches": [
-  {
-   "event_id": 35859438,
-   "p1": "Piotr Cyrnek",
-   "p2": "Krystian Kolodziej",
-   "p1_norm": "piotr cyrnek",
-   "p2_norm": "krystian kolodziej",
-   "open_date": "2026-07-24T11:15:00.000Z",
-   "line": 69.5,
-   "over_odds": -140,
-   "under_odds": 100
-  },
   {
    "event_id": 35859457,
    "p1": "Adrian Spychala",
@@ -19,9 +8,9 @@
    "p1_norm": "adrian spychala",
    "p2_norm": "michal olbrycht",
    "open_date": "2026-07-24T11:20:00.000Z",
-   "line": 81.5,
-   "over_odds": -110,
-   "under_odds": -125
+   "line": 95.5,
+   "over_odds": -140,
+   "under_odds": 100
   },
   {
    "event_id": 35859664,
@@ -30,9 +19,20 @@
    "p1_norm": "jakub kaczmarek",
    "p2_norm": "sebastian szostok",
    "open_date": "2026-07-24T11:20:00.000Z",
-   "line": 86.5,
-   "over_odds": -125,
-   "under_odds": -110
+   "line": 88.5,
+   "over_odds": -130,
+   "under_odds": -105
+  },
+  {
+   "event_id": 35859494,
+   "p1": "Jerzy Pelka",
+   "p2": "Oskar Jadach",
+   "p1_norm": "jerzy pelka",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-24T11:30:00.000Z",
+   "line": 61.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35859565,
@@ -52,9 +52,9 @@
    "p1_norm": "artur daniel",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T11:45:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35859693,
@@ -66,6 +66,17 @@
    "line": 76.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35859714,
+   "p1": "Grzegorz Felkel",
+   "p2": "Karol Strowski",
+   "p1_norm": "grzegorz felkel",
+   "p2_norm": "karol strowski",
+   "open_date": "2026-07-24T12:05:00.000Z",
+   "line": 74.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
