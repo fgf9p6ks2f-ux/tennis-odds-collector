@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T15:52:24Z",
+ "captured_at": "2026-07-24T15:56:45Z",
  "matches": [
   {
    "event_id": 35860342,
@@ -8,9 +8,9 @@
    "p1_norm": "piotr cyrnek",
    "p2_norm": "karol strowski",
    "open_date": "2026-07-24T15:45:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 96.5,
+   "over_odds": -110,
+   "under_odds": -125
   },
   {
    "event_id": 35860350,
@@ -19,20 +19,9 @@
    "p1_norm": "lukasz bernacki",
    "p2_norm": "schaniel krzysztof",
    "open_date": "2026-07-24T15:50:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
-  },
-  {
-   "event_id": 35860376,
-   "p1": "Oliver Vincenec",
-   "p2": "Oskar Jadach",
-   "p1_norm": "oliver vincenec",
-   "p2_norm": "oskar jadach",
-   "open_date": "2026-07-24T15:55:00.000Z",
-   "line": 78.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 80.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860423,
@@ -77,6 +66,17 @@
    "line": 74.5,
    "over_odds": -112,
    "under_odds": -118
+  },
+  {
+   "event_id": 35860493,
+   "p1": "Rafal Niemiec",
+   "p2": "Grzegorz Wichowski",
+   "p1_norm": "rafal niemiec",
+   "p2_norm": "grzegorz wichowski",
+   "open_date": "2026-07-24T16:20:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
