@@ -1,17 +1,6 @@
 {
- "captured_at": "2026-07-24T19:28:23Z",
+ "captured_at": "2026-07-24T19:33:20Z",
  "matches": [
-  {
-   "event_id": 35861372,
-   "p1": "Piotr Gumulinski",
-   "p2": "Jakub Michalski",
-   "p1_norm": "piotr gumulinski",
-   "p2_norm": "jakub michalski",
-   "open_date": "2026-07-24T19:30:00.000Z",
-   "line": 73.5,
-   "over_odds": -116,
-   "under_odds": -116
-  },
   {
    "event_id": 35861380,
    "p1": "Michal Wolny",
@@ -66,6 +55,17 @@
    "line": 78.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861407,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Krutak",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal krutak",
+   "open_date": "2026-07-24T20:00:00.000Z",
+   "line": 80.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
