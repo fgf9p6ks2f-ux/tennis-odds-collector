@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T23:07:18Z",
+ "captured_at": "2026-07-24T23:11:46Z",
  "matches": [
   {
    "event_id": 35861814,
@@ -8,20 +8,9 @@
    "p1_norm": "roman wiza",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-24T23:05:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35861818,
-   "p1": "Michal Natkaniec",
-   "p2": "Michal Wolny",
-   "p1_norm": "michal natkaniec",
-   "p2_norm": "michal wolny",
-   "open_date": "2026-07-24T23:10:00.000Z",
-   "line": 75.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 48.5,
+   "over_odds": -105,
+   "under_odds": -130
   },
   {
    "event_id": 35861823,
@@ -42,8 +31,8 @@
    "p2_norm": "stanislaw wnek",
    "open_date": "2026-07-24T23:20:00.000Z",
    "line": 81.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "over_odds": -118,
+   "under_odds": -112
   },
   {
    "event_id": 35861850,
@@ -63,9 +52,31 @@
    "p1_norm": "damian fira",
    "p2_norm": "adam ruszkiewicz",
    "open_date": "2026-07-24T23:30:00.000Z",
-   "line": 77.5,
+   "line": 81.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861887,
+   "p1": "Jacek Oracz",
+   "p2": "Michal Guzik",
+   "p1_norm": "jacek oracz",
+   "p2_norm": "michal guzik",
+   "open_date": "2026-07-24T23:35:00.000Z",
+   "line": 77.5,
+   "over_odds": -118,
+   "under_odds": -116
+  },
+  {
+   "event_id": 35861888,
+   "p1": "Maciej Kolek",
+   "p2": "Mateusz Rutkowski",
+   "p1_norm": "maciej kolek",
+   "p2_norm": "mateusz rutkowski",
+   "open_date": "2026-07-24T23:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -116
   }
  ]
 }
