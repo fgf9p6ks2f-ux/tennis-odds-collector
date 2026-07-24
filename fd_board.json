@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T16:38:49Z",
+ "captured_at": "2026-07-24T16:43:05Z",
  "matches": [
   {
    "event_id": 35860746,
@@ -8,9 +8,9 @@
    "p1_norm": "karol strowski",
    "p2_norm": "kamil kostyk",
    "open_date": "2026-07-24T16:30:00.000Z",
-   "line": 84.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 71.5,
+   "over_odds": null,
+   "under_odds": null
   },
   {
    "event_id": 35860754,
@@ -19,9 +19,9 @@
    "p1_norm": "schaniel krzysztof",
    "p2_norm": "piotr przewlocki",
    "open_date": "2026-07-24T16:35:00.000Z",
-   "line": 81.5,
-   "over_odds": -120,
-   "under_odds": -115
+   "line": 85.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860760,
@@ -30,9 +30,9 @@
    "p1_norm": "grzegorz jurowicz",
    "p2_norm": "oskar jadach",
    "open_date": "2026-07-24T16:40:00.000Z",
-   "line": 75.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 73.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860773,
