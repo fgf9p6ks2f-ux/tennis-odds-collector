@@ -1,6 +1,6 @@
 # Pitcher strikeout alt-ladder scan (cross-book line-shopping)
 
-_2026-07-23 23:49 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
+_2026-07-24 00:15 UTC · fair = vig-stripped consensus of the books posting each rung. NO projection model (backtest: corr 0.37, too weak to price K tails; and pricing a book's unique rung off a model just bets our own error). Only rungs >=2 books agree on can be flagged._
 
 **No +EV rung tonight** — the K market is efficient; even the best of 3 books is -EV on every agreeing rung. This is a SHOPPING sheet (best book per rung to minimize vig), not a bet list. A genuine +EV rung (a slow book) would ⭐ here.
 
@@ -24,7 +24,7 @@ _2026-07-23 23:49 UTC · fair = vig-stripped consensus of the books posting each
 **Zebby Matthews**
   O2.5: FD -650 (1 book, no consensus)
   O3.5: FD -220 (1 book, no consensus)
-  O4.5: fair 44% · FD +114 DK +108 → best FD
+  O4.5: fair 44% · FD +114 DK +104 → best FD
   O5.5: FD +255 (1 book, no consensus)
   O6.5: FD +560 (1 book, no consensus)
 
@@ -67,11 +67,11 @@ _2026-07-23 23:49 UTC · fair = vig-stripped consensus of the books posting each
   O7.5: BETMGM +230 (1 book, no consensus)
 
 **Jacob Lopez**
-  O2.5: FD -590 (1 book, no consensus)
+  O2.5: FD -530 (1 book, no consensus)
   O3.5: FD -205 (1 book, no consensus)
   O4.5: FD +120 (1 book, no consensus)
-  O5.5: FD +265 (1 book, no consensus)
-  O6.5: FD +560 (1 book, no consensus)
+  O5.5: FD +260 (1 book, no consensus)
+  O6.5: FD +600 (1 book, no consensus)
 
 **Joey Cantillo**
   O2.5: FD -1100 (1 book, no consensus)
@@ -103,19 +103,19 @@ _2026-07-23 23:49 UTC · fair = vig-stripped consensus of the books posting each
   O5.5: DK -152 (1 book, no consensus)
 
 **Matthew Boyd**
-  O5.5: DK -125 (1 book, no consensus)
+  O5.5: DK -119 (1 book, no consensus)
 
 **Patrick Sandoval**
   O4.5: DK +101 (1 book, no consensus)
 
 **Shane Drohan**
-  O5.5: DK -119 (1 book, no consensus)
+  O5.5: DK -125 (1 book, no consensus)
 
 **Spencer Arrighetti**
   O5.5: DK +104 (1 book, no consensus)
 
 **Tomoyuki Sugano**
-  O3.5: DK +126 (1 book, no consensus)
+  O3.5: DK +109 (1 book, no consensus)
 
 **Trevor Rogers**
   O5.5: DK +128 (1 book, no consensus)
