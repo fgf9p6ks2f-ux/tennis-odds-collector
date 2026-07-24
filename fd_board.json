@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T15:25:03Z",
+ "captured_at": "2026-07-24T15:29:31Z",
  "matches": [
   {
    "event_id": 35860312,
@@ -8,9 +8,9 @@
    "p1_norm": "marcin kowalczyk",
    "p2_norm": "mateusz trela",
    "open_date": "2026-07-24T15:25:00.000Z",
-   "line": 77.5,
-   "over_odds": -112,
-   "under_odds": -118
+   "line": 89.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35860313,
@@ -19,9 +19,9 @@
    "p1_norm": "grzegorz felkel",
    "p2_norm": "martin olejnik",
    "open_date": "2026-07-24T15:25:00.000Z",
-   "line": 75.5,
-   "over_odds": -110,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35860314,
@@ -30,9 +30,9 @@
    "p1_norm": "mariusz koczyba",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-24T15:25:00.000Z",
-   "line": 76.5,
-   "over_odds": null,
-   "under_odds": null
+   "line": 77.5,
+   "over_odds": -115,
+   "under_odds": -115
   },
   {
    "event_id": 35860321,
@@ -88,6 +88,17 @@
    "line": 78.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35860376,
+   "p1": "Oliver Vincenec",
+   "p2": "Oskar Jadach",
+   "p1_norm": "oliver vincenec",
+   "p2_norm": "oskar jadach",
+   "open_date": "2026-07-24T15:55:00.000Z",
+   "line": 78.5,
+   "over_odds": -118,
+   "under_odds": -112
   }
  ]
 }
