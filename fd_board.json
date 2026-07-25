@@ -1,28 +1,6 @@
 {
- "captured_at": "2026-07-25T00:03:35Z",
+ "captured_at": "2026-07-25T00:11:08Z",
  "matches": [
-  {
-   "event_id": 35861904,
-   "p1": "Tomasz Wrzalik",
-   "p2": "Jakub Michalski",
-   "p1_norm": "tomasz wrzalik",
-   "p2_norm": "jakub michalski",
-   "open_date": "2026-07-24T23:55:00.000Z",
-   "line": 77.5,
-   "over_odds": -120,
-   "under_odds": -115
-  },
-  {
-   "event_id": 35861905,
-   "p1": "Jakub Kuzmicz",
-   "p2": "Marcin Marchlewski",
-   "p1_norm": "jakub kuzmicz",
-   "p2_norm": "marcin marchlewski",
-   "open_date": "2026-07-24T23:55:00.000Z",
-   "line": 51.5,
-   "over_odds": 115,
-   "under_odds": -160
-  },
   {
    "event_id": 35861917,
    "p1": "Jakub Jesiek",
@@ -30,20 +8,9 @@
    "p1_norm": "jakub jesiek",
    "p2_norm": "wojciech wojtaszczyk",
    "open_date": "2026-07-25T00:10:00.000Z",
-   "line": 74.5,
-   "over_odds": -112,
-   "under_odds": -118
-  },
-  {
-   "event_id": 35861918,
-   "p1": "Mateusz Trela",
-   "p2": "Dariusz Wrobel",
-   "p1_norm": "mateusz trela",
-   "p2_norm": "dariusz wrobel",
-   "open_date": "2026-07-25T00:10:00.000Z",
-   "line": 81.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 72.5,
+   "over_odds": -115,
+   "under_odds": -120
   },
   {
    "event_id": 35861925,
@@ -63,9 +30,9 @@
    "p1_norm": "piotr gumulinski",
    "p2_norm": "roman wiza",
    "open_date": "2026-07-25T00:20:00.000Z",
-   "line": 76.5,
-   "over_odds": -118,
-   "under_odds": -112
+   "line": 77.5,
+   "over_odds": -112,
+   "under_odds": -118
   },
   {
    "event_id": 35861939,
@@ -77,6 +44,28 @@
    "line": 79.5,
    "over_odds": -116,
    "under_odds": -116
+  },
+  {
+   "event_id": 35862004,
+   "p1": "Mariusz Koczyba",
+   "p2": "Lukasz Bernacki",
+   "p1_norm": "mariusz koczyba",
+   "p2_norm": "lukasz bernacki",
+   "open_date": "2026-07-25T00:35:00.000Z",
+   "line": 78.5,
+   "over_odds": -110,
+   "under_odds": -120
+  },
+  {
+   "event_id": 35862005,
+   "p1": "Stanislaw Wnek",
+   "p2": "Michal Skorski",
+   "p1_norm": "stanislaw wnek",
+   "p2_norm": "michal skorski",
+   "open_date": "2026-07-25T00:35:00.000Z",
+   "line": 85.5,
+   "over_odds": -112,
+   "under_odds": -118
   }
  ]
 }
