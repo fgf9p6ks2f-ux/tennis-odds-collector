@@ -1,5 +1,5 @@
 {
- "captured_at": "2026-07-24T23:56:31Z",
+ "captured_at": "2026-07-25T00:03:35Z",
  "matches": [
   {
    "event_id": 35861904,
@@ -8,9 +8,9 @@
    "p1_norm": "tomasz wrzalik",
    "p2_norm": "jakub michalski",
    "open_date": "2026-07-24T23:55:00.000Z",
-   "line": 75.5,
-   "over_odds": -115,
-   "under_odds": -120
+   "line": 77.5,
+   "over_odds": -120,
+   "under_odds": -115
   },
   {
    "event_id": 35861905,
@@ -19,20 +19,9 @@
    "p1_norm": "jakub kuzmicz",
    "p2_norm": "marcin marchlewski",
    "open_date": "2026-07-24T23:55:00.000Z",
-   "line": 73.5,
-   "over_odds": -110,
-   "under_odds": -125
-  },
-  {
-   "event_id": 35861914,
-   "p1": "Michal Krutak",
-   "p2": "Michal Natkaniec",
-   "p1_norm": "michal krutak",
-   "p2_norm": "michal natkaniec",
-   "open_date": "2026-07-25T00:00:00.000Z",
-   "line": 78.5,
-   "over_odds": -116,
-   "under_odds": -116
+   "line": 51.5,
+   "over_odds": 115,
+   "under_odds": -160
   },
   {
    "event_id": 35861917,
@@ -77,6 +66,17 @@
    "line": 76.5,
    "over_odds": -118,
    "under_odds": -112
+  },
+  {
+   "event_id": 35861939,
+   "p1": "Cezary Pawlik",
+   "p2": "Michal Wolny",
+   "p1_norm": "cezary pawlik",
+   "p2_norm": "michal wolny",
+   "open_date": "2026-07-25T00:25:00.000Z",
+   "line": 79.5,
+   "over_odds": -116,
+   "under_odds": -116
   }
  ]
 }
